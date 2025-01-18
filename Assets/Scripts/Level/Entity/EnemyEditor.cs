@@ -21,7 +21,7 @@ namespace SkyStrike
             private IEnemyData _data;
             public IEnemyData data
             {
-                get => data;
+                get => _data;
                 set
                 {
                     _data = value;

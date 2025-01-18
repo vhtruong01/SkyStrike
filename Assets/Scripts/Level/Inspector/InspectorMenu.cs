@@ -21,7 +21,7 @@ namespace SkyStrike
 
             public void Awake()
             {
-                add1ShipBtn.onClick.AddListener(() => MenuManager.SelectEnemy(curEnemyData));
+                add1ShipBtn.onClick.AddListener(CreateEnemy);
             }
             public void OnEnable()
             {
@@ -30,6 +30,11 @@ namespace SkyStrike
             public void OnDisable()
             {
                 MenuManager.onSelectEnemy.RemoveListener(DisplayInfo);
+            }
+            public void CreateEnemy()
+            {
+                if (curEnemyData != null)
+                    MenuManager.CreateEnemy(curEnemyData);
             }
             public void DisplayInfo(IEnemyData data)
             {
@@ -40,7 +45,7 @@ namespace SkyStrike
                 }
                 curEnemyData = data;
                 position.value = data.position;
-                rotation.value = data.rotation;
+                //rotation.value = data.rotation;
                 scale.value = data.scale;
                 type.text = data.type;
                 icon.sprite = data.sprite;

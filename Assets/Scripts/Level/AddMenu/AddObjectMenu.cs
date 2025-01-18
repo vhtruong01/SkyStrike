@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike
@@ -6,15 +7,15 @@ namespace SkyStrike
     {
         public class AddObjectMenu : Menu
         {
+            [SerializeField] private List<EnemyMetaData> enemyMetaDataList;
             [SerializeField] private ItemUI itemUIPrefab;
-            [SerializeField] private EnemyMetaDataGroup enemyDataGroup;
             [SerializeField] private GameObject content;
             private ItemUI selectedItem;
 
             public override void Awake()
             {
                 base.Awake();
-                foreach (var data in enemyDataGroup.enemiesData)
+                foreach (var data in enemyMetaDataList)
                 {
                     var itemUI = Instantiate(itemUIPrefab, content.transform, false);
                     itemUI.onSelect.AddListener(SelectItem);
@@ -23,7 +24,8 @@ namespace SkyStrike
             }
             public void SelectItem(ItemUI itemUI)
             {
-                selectedItem?.Deactive();
+                if(selectedItem != null) 
+                    selectedItem.Deactive();
                 selectedItem = itemUI;
                 selectedItem.Active();
                 MenuManager.SelectEnemy(selectedItem.data);

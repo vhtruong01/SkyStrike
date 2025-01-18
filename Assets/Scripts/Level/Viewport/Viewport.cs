@@ -21,12 +21,12 @@ namespace SkyStrike
             public void Awake()
             {
                 enemyPool = new(CreateEnemy);
+                MenuManager.onCreateEnemy.AddListener(AddEnemy);
             }
-
             public void Display(WaveData wave)
             {
-                ClearAll();
-                foreach(IEnemyData e in wave.enemies)
+                ClearWave();
+                foreach (IEnemyData e in wave.enemies)
                     AddEnemy(e);
             }
             private EnemyEditor CreateEnemy()
@@ -38,7 +38,7 @@ namespace SkyStrike
             public void AddEnemy(IEnemyData enemyData)
             {
                 EnemyEditor enemy = enemyPool.Get();
-                enemy.data = enemyData;
+                enemy.data = enemyData.Clone();
                 enemy.gameObject.SetActive(true);
             }
             public void RemoveEnemy(EnemyEditor enemyEditor)
@@ -46,13 +46,13 @@ namespace SkyStrike
                 enemyEditor.gameObject.SetActive(false);
                 enemyPool.Release(enemyEditor);
             }
-            public void Save()
+            public void SaveWave()
             {
 
             }
-            public void ClearAll()
+            public void ClearWave()
             {
-                foreach(EnemyEditor e in  enemyContainer.GetComponentsInChildren<EnemyEditor>()) 
+                foreach (EnemyEditor e in enemyContainer.GetComponentsInChildren<EnemyEditor>())
                     RemoveEnemy(e);
             }
         }

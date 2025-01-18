@@ -7,6 +7,7 @@ namespace SkyStrike
     {
         public class Vector2Property : MonoBehaviour
         {
+            [SerializeField] private TextMeshProUGUI titleTxt;
             [SerializeField] private TMP_InputField x;
             [SerializeField] private TMP_InputField y;
             private Vector2 _value;
@@ -26,7 +27,11 @@ namespace SkyStrike
                     _value = value;
                 }
             }
-
+            public void SetTitle(string title)
+            {
+                if (titleTxt != null)
+                    titleTxt.text = title;
+            }
         }
     }
 }

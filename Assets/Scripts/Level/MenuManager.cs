@@ -5,12 +5,18 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public static class MenuManager 
+        public static class MenuManager
         {
-            public static readonly UnityEvent<IEnemyData> onSelectEnemy = new();
-            //public static readonly UnityEvent onSelectEnemyGroup = new();
+            public static UnityEvent<IEnemyData> onSelectEnemy { get; private set; }
+            public static UnityEvent<IEnemyData> onCreateEnemy { get; private set; }
+            static MenuManager()
+            {
+                onSelectEnemy = new();
+                onCreateEnemy = new();
+            }
 
             public static void SelectEnemy(IEnemyData enemyData) => onSelectEnemy.Invoke(enemyData);
+            public static void CreateEnemy(IEnemyData enemyData) => onCreateEnemy.Invoke(enemyData);
 
         }
     }
