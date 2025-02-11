@@ -8,27 +8,27 @@ namespace SkyStrike
         public class AddObjectMenu : Menu
         {
             [SerializeField] private List<EnemyMetaData> enemyMetaDataList;
-            [SerializeField] private ItemUI itemUIPrefab;
-            [SerializeField] private GameObject content;
-            private ItemUI selectedItem;
+            [SerializeField] private UIGroup itemUIGroup;
 
             public override void Awake()
             {
                 base.Awake();
                 foreach (var data in enemyMetaDataList)
                 {
-                    var itemUI = Instantiate(itemUIPrefab, content.transform, false);
+                    ItemUI itemUI = itemUIGroup.CreateItem<ItemUI>();
                     itemUI.onSelect.AddListener(SelectItem);
                     itemUI.data = data;
                 }
             }
             public void SelectItem(ItemUI itemUI)
             {
-                if(selectedItem != null) 
-                    selectedItem.Deactive();
-                selectedItem = itemUI;
-                selectedItem.Active();
-                MenuManager.SelectEnemy(selectedItem.data);
+                itemUIGroup.SelectItem(itemUI);
+                MenuManager.SelectItemUI(itemUI?.data);
+            }
+            public override void HandleCollapse()
+            {
+                base.HandleCollapse();
+                SelectItem(null);
             }
         }
     }

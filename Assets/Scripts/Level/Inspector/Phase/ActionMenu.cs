@@ -8,6 +8,7 @@ namespace SkyStrike
         public abstract class ActionMenu : MonoBehaviour
         {
             [SerializeField] protected TextMeshProUGUI index;
+            public string type;
             public ActionUI actionUI { get; set; }
 
             public abstract void Display(ActionUI actionUI);

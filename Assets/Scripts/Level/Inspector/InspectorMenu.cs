@@ -17,19 +17,10 @@ namespace SkyStrike
             [SerializeField] private TextMeshProUGUI type;
             [SerializeField] private Button add1ShipBtn;
             private IEnemyData curEnemyData;
-            private bool isLock;
 
             public void Awake()
             {
                 add1ShipBtn.onClick.AddListener(CreateEnemy);
-            }
-            public void OnEnable()
-            {
-                MenuManager.onSelectEnemy.AddListener(DisplayInfo);
-            }
-            public void OnDisable()
-            {
-                MenuManager.onSelectEnemy.RemoveListener(DisplayInfo);
             }
             public void CreateEnemy()
             {
@@ -43,13 +34,14 @@ namespace SkyStrike
                     print("DisplayFail: data==null");
                     return;
                 }
-                curEnemyData = data;
+                SetData(data);
                 position.value = data.position;
                 //rotation.value = data.rotation;
                 scale.value = data.scale;
                 type.text = data.type;
                 icon.sprite = data.sprite;
             }
+            public void SetData(IEnemyData data) => curEnemyData = data;
         }
     }
 }

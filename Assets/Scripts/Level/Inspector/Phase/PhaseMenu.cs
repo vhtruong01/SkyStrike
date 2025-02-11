@@ -1,7 +1,8 @@
 using SkyStrike.Enemy;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using TMPro;
 
 namespace SkyStrike
 {
@@ -9,53 +10,61 @@ namespace SkyStrike
     {
         public class PhaseMenu : MonoBehaviour
         {
-            [SerializeField] private List<Button> switchButtons;
             [SerializeField] private List<ActionMenu> actionMenus;
+            [SerializeField] private UIGroup switchActionButtonGroup;
+            [SerializeField] private UIGroup actionUIGroup;
             [SerializeField] private Button addActionBtn;
-            //
-            private int curActionType;
-            private Dictionary<int, List<ActionUI>> phase;
-            private EnemyData enemyData;
+            private EAction curActionType;
+            private PhaseData phaseData;
 
             public void Awake()
             {
-                phase = new();
-                for (int i = 0; i < switchButtons.Count; i++)
+                for (int i = 0; i < actionMenus.Count; i++)
                 {
-                    switchButtons[i].onClick.AddListener(() => SelectActionType(i));
-                    phase[i] = new List<ActionUI>();
+                    Button switchButton = switchActionButtonGroup.CreateItem<Button>();
+                    int index = i;
+                    switchButton.GetComponentInChildren<TextMeshProUGUI>().text = actionMenus[i].type;
+                    switchButton.onClick.AddListener(() => SelectActionType((EAction)index));
                 }
-                addActionBtn.onClick.AddListener(AddAction);
+                //select default
+                //switchButtonGroup[0].
+                addActionBtn.onClick.AddListener(AddEmptyAction);
                 MenuManager.onSelectEnemy.AddListener(DisplayPhase);
             }
-            public void Start()
+            public void AddEmptyAction()
             {
-                SelectActionType(0);
+                if (phaseData == null) return;
+                AddAction(phaseData.AddAction(curActionType));
             }
-            public void SelectActionType(int actionType)
+            public void AddAction(IActionData actionData)
             {
-                if (!phase.TryGetValue(actionType, out var actionList)) return;
-                curActionType = actionType;
-                //
-            }
-            public void AddAction()
-            {
-                //phase[curActionType].
+                ActionUI actionUI = actionUIGroup.CreateItem<ActionUI>();
+                actionUI.gameObject.SetActive(true);
+                actionUI.SetListener(SelectAction);
+                actionUI.Display(actionData, curActionType);
             }
             public void RemoveAction()
             {
                 //
             }
+            public void SelectAction(ActionUI actionUI)
+            {
+                actionUIGroup.SelectItem(actionUI);
+            }
+            public void SelectActionType(EAction actionType)
+            {
+                actionUIGroup.Clear();
+                curActionType = actionType;
+                List<IActionData> actionDataList = phaseData.GetActionData(curActionType);
+                foreach (IActionData actionData in actionDataList)
+                    AddAction(actionData);
+            }
             public void DisplayPhase(IEnemyData enemyData)
             {
-                this.enemyData = enemyData as EnemyData;
-                gameObject.SetActive(this.enemyData != null);
-                if (this.enemyData == null) return;
-                //
-            }
-            public void DisplayAction(ActionUI actionUI)
-            {
-                actionMenus[curActionType].Display(actionUI);
+                phaseData = (enemyData as EnemyData)?.phase;
+                gameObject.SetActive(phaseData != null);
+                if (phaseData == null) return;
+                SelectActionType(curActionType);
             }
         }
     }

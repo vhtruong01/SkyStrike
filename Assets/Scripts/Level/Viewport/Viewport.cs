@@ -17,7 +17,6 @@ namespace SkyStrike
             private ObjectPool<EnemyEditor> enemyPool;
             //check dead point
 
-
             public void Awake()
             {
                 enemyPool = new(CreateEnemy);

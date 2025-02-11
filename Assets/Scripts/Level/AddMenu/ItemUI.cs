@@ -8,10 +8,8 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ItemUI : MonoBehaviour, IPointerClickHandler
+        public class ItemUI : MonoBehaviour, IPointerClickHandler,IUIElement
         {
-            private static readonly Color selectedColor = new(1, 1, 1, 0.15f);
-            private static readonly Color inactiveColor = new(1, 1, 1, 0);
             [SerializeField] private Image image;
             [SerializeField] private TextMeshProUGUI text;
             [SerializeField] private Image bg;
@@ -28,23 +26,15 @@ namespace SkyStrike
                     gameObject.name = _data.type;
                 }
             }
-
             public void Awake()
             {
                 onSelect = new();
                 bg = GetComponent<Image>();
             }
+            public Image GetBackground() => bg;
             public void OnPointerClick(PointerEventData eventData)
             {
                 onSelect.Invoke(this);
-            }
-            public void Active()
-            {
-                bg.color = selectedColor;
-            }
-            public void Deactive()
-            {
-                bg.color = inactiveColor;
             }
         }
     }
