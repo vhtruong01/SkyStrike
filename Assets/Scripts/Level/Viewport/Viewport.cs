@@ -1,6 +1,5 @@
 using SkyStrike.Enemy;
 using UnityEngine;
-using UnityEngine.Pool;
 using UnityEngine.UI;
 
 namespace SkyStrike
@@ -10,50 +9,46 @@ namespace SkyStrike
         public class Viewport : MonoBehaviour
         {
             [SerializeField] private Button inspectorMenuBtn;
+            [SerializeField] private GameObject inspectorMenu;
             [SerializeField] private Button waveMenuBtn;
+            [SerializeField] private GameObject waveMenu;
             [SerializeField] private Button addObjectMenuBtn;
-            [SerializeField] private GameObject enemyContainer;
-            [SerializeField] private EnemyEditor enemyEditorPrefab;
-            private ObjectPool<EnemyEditor> enemyPool;
-            //check dead point
+            [SerializeField] private GameObject addObjectMenu;
+            [SerializeField] private UIGroup enemyGroup;
 
             public void Awake()
             {
-                enemyPool = new(CreateEnemy);
+                inspectorMenuBtn.onClick.AddListener(() => inspectorMenu.SetActive(true));
+                waveMenuBtn.onClick.AddListener(() => waveMenu.SetActive(true));
+                addObjectMenuBtn.onClick.AddListener(() => addObjectMenu.SetActive(true));
                 MenuManager.onCreateEnemy.AddListener(AddEnemy);
             }
-            public void Display(WaveData wave)
+            public void AddEnemy(IData data)
             {
-                ClearWave();
-                foreach (IEnemyData e in wave.enemies)
-                    AddEnemy(e);
-            }
-            private EnemyEditor CreateEnemy()
-            {
-                EnemyEditor enemy = Instantiate(enemyEditorPrefab, enemyContainer.transform, false);
-                enemy.gameObject.name = "EnemyUI";
-                return enemy;
-            }
-            public void AddEnemy(IEnemyData enemyData)
-            {
-                EnemyEditor enemy = enemyPool.Get();
-                enemy.data = enemyData.Clone();
-                enemy.gameObject.SetActive(true);
+                EnemyEditor enemy = enemyGroup.CreateItem<EnemyEditor>();
+                enemy.data = (data as IEnemyData).Clone();
             }
             public void RemoveEnemy(EnemyEditor enemyEditor)
             {
-                enemyEditor.gameObject.SetActive(false);
-                enemyPool.Release(enemyEditor);
+                enemyGroup.RemoveItem(enemyEditor.gameObject);
+                //wave
             }
-            public void SaveWave()
-            {
+            ////
+            //public void Display(WaveData wave)
+            //{
+            //    ClearWave();
+            //    foreach (IEnemyData e in wave.enemies)
+            //        AddEnemy(e);
+            //}
+            //public void SaveWave()
+            //{
 
-            }
-            public void ClearWave()
-            {
-                foreach (EnemyEditor e in enemyContainer.GetComponentsInChildren<EnemyEditor>())
-                    RemoveEnemy(e);
-            }
+            //}
+            //public void ClearWave()
+            //{
+            //    //foreach (EnemyEditor e in enemyContainer.GetComponentsInChildren<EnemyEditor>())
+            //    //    RemoveEnemy(e);
+            //}
         }
     }
 }

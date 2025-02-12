@@ -12,57 +12,60 @@ namespace SkyStrike
             [SerializeField] private GameObject prefab;
             [SerializeField] private Color selectedColor;
             [SerializeField] private Color defaultColor;
-            [SerializeField] private List<GameObject> items;
+            private HashSet<GameObject> items;
             private ObjectPool<GameObject> pool;
             private GameObject selectedItem;
 
             public void Awake()
             {
+                items = new();
                 pool = new(CreateNewObject);
             }
-            private GameObject CreateNewObject() => Instantiate(prefab, transform, false);
-            public T GetItem<T>(int index) where T : Component
+            private GameObject CreateNewObject()
             {
-                //if (index >= items.Count || index < 0) return null;
-                return items[index].GetComponent<T>();
+                GameObject o = Instantiate(prefab, transform, false);
+                o.name = prefab.name;
+                return o;
             }
             public T CreateItem<T>() where T : Component
             {
-                GameObject item = pool.Get();
-                items.Add(item);
-                Diminish(item);
-                return item.GetComponent<T>();
+                GameObject itemObject = pool.Get();
+                Diminish(itemObject);
+                itemObject.SetActive(true);
+                items.Add(itemObject);
+                return itemObject.GetComponent<T>();
             }
-            public void RemoveItem(int index)
+            public void RemoveItem(GameObject itemObject)
             {
-                //if (index >= items.Count || index < 0) return;
-                if (selectedItem == items[index])
+                if (!items.Contains(itemObject)) return;
+                if (selectedItem == itemObject)
                     selectedItem = null;
-                pool.Release(items[index]);
-                items.RemoveAt(index);
+                itemObject.SetActive(false);
+                pool.Release(itemObject);
+                items.Remove(itemObject);
             }
-            public void Clear()
+            public void SelectItem(GameObject itemObject)
             {
-                for (int i = 0; i < items.Count; i++)
-                    pool.Release(items[i]);
-                items.Clear();
-            }
-            public void SelectItem<T>(T item) where T : Component
-            {
-                if (item == null)
+                if (itemObject == null)
                 {
                     Diminish(selectedItem);
                     selectedItem = null;
                     return;
                 }
-                if (selectedItem == item.gameObject) return;
+                if (selectedItem == itemObject || !items.Contains(itemObject)) return;
                 Diminish(selectedItem);
-                selectedItem = item.gameObject;
+                selectedItem = itemObject;
                 Highlight(selectedItem);
             }
             public T GetSelectedItem<T>() where T : Component
             {
                 return selectedItem == null ? null : selectedItem.GetComponent<T>();
+            }
+            public void Clear()
+            {
+                foreach (var item in items)
+                    pool.Release(item);
+                items.Clear();
             }
             private void Highlight(GameObject o) => SetBackgroundColor(o, selectedColor);
             private void Diminish(GameObject o) => SetBackgroundColor(o, defaultColor);

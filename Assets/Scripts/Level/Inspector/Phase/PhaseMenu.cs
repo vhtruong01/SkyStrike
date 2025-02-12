@@ -8,7 +8,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class PhaseMenu : MonoBehaviour
+        public class PhaseMenu : MonoBehaviour, ISubMenu
         {
             [SerializeField] private List<ActionMenu> actionMenus;
             [SerializeField] private UIGroup switchActionButtonGroup;
@@ -29,7 +29,7 @@ namespace SkyStrike
                 //select default
                 //switchButtonGroup[0].
                 addActionBtn.onClick.AddListener(AddEmptyAction);
-                MenuManager.onSelectEnemy.AddListener(DisplayPhase);
+                MenuManager.onSelectEnemy.AddListener(Display);
             }
             public void AddEmptyAction()
             {
@@ -39,7 +39,6 @@ namespace SkyStrike
             public void AddAction(IActionData actionData)
             {
                 ActionUI actionUI = actionUIGroup.CreateItem<ActionUI>();
-                actionUI.gameObject.SetActive(true);
                 actionUI.SetListener(SelectAction);
                 actionUI.Display(actionData, curActionType);
             }
@@ -49,7 +48,7 @@ namespace SkyStrike
             }
             public void SelectAction(ActionUI actionUI)
             {
-                actionUIGroup.SelectItem(actionUI);
+                actionUIGroup.SelectItem(actionUI.gameObject);
             }
             public void SelectActionType(EAction actionType)
             {
@@ -59,13 +58,20 @@ namespace SkyStrike
                 foreach (IActionData actionData in actionDataList)
                     AddAction(actionData);
             }
-            public void DisplayPhase(IEnemyData enemyData)
+            public bool SetData(IData data)
             {
-                phaseData = (enemyData as EnemyData)?.phase;
-                gameObject.SetActive(phaseData != null);
-                if (phaseData == null) return;
-                SelectActionType(curActionType);
+                PhaseData newData = (data as EnemyData)?.phase;
+                if (phaseData == newData) return false;
+                phaseData = newData;
+                return true;
             }
+            public void Display(IData data)
+            {
+                if (!SetData(data)) return;
+                if (phaseData != null)
+                    SelectActionType(curActionType);
+            }
+            public bool CanDisplay() => phaseData != null;
         }
     }
 }

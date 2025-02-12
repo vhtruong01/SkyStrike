@@ -10,9 +10,8 @@ namespace SkyStrike
             [SerializeField] private List<EnemyMetaData> enemyMetaDataList;
             [SerializeField] private UIGroup itemUIGroup;
 
-            public override void Awake()
+            public void Start()
             {
-                base.Awake();
                 foreach (var data in enemyMetaDataList)
                 {
                     ItemUI itemUI = itemUIGroup.CreateItem<ItemUI>();
@@ -22,7 +21,7 @@ namespace SkyStrike
             }
             public void SelectItem(ItemUI itemUI)
             {
-                itemUIGroup.SelectItem(itemUI);
+                itemUIGroup.SelectItem(itemUI?.gameObject);
                 MenuManager.SelectItemUI(itemUI?.data);
             }
             public override void HandleCollapse()

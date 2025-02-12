@@ -9,7 +9,9 @@ namespace SkyStrike
         {
             public float delay {  get; set; }
             public List<EnemyData> enemies {  get; private set; }
-            //
+            public void AddEnemy(IEnemyData data)
+            {
+            }
         }
     }
 }

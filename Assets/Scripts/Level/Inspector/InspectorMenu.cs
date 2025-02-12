@@ -1,5 +1,4 @@
-using SkyStrike.Enemy;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,41 +6,53 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class InspectorMenu : MonoBehaviour
+        public class InspectorMenu : Menu
         {
-            [SerializeField] private Vector2Property position;
-            [SerializeField] private Vector2Property rotation;
-            [SerializeField] private Vector2Property scale;
-            [SerializeField] private TMP_InputField shipName;
-            [SerializeField] private Image icon;
-            [SerializeField] private TextMeshProUGUI type;
-            [SerializeField] private Button add1ShipBtn;
-            private IEnemyData curEnemyData;
+            [SerializeField] private ObjectInfoMenu objectInfoMenu;
+            [SerializeField] private PhaseMenu phaseMenu;
+            [SerializeField] private UIGroup switchSubMenuBtnGroup;
+            private List<ISubMenu> subMenuList;
+            private ISubMenu curSubMenu;
+            // frame data
+            //
+            private bool isLock;
 
-            public void Awake()
+            public void Start()
             {
-                add1ShipBtn.onClick.AddListener(CreateEnemy);
-            }
-            public void CreateEnemy()
-            {
-                if (curEnemyData != null)
-                    MenuManager.CreateEnemy(curEnemyData);
-            }
-            public void DisplayInfo(IEnemyData data)
-            {
-                if (data == null)
+                MenuManager.onSelectItemUI.AddListener(data =>
                 {
-                    print("DisplayFail: data==null");
-                    return;
+                    objectInfoMenu.Display(data);
+                    phaseMenu.Display(null);
+                    SelectSubMenu(data != null ? objectInfoMenu : null);
+                });
+                MenuManager.onSelectEnemy.AddListener(data =>
+                {
+                    objectInfoMenu.Display(data);
+                    phaseMenu.Display(data);
+                    if (curSubMenu == null)
+                        SelectSubMenu(objectInfoMenu);
+                });
+                subMenuList = new() { objectInfoMenu, phaseMenu };
+                foreach (ISubMenu subMenu in subMenuList)
+                {
+                    subMenu.gameObject.SetActive(false);
+                    Button button = switchSubMenuBtnGroup.CreateItem<Button>();
+                    button.onClick.AddListener(() =>
+                    {
+                        switchSubMenuBtnGroup.SelectItem(button.gameObject);
+                        SelectSubMenu(subMenu);
+                    });
                 }
-                SetData(data);
-                position.value = data.position;
-                //rotation.value = data.rotation;
-                scale.value = data.scale;
-                type.text = data.type;
-                icon.sprite = data.sprite;
             }
-            public void SetData(IEnemyData data) => curEnemyData = data;
+            public void SelectSubMenu(ISubMenu subMenu)
+            {
+                if (curSubMenu == subMenu) return;
+                curSubMenu?.gameObject.SetActive(false);
+                curSubMenu = subMenu;
+                if (curSubMenu != null && curSubMenu.CanDisplay())
+                    curSubMenu.gameObject.SetActive(true);
+            }
+
         }
     }
 }
