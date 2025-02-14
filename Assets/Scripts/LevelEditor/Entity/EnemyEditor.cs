@@ -38,6 +38,7 @@ namespace SkyStrike
                     0));
                 newPos.z = transform.position.z;
                 transform.position = newPos;
+                //
             }
             public void OnPointerClick(PointerEventData eventData)
             {

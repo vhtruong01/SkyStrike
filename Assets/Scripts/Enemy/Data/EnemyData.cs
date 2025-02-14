@@ -22,7 +22,7 @@ namespace SkyStrike
                 scale = metaData.scale;
                 sprite = metaData.sprite;
                 phase = metaData.phase?.Clone();
-                if (phase == null) phase = new();
+                phase ??= new();
             }
             public IEnemyData Clone() => new EnemyData(this);
         }

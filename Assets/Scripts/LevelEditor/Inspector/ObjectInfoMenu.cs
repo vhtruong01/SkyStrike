@@ -21,6 +21,11 @@ namespace SkyStrike
             public void Awake()
             {
                 add1ShipBtn.onClick.AddListener(CreateEnemy);
+                position.onSetValue.AddListener(vec2 =>
+                {
+                    if (curEnemyData != null)
+                        curEnemyData.position = vec2;
+                });
             }
             public bool CanDisplay() => curEnemyData != null;
             public void CreateEnemy()
