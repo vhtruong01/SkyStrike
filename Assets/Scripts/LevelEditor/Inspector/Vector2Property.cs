@@ -38,6 +38,12 @@ namespace SkyStrike
                           float.TryParse(y.text, out float newY) ? newY : value.y);
                 onValueChanged.Invoke(value);
             }
+            public void SetValue(Vector2 value)
+            {
+                if (this.value.x != value.x) x.text = value.x.ToString();
+                if (this.value.y != value.y) y.text = value.y.ToString();
+                this.value = value;
+            }
             public void Bind(UnityAction<Vector2> action) => onValueChanged.AddListener(action);
             public void Unbind() => onValueChanged.RemoveAllListeners();
             public void SetTitle(string title)

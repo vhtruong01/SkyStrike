@@ -10,8 +10,8 @@ namespace SkyStrike
         public class ObjectInfoMenu : MonoBehaviour, ISubMenu
         {
             [SerializeField] private Vector2Property position;
-            [SerializeField] private Vector2Property rotation;
             [SerializeField] private Vector2Property scale;
+            [SerializeField] private Vector2Property rotation;
             [SerializeField] private TMP_InputField shipName;
             [SerializeField] private Image icon;
             [SerializeField] private TextMeshProUGUI type;
@@ -21,11 +21,6 @@ namespace SkyStrike
             public void Awake()
             {
                 add1ShipBtn.onClick.AddListener(CreateEnemy);
-                position.onSetValue.AddListener(vec2 =>
-                {
-                    if (curEnemyData != null)
-                        curEnemyData.position = vec2;
-                });
             }
             public bool CanDisplay() => curEnemyData != null;
             public void CreateEnemy()
@@ -36,18 +31,29 @@ namespace SkyStrike
             public void Display(IData data)
             {
                 if (!SetData(data)) return;
-                if (curEnemyData == null) return;
-                position.value = curEnemyData.position;
-                scale.value = curEnemyData.scale;
-                type.text = curEnemyData.type;
-                icon.sprite = curEnemyData.sprite;
+                BlindEnemy();
             }
             public bool SetData(IData data)
             {
-                IEnemyData newData = data as IEnemyData;
+                EnemyDataObserver newData = data as EnemyDataObserver;
                 if (curEnemyData == newData) return false;
+                UnblindEnemy();
                 curEnemyData = newData;
                 return true;
+            }
+            public void BlindEnemy()
+            {
+                if (curEnemyData != null) return;
+                position.Bind(curEnemyData.position.OnlySetData);
+                scale.Bind(curEnemyData.scale.OnlySetData);
+                curEnemyData.position.Bind(position.SetValue);
+                curEnemyData.scale.Bind(scale.SetValue);
+            }
+            public void UnblindEnemy()
+            {
+                position.Unbind();
+                scale.Unbind();
+                curEnemyData?.UnbindAll();
             }
         }
     }

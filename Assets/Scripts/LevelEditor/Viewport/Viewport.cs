@@ -26,7 +26,7 @@ namespace SkyStrike
             public void AddEnemy(IData data)
             {
                 EnemyEditor enemy = enemyGroup.CreateItem<EnemyEditor>();
-                enemy.data = (data as IEnemyData).Clone();
+                enemy.enemyDataObserver = (data as EnemyDataObserver).Clone();
             }
             public void RemoveEnemy(EnemyEditor enemyEditor)
             {

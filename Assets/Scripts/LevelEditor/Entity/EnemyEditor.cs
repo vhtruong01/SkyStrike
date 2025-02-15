@@ -18,7 +18,7 @@ namespace SkyStrike
                     return _mainCam;
                 }
             }
-            private EnemyDataObserver enemyDataObserver;
+            public EnemyDataObserver enemyDataObserver { get; set; }
 
             public void OnDrag(PointerEventData eventData)
             {

@@ -34,7 +34,7 @@ namespace SkyStrike
                 position.ResetData();
                 scale.ResetData();
             }
-            public void Unbind()
+            public void UnbindAll()
             {
                 if (isMetaData) ResetData();
                 rotation.Unbind();
