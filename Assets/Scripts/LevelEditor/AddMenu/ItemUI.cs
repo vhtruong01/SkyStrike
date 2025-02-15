@@ -8,23 +8,12 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ItemUI : MonoBehaviour, IPointerClickHandler, IUIElement
+        public class ItemUI : MonoBehaviour, IPointerDownHandler, IUIElement
         {
             [SerializeField] private Image image;
             [SerializeField] private TextMeshProUGUI text;
             [SerializeField] private Image bg;
-            private EnemyMetaData _data;
-            public EnemyMetaData data
-            {
-                get => _data;
-                set
-                {
-                    _data = value;
-                    image.sprite = _data.sprite;
-                    text.text = _data.type;
-                    gameObject.name = _data.type;
-                }
-            }
+            public EnemyDataObserver data { get; set; }
             public UnityEvent<ItemUI> onSelect { get; private set; }
 
             public void Awake()
@@ -33,7 +22,7 @@ namespace SkyStrike
                 bg = GetComponent<Image>();
             }
             public Image GetBackground() => bg;
-            public void OnPointerClick(PointerEventData eventData)
+            public void OnPointerDown(PointerEventData eventData)
             {
                 onSelect.Invoke(this);
             }
