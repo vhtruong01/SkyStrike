@@ -16,7 +16,7 @@ namespace SkyStrike
             [SerializeField] private Image icon;
             [SerializeField] private TextMeshProUGUI type;
             [SerializeField] private Button add1ShipBtn;
-            private IEnemyData curEnemyData;
+            private EnemyDataObserver curEnemyData;
 
             public void Awake()
             {

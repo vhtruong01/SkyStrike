@@ -15,14 +15,13 @@ namespace SkyStrike
                 foreach (var data in enemyMetaDataList)
                 {
                     ItemUI itemUI = itemUIGroup.CreateItem<ItemUI>();
-                    itemUI.onSelect.AddListener(SelectItem);
-                    itemUI.data = data;
+                    itemUI.Init(data, SelectItem);
                 }
             }
             public void SelectItem(ItemUI itemUI)
             {
                 itemUIGroup.SelectItem(itemUI?.gameObject);
-                MenuManager.SelectItemUI(itemUI?.data);
+                MenuManager.SelectItemUI(itemUI?.enemyDataObserver);
             }
             public override void HandleCollapse()
             {
