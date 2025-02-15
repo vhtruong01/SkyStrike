@@ -8,7 +8,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ItemUI : MonoBehaviour, IPointerDownHandler, IUIElement
+        public class ItemUI : MonoBehaviour, IPointerClickHandler, IUIElement
         {
             [SerializeField] private Image image;
             [SerializeField] private TextMeshProUGUI text;
@@ -29,7 +29,7 @@ namespace SkyStrike
                 onSelect.AddListener(call);
             }
             public Image GetBackground() => bg;
-            public void OnPointerDown(PointerEventData eventData)
+            public void OnPointerClick(PointerEventData eventData)
             {
                 onSelect.Invoke(this);
             }

@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyEditor : MonoBehaviour, IPointerClickHandler, IDragHandler
+        public class EnemyEditor : MonoBehaviour, IPointerDownHandler, IDragHandler
         {
             private static Camera _mainCam;
             private static Camera mainCam
@@ -18,17 +18,7 @@ namespace SkyStrike
                     return _mainCam;
                 }
             }
-            private IEnemyData _data;
-            public IEnemyData data
-            {
-                get => _data;
-                set
-                {
-                    _data = value;
-                    //transform.position=value.position;
-
-                }
-            }
+            private EnemyDataObserver enemyDataObserver;
 
             public void OnDrag(PointerEventData eventData)
             {
@@ -38,11 +28,11 @@ namespace SkyStrike
                     0));
                 newPos.z = transform.position.z;
                 transform.position = newPos;
-                //
+                enemyDataObserver.position.data = newPos;
             }
-            public void OnPointerClick(PointerEventData eventData)
+            public void OnPointerDown(PointerEventData eventData)
             {
-                MenuManager.SelectEnemy(data);
+                MenuManager.SelectEnemy(enemyDataObserver);
             }
         }
     }
