@@ -7,7 +7,7 @@ namespace SkyStrike
     {
         public class AddObjectMenu : Menu
         {
-            [SerializeField] private List<EnemyDataObserver> enemyMetaDataList;
+            [SerializeField] private List<EnemyMetaData> enemyMetaDataList;
             [SerializeField] private UIGroup itemUIGroup;
 
             public void Start()
