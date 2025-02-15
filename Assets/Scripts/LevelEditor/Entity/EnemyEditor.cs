@@ -1,4 +1,3 @@
-using SkyStrike.Enemy;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -27,8 +26,7 @@ namespace SkyStrike
                     Mathf.Clamp(eventData.position.y, 0, Screen.height),
                     0));
                 newPos.z = transform.position.z;
-                transform.position = newPos;
-                enemyDataObserver.position.data = newPos;
+                enemyDataObserver.position.SetData(newPos);
             }
             public void OnPointerDown(PointerEventData eventData)
             {

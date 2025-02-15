@@ -25,7 +25,7 @@ namespace SkyStrike
             {
                 enemyDataObserver = new();
                 enemyDataObserver.isMetaData = true;
-                enemyDataObserver.metaData.data = metaData;
+                enemyDataObserver.metaData.SetData(metaData);
                 onSelect.AddListener(call);
             }
             public Image GetBackground() => bg;

@@ -1,4 +1,3 @@
-using SkyStrike.Enemy;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,7 +42,7 @@ namespace SkyStrike
             }
             public void BlindEnemy()
             {
-                if (curEnemyData != null) return;
+                if (curEnemyData == null) return;
                 position.Bind(curEnemyData.position.OnlySetData);
                 scale.Bind(curEnemyData.scale.OnlySetData);
                 curEnemyData.position.Bind(position.SetValue);

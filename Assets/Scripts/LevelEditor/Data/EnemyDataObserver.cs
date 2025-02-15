@@ -23,9 +23,9 @@ namespace SkyStrike
             {
                 EnemyDataObserver newData = new();
                 newData.metaData = metaData;
-                newData.rotation.data = rotation.data;
-                newData.position.data = position.data;
-                newData.scale.data = scale.data;
+                newData.rotation.SetData(rotation.data);
+                newData.position.SetData(position.data);
+                newData.scale.SetData(scale.data);
                 return newData;
             }
             public void ResetData()
