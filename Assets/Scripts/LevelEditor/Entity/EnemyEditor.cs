@@ -24,6 +24,7 @@ namespace SkyStrike
                 enemyDataObserver = data;
                 enemyDataObserver.position.Bind(SetPosition);
                 enemyDataObserver.scale.Bind(SetScale);
+                enemyDataObserver.rotation.Bind(SetRotation);
             }
             private void SetPosition(Vector2 pos)
             {
@@ -35,7 +36,7 @@ namespace SkyStrike
             }
             private void SetRotation(float rotationZ)
             {
-
+                transform.rotation = Quaternion.Euler(transform.eulerAngles.x,transform.eulerAngles.y,rotationZ);
             }
             public void OnDrag(PointerEventData eventData)
             {

@@ -6,43 +6,24 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class Property : MonoBehaviour
+        public abstract class Property<T> : MonoBehaviour
         {
-            [SerializeField] private TextMeshProUGUI titleTxt;
-            [SerializeField] private TMP_InputField val;
-            private Vector2 value;
-            public UnityEvent<string> onValueChanged { get; private set; }
+            [SerializeField] protected TextMeshProUGUI titleTxt;
+            [SerializeField] protected TMP_InputField x;
+            protected T value;
+            public UnityEvent<T> onValueChanged { get; private set; }
 
-            public void Awake()
+            public virtual void Awake()
             {
-                val.text = "_";
-                //val.onSubmit.AddListener(s =>
-                //{
-                //    if (float.TryParse(s, out float newValue))
-                //        OnValueChanged();
-                //    else x.text = value.x.ToString();
-                //});
-                //y.onSubmit.AddListener(s =>
-                //{
-                //    if (float.TryParse(s, out float newValue))
-                //        OnValueChanged();
-                //    else y.text = value.y.ToString();
-                //});
                 onValueChanged = new();
             }
-            public void OnValueChanged()
+            public abstract void OnValueChanged();
+            public void SetValue(T value)
             {
-                //value.Set(float.TryParse(x.text, out float newX) ? newX : value.x,
-                //          float.TryParse(y.text, out float newY) ? newY : value.y);
-                //onValueChanged.Invoke(value);
+                x.text = value.ToString();
+                this.value = value;
             }
-            public void SetValue(string value)
-            {
-                //x.text = value.x.ToString();
-                //y.text = value.y.ToString();
-                //this.value = value;
-            }
-            public void Bind(UnityAction<string> action) => onValueChanged.AddListener(action);
+            public void Bind(UnityAction<T> action) => onValueChanged.AddListener(action);
             public void Unbind() => onValueChanged.RemoveAllListeners();
             public void SetTitle(string title)
             {

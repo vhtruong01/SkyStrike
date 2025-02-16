@@ -37,17 +37,22 @@ namespace SkyStrike
                 {
                     subMenu.gameObject.SetActive(true);
                     Button button = switchSubMenuBtnGroup.CreateItem<Button>();
+                    ISubMenu curSubMenu = subMenu;
                     button.onClick.AddListener(() =>
                     {
                         switchSubMenuBtnGroup.SelectItem(button.gameObject);
-                        SelectSubMenu(subMenu);
+                        SelectSubMenu(curSubMenu);
                     });
                     subMenu.gameObject.SetActive(false);
                 }
             }
             public void SelectSubMenu(ISubMenu subMenu)
             {
-                if (curSubMenu == subMenu) return;
+                if (curSubMenu == subMenu)
+                {
+                    curSubMenu.gameObject.SetActive(true);
+                    return;
+                }
                 curSubMenu?.gameObject.SetActive(false);
                 if (subMenu != null && subMenu.CanDisplay())
                 {
