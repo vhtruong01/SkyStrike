@@ -1,4 +1,3 @@
-using SkyStrike.Enemy;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +25,7 @@ namespace SkyStrike
             public void AddEnemy(IData data)
             {
                 EnemyEditor enemy = enemyGroup.CreateItem<EnemyEditor>();
-                enemy.enemyDataObserver = (data as EnemyDataObserver).Clone();
+                enemy.SetData((data as EnemyDataObserver).Clone());
             }
             public void RemoveEnemy(EnemyEditor enemyEditor)
             {

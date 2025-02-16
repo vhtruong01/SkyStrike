@@ -6,7 +6,7 @@ namespace SkyStrike
     {
         public class DataObserver<T> : IData
         {
-            public T data { get;private set; }
+            public T data { get; private set; }
             public UnityEvent<T> onChangeData { get; private set; }
 
             public DataObserver() => onChangeData = new();
@@ -21,7 +21,8 @@ namespace SkyStrike
                 onChangeData.AddListener(call);
                 call.Invoke(data);
             }
-            public void Unbind() => onChangeData.RemoveAllListeners();
+            public void Unbind(UnityAction<T> action) => onChangeData.RemoveListener(action);
+            public void UnblindAll() => onChangeData.RemoveAllListeners();
             public void ResetData() => data = default;
         }
     }

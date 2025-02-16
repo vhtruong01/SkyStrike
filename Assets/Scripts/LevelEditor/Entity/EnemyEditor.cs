@@ -17,8 +17,26 @@ namespace SkyStrike
                     return _mainCam;
                 }
             }
-            public EnemyDataObserver enemyDataObserver { get; set; }
+            public EnemyDataObserver enemyDataObserver { get; private set; }
 
+            public void SetData(EnemyDataObserver data)
+            {
+                enemyDataObserver = data;
+                enemyDataObserver.position.Bind(SetPosition);
+                enemyDataObserver.scale.Bind(SetScale);
+            }
+            private void SetPosition(Vector2 pos)
+            {
+                transform.position = new(pos.x, pos.y, transform.position.z);
+            }
+            private void SetScale(Vector2 scale)
+            {
+                transform.localScale = new(scale.x, scale.y, transform.localScale.z);
+            }
+            private void SetRotation(float rotationZ)
+            {
+
+            }
             public void OnDrag(PointerEventData eventData)
             {
                 Vector3 newPos = mainCam.ScreenToWorldPoint(new(

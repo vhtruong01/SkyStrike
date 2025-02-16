@@ -10,7 +10,7 @@ namespace SkyStrike
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private Vector2Property scale;
-            [SerializeField] private Vector2Property rotation;
+            [SerializeField] private Property rotation;
             [SerializeField] private TMP_InputField shipName;
             [SerializeField] private Image icon;
             [SerializeField] private TextMeshProUGUI type;
@@ -36,23 +36,28 @@ namespace SkyStrike
             {
                 EnemyDataObserver newData = data as EnemyDataObserver;
                 if (curEnemyData == newData) return false;
-                UnblindEnemy();
+                UnbindEnemy();
                 curEnemyData = newData;
                 return true;
             }
             public void BlindEnemy()
             {
                 if (curEnemyData == null) return;
-                position.Bind(curEnemyData.position.OnlySetData);
-                scale.Bind(curEnemyData.scale.OnlySetData);
+                position.Bind(curEnemyData.position.SetData);
+                scale.Bind(curEnemyData.scale.SetData);
+                //rotation.Bind(curEnemyData.rotation.SetData);
                 curEnemyData.position.Bind(position.SetValue);
                 curEnemyData.scale.Bind(scale.SetValue);
             }
-            public void UnblindEnemy()
+            public void UnbindEnemy()
             {
                 position.Unbind();
                 scale.Unbind();
-                curEnemyData?.UnbindAll();
+                if (curEnemyData == null) return;
+                if (curEnemyData.isMetaData)
+                    curEnemyData.ResetData();
+                curEnemyData.position.Unbind(position.SetValue);
+                curEnemyData.scale.Unbind(scale.SetValue);
             }
         }
     }

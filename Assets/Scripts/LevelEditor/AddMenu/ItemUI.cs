@@ -1,7 +1,7 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro;
 using UnityEngine.Events;
 
 namespace SkyStrike
@@ -26,6 +26,9 @@ namespace SkyStrike
                 enemyDataObserver = new();
                 enemyDataObserver.isMetaData = true;
                 enemyDataObserver.metaData.SetData(metaData);
+                enemyDataObserver.ResetData();
+                image.sprite = metaData.sprite;
+                text.text = metaData.type;
                 onSelect.AddListener(call);
             }
             public Image GetBackground() => bg;
