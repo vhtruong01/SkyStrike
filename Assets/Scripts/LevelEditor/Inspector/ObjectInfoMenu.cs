@@ -11,7 +11,7 @@ namespace SkyStrike
             [SerializeField] private Vector2Property position;
             [SerializeField] private Vector2Property scale;
             [SerializeField] private Vector2Property velocity;
-            [SerializeField] private Property<float> rotation;
+            [SerializeField] private FloatProperty rotation;
             //[SerializeField] private TMP_InputField enemyName;
             [SerializeField] private Image icon;
             [SerializeField] private TextMeshProUGUI type;
@@ -71,6 +71,16 @@ namespace SkyStrike
                 curEnemyData.position.Unbind(position.SetValue);
                 curEnemyData.scale.Unbind(scale.SetValue);
                 curEnemyData.rotation.Unbind(rotation.SetValue);
+            }
+            public virtual void Hide()
+            {
+                if (gameObject.activeSelf)
+                    gameObject.SetActive(false);
+            }
+            public virtual void Show()
+            {
+                if (!gameObject.activeSelf)
+                    gameObject.SetActive(true);
             }
         }
     }

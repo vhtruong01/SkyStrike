@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MetaData
   m_EditorClassIdentifier: 
   id: 0
-  <type>k__BackingField: 
-  <rotation>k__BackingField: 0
+  <type>k__BackingField: test1
+  <rotation>k__BackingField: 20
   <position>k__BackingField: {x: 0, y: 0}
-  <scale>k__BackingField: {x: 0, y: 0}
+  <scale>k__BackingField: {x: 1, y: 1}
   <velocity>k__BackingField: {x: 0, y: 0}
   <sprite>k__BackingField: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}

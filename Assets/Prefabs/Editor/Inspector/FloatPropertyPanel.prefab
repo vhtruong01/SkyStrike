@@ -535,8 +535,9 @@ GameObject:
   - component: {fileID: 494535072289769821}
   - component: {fileID: 7441768139154922507}
   - component: {fileID: 2455475142856944543}
+  - component: {fileID: 2814728051874979105}
   m_Layer: 5
-  m_Name: PropertyPanel
+  m_Name: FloatPropertyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,6 +628,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &2814728051874979105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5993584394162405134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d420e5974637bc4a859f9f495b4eeb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleTxt: {fileID: 6803995777660074432}
+  x: {fileID: 955486749163442661}
 --- !u!1 &7334275127992114603
 GameObject:
   m_ObjectHideFlags: 0

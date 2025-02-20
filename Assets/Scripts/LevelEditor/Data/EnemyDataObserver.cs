@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SkyStrike
@@ -12,6 +14,7 @@ namespace SkyStrike
             public DataObserver<Vector2> velocity { get; private set; }
             public DataObserver<Vector2> position { get; private set; }
             public DataObserver<float> rotation { get; private set; }
+            public EnemyPhaseDataObserver phase {  get; private set; }
 
             public EnemyDataObserver()
             {
@@ -20,6 +23,7 @@ namespace SkyStrike
                 position = new();
                 velocity = new();
                 scale = new();
+                phase = new();
             }
             public EnemyDataObserver Clone()
             {
@@ -29,6 +33,7 @@ namespace SkyStrike
                 newData.position.SetData(position.data);
                 newData.velocity.SetData(velocity.data);
                 newData.scale.SetData(scale.data);
+                newData.phase = phase.Clone();
                 return newData;
             }
             public void ResetData()

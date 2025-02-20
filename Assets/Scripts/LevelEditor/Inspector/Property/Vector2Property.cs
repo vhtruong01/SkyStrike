@@ -11,6 +11,7 @@ namespace SkyStrike
             [SerializeField] private TextMeshProUGUI titleTxt;
             [SerializeField] private TMP_InputField x;
             [SerializeField] private TMP_InputField y;
+            //linked
             private Vector2 value;
             public UnityEvent<Vector2> onValueChanged { get; private set; }
 

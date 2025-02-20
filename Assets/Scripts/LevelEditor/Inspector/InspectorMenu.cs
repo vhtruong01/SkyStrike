@@ -35,7 +35,7 @@ namespace SkyStrike
                 subMenuList = new() { objectInfoMenu, phaseMenu };
                 foreach (ISubMenu subMenu in subMenuList)
                 {
-                    subMenu.gameObject.SetActive(true);
+                    subMenu.Show();
                     Button button = switchSubMenuBtnGroup.CreateItem<Button>();
                     ISubMenu curSubMenu = subMenu;
                     button.onClick.AddListener(() =>
@@ -43,24 +43,23 @@ namespace SkyStrike
                         switchSubMenuBtnGroup.SelectItem(button.gameObject);
                         SelectSubMenu(curSubMenu);
                     });
-                    subMenu.gameObject.SetActive(false);
+                    subMenu.Hide();
                 }
             }
             public void SelectSubMenu(ISubMenu subMenu)
             {
                 if (curSubMenu == subMenu)
                 {
-                    curSubMenu.gameObject.SetActive(true);
+                    curSubMenu.Show();
                     return;
                 }
-                curSubMenu?.gameObject.SetActive(false);
+                curSubMenu?.Hide();
                 if (subMenu != null && subMenu.CanDisplay())
                 {
                     curSubMenu = subMenu;
-                    curSubMenu.gameObject.SetActive(true);
+                    curSubMenu.Show();
                 }
             }
-
         }
     }
 }

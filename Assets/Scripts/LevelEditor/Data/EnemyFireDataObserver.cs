@@ -2,7 +2,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class LevelData
+        public class EnemyFireDataObserver : IEnemyActionDataObserver
         {
 
         }

@@ -1,4 +1,3 @@
-using SkyStrike.Enemy;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,15 +11,17 @@ namespace SkyStrike
         {
             [SerializeField] private TextMeshProUGUI txt1;
             [SerializeField] private TextMeshProUGUI txt2;
-            public IActionData actionData { get; private set; }
-            public EAction type { get; private set; }
+            [SerializeField] private Button removeBtn;
+            public UnityEvent onRemove {  get; private set; }
+            public IEnemyActionDataObserver actionData { get; private set; }
+            public EActionType type { get; private set; }
             private Button button;
             public void Awake()
             {
                 button = GetComponent<Button>();
             }
 
-            public void Display(IActionData actionData, EAction type)
+            public void Display(IEnemyActionDataObserver actionData, EActionType type)
             {
                 this.actionData = actionData;
                 this.type = type;

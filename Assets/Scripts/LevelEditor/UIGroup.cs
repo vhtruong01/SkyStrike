@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
@@ -57,6 +58,7 @@ namespace SkyStrike
                 selectedItem = itemObject;
                 Highlight(selectedItem);
             }
+            public void SelectFirstItem() => SelectItem(items.First());
             public T GetSelectedItem<T>() where T : Component
             {
                 return selectedItem == null ? null : selectedItem.GetComponent<T>();

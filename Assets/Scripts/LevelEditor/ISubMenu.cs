@@ -10,6 +10,8 @@ namespace SkyStrike
             public bool SetData(IData data);
             public void Display(IData data);
             public bool CanDisplay();
+            public void Hide();
+            public void Show();
         }
     }
 }

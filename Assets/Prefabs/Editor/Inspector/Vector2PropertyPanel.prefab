@@ -1016,7 +1016,7 @@ GameObject:
   - component: {fileID: 989119340233013843}
   - component: {fileID: 2524367501980028960}
   - component: {fileID: 1377814802362275665}
-  - component: {fileID: 5151492294428245293}
+  - component: {fileID: 8947262470752672616}
   m_Layer: 5
   m_Name: Vector2PropertyPanel
   m_TagString: Untagged
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &5151492294428245293
+--- !u!114 &8947262470752672616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1119,9 +1119,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8286615268187608967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1f0d4789f351f49938e1d1ff2d3929, type: 3}
+  m_Script: {fileID: 11500000, guid: 8187616573b0c524d88e10d47c49e0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleTxt: {fileID: 836181087485455044}
   x: {fileID: 8312640232049715885}
   y: {fileID: 3114682632024833130}
 --- !u!1 &8972104414575357158
