@@ -66,7 +66,10 @@ namespace SkyStrike
             public void Clear()
             {
                 foreach (var item in items)
+                {
+                    item.gameObject.SetActive(false);
                     pool.Release(item);
+                }
                 items.Clear();
             }
             private void Highlight(GameObject o) => SetBackgroundColor(o, selectedColor);

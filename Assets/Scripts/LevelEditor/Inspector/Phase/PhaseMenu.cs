@@ -31,7 +31,6 @@ namespace SkyStrike
                 }
                 switchActionButtonGroup.SelectFirstItem();
                 addActionBtn.onClick.AddListener(AddEmptyAction);
-                MenuManager.onSelectEnemy.AddListener(Display);
             }
             public void OnEnable()
             {
@@ -56,11 +55,13 @@ namespace SkyStrike
             public void SelectAction(ActionUI actionUI)
             {
                 actionUIGroup.SelectItem(actionUI.gameObject);
-                actionMenus[(int)curActionType].Show();
-
+                var curActionMenu = actionMenus[(int)curActionType];
+                curActionMenu.Display(actionUI.actionData);
+                curActionMenu.Show();
             }
             public void SelectActionType(EActionType actionType)
             {
+                if (!CanDisplay()) return;
                 actionUIGroup.Clear();
                 actionMenus[(int)curActionType].Hide();
                 curActionType = actionType;
@@ -77,19 +78,20 @@ namespace SkyStrike
             }
             public void Display(IData data)
             {
-                if (!SetData(data)) return;
-                if (phaseData != null)
+                bool isNewData = SetData(data);
+                if (isNewData && CanDisplay())
                     SelectActionType(curActionType);
+                Show();
             }
             public bool CanDisplay() => phaseData != null;
-            public virtual void Hide()
+            public void Hide()
             {
                 if (gameObject.activeSelf)
                     gameObject.SetActive(false);
             }
-            public virtual void Show()
+            public void Show()
             {
-                if (!gameObject.activeSelf)
+                if (!gameObject.activeSelf && CanDisplay())
                     gameObject.SetActive(true);
             }
         }

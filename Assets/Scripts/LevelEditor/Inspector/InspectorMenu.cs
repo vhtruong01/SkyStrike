@@ -12,52 +12,52 @@ namespace SkyStrike
             [SerializeField] private PhaseMenu phaseMenu;
             [SerializeField] private UIGroup switchSubMenuBtnGroup;
             private List<ISubMenu> subMenuList;
-            private ISubMenu curSubMenu;
+            private int curSubMenuIndex;
             // frame data
             //
             private bool isLock;
 
             public void Start()
             {
+                curSubMenuIndex = -1;
+                subMenuList = new() { objectInfoMenu, phaseMenu };
                 MenuManager.onSelectItemUI.AddListener(data =>
                 {
                     objectInfoMenu.Display(data);
-                    phaseMenu.Display(null);
-                    SelectSubMenu(data != null ? objectInfoMenu : null);
+                    phaseMenu.SetData(null);
+                    phaseMenu.Hide();
+                    SelectSubMenu(data != null ? 0 : -1);
                 });
                 MenuManager.onSelectEnemy.AddListener(data =>
                 {
                     objectInfoMenu.Display(data);
-                    phaseMenu.Display(data);
-                    if (curSubMenu == null)
-                        SelectSubMenu(objectInfoMenu);
+                    phaseMenu.SetData(data);
+                    if (curSubMenuIndex < 0 || curSubMenuIndex > subMenuList.Count)
+                        SelectSubMenu(0);
                 });
-                subMenuList = new() { objectInfoMenu, phaseMenu };
-                foreach (ISubMenu subMenu in subMenuList)
+                for (int i = 0; i < subMenuList.Count; i++)
                 {
-                    subMenu.Show();
+                    int index = i;
+                    ISubMenu subMenu = subMenuList[i];
+                    subMenu.gameObject.SetActive(true);
                     Button button = switchSubMenuBtnGroup.CreateItem<Button>();
-                    ISubMenu curSubMenu = subMenu;
+                    ISubMenu subMenuTmp = subMenu;
                     button.onClick.AddListener(() =>
                     {
                         switchSubMenuBtnGroup.SelectItem(button.gameObject);
-                        SelectSubMenu(curSubMenu);
+                        subMenuTmp.Show();
+                        SelectSubMenu(index);
                     });
                     subMenu.Hide();
                 }
             }
-            public void SelectSubMenu(ISubMenu subMenu)
+            public void SelectSubMenu(int index)
             {
-                if (curSubMenu == subMenu)
+                if (curSubMenuIndex != index)
                 {
-                    curSubMenu.Show();
-                    return;
-                }
-                curSubMenu?.Hide();
-                if (subMenu != null && subMenu.CanDisplay())
-                {
-                    curSubMenu = subMenu;
-                    curSubMenu.Show();
+                    ISubMenu subMenu = curSubMenuIndex >= 0 && curSubMenuIndex < subMenuList.Count ? subMenuList[curSubMenuIndex] : null;
+                    subMenu?.Hide();
+                    curSubMenuIndex = index;
                 }
             }
         }

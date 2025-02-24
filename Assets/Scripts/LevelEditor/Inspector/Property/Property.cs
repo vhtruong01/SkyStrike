@@ -24,7 +24,11 @@ namespace SkyStrike
                 this.value = value;
             }
             public void Bind(UnityAction<T> action) => onValueChanged.AddListener(action);
-            public void Unbind() => onValueChanged.RemoveAllListeners();
+            public void Unbind()
+            {
+                onValueChanged.RemoveAllListeners();
+                SetValue(default);
+            }
             public void SetTitle(string title)
             {
                 if (titleTxt != null)

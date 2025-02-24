@@ -7,11 +7,12 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ActionUI : MonoBehaviour
+        public class ActionUI : MonoBehaviour,IUIElement
         {
             [SerializeField] private TextMeshProUGUI txt1;
             [SerializeField] private TextMeshProUGUI txt2;
             [SerializeField] private Button removeBtn;
+            private Image bg;
             public UnityEvent onRemove {  get; private set; }
             public IEnemyActionDataObserver actionData { get; private set; }
             public EActionType type { get; private set; }
@@ -19,6 +20,7 @@ namespace SkyStrike
             public void Awake()
             {
                 button = GetComponent<Button>();
+                bg = GetComponent<Image>();
             }
 
             public void Display(IEnemyActionDataObserver actionData, EActionType type)
@@ -31,6 +33,8 @@ namespace SkyStrike
             {
                 button.onClick.AddListener(() => evt.Invoke(this));
             }
+
+            public Image GetBackground() => bg;
         }
     }
 }

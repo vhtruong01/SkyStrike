@@ -30,26 +30,30 @@ namespace SkyStrike
             }
             public void Display(IData data)
             {
-                if (!SetData(data)) return;
-                if (curEnemyData != null)
+                bool isNewData = SetData(data);
+                UnbindEnemy();
+                if (isNewData)
                 {
-                    BlindEnemy();
-                    type.text = curEnemyData.metaData.data.type;
-                    icon.sprite = curEnemyData.metaData.data.sprite;
+                    if (CanDisplay())
+                    {
+                        BlindEnemy();
+                        type.text = curEnemyData.metaData.data.type;
+                        icon.sprite = curEnemyData.metaData.data.sprite;
+                    }
+                    else
+                    {
+                        type.text = "";
+                        icon.sprite = null;
+                    }
                 }
-                else
-                {
-                    type.text = "";
-                    icon.sprite = null;
-                }
+                Show();
             }
             public bool SetData(IData data)
             {
                 EnemyDataObserver newData = data as EnemyDataObserver;
                 if (curEnemyData == newData) return false;
-                UnbindEnemy();
                 curEnemyData = newData;
-                return true;
+                return curEnemyData != null;
             }
             public void BlindEnemy()
             {
@@ -79,7 +83,7 @@ namespace SkyStrike
             }
             public virtual void Show()
             {
-                if (!gameObject.activeSelf)
+                if (!gameObject.activeSelf && CanDisplay())
                     gameObject.SetActive(true);
             }
         }

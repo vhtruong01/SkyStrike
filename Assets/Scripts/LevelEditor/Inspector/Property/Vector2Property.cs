@@ -46,7 +46,11 @@ namespace SkyStrike
                 this.value = value;
             }
             public void Bind(UnityAction<Vector2> action) => onValueChanged.AddListener(action);
-            public void Unbind() => onValueChanged.RemoveAllListeners();
+            public void Unbind()
+            {
+                onValueChanged.RemoveAllListeners();
+                SetValue(Vector2.zero);
+            }
             public void SetTitle(string title)
             {
                 if (titleTxt != null)
