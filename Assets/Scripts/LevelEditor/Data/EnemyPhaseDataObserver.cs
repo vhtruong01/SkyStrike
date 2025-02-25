@@ -15,6 +15,10 @@ namespace SkyStrike
                 moveDataList = new();
                 fireDataList = new();
             }
+            public IEnemyActionDataObserver GetActionData(int index,EActionType type)
+            {
+                return null;
+            }
             public IEnemyActionDataObserver[] GetActionDataArray(EActionType eActionType)
             {
                 return eActionType switch
@@ -39,6 +43,7 @@ namespace SkyStrike
                 if (actionData != null)
                 {
                     var dataList = GetActionData(eActionType);
+                    actionData.index = dataList.Count;
                     dataList.Add(actionData);
                 }
                 return actionData;

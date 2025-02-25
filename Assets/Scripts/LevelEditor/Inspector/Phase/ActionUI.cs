@@ -12,21 +12,19 @@ namespace SkyStrike
             [SerializeField] private TextMeshProUGUI txt1;
             [SerializeField] private TextMeshProUGUI txt2;
             [SerializeField] private Button removeBtn;
+            private Button button;
             private Image bg;
             public UnityEvent onRemove {  get; private set; }
             public IEnemyActionDataObserver actionData { get; private set; }
-            public EActionType type { get; private set; }
-            private Button button;
+
             public void Awake()
             {
                 button = GetComponent<Button>();
                 bg = GetComponent<Image>();
             }
-
-            public void Display(IEnemyActionDataObserver actionData, EActionType type)
+            public void SetData(IEnemyActionDataObserver actionData)
             {
                 this.actionData = actionData;
-                this.type = type;
                 //
             }
             public void SetListener(UnityAction<ActionUI> evt)

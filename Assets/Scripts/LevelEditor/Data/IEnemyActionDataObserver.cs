@@ -4,7 +4,7 @@ namespace SkyStrike
     {
         public interface IEnemyActionDataObserver : IData
         {
-
+            public int index {  get; set; }
         }
     }
 }

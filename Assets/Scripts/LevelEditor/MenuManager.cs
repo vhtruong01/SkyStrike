@@ -1,4 +1,3 @@
-
 using UnityEngine.Events;
 
 namespace SkyStrike

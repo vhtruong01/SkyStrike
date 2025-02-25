@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace SkyStrike
 {
@@ -37,6 +36,7 @@ namespace SkyStrike
             }
             public override void SetValue(Vector2 value)
             {
+                value.Set(Mathf.Round(value.x * 1000) / 1000, Mathf.Round(value.y * 1000) / 1000);
                 base.SetValue(value);
                 x.text = value.x.ToString();
                 y.text = value.y.ToString();

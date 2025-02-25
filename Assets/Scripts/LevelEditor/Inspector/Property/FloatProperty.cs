@@ -27,6 +27,12 @@ namespace SkyStrike
                 value = newX;
                 onValueChanged.Invoke(value);
             }
+            public override void SetValue(float value)
+            {
+                value = Mathf.Round(value * 1000) / 1000;
+                base.SetValue(value);
+                x.text = value.ToString();
+            }
         }
     }
 }

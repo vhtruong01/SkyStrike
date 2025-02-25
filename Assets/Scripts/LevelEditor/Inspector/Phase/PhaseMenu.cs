@@ -15,8 +15,9 @@ namespace SkyStrike
             [SerializeField] private UIGroup actionUIGroup;
             [SerializeField] private Button addActionBtn;
             private List<ActionMenu> actionMenus;
-            private EActionType curActionType;
             private EnemyPhaseDataObserver phaseData;
+            private EActionType curActionType;
+            private int curActionIndex;
 
             public void Start()
             {
@@ -32,11 +33,6 @@ namespace SkyStrike
                 switchActionButtonGroup.SelectFirstItem();
                 addActionBtn.onClick.AddListener(AddEmptyAction);
             }
-            public void OnEnable()
-            {
-                if (!CanDisplay()) return;
-                SelectActionType(curActionType);
-            }
             public void AddEmptyAction()
             {
                 if (phaseData == null) return;
@@ -46,7 +42,7 @@ namespace SkyStrike
             {
                 ActionUI actionUI = actionUIGroup.CreateItem<ActionUI>();
                 actionUI.SetListener(SelectAction);
-                actionUI.Display(actionData, curActionType);
+                actionUI.SetData(actionData);
             }
             public void RemoveAction()
             {
@@ -55,32 +51,47 @@ namespace SkyStrike
             public void SelectAction(ActionUI actionUI)
             {
                 actionUIGroup.SelectItem(actionUI.gameObject);
-                var curActionMenu = actionMenus[(int)curActionType];
-                curActionMenu.Display(actionUI.actionData);
-                curActionMenu.Show();
+                curActionIndex = actionUI.actionData.index;
+                SelectActionType(curActionType);
+            }
+            public void DeselectActionType()
+            {
+                curActionIndex = -1;
+                SelectActionType(curActionType);
             }
             public void SelectActionType(EActionType actionType)
             {
-                if (!CanDisplay()) return;
-                actionUIGroup.Clear();
-                actionMenus[(int)curActionType].Hide();
+                if (curActionType != actionType)
+                    actionMenus[(int)curActionType].Hide();
                 curActionType = actionType;
-                var actionDataList = phaseData.GetActionDataArray(curActionType);
-                foreach (var actionData in actionDataList)
-                    AddAction(actionData);
+                var curActionMenu = actionMenus[(int)curActionType];
+                var actionData = phaseData.GetActionData(curActionIndex, curActionType);
+                if (actionData != null)
+                {
+                    curActionMenu.Display(actionData);
+                    curActionMenu.Show();
+                }
+                else actionMenus[(int)curActionType].Hide();
             }
             public bool SetData(IData data)
             {
-                var newData = (data as EnemyDataObserver)?.phase;
-                if (phaseData == newData) return false;
-                phaseData = newData;
+                if (data is not EnemyDataObserver newData) return false;
+                var newPhaseData = newData.isMetaData ? null : newData.phase;
+                if (phaseData == newPhaseData) return false;
+                phaseData = newPhaseData;
                 return true;
             }
             public void Display(IData data)
             {
                 bool isNewData = SetData(data);
                 if (isNewData && CanDisplay())
-                    SelectActionType(curActionType);
+                {
+                    actionUIGroup.Clear();
+                    var actionDataList = phaseData.GetActionDataArray(curActionType);
+                    foreach (var actionData in actionDataList)
+                        AddAction(actionData);
+                    DeselectActionType();
+                }
                 Show();
             }
             public bool CanDisplay() => phaseData != null;

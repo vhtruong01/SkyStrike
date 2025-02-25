@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ObjectInfoMenu : MonoBehaviour, ISubMenu,IObserverMenu
+        public class ObjectInfoMenu : MonoBehaviour, ISubMenu, IObserverMenu
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private Vector2Property scale;
@@ -31,19 +31,14 @@ namespace SkyStrike
             public void Display(IData data)
             {
                 bool isNewData = SetData(data);
-                UnbindData();
                 if (isNewData)
                 {
+                    UnbindData();
                     if (CanDisplay())
                     {
                         BindData();
                         type.text = curEnemyData.metaData.data.type;
                         icon.sprite = curEnemyData.metaData.data.sprite;
-                    }
-                    else
-                    {
-                        type.text = "";
-                        icon.sprite = null;
                     }
                 }
                 Show();
@@ -57,12 +52,9 @@ namespace SkyStrike
             }
             public void BindData()
             {
-                position.Bind(curEnemyData.position.SetData);
-                scale.Bind(curEnemyData.scale.SetData);
-                rotation.Bind(curEnemyData.rotation.SetData);
-                curEnemyData.position.Bind(position.SetValue);
-                curEnemyData.scale.Bind(scale.SetValue);
-                curEnemyData.rotation.Bind(rotation.SetValue);
+                position.Bind(curEnemyData.position);
+                scale.Bind(curEnemyData.scale);
+                rotation.Bind(curEnemyData.rotation);
             }
             public void UnbindData()
             {
@@ -72,9 +64,6 @@ namespace SkyStrike
                 if (curEnemyData == null) return;
                 if (curEnemyData.isMetaData)
                     curEnemyData.ResetData();
-                curEnemyData.position.Unbind(position.SetValue);
-                curEnemyData.scale.Unbind(scale.SetValue);
-                curEnemyData.rotation.Unbind(rotation.SetValue);
             }
             public virtual void Hide()
             {
