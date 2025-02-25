@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class ActionMenu : MonoBehaviour, ISubMenu
+        public abstract class ActionMenu : MonoBehaviour, ISubMenu,IObserverMenu
         {
             [SerializeField] protected TextMeshProUGUI index;
             public string type;
@@ -23,6 +23,10 @@ namespace SkyStrike
                 if (!gameObject.activeSelf)
                     gameObject.SetActive(true);
             }
+
+            public abstract void BindData();
+
+            public abstract void UnbindData();
         }
     }
 }

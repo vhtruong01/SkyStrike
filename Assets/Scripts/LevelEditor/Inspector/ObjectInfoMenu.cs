@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ObjectInfoMenu : MonoBehaviour, ISubMenu
+        public class ObjectInfoMenu : MonoBehaviour, ISubMenu,IObserverMenu
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private Vector2Property scale;
@@ -31,12 +31,12 @@ namespace SkyStrike
             public void Display(IData data)
             {
                 bool isNewData = SetData(data);
-                UnbindEnemy();
+                UnbindData();
                 if (isNewData)
                 {
                     if (CanDisplay())
                     {
-                        BlindEnemy();
+                        BindData();
                         type.text = curEnemyData.metaData.data.type;
                         icon.sprite = curEnemyData.metaData.data.sprite;
                     }
@@ -55,7 +55,7 @@ namespace SkyStrike
                 curEnemyData = newData;
                 return curEnemyData != null;
             }
-            public void BlindEnemy()
+            public void BindData()
             {
                 position.Bind(curEnemyData.position.SetData);
                 scale.Bind(curEnemyData.scale.SetData);
@@ -64,7 +64,7 @@ namespace SkyStrike
                 curEnemyData.scale.Bind(scale.SetValue);
                 curEnemyData.rotation.Bind(rotation.SetValue);
             }
-            public void UnbindEnemy()
+            public void UnbindData()
             {
                 position.Unbind();
                 scale.Unbind();

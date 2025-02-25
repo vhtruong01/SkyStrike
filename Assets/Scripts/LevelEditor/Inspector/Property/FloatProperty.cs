@@ -1,9 +1,14 @@
+using TMPro;
+using UnityEngine;
+
 namespace SkyStrike
 {
     namespace Editor
     {
         public class FloatProperty : Property<float>
         {
+            [SerializeField] private TMP_InputField x;
+
             public override void Awake()
             {
                 base.Awake();

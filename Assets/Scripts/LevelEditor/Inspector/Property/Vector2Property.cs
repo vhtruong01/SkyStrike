@@ -6,17 +6,14 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class Vector2Property : MonoBehaviour
+        public class Vector2Property : Property<Vector2>
         {
-            [SerializeField] private TextMeshProUGUI titleTxt;
             [SerializeField] private TMP_InputField x;
             [SerializeField] private TMP_InputField y;
-            //linked
-            private Vector2 value;
-            public UnityEvent<Vector2> onValueChanged { get; private set; }
 
-            public void Awake()
+            public override void Awake()
             {
+                base.Awake();
                 x.text = "0";
                 y.text = "0";
                 x.onSubmit.AddListener(s =>
@@ -31,30 +28,18 @@ namespace SkyStrike
                         OnValueChanged();
                     else y.text = value.y.ToString();
                 });
-                onValueChanged = new();
             }
-            public void OnValueChanged()
+            public override void OnValueChanged()
             {
                 value.Set(float.TryParse(x.text, out float newX) ? newX : value.x,
                           float.TryParse(y.text, out float newY) ? newY : value.y);
                 onValueChanged.Invoke(value);
             }
-            public void SetValue(Vector2 value)
+            public override void SetValue(Vector2 value)
             {
+                base.SetValue(value);
                 x.text = value.x.ToString();
                 y.text = value.y.ToString();
-                this.value = value;
-            }
-            public void Bind(UnityAction<Vector2> action) => onValueChanged.AddListener(action);
-            public void Unbind()
-            {
-                onValueChanged.RemoveAllListeners();
-                SetValue(Vector2.zero);
-            }
-            public void SetTitle(string title)
-            {
-                if (titleTxt != null)
-                    titleTxt.text = title;
             }
         }
     }

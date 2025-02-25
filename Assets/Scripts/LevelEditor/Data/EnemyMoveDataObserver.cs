@@ -6,8 +6,8 @@ namespace SkyStrike
     {
         public class EnemyMoveDataObserver : IEnemyActionDataObserver
         {
-            private DataObserver<Vector2> distance;
-
+            private DataObserver<float> dirX;
+            private DataObserver<float> dirY;
             private DataObserver<float> rotation;
             private DataObserver<bool> isSyncRotation;
         }

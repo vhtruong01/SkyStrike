@@ -1,25 +1,23 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class StringProperty : Property<string>
+        public class BoolProperty : Property<bool>
         {
-            [SerializeField] private TMP_InputField x;
+            [SerializeField] private Toggle toggle;
 
             public override void Awake()
             {
                 base.Awake();
-                x.onValueChanged.AddListener(s =>
-                {
-                    OnValueChanged();
-                });
+                toggle.isOn = false;
+                toggle.onValueChanged.AddListener(b =>OnValueChanged());
             }
             public override void OnValueChanged()
             {
-                value = x.text;
+                value = toggle.isOn;
                 onValueChanged.Invoke(value);
             }
         }

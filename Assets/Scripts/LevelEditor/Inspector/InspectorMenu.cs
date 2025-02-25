@@ -21,20 +21,8 @@ namespace SkyStrike
             {
                 curSubMenuIndex = -1;
                 subMenuList = new() { objectInfoMenu, phaseMenu };
-                MenuManager.onSelectItemUI.AddListener(data =>
-                {
-                    objectInfoMenu.Display(data);
-                    phaseMenu.SetData(null);
-                    phaseMenu.Hide();
-                    SelectSubMenu(data != null ? 0 : -1);
-                });
-                MenuManager.onSelectEnemy.AddListener(data =>
-                {
-                    objectInfoMenu.Display(data);
-                    phaseMenu.SetData(data);
-                    if (curSubMenuIndex < 0 || curSubMenuIndex > subMenuList.Count)
-                        SelectSubMenu(0);
-                });
+                MenuManager.onSelectItemUI.AddListener(SelectDefaultSubMenu);
+                MenuManager.onSelectEnemy.AddListener(SelectDefaultSubMenu);
                 for (int i = 0; i < subMenuList.Count; i++)
                 {
                     int index = i;
@@ -59,6 +47,13 @@ namespace SkyStrike
                     subMenu?.Hide();
                     curSubMenuIndex = index;
                 }
+            }
+            public void SelectDefaultSubMenu(IData data)
+            {
+                subMenuList[0].Display(data);
+                SelectSubMenu(0);
+                for (int i = 1; i < subMenuList.Count; i++)
+                    subMenuList[i].SetData(data);
             }
         }
     }

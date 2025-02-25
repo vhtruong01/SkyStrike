@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 namespace SkyStrike
@@ -7,10 +6,10 @@ namespace SkyStrike
     {
         public class MoveActionMenu : ActionMenu
         {
-            [SerializeField] private TMP_InputField posX;
-            [SerializeField] private TMP_InputField posY;
-            [SerializeField] private TMP_InputField rotation;
-            [SerializeField] private TMP_InputField delay;
+            [SerializeField] private FloatProperty dirX;
+            [SerializeField] private FloatProperty dirY;
+            [SerializeField] private FloatProperty rotation;
+            [SerializeField] private FloatProperty delay;
 
             public override bool CanDisplay()
             {
@@ -18,11 +17,19 @@ namespace SkyStrike
             }
             public override void Display(IData data)
             {
-            }
 
+            }
             public override bool SetData(IData data)
             {
                 return true;
+            }
+            public override void BindData()
+            {
+                throw new System.NotImplementedException();
+            }
+            public override void UnbindData()
+            {
+                throw new System.NotImplementedException();
             }
         }
     }
