@@ -2,9 +2,12 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyFireDataObserver : IEnemyActionDataObserver
+        public class EnemyFireDataObserver : ICloneable<EnemyFireDataObserver>
         {
-            public int index { get; set; }
+            public EnemyFireDataObserver Clone()
+            {
+                throw new System.NotImplementedException();
+            }
         }
     }
 }

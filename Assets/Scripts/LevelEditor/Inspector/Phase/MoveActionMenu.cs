@@ -18,7 +18,7 @@ namespace SkyStrike
                 var moveActionData= actionData as EnemyMoveDataObserver;
                 if (moveActionData == null) return;
                 dirX.Bind(moveActionData.dirX);
-                dirX.Bind(moveActionData.dirY);
+                dirY.Bind(moveActionData.dirY);
                 rotation.Bind(moveActionData.rotation);
                 delay.Bind(moveActionData.delay);
                 scale.Bind(moveActionData.scale);

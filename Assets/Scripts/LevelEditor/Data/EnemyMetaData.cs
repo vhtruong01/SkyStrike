@@ -6,7 +6,7 @@ namespace SkyStrike
     namespace Editor
     {
         [CreateAssetMenu(fileName = "MetaData", menuName = "Data/EnemyMetaData")]
-        public class EnemyMetaData : ScriptableObject, IEnemyData
+        public class EnemyMetaData : ScriptableObject
         {
             public string id;
             [field: SerializeField] public string type { get; set; }
@@ -15,9 +15,6 @@ namespace SkyStrike
             [field: SerializeField] public Vector2 scale { get; set; }
             [field: SerializeField] public Vector2 velocity { get; set; }
             [field: SerializeField] public Sprite sprite { get; set; }
-            public PhaseData phase { get; set; }
-
-            public IEnemyData Clone() => new EnemyData(this);
         }
     }
 }

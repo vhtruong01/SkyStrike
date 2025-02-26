@@ -40,6 +40,11 @@ namespace SkyStrike
                         type.text = curEnemyData.metaData.data.type;
                         icon.sprite = curEnemyData.metaData.data.sprite;
                     }
+                    else
+                    {
+                        Hide();
+                        return;
+                    }
                 }
                 Show();
             }

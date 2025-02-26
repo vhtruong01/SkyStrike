@@ -15,13 +15,13 @@ namespace SkyStrike
                 base.Awake();
                 x.text = "0";
                 y.text = "0";
-                x.onSubmit.AddListener(s =>
+                x.onValueChanged.AddListener(s =>
                 {
                     if (float.TryParse(s, out float newValue))
                         OnValueChanged();
                     else x.text = value.x.ToString();
                 });
-                y.onSubmit.AddListener(s =>
+                y.onValueChanged.AddListener(s =>
                 {
                     if (float.TryParse(s, out float newValue))
                         OnValueChanged();

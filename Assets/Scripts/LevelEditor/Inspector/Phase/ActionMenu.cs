@@ -9,7 +9,7 @@ namespace SkyStrike
         {
             public string type;
             [SerializeField] protected TextMeshProUGUI index;
-            protected IEnemyActionDataObserver actionData;
+            protected IData actionData;
 
             public abstract void BindData();
             public abstract void UnbindData();
@@ -21,14 +21,18 @@ namespace SkyStrike
                     UnbindData();
                     if (CanDisplay())
                         BindData();
+                    else
+                    {
+                        Hide();
+                        return;
+                    }
                 }
                 Show();
             }
             public virtual bool SetData(IData data)
             {
-                var newData = data as IEnemyActionDataObserver;
-                if (actionData == newData) return false;
-                actionData = newData;
+                if (actionData == data) return false;
+                actionData = data;
                 return true;
             }
             public virtual bool CanDisplay() => actionData != null;
@@ -39,7 +43,7 @@ namespace SkyStrike
             }
             public virtual void Show()
             {
-                if (!gameObject.activeSelf)
+                if (!gameObject.activeSelf && CanDisplay())
                     gameObject.SetActive(true);
             }
         }

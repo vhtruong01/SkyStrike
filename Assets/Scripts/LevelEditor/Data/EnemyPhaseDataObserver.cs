@@ -1,66 +1,51 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyPhaseDataObserver : IData
+        public class EnemyPhaseDataObserver : ICloneable<EnemyPhaseDataObserver>
         {
-            private HashSet<IEnemyActionDataObserver> moveDataList;
-            private HashSet<IEnemyActionDataObserver> fireDataList;
+            private List<EnemyActionDataObserver> actionDataList;
 
-            public EnemyPhaseDataObserver()
+            public EnemyPhaseDataObserver() => actionDataList = new();
+            public IData GetActionData(int index, EActionType actionType)
             {
-                moveDataList = new();
-                fireDataList = new();
+                return HasAction(index) ? actionDataList[index].GetActionData(actionType) : null;
             }
-            public IEnemyActionDataObserver GetActionData(int index,EActionType type)
+            public bool HasAction(int index)
             {
-                return null;
+                return index >= 0 & index < actionDataList.Count;
             }
-            public IEnemyActionDataObserver[] GetActionDataArray(EActionType eActionType)
+            public void AddActionData(int index, EActionType actionType)
             {
-                return eActionType switch
-                {
-                    EActionType.Move => moveDataList.ToArray(),
-                    EActionType.Fire => fireDataList.ToArray(),
-                    _ => null,
-                };
+                actionDataList[index].AddActionData(actionType);
             }
-            private HashSet<IEnemyActionDataObserver> GetActionData(EActionType eActionType)
+            public void RemoveActionData(int index, EActionType actionType)
             {
-                return eActionType switch
-                {
-                    EActionType.Move => moveDataList,
-                    EActionType.Fire => fireDataList,
-                    _ => null,
-                };
+                actionDataList[index].RemoveActionData(actionType);
             }
-            public IEnemyActionDataObserver AddAction(EActionType eActionType)
+            public List<EnemyActionDataObserver> GetActionDataList() => actionDataList;
+            public EnemyActionDataObserver AddActionGroup()
             {
-                var actionData = CreateAction(eActionType);
-                if (actionData != null)
-                {
-                    var dataList = GetActionData(eActionType);
-                    actionData.index = dataList.Count;
-                    dataList.Add(actionData);
-                }
+                EnemyActionDataObserver actionData = new();
+                actionData.index = actionDataList.Count;
+                actionDataList.Add(actionData);
                 return actionData;
             }
-            private IEnemyActionDataObserver CreateAction(EActionType eActionType)
+            public void RemoveActionGroup()
             {
-                return eActionType switch
-                {
-                    EActionType.Move => new EnemyMoveDataObserver(),
-                    EActionType.Fire => new EnemyFireDataObserver(),
-                    _ => null,
-                };
+                //
             }
             public EnemyPhaseDataObserver Clone()
             {
                 EnemyPhaseDataObserver newPhase = new();
-                //
+                newPhase.actionDataList = new();
+                foreach (var actionData in actionDataList)
+                {
+                    //
+                    newPhase.actionDataList.Add(actionData.Clone());
+                }
                 return newPhase;
             }
         }

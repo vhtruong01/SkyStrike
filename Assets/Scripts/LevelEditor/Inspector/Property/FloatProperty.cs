@@ -13,7 +13,7 @@ namespace SkyStrike
             {
                 base.Awake();
                 x.text = "0";
-                x.onSubmit.AddListener(s =>
+                x.onValueChanged.AddListener(s =>
                 {
                     if (float.TryParse(s, out float newValue))
                         OnValueChanged();

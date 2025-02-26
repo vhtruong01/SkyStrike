@@ -13,7 +13,9 @@ namespace SkyStrike
             [SerializeField] private FireActionMenu fireActionMenu;
             [SerializeField] private UIGroup switchActionButtonGroup;
             [SerializeField] private UIGroup actionUIGroup;
+            [SerializeField] private Button addActionGroupBtn;
             [SerializeField] private Button addActionBtn;
+            [SerializeField] private Button removeActionBtn;
             private List<ActionMenu> actionMenus;
             private EnemyPhaseDataObserver phaseData;
             private EActionType curActionType;
@@ -27,39 +29,65 @@ namespace SkyStrike
                     Button switchButton = switchActionButtonGroup.CreateItem<Button>();
                     int index = i;
                     switchButton.GetComponentInChildren<TextMeshProUGUI>().text = actionMenus[i].type;
-                    switchButton.onClick.AddListener(() => SelectActionType((EActionType)index));
+                    switchButton.onClick.AddListener(() => SelectActionMenu((EActionType)index));
                     actionMenus[i].Hide();
                 }
                 switchActionButtonGroup.SelectFirstItem();
-                addActionBtn.onClick.AddListener(AddEmptyAction);
+                addActionGroupBtn.onClick.AddListener(AddEmptyActionGroup);
+                addActionBtn.onClick.AddListener(AddAction);
+                removeActionBtn.onClick.AddListener(RemoveAction);
+                DisableActionButton();
             }
-            public void AddEmptyAction()
+            public void AddEmptyActionGroup()
             {
                 if (phaseData == null) return;
-                AddAction(phaseData.AddAction(curActionType));
+                AddActionGroup(phaseData.AddActionGroup());
             }
-            public void AddAction(IEnemyActionDataObserver actionData)
+            public void AddActionGroup(EnemyActionDataObserver actionData)
             {
                 ActionUI actionUI = actionUIGroup.CreateItem<ActionUI>();
                 actionUI.SetListener(SelectAction);
                 actionUI.SetData(actionData);
             }
-            public void RemoveAction()
+            public void RemoveActionGroup()
             {
                 //
+            }
+            public void AddAction()
+            {
+                if (curActionIndex == -1) return;
+                phaseData.AddActionData(curActionIndex, curActionType);
+                SelectCurrentActionMenu();
+            }
+            public void RemoveAction()
+            {
+                if (curActionIndex == -1) return;
+                phaseData.RemoveActionData(curActionIndex, curActionType);
+                SelectCurrentActionMenu();
             }
             public void SelectAction(ActionUI actionUI)
             {
                 actionUIGroup.SelectItem(actionUI.gameObject);
                 curActionIndex = actionUI.actionData.index;
-                SelectActionType(curActionType);
+                SelectCurrentActionMenu();
             }
-            public void DeselectActionType()
+            public void DeSelectActionMenu()
             {
                 curActionIndex = -1;
-                SelectActionType(curActionType);
+                SelectCurrentActionMenu();
             }
-            public void SelectActionType(EActionType actionType)
+            public void DisableActionButton()
+            {
+                addActionBtn.gameObject.SetActive(false);
+                removeActionBtn.gameObject.SetActive(false);
+            }
+            public void EnableActionButton(bool isEnable)
+            {
+                addActionBtn.gameObject.SetActive(isEnable);
+                removeActionBtn.gameObject.SetActive(!isEnable);
+            }
+            public void SelectCurrentActionMenu() => SelectActionMenu(curActionType);
+            public void SelectActionMenu(EActionType actionType)
             {
                 if (curActionType != actionType)
                     actionMenus[(int)curActionType].Hide();
@@ -72,6 +100,9 @@ namespace SkyStrike
                     curActionMenu.Show();
                 }
                 else actionMenus[(int)curActionType].Hide();
+                if (phaseData.HasAction(curActionIndex))
+                    EnableActionButton(actionData == null);
+                else DisableActionButton();
             }
             public bool SetData(IData data)
             {
@@ -84,13 +115,21 @@ namespace SkyStrike
             public void Display(IData data)
             {
                 bool isNewData = SetData(data);
-                if (isNewData && CanDisplay())
+                if (isNewData)
                 {
-                    actionUIGroup.Clear();
-                    var actionDataList = phaseData.GetActionDataArray(curActionType);
-                    foreach (var actionData in actionDataList)
-                        AddAction(actionData);
-                    DeselectActionType();
+                    if (CanDisplay())
+                    {
+                        actionUIGroup.Clear();
+                        var actionDataList = phaseData.GetActionDataList();
+                        foreach (var actionData in actionDataList)
+                            AddActionGroup(actionData);
+                        DeSelectActionMenu();
+                    }
+                    else
+                    {
+                        Hide();
+                        return;
+                    }
                 }
                 Show();
             }

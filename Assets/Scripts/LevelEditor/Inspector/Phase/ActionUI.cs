@@ -15,14 +15,14 @@ namespace SkyStrike
             private Button button;
             private Image bg;
             public UnityEvent onRemove {  get; private set; }
-            public IEnemyActionDataObserver actionData { get; private set; }
+            public EnemyActionDataObserver actionData { get; private set; }
 
             public void Awake()
             {
                 button = GetComponent<Button>();
                 bg = GetComponent<Image>();
             }
-            public void SetData(IEnemyActionDataObserver actionData)
+            public void SetData(EnemyActionDataObserver actionData)
             {
                 this.actionData = actionData;
                 //
