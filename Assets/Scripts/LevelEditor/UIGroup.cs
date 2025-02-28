@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Pool;
-using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace SkyStrike
 {
@@ -10,76 +7,66 @@ namespace SkyStrike
     {
         public class UIGroup : MonoBehaviour
         {
-            [SerializeField] private GameObject prefab;
-            [SerializeField] private Color selectedColor;
-            [SerializeField] private Color defaultColor;
-            private HashSet<GameObject> items;
-            private ObjectPool<GameObject> pool;
-            private GameObject selectedItem;
+            private List<IUIElement> itemList;
+            protected IUIElement selectedItem;
+            public virtual int Count => itemList.Count;
 
-            public void Awake()
+            public virtual void Start()
             {
-                items = new();
-                pool = new(CreateNewObject);
+                itemList = new();
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var uiElement)) continue;
+                    int index = itemList.Count;
+                    uiElement.onClick.AddListener(() => SelectItem(index));
+                    Diminish(uiElement);
+                    itemList.Add(uiElement);
+                }
             }
-            private GameObject CreateNewObject()
+            public void GetItem<T>(out T item, int index) where T : Component
             {
-                GameObject o = Instantiate(prefab, transform, false);
-                o.name = prefab.name;
-                return o;
+                item = index < 0 || index >= itemList.Count ? null : itemList[index].gameObject.GetComponent<T>();
             }
-            public T CreateItem<T>() where T : Component
+            public IUIElement GetItem(int index)
             {
-                GameObject itemObject = pool.Get();
-                Diminish(itemObject);
-                itemObject.SetActive(true);
-                items.Add(itemObject);
-                return itemObject.GetComponent<T>();
+                return index < 0 || index >= itemList.Count ? null : itemList[index];
             }
-            public void RemoveItem(GameObject itemObject)
+            protected void DeselectCurrentItem()
             {
-                if (!items.Contains(itemObject)) return;
-                if (selectedItem == itemObject)
-                    selectedItem = null;
-                itemObject.SetActive(false);
-                pool.Release(itemObject);
-                items.Remove(itemObject);
+                Diminish(selectedItem);
+                selectedItem = null;
             }
-            public void SelectItem(GameObject itemObject)
+            public virtual void SelectFirstItem()
             {
+                SelectItem(0);
+                selectedItem?.onClick.Invoke();
+            }
+            public void SelectItem(int index)
+            {
+                if (index >= 0 & index < itemList.Count)
+                    SelectItem(itemList[index]);
+                else SelectItem(null);
+            }
+            protected virtual void SelectItem(IUIElement itemObject)
+            {
+                if (selectedItem == itemObject) return;
                 if (itemObject == null)
                 {
-                    Diminish(selectedItem);
-                    selectedItem = null;
+                    DeselectCurrentItem();
                     return;
                 }
-                if (selectedItem == itemObject || !items.Contains(itemObject)) return;
                 Diminish(selectedItem);
                 selectedItem = itemObject;
                 Highlight(selectedItem);
             }
-            public void SelectFirstItem() => SelectItem(items.First());
-            public T GetSelectedItem<T>() where T : Component
+            protected virtual void Highlight(IUIElement e) 
+                => SetBackgroundColor(e,EditorSetting.btnSelectedColor);
+            protected virtual void Diminish(IUIElement e) 
+                => SetBackgroundColor(e,EditorSetting.btnDefaultColor);
+            protected void SetBackgroundColor(IUIElement e, Color color)
             {
-                return selectedItem == null ? null : selectedItem.GetComponent<T>();
-            }
-            public void Clear()
-            {
-                foreach (var item in items)
-                {
-                    item.gameObject.SetActive(false);
-                    pool.Release(item);
-                }
-                items.Clear();
-            }
-            private void Highlight(GameObject o) => SetBackgroundColor(o, selectedColor);
-            private void Diminish(GameObject o) => SetBackgroundColor(o, defaultColor);
-            private void SetBackgroundColor(GameObject o, Color color)
-            {
-                if (o == null) return;
-                Image bg = o.GetComponent<IUIElement>()?.GetBackground();
-                if (bg != null)
-                    bg.color = color;
+                if (e != null)
+                    e.GetBackground().color = color;
             }
         }
     }

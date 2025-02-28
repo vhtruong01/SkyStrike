@@ -3,25 +3,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class ItemUI : MonoBehaviour, IPointerClickHandler, IUIElement
+        public class ItemUI : MonoBehaviour, IUIElement
         {
             [SerializeField] private Image image;
             [SerializeField] private TextMeshProUGUI text;
             [SerializeField] private Image bg;
-            private UnityEvent<ItemUI> onSelect;
+            public UnityEvent onClick { get; set; }
             public EnemyDataObserver enemyDataObserver { get; private set; }
 
             public void Awake()
             {
-                onSelect = new();
+                onClick = new();
                 bg = GetComponent<Image>();
+                onClick.AddListener(() => MenuManager.SelectItemUI(enemyDataObserver));
             }
-            public void Init(EnemyMetaData metaData, UnityAction<ItemUI> call)
+            public void SetData(EnemyMetaData metaData)
             {
                 enemyDataObserver = new();
                 enemyDataObserver.isMetaData = true;
@@ -29,13 +31,9 @@ namespace SkyStrike
                 enemyDataObserver.ResetData();
                 image.sprite = metaData.sprite;
                 text.text = metaData.type;
-                onSelect.AddListener(call);
             }
             public Image GetBackground() => bg;
-            public void OnPointerClick(PointerEventData eventData)
-            {
-                onSelect.Invoke(this);
-            }
+            public void OnPointerClick(PointerEventData eventData) => onClick.Invoke();
         }
     }
 }

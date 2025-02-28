@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
 namespace SkyStrike
@@ -11,11 +10,10 @@ namespace SkyStrike
             [SerializeField] private ObjectInfoMenu objectInfoMenu;
             [SerializeField] private PhaseMenu phaseMenu;
             [SerializeField] private UIGroup switchSubMenuBtnGroup;
+            private bool isLock;
             private List<ISubMenu> subMenuList;
             private int curSubMenuIndex;
             // frame data
-            //
-            private bool isLock;
 
             public void Start()
             {
@@ -28,16 +26,16 @@ namespace SkyStrike
                     int index = i;
                     ISubMenu subMenu = subMenuList[i];
                     subMenu.gameObject.SetActive(true);
-                    Button button = switchSubMenuBtnGroup.CreateItem<Button>();
                     ISubMenu subMenuTmp = subMenu;
+                    var button = switchSubMenuBtnGroup.GetItem(index);
                     button.onClick.AddListener(() =>
                     {
-                        switchSubMenuBtnGroup.SelectItem(button.gameObject);
                         subMenuTmp.Show();
                         SelectSubMenu(index);
                     });
                     subMenu.Hide();
                 }
+                switchSubMenuBtnGroup.SelectFirstItem();
             }
             public void SelectSubMenu(int index)
             {
@@ -51,6 +49,7 @@ namespace SkyStrike
             public void SelectAndSetDataSubMenu(IData data) => SelectAndSetDataSubMenu(data, curSubMenuIndex);
             public void SelectAndSetDataSubMenu(IData data, int index)
             {
+                switchSubMenuBtnGroup.SelectItem(index);
                 subMenuList[index].Display(data);
                 SelectSubMenu(index);
                 for (int i = 0; i < subMenuList.Count; i++)

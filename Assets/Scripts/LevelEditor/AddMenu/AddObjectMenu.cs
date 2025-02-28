@@ -7,26 +7,22 @@ namespace SkyStrike
     {
         public class AddObjectMenu : Menu
         {
-            [SerializeField] private UIGroup itemUIGroup;
+            [SerializeField] private UIGroupPool itemUIGroupPool;
+            [SerializeField] private UIGroup selectObjectTypeBtn;
             [SerializeField] private List<EnemyMetaData> enemyMetaDataList;
 
             public void Start()
             {
                 foreach (var data in enemyMetaDataList)
                 {
-                    ItemUI itemUI = itemUIGroup.CreateItem<ItemUI>();
-                    itemUI.Init(data, SelectItem);
+                    itemUIGroupPool.CreateItem(out ItemUI itemUI);
+                    itemUI.SetData(data);
                 }
-            }
-            public void SelectItem(ItemUI itemUI)
-            {
-                itemUIGroup.SelectItem(itemUI?.gameObject);
-                MenuManager.SelectItemUI(itemUI?.enemyDataObserver);
-            }
-            public override void HandleCollapse()
-            {
-                base.HandleCollapse();
-                SelectItem(null);
+                for (int i = 0; i < selectObjectTypeBtn.Count; i++)
+                {
+                    //
+                }
+                selectObjectTypeBtn.SelectFirstItem();
             }
         }
     }

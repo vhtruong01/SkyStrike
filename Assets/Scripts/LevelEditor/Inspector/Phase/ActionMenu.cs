@@ -7,7 +7,6 @@ namespace SkyStrike
     {
         public abstract class ActionMenu : MonoBehaviour, ISubMenu, IObserverMenu
         {
-            public string type;
             [SerializeField] protected TextMeshProUGUI index;
             protected IData actionData;
 

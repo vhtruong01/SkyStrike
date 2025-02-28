@@ -15,12 +15,12 @@ namespace SkyStrike
             //[SerializeField] private TMP_InputField enemyName;
             [SerializeField] private Image icon;
             [SerializeField] private TextMeshProUGUI type;
-            [SerializeField] private Button add1ShipBtn;
+            [SerializeField] private Button addEnemyBtn;
             private EnemyDataObserver curEnemyData;
 
             public void Awake()
             {
-                add1ShipBtn.onClick.AddListener(CreateEnemy);
+                addEnemyBtn.onClick.AddListener(CreateEnemy);
             }
             public bool CanDisplay() => curEnemyData != null;
             public void CreateEnemy()
@@ -53,7 +53,7 @@ namespace SkyStrike
                 EnemyDataObserver newData = data as EnemyDataObserver;
                 if (curEnemyData == newData) return false;
                 curEnemyData = newData;
-                return curEnemyData != null;
+                return true;
             }
             public void BindData()
             {

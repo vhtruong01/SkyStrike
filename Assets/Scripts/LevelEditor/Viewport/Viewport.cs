@@ -7,13 +7,13 @@ namespace SkyStrike
     {
         public class Viewport : MonoBehaviour
         {
+            [SerializeField] private UIGroupPool enemyGroupPool;
             [SerializeField] private Button inspectorMenuBtn;
             [SerializeField] private GameObject inspectorMenu;
             [SerializeField] private Button waveMenuBtn;
             [SerializeField] private GameObject waveMenu;
             [SerializeField] private Button addObjectMenuBtn;
             [SerializeField] private GameObject addObjectMenu;
-            [SerializeField] private UIGroup enemyGroup;
 
             public void Awake()
             {
@@ -24,30 +24,9 @@ namespace SkyStrike
             }
             public void AddEnemy(IData data)
             {
-                EnemyEditor enemy = enemyGroup.CreateItem<EnemyEditor>();
+                enemyGroupPool.CreateItem(out EnemyEditor enemy);
                 enemy.SetData((data as EnemyDataObserver).Clone());
             }
-            public void RemoveEnemy(EnemyEditor enemyEditor)
-            {
-                enemyGroup.RemoveItem(enemyEditor.gameObject);
-                //wave
-            }
-            ////
-            //public void Display(WaveData wave)
-            //{
-            //    ClearWave();
-            //    foreach (IEnemyData e in wave.enemies)
-            //        AddEnemy(e);
-            //}
-            //public void SaveWave()
-            //{
-
-            //}
-            //public void ClearWave()
-            //{
-            //    //foreach (EnemyEditor e in enemyContainer.GetComponentsInChildren<EnemyEditor>())
-            //    //    RemoveEnemy(e);
-            //}
         }
     }
 }

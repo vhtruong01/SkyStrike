@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using TMPro;
 
 namespace SkyStrike
 {
@@ -12,7 +11,7 @@ namespace SkyStrike
             [SerializeField] private MoveActionMenu moveActionMenu;
             [SerializeField] private FireActionMenu fireActionMenu;
             [SerializeField] private UIGroup switchActionButtonGroup;
-            [SerializeField] private UIGroup actionUIGroup;
+            [SerializeField] private UIGroupPool actionUIGroupPool;
             [SerializeField] private Button addActionGroupBtn;
             [SerializeField] private Button addActionBtn;
             [SerializeField] private Button removeActionBtn;
@@ -24,15 +23,14 @@ namespace SkyStrike
             public void Start()
             {
                 actionMenus = new() { moveActionMenu, fireActionMenu };
-                for (int i = 0; i < actionMenus.Count; i++)
+                for (int i = 0; i < switchActionButtonGroup.Count; i++)
                 {
-                    Button switchButton = switchActionButtonGroup.CreateItem<Button>();
+                    actionMenus[i].Show();
+                    var switchButton = switchActionButtonGroup.GetItem(i);
                     int index = i;
-                    switchButton.GetComponentInChildren<TextMeshProUGUI>().text = actionMenus[i].type;
                     switchButton.onClick.AddListener(() => SelectActionMenu((EActionType)index));
                     actionMenus[i].Hide();
                 }
-                switchActionButtonGroup.SelectFirstItem();
                 addActionGroupBtn.onClick.AddListener(AddEmptyActionGroup);
                 addActionBtn.onClick.AddListener(AddAction);
                 removeActionBtn.onClick.AddListener(RemoveAction);
@@ -45,7 +43,7 @@ namespace SkyStrike
             }
             public void AddActionGroup(EnemyActionDataObserver actionData)
             {
-                ActionUI actionUI = actionUIGroup.CreateItem<ActionUI>();
+                actionUIGroupPool.CreateItem(out ActionUI actionUI);
                 actionUI.SetListener(SelectAction);
                 actionUI.SetData(actionData);
             }
@@ -67,7 +65,6 @@ namespace SkyStrike
             }
             public void SelectAction(ActionUI actionUI)
             {
-                actionUIGroup.SelectItem(actionUI.gameObject);
                 curActionIndex = actionUI.actionData.index;
                 SelectCurrentActionMenu();
             }
@@ -119,7 +116,7 @@ namespace SkyStrike
                 {
                     if (CanDisplay())
                     {
-                        actionUIGroup.Clear();
+                        actionUIGroupPool.Clear();
                         var actionDataList = phaseData.GetActionDataList();
                         foreach (var actionData in actionDataList)
                             AddActionGroup(actionData);
