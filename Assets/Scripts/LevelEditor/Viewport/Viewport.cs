@@ -15,7 +15,7 @@ namespace SkyStrike
             [SerializeField] private Button addObjectMenuBtn;
             [SerializeField] private GameObject addObjectMenu;
 
-            public void Awake()
+            public void Start()
             {
                 inspectorMenuBtn.onClick.AddListener(() => inspectorMenu.SetActive(true));
                 waveMenuBtn.onClick.AddListener(() => waveMenu.SetActive(true));

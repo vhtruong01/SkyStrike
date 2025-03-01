@@ -18,7 +18,7 @@ namespace SkyStrike
             [SerializeField] private Button addEnemyBtn;
             private EnemyDataObserver curEnemyData;
 
-            public void Awake()
+            public void Start()
             {
                 addEnemyBtn.onClick.AddListener(CreateEnemy);
             }

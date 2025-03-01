@@ -11,8 +11,9 @@ namespace SkyStrike
             [SerializeField] private UIGroup selectObjectTypeBtn;
             [SerializeField] private List<EnemyMetaData> enemyMetaDataList;
 
-            public void Start()
+            public override void Start()
             {
+                base.Start();
                 foreach (var data in enemyMetaDataList)
                 {
                     itemUIGroupPool.CreateItem(out ItemUI itemUI);

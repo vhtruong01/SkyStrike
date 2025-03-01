@@ -11,16 +11,23 @@ namespace SkyStrike
             protected IUIElement selectedItem;
             public virtual int Count => itemList.Count;
 
-            public virtual void Start()
+            public virtual void Awake()
             {
                 itemList = new();
                 for (int i = 0; i < transform.childCount; i++)
                 {
                     if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var uiElement)) continue;
-                    int index = itemList.Count;
-                    uiElement.onClick.AddListener(() => SelectItem(index));
-                    Diminish(uiElement);
                     itemList.Add(uiElement);
+                }
+            }
+            public virtual void Start()
+            {
+                for (int i = 0; i < itemList.Count; i++)
+                {
+                    int index = i;
+                    itemList[index].onClick.AddListener(() => SelectItem(index));
+                    if (selectedItem != itemList[index])
+                        Diminish(itemList[index]);
                 }
             }
             public void GetItem<T>(out T item, int index) where T : Component
@@ -49,7 +56,7 @@ namespace SkyStrike
             }
             protected virtual void SelectItem(IUIElement itemObject)
             {
-                if (selectedItem == itemObject) return;
+                //if (selectedItem == itemObject) return;
                 if (itemObject == null)
                 {
                     DeselectCurrentItem();
@@ -59,10 +66,10 @@ namespace SkyStrike
                 selectedItem = itemObject;
                 Highlight(selectedItem);
             }
-            protected virtual void Highlight(IUIElement e) 
-                => SetBackgroundColor(e,EditorSetting.btnSelectedColor);
-            protected virtual void Diminish(IUIElement e) 
-                => SetBackgroundColor(e,EditorSetting.btnDefaultColor);
+            protected virtual void Highlight(IUIElement e)
+                => SetBackgroundColor(e, EditorSetting.btnSelectedColor);
+            protected virtual void Diminish(IUIElement e)
+                => SetBackgroundColor(e, EditorSetting.btnDefaultColor);
             protected void SetBackgroundColor(IUIElement e, Color color)
             {
                 if (e != null)

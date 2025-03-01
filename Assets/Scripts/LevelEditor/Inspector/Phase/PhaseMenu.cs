@@ -20,9 +20,12 @@ namespace SkyStrike
             private EActionType curActionType;
             private int curActionIndex;
 
-            public void Start()
+            public void Awake()
             {
                 actionMenus = new() { moveActionMenu, fireActionMenu };
+            }
+            public void Start()
+            {
                 for (int i = 0; i < switchActionButtonGroup.Count; i++)
                 {
                     actionMenus[i].Show();

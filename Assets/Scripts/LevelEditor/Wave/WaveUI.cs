@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class Wave:MonoBehaviour
+        public class WaveUI:MonoBehaviour
         {
             [SerializeField] private TextMeshProUGUI indexTxt;
 

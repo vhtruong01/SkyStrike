@@ -28,6 +28,9 @@ namespace SkyStrike
             {
                 onClick = new();
                 bg = GetComponent<Image>();
+            }
+            public void Start()
+            {
                 onClick.AddListener(() => MenuManager.SelectEnemy(enemyDataObserver));
             }
             public void SetData(EnemyDataObserver data)

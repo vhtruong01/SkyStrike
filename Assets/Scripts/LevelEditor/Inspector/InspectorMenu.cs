@@ -15,10 +15,14 @@ namespace SkyStrike
             private int curSubMenuIndex;
             // frame data
 
-            public void Start()
+            public void Awake()
             {
+                subMenuList = new() { objectInfoMenu, phaseMenu };     
+            }
+            public override void Start()
+            {
+                base.Start();
                 curSubMenuIndex = -1;
-                subMenuList = new() { objectInfoMenu, phaseMenu };
                 MenuManager.onSelectItemUI.AddListener(data => SelectAndSetDataSubMenu(data, 0));
                 MenuManager.onSelectEnemy.AddListener(SelectAndSetDataSubMenu);
                 for (int i = 0; i < subMenuList.Count; i++)

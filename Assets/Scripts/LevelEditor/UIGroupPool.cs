@@ -9,6 +9,7 @@ namespace SkyStrike
     {
         public class UIGroupPool : UIGroup
         {
+            [SerializeField] private bool useSpecificColor;
             [SerializeField] protected Color selectedColor;
             [SerializeField] protected Color defaultColor;
             [SerializeField] private GameObject prefab;
@@ -16,11 +17,16 @@ namespace SkyStrike
             private ObjectPool<IUIElement> pool;
             public override int Count => items.Count;
 
-            public override void Start()
+            public override void Awake()
             {
-                base.Start();
+                base.Awake();
                 items = new();
                 pool = new(CreateNewObject);
+                if (!useSpecificColor)
+                {
+                    selectedColor = EditorSetting.btnSelectedColor;
+                    defaultColor = EditorSetting.btnDefaultColor;
+                }
             }
             private IUIElement CreateNewObject()
             {
@@ -35,8 +41,15 @@ namespace SkyStrike
                 var item = pool.Get();
                 Diminish(item);
                 item.gameObject.SetActive(true);
+                if (items.Count == 0)
+                    selectedItem = item;
                 items.Add(item);
                 itemComponent = item.gameObject.GetComponent<T>();
+            }
+            public override void SelectFirstItem()
+            {
+                SelectItem(selectedItem);
+                selectedItem?.onClick.Invoke();
             }
             protected override void SelectItem(IUIElement item)
             {
@@ -46,7 +59,7 @@ namespace SkyStrike
                     selectedItem = null;
                     return;
                 }
-                if (selectedItem == item || !items.Contains(item)) return;
+                if (!items.Contains(item)) return;
                 Diminish(selectedItem);
                 selectedItem = item;
                 Highlight(selectedItem);
@@ -69,6 +82,10 @@ namespace SkyStrike
                 }
                 items.Clear();
             }
+            protected override void Highlight(IUIElement e)
+                => SetBackgroundColor(e, selectedColor);
+            protected override void Diminish(IUIElement e)
+                => SetBackgroundColor(e, defaultColor);
         }
     }
 }
