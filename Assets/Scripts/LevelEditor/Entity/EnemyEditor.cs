@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -7,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyEditor : MonoBehaviour, IPointerDownHandler, IDragHandler,IUIElement
+        public class EnemyEditor : UIElement, IPointerDownHandler, IDragHandler
         {
             private static Camera _mainCam;
             private static Camera mainCam
@@ -20,22 +19,15 @@ namespace SkyStrike
                 }
             }
             [SerializeField] private Image icon;
-            private Image bg;
             public EnemyDataObserver enemyDataObserver { get; private set; }
-            public UnityEvent onClick {  get; set; }
 
-            public void Awake()
-            {
-                onClick = new();
-                bg = GetComponent<Image>();
-            }
             public void Start()
             {
                 onClick.AddListener(() => MenuManager.SelectEnemy(enemyDataObserver));
             }
-            public void SetData(EnemyDataObserver data)
+            public override void SetData(IData data)
             {
-                enemyDataObserver = data;
+                enemyDataObserver = data as EnemyDataObserver;
                 enemyDataObserver.position.Bind(SetPosition);
                 enemyDataObserver.scale.Bind(SetScale);
                 enemyDataObserver.rotation.Bind(SetRotation);
@@ -62,8 +54,7 @@ namespace SkyStrike
                 enemyDataObserver.position.SetData(newPos);
             }
             public void OnPointerDown(PointerEventData eventData) => onClick.Invoke();
-            public Image GetBackground() => bg;
-            public void OnPointerClick(PointerEventData eventData) { }
+            public override void OnPointerClick(PointerEventData eventData) { }
         }
     }
 }

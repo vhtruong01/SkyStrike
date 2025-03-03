@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class WaveDataObserver
+        public class WaveDataObserver : IData
         {
             public DataObserver<float> delay { get; set; }
             private HashSet<EnemyDataObserver> enemies;

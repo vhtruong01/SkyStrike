@@ -12,6 +12,7 @@ namespace SkyStrike
             public GameObject gameObject { get; }
             public UnityEvent onClick { get; set; }
             public Image GetBackground();
+            public void SetData(IData data);
         }
     }
 }

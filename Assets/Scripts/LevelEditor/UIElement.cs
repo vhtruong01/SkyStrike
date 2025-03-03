@@ -9,17 +9,18 @@ namespace SkyStrike
     {
         public class UIElement : MonoBehaviour, IUIElement
         {
-            [SerializeField] private Image image;
+            [SerializeField] protected Image bg;
             public UnityEvent onClick { get; set; }
 
-            public void Awake()
+            public virtual void Awake()
             {
                 onClick = new();
-                if (image == null)
-                    image = GetComponent<Image>();
+                if (bg == null)
+                    bg = GetComponent<Image>();
             }
-            public Image GetBackground() => image;
-            public void OnPointerClick(PointerEventData eventData) => onClick.Invoke();
+            public virtual Image GetBackground() => bg;
+            public virtual void OnPointerClick(PointerEventData eventData) => onClick.Invoke();
+            public virtual void SetData(IData data){}
         }
     }
 }

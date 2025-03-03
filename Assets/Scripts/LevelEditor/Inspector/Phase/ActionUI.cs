@@ -1,43 +1,35 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class ActionUI : MonoBehaviour, IUIElement
+        public class ActionUI : UIElement 
         {
             [SerializeField] private TextMeshProUGUI txt1;
             [SerializeField] private TextMeshProUGUI txt2;
             [SerializeField] private Button removeBtn;
             private Button button;
-            private Image bg;
             public UnityEvent onRemove { get; private set; }
             public EnemyActionDataObserver actionData { get; private set; }
-            public UnityEvent onClick { get; set; }
 
-            public void Awake()
+            public override void Awake()
             {
-                onClick = new();
+                base.Awake();
                 button = GetComponent<Button>();
-                bg = GetComponent<Image>();
             }
-            public void SetData(EnemyActionDataObserver actionData)
+            public override void SetData(IData data)
             {
-                this.actionData = actionData;
+                this.actionData = data as EnemyActionDataObserver;
                 //
             }
             public void SetListener(UnityAction<ActionUI> evt)
             {
                 button.onClick.AddListener(() => evt.Invoke(this));
             }
-
-            public Image GetBackground() => bg;
-
-            public void OnPointerClick(PointerEventData eventData) => onClick.Invoke();
         }
     }
 }

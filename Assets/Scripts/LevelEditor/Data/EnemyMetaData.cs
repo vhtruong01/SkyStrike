@@ -1,4 +1,3 @@
-using SkyStrike.Enemy;
 using UnityEngine;
 
 namespace SkyStrike
@@ -6,7 +5,7 @@ namespace SkyStrike
     namespace Editor
     {
         [CreateAssetMenu(fileName = "MetaData", menuName = "Data/EnemyMetaData")]
-        public class EnemyMetaData : ScriptableObject
+        public class EnemyMetaData : ScriptableObject, IData
         {
             public string id;
             [field: SerializeField] public string type { get; set; }

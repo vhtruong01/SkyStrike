@@ -1,33 +1,25 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class ItemUI : MonoBehaviour, IUIElement
+        public class ItemUI : UIElement
         {
             [SerializeField] private Image image;
             [SerializeField] private TextMeshProUGUI text;
-            [SerializeField] private Image bg;
-            public UnityEvent onClick { get; set; }
             public EnemyDataObserver enemyDataObserver { get; private set; }
 
-            public void Awake()
-            {
-                onClick = new();
-                bg = GetComponent<Image>();
-            }
             public void Start()
             {
                 onClick.AddListener(() => MenuManager.SelectItemUI(enemyDataObserver));    
             }
-            public void SetData(EnemyMetaData metaData)
+            public override void SetData(IData data)
             {
+                var metaData = data as EnemyMetaData;
+                if (metaData == null) return;
                 enemyDataObserver = new();
                 enemyDataObserver.isMetaData = true;
                 enemyDataObserver.metaData.SetData(metaData);
@@ -35,8 +27,6 @@ namespace SkyStrike
                 image.sprite = metaData.sprite;
                 text.text = metaData.type;
             }
-            public Image GetBackground() => bg;
-            public void OnPointerClick(PointerEventData eventData) => onClick.Invoke();
         }
     }
 }

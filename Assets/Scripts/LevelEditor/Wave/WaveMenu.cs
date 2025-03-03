@@ -15,10 +15,14 @@ namespace SkyStrike
             {
                 base.Start();
                 for (int i = 0; i < minElement; i++)
-                {
-                    waveUIGroupPool.CreateItem(out WaveUI wave);
-
-                }
+                    CreateWave();
+                addWaveBtn.onClick.AddListener(CreateWave);
+            }
+            public void CreateWave()
+            {
+                waveUIGroupPool.CreateItem(out WaveUI wave);
+                wave.SetData(MenuManager.CreateWave());
+                wave.SetIndex(waveUIGroupPool.Count);
             }
         }
     }
