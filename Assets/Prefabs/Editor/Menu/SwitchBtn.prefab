@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4346323684363622697}
   - component: {fileID: 4694025257281655487}
   - component: {fileID: 5758538641238982055}
-  - component: {fileID: -5174128147293844084}
+  - component: {fileID: 8167716089648281158}
   m_Layer: 5
   m_Name: SwitchBtn
   m_TagString: Untagged
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-5174128147293844084
+--- !u!114 &8167716089648281158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6173970562543942747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc5d2b8b5f712a6459659207498388d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 79346c813e61d7e46b36a908bc93e7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  bg: {fileID: 0}

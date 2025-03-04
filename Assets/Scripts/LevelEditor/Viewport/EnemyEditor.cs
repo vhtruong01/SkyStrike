@@ -53,7 +53,7 @@ namespace SkyStrike
                 newPos.z = transform.position.z;
                 enemyDataObserver.position.SetData(newPos);
             }
-            public void OnPointerDown(PointerEventData eventData) => onClick.Invoke();
+            public void OnPointerDown(PointerEventData eventData) => base.OnPointerClick(eventData);
             public override void OnPointerClick(PointerEventData eventData) { }
         }
     }

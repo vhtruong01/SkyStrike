@@ -13,7 +13,6 @@ namespace SkyStrike
             [SerializeField] private TextMeshProUGUI txt2;
             [SerializeField] private Button removeBtn;
             private Button button;
-            public UnityEvent onRemove { get; private set; }
             public EnemyActionDataObserver actionData { get; private set; }
 
             public override void Awake()
@@ -23,7 +22,7 @@ namespace SkyStrike
             }
             public override void SetData(IData data)
             {
-                this.actionData = data as EnemyActionDataObserver;
+                actionData = data as EnemyActionDataObserver;
                 //
             }
             public void SetListener(UnityAction<ActionUI> evt)

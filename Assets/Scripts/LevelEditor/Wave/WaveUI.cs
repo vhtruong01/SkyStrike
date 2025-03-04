@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SkyStrike
@@ -8,18 +9,16 @@ namespace SkyStrike
     {
         public class WaveUI : UIElement
         {
-            [SerializeField] private TextMeshProUGUI indexTxt;
-            [SerializeField] private Button removeBtn;
-            
+            [SerializeField] private TextMeshProUGUI waveName;   
             public WaveDataObserver waveDataObserver { get; private set; }
 
             public override void SetData(IData data)
             {
                 waveDataObserver = data as WaveDataObserver;
             }
-            public void SetIndex(int index)
+            public void SetName(string name)
             {
-                indexTxt.text = index.ToString();
+                waveName.text = name;
             }
         }
     }

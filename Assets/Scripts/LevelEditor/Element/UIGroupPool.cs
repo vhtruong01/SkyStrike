@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Pool;
-using System.Collections.Generic;
 
 namespace SkyStrike
 {
@@ -13,14 +12,11 @@ namespace SkyStrike
             [SerializeField] protected Color selectedColor;
             [SerializeField] protected Color defaultColor;
             [SerializeField] private GameObject prefab;
-            private HashSet<IUIElement> items;
             private ObjectPool<IUIElement> pool;
-            public override int Count => items.Count;
 
             public override void Awake()
             {
                 base.Awake();
-                items = new();
                 pool = new(CreateNewObject);
                 if (!useSpecificColor)
                 {
@@ -30,56 +26,76 @@ namespace SkyStrike
             }
             private IUIElement CreateNewObject()
             {
-                var uiElement = Instantiate(prefab, transform, false).GetComponent<IUIElement>()
+                var item = Instantiate(prefab, transform, false).GetComponent<IUIElement>()
                     ?? throw new Exception("wrong prefab type");
-                uiElement.gameObject.name = prefab.name;
-                uiElement.onClick.AddListener(() => SelectItem(uiElement));
-                return uiElement;
+                item.gameObject.name = prefab.name;
+                return item;
             }
             public void CreateItem<T>(out T itemComponent) where T : Component
             {
                 var item = pool.Get();
+                int index = items.Count;
+                item.onSelectUI.AddListener(() => SelectItem(index));
+                items.Add(item);
                 Diminish(item);
                 item.gameObject.SetActive(true);
-                if (items.Count == 0)
-                    selectedItem = item;
-                items.Add(item);
                 itemComponent = item.gameObject.GetComponent<T>();
+                item.gameObject.transform.SetAsLastSibling();
             }
-            public override void SelectFirstItem()
+            public void MoveLeftSelectedItem() => ChangeIndex(ref selectedItemIndex, selectedItemIndex - 1);
+            public void MoveRightSelectedItem() => ChangeIndex(ref selectedItemIndex, selectedItemIndex + 1);
+            private void ReleaseItem(int index)
             {
-                SelectItem(selectedItem);
-                selectedItem?.onClick.Invoke();
+                var item = items[index];
+                ReleaseItem(item);
+                item.gameObject.transform.SetAsFirstSibling();
+                items.RemoveAt(index);
             }
-            protected override void SelectItem(IUIElement item)
+            private void ReleaseItem(IUIElement item)
             {
-                if (item == null)
+                item.gameObject.SetActive(false);
+                item.onSelectUI.RemoveAllListeners();
+                pool.Release(item);
+            }
+            private void ChangeIndex(ref int oldIndex, int newIndex)
+            {
+                var oldItem = GetItem(oldIndex);
+                var newItem = GetItem(newIndex);
+                if (oldItem == null || newItem == null || oldItem == newItem) return;
+                oldItem?.gameObject.transform.SetSiblingIndex(newIndex + pool.CountInactive);
+                items.RemoveAt(oldIndex);
+                items.Insert(newIndex, oldItem);
+                int n = Mathf.Max(oldIndex, newIndex);
+                for (int i = Mathf.Min(oldIndex, newIndex); i <= n; i++)
+                    ReindexItem(i);
+                oldIndex = newIndex;
+            }
+            private void ReindexItem(int index)
+            {
+                items[index].onSelectUI.RemoveAllListeners();
+                items[index].onSelectUI.AddListener(() => SelectItem(index));
+            }
+            public void RemoveSelectedItem() => RemoveItem(ref selectedItemIndex);
+            public void RemoveItem(ref int index)
+            {
+                var item = GetItem(index);
+                if (item == null || (!canDeselect && items.Count < 2)) return;
+                ReleaseItem(index);
+                for (int i = index; i < items.Count; i++)
+                    ReindexItem(i);
+                if (canDeselect)
+                    index = -1;
+                else
                 {
-                    Diminish(selectedItem);
-                    selectedItem = null;
-                    return;
+                    if (index >= items.Count)
+                        index -= 1;
+                    SelectAndInvoke(index);
                 }
-                if (!items.Contains(item)) return;
-                Diminish(selectedItem);
-                selectedItem = item;
-                Highlight(selectedItem);
-            }
-            public void RemoveItem(GameObject item)
-            {
-                //if (!items.Contains(item)) return;
-                //if (selectedItem == item)
-                //    selectedItem = null;
-                //item.SetActive(false);
-                //pool.Release(item);
-                //items.Remove(item);
             }
             public void Clear()
             {
                 foreach (var item in items)
-                {
-                    item.gameObject.SetActive(false);
-                    pool.Release(item);
-                }
+                    ReleaseItem(item);
                 items.Clear();
             }
             protected override void Highlight(IUIElement e)

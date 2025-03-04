@@ -7,64 +7,53 @@ namespace SkyStrike
     {
         public class UIGroup : MonoBehaviour
         {
-            private List<IUIElement> itemList;
-            protected IUIElement selectedItem;
-            public virtual int Count => itemList.Count;
+            protected List<IUIElement> items;
+            protected int selectedItemIndex;
+            [field: SerializeField] public bool canDeselect { get; set; }
+            public int Count => items.Count;
 
             public virtual void Awake()
             {
-                itemList = new();
+                selectedItemIndex = -1;
+                items = new();
                 for (int i = 0; i < transform.childCount; i++)
                 {
                     if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var uiElement)) continue;
-                    itemList.Add(uiElement);
+                    items.Add(uiElement);
                 }
             }
             public virtual void Start()
             {
-                for (int i = 0; i < itemList.Count; i++)
+                for (int i = 0; i < items.Count; i++)
                 {
                     int index = i;
-                    itemList[index].onClick.AddListener(() => SelectItem(index));
-                    if (selectedItem != itemList[index])
-                        Diminish(itemList[index]);
+                    items[index].onSelectUI.AddListener(() => SelectItem(index));
+                    if (selectedItemIndex != index)
+                        Diminish(items[index]);
                 }
             }
             public void GetItem<T>(out T item, int index) where T : Component
             {
-                item = index < 0 || index >= itemList.Count ? null : itemList[index].gameObject.GetComponent<T>();
+                item = index < 0 || index >= items.Count ? null : items[index].gameObject.GetComponent<T>();
             }
             public IUIElement GetItem(int index)
             {
-                return index < 0 || index >= itemList.Count ? null : itemList[index];
+                return index < 0 || index >= items.Count ? null : items[index];
             }
-            protected void DeselectCurrentItem()
+            public IUIElement GetSelectedItem() => GetItem(selectedItemIndex);
+            public void DeselectSelectedItem() => SelectItem(-1);
+            public void SelectFirstItem() => SelectAndInvoke(0);
+            public void SelectAndInvoke(int index)
             {
-                Diminish(selectedItem);
-                selectedItem = null;
-            }
-            public virtual void SelectFirstItem()
-            {
-                SelectItem(0);
-                selectedItem?.onClick.Invoke();
+                SelectItem(index);
+                GetSelectedItem()?.onClick.Invoke();
             }
             public void SelectItem(int index)
             {
-                if (index >= 0 & index < itemList.Count)
-                    SelectItem(itemList[index]);
-                else SelectItem(null);
-            }
-            protected virtual void SelectItem(IUIElement itemObject)
-            {
-                //if (selectedItem == itemObject) return;
-                if (itemObject == null)
-                {
-                    DeselectCurrentItem();
-                    return;
-                }
-                Diminish(selectedItem);
-                selectedItem = itemObject;
-                Highlight(selectedItem);
+                Diminish(GetSelectedItem());
+                if (canDeselect & selectedItemIndex == index) index = -1;
+                selectedItemIndex = index;
+                Highlight(GetSelectedItem());
             }
             protected virtual void Highlight(IUIElement e)
                 => SetBackgroundColor(e, EditorSetting.btnSelectedColor);

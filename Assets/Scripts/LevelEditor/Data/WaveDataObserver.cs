@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class WaveDataObserver : IData
+        public class WaveDataObserver : ICloneable<WaveDataObserver>
         {
             public DataObserver<float> delay { get; set; }
             private HashSet<EnemyDataObserver> enemies;
@@ -15,6 +15,11 @@ namespace SkyStrike
             }
             public void AddEnemy(EnemyDataObserver enemy) => enemies.Add(enemy);
             public void RemoveEnemy(EnemyDataObserver enemy) => enemies.Remove(enemy);
+
+            public WaveDataObserver Clone()
+            {
+                return null;
+            }
         }
     }
 }
