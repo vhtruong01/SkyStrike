@@ -26,7 +26,8 @@ namespace SkyStrike
                 onSelectUI.Invoke();
                 onClick.Invoke();
             }
-            public virtual void SetData(IData data){}
+            public virtual void SetData(IData data) { }
+            public virtual void RemoveData() { }
         }
     }
 }

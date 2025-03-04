@@ -11,7 +11,8 @@ namespace SkyStrike
             public void Awake()
             {
                 levelDataObserver = new();
-                MenuManager.onCreateWave += levelDataObserver.CreateNewWave;
+                MenuManager.onCreateWave.AddListener(levelDataObserver.CreateWave);
+                MenuManager.onRemoveWave.AddListener(levelDataObserver.RemoveWave);
             }
         }
     }

@@ -7,7 +7,7 @@ namespace SkyStrike
         public class WaveDataObserver : ICloneable<WaveDataObserver>
         {
             public DataObserver<float> delay { get; set; }
-            private HashSet<EnemyDataObserver> enemies;
+            private List<EnemyDataObserver> enemies;
             public WaveDataObserver()
             {
                 enemies = new();

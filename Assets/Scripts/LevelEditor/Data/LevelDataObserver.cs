@@ -15,15 +15,16 @@ namespace SkyStrike
                 waveList = new();
             }
 
-            public WaveDataObserver CreateNewWave()
+            public WaveDataObserver CreateWave()
             {
                 WaveDataObserver newWave = new();
                 waveList.Add(newWave);
                 return newWave;
             }
-            public void DeleteWave(int index)
+            public void RemoveWave(IData data)
             {
-
+                if (data is WaveDataObserver wave)
+                    waveList.Remove(wave);
             }
             public WaveDataObserver GetWave(int index)
             {

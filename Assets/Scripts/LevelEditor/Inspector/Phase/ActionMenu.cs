@@ -15,16 +15,16 @@ namespace SkyStrike
             public virtual void Display(IData data)
             {
                 bool isNewData = SetData(data);
+                if (!CanDisplay())
+                {
+                    UnbindData();
+                    Hide();
+                    return;
+                }
                 if (isNewData)
                 {
                     UnbindData();
-                    if (CanDisplay())
-                        BindData();
-                    else
-                    {
-                        Hide();
-                        return;
-                    }
+                    BindData();
                 }
                 Show();
             }

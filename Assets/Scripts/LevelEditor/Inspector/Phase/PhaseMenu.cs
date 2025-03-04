@@ -115,21 +115,19 @@ namespace SkyStrike
             public void Display(IData data)
             {
                 bool isNewData = SetData(data);
+                if (!CanDisplay())
+                {
+                    actionUIGroupPool.Clear();
+                    Hide();
+                    return;
+                }
                 if (isNewData)
                 {
-                    if (CanDisplay())
-                    {
-                        actionUIGroupPool.Clear();
-                        var actionDataList = phaseData.GetActionDataList();
-                        foreach (var actionData in actionDataList)
-                            AddActionGroup(actionData);
-                        DeSelectActionMenu();
-                    }
-                    else
-                    {
-                        Hide();
-                        return;
-                    }
+                    actionUIGroupPool.Clear();
+                    var actionDataList = phaseData.GetActionDataList();
+                    foreach (var actionData in actionDataList)
+                        AddActionGroup(actionData);
+                    DeSelectActionMenu();
                 }
                 Show();
             }

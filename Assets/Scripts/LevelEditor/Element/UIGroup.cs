@@ -46,7 +46,7 @@ namespace SkyStrike
             public void SelectAndInvoke(int index)
             {
                 SelectItem(index);
-                GetSelectedItem()?.onClick.Invoke();
+                GetSelectedItem()?.onClick?.Invoke();
             }
             public void SelectItem(int index)
             {

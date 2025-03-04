@@ -31,20 +31,19 @@ namespace SkyStrike
             public void Display(IData data)
             {
                 bool isNewData = SetData(data);
+                if (!CanDisplay() || (!isNewData && curEnemyData.isMetaData))
+                {
+                    curEnemyData = null;
+                    UnbindData();
+                    Hide();
+                    return;
+                }
                 if (isNewData)
                 {
                     UnbindData();
-                    if (CanDisplay())
-                    {
-                        BindData();
-                        type.text = curEnemyData.metaData.data.type;
-                        icon.sprite = curEnemyData.metaData.data.sprite;
-                    }
-                    else
-                    {
-                        Hide();
-                        return;
-                    }
+                    BindData();
+                    type.text = curEnemyData.metaData.data.type;
+                    icon.sprite = curEnemyData.metaData.data.sprite;
                 }
                 Show();
             }

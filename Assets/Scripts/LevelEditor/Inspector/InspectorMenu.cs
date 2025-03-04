@@ -17,7 +17,7 @@ namespace SkyStrike
 
             public void Awake()
             {
-                subMenuList = new() { objectInfoMenu, phaseMenu };     
+                subMenuList = new() { objectInfoMenu, phaseMenu };
             }
             public override void Start()
             {
@@ -53,11 +53,11 @@ namespace SkyStrike
             public void SelectAndSetDataSubMenu(IData data) => SelectAndSetDataSubMenu(data, curSubMenuIndex);
             public void SelectAndSetDataSubMenu(IData data, int index)
             {
-                switchSubMenuBtnGroup.SelectItem(index);
+                switchSubMenuBtnGroup.GetItem(index).onClick.Invoke();
                 subMenuList[index].Display(data);
-                SelectSubMenu(index);
                 for (int i = 0; i < subMenuList.Count; i++)
-                    subMenuList[i].SetData(data);
+                    if (i != index)
+                        subMenuList[i].SetData(data);
             }
         }
     }

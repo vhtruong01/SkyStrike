@@ -35,7 +35,7 @@ namespace SkyStrike
             {
                 var item = pool.Get();
                 int index = items.Count;
-                item.onSelectUI.AddListener(() => SelectItem(index));
+                item.onSelectUI?.AddListener(() => SelectItem(index));
                 items.Add(item);
                 Diminish(item);
                 item.gameObject.SetActive(true);
@@ -54,7 +54,7 @@ namespace SkyStrike
             private void ReleaseItem(IUIElement item)
             {
                 item.gameObject.SetActive(false);
-                item.onSelectUI.RemoveAllListeners();
+                item.onSelectUI?.RemoveAllListeners();
                 pool.Release(item);
             }
             private void ChangeIndex(ref int oldIndex, int newIndex)
@@ -72,8 +72,8 @@ namespace SkyStrike
             }
             private void ReindexItem(int index)
             {
-                items[index].onSelectUI.RemoveAllListeners();
-                items[index].onSelectUI.AddListener(() => SelectItem(index));
+                items[index].onSelectUI?.RemoveAllListeners();
+                items[index].onSelectUI?.AddListener(() => SelectItem(index));
             }
             public void RemoveSelectedItem() => RemoveItem(ref selectedItemIndex);
             public void RemoveItem(ref int index)
@@ -81,6 +81,7 @@ namespace SkyStrike
                 var item = GetItem(index);
                 if (item == null || (!canDeselect && items.Count < 2)) return;
                 ReleaseItem(index);
+                item.RemoveData();
                 for (int i = index; i < items.Count; i++)
                     ReindexItem(i);
                 if (canDeselect)

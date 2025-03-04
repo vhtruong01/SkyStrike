@@ -19,8 +19,9 @@ namespace SkyStrike
             public override void Start()
             {
                 base.Start();
-                addWaveBtn.onClick.AddListener(CreateWave);
                 duplicateWaveBtn.onClick.AddListener(DuplicateWave);
+                duplicateWaveBtn.interactable = false;
+                addWaveBtn.onClick.AddListener(CreateWave);
                 removeWaveBtn.onClick.AddListener(waveUIGroupPool.RemoveSelectedItem);
                 moveLeftWaveBtn.onClick.AddListener(waveUIGroupPool.MoveLeftSelectedItem);
                 moveRightWaveBtn.onClick.AddListener(waveUIGroupPool.MoveRightSelectedItem);

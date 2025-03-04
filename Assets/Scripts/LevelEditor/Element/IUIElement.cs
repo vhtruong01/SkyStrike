@@ -14,6 +14,7 @@ namespace SkyStrike
             public UnityEvent onSelectUI { get; set; }
             public Image GetBackground();
             public void SetData(IData data);
+            public void RemoveData();
         }
     }
 }
