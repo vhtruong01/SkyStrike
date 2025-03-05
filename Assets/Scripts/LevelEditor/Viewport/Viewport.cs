@@ -21,23 +21,27 @@ namespace SkyStrike
                 inspectorMenuBtn.onClick.AddListener(() => inspectorMenu.SetActive(true));
                 waveMenuBtn.onClick.AddListener(() => waveMenu.SetActive(true));
                 addObjectMenuBtn.onClick.AddListener(() => addObjectMenu.SetActive(true));
-                MenuManager.onCreateEnemy.AddListener(AddEnemy);
+                MenuManager.onCreateEnemy.AddListener(CreateEnemy);
                 MenuManager.onSelectWave.AddListener(SelectWave);
             }
-            public void AddEnemy(IData data)
+            public void CreateEnemy(IData data)
             {
                 var enemyData = (data as EnemyDataObserver).Clone();
                 if (enemyData == null) return;
+                DisplayEnemy(enemyData);
                 waveDataObserver.AddEnemy(enemyData);
-                enemyGroupPool.CreateItem(out EnemyEditor enemy);
-                enemy.SetData(enemyData);
             }
             public void SelectWave(IData data)
             {
                 waveDataObserver = data as WaveDataObserver;
                 enemyGroupPool.Clear();
-
-                //
+                foreach(var enemyData in waveDataObserver.enemies)
+                    DisplayEnemy(enemyData);
+            }
+            public void DisplayEnemy(EnemyDataObserver enemyData)
+            {
+                enemyGroupPool.CreateItem(out EnemyEditor enemy);
+                enemy.SetData(enemyData);
             }
         }
     }

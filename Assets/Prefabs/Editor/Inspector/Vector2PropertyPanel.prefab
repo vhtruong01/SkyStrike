@@ -244,7 +244,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 3
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1122,7 +1122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8187616573b0c524d88e10d47c49e0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleTxt: {fileID: 836181087485455044}
   x: {fileID: 8312640232049715885}
   y: {fileID: 3114682632024833130}
 --- !u!1 &8972104414575357158

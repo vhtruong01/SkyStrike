@@ -10,8 +10,9 @@ namespace SkyStrike
             [SerializeField] private TextMeshProUGUI waveName;
             public WaveDataObserver waveDataObserver { get; private set; }
 
-            public void Start()
+            public override void Awake()
             {
+                base.Awake();
                 onClick.AddListener(() =>
                 {
                     if (waveDataObserver != null)

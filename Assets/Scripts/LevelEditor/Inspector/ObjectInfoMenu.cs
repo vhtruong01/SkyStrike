@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ObjectInfoMenu : MonoBehaviour, ISubMenu, IObserverMenu
+        public class ObjectInfoMenu : SubMenu, IObserverMenu
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private Vector2Property scale;
@@ -22,13 +22,13 @@ namespace SkyStrike
             {
                 addEnemyBtn.onClick.AddListener(CreateEnemy);
             }
-            public bool CanDisplay() => curEnemyData != null;
+            public override bool CanDisplay() => curEnemyData != null;
             public void CreateEnemy()
             {
                 if (curEnemyData != null)
                     MenuManager.CreateEnemy(curEnemyData);
             }
-            public void Display(IData data)
+            public override void Display(IData data)
             {
                 bool isNewData = SetData(data);
                 if (!CanDisplay() || (!isNewData && curEnemyData.isMetaData))
@@ -45,9 +45,8 @@ namespace SkyStrike
                     type.text = curEnemyData.metaData.data.type;
                     icon.sprite = curEnemyData.metaData.data.sprite;
                 }
-                Show();
             }
-            public bool SetData(IData data)
+            public override bool SetData(IData data)
             {
                 EnemyDataObserver newData = data as EnemyDataObserver;
                 if (curEnemyData == newData) return false;
@@ -68,16 +67,6 @@ namespace SkyStrike
                 if (curEnemyData == null) return;
                 if (curEnemyData.isMetaData)
                     curEnemyData.ResetData();
-            }
-            public virtual void Hide()
-            {
-                if (gameObject.activeSelf)
-                    gameObject.SetActive(false);
-            }
-            public virtual void Show()
-            {
-                if (!gameObject.activeSelf && CanDisplay())
-                    gameObject.SetActive(true);
             }
         }
     }

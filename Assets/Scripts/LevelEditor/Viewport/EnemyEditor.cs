@@ -55,6 +55,7 @@ namespace SkyStrike
             }
             public void OnPointerDown(PointerEventData eventData) => base.OnPointerClick(eventData);
             public override void OnPointerClick(PointerEventData eventData) { }
+            public override void RemoveData() => enemyDataObserver = null;
         }
     }
 }

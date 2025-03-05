@@ -14,7 +14,7 @@ namespace SkyStrike
             [SerializeField] private Button moveRightWaveBtn;
             [SerializeField] private UIGroupPool waveUIGroupPool;
             [SerializeField] private int minElement;
-            private int currentWaveIndex;
+            private int currentWaveNameIndex;
 
             public override void Start()
             {
@@ -33,9 +33,12 @@ namespace SkyStrike
             {
                 waveUIGroupPool.CreateItem(out WaveUI wave);
                 wave.SetData(MenuManager.CreateWave());
-                wave.SetName("Wave " + ++currentWaveIndex);
+                wave.SetName("Wave " + ++currentWaveNameIndex);
             }
-            public void DuplicateWave() { print("comming soon..."); }
+            public void DuplicateWave()
+            {
+                //
+            }
         }
     }
 }

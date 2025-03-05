@@ -9,22 +9,23 @@ namespace SkyStrike
         {
             [SerializeField] private ObjectInfoMenu objectInfoMenu;
             [SerializeField] private PhaseMenu phaseMenu;
+            [SerializeField] private WaveInfoMenu waveInfoMenu;
             [SerializeField] private UIGroup switchSubMenuBtnGroup;
             private bool isLock;
             private List<ISubMenu> subMenuList;
             private int curSubMenuIndex;
-            // frame data
 
             public void Awake()
             {
-                subMenuList = new() { objectInfoMenu, phaseMenu };
+                subMenuList = new() { objectInfoMenu, phaseMenu, waveInfoMenu };
             }
             public override void Start()
             {
                 base.Start();
-                curSubMenuIndex = -1;
-                MenuManager.onSelectItemUI.AddListener(data => SelectAndSetDataSubMenu(data, 0));
-                MenuManager.onSelectEnemy.AddListener(SelectAndSetDataSubMenu);
+                curSubMenuIndex = 0;
+                MenuManager.onSelectItemUI.AddListener(SelectEnemyMeta);
+                MenuManager.onSelectEnemy.AddListener(SelectEnemy);
+                MenuManager.onSelectWave.AddListener(SelectWave);
                 for (int i = 0; i < subMenuList.Count; i++)
                 {
                     int index = i;
@@ -32,32 +33,41 @@ namespace SkyStrike
                     subMenu.gameObject.SetActive(true);
                     ISubMenu subMenuTmp = subMenu;
                     var button = switchSubMenuBtnGroup.GetItem(index);
-                    button.onClick.AddListener(() =>
-                    {
-                        subMenuTmp.Show();
-                        SelectSubMenu(index);
-                    });
+                    button.onClick.AddListener(() => SelectSubMenu(index));
                     subMenu.Hide();
                 }
                 switchSubMenuBtnGroup.SelectFirstItem();
             }
-            public void SelectSubMenu(int index)
+            private void SelectSubMenu(int index)
             {
                 if (curSubMenuIndex != index)
                 {
-                    ISubMenu subMenu = curSubMenuIndex >= 0 && curSubMenuIndex < subMenuList.Count ? subMenuList[curSubMenuIndex] : null;
-                    subMenu?.Hide();
+                    subMenuList[curSubMenuIndex].Hide();
                     curSubMenuIndex = index;
                 }
+                subMenuList[curSubMenuIndex].Show();
             }
-            public void SelectAndSetDataSubMenu(IData data) => SelectAndSetDataSubMenu(data, curSubMenuIndex);
-            public void SelectAndSetDataSubMenu(IData data, int index)
+            private void SelectAndSetDataSubMenu(IData data, int index)
             {
-                switchSubMenuBtnGroup.GetItem(index).onClick.Invoke();
+                if (index < 0 || index >= subMenuList.Count) return;
                 subMenuList[index].Display(data);
-                for (int i = 0; i < subMenuList.Count; i++)
-                    if (i != index)
-                        subMenuList[i].SetData(data);
+                switchSubMenuBtnGroup.GetItem(index).onClick.Invoke();
+                switchSubMenuBtnGroup.GetItem(index).onSelectUI.Invoke();
+            }
+            public void SelectEnemy(IData data)
+            {
+                int index = curSubMenuIndex > 1 ? 0 : curSubMenuIndex;
+                SelectAndSetDataSubMenu(data, index);
+                subMenuList[1 - index].SetData(data);
+            }
+            public void SelectEnemyMeta(IData data)
+            {
+                SelectAndSetDataSubMenu(data, 0);
+                subMenuList[1].SetData(null);
+            }
+            public void SelectWave(IData data)
+            {
+                SelectAndSetDataSubMenu(data, 2);
             }
         }
     }

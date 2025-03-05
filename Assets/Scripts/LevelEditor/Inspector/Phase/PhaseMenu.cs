@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class PhaseMenu : MonoBehaviour, ISubMenu
+        public class PhaseMenu : SubMenu
         {
             [SerializeField] private MoveActionMenu moveActionMenu;
             [SerializeField] private FireActionMenu fireActionMenu;
@@ -28,7 +28,6 @@ namespace SkyStrike
             {
                 for (int i = 0; i < switchActionButtonGroup.Count; i++)
                 {
-                    actionMenus[i].Show();
                     var switchButton = switchActionButtonGroup.GetItem(i);
                     int index = i;
                     switchButton.onClick.AddListener(() => SelectActionMenu((EActionType)index));
@@ -104,15 +103,15 @@ namespace SkyStrike
                     EnableActionButton(actionData == null);
                 else DisableActionButton();
             }
-            public bool SetData(IData data)
+            public override bool SetData(IData data)
             {
-                if (data is not EnemyDataObserver newData) return false;
-                var newPhaseData = newData.isMetaData ? null : newData.phase;
+                EnemyDataObserver newData = data as EnemyDataObserver;
+                var newPhaseData = newData == null || newData.isMetaData ? null : newData.phase;
                 if (phaseData == newPhaseData) return false;
                 phaseData = newPhaseData;
                 return true;
             }
-            public void Display(IData data)
+            public override void Display(IData data)
             {
                 bool isNewData = SetData(data);
                 if (!CanDisplay())
@@ -129,19 +128,8 @@ namespace SkyStrike
                         AddActionGroup(actionData);
                     DeSelectActionMenu();
                 }
-                Show();
             }
-            public bool CanDisplay() => phaseData != null;
-            public void Hide()
-            {
-                if (gameObject.activeSelf)
-                    gameObject.SetActive(false);
-            }
-            public void Show()
-            {
-                if (!gameObject.activeSelf && CanDisplay())
-                    gameObject.SetActive(true);
-            }
+            public override bool CanDisplay() => phaseData != null;
         }
     }
 }

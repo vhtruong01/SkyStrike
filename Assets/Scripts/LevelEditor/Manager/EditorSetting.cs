@@ -8,6 +8,8 @@ namespace SkyStrike
         {
             //menu
             public static int menuTitleSize = 36;
+            public static int menuTitleHeight = 50;
+            public static int menuContentPadding = 20;
             public static Color menuBgColor = new Color32(40,40,40, 255);
             public static Color menuElementBgColor = new Color32(60,60,60, 255);
             //viewport
