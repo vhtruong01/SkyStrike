@@ -38,6 +38,11 @@ namespace SkyStrike
             {
                 return index < 0 || index >= items.Count ? null : items[index];
             }
+            public bool TryGetValidSelectedIndex(out int index)
+            {
+                index = selectedItemIndex;
+                return index >= 0 & index < items.Count;
+            }
             public IUIElement GetSelectedItem() => GetItem(selectedItemIndex);
             public void DeselectSelectedItem() => SelectItem(-1);
             public void SelectFirstItem() => SelectAndInvoke(0);

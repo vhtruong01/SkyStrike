@@ -44,6 +44,7 @@ namespace SkyStrike
                     BindData();
                     type.text = curEnemyData.metaData.data.type;
                     icon.sprite = curEnemyData.metaData.data.sprite;
+                    icon.color = curEnemyData.metaData.data.color;
                 }
             }
             public override bool SetData(IData data)

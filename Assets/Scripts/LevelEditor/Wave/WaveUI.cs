@@ -14,7 +14,6 @@ namespace SkyStrike
             public override void SetData(IData data)
             {
                 waveDataObserver = data as WaveDataObserver;
-                //
             }
             public override void RemoveData() => waveDataObserver = null;
             public override IData GetData() => waveDataObserver;

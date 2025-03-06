@@ -12,10 +12,10 @@ namespace SkyStrike
             [SerializeField] private FloatProperty rotation;
             [SerializeField] private FloatProperty delay;
             [SerializeField] private FloatProperty scale;
-            
+
             public override void BindData()
             {
-                var moveActionData= actionData as EnemyMoveDataObserver;
+                var moveActionData = actionData as EnemyMoveDataObserver;
                 if (moveActionData == null) return;
                 dirX.Bind(moveActionData.dirX);
                 dirY.Bind(moveActionData.dirY);

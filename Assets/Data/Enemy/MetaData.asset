@@ -19,3 +19,4 @@ MonoBehaviour:
   <scale>k__BackingField: {x: 1, y: 1}
   <velocity>k__BackingField: {x: 0, y: 0}
   <sprite>k__BackingField: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}

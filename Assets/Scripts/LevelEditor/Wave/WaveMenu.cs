@@ -14,6 +14,7 @@ namespace SkyStrike
             [SerializeField] private Button moveRightWaveBtn;
             [SerializeField] private UIGroupPool waveUIGroupPool;
             [SerializeField] private int minElement;
+            private LevelDataObserver levelDataObserver;
             private int currentWaveNameIndex;
 
             public override void Awake()
@@ -23,12 +24,13 @@ namespace SkyStrike
                 duplicateWaveBtn.onClick.AddListener(DuplicateWave);
                 addWaveBtn.onClick.AddListener(CreateWave);
                 removeWaveBtn.onClick.AddListener(RemoveWave);
-                moveLeftWaveBtn.onClick.AddListener(waveUIGroupPool.MoveLeftSelectedItem);
-                moveRightWaveBtn.onClick.AddListener(waveUIGroupPool.MoveRightSelectedItem);
+                moveLeftWaveBtn.onClick.AddListener(MoveLeftWave);
+                moveRightWaveBtn.onClick.AddListener(MoveRightWave);
                 waveUIGroupPool.selectDataCall = MenuManager.SelectWave;
             }
             public void Start()
             {
+                levelDataObserver = MenuManager.GetLevel() as LevelDataObserver;
                 for (int i = 0; i < minElement; i++)
                     CreateWave();
                 waveUIGroupPool.SelectFirstItem();
@@ -36,7 +38,7 @@ namespace SkyStrike
             public void CreateWave()
             {
                 waveUIGroupPool.CreateItem(out WaveUI wave);
-                wave.SetData(MenuManager.CreateWave());
+                wave.SetData(levelDataObserver.Create());
                 wave.SetName("Wave " + ++currentWaveNameIndex);
             }
             public void RemoveWave()
@@ -45,7 +47,23 @@ namespace SkyStrike
                 if (selectedWave != null)
                 {
                     waveUIGroupPool.RemoveSelectedItem();
-                    MenuManager.RemoveWave(selectedWave.waveDataObserver);
+                    levelDataObserver.Remove(selectedWave.waveDataObserver);
+                }
+            }
+            public void MoveLeftWave()
+            {
+                if (waveUIGroupPool.TryGetValidSelectedIndex(out var index))
+                {
+                    waveUIGroupPool.MoveLeftSelectedItem();
+                    levelDataObserver.Swap(index - 1, index);
+                }
+            }
+            public void MoveRightWave()
+            {
+                if (waveUIGroupPool.TryGetValidSelectedIndex(out var index))
+                {
+                    waveUIGroupPool.MoveRightSelectedItem();
+                    levelDataObserver.Swap(index, index + 1);
                 }
             }
             public void DuplicateWave()

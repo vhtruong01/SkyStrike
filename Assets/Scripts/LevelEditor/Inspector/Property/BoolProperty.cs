@@ -20,6 +20,11 @@ namespace SkyStrike
                 value = toggle.isOn;
                 onValueChanged.Invoke(value);
             }
+            public override void SetValue(bool value)
+            {
+                base.SetValue(value);
+                toggle.isOn = value;
+            }
         }
     }
 }

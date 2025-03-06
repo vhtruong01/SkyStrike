@@ -21,6 +21,7 @@ namespace SkyStrike
                 enemyDataObserver.metaData.SetData(metaData);
                 enemyDataObserver.ResetData();
                 image.sprite = metaData.sprite;
+                image.color = metaData.color;
                 text.text = metaData.type;
             }
             public override void RemoveData() => enemyDataObserver = null;

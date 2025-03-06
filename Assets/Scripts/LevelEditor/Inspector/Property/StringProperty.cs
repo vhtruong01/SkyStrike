@@ -12,10 +12,7 @@ namespace SkyStrike
             public override void Awake()
             {
                 base.Awake();
-                x.onValueChanged.AddListener(s =>
-                {
-                    OnValueChanged();
-                });
+                x.onValueChanged.AddListener(s => OnValueChanged());
             }
             protected override void OnValueChanged()
             {

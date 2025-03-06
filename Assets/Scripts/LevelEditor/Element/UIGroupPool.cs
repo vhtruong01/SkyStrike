@@ -46,8 +46,8 @@ namespace SkyStrike
                 item.gameObject.transform.SetAsLastSibling();
                 itemComponent = item.gameObject.GetComponent<T>();
             }
-            public void MoveLeftSelectedItem() => ChangeIndex(ref selectedItemIndex, selectedItemIndex - 1);
-            public void MoveRightSelectedItem() => ChangeIndex(ref selectedItemIndex, selectedItemIndex + 1);
+            public void MoveLeftSelectedItem(int amount = 1) => ChangeIndex(ref selectedItemIndex, selectedItemIndex - amount);
+            public void MoveRightSelectedItem(int amount = 1) => ChangeIndex(ref selectedItemIndex, selectedItemIndex + amount);
             private void ReleaseItem(int index)
             {
                 var item = items[index];

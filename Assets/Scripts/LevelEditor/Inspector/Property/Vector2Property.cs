@@ -15,23 +15,33 @@ namespace SkyStrike
                 base.Awake();
                 x.text = "0";
                 y.text = "0";
-                x.onValueChanged.AddListener(s =>
-                {
-                    if (float.TryParse(s, out float newValue))
-                        OnValueChanged();
-                    else x.text = value.x.ToString();
-                });
-                y.onValueChanged.AddListener(s =>
-                {
-                    if (float.TryParse(s, out float newValue))
-                        OnValueChanged();
-                    else y.text = value.y.ToString();
-                });
+                x.onValueChanged.AddListener(s => OnValueChanged());
+                y.onValueChanged.AddListener(s => OnValueChanged());
             }
             protected override void OnValueChanged()
             {
-                value.Set(float.TryParse(x.text, out float newX) ? newX : value.x,
-                          float.TryParse(y.text, out float newY) ? newY : value.y);
+                if (x.text.Length == 0)
+                {
+                    x.text = "0";
+                    x.caretPosition = 1;
+                }
+                if (y.text.Length == 0)
+                {
+                    y.text = "0";
+                    y.caretPosition = 1;
+                }
+                if (!float.TryParse(x.text, out float newX))
+                {
+                    newX = value.x;
+                    x.text = value.x.ToString();
+                }
+                if (!float.TryParse(y.text, out float newY))
+                {
+                    newY = value.y;
+                    y.text = value.y.ToString();
+                }
+                if (value.x == newX & value.y == newY) return;
+                value.Set(newX, newY);
                 onValueChanged.Invoke(value);
             }
             public override void SetValue(Vector2 value)

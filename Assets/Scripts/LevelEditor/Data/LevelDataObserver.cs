@@ -4,23 +4,25 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class LevelDataObserver : IData
+        public class LevelDataObserver : IDataList<WaveDataObserver>
         {
             private string name;
             private int star;
             private List<WaveDataObserver> waveList;
 
             public LevelDataObserver() => waveList = new();
-            public WaveDataObserver CreateWave()
+            public List<WaveDataObserver> GetList() => waveList;
+            public WaveDataObserver Create()
             {
                 WaveDataObserver newWave = new();
                 waveList.Add(newWave);
                 return newWave;
             }
-            public void RemoveWave(IData data)
+            public void Remove(WaveDataObserver data) => waveList.Remove(data);
+            public void Swap(int leftIndex, int rightIndex)
             {
-                if (data is WaveDataObserver wave)
-                    waveList.Remove(wave);
+                if (leftIndex > 0 & rightIndex < waveList.Count)
+                    (waveList[leftIndex], waveList[rightIndex]) = (waveList[leftIndex], waveList[rightIndex]);
             }
         }
     }

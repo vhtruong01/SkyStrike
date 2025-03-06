@@ -14,6 +14,7 @@ namespace SkyStrike
             [field: SerializeField] public Vector2 scale { get; set; }
             [field: SerializeField] public Vector2 velocity { get; set; }
             [field: SerializeField] public Sprite sprite { get; set; }
+            [field: SerializeField] public Color color { get; set; }
         }
     }
 }
