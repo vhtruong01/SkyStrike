@@ -6,6 +6,8 @@ namespace SkyStrike
     {
         public class WaveInfoMenu : SubMenu, IObserverMenu
         {
+            [SerializeField] private StringProperty waveName;
+            [SerializeField] private BoolProperty isBossWave;
             private WaveDataObserver waveDataObserver;
 
             public override bool CanDisplay() => waveDataObserver != null;

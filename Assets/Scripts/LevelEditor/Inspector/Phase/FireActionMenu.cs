@@ -8,12 +8,10 @@ namespace SkyStrike
         {
             public override void BindData()
             {
-                throw new System.NotImplementedException();
             }
 
             public override void UnbindData()
             {
-                throw new System.NotImplementedException();
             }
         }
     }

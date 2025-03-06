@@ -18,12 +18,12 @@ namespace SkyStrike
             [SerializeField] private Button addEnemyBtn;
             private EnemyDataObserver curEnemyData;
 
-            public void Start()
+            public void Awake()
             {
                 addEnemyBtn.onClick.AddListener(CreateEnemy);
             }
             public override bool CanDisplay() => curEnemyData != null;
-            public void CreateEnemy()
+            private void CreateEnemy()
             {
                 if (curEnemyData != null)
                     MenuManager.CreateEnemy(curEnemyData);

@@ -9,7 +9,7 @@ namespace SkyStrike
         {
             [SerializeField] protected Button collapseBtn;
 
-            public virtual void Start()
+            public virtual void Awake()
             {
                 if (collapseBtn != null)
                     collapseBtn.onClick.AddListener(HandleCollapse);

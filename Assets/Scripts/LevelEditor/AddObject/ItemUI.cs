@@ -12,10 +12,6 @@ namespace SkyStrike
             [SerializeField] private TextMeshProUGUI text;
             public EnemyDataObserver enemyDataObserver { get; private set; }
 
-            public void Start()
-            {
-                onClick.AddListener(() => MenuManager.SelectItemUI(enemyDataObserver));    
-            }
             public override void SetData(IData data)
             {
                 var metaData = data as EnemyMetaData;
@@ -27,6 +23,8 @@ namespace SkyStrike
                 image.sprite = metaData.sprite;
                 text.text = metaData.type;
             }
+            public override void RemoveData() => enemyDataObserver = null;
+            public override IData GetData() => enemyDataObserver;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Pool;
 
 namespace SkyStrike
@@ -13,6 +14,7 @@ namespace SkyStrike
             [SerializeField] protected Color defaultColor;
             [SerializeField] private GameObject prefab;
             private ObjectPool<IUIElement> pool;
+            public UnityAction<IData> selectDataCall { get; set; }
 
             public override void Awake()
             {
@@ -29,18 +31,20 @@ namespace SkyStrike
                 var item = Instantiate(prefab, transform, false).GetComponent<IUIElement>()
                     ?? throw new Exception("wrong prefab type");
                 item.gameObject.name = prefab.name;
+                item.onSelectUI.AddListener(SelectItem);
+                if (selectDataCall != null)
+                    item.onClick.AddListener(selectDataCall);
                 return item;
             }
             public void CreateItem<T>(out T itemComponent) where T : Component
             {
                 var item = pool.Get();
-                int index = items.Count;
-                item.onSelectUI?.AddListener(() => SelectItem(index));
+                item.index = items.Count;
                 items.Add(item);
                 Diminish(item);
                 item.gameObject.SetActive(true);
-                itemComponent = item.gameObject.GetComponent<T>();
                 item.gameObject.transform.SetAsLastSibling();
+                itemComponent = item.gameObject.GetComponent<T>();
             }
             public void MoveLeftSelectedItem() => ChangeIndex(ref selectedItemIndex, selectedItemIndex - 1);
             public void MoveRightSelectedItem() => ChangeIndex(ref selectedItemIndex, selectedItemIndex + 1);
@@ -53,9 +57,10 @@ namespace SkyStrike
             }
             private void ReleaseItem(IUIElement item)
             {
+                item.index = null;
                 item.gameObject.SetActive(false);
-                item.onSelectUI?.RemoveAllListeners();
                 pool.Release(item);
+                item.RemoveData();
             }
             private void ChangeIndex(ref int oldIndex, int newIndex)
             {
@@ -67,13 +72,8 @@ namespace SkyStrike
                 items.Insert(newIndex, oldItem);
                 int n = Mathf.Max(oldIndex, newIndex);
                 for (int i = Mathf.Min(oldIndex, newIndex); i <= n; i++)
-                    ReindexItem(i);
+                    items[i].index = i;
                 oldIndex = newIndex;
-            }
-            private void ReindexItem(int index)
-            {
-                items[index].onSelectUI?.RemoveAllListeners();
-                items[index].onSelectUI?.AddListener(() => SelectItem(index));
             }
             public void RemoveSelectedItem() => RemoveItem(ref selectedItemIndex);
             public void RemoveItem(ref int index)
@@ -81,9 +81,8 @@ namespace SkyStrike
                 var item = GetItem(index);
                 if (item == null || (!canDeselect && items.Count < 2)) return;
                 ReleaseItem(index);
-                item.RemoveData();
                 for (int i = index; i < items.Count; i++)
-                    ReindexItem(i);
+                    items[i].index = i;
                 if (canDeselect)
                     index = -1;
                 else

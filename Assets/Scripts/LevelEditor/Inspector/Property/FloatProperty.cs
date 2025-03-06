@@ -20,7 +20,7 @@ namespace SkyStrike
                     else x.text = value.ToString();
                 });
             }
-            public override void OnValueChanged()
+            protected override void OnValueChanged()
             {
                 float.TryParse(x.text, out float newX);
                 if (value == newX) return;

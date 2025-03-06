@@ -18,90 +18,98 @@ namespace SkyStrike
             private List<ActionMenu> actionMenus;
             private EnemyPhaseDataObserver phaseData;
             private EActionType curActionType;
-            private int curActionIndex;
 
             public void Awake()
             {
+                curActionType = 0;
                 actionMenus = new() { moveActionMenu, fireActionMenu };
+                addActionGroupBtn.onClick.AddListener(AddEmptyActionGroup);
+                addActionBtn.onClick.AddListener(AddAction);
+                removeActionBtn.onClick.AddListener(RemoveAction);
+                DisableActionButton();
+                //
             }
             public void Start()
             {
                 for (int i = 0; i < switchActionButtonGroup.Count; i++)
                 {
                     var switchButton = switchActionButtonGroup.GetItem(i);
-                    int index = i;
-                    switchButton.onClick.AddListener(() => SelectActionMenu((EActionType)index));
+                    switchButton.onSelectUI.AddListener(SelectActionMenu);
                     actionMenus[i].Hide();
                 }
-                addActionGroupBtn.onClick.AddListener(AddEmptyActionGroup);
-                addActionBtn.onClick.AddListener(AddAction);
-                removeActionBtn.onClick.AddListener(RemoveAction);
-                DisableActionButton();
             }
-            public void AddEmptyActionGroup()
-            {
-                if (phaseData == null) return;
-                AddActionGroup(phaseData.AddActionGroup());
-            }
-            public void AddActionGroup(EnemyActionDataObserver actionData)
-            {
-                actionUIGroupPool.CreateItem(out ActionUI actionUI);
-                actionUI.SetListener(SelectAction);
-                actionUI.SetData(actionData);
-            }
-            public void RemoveActionGroup()
-            {
-                //
-            }
-            public void AddAction()
-            {
-                if (curActionIndex == -1) return;
-                phaseData.AddActionData(curActionIndex, curActionType);
-                SelectCurrentActionMenu();
-            }
-            public void RemoveAction()
-            {
-                if (curActionIndex == -1) return;
-                phaseData.RemoveActionData(curActionIndex, curActionType);
-                SelectCurrentActionMenu();
-            }
-            public void SelectAction(ActionUI actionUI)
-            {
-                curActionIndex = actionUI.actionData.index;
-                SelectCurrentActionMenu();
-            }
-            public void DeSelectActionMenu()
-            {
-                curActionIndex = -1;
-                SelectCurrentActionMenu();
-            }
-            public void DisableActionButton()
+            private void DisableActionButton()
             {
                 addActionBtn.gameObject.SetActive(false);
                 removeActionBtn.gameObject.SetActive(false);
             }
-            public void EnableActionButton(bool isEnable)
+            private void EnableActionButton(bool isEnable)
             {
                 addActionBtn.gameObject.SetActive(isEnable);
                 removeActionBtn.gameObject.SetActive(!isEnable);
             }
-            public void SelectCurrentActionMenu() => SelectActionMenu(curActionType);
-            public void SelectActionMenu(EActionType actionType)
+            public void AddEmptyActionGroup()
             {
-                if (curActionType != actionType)
-                    actionMenus[(int)curActionType].Hide();
-                curActionType = actionType;
-                var curActionMenu = actionMenus[(int)curActionType];
-                var actionData = phaseData.GetActionData(curActionIndex, curActionType);
-                if (actionData != null)
+                if (phaseData == null) return;
+                AddActionGroup(phaseData.CreateActionGroup());
+            }
+            public void RemoveActionGroup()
+            {
+                var selectedActionGroup = actionUIGroupPool.GetSelectedItem() as ActionUI;
+                if (selectedActionGroup != null)
                 {
-                    curActionMenu.Display(actionData);
-                    curActionMenu.Show();
+                    actionUIGroupPool.RemoveSelectedItem();
+                    phaseData.RemoveActionGroup(selectedActionGroup.actionDataGroup);
                 }
-                else actionMenus[(int)curActionType].Hide();
-                if (phaseData.HasAction(curActionIndex))
-                    EnableActionButton(actionData == null);
-                else DisableActionButton();
+            }
+            private void AddActionGroup(EnemyActionDataGroupObserver actionData)
+            {
+                actionUIGroupPool.CreateItem(out ActionUI actionUI);
+                actionUI.SetData(actionData);
+            }
+            public void AddAction()
+            {
+                actionUIGroupPool.GetSelectedItemComponent<ActionUI>().actionDataGroup.AddActionData(curActionType);
+                SelectCurrentActionMenu();
+            }
+            public void RemoveAction()
+            {
+                //
+                SelectCurrentActionMenu();
+            }
+            private void SelectAndSetDataActionMenu(IData data)
+            {
+                EnemyActionDataGroupObserver enemyActionDataGroupObserver = data as EnemyActionDataGroupObserver;
+                for (int i = 0; i < actionMenus.Count; i++)
+                    actionMenus[i].Display(enemyActionDataGroupObserver?.GetActionData((EActionType)i));
+                SelectCurrentActionMenu();
+            }
+            public void SelectCurrentActionMenu()
+                => switchActionButtonGroup.SelectAndInvoke((int)curActionType);
+            private void SelectActionMenu(int index) => SelectActionMenu((EActionType)index);
+            private void SelectActionMenu(EActionType actionType)
+            {
+                //if (curActionType != actionType)
+                //    actionMenus[(int)curActionType].Hide();
+                //curActionType = actionType;
+                //var curActionMenu = actionMenus[(int)curActionType];
+
+                //if ()
+                //    EnableActionButton(curActionMenu.CanDisplay());
+                //else DisableActionButton();
+
+                //var actionGroup = actionUIGroupPool.GetSelectedItemComponent<ActionUI>();
+                //if (actionGroup != null)
+                //{
+                //    var actionData = actionGroup.actionData.GetActionData(curActionType);
+                //    if (actionData != null)
+                //    {
+                //        curActionMenu.Display(actionData);
+                //        curActionMenu.Show();
+                //    }
+                //    else actionMenus[(int)curActionType].Hide();
+                //}
+                //else
             }
             public override bool SetData(IData data)
             {
@@ -126,7 +134,7 @@ namespace SkyStrike
                     var actionDataList = phaseData.GetActionDataList();
                     foreach (var actionData in actionDataList)
                         AddActionGroup(actionData);
-                    DeSelectActionMenu();
+                    SelectAndSetDataActionMenu(null);
                 }
             }
             public override bool CanDisplay() => phaseData != null;

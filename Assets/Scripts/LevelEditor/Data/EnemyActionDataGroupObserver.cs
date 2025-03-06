@@ -2,11 +2,10 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyActionDataObserver : ICloneable<EnemyActionDataObserver>
+        public class EnemyActionDataGroupObserver : ICloneable<EnemyActionDataGroupObserver>
         {
             private EnemyMoveDataObserver moveAction;
             private EnemyFireDataObserver fireAction;
-            public int index { get; set; }
 
             public void AddActionData(EActionType actionType)
             {
@@ -32,14 +31,13 @@ namespace SkyStrike
                         break;
                 }
             }
-            public EnemyActionDataObserver Clone()
+            public EnemyActionDataGroupObserver Clone()
             {
-                EnemyActionDataObserver actionData = new ();
+                EnemyActionDataGroupObserver actionData = new ();
                 actionData.fireAction = fireAction?.Clone();
                 actionData.moveAction = moveAction?.Clone();
                 return actionData;
             }
-
             public IData GetActionData(EActionType actionType)
             {
                 return actionType switch

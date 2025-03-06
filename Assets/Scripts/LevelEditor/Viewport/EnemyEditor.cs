@@ -21,16 +21,13 @@ namespace SkyStrike
             [SerializeField] private Image icon;
             public EnemyDataObserver enemyDataObserver { get; private set; }
 
-            public void Start()
-            {
-                onClick.AddListener(() => MenuManager.SelectEnemy(enemyDataObserver));
-            }
             public override void SetData(IData data)
             {
                 enemyDataObserver = data as EnemyDataObserver;
                 enemyDataObserver.position.Bind(SetPosition);
                 enemyDataObserver.scale.Bind(SetScale);
                 enemyDataObserver.rotation.Bind(SetRotation);
+                icon.sprite = enemyDataObserver.metaData.data.sprite;
             }
             private void SetPosition(Vector2 pos)
             {
@@ -56,6 +53,7 @@ namespace SkyStrike
             public void OnPointerDown(PointerEventData eventData) => base.OnPointerClick(eventData);
             public override void OnPointerClick(PointerEventData eventData) { }
             public override void RemoveData() => enemyDataObserver = null;
+            public override IData GetData() => enemyDataObserver;
         }
     }
 }

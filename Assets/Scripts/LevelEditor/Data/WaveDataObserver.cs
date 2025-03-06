@@ -16,10 +16,13 @@ namespace SkyStrike
             }
             public void AddEnemy(EnemyDataObserver enemy) => enemies.Add(enemy);
             public void RemoveEnemy(EnemyDataObserver enemy) => enemies.Remove(enemy);
-
             public WaveDataObserver Clone()
             {
-                return null;
+                WaveDataObserver newWave = new();
+                foreach (var enemy in enemies) 
+                    newWave.AddEnemy(enemy.Clone());
+                //
+                return newWave;
             }
         }
     }

@@ -16,8 +16,8 @@ namespace SkyStrike
             {
                 onValueChanged = new();
             }
+            protected abstract void OnValueChanged();
             public virtual void SetValue(T value) => this.value = value;
-            public abstract void OnValueChanged();
             public virtual void Bind(UnityAction<T> action) => onValueChanged.AddListener(action);
             public virtual void Bind(DataObserver<T> dataObserver)
             {

@@ -17,7 +17,7 @@ namespace SkyStrike
                     OnValueChanged();
                 });
             }
-            public override void OnValueChanged()
+            protected override void OnValueChanged()
             {
                 value = x.text;
                 onValueChanged.Invoke(value);

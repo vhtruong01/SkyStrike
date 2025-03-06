@@ -16,13 +16,14 @@ namespace SkyStrike
             [SerializeField] private GameObject addObjectMenu;
             private WaveDataObserver waveDataObserver;
 
-            public void Start()
+            public void Awake()
             {
                 inspectorMenuBtn.onClick.AddListener(() => inspectorMenu.SetActive(true));
                 waveMenuBtn.onClick.AddListener(() => waveMenu.SetActive(true));
                 addObjectMenuBtn.onClick.AddListener(() => addObjectMenu.SetActive(true));
                 MenuManager.onCreateEnemy.AddListener(CreateEnemy);
                 MenuManager.onSelectWave.AddListener(SelectWave);
+                enemyGroupPool.selectDataCall = MenuManager.SelectEnemy;
             }
             public void CreateEnemy(IData data)
             {
@@ -38,7 +39,7 @@ namespace SkyStrike
                 foreach(var enemyData in waveDataObserver.enemies)
                     DisplayEnemy(enemyData);
             }
-            public void DisplayEnemy(EnemyDataObserver enemyData)
+            private void DisplayEnemy(EnemyDataObserver enemyData)
             {
                 enemyGroupPool.CreateItem(out EnemyEditor enemy);
                 enemy.SetData(enemyData);

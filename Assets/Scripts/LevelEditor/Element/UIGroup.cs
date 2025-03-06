@@ -18,24 +18,22 @@ namespace SkyStrike
                 items = new();
                 for (int i = 0; i < transform.childCount; i++)
                 {
-                    if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var uiElement)) continue;
-                    items.Add(uiElement);
+                    if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var item)) continue;
+                    items.Add(item);
                 }
             }
             public virtual void Start()
             {
                 for (int i = 0; i < items.Count; i++)
                 {
-                    int index = i;
-                    items[index].onSelectUI.AddListener(() => SelectItem(index));
-                    if (selectedItemIndex != index)
-                        Diminish(items[index]);
+                    items[i].index = i;
+                    items[i].onSelectUI.AddListener(SelectItem);
+                    if (selectedItemIndex != i)
+                        Diminish(items[i]);
                 }
             }
-            public void GetItem<T>(out T item, int index) where T : Component
-            {
-                item = index < 0 || index >= items.Count ? null : items[index].gameObject.GetComponent<T>();
-            }
+            public T GetSelectedItemComponent<T>() where T : Component
+                => GetSelectedItem()?.gameObject.GetComponent<T>();
             public IUIElement GetItem(int index)
             {
                 return index < 0 || index >= items.Count ? null : items[index];
@@ -43,12 +41,8 @@ namespace SkyStrike
             public IUIElement GetSelectedItem() => GetItem(selectedItemIndex);
             public void DeselectSelectedItem() => SelectItem(-1);
             public void SelectFirstItem() => SelectAndInvoke(0);
-            public void SelectAndInvoke(int index)
-            {
-                SelectItem(index);
-                GetSelectedItem()?.onClick?.Invoke();
-            }
-            public void SelectItem(int index)
+            public void SelectAndInvoke(int index) => GetItem(index)?.Select();
+            protected void SelectItem(int index)
             {
                 Diminish(GetSelectedItem());
                 if (canDeselect & selectedItemIndex == index) index = -1;

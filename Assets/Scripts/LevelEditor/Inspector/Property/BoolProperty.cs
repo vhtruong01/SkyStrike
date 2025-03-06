@@ -15,7 +15,7 @@ namespace SkyStrike
                 toggle.isOn = false;
                 toggle.onValueChanged.AddListener(b =>OnValueChanged());
             }
-            public override void OnValueChanged()
+            protected override void OnValueChanged()
             {
                 value = toggle.isOn;
                 onValueChanged.Invoke(value);

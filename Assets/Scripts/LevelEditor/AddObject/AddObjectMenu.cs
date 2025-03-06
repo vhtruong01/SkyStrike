@@ -11,9 +11,13 @@ namespace SkyStrike
             [SerializeField] private UIGroup selectObjectTypeBtn;
             [SerializeField] private List<EnemyMetaData> enemyMetaDataList;
 
-            public override void Start()
+            public override void Awake()
             {
-                base.Start();
+                base.Awake();
+                itemUIGroupPool.selectDataCall = MenuManager.SelectItemUI;
+            }
+            public void Start()
+            {
                 foreach (var data in enemyMetaDataList)
                 {
                     itemUIGroupPool.CreateItem(out ItemUI itemUI);
@@ -21,7 +25,7 @@ namespace SkyStrike
                 }
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                 {
-                    //
+                    //onclick
                 }
                 selectObjectTypeBtn.SelectFirstItem();
             }

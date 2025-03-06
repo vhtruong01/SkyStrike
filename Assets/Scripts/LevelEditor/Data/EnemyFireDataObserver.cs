@@ -6,7 +6,7 @@ namespace SkyStrike
         {
             public EnemyFireDataObserver Clone()
             {
-                throw new System.NotImplementedException();
+                return null;
             }
         }
     }

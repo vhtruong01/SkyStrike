@@ -28,7 +28,7 @@ namespace SkyStrike
                     else y.text = value.y.ToString();
                 });
             }
-            public override void OnValueChanged()
+            protected override void OnValueChanged()
             {
                 value.Set(float.TryParse(x.text, out float newX) ? newX : value.x,
                           float.TryParse(y.text, out float newY) ? newY : value.y);

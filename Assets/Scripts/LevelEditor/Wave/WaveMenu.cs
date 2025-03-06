@@ -16,15 +16,19 @@ namespace SkyStrike
             [SerializeField] private int minElement;
             private int currentWaveNameIndex;
 
-            public override void Start()
+            public override void Awake()
             {
-                base.Start();
-                duplicateWaveBtn.onClick.AddListener(DuplicateWave);
+                base.Awake();
                 duplicateWaveBtn.interactable = false;
+                duplicateWaveBtn.onClick.AddListener(DuplicateWave);
                 addWaveBtn.onClick.AddListener(CreateWave);
-                removeWaveBtn.onClick.AddListener(waveUIGroupPool.RemoveSelectedItem);
+                removeWaveBtn.onClick.AddListener(RemoveWave);
                 moveLeftWaveBtn.onClick.AddListener(waveUIGroupPool.MoveLeftSelectedItem);
                 moveRightWaveBtn.onClick.AddListener(waveUIGroupPool.MoveRightSelectedItem);
+                waveUIGroupPool.selectDataCall = MenuManager.SelectWave;
+            }
+            public void Start()
+            {
                 for (int i = 0; i < minElement; i++)
                     CreateWave();
                 waveUIGroupPool.SelectFirstItem();
@@ -34,6 +38,15 @@ namespace SkyStrike
                 waveUIGroupPool.CreateItem(out WaveUI wave);
                 wave.SetData(MenuManager.CreateWave());
                 wave.SetName("Wave " + ++currentWaveNameIndex);
+            }
+            public void RemoveWave()
+            {
+                var selectedWave = waveUIGroupPool.GetSelectedItem() as WaveUI;
+                if (selectedWave != null)
+                {
+                    waveUIGroupPool.RemoveSelectedItem();
+                    MenuManager.RemoveWave(selectedWave.waveDataObserver);
+                }
             }
             public void DuplicateWave()
             {

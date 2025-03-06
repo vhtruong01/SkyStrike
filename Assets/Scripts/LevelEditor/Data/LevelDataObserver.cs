@@ -10,11 +10,7 @@ namespace SkyStrike
             private int star;
             private List<WaveDataObserver> waveList;
 
-            public LevelDataObserver()
-            {
-                waveList = new();
-            }
-
+            public LevelDataObserver() => waveList = new();
             public WaveDataObserver CreateWave()
             {
                 WaveDataObserver newWave = new();
@@ -25,10 +21,6 @@ namespace SkyStrike
             {
                 if (data is WaveDataObserver wave)
                     waveList.Remove(wave);
-            }
-            public WaveDataObserver GetWave(int index)
-            {
-                return waveList[index];
             }
         }
     }
