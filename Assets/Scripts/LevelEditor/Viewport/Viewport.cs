@@ -41,7 +41,7 @@ namespace SkyStrike
             }
             private void DisplayEnemy(EnemyDataObserver enemyData)
             {
-                enemyGroupPool.CreateItem(out EnemyEditor enemy);
+                enemyGroupPool.CreateItem(out ViewportItemUI enemy);
                 enemy.SetData(enemyData);
             }
         }

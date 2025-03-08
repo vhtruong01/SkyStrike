@@ -37,13 +37,13 @@ namespace SkyStrike
             }
             public void CreateWave()
             {
-                waveUIGroupPool.CreateItem(out WaveUI wave);
+                waveUIGroupPool.CreateItem(out WaveItemUI wave);
                 wave.SetData(levelDataObserver.Create());
                 wave.SetName("Wave " + ++currentWaveNameIndex);
             }
             public void RemoveWave()
             {
-                var selectedWave = waveUIGroupPool.GetSelectedItem() as WaveUI;
+                var selectedWave = waveUIGroupPool.GetSelectedItem() as WaveItemUI;
                 if (selectedWave != null)
                 {
                     waveUIGroupPool.RemoveSelectedItem();

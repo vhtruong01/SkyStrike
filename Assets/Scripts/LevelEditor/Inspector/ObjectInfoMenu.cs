@@ -16,6 +16,9 @@ namespace SkyStrike
             [SerializeField] private Image icon;
             [SerializeField] private TextMeshProUGUI type;
             [SerializeField] private Button addEnemyBtn;
+            [SerializeField] private FloatProperty delay;
+            [SerializeField] private Image referenceObjectIcon;
+            [SerializeField] private Button referenceObjectBtn;
             private EnemyDataObserver curEnemyData;
 
             public void Awake()
@@ -52,6 +55,21 @@ namespace SkyStrike
                 EnemyDataObserver newData = data as EnemyDataObserver;
                 if (curEnemyData == newData) return false;
                 curEnemyData = newData;
+                if (curEnemyData != null)
+                {
+
+                    if (!curEnemyData.isMetaData)
+                    {
+                        addEnemyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Duplicate";
+                        referenceObjectBtn.interactable = true;
+                    }
+                    else
+                    {
+                        addEnemyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Create";
+                        referenceObjectBtn.interactable = false;
+                        referenceObjectIcon.color = new();
+                    }
+                }
                 return true;
             }
             public void BindData()

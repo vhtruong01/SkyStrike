@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyEditor : UIElement, IPointerDownHandler, IDragHandler
+        public class ViewportItemUI : UIElement, IPointerDownHandler, IDragHandler
         {
             private static Camera _mainCam;
             private static Camera mainCam

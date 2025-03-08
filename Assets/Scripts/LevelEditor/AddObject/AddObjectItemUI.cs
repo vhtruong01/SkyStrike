@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ItemUI : UIElement
+        public class AddObjectItemUI : UIElement
         {
             [SerializeField] private Image image;
             [SerializeField] private TextMeshProUGUI text;

@@ -20,7 +20,7 @@ namespace SkyStrike
             {
                 foreach (var data in enemyMetaDataList)
                 {
-                    itemUIGroupPool.CreateItem(out ItemUI itemUI);
+                    itemUIGroupPool.CreateItem(out AddObjectItemUI itemUI);
                     itemUI.SetData(data);
                 }
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)

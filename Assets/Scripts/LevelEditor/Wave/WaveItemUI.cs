@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class WaveUI : UIElement
+        public class WaveItemUI : UIElement
         {
             [SerializeField] private TextMeshProUGUI waveName;
             public WaveDataObserver waveDataObserver { get; private set; }

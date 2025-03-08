@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike
@@ -6,6 +7,7 @@ namespace SkyStrike
     {
         public class EnemyDataObserver : ICloneable<EnemyDataObserver>
         {
+            private static HashSet<int> enemyId = new();
             public bool isMetaData { get; set; }
             public DataObserver<EnemyMetaData> metaData { get; private set; }
             public DataObserver<Vector2> scale { get; private set; }
@@ -22,6 +24,7 @@ namespace SkyStrike
                 velocity = new();
                 scale = new();
                 phase = new();
+
             }
             public EnemyDataObserver Clone()
             {
