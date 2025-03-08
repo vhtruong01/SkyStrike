@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        [CreateAssetMenu(fileName = "MetaData", menuName = "Data/EnemyMetaData")]
+        [CreateAssetMenu(fileName = "MetaData", menuName = "Data/ObjectMetaData")]
         public class EnemyMetaData : ScriptableObject, IData
         {
             public string id;

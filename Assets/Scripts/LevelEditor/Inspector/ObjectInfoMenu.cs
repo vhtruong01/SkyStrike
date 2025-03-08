@@ -23,13 +23,13 @@ namespace SkyStrike
 
             public void Awake()
             {
-                addEnemyBtn.onClick.AddListener(CreateEnemy);
+                addEnemyBtn.onClick.AddListener(CreateObject);
             }
             public override bool CanDisplay() => curEnemyData != null;
-            private void CreateEnemy()
+            private void CreateObject()
             {
                 if (curEnemyData != null)
-                    MenuManager.CreateEnemy(curEnemyData);
+                    MenuManager.CreateObject(curEnemyData);
             }
             public override void Display(IData data)
             {

@@ -20,8 +20,8 @@ namespace SkyStrike
                 base.Awake();
                 subMenuList = new() { objectInfoMenu, phaseMenu, waveInfoMenu };
                 curSubMenuIndex = 0;
-                MenuManager.onSelectItemUI.AddListener(SelectEnemyMeta);
-                MenuManager.onSelectEnemy.AddListener(SelectEnemy);
+                MenuManager.onSelectMetaObject.AddListener(SelectEnemyMeta);
+                MenuManager.onSelectObject.AddListener(SelectEnemy);
                 MenuManager.onSelectWave.AddListener(SelectWave);
             }
             public void Start()

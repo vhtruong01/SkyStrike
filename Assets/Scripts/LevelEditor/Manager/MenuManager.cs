@@ -14,25 +14,25 @@ namespace SkyStrike
                 public void RemoveAllListeners() => func = null;
                 public T Invoke() => func.Invoke();
             }
-            public static UnityEvent<IData> onSelectEnemy { get; private set; }
-            public static UnityEvent<IData> onSelectItemUI { get; private set; }
-            public static UnityEvent<IData> onCreateEnemy { get; private set; }
+            public static UnityEvent<IData> onSelectObject { get; private set; }
+            public static UnityEvent<IData> onSelectMetaObject { get; private set; }
+            public static UnityEvent<IData> onCreateObject { get; private set; }
             public static UnityEvent<IData> onSelectWave { get; private set; }
             public static UnityEvent<IData> onSelectLevel { get; private set; }
             public static FuncEvent<IData> onGetLevel { get; private set; }
 
             static MenuManager()
             {
-                onSelectEnemy = new();
-                onSelectItemUI = new();
-                onCreateEnemy = new();
+                onSelectObject = new();
+                onSelectMetaObject = new();
+                onCreateObject = new();
                 onSelectWave = new();
                 onSelectLevel = new();
                 onGetLevel = new();
             }
-            public static void SelectEnemy(IData data) => onSelectEnemy.Invoke(data);
-            public static void SelectItemUI(IData data) => onSelectItemUI.Invoke(data);
-            public static void CreateEnemy(IData data) => onCreateEnemy.Invoke(data);
+            public static void SelectObject(IData data) => onSelectObject.Invoke(data);
+            public static void SelectMetaObject(IData data) => onSelectMetaObject.Invoke(data);
+            public static void CreateObject(IData data) => onCreateObject.Invoke(data);
             public static void SelectWave(IData data) => onSelectWave.Invoke(data);
             public static void SelectLevel(IData data) => onSelectLevel.Invoke(data);
             public static IData GetLevel() => onGetLevel.Invoke();

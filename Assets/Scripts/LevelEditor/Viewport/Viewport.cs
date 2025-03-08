@@ -7,7 +7,7 @@ namespace SkyStrike
     {
         public class Viewport : MonoBehaviour
         {
-            [SerializeField] private UIGroupPool enemyGroupPool;
+            [SerializeField] private UIGroupPool objectGroupPool;
             [SerializeField] private Button inspectorMenuBtn;
             [SerializeField] private GameObject inspectorMenu;
             [SerializeField] private Button waveMenuBtn;
@@ -21,27 +21,27 @@ namespace SkyStrike
                 inspectorMenuBtn.onClick.AddListener(() => inspectorMenu.SetActive(true));
                 waveMenuBtn.onClick.AddListener(() => waveMenu.SetActive(true));
                 addObjectMenuBtn.onClick.AddListener(() => addObjectMenu.SetActive(true));
-                MenuManager.onCreateEnemy.AddListener(CreateEnemy);
+                MenuManager.onCreateObject.AddListener(CreateObject);
                 MenuManager.onSelectWave.AddListener(SelectWave);
-                enemyGroupPool.selectDataCall = MenuManager.SelectEnemy;
+                objectGroupPool.selectDataCall = MenuManager.SelectObject;
             }
-            public void CreateEnemy(IData data)
+            public void CreateObject(IData data)
             {
                 var enemyData = (data as EnemyDataObserver).Clone();
                 if (enemyData == null) return;
-                DisplayEnemy(enemyData);
+                DisplayObject(enemyData);
                 waveDataObserver.AddEnemy(enemyData);
             }
             public void SelectWave(IData data)
             {
                 waveDataObserver = data as WaveDataObserver;
-                enemyGroupPool.Clear();
+                objectGroupPool.Clear();
                 foreach(var enemyData in waveDataObserver.enemies)
-                    DisplayEnemy(enemyData);
+                    DisplayObject(enemyData);
             }
-            private void DisplayEnemy(EnemyDataObserver enemyData)
+            private void DisplayObject(EnemyDataObserver enemyData)
             {
-                enemyGroupPool.CreateItem(out ViewportItemUI enemy);
+                objectGroupPool.CreateItem(out ViewportItemUI enemy);
                 enemy.SetData(enemyData);
             }
         }

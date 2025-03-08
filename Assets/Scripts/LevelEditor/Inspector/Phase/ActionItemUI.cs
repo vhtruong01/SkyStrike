@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ActionUI : UIElement
+        public class ActionItemUI : UIElement
         {
             [SerializeField] private TextMeshProUGUI txt1;
             [SerializeField] private TextMeshProUGUI txt2;

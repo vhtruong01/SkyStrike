@@ -8,6 +8,8 @@ namespace SkyStrike
         public class EnemyDataObserver : ICloneable<EnemyDataObserver>
         {
             private static HashSet<int> enemyId = new();
+            public int id {  get; private set; }
+            public int referenceId {  get; set; }
             public bool isMetaData { get; set; }
             public DataObserver<EnemyMetaData> metaData { get; private set; }
             public DataObserver<Vector2> scale { get; private set; }

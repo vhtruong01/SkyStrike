@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 625528822326662606}
   - component: {fileID: 7934161182254950433}
   m_Layer: 0
-  m_Name: EnemyEditor
+  m_Name: ViewportItemUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

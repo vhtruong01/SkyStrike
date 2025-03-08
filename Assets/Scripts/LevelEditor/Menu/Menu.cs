@@ -12,9 +12,10 @@ namespace SkyStrike
             public virtual void Awake()
             {
                 if (collapseBtn != null)
-                    collapseBtn.onClick.AddListener(HandleCollapse);
+                    collapseBtn.onClick.AddListener(Collapse);
             }
-            public virtual void HandleCollapse() => gameObject.SetActive(false);
+            public virtual void Collapse() => gameObject.SetActive(false);
+            public virtual void Expand() => gameObject.SetActive(true); 
         }
     }
 }

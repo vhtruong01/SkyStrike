@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace SkyStrike
 {
@@ -7,21 +8,28 @@ namespace SkyStrike
     {
         public class AddObjectMenu : Menu
         {
+            [SerializeField] private List<EnemyMetaData> metaDataList;
             [SerializeField] private UIGroupPool itemUIGroupPool;
             [SerializeField] private UIGroup selectObjectTypeBtn;
-            [SerializeField] private List<EnemyMetaData> enemyMetaDataList;
+            [SerializeField] private Menu hierarchyMenu;
+            [SerializeField] private Button hierarchyBtn;
 
             public override void Awake()
             {
                 base.Awake();
-                itemUIGroupPool.selectDataCall = MenuManager.SelectItemUI;
+                itemUIGroupPool.selectDataCall = MenuManager.SelectMetaObject;
+                hierarchyBtn.onClick.AddListener(() =>
+                {
+                    Collapse();
+                    hierarchyMenu.Expand();
+                });
             }
             public void Start()
             {
-                foreach (var data in enemyMetaDataList)
+                foreach (var data in metaDataList)
                 {
-                    itemUIGroupPool.CreateItem(out AddObjectItemUI itemUI);
-                    itemUI.SetData(data);
+                    itemUIGroupPool.CreateItem(out AddObjectItemUI item);
+                    item.SetData(data);
                 }
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                 {
