@@ -19,11 +19,11 @@ namespace SkyStrike
                 }
             }
             [SerializeField] private Image icon;
-            public EnemyDataObserver objectDataObserver { get; private set; }
+            public ObjectDataObserver objectDataObserver { get; private set; }
 
             public override void SetData(IData data)
             {
-                objectDataObserver = data as EnemyDataObserver;
+                objectDataObserver = data as ObjectDataObserver;
                 objectDataObserver.position.Bind(SetPosition);
                 objectDataObserver.scale.Bind(SetScale);
                 objectDataObserver.rotation.Bind(SetRotation);

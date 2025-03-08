@@ -2,9 +2,9 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyFireDataObserver : ICloneable<EnemyFireDataObserver>
+        public class FireDataObserver : ICloneable<FireDataObserver>
         {
-            public EnemyFireDataObserver Clone()
+            public FireDataObserver Clone()
             {
                 return null;
             }

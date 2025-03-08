@@ -15,7 +15,7 @@ namespace SkyStrike
 
             public override void BindData()
             {
-                var moveActionData = actionData as EnemyMoveDataObserver;
+                var moveActionData = actionData as MoveDataObserver;
                 if (moveActionData == null) return;
                 dirX.Bind(moveActionData.dirX);
                 dirY.Bind(moveActionData.dirY);
@@ -26,7 +26,7 @@ namespace SkyStrike
             }
             public override void UnbindData()
             {
-                var moveActionData = actionData as EnemyMoveDataObserver;
+                var moveActionData = actionData as MoveDataObserver;
                 if (moveActionData == null) return;
                 dirX.Unbind();
                 dirY.Unbind();

@@ -7,15 +7,15 @@ namespace SkyStrike
         public class WaveDataObserver : ICloneable<WaveDataObserver>
         {
             public DataObserver<float> delay { get; set; }
-            public List<EnemyDataObserver> objectList { get; private set; }
+            public List<ObjectDataObserver> objectList { get; private set; }
 
             public WaveDataObserver()
             {
                 objectList = new();
                 delay = new();
             }
-            public void AddObject(EnemyDataObserver obj) => objectList.Add(obj);
-            public void RemoveObject(EnemyDataObserver obj) => objectList.Remove(obj);
+            public void AddObject(ObjectDataObserver obj) => objectList.Add(obj);
+            public void RemoveObject(ObjectDataObserver obj) => objectList.Remove(obj);
             public WaveDataObserver Clone()
             {
                 WaveDataObserver newWave = new();

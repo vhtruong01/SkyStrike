@@ -5,9 +5,9 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyDataObserver : ICloneable<EnemyDataObserver>
+        public class ObjectDataObserver : ICloneable<ObjectDataObserver>
         {
-            private static HashSet<int> enemyId = new();
+            private static HashSet<int> objectIdSet = new();
             public int id {  get; private set; }
             public int referenceId {  get; set; }
             public bool isMetaData { get; set; }
@@ -16,9 +16,9 @@ namespace SkyStrike
             public DataObserver<Vector2> velocity { get; private set; }
             public DataObserver<Vector2> position { get; private set; }
             public DataObserver<float> rotation { get; private set; }
-            public EnemyPhaseDataObserver phase { get; private set; }
+            public PhaseDataObserver phase { get; private set; }
 
-            public EnemyDataObserver()
+            public ObjectDataObserver()
             {
                 metaData = new();
                 rotation = new();
@@ -28,9 +28,9 @@ namespace SkyStrike
                 phase = new();
 
             }
-            public EnemyDataObserver Clone()
+            public ObjectDataObserver Clone()
             {
-                EnemyDataObserver newData = new();
+                ObjectDataObserver newData = new();
                 newData.metaData = metaData;
                 newData.rotation.SetData(rotation.data);
                 newData.position.SetData(position.data);

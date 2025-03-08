@@ -2,10 +2,10 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyActionDataGroupObserver : ICloneable<EnemyActionDataGroupObserver>
+        public class ActionDataGroupObserver : ICloneable<ActionDataGroupObserver>
         {
-            private EnemyMoveDataObserver moveAction;
-            private EnemyFireDataObserver fireAction;
+            private MoveDataObserver moveAction;
+            private FireDataObserver fireAction;
 
             public void AddActionData(EActionType actionType)
             {
@@ -31,9 +31,9 @@ namespace SkyStrike
                         break;
                 }
             }
-            public EnemyActionDataGroupObserver Clone()
+            public ActionDataGroupObserver Clone()
             {
-                EnemyActionDataGroupObserver actionData = new ();
+                ActionDataGroupObserver actionData = new ();
                 actionData.fireAction = fireAction?.Clone();
                 actionData.moveAction = moveAction?.Clone();
                 return actionData;

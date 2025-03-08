@@ -10,7 +10,7 @@ namespace SkyStrike
         {
             [SerializeField] private Image image;
             [SerializeField] private TextMeshProUGUI text;
-            public EnemyDataObserver objectDataObserver { get; private set; }
+            public ObjectDataObserver objectDataObserver { get; private set; }
 
             public override void SetData(IData data)
             {

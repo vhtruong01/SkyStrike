@@ -19,7 +19,7 @@ namespace SkyStrike
             [SerializeField] private Button addActionBtn;
             [SerializeField] private Button removeActionBtn;
             private List<ActionMenu> actionMenus;
-            private EnemyPhaseDataObserver phaseData;
+            private PhaseDataObserver phaseData;
             private EActionType curActionType;
 
             public void Awake()
@@ -83,7 +83,7 @@ namespace SkyStrike
                     phaseData.Swap(index, index + 1);
                 }
             }
-            private void AddActionGroup(EnemyActionDataGroupObserver actionData)
+            private void AddActionGroup(ActionDataGroupObserver actionData)
             {
                 actionUIGroupPool.CreateItem(out ActionItemUI actionUI);
                 actionUI.SetData(actionData);
@@ -104,9 +104,9 @@ namespace SkyStrike
             }
             private void SelectAndSetDataActionMenu(IData data)
             {
-                EnemyActionDataGroupObserver enemyActionDataGroupObserver = data as EnemyActionDataGroupObserver;
+                ActionDataGroupObserver actionDataGroupObserver = data as ActionDataGroupObserver;
                 for (int i = 0; i < actionMenus.Count; i++)
-                    actionMenus[i].Display(enemyActionDataGroupObserver?.GetActionData((EActionType)i));
+                    actionMenus[i].Display(actionDataGroupObserver?.GetActionData((EActionType)i));
                 SelectCurrentActionMenu();
             }
             public void SelectCurrentActionMenu()
@@ -132,7 +132,7 @@ namespace SkyStrike
             }
             public override bool SetData(IData data)
             {
-                EnemyDataObserver newData = data as EnemyDataObserver;
+                ObjectDataObserver newData = data as ObjectDataObserver;
                 var newPhaseData = newData == null || newData.isMetaData ? null : newData.phase;
                 if (phaseData == newPhaseData) return false;
                 phaseData = newPhaseData;

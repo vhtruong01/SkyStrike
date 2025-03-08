@@ -2,7 +2,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyMoveDataObserver : ICloneable<EnemyMoveDataObserver>
+        public class MoveDataObserver : ICloneable<MoveDataObserver>
         {
             public DataObserver<float> dirX { get; private set; }
             public DataObserver<float> dirY { get; private set; }
@@ -11,7 +11,7 @@ namespace SkyStrike
             public DataObserver<float> delay { get; private set; }
             public DataObserver<bool> isSyncRotation { get; private set; }
 
-            public EnemyMoveDataObserver()
+            public MoveDataObserver()
             {
                 dirX = new();
                 dirY = new();
@@ -21,7 +21,7 @@ namespace SkyStrike
                 isSyncRotation = new();
             }
 
-            public EnemyMoveDataObserver Clone()
+            public MoveDataObserver Clone()
             {
                 throw new System.NotImplementedException();
             }

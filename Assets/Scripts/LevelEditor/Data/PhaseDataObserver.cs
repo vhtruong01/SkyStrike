@@ -4,27 +4,27 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class EnemyPhaseDataObserver : IDataList<EnemyActionDataGroupObserver>, ICloneable<EnemyPhaseDataObserver>
+        public class PhaseDataObserver : IDataList<ActionDataGroupObserver>, ICloneable<PhaseDataObserver>
         {
-            private List<EnemyActionDataGroupObserver> actionDataList;
+            private List<ActionDataGroupObserver> actionDataList;
 
-            public EnemyPhaseDataObserver() => actionDataList = new();
-            public List<EnemyActionDataGroupObserver> GetList() => actionDataList;
-            public EnemyActionDataGroupObserver Create()
+            public PhaseDataObserver() => actionDataList = new();
+            public List<ActionDataGroupObserver> GetList() => actionDataList;
+            public ActionDataGroupObserver Create()
             {
-                EnemyActionDataGroupObserver actionData = new();
+                ActionDataGroupObserver actionData = new();
                 actionDataList.Add(actionData);
                 return actionData;
             }
-            public void Remove(EnemyActionDataGroupObserver data) => actionDataList.Remove(data);
+            public void Remove(ActionDataGroupObserver data) => actionDataList.Remove(data);
             public void Swap(int leftIndex, int rightIndex)
             {
                 if (leftIndex > 0 & rightIndex < actionDataList.Count)
                     (actionDataList[leftIndex], actionDataList[rightIndex]) = (actionDataList[leftIndex], actionDataList[rightIndex]);
             }
-            public EnemyPhaseDataObserver Clone()
+            public PhaseDataObserver Clone()
             {
-                EnemyPhaseDataObserver newPhase = new();
+                PhaseDataObserver newPhase = new();
                 foreach (var actionData in actionDataList)
                     newPhase.actionDataList.Add(actionData.Clone());
                 return newPhase;

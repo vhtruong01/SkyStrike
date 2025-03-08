@@ -27,7 +27,7 @@ namespace SkyStrike
             }
             public void CreateObject(IData data)
             {
-                var objectData = (data as EnemyDataObserver).Clone();
+                var objectData = (data as ObjectDataObserver).Clone();
                 if (objectData == null) return;
                 DisplayObject(objectData);
                 waveDataObserver.AddObject(objectData);
@@ -39,7 +39,7 @@ namespace SkyStrike
                 foreach(var objectData in waveDataObserver.objectList)
                     DisplayObject(objectData);
             }
-            private void DisplayObject(EnemyDataObserver objectData)
+            private void DisplayObject(ObjectDataObserver objectData)
             {
                 objectGroupPool.CreateItem(out ViewportItemUI obj);
                 obj.SetData(objectData);

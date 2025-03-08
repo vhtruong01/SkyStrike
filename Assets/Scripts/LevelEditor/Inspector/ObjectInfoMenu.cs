@@ -19,7 +19,7 @@ namespace SkyStrike
             [SerializeField] private FloatProperty delay;
             [SerializeField] private Image referenceObjectIcon;
             [SerializeField] private Button referenceObjectBtn;
-            private EnemyDataObserver curObjectData;
+            private ObjectDataObserver curObjectData;
 
             public void Awake()
             {
@@ -52,7 +52,7 @@ namespace SkyStrike
             }
             public override bool SetData(IData data)
             {
-                EnemyDataObserver newData = data as EnemyDataObserver;
+                ObjectDataObserver newData = data as ObjectDataObserver;
                 if (curObjectData == newData) return false;
                 curObjectData = newData;
                 if (curObjectData != null)
