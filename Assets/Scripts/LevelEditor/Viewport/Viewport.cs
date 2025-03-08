@@ -27,22 +27,22 @@ namespace SkyStrike
             }
             public void CreateObject(IData data)
             {
-                var enemyData = (data as EnemyDataObserver).Clone();
-                if (enemyData == null) return;
-                DisplayObject(enemyData);
-                waveDataObserver.AddEnemy(enemyData);
+                var objectData = (data as EnemyDataObserver).Clone();
+                if (objectData == null) return;
+                DisplayObject(objectData);
+                waveDataObserver.AddObject(objectData);
             }
             public void SelectWave(IData data)
             {
                 waveDataObserver = data as WaveDataObserver;
                 objectGroupPool.Clear();
-                foreach(var enemyData in waveDataObserver.enemies)
-                    DisplayObject(enemyData);
+                foreach(var objectData in waveDataObserver.objectList)
+                    DisplayObject(objectData);
             }
-            private void DisplayObject(EnemyDataObserver enemyData)
+            private void DisplayObject(EnemyDataObserver objectData)
             {
-                objectGroupPool.CreateItem(out ViewportItemUI enemy);
-                enemy.SetData(enemyData);
+                objectGroupPool.CreateItem(out ViewportItemUI obj);
+                obj.SetData(objectData);
             }
         }
     }

@@ -19,16 +19,16 @@ namespace SkyStrike
                 }
             }
             [SerializeField] private Image icon;
-            public EnemyDataObserver enemyDataObserver { get; private set; }
+            public EnemyDataObserver objectDataObserver { get; private set; }
 
             public override void SetData(IData data)
             {
-                enemyDataObserver = data as EnemyDataObserver;
-                enemyDataObserver.position.Bind(SetPosition);
-                enemyDataObserver.scale.Bind(SetScale);
-                enemyDataObserver.rotation.Bind(SetRotation);
-                icon.sprite = enemyDataObserver.metaData.data.sprite;
-                icon.color = enemyDataObserver.metaData.data.color;
+                objectDataObserver = data as EnemyDataObserver;
+                objectDataObserver.position.Bind(SetPosition);
+                objectDataObserver.scale.Bind(SetScale);
+                objectDataObserver.rotation.Bind(SetRotation);
+                icon.sprite = objectDataObserver.metaData.data.sprite;
+                icon.color = objectDataObserver.metaData.data.color;
             }
             private void SetPosition(Vector2 pos)
             {
@@ -49,12 +49,12 @@ namespace SkyStrike
                     Mathf.Clamp(eventData.position.y, 0, Screen.height),
                     0));
                 newPos.z = transform.position.z;
-                enemyDataObserver.position.SetData(newPos);
+                objectDataObserver.position.SetData(newPos);
             }
             public void OnPointerDown(PointerEventData eventData) => base.OnPointerClick(eventData);
             public override void OnPointerClick(PointerEventData eventData) { }
-            public override void RemoveData() => enemyDataObserver = null;
-            public override IData GetData() => enemyDataObserver;
+            public override void RemoveData() => objectDataObserver = null;
+            public override IData GetData() => objectDataObserver;
         }
     }
 }

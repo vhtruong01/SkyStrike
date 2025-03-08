@@ -19,7 +19,7 @@ namespace SkyStrike
                     Collapse();
                     addObjectMenu.Expand();
                 });
-                hierarchyItemGroupPool.selectDataCall = MenuManager.SelectObject;
+                //hierarchyItemGroupPool.selectDataCall = MenuManager.SelectObject;
             }
         }
     }

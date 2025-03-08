@@ -15,28 +15,28 @@ namespace SkyStrike
             //[SerializeField] private TMP_InputField enemyName;
             [SerializeField] private Image icon;
             [SerializeField] private TextMeshProUGUI type;
-            [SerializeField] private Button addEnemyBtn;
+            [SerializeField] private Button addObjectBtn;
             [SerializeField] private FloatProperty delay;
             [SerializeField] private Image referenceObjectIcon;
             [SerializeField] private Button referenceObjectBtn;
-            private EnemyDataObserver curEnemyData;
+            private EnemyDataObserver curObjectData;
 
             public void Awake()
             {
-                addEnemyBtn.onClick.AddListener(CreateObject);
+                addObjectBtn.onClick.AddListener(CreateObject);
             }
-            public override bool CanDisplay() => curEnemyData != null;
+            public override bool CanDisplay() => curObjectData != null;
             private void CreateObject()
             {
-                if (curEnemyData != null)
-                    MenuManager.CreateObject(curEnemyData);
+                if (curObjectData != null)
+                    MenuManager.CreateObject(curObjectData);
             }
             public override void Display(IData data)
             {
                 bool isNewData = SetData(data);
-                if (!CanDisplay() || (!isNewData && curEnemyData.isMetaData))
+                if (!CanDisplay() || (!isNewData && curObjectData.isMetaData))
                 {
-                    curEnemyData = null;
+                    curObjectData = null;
                     UnbindData();
                     Hide();
                     return;
@@ -45,27 +45,27 @@ namespace SkyStrike
                 {
                     UnbindData();
                     BindData();
-                    type.text = curEnemyData.metaData.data.type;
-                    icon.sprite = curEnemyData.metaData.data.sprite;
-                    icon.color = curEnemyData.metaData.data.color;
+                    type.text = curObjectData.metaData.data.type;
+                    icon.sprite = curObjectData.metaData.data.sprite;
+                    icon.color = curObjectData.metaData.data.color;
                 }
             }
             public override bool SetData(IData data)
             {
                 EnemyDataObserver newData = data as EnemyDataObserver;
-                if (curEnemyData == newData) return false;
-                curEnemyData = newData;
-                if (curEnemyData != null)
+                if (curObjectData == newData) return false;
+                curObjectData = newData;
+                if (curObjectData != null)
                 {
 
-                    if (!curEnemyData.isMetaData)
+                    if (!curObjectData.isMetaData)
                     {
-                        addEnemyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Duplicate";
+                        addObjectBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Duplicate";
                         referenceObjectBtn.interactable = true;
                     }
                     else
                     {
-                        addEnemyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Create";
+                        addObjectBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Create";
                         referenceObjectBtn.interactable = false;
                         referenceObjectIcon.color = new();
                     }
@@ -74,18 +74,18 @@ namespace SkyStrike
             }
             public void BindData()
             {
-                position.Bind(curEnemyData.position);
-                scale.Bind(curEnemyData.scale);
-                rotation.Bind(curEnemyData.rotation);
+                position.Bind(curObjectData.position);
+                scale.Bind(curObjectData.scale);
+                rotation.Bind(curObjectData.rotation);
             }
             public void UnbindData()
             {
                 position.Unbind();
                 scale.Unbind();
                 rotation.Unbind();
-                if (curEnemyData == null) return;
-                if (curEnemyData.isMetaData)
-                    curEnemyData.ResetData();
+                if (curObjectData == null) return;
+                if (curObjectData.isMetaData)
+                    curObjectData.ResetData();
             }
         }
     }

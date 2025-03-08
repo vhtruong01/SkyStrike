@@ -11,7 +11,7 @@ namespace SkyStrike
             public int id {  get; private set; }
             public int referenceId {  get; set; }
             public bool isMetaData { get; set; }
-            public DataObserver<EnemyMetaData> metaData { get; private set; }
+            public DataObserver<ObjectMetaData> metaData { get; private set; }
             public DataObserver<Vector2> scale { get; private set; }
             public DataObserver<Vector2> velocity { get; private set; }
             public DataObserver<Vector2> position { get; private set; }

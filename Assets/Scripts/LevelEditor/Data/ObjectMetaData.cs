@@ -5,7 +5,7 @@ namespace SkyStrike
     namespace Editor
     {
         [CreateAssetMenu(fileName = "MetaData", menuName = "Data/ObjectMetaData")]
-        public class EnemyMetaData : ScriptableObject, IData
+        public class ObjectMetaData : ScriptableObject, IData
         {
             public string id;
             [field: SerializeField] public string type { get; set; }
