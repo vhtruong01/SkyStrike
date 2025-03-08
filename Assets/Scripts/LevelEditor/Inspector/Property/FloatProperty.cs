@@ -7,6 +7,7 @@ namespace SkyStrike
     {
         public class FloatProperty : Property<float>
         {
+            [SerializeField] private bool isWholeNumber;
             [SerializeField] private TMP_InputField x;
 
             public override void Awake()
@@ -14,21 +15,15 @@ namespace SkyStrike
                 base.Awake();
                 x.text = "0";
                 x.onValueChanged.AddListener(s => OnValueChanged());
+                x.onSubmit.AddListener(s => CheckValue());
             }
             protected override void OnValueChanged()
             {
-                if (x.text.Length == 0) {
-                    x.text = "0";
-                    x.caretPosition = 1;
-                }
-                if (!float.TryParse(x.text, out float newX))
+                if (float.TryParse(x.text, out float newX) && value != newX && (!isWholeNumber || newX >= 0))
                 {
-                    newX = value;
-                    x.text = value.ToString();
+                    value = newX;
+                    onValueChanged.Invoke(value);
                 }
-                if (value == newX) return;
-                value = newX;
-                onValueChanged.Invoke(value);
             }
             public override void SetValue(float value)
             {
@@ -36,6 +31,12 @@ namespace SkyStrike
                 base.SetValue(value);
                 x.text = value.ToString();
             }
+            private void CheckValue()
+            {
+                if (!float.TryParse(x.text, out float newX) || (isWholeNumber && newX < 0))
+                    x.text = value.ToString();
+            }
+            public void OnDisable() => CheckValue();
         }
     }
 }

@@ -7,6 +7,7 @@ namespace SkyStrike
     {
         public class Vector2Property : Property<Vector2>
         {
+            [SerializeField] private bool isWholeNumber;
             [SerializeField] private TMP_InputField x;
             [SerializeField] private TMP_InputField y;
 
@@ -16,30 +17,14 @@ namespace SkyStrike
                 x.text = "0";
                 y.text = "0";
                 x.onValueChanged.AddListener(s => OnValueChanged());
+                x.onSubmit.AddListener(s => CheckValue(x, value.x));
                 y.onValueChanged.AddListener(s => OnValueChanged());
+                y.onSubmit.AddListener(s => CheckValue(y, value.y));
             }
             protected override void OnValueChanged()
             {
-                if (x.text.Length == 0)
-                {
-                    x.text = "0";
-                    x.caretPosition = 1;
-                }
-                if (y.text.Length == 0)
-                {
-                    y.text = "0";
-                    y.caretPosition = 1;
-                }
-                if (!float.TryParse(x.text, out float newX))
-                {
-                    newX = value.x;
-                    x.text = value.x.ToString();
-                }
-                if (!float.TryParse(y.text, out float newY))
-                {
-                    newY = value.y;
-                    y.text = value.y.ToString();
-                }
+                if (!float.TryParse(x.text, out float newX) || (isWholeNumber && newX < 0)) return;
+                if (!float.TryParse(y.text, out float newY) || (isWholeNumber && newY < 0)) return;
                 if (value.x == newX & value.y == newY) return;
                 value.Set(newX, newY);
                 onValueChanged.Invoke(value);
@@ -50,6 +35,16 @@ namespace SkyStrike
                 base.SetValue(value);
                 x.text = value.x.ToString();
                 y.text = value.y.ToString();
+            }
+            private void CheckValue(TMP_InputField field, float defaultVal)
+            {
+                if (!float.TryParse(field.text, out float val) || (isWholeNumber && val < 0))
+                    field.text = defaultVal.ToString();
+            }
+            public void OnDisable()
+            {
+                CheckValue(x, value.x);
+                CheckValue(y, value.y);
             }
         }
     }
