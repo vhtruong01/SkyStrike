@@ -1,10 +1,11 @@
+using SkyStrike.Editor;
 using UnityEngine;
 
 namespace SkyStrike
 {
     namespace Enemy
     {
-        public interface IEnemyData : IData
+        public interface IEnemyData : IEditorData
         {
             public string type { get; set; }
             public float rotation { get; set; }

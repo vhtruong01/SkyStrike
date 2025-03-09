@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SkyStrike
@@ -12,7 +13,7 @@ namespace SkyStrike
             [SerializeField] private TextMeshProUGUI text;
             public ObjectDataObserver objectDataObserver { get; private set; }
 
-            public override void SetData(IData data)
+            public override void SetData(IEditorData data)
             {
                 var metaData = data as ObjectMetaData;
                 if (metaData == null) return;
@@ -25,7 +26,7 @@ namespace SkyStrike
                 text.text = metaData.type;
             }
             public override void RemoveData() => objectDataObserver = null;
-            public override IData GetData() => objectDataObserver;
+            public override IEditorData GetData() => objectDataObserver;
         }
     }
 }

@@ -26,11 +26,11 @@ namespace SkyStrike
                 removeWaveBtn.onClick.AddListener(RemoveWave);
                 moveLeftWaveBtn.onClick.AddListener(MoveLeftWave);
                 moveRightWaveBtn.onClick.AddListener(MoveRightWave);
-                waveUIGroupPool.selectDataCall = MenuManager.SelectWave;
             }
             public void Start()
             {
-                levelDataObserver = MenuManager.GetLevel() as LevelDataObserver;
+                waveUIGroupPool.selectDataCall = EventManager.SelectWave;
+                levelDataObserver = EventManager.GetLevel() as LevelDataObserver;
                 for (int i = 0; i < minElement; i++)
                     CreateWave();
                 waveUIGroupPool.SelectFirstItem();

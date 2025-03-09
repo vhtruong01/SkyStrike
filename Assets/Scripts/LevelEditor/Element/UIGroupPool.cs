@@ -14,7 +14,7 @@ namespace SkyStrike
             [SerializeField] protected Color defaultColor;
             [SerializeField] private GameObject prefab;
             private ObjectPool<IUIElement> pool;
-            public UnityAction<IData> selectDataCall { get; set; }
+            public UnityAction<IEditorData> selectDataCall { get; set; }
 
             public override void Awake()
             {
@@ -26,6 +26,7 @@ namespace SkyStrike
                     defaultColor = EditorSetting.btnDefaultColor;
                 }
             }
+            public override void Start(){}
             private IUIElement CreateNewObject()
             {
                 var item = Instantiate(prefab, transform, false).GetComponent<IUIElement>()

@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class DataObserver<T> : IData
+        public class DataObserver<T> : IEditorData
         {
             public T data { get; private set; }
             public UnityEvent<T> onChangeData { get; private set; }

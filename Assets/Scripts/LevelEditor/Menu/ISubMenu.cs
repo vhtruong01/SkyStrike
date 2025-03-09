@@ -7,8 +7,8 @@ namespace SkyStrike
         public interface ISubMenu
         {
             public GameObject gameObject { get; }
-            public bool SetData(IData data);
-            public void Display(IData data);
+            public bool SetData(IEditorData data);
+            public void Display(IEditorData data);
             public bool CanDisplay();
             public void Hide();
             public void Show();

@@ -38,7 +38,7 @@ namespace SkyStrike
                 actionData.moveAction = moveAction?.Clone();
                 return actionData;
             }
-            public IData GetActionData(EActionType actionType)
+            public IEditorData GetActionData(EActionType actionType)
             {
                 return actionType switch
                 {

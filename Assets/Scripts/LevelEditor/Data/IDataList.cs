@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public interface IDataList<T> : IData
+        public interface IDataList<T> : IEditorData
         {
             public List<T> GetList();
             public T Create();

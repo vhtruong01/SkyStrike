@@ -7,11 +7,11 @@ namespace SkyStrike
     {
         public abstract class ActionMenu : SubMenu, IObserverMenu
         {
-            public IData actionData { get; private set; }
+            public IEditorData actionData { get; private set; }
 
             public abstract void BindData();
             public abstract void UnbindData();
-            public override void Display(IData data)
+            public override void Display(IEditorData data)
             {
                 bool isNewData = SetData(data);
                 if (!CanDisplay())
@@ -26,7 +26,7 @@ namespace SkyStrike
                     BindData();
                 }
             }
-            public override bool SetData(IData data)
+            public override bool SetData(IEditorData data)
             {
                 if (actionData == data) return false;
                 actionData = data;

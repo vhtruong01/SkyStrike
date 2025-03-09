@@ -7,7 +7,7 @@ namespace SkyStrike
     {
         public class Viewport : MonoBehaviour
         {
-            [SerializeField] private UIGroupPool objectGroupPool;
+            [SerializeField] private UIGroupPool objectUIGroupPool;
             [SerializeField] private Button inspectorMenuBtn;
             [SerializeField] private GameObject inspectorMenu;
             [SerializeField] private Button waveMenuBtn;
@@ -21,27 +21,30 @@ namespace SkyStrike
                 inspectorMenuBtn.onClick.AddListener(() => inspectorMenu.SetActive(true));
                 waveMenuBtn.onClick.AddListener(() => waveMenu.SetActive(true));
                 addObjectMenuBtn.onClick.AddListener(() => addObjectMenu.SetActive(true));
-                MenuManager.onCreateObject.AddListener(CreateObject);
-                MenuManager.onSelectWave.AddListener(SelectWave);
-                objectGroupPool.selectDataCall = MenuManager.SelectObject;
+                EventManager.onCreateObject.AddListener(CreateObject);
+                EventManager.onSelectWave.AddListener(SelectWave);
             }
-            public void CreateObject(IData data)
+            public void Start()
+            {
+                objectUIGroupPool.selectDataCall = EventManager.SelectObject;
+            }
+            public void CreateObject(IEditorData data)
             {
                 var objectData = (data as ObjectDataObserver).Clone();
                 if (objectData == null) return;
                 DisplayObject(objectData);
                 waveDataObserver.AddObject(objectData);
             }
-            public void SelectWave(IData data)
+            public void SelectWave(IEditorData data)
             {
                 waveDataObserver = data as WaveDataObserver;
-                objectGroupPool.Clear();
+                objectUIGroupPool.Clear();
                 foreach(var objectData in waveDataObserver.objectList)
                     DisplayObject(objectData);
             }
             private void DisplayObject(ObjectDataObserver objectData)
             {
-                objectGroupPool.CreateItem(out ViewportItemUI obj);
+                objectUIGroupPool.CreateItem(out ViewportItemUI obj);
                 obj.SetData(objectData);
             }
         }

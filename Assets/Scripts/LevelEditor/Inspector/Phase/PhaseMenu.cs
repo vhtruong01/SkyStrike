@@ -33,10 +33,10 @@ namespace SkyStrike
                 addActionBtn.onClick.AddListener(AddAction);
                 removeActionBtn.onClick.AddListener(RemoveAction);
                 DisableActionButton();
-                actionUIGroupPool.selectDataCall = SelectAndSetDataActionMenu;
             }
             public void Start()
             {
+                actionUIGroupPool.selectDataCall = SelectAndSetDataActionMenu;
                 for (int i = 0; i < switchActionButtonGroup.Count; i++)
                 {
                     switchActionButtonGroup.GetItem(i).onSelectUI.AddListener(SelectActionMenu);
@@ -102,7 +102,7 @@ namespace SkyStrike
                 actionMenus[(int)curActionType].Display(null);
                 SelectCurrentActionMenu();
             }
-            private void SelectAndSetDataActionMenu(IData data)
+            private void SelectAndSetDataActionMenu(IEditorData data)
             {
                 ActionDataGroupObserver actionDataGroupObserver = data as ActionDataGroupObserver;
                 for (int i = 0; i < actionMenus.Count; i++)
@@ -130,7 +130,7 @@ namespace SkyStrike
                 }
                 else DisableActionButton();
             }
-            public override bool SetData(IData data)
+            public override bool SetData(IEditorData data)
             {
                 ObjectDataObserver newData = data as ObjectDataObserver;
                 var newPhaseData = newData == null || newData.isMetaData ? null : newData.phase;
@@ -138,7 +138,7 @@ namespace SkyStrike
                 phaseData = newPhaseData;
                 return true;
             }
-            public override void Display(IData data)
+            public override void Display(IEditorData data)
             {
                 bool isNewData = SetData(data);
                 if (!CanDisplay())

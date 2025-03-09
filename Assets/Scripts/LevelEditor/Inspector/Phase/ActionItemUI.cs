@@ -13,13 +13,13 @@ namespace SkyStrike
             [SerializeField] private Button removeBtn;
             public ActionDataGroupObserver actionDataGroup { get; private set; }
 
-            public override void SetData(IData data)
+            public override void SetData(IEditorData data)
             {
                 actionDataGroup = data as ActionDataGroupObserver;
                 //
             }
             public override void RemoveData() => actionDataGroup = null;
-            public override IData GetData() => actionDataGroup;
+            public override IEditorData GetData() => actionDataGroup;
         }
     }
 }

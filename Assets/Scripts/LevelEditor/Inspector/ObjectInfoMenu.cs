@@ -29,9 +29,9 @@ namespace SkyStrike
             private void CreateObject()
             {
                 if (curObjectData != null)
-                    MenuManager.CreateObject(curObjectData);
+                    EventManager.CreateObject(curObjectData);
             }
-            public override void Display(IData data)
+            public override void Display(IEditorData data)
             {
                 bool isNewData = SetData(data);
                 if (!CanDisplay() || (!isNewData && curObjectData.isMetaData))
@@ -50,7 +50,7 @@ namespace SkyStrike
                     icon.color = curObjectData.metaData.data.color;
                 }
             }
-            public override bool SetData(IData data)
+            public override bool SetData(IEditorData data)
             {
                 ObjectDataObserver newData = data as ObjectDataObserver;
                 if (curObjectData == newData) return false;

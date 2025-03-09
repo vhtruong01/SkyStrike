@@ -17,7 +17,6 @@ namespace SkyStrike
             public override void Awake()
             {
                 base.Awake();
-                itemUIGroupPool.selectDataCall = MenuManager.SelectMetaObject;
                 hierarchyBtn.onClick.AddListener(() =>
                 {
                     Collapse();
@@ -26,6 +25,7 @@ namespace SkyStrike
             }
             public void Start()
             {
+                itemUIGroupPool.selectDataCall = EventManager.SelectMetaObject;
                 foreach (var data in metaDataList)
                 {
                     itemUIGroupPool.CreateItem(out AddObjectItemUI item);

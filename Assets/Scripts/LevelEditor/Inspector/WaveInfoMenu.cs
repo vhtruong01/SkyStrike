@@ -11,11 +11,11 @@ namespace SkyStrike
             private WaveDataObserver waveDataObserver;
 
             public override bool CanDisplay() => waveDataObserver != null;
-            public override void Display(IData data)
+            public override void Display(IEditorData data)
             {
             }
 
-            public override bool SetData(IData data)
+            public override bool SetData(IEditorData data)
             {
                 return true;
             }

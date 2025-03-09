@@ -21,7 +21,7 @@ namespace SkyStrike
             [SerializeField] private Image icon;
             public ObjectDataObserver objectDataObserver { get; private set; }
 
-            public override void SetData(IData data)
+            public override void SetData(IEditorData data)
             {
                 objectDataObserver = data as ObjectDataObserver;
                 objectDataObserver.position.Bind(SetPosition);
@@ -54,7 +54,7 @@ namespace SkyStrike
             public void OnPointerDown(PointerEventData eventData) => base.OnPointerClick(eventData);
             public override void OnPointerClick(PointerEventData eventData) { }
             public override void RemoveData() => objectDataObserver = null;
-            public override IData GetData() => objectDataObserver;
+            public override IEditorData GetData() => objectDataObserver;
         }
     }
 }

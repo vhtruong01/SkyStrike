@@ -9,7 +9,7 @@ namespace SkyStrike
         {
             [SerializeField] private Menu addObjectMenu;
             [SerializeField] private Button addObjectBtn;
-            [SerializeField] private UIGroupPool hierarchyItemGroupPool;
+            [SerializeField] private UIGroupPool hierarchyUIGroupPool;
 
             public override void Awake()
             {
@@ -19,7 +19,15 @@ namespace SkyStrike
                     Collapse();
                     addObjectMenu.Expand();
                 });
-                //hierarchyItemGroupPool.selectDataCall = MenuManager.SelectObject;
+                //hierarchyUIGroupPool.selectDataCall = MenuManager.SelectObject;
+                EventManager.onCreateObject.AddListener(CreateObject);
+            }
+            public void CreateObject(IEditorData data)
+            {
+                var objectData = (data as ObjectDataObserver).Clone();
+                if (objectData == null) return;
+                hierarchyUIGroupPool.CreateItem(out HierarchyItemUI obj);
+                obj.SetData(objectData);
             }
         }
     }
