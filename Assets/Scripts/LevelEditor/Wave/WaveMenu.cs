@@ -26,10 +26,10 @@ namespace SkyStrike
                 removeWaveBtn.onClick.AddListener(RemoveWave);
                 moveLeftWaveBtn.onClick.AddListener(MoveLeftWave);
                 moveRightWaveBtn.onClick.AddListener(MoveRightWave);
-            }
-            public void Start()
-            {
                 waveUIGroupPool.selectDataCall = EventManager.SelectWave;
+            }
+            public override void Init()
+            {
                 levelDataObserver = EventManager.GetLevel() as LevelDataObserver;
                 for (int i = 0; i < minElement; i++)
                     CreateWave();
@@ -37,8 +37,7 @@ namespace SkyStrike
             }
             public void CreateWave()
             {
-                waveUIGroupPool.CreateItem(out WaveItemUI wave);
-                wave.SetData(levelDataObserver.Create());
+                waveUIGroupPool.CreateItem(out WaveItemUI wave,levelDataObserver.Create());
                 wave.SetName("Wave " + ++currentWaveNameIndex);
             }
             public void RemoveWave()
@@ -47,7 +46,7 @@ namespace SkyStrike
                 if (selectedWave != null)
                 {
                     waveUIGroupPool.RemoveSelectedItem();
-                    levelDataObserver.Remove(selectedWave.waveDataObserver);
+                    levelDataObserver.Remove(selectedWave.data as WaveDataObserver);
                 }
             }
             public void MoveLeftWave()

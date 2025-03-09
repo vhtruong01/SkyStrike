@@ -19,28 +19,36 @@ namespace SkyStrike
             public override void Awake()
             {
                 base.Awake();
-                pool = new(CreateNewObject);
+                pool = new(CreateObject);
                 if (!useSpecificColor)
                 {
                     selectedColor = EditorSetting.btnSelectedColor;
                     defaultColor = EditorSetting.btnDefaultColor;
                 }
             }
-            public override void Start(){}
-            private IUIElement CreateNewObject()
+            public override void Init() { }
+            private IUIElement CreateObject()
             {
                 var item = Instantiate(prefab, transform, false).GetComponent<IUIElement>()
                     ?? throw new Exception("wrong prefab type");
                 item.gameObject.name = prefab.name;
+                item.Init();
                 item.onSelectUI.AddListener(SelectItem);
-                if (selectDataCall != null)
-                    item.onClick.AddListener(selectDataCall);
+                item.onClick.AddListener(SelectData);
                 return item;
             }
-            public void CreateItem<T>(out T itemComponent) where T : Component
+            public void SelectData(IEditorData data)
+            {
+                if (canDeselect & data == GetSelectedItem()?.data)
+                    selectDataCall?.Invoke(null);
+                else
+                    selectDataCall?.Invoke(data);
+            }
+            public void CreateItem<T>(out T itemComponent,IEditorData data) where T : Component
             {
                 var item = pool.Get();
                 item.index = items.Count;
+                item.SetData(data);
                 items.Add(item);
                 Diminish(item);
                 item.gameObject.SetActive(true);
@@ -95,8 +103,8 @@ namespace SkyStrike
             }
             public void Clear()
             {
-                foreach (var item in items)
-                    ReleaseItem(item);
+                for (int i = 0; i < items.Count; i++)
+                    ReleaseItem(items[i]);
                 items.Clear();
             }
             protected override void Highlight(IUIElement e)

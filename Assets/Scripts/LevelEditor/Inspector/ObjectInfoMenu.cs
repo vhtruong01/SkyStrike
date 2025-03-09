@@ -20,17 +20,26 @@ namespace SkyStrike
             [SerializeField] private Image referenceObjectIcon;
             [SerializeField] private Button referenceObjectBtn;
             private ObjectDataObserver curObjectData;
+            private WaveDataObserver waveDataObserver;
+
 
             public void Awake()
             {
                 addObjectBtn.onClick.AddListener(CreateObject);
+                EventManager.onSelectWave.AddListener(SelectWave);
+                EventManager.onSelectWave.AddListener(SelectWave);
             }
             public override bool CanDisplay() => curObjectData != null;
             private void CreateObject()
             {
-                if (curObjectData != null)
-                    EventManager.CreateObject(curObjectData);
+                var newData = curObjectData?.Clone();
+                if (newData != null)
+                {
+                    waveDataObserver.AddObject(newData);
+                    EventManager.CreateObject(newData);
+                }
             }
+            public void SelectWave(IEditorData data) => waveDataObserver = data as WaveDataObserver;
             public override void Display(IEditorData data)
             {
                 bool isNewData = SetData(data);

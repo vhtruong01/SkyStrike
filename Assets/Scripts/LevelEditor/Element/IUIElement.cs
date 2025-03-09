@@ -9,16 +9,16 @@ namespace SkyStrike
     {
         public interface IUIElement : IPointerClickHandler
         {
+            public int? index { get;set; }
             public GameObject gameObject { get; }
             public UnityEvent<IEditorData> onClick { get; set; }
             public UnityEvent<int> onSelectUI { get; set; }
-            public int? index { get;set; }
-
+            public IEditorData data { get; set; }
+            public void Init();
             public Image GetBackground();
-            public void SetData(IEditorData data);
-            public IEditorData GetData();
-            public void RemoveData();
             public void Select();
+            public void SetData(IEditorData data);
+            public void RemoveData();
         }
     }
 }

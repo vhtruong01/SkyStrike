@@ -24,7 +24,7 @@ namespace SkyStrike
                 EventManager.onSelectObject.AddListener(SelectObject);
                 EventManager.onSelectWave.AddListener(SelectWave);
             }
-            public void Start()
+            public override void Init()
             {
                 for (int i = 0; i < subMenuList.Count; i++)
                 {
@@ -35,7 +35,6 @@ namespace SkyStrike
                     button.onSelectUI.AddListener(SelectSubMenu);
                     subMenu.Hide();
                 }
-                switchSubMenuBtnGroup.SelectFirstItem();
             }
             private void SelectSubMenu(int index)
             {

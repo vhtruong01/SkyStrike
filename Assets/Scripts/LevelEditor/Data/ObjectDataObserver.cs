@@ -7,9 +7,8 @@ namespace SkyStrike
     {
         public class ObjectDataObserver : ICloneable<ObjectDataObserver>
         {
-            private static HashSet<int> objectIdSet = new();
-            public int id {  get; private set; }
-            public int referenceId {  get; set; }
+            public int id { get; private set; }
+            public int referenceId { get; set; }
             public bool isMetaData { get; set; }
             public DataObserver<ObjectMetaData> metaData { get; private set; }
             public DataObserver<Vector2> scale { get; private set; }
@@ -26,7 +25,6 @@ namespace SkyStrike
                 velocity = new();
                 scale = new();
                 phase = new();
-
             }
             public ObjectDataObserver Clone()
             {

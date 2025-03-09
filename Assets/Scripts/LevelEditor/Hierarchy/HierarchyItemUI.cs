@@ -12,7 +12,13 @@ namespace SkyStrike
             [SerializeField] private RectTransform spaceItem;
             [SerializeField] private TextMeshProUGUI objectName;
 
-            //public override void OnPointerClick(PointerEventData eventData) => InvokeData();
+            public override void SetData(IEditorData data)
+            {
+                this.data = data;
+                var objectDataObserver = this.data as ObjectDataObserver;
+                //
+            }
+            public override void OnPointerClick(PointerEventData eventData) => InvokeData();
         }
     }
 }

@@ -64,7 +64,7 @@ namespace SkyStrike
                 if (selectedActionGroup != null)
                 {
                     actionUIGroupPool.RemoveSelectedItem();
-                    phaseData.Remove(selectedActionGroup.actionDataGroup);
+                    phaseData.Remove(selectedActionGroup.data as ActionDataGroupObserver);
                 }
             }
             public void MoveUpActionGroup()
@@ -85,20 +85,22 @@ namespace SkyStrike
             }
             private void AddActionGroup(ActionDataGroupObserver actionData)
             {
-                actionUIGroupPool.CreateItem(out ActionItemUI actionUI);
-                actionUI.SetData(actionData);
+                actionUIGroupPool.CreateItem(out ActionItemUI actionUI,actionData);
+                //
             }
             public void AddAction()
             {
                 var actionUI = actionUIGroupPool.GetSelectedItemComponent<ActionItemUI>();
-                actionUI.actionDataGroup.AddActionData(curActionType);
-                var actionData = actionUI.actionDataGroup.GetActionData(curActionType);
+                var actionDataGroup = actionUI.data as ActionDataGroupObserver;
+                actionDataGroup.AddActionData(curActionType);
+                var actionData = actionDataGroup.GetActionData(curActionType);
                 actionMenus[(int)curActionType].Display(actionData);
                 SelectCurrentActionMenu();
             }
             public void RemoveAction()
             {
-                actionUIGroupPool.GetSelectedItemComponent<ActionItemUI>().actionDataGroup.RemoveActionData(curActionType);
+                var actionDataGroup = actionUIGroupPool.GetSelectedItemComponent<ActionItemUI>().data as ActionDataGroupObserver;
+                actionDataGroup?.RemoveActionData(curActionType);
                 actionMenus[(int)curActionType].Display(null);
                 SelectCurrentActionMenu();
             }

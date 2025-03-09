@@ -14,13 +14,19 @@ namespace SkyStrike
                 objectList = new();
                 delay = new();
             }
-            public void AddObject(ObjectDataObserver obj) => objectList.Add(obj);
-            public void RemoveObject(ObjectDataObserver obj) => objectList.Remove(obj);
+            public void AddObject(ObjectDataObserver objectData)
+            {
+                objectList.Add(objectData);
+            }
+            public void RemoveObject(ObjectDataObserver objectData)
+            {
+                objectList.Remove(objectData);
+            }
             public WaveDataObserver Clone()
             {
                 WaveDataObserver newWave = new();
-                foreach (var obj in objectList) 
-                    newWave.AddObject(obj.Clone());
+                foreach (var objectData in objectList)
+                    newWave.AddObject(objectData.Clone());
                 //
                 return newWave;
             }

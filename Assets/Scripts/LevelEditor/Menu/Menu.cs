@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class Menu : MonoBehaviour
+        public abstract class Menu : MonoBehaviour
         {
             [SerializeField] protected Button collapseBtn;
 
@@ -14,6 +14,7 @@ namespace SkyStrike
                 if (collapseBtn != null)
                     collapseBtn.onClick.AddListener(Collapse);
             }
+            public abstract void Init();
             public virtual void Collapse() => gameObject.SetActive(false);
             public virtual void Expand() => gameObject.SetActive(true); 
         }

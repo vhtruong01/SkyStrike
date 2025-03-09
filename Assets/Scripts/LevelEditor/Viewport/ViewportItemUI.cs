@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace SkyStrike
 {
@@ -19,11 +19,11 @@ namespace SkyStrike
                 }
             }
             [SerializeField] private Image icon;
-            public ObjectDataObserver objectDataObserver { get; private set; }
 
             public override void SetData(IEditorData data)
             {
-                objectDataObserver = data as ObjectDataObserver;
+                this.data = data;
+                var objectDataObserver = this.data as ObjectDataObserver;
                 objectDataObserver.position.Bind(SetPosition);
                 objectDataObserver.scale.Bind(SetScale);
                 objectDataObserver.rotation.Bind(SetRotation);
@@ -49,12 +49,10 @@ namespace SkyStrike
                     Mathf.Clamp(eventData.position.y, 0, Screen.height),
                     0));
                 newPos.z = transform.position.z;
-                objectDataObserver.position.SetData(newPos);
+                (data as ObjectDataObserver).position.SetData(newPos);
             }
-            public void OnPointerDown(PointerEventData eventData) => base.OnPointerClick(eventData);
+            public void OnPointerDown(PointerEventData eventData) => InvokeData();
             public override void OnPointerClick(PointerEventData eventData) { }
-            public override void RemoveData() => objectDataObserver = null;
-            public override IEditorData GetData() => objectDataObserver;
         }
     }
 }

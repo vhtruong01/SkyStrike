@@ -22,20 +22,21 @@ namespace SkyStrike
                     Collapse();
                     hierarchyMenu.Expand();
                 });
+                itemUIGroupPool.selectDataCall = EventManager.SelectMetaObject;
             }
-            public void Start()
+            public override void Init()
             {
                 itemUIGroupPool.selectDataCall = EventManager.SelectMetaObject;
                 foreach (var data in metaDataList)
-                {
-                    itemUIGroupPool.CreateItem(out AddObjectItemUI item);
-                    item.SetData(data);
-                }
+                    itemUIGroupPool.CreateItem(out AddObjectItemUI item, data);
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                 {
                     //onclick
                 }
-                selectObjectTypeBtn.SelectFirstItem();
+            }
+            public void Start()
+            {
+                selectObjectTypeBtn.SelectFirstItem(); 
             }
         }
     }

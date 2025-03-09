@@ -21,12 +21,14 @@ namespace SkyStrike
                     if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var item)) continue;
                     items.Add(item);
                 }
+                Init();
             }
-            public virtual void Start()
+            public virtual void Init()
             {
                 for (int i = 0; i < items.Count; i++)
                 {
                     items[i].index = i;
+                    items[i].Init();
                     items[i].onSelectUI.AddListener(SelectItem);
                     if (selectedItemIndex != i)
                         Diminish(items[i]);
@@ -38,16 +40,30 @@ namespace SkyStrike
             {
                 return index < 0 || index >= items.Count ? null : items[index];
             }
+            public void SelectItem(IEditorData data)
+            {
+
+                if (data == null)
+                {
+                    if (canDeselect) SelectItem(-1);
+                    return;
+                }
+                for (int i = 0; i < items.Count; i++)
+                    if (items[i].data == data)
+                    {
+                        SelectItem(i);
+                        return;
+                    }
+            }
             public bool TryGetValidSelectedIndex(out int index)
             {
                 index = selectedItemIndex;
                 return index >= 0 & index < items.Count;
             }
             public IUIElement GetSelectedItem() => GetItem(selectedItemIndex);
-            public void DeselectSelectedItem() => SelectItem(-1);
             public void SelectFirstItem() => SelectAndInvoke(0);
             public void SelectAndInvoke(int index) => GetItem(index)?.Select();
-            protected void SelectItem(int index)
+            public void SelectItem(int index)
             {
                 Diminish(GetSelectedItem());
                 if (canDeselect & selectedItemIndex == index) index = -1;
