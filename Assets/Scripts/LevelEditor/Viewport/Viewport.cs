@@ -9,17 +9,17 @@ namespace SkyStrike
         {
             [SerializeField] private UIGroupPool objectUIGroupPool;
             [SerializeField] private Button inspectorMenuBtn;
-            [SerializeField] private GameObject inspectorMenu;
+            [SerializeField] private Menu inspectorMenu;
             [SerializeField] private Button waveMenuBtn;
-            [SerializeField] private GameObject waveMenu;
-            [SerializeField] private Button addObjectMenuBtn;
-            [SerializeField] private GameObject addObjectMenu;
+            [SerializeField] private Menu waveMenu;
+            [SerializeField] private Button hierarchyMenuBtn;
+            [SerializeField] private Menu hierarchyMenu;
 
             public void Awake()
             {
-                inspectorMenuBtn.onClick.AddListener(() => inspectorMenu.SetActive(true));
-                waveMenuBtn.onClick.AddListener(() => waveMenu.SetActive(true));
-                addObjectMenuBtn.onClick.AddListener(() => addObjectMenu.SetActive(true));
+                inspectorMenuBtn.onClick.AddListener(inspectorMenu.Expand);
+                waveMenuBtn.onClick.AddListener(waveMenu.Expand);
+                hierarchyMenuBtn.onClick.AddListener(hierarchyMenu.Expand);
                 EventManager.onCreateObject.AddListener(CreateObject);
                 EventManager.onSelectWave.AddListener(SelectWave);
                 EventManager.onSelectObject.AddListener(SelectObject);
@@ -41,8 +41,7 @@ namespace SkyStrike
             }
             private void DisplayObject(ObjectDataObserver objectData)
             {
-                objectUIGroupPool.CreateItem(out ViewportItemUI obj,objectData);
-                //
+                objectUIGroupPool.CreateItem(objectData);
             }
         }
     }

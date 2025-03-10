@@ -12,7 +12,7 @@ namespace SkyStrike
             [SerializeField] private Vector2Property scale;
             [SerializeField] private Vector2Property velocity;
             [SerializeField] private FloatProperty rotation;
-            //[SerializeField] private TMP_InputField enemyName;
+            [SerializeField] private StringProperty objectName;
             [SerializeField] private Image icon;
             [SerializeField] private TextMeshProUGUI type;
             [SerializeField] private Button addObjectBtn;
@@ -86,12 +86,18 @@ namespace SkyStrike
                 position.Bind(curObjectData.position);
                 scale.Bind(curObjectData.scale);
                 rotation.Bind(curObjectData.rotation);
+                delay.Bind(curObjectData.delay);
+                velocity.Bind(curObjectData.velocity);
+                objectName.Bind(curObjectData.name);
             }
             public void UnbindData()
             {
                 position.Unbind();
                 scale.Unbind();
                 rotation.Unbind();
+                delay.Unbind();
+                velocity.Unbind();
+                objectName.Unbind();
                 if (curObjectData == null) return;
                 if (curObjectData.isMetaData)
                     curObjectData.ResetData();

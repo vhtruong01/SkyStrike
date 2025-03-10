@@ -10,6 +10,7 @@ namespace SkyStrike
             [SerializeField] private Menu addObjectMenu;
             [SerializeField] private Button addObjectBtn;
             [SerializeField] private UIGroupPool hierarchyUIGroupPool;
+            private WaveDataObserver waveDataObserver;
 
             public override void Awake()
             {
@@ -34,15 +35,25 @@ namespace SkyStrike
             public void SelectObject(IEditorData data) => hierarchyUIGroupPool.SelectItem(data);
             private void DisplayObject(ObjectDataObserver objectData)
             {
-                hierarchyUIGroupPool.CreateItem(out HierarchyItemUI obj, objectData);
+                hierarchyUIGroupPool.CreateItem(objectData);
+                var originalObject = hierarchyUIGroupPool.GetItem(objectData) as HierarchyItemUI;
                 //
+                var refObject = hierarchyUIGroupPool.GetSelectedItem();
+                if (refObject != null)
+                {
+                    var refData = refObject.data as ObjectDataObserver;
+                    objectData.refId = refData.id;
+                    hierarchyUIGroupPool.MoveItemByIndex(originalObject.index.Value, refObject.index.Value + 1);
+                }
+                originalObject.SetPadding(waveDataObserver.GetHierarchyLevel(objectData.id));
             }
+            //public void ReferenceObject(int index,int refIndex) => 
             public void SelectWave(IEditorData data)
             {
-                var waveDataObserver = data as WaveDataObserver;
-                //objectUIGroupPool.Clear();
-                //foreach (var objectData in waveDataObserver.objectList)
-                //    DisplayObject(objectData);
+                waveDataObserver = data as WaveDataObserver;
+                hierarchyUIGroupPool.Clear();
+                foreach (var objectData in waveDataObserver.objectList)
+                    DisplayObject(objectData);
             }
         }
     }

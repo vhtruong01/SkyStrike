@@ -28,7 +28,7 @@ namespace SkyStrike
             {
                 itemUIGroupPool.selectDataCall = EventManager.SelectMetaObject;
                 foreach (var data in metaDataList)
-                    itemUIGroupPool.CreateItem(out AddObjectItemUI item, data);
+                    itemUIGroupPool.CreateItem(data);
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                 {
                     //onclick

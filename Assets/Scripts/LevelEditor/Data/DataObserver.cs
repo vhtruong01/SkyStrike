@@ -22,7 +22,7 @@ namespace SkyStrike
                 call.Invoke(data);
             }
             public void Unbind(UnityAction<T> action) => onChangeData.RemoveListener(action);
-            public void UnblindAll() => onChangeData.RemoveAllListeners();
+            public void UnbindAll() => onChangeData.RemoveAllListeners();
             public void ResetData() => data = default;
         }
     }

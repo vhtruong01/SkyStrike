@@ -85,8 +85,7 @@ namespace SkyStrike
             }
             private void AddActionGroup(ActionDataGroupObserver actionData)
             {
-                actionUIGroupPool.CreateItem(out ActionItemUI actionUI,actionData);
-                //
+                actionUIGroupPool.CreateItem(actionData);
             }
             public void AddAction()
             {

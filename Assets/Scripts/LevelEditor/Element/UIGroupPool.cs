@@ -44,7 +44,7 @@ namespace SkyStrike
                 else
                     selectDataCall?.Invoke(data);
             }
-            public void CreateItem<T>(out T itemComponent,IEditorData data) where T : Component
+            public IUIElement CreateItem(IEditorData data)
             {
                 var item = pool.Get();
                 item.index = items.Count;
@@ -53,10 +53,38 @@ namespace SkyStrike
                 Diminish(item);
                 item.gameObject.SetActive(true);
                 item.gameObject.transform.SetAsLastSibling();
+                return item;
+            }
+            public void CreateItem<T>(out T itemComponent, IEditorData data) where T : Component
+            {
+                var item = CreateItem(data);
                 itemComponent = item.gameObject.GetComponent<T>();
             }
-            public void MoveLeftSelectedItem(int amount = 1) => ChangeIndex(ref selectedItemIndex, selectedItemIndex - amount);
-            public void MoveRightSelectedItem(int amount = 1) => ChangeIndex(ref selectedItemIndex, selectedItemIndex + amount);
+            public T GetSelectedItemComponent<T>() where T : Component
+                => GetSelectedItem()?.gameObject.GetComponent<T>();
+            public IUIElement GetItem(IEditorData data)
+            {
+                for (int i = 0; i < items.Count; i++)
+                    if (items[i].data == data)
+                        return items[i];
+                return null;
+            }
+            public void SelectItem(IEditorData data)
+            {
+
+                if (data != null)
+                {
+                    for (int i = 0; i < items.Count; i++)
+                        if (items[i].data == data)
+                        {
+                            SelectItem(i);
+                            return;
+                        }
+                }
+                else if (canDeselect) SelectItem(-1);
+            }
+            public void MoveLeftSelectedItem(int amount = 1) => MoveItemByIndex(selectedItemIndex, selectedItemIndex - amount);
+            public void MoveRightSelectedItem(int amount = 1) => MoveItemByIndex(selectedItemIndex, selectedItemIndex + amount);
             private void ReleaseItem(int index)
             {
                 var item = items[index];
@@ -71,7 +99,7 @@ namespace SkyStrike
                 pool.Release(item);
                 item.RemoveData();
             }
-            private void ChangeIndex(ref int oldIndex, int newIndex)
+            public void MoveItemByIndex(int oldIndex, int newIndex)
             {
                 var oldItem = GetItem(oldIndex);
                 var newItem = GetItem(newIndex);
@@ -82,23 +110,27 @@ namespace SkyStrike
                 int n = Mathf.Max(oldIndex, newIndex);
                 for (int i = Mathf.Min(oldIndex, newIndex); i <= n; i++)
                     items[i].index = i;
-                oldIndex = newIndex;
+                if (selectedItemIndex == oldIndex)
+                    selectedItemIndex = newIndex;
             }
-            public void RemoveSelectedItem() => RemoveItem(ref selectedItemIndex);
-            public void RemoveItem(ref int index)
+            public void RemoveSelectedItem() => RemoveItem(selectedItemIndex);
+            public void RemoveItem(int index)
             {
                 var item = GetItem(index);
                 if (item == null || (!canDeselect && items.Count < 2)) return;
                 ReleaseItem(index);
                 for (int i = index; i < items.Count; i++)
                     items[i].index = i;
-                if (canDeselect)
-                    index = -1;
-                else
+                if (index == selectedItemIndex)
                 {
-                    if (index >= items.Count)
-                        index -= 1;
-                    SelectAndInvoke(index);
+                    if (canDeselect)
+                        selectedItemIndex = -1;
+                    else
+                    {
+                        if (index >= items.Count)
+                            selectedItemIndex -= 1;
+                        SelectAndInvoke(selectedItemIndex);
+                    }
                 }
             }
             public void Clear()

@@ -34,26 +34,9 @@ namespace SkyStrike
                         Diminish(items[i]);
                 }
             }
-            public T GetSelectedItemComponent<T>() where T : Component
-                => GetSelectedItem()?.gameObject.GetComponent<T>();
             public IUIElement GetItem(int index)
             {
                 return index < 0 || index >= items.Count ? null : items[index];
-            }
-            public void SelectItem(IEditorData data)
-            {
-
-                if (data == null)
-                {
-                    if (canDeselect) SelectItem(-1);
-                    return;
-                }
-                for (int i = 0; i < items.Count; i++)
-                    if (items[i].data == data)
-                    {
-                        SelectItem(i);
-                        return;
-                    }
             }
             public bool TryGetValidSelectedIndex(out int index)
             {
