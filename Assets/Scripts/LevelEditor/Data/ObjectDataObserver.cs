@@ -6,9 +6,9 @@ namespace SkyStrike
     {
         public class ObjectDataObserver : ICloneable<ObjectDataObserver>
         {
-            public int id { get; set; }
-            public int refId { get; set; }
             public bool isMetaData { get; set; }
+            public int id { get; set; }
+            public ObjectDataObserver refData { get; set; }
             public DataObserver<ObjectMetaData> metaData { get; private set; }
             public DataObserver<Vector2> scale { get; private set; }
             public DataObserver<Vector2> velocity { get; private set; }
@@ -29,7 +29,11 @@ namespace SkyStrike
                 name = new();
                 phase = new();
                 id = -1;
-                refId = -1;
+                refData = null;
+            }
+            public int GetParentCount()
+            {
+                return 1 + (refData == null ? 0 : refData.GetParentCount());
             }
             public ObjectDataObserver Clone()
             {
@@ -41,6 +45,7 @@ namespace SkyStrike
                 newData.delay.SetData(delay.data);
                 newData.name.SetData(name.data);
                 newData.scale.SetData(scale.data);
+                newData.refData = refData;
                 newData.phase = phase.Clone();
                 return newData;
             }
@@ -55,7 +60,12 @@ namespace SkyStrike
             }
             public void UnbindAll()
             {
-
+                rotation.UnbindAll();
+                position.UnbindAll();
+                velocity.UnbindAll();
+                delay.UnbindAll();
+                name.UnbindAll();
+                scale.UnbindAll();
             }
         }
     }

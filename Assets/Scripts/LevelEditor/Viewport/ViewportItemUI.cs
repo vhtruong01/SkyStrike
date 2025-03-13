@@ -8,16 +8,6 @@ namespace SkyStrike
     {
         public class ViewportItemUI : UIElement, IPointerDownHandler, IDragHandler
         {
-            private static Camera _mainCam;
-            private static Camera mainCam
-            {
-                get
-                {
-                    if (_mainCam == null)
-                        _mainCam = Camera.main;
-                    return _mainCam;
-                }
-            }
             [SerializeField] private Image icon;
 
             public override void SetData(IEditorData data)
@@ -44,15 +34,18 @@ namespace SkyStrike
             }
             public void OnDrag(PointerEventData eventData)
             {
-                Vector3 newPos = mainCam.ScreenToWorldPoint(new(
-                    Mathf.Clamp(eventData.position.x, 0, Screen.width),
-                    Mathf.Clamp(eventData.position.y, 0, Screen.height),
-                    0));
-                newPos.z = transform.position.z;
-                (data as ObjectDataObserver).position.SetData(newPos);
+                (data as ObjectDataObserver).position.OnlySetData(transform.position);
             }
             public void OnPointerDown(PointerEventData eventData) => InvokeData();
             public override void OnPointerClick(PointerEventData eventData) { }
+            public override void RemoveData()
+            {
+                var objectDataObserver = data as ObjectDataObserver;
+                objectDataObserver.position.Unbind(SetPosition);
+                objectDataObserver.scale.Unbind(SetScale);
+                objectDataObserver.rotation.Unbind(SetRotation);
+                base.RemoveData();
+            }
         }
     }
 }

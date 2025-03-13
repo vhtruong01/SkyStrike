@@ -34,10 +34,10 @@ namespace SkyStrike
                 item.gameObject.name = prefab.name;
                 item.Init();
                 item.onSelectUI.AddListener(SelectItem);
-                item.onClick.AddListener(SelectData);
+                item.onClick.AddListener(InvokeData);
                 return item;
             }
-            public void SelectData(IEditorData data)
+            public void InvokeData(IEditorData data)
             {
                 if (canDeselect & data == GetSelectedItem()?.data)
                     selectDataCall?.Invoke(null);
@@ -62,6 +62,13 @@ namespace SkyStrike
             }
             public T GetSelectedItemComponent<T>() where T : Component
                 => GetSelectedItem()?.gameObject.GetComponent<T>();
+            public int GetItemIndex(IEditorData data)
+            {
+                for (int i = 0; i < items.Count; i++)
+                    if (items[i].data == data)
+                        return i;
+                return -1;
+            }
             public IUIElement GetItem(IEditorData data)
             {
                 for (int i = 0; i < items.Count; i++)
@@ -71,17 +78,9 @@ namespace SkyStrike
             }
             public void SelectItem(IEditorData data)
             {
-
                 if (data != null)
-                {
-                    for (int i = 0; i < items.Count; i++)
-                        if (items[i].data == data)
-                        {
-                            SelectItem(i);
-                            return;
-                        }
-                }
-                else if (canDeselect) SelectItem(-1);
+                    SelectItem(GetItemIndex(data));
+                else if (canDeselect) SelectNone();
             }
             public void MoveLeftSelectedItem(int amount = 1) => MoveItemByIndex(selectedItemIndex, selectedItemIndex - amount);
             public void MoveRightSelectedItem(int amount = 1) => MoveItemByIndex(selectedItemIndex, selectedItemIndex + amount);
@@ -114,6 +113,7 @@ namespace SkyStrike
                     selectedItemIndex = newIndex;
             }
             public void RemoveSelectedItem() => RemoveItem(selectedItemIndex);
+            public void RemoveItem(IEditorData data) => RemoveItem(GetItemIndex(data));
             public void RemoveItem(int index)
             {
                 var item = GetItem(index);
@@ -129,12 +129,13 @@ namespace SkyStrike
                     {
                         if (index >= items.Count)
                             selectedItemIndex -= 1;
-                        SelectAndInvoke(selectedItemIndex);
+                        SelectAndInvokeItem(selectedItemIndex);
                     }
                 }
             }
             public void Clear()
             {
+                SelectNone();
                 for (int i = 0; i < items.Count; i++)
                     ReleaseItem(items[i]);
                 items.Clear();

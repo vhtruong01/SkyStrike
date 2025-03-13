@@ -15,6 +15,7 @@ namespace SkyStrike
                 public T Invoke() => func.Invoke();
             }
             public static UnityEvent<IEditorData> onSelectObject { get; private set; }
+            public static UnityEvent<IEditorData> onRemoveObject { get; private set; }
             public static UnityEvent<IEditorData> onSelectMetaObject { get; private set; }
             public static UnityEvent<IEditorData> onCreateObject { get; private set; }
             public static UnityEvent<IEditorData> onSelectWave { get; private set; }
@@ -24,6 +25,7 @@ namespace SkyStrike
             static EventManager()
             {
                 onSelectObject = new();
+                onRemoveObject = new();
                 onSelectMetaObject = new();
                 onCreateObject = new();
                 onSelectWave = new();
@@ -31,6 +33,7 @@ namespace SkyStrike
                 onGetLevel = new();
             }
             public static void SelectObject(IEditorData data) => onSelectObject.Invoke(data);
+            public static void RemoveObject(IEditorData data) => onRemoveObject.Invoke(data);
             public static void SelectMetaObject(IEditorData data) => onSelectMetaObject.Invoke(data);
             public static void CreateObject(IEditorData data) => onCreateObject.Invoke(data);
             public static void SelectWave(IEditorData data) => onSelectWave.Invoke(data);

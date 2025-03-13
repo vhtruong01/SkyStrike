@@ -35,19 +35,13 @@ namespace SkyStrike
             }
             public void RemoveObject(ObjectDataObserver objectData)
             {
-                objectData.UnBindAll();
+                objectData.UnbindAll();
                 objectList.Remove(objectData);
                 objectDict.Remove(objectData.id);
             }
             public ObjectDataObserver GetObjectDataById(int id)
             {
                 return objectDict.TryGetValue(id, out ObjectDataObserver objectDataObserver) ? objectDataObserver : null;
-            }
-            public int GetHierarchyLevel(int id)
-            {
-                var objectData = GetObjectDataById(id);
-                if (objectData == null) return -1;
-                return 1 + GetHierarchyLevel(objectData.refId);
             }
             public WaveDataObserver Clone()
             {

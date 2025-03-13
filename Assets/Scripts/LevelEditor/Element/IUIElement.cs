@@ -16,7 +16,7 @@ namespace SkyStrike
             public IEditorData data { get; set; }
             public void Init();
             public Image GetBackground();
-            public void Select();
+            public void SelectAndInvoke();
             public void SetData(IEditorData data);
             public void RemoveData();
         }

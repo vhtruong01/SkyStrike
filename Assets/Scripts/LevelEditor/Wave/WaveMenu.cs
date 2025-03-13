@@ -35,9 +35,14 @@ namespace SkyStrike
                     CreateWave();
                 waveUIGroupPool.SelectFirstItem();
             }
+            protected override void CreateObject(IEditorData data)
+            {
+                var waveData = waveUIGroupPool.GetSelectedItemComponent<UIElement>().data as WaveDataObserver;
+                waveData?.AddObject(data as ObjectDataObserver);
+            }
             public void CreateWave()
             {
-                waveUIGroupPool.CreateItem(out WaveItemUI wave,levelDataObserver.Create());
+                waveUIGroupPool.CreateItem(out WaveItemUI wave, levelDataObserver.Create());
                 wave.SetName("Wave " + ++currentWaveNameIndex);
             }
             public void RemoveWave()
@@ -69,6 +74,9 @@ namespace SkyStrike
             {
                 //
             }
+            protected override void RemoveObject(IEditorData data) { }
+            protected override void SelectObject(IEditorData data) { }
+            protected override void SelectWave(IEditorData data) { }
         }
     }
 }

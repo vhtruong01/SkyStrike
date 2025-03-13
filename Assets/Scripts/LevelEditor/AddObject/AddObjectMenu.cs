@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace SkyStrike
 {
@@ -26,17 +26,26 @@ namespace SkyStrike
             }
             public override void Init()
             {
-                itemUIGroupPool.selectDataCall = EventManager.SelectMetaObject;
                 foreach (var data in metaDataList)
-                    itemUIGroupPool.CreateItem(data);
+                {
+                    ObjectDataObserver objectDataObserver = new();
+                    objectDataObserver.isMetaData = true;
+                    objectDataObserver.metaData.SetData(data);
+                    objectDataObserver.ResetData();
+                    itemUIGroupPool.CreateItem(objectDataObserver);
+                }
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                 {
                     //onclick
                 }
             }
+            protected override void CreateObject(IEditorData data) { }
+            protected override void RemoveObject(IEditorData data) { }
+            protected override void SelectObject(IEditorData data) => itemUIGroupPool.SelectNone();
+            protected override void SelectWave(IEditorData data) => itemUIGroupPool.SelectNone();
             public void Start()
             {
-                selectObjectTypeBtn.SelectFirstItem(); 
+                selectObjectTypeBtn.SelectFirstItem();
             }
         }
     }

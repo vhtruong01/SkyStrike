@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike
@@ -6,14 +7,13 @@ namespace SkyStrike
     {
         public class Controller : MonoBehaviour
         {
-            private Menu[] menus;
+            [SerializeField] private List<Menu> menus;
             private LevelDataObserver levelDataObserver;
 
             public void Awake()
             {
                 levelDataObserver = new();
                 EventManager.onGetLevel.AddListener(GetLevel);
-                menus = FindObjectsByType<Menu>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID);
             }
             public void Start()
             {

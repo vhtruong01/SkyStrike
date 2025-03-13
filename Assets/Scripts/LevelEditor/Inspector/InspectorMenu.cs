@@ -20,9 +20,7 @@ namespace SkyStrike
                 base.Awake();
                 subMenuList = new() { objectInfoMenu, phaseMenu, waveInfoMenu };
                 curSubMenuIndex = 0;
-                EventManager.onSelectMetaObject.AddListener(SelectObjectMeta);
-                EventManager.onSelectObject.AddListener(SelectObject);
-                EventManager.onSelectWave.AddListener(SelectWave);
+                EventManager.onSelectMetaObject.AddListener(SelectMetaObject);
             }
             public override void Init()
             {
@@ -49,23 +47,27 @@ namespace SkyStrike
             {
                 if (index < 0 || index >= subMenuList.Count) return;
                 subMenuList[index].Display(data);
-                switchSubMenuBtnGroup.SelectAndInvoke(index);
+                switchSubMenuBtnGroup.SelectAndInvokeItem(index);
             }
-            private void SelectObject(IEditorData data)
+            protected override void SelectObject(IEditorData data)
             {
                 int index = curSubMenuIndex > 1 ? 0 : curSubMenuIndex;
                 SelectAndSetDataSubMenu(data, index);
                 subMenuList[1 - index].Display(data);
             }
-            private void SelectObjectMeta(IEditorData data)
+            private void SelectMetaObject(IEditorData data)
             {
                 SelectAndSetDataSubMenu(data, 0);
                 subMenuList[1].Display(null);
             }
-            private void SelectWave(IEditorData data)
+            protected override void SelectWave(IEditorData data)
             {
                 SelectObject(null);
                 SelectAndSetDataSubMenu(data, 2);
+            }
+            protected override void CreateObject(IEditorData data) { }
+            protected override void RemoveObject(IEditorData data)
+            {
             }
         }
     }

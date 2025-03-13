@@ -1,17 +1,16 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class HierarchyItemUI : UIElement
+        public class ObjectItemUI : UIElement
         {
-            private static readonly int paddingLen = 40;
-            [SerializeField] private RectTransform spaceItem;
+            [SerializeField] private Image image;
             [SerializeField] private TextMeshProUGUI itemName;
-            [SerializeField] private TextMeshProUGUI itemId;
 
             public override void SetData(IEditorData data)
             {
@@ -20,14 +19,11 @@ namespace SkyStrike
                 this.data = data;
                 objectDataObserver = this.data as ObjectDataObserver;
                 objectDataObserver.name.Bind(ChangeName);
-                itemId.text = "id: " + objectDataObserver.id.ToString();
+                image.sprite = objectDataObserver.metaData.data.sprite;
+                image.color = objectDataObserver.metaData.data.color;
             }
-            public void SetPadding(int level)
-            {
-                spaceItem.sizeDelta = new(paddingLen * level, spaceItem.sizeDelta.y);
-            }
-            public override void OnPointerClick(PointerEventData eventData) => InvokeData();
             private void ChangeName(string name) => itemName.text = name;
+
         }
     }
 }

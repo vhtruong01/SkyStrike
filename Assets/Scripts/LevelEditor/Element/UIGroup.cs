@@ -34,7 +34,7 @@ namespace SkyStrike
                         Diminish(items[i]);
                 }
             }
-            public IUIElement GetItem(int index)
+            public virtual IUIElement GetItem(int index)
             {
                 return index < 0 || index >= items.Count ? null : items[index];
             }
@@ -44,9 +44,10 @@ namespace SkyStrike
                 return index >= 0 & index < items.Count;
             }
             public IUIElement GetSelectedItem() => GetItem(selectedItemIndex);
-            public void SelectFirstItem() => SelectAndInvoke(0);
-            public void SelectAndInvoke(int index) => GetItem(index)?.Select();
-            public void SelectItem(int index)
+            public void SelectFirstItem() => SelectAndInvokeItem(0);
+            public void SelectAndInvokeItem(int index) => GetItem(index)?.SelectAndInvoke();
+            public void SelectNone() => SelectItem(-1);
+            protected void SelectItem(int index)
             {
                 Diminish(GetSelectedItem());
                 if (canDeselect & selectedItemIndex == index) index = -1;

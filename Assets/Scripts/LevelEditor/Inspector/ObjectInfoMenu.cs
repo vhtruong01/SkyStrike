@@ -19,27 +19,21 @@ namespace SkyStrike
             [SerializeField] private FloatProperty delay;
             [SerializeField] private Image referenceObjectIcon;
             [SerializeField] private Button referenceObjectBtn;
+            [SerializeField] private FloatSelectObjectMenu selectObjectMenu;
             private ObjectDataObserver curObjectData;
-            private WaveDataObserver waveDataObserver;
-
 
             public void Awake()
             {
                 addObjectBtn.onClick.AddListener(CreateObject);
-                EventManager.onSelectWave.AddListener(SelectWave);
-                EventManager.onSelectWave.AddListener(SelectWave);
+                referenceObjectBtn.onClick.AddListener(selectObjectMenu.Expand);
             }
             public override bool CanDisplay() => curObjectData != null;
             private void CreateObject()
             {
                 var newData = curObjectData?.Clone();
                 if (newData != null)
-                {
-                    waveDataObserver.AddObject(newData);
                     EventManager.CreateObject(newData);
-                }
             }
-            public void SelectWave(IEditorData data) => waveDataObserver = data as WaveDataObserver;
             public override void Display(IEditorData data)
             {
                 bool isNewData = SetData(data);
@@ -66,7 +60,6 @@ namespace SkyStrike
                 curObjectData = newData;
                 if (curObjectData != null)
                 {
-
                     if (!curObjectData.isMetaData)
                     {
                         addObjectBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Duplicate";

@@ -111,7 +111,7 @@ namespace SkyStrike
                 SelectCurrentActionMenu();
             }
             public void SelectCurrentActionMenu()
-                => switchActionButtonGroup.SelectAndInvoke((int)curActionType);
+                => switchActionButtonGroup.SelectAndInvokeItem((int)curActionType);
             private void SelectActionMenu(int index) => SelectActionMenu((EActionType)index);
             private void SelectActionMenu(EActionType actionType)
             {

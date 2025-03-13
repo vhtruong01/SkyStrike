@@ -13,7 +13,7 @@ namespace SkyStrike
             public void OnlySetData(T data) => this.data = data;
             public void SetData(T data)
             {
-                this.data = data;
+                OnlySetData(data);
                 onChangeData.Invoke(this.data);
             }
             public void Bind(UnityAction<T> call)
@@ -24,6 +24,7 @@ namespace SkyStrike
             public void Unbind(UnityAction<T> action) => onChangeData.RemoveListener(action);
             public void UnbindAll() => onChangeData.RemoveAllListeners();
             public void ResetData() => data = default;
+            public override string ToString() => data.ToString();
         }
     }
 }

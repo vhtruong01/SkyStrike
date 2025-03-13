@@ -489,8 +489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 0}
   spaceItem: {fileID: 3350354912546782538}
-  objectName: {fileID: 2785719531833416092}
-  objectId: {fileID: 3544972142576301258}
+  itemName: {fileID: 2785719531833416092}
+  itemId: {fileID: 3544972142576301258}
 --- !u!1 &4247341465432434840
 GameObject:
   m_ObjectHideFlags: 0
