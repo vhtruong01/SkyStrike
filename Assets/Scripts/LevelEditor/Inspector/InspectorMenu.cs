@@ -55,20 +55,14 @@ namespace SkyStrike
                 SelectAndSetDataSubMenu(data, index);
                 subMenuList[1 - index].Display(data);
             }
-            private void SelectMetaObject(IEditorData data)
-            {
-                SelectAndSetDataSubMenu(data, 0);
-                subMenuList[1].Display(null);
-            }
+            private void SelectMetaObject(IEditorData data) => SelectAndSetDataSubMenu(data, 0);
             protected override void SelectWave(IEditorData data)
             {
                 SelectObject(null);
                 SelectAndSetDataSubMenu(data, 2);
             }
             protected override void CreateObject(IEditorData data) { }
-            protected override void RemoveObject(IEditorData data)
-            {
-            }
+            protected override void RemoveObject(IEditorData data) => SelectObject(null);
         }
     }
 }

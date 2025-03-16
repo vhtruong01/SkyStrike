@@ -37,7 +37,11 @@ namespace SkyStrike
             public static void SelectObject(IEditorData data) => onSelectObject.Invoke(data);
             public static void RemoveObject(IEditorData data) => onRemoveObject.Invoke(data);
             public static void SetRefObject(IEditorData data) => onSetRefObject.Invoke(data);
-            public static void SelectMetaObject(IEditorData data) => onSelectMetaObject.Invoke(data);
+            public static void SelectMetaObject(IEditorData data)
+            {
+                onSelectObject.Invoke(null);
+                onSelectMetaObject.Invoke(data);
+            }
             public static void CreateObject(IEditorData data) => onCreateObject.Invoke(data);
             public static void SelectWave(IEditorData data) => onSelectWave.Invoke(data);
             public static void SelectLevel(IEditorData data) => onSelectLevel.Invoke(data);

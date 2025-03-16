@@ -16,7 +16,11 @@ namespace SkyStrike
                 actionDataList.Add(actionData);
                 return actionData;
             }
-            public void Remove(ActionDataGroupObserver data) => actionDataList.Remove(data);
+            public void Remove(ActionDataGroupObserver data)
+            {
+                if (actionDataList.Count > 1)
+                    actionDataList.Remove(data);
+            }
             public void Swap(int leftIndex, int rightIndex)
             {
                 if (leftIndex > 0 & rightIndex < actionDataList.Count)
@@ -27,6 +31,8 @@ namespace SkyStrike
                 PhaseDataObserver newPhase = new();
                 foreach (var actionData in actionDataList)
                     newPhase.actionDataList.Add(actionData.Clone());
+                if (newPhase.actionDataList.Count == 0)
+                    newPhase.Create();
                 return newPhase;
             }
         }

@@ -35,13 +35,19 @@ namespace SkyStrike
                     itemUIGroupPool.CreateItem(objectDataObserver);
                 }
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
-                {
-                    //onclick
-                }
+                    selectObjectTypeBtn.GetItem(i).onSelectUI.AddListener(SelectObjectType);
+            }
+            private void SelectObjectType(int type)
+            {
+                //
             }
             protected override void CreateObject(IEditorData data) { }
             protected override void RemoveObject(IEditorData data) { }
-            protected override void SelectObject(IEditorData data) => itemUIGroupPool.SelectNone();
+            protected override void SelectObject(IEditorData data)
+            {
+                if (data != null)
+                    itemUIGroupPool.SelectNone();
+            }
             protected override void SelectWave(IEditorData data) => itemUIGroupPool.SelectNone();
             public void Start()
             {

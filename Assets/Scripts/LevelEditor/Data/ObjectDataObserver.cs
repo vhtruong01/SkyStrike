@@ -29,7 +29,6 @@ namespace SkyStrike
                 name = new();
                 phase = new();
                 id = -1;
-                refData = null;
             }
             public bool IsValidChild(ObjectDataObserver data)
             {
@@ -51,7 +50,7 @@ namespace SkyStrike
                 newData.delay.SetData(delay.data);
                 newData.name.SetData(name.data);
                 newData.scale.SetData(scale.data);
-                newData.refData = refData;
+                newData.refData = null;
                 newData.phase = phase.Clone();
                 return newData;
             }

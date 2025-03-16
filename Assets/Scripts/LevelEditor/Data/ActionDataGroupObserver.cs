@@ -7,36 +7,18 @@ namespace SkyStrike
             private MoveDataObserver moveAction;
             private FireDataObserver fireAction;
 
-            public void AddActionData(EActionType actionType)
+            public ActionDataGroupObserver()
             {
-                switch (actionType)
-                {
-                    case EActionType.Move:
-                        moveAction ??= new();
-                        break;
-                    case EActionType.Fire:
-                        fireAction ??= new();
-                        break;
-                }
-            }
-            public void RemoveActionData(EActionType actionType)
-            {
-                switch (actionType)
-                {
-                    case EActionType.Move:
-                        moveAction = null;
-                        break;
-                    case EActionType.Fire:
-                        fireAction = null;
-                        break;
-                }
+                moveAction = new();
+                fireAction = new();
             }
             public ActionDataGroupObserver Clone()
             {
-                ActionDataGroupObserver actionData = new ();
-                actionData.fireAction = fireAction?.Clone();
-                actionData.moveAction = moveAction?.Clone();
-                return actionData;
+                return new()
+                {
+                    fireAction = fireAction.Clone(),
+                    moveAction = moveAction.Clone()
+                };
             }
             public IEditorData GetActionData(EActionType actionType)
             {
@@ -47,7 +29,6 @@ namespace SkyStrike
                     _ => null,
                 };
             }
-            public bool IsEmpty() => moveAction == null & fireAction == null;
         }
     }
 }

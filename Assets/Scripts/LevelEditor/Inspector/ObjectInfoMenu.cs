@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ namespace SkyStrike
             [SerializeField] private FloatProperty delay;
             [SerializeField] private Image referenceObjectIcon;
             [SerializeField] private Button referenceObjectBtn;
+            [SerializeField] private TextMeshProUGUI referenceObjectText;
             [SerializeField] private FloatSelectObjectMenu selectObjectMenu;
             private ObjectDataObserver curObjectData;
 
@@ -26,6 +28,21 @@ namespace SkyStrike
             {
                 addObjectBtn.onClick.AddListener(CreateObject);
                 referenceObjectBtn.onClick.AddListener(selectObjectMenu.Expand);
+                EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
+            }
+            private void DisplayReferenceObject(IEditorData data)
+            {
+                if (data is not ObjectDataObserver refData)
+                {
+                    referenceObjectIcon.color = new();
+                    referenceObjectText.text = "";
+                }
+                else
+                {
+                    referenceObjectIcon.color = refData.metaData.data.color;
+                    referenceObjectIcon.sprite = refData.metaData.data.sprite;
+                    referenceObjectText.text = refData.name.data;
+                }
             }
             public override bool CanDisplay() => curObjectData != null;
             private void CreateObject()
@@ -51,6 +68,7 @@ namespace SkyStrike
                     type.text = curObjectData.metaData.data.type;
                     icon.sprite = curObjectData.metaData.data.sprite;
                     icon.color = curObjectData.metaData.data.color;
+                    DisplayReferenceObject(curObjectData.refData);
                 }
             }
             public override bool SetData(IEditorData data)
@@ -70,6 +88,7 @@ namespace SkyStrike
                         addObjectBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Create";
                         referenceObjectBtn.interactable = false;
                         referenceObjectIcon.color = new();
+                        referenceObjectText.text = "";
                     }
                 }
                 return true;

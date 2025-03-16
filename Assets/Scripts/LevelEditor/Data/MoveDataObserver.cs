@@ -20,10 +20,16 @@ namespace SkyStrike
                 delay = new();
                 isSyncRotation = new();
             }
-
             public MoveDataObserver Clone()
             {
-                throw new System.NotImplementedException();
+                MoveDataObserver newAction = new();
+                newAction.dirX.SetData(dirX.data);
+                newAction.dirY.SetData(dirY.data);
+                newAction.rotation.SetData(rotation.data);
+                newAction.scale.SetData(scale.data);
+                newAction.delay.SetData(delay.data);
+                newAction.isSyncRotation.SetData(isSyncRotation.data);
+                return newAction;
             }
         }
     }

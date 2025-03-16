@@ -91,8 +91,22 @@ namespace SkyStrike
                     SelectItem(index);
                 else if (canDeselect) SelectNone();
             }
-            public void MoveLeftSelectedItem(int amount = 1) => MoveItemByIndex(selectedItemIndex, selectedItemIndex - amount);
-            public void MoveRightSelectedItem(int amount = 1) => MoveItemByIndex(selectedItemIndex, selectedItemIndex + amount);
+            public void MoveLeftSelectedItem()
+            {
+                if (selectedItemIndex - 1 >= 0)
+                {
+                    SwapItem(selectedItemIndex, selectedItemIndex - 1);
+                    selectedItemIndex -= 1;
+                }
+            }
+            public void MoveRightSelectedItem()
+            {
+                if (selectedItemIndex + 1 < items.Count)
+                {
+                    SwapItem(selectedItemIndex, selectedItemIndex + 1);
+                    selectedItemIndex += 1;
+                }
+            }
             private void ReleaseItem(int index)
             {
                 var item = items[index];
@@ -107,23 +121,21 @@ namespace SkyStrike
                 pool.Release(item);
                 item.RemoveData();
             }
-            public void MoveItemByIndex(int oldIndex, int newIndex)
+            private void SwapItem(int i1, int i2)
             {
-                var oldItem = GetItem(oldIndex);
-                var newItem = GetItem(newIndex);
-                if (oldItem == null || newItem == null || oldItem == newItem) return;
-                oldItem?.gameObject.transform.SetSiblingIndex(newIndex + pool.CountInactive);
-                items.RemoveAt(oldIndex);
-                items.Insert(newIndex, oldItem);
-                int n = Mathf.Max(oldIndex, newIndex);
-                for (int i = Mathf.Min(oldIndex, newIndex); i <= n; i++)
-                    items[i].index = i;
-                if (selectedItemIndex == oldIndex)
-                    selectedItemIndex = newIndex;
+                if (i1 > i2)
+                    (i1, i2) = (i2, i1);
+                var item1 = GetItem(i1);
+                var item2 = GetItem(i2);
+                item1.gameObject.transform.SetSiblingIndex(i2 + pool.CountInactive);
+                item2.gameObject.transform.SetSiblingIndex(i1 + pool.CountInactive);
+                (items[i2], items[i1]) = (items[i1], items[i2]);
+                items[i2].index = i2;
+                items[i1].index = i1;
             }
             public void MoveItemArray(int startIndex, int newIndex, int len = 1)
             {
-                print(startIndex + " " + newIndex + " " + len);
+                //print(startIndex + " " + newIndex + " " + len);
                 IUIElement[] itemArr = new IUIElement[len];
                 for (int i = 0; i < len; i++)
                 {
@@ -162,10 +174,6 @@ namespace SkyStrike
                         items[i].index = i;
                     }
                 }
-                string rs = "";
-                for (int i = 0; i < items.Count; i++)
-                    rs += i.ToString() + " " + items[i].index + " ||  ";
-                print(rs);
             }
             public void RemoveSelectedItem() => RemoveItem(selectedItemIndex);
             public void RemoveItem(IEditorData data) => RemoveItem(GetItemIndex(data));

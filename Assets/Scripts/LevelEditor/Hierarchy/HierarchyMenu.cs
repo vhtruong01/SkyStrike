@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,15 +30,15 @@ namespace SkyStrike
                     hierarchyUIGroupPool.CreateItem(objectData);
             }
             protected override void SelectObject(IEditorData data) => hierarchyUIGroupPool.SelectItem(data);
-            public void ReferenceObject(IEditorData data)
+            private void ReferenceObject(IEditorData data)
             {
                 if (!hierarchyUIGroupPool.TryGetValidSelectedIndex(out int curObjectIndex)) return;
-
                 HierarchyItemUI refItem = null;
                 int refObjectIndex = -1;
                 var refData = data as ObjectDataObserver;
                 var curItem = hierarchyUIGroupPool.GetItem(curObjectIndex) as HierarchyItemUI;
                 var curData = hierarchyUIGroupPool.GetSelectedItem().data as ObjectDataObserver;
+                int newPos = -1;
                 hierarchyUIGroupPool.SelectNone();
                 if (curData.refData != null)
                 {
@@ -50,10 +51,10 @@ namespace SkyStrike
                 {
                     refObjectIndex = hierarchyUIGroupPool.GetItemIndex(refData);
                     refItem = hierarchyUIGroupPool.GetItem(refObjectIndex) as HierarchyItemUI;
-                    refItem.SetChild(curItem);
+                    refItem.AddChild(curItem);
+                    newPos = refObjectIndex;// + refItem.GetChildCount();
                 }
-                else refObjectIndex = -1;
-                hierarchyUIGroupPool.MoveItemArray(curObjectIndex, refObjectIndex, curItem.GetChildCount() + 1);
+                hierarchyUIGroupPool.MoveItemArray(curObjectIndex, newPos, curItem.GetChildCount() + 1);
                 hierarchyUIGroupPool.SelectItem(curData);
             }
 
@@ -62,11 +63,51 @@ namespace SkyStrike
                 //
                 var waveDataObserver = data as WaveDataObserver;
                 hierarchyUIGroupPool.Clear();
+                Dictionary<ObjectDataObserver, Node> marked = new();
                 foreach (var objectData in waveDataObserver.objectList)
-                    hierarchyUIGroupPool.CreateItem(objectData);
+                    CreateNode(objectData, marked);
+                foreach (var node in marked)
+                    if (node.Value.parent == null)
+                        CreateUI(node.Value);
+            }
+            private HierarchyItemUI CreateUI(Node node)
+            {
+                hierarchyUIGroupPool.CreateItem(out HierarchyItemUI itemUI, node.data);
+                for (int i = 0; i < node.children.Count; i++)
+                    itemUI.AddChild(CreateUI(node.children[i]));
+                return itemUI;
+            }
+            private Node CreateNode(ObjectDataObserver data, Dictionary<ObjectDataObserver, Node> marked)
+            {
+                if (!marked.TryGetValue(data, out Node node))
+                {
+                    node = new(data);
+                    if (data.refData != null)
+                    {
+                        Node parent = CreateNode(data.refData, marked);
+                        parent.children.Add(node);
+                        node.parent = parent;
+                        node.level = parent.level + 1;
+                    }
+                    marked.Add(data, node);
+                }
+                return node;
             }
             protected override void RemoveObject(IEditorData data)
             {
+            }
+            private class Node
+            {
+                public int level = 0;
+                public ObjectDataObserver data;
+                public Node parent;
+                public List<Node> children;
+
+                public Node(ObjectDataObserver data)
+                {
+                    this.data = data;
+                    children = new();
+                }
             }
         }
     }

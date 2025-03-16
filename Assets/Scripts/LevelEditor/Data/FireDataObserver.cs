@@ -6,7 +6,8 @@ namespace SkyStrike
         {
             public FireDataObserver Clone()
             {
-                return null;
+                FireDataObserver newAction = new();
+                return newAction;
             }
         }
     }

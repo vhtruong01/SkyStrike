@@ -23,6 +23,7 @@ namespace SkyStrike
                 objectDataObserver = this.data as ObjectDataObserver;
                 objectDataObserver.name.Bind(ChangeName);
                 itemId.text = "id: " + objectDataObserver.id.ToString();
+                spaceItem.sizeDelta = new(0, spaceItem.sizeDelta.y);
                 children.Clear();
             }
             public void RemoveChild(HierarchyItemUI child)
@@ -30,14 +31,14 @@ namespace SkyStrike
                 children.Remove(child);
                 child.SetPadding(0);
             }
-            public void SetChild(HierarchyItemUI newChild)
+            public void AddChild(HierarchyItemUI newChild)
             {
                 if (newChild == this || children.Contains(newChild))
                     throw new System.Exception("invalid child");
                 children.Add(newChild);
                 newChild.SetPadding((data as ObjectDataObserver).GetParentCount() + 1);
             }
-            public void SetPadding(int parentCount)
+            private void SetPadding(int parentCount)
             {
                 spaceItem.sizeDelta = new(paddingLen * parentCount, spaceItem.sizeDelta.y);
                 foreach (var child in children)

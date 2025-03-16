@@ -38,9 +38,7 @@ namespace SkyStrike
                 else itemUIGroupPool.SelectNone();
                 DisplayRefObject(curObjectData?.refData);
             }
-            protected override void RemoveObject(IEditorData data)
-            {
-            }
+            protected override void RemoveObject(IEditorData data) => SelectObject(null);
             protected override void SelectWave(IEditorData data)
             {
                 var waveDataObserver = data as WaveDataObserver;
