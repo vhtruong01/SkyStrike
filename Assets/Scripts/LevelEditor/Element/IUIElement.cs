@@ -10,6 +10,7 @@ namespace SkyStrike
         public interface IUIElement : IPointerClickHandler
         {
             public int? index { get;set; }
+            public bool canRemove {  get; set; }
             public GameObject gameObject { get; }
             public UnityEvent<IEditorData> onClick { get; set; }
             public UnityEvent<int> onSelectUI { get; set; }

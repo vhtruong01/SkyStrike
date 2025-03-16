@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +22,6 @@ namespace SkyStrike
                 image.color = objectDataObserver.metaData.data.color;
             }
             private void ChangeName(string name) => itemName.text = name;
-
         }
     }
 }

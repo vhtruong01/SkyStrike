@@ -13,14 +13,13 @@ namespace SkyStrike
             [SerializeField] private Image itemIcon;
             [SerializeField] private TextMeshProUGUI itemId;
             [SerializeField] private TextMeshProUGUI itemName;
-            [SerializeField] private TextMeshProUGUI currentObjectWarning;
             private ObjectDataObserver curObjectData;
 
             public override void Awake()
             {
                 base.Awake();
                 itemUIGroupPool.selectDataCall = SelectReferenceObject;
-                DisplayNone();
+                DisplayRefObject(null);
             }
             public override void Init() { }
             public void OnDrag(PointerEventData eventData)
@@ -34,10 +33,10 @@ namespace SkyStrike
             protected override void SelectObject(IEditorData data)
             {
                 curObjectData = data as ObjectDataObserver;
-                if (curObjectData != null && curObjectData.refData != null)
+                if (curObjectData != null)
                     itemUIGroupPool.SelectItem(curObjectData.refData);
                 else itemUIGroupPool.SelectNone();
-                SelectReferenceObject(curObjectData?.refData);
+                DisplayRefObject(curObjectData?.refData);
             }
             protected override void RemoveObject(IEditorData data)
             {
@@ -52,32 +51,33 @@ namespace SkyStrike
             private void DisplayObject(ObjectDataObserver data) => itemUIGroupPool.CreateItem(data);
             private void SelectReferenceObject(IEditorData data)
             {
-                if (curObjectData != null)
+                var refData = data as ObjectDataObserver;
+                if (curObjectData != null && curObjectData.refData != refData)
                 {
-                    curObjectData.refData = data as ObjectDataObserver;
-                    if (curObjectData.refData != null)
+                    if (refData == null || refData.IsValidChild(curObjectData))
                     {
-                        itemIcon.sprite = curObjectData.refData.metaData.data.sprite;
-                        itemIcon.color = curObjectData.refData.metaData.data.color;
-                        itemName.text = "Name: " + curObjectData.refData.name;
-                        itemId.text = "Id: " + curObjectData.refData.id;
-                        currentObjectWarning.gameObject.SetActive(false);
-                        if (curObjectData.refData == curObjectData)
-                        {
-                            curObjectData.refData = null;
-                            currentObjectWarning.gameObject.SetActive(true);
-                        }
-                        return;
+                        EventManager.SetRefObject(refData);
+                        curObjectData.refData = refData;
                     }
+                    else refData = null;
                 }
-                DisplayNone();
+                DisplayRefObject(refData);
             }
-            private void DisplayNone()
+            private void DisplayRefObject(ObjectDataObserver refData)
             {
-                itemIcon.color = new();
-                itemName.text = "";
-                itemId.text = "";
-                currentObjectWarning.gameObject.SetActive(false);
+                if (refData != null)
+                {
+                    itemIcon.sprite = refData.metaData.data.sprite;
+                    itemIcon.color = refData.metaData.data.color;
+                    itemName.text = "Name: " + refData.name;
+                    itemId.text = "Id: " + refData.id;
+                }
+                else
+                {
+                    itemIcon.color = new();
+                    itemName.text = "";
+                    itemId.text = "";
+                }
             }
         }
     }

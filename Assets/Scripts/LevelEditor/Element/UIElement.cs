@@ -11,6 +11,7 @@ namespace SkyStrike
         {
             [SerializeField] protected Image bg;
             public int? index { get; set; }
+            public bool canRemove { get; set; }
             public IEditorData data { get; set; }
             public UnityEvent<IEditorData> onClick { get; set; }
             public UnityEvent<int> onSelectUI { get; set; }
@@ -27,8 +28,8 @@ namespace SkyStrike
             public virtual void RemoveData() => data = null;
             public virtual void InvokeData()
             {
-                if (data != null)
-                    onClick.Invoke(data);
+                if (data != null || !canRemove)
+                    onClick?.Invoke(data);
             }
             public virtual void SelectAndInvoke()
             {

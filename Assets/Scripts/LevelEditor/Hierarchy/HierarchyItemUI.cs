@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,7 @@ namespace SkyStrike
             [SerializeField] private RectTransform spaceItem;
             [SerializeField] private TextMeshProUGUI itemName;
             [SerializeField] private TextMeshProUGUI itemId;
+            private readonly HashSet<HierarchyItemUI> children = new();
 
             public override void SetData(IEditorData data)
             {
@@ -21,11 +23,27 @@ namespace SkyStrike
                 objectDataObserver = this.data as ObjectDataObserver;
                 objectDataObserver.name.Bind(ChangeName);
                 itemId.text = "id: " + objectDataObserver.id.ToString();
+                children.Clear();
             }
-            public void SetPadding(int level)
+            public void RemoveChild(HierarchyItemUI child)
             {
-                spaceItem.sizeDelta = new(paddingLen * level, spaceItem.sizeDelta.y);
+                children.Remove(child);
+                child.SetPadding(0);
             }
+            public void SetChild(HierarchyItemUI newChild)
+            {
+                if (newChild == this || children.Contains(newChild))
+                    throw new System.Exception("invalid child");
+                children.Add(newChild);
+                newChild.SetPadding((data as ObjectDataObserver).GetParentCount() + 1);
+            }
+            public void SetPadding(int parentCount)
+            {
+                spaceItem.sizeDelta = new(paddingLen * parentCount, spaceItem.sizeDelta.y);
+                foreach (var child in children)
+                    child.SetPadding(parentCount + 1);
+            }
+            public int GetChildCount() => children.Count;
             public override void OnPointerClick(PointerEventData eventData) => InvokeData();
             private void ChangeName(string name) => itemName.text = name;
         }

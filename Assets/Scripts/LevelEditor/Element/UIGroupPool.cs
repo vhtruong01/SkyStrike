@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
@@ -25,13 +26,18 @@ namespace SkyStrike
                     selectedColor = EditorSetting.btnSelectedColor;
                     defaultColor = EditorSetting.btnDefaultColor;
                 }
+                foreach (var item in items)
+                {
+                    item.canRemove = false;
+                    item.onClick.AddListener(InvokeData);
+                }
             }
-            public override void Init() { }
             private IUIElement CreateObject()
             {
                 var item = Instantiate(prefab, transform, false).GetComponent<IUIElement>()
                     ?? throw new Exception("wrong prefab type");
                 item.gameObject.name = prefab.name;
+                item.canRemove = true;
                 item.Init();
                 item.onSelectUI.AddListener(SelectItem);
                 item.onClick.AddListener(InvokeData);
@@ -39,7 +45,7 @@ namespace SkyStrike
             }
             public void InvokeData(IEditorData data)
             {
-                if (canDeselect & data == GetSelectedItem()?.data)
+                if (canDeselect && data == GetSelectedItem()?.data)
                     selectDataCall?.Invoke(null);
                 else
                     selectDataCall?.Invoke(data);
@@ -65,8 +71,10 @@ namespace SkyStrike
             public int GetItemIndex(IEditorData data)
             {
                 for (int i = 0; i < items.Count; i++)
+                {
                     if (items[i].data == data)
                         return i;
+                }
                 return -1;
             }
             public IUIElement GetItem(IEditorData data)
@@ -78,8 +86,9 @@ namespace SkyStrike
             }
             public void SelectItem(IEditorData data)
             {
-                if (data != null)
-                    SelectItem(GetItemIndex(data));
+                int index = GetItemIndex(data);
+                if (index != -1)
+                    SelectItem(index);
                 else if (canDeselect) SelectNone();
             }
             public void MoveLeftSelectedItem(int amount = 1) => MoveItemByIndex(selectedItemIndex, selectedItemIndex - amount);
@@ -112,12 +121,59 @@ namespace SkyStrike
                 if (selectedItemIndex == oldIndex)
                     selectedItemIndex = newIndex;
             }
+            public void MoveItemArray(int startIndex, int newIndex, int len = 1)
+            {
+                print(startIndex + " " + newIndex + " " + len);
+                IUIElement[] itemArr = new IUIElement[len];
+                for (int i = 0; i < len; i++)
+                {
+                    itemArr[i] = GetItem(i + startIndex);
+                    int newPos;
+                    if (newIndex < 0)
+                        newPos = items.Count - 1 + pool.CountInactive;
+                    else
+                        newPos = newIndex + i + pool.CountInactive + (newIndex > startIndex + i ? 0 : 1);
+                    itemArr[i].gameObject.transform.SetSiblingIndex(newPos);
+                }
+                if (startIndex > newIndex && newIndex >= 0)
+                {
+                    for (int i = startIndex + len - 1; i > newIndex + len; i--)
+                    {
+                        items[i] = items[i - len];
+                        items[i].index = i;
+                    }
+                    for (int i = newIndex + len; i > newIndex; i--)
+                    {
+                        items[i] = itemArr[i - newIndex - 1];
+                        items[i].index = i;
+                    }
+                }
+                else
+                {
+                    if (newIndex < 0) newIndex = items.Count - 1;
+                    for (int i = startIndex; i <= newIndex - len; i++)
+                    {
+                        items[i] = items[i + len];
+                        items[i].index = i;
+                    }
+                    for (int i = newIndex - len + 1; i <= newIndex; i++)
+                    {
+                        items[i] = itemArr[i - newIndex + len - 1];
+                        items[i].index = i;
+                    }
+                }
+                string rs = "";
+                for (int i = 0; i < items.Count; i++)
+                    rs += i.ToString() + " " + items[i].index + " ||  ";
+                print(rs);
+            }
             public void RemoveSelectedItem() => RemoveItem(selectedItemIndex);
             public void RemoveItem(IEditorData data) => RemoveItem(GetItemIndex(data));
             public void RemoveItem(int index)
             {
                 var item = GetItem(index);
                 if (item == null || (!canDeselect && items.Count < 2)) return;
+                if (!item.canRemove) return;
                 ReleaseItem(index);
                 for (int i = index; i < items.Count; i++)
                     items[i].index = i;
@@ -135,10 +191,15 @@ namespace SkyStrike
             }
             public void Clear()
             {
+                List<IUIElement> unremovedItem = new();
                 SelectNone();
                 for (int i = 0; i < items.Count; i++)
-                    ReleaseItem(items[i]);
-                items.Clear();
+                {
+                    if (items[i].canRemove)
+                        ReleaseItem(items[i]);
+                    else unremovedItem.Add(items[i]);
+                }
+                items = unremovedItem;
             }
             protected override void Highlight(IUIElement e)
                 => SetBackgroundColor(e, selectedColor);

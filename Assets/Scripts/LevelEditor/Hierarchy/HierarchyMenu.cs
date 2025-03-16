@@ -19,36 +19,51 @@ namespace SkyStrike
                     Collapse();
                     addObjectMenu.Expand();
                 });
+                EventManager.onSetRefObject.AddListener(ReferenceObject);
                 hierarchyUIGroupPool.selectDataCall = EventManager.SelectObject;
             }
             public override void Init() { }
             protected override void CreateObject(IEditorData data)
             {
                 if (data is ObjectDataObserver objectData)
-                    DisplayObject(objectData);
+                    hierarchyUIGroupPool.CreateItem(objectData);
             }
             protected override void SelectObject(IEditorData data) => hierarchyUIGroupPool.SelectItem(data);
-            private void DisplayObject(ObjectDataObserver objectData)
+            public void ReferenceObject(IEditorData data)
             {
-                hierarchyUIGroupPool.CreateItem(objectData);
-                var originalObject = hierarchyUIGroupPool.GetItem(objectData) as HierarchyItemUI;
-                //
-                //var refObject = hierarchyUIGroupPool.GetSelectedItem();
-                //if (refObject != null)
-                //{
-                //    var refData = refObject.data as ObjectDataObserver;
-                //    objectData.refId = refData.id;
-                //    hierarchyUIGroupPool.MoveItemByIndex(originalObject.index.Value, refObject.index.Value + 1);
-                //}
-                //originalObject.SetPadding(waveDataObserver.GetHierarchyLevel(objectData.id));
+                if (!hierarchyUIGroupPool.TryGetValidSelectedIndex(out int curObjectIndex)) return;
+
+                HierarchyItemUI refItem = null;
+                int refObjectIndex = -1;
+                var refData = data as ObjectDataObserver;
+                var curItem = hierarchyUIGroupPool.GetItem(curObjectIndex) as HierarchyItemUI;
+                var curData = hierarchyUIGroupPool.GetSelectedItem().data as ObjectDataObserver;
+                hierarchyUIGroupPool.SelectNone();
+                if (curData.refData != null)
+                {
+                    refObjectIndex = hierarchyUIGroupPool.GetItemIndex(curData.refData);
+                    refItem = hierarchyUIGroupPool.GetItem(refObjectIndex) as HierarchyItemUI;
+                    if (refItem != null)
+                        refItem.RemoveChild(curItem);
+                }
+                if (refData != null)
+                {
+                    refObjectIndex = hierarchyUIGroupPool.GetItemIndex(refData);
+                    refItem = hierarchyUIGroupPool.GetItem(refObjectIndex) as HierarchyItemUI;
+                    refItem.SetChild(curItem);
+                }
+                else refObjectIndex = -1;
+                hierarchyUIGroupPool.MoveItemArray(curObjectIndex, refObjectIndex, curItem.GetChildCount() + 1);
+                hierarchyUIGroupPool.SelectItem(curData);
             }
-            //public void ReferenceObject(int index,int refIndex) => 
+
             protected override void SelectWave(IEditorData data)
             {
+                //
                 var waveDataObserver = data as WaveDataObserver;
                 hierarchyUIGroupPool.Clear();
                 foreach (var objectData in waveDataObserver.objectList)
-                    DisplayObject(objectData);
+                    hierarchyUIGroupPool.CreateItem(objectData);
             }
             protected override void RemoveObject(IEditorData data)
             {

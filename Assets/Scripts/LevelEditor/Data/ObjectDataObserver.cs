@@ -31,9 +31,15 @@ namespace SkyStrike
                 id = -1;
                 refData = null;
             }
+            public bool IsValidChild(ObjectDataObserver data)
+            {
+                if (data == this) return false;
+                if (refData == null) return true;
+                return refData.IsValidChild(data);
+            }
             public int GetParentCount()
             {
-                return 1 + (refData == null ? 0 : refData.GetParentCount());
+                return 1 + (refData == null ? -1 : refData.GetParentCount());
             }
             public ObjectDataObserver Clone()
             {

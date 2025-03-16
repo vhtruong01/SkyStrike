@@ -21,10 +21,6 @@ namespace SkyStrike
                     if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var item)) continue;
                     items.Add(item);
                 }
-                Init();
-            }
-            public virtual void Init()
-            {
                 for (int i = 0; i < items.Count; i++)
                 {
                     items[i].index = i;
