@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SkyStrike
@@ -14,7 +15,7 @@ namespace SkyStrike
             }
             public void PlayGame()
             {
-
+                SceneManager.LoadScene(1);
             }
         }
     }
