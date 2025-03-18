@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,6 +51,16 @@ namespace SkyStrike
                     newWave.AddObject(objectData.Clone());
                 //
                 return newWave;
+            }
+
+            public IGameData ToGameData()
+            {
+                WaveData waveData = new();
+                waveData.delay = delay.data;
+                waveData.objectDataArr = new ObjectData[objectList.Count];
+                for (int i = 0; i < objectList.Count; i++)
+                    waveData.objectDataArr[i] = objectList[i].ToGameData() as ObjectData;
+                return waveData;
             }
         }
     }

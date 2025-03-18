@@ -1,3 +1,5 @@
+using SkyStrike.Game;
+
 namespace SkyStrike
 {
     namespace Editor
@@ -30,6 +32,16 @@ namespace SkyStrike
                 newAction.delay.SetData(delay.data);
                 newAction.isSyncRotation.SetData(isSyncRotation.data);
                 return newAction;
+            }
+            public IGameData ToGameData()
+            {
+                MoveData moveData = new();
+                moveData.isSyncRotation = isSyncRotation.data;
+                moveData.rotation = rotation.data;
+                moveData.delay = delay.data;
+                moveData.scale = scale.data;
+                moveData.dir = new(dirX.data, dirY.data);
+                return moveData;
             }
         }
     }

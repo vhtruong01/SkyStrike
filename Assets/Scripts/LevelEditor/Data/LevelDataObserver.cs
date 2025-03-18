@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using System.Collections.Generic;
 
 namespace SkyStrike
@@ -6,8 +7,8 @@ namespace SkyStrike
     {
         public class LevelDataObserver : IDataList<WaveDataObserver>
         {
-            private string name;
-            private int star;
+            public string name;
+            public int star;
             private List<WaveDataObserver> waveList;
 
             public LevelDataObserver() => waveList = new();
@@ -23,6 +24,14 @@ namespace SkyStrike
             {
                 if (leftIndex > 0 & rightIndex < waveList.Count)
                     (waveList[leftIndex], waveList[rightIndex]) = (waveList[leftIndex], waveList[rightIndex]);
+            }
+            public IGameData ToGameData()
+            {
+                LevelData levelData = new();
+                levelData.waves = new WaveData[waveList.Count];
+                for (int i = 0; i < waveList.Count; i++)
+                    levelData.waves[i] = waveList[i].ToGameData() as WaveData;
+                return levelData;
             }
         }
     }

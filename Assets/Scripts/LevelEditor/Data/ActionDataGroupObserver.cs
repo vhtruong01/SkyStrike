@@ -1,3 +1,5 @@
+using SkyStrike.Game;
+
 namespace SkyStrike
 {
     namespace Editor
@@ -28,6 +30,14 @@ namespace SkyStrike
                     EActionType.Fire => fireAction,
                     _ => null,
                 };
+            }
+
+            public IGameData ToGameData()
+            {
+                ActionGroupData actionGroupData = new();
+                actionGroupData.moveData = moveAction.ToGameData() as MoveData;
+                actionGroupData.fireData = fireAction.ToGameData() as FireData;
+                return actionGroupData;
             }
         }
     }

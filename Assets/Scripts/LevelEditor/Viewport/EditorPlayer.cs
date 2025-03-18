@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SkyStrike
@@ -13,10 +12,7 @@ namespace SkyStrike
             {
                 playGameButton.onClick.AddListener(PlayGame);
             }
-            public void PlayGame()
-            {
-                SceneManager.LoadScene(1);
-            }
+            public void PlayGame() => EventManager.Play();
         }
     }
 }

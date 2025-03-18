@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using UnityEngine;
 
 namespace SkyStrike
@@ -71,6 +72,22 @@ namespace SkyStrike
                 delay.UnbindAll();
                 name.UnbindAll();
                 scale.UnbindAll();
+            }
+            public IGameData ToGameData()
+            {
+                ObjectData objectData = new();
+                objectData.id = id;
+                if (refData != null)
+                    objectData.refId = refData.id;
+                objectData.metaId = metaData.data.id;
+                objectData.delay = delay.data;
+                objectData.name = name.data;
+                objectData.scale = new(scale.data);
+                objectData.position = new(position.data);
+                objectData.velocity = new(velocity.data);
+                objectData.rotation = rotation.data;
+                objectData.phase = phase.ToGameData() as PhaseData;
+                return objectData;
             }
         }
     }

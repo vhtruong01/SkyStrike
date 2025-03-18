@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using System.Collections.Generic;
 
 namespace SkyStrike
@@ -34,6 +35,14 @@ namespace SkyStrike
                 if (newPhase.actionDataList.Count == 0)
                     newPhase.Create();
                 return newPhase;
+            }
+            public IGameData ToGameData()
+            {
+                PhaseData phaseData = new();
+                phaseData.actions=new ActionGroupData[actionDataList.Count];
+                for (int i = 0; i < actionDataList.Count; i++)
+                    phaseData.actions[i] = actionDataList[i].ToGameData() as ActionGroupData;
+                return phaseData;
             }
         }
     }

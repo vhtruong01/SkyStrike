@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using UnityEngine;
 
 namespace SkyStrike
@@ -5,16 +6,15 @@ namespace SkyStrike
     namespace Editor
     {
         [CreateAssetMenu(fileName = "MetaData", menuName = "Data/ObjectMetaData")]
-        public class ObjectMetaData : ScriptableObject, IEditorData
+        public class ObjectMetaData : MetaData, IEditorData
         {
-            public string id;
             [field: SerializeField] public string type { get; set; }
             [field: SerializeField] public float rotation { get; set; }
             [field: SerializeField] public Vector2 position { get; set; }
             [field: SerializeField] public Vector2 scale { get; set; }
             [field: SerializeField] public Vector2 velocity { get; set; }
-            [field: SerializeField] public Sprite sprite { get; set; }
-            [field: SerializeField] public Color color { get; set; }
+
+            public IGameData ToGameData() => null;
         }
     }
 }

@@ -1,3 +1,5 @@
+using SkyStrike.Game;
+
 namespace SkyStrike
 {
     namespace Editor
@@ -8,6 +10,11 @@ namespace SkyStrike
             {
                 FireDataObserver newAction = new();
                 return newAction;
+            }
+            public IGameData ToGameData()
+            {
+                FireData fireData = new();
+                return fireData;
             }
         }
     }
