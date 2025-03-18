@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SkyStrike
@@ -8,12 +9,12 @@ namespace SkyStrike
     {
         public class MainGame : MonoBehaviour
         {
-            public static LevelData Level{ get; set; }
+            public static LevelData Level { get; set; }
             [SerializeField] private GameObjectManager gameObjectPool;
 
             public void Awake()
             {
-                Level = Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
+                Level ??= Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
             }
             public void Start() => StartCoroutine(PlayGame());
             public IEnumerator PlayGame()

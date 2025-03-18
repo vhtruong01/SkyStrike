@@ -14,10 +14,16 @@ namespace SkyStrike
             }
             public IEnumerator Begin(MoveData action)
             {
-                if(action.delay > 0) 
+                if (action.delay > 0)
                     yield return new WaitForSeconds(action.delay);
                 //rig.linearVelocity=action.
-                yield return null;
+                float delta = 0;
+                while (delta < 10)
+                {
+                    delta += Time.deltaTime;
+                    transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime);
+                    yield return null;
+                }
             }
         }
     }

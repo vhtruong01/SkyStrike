@@ -14,6 +14,7 @@ namespace SkyStrike
             public void Awake()
             {
                 pool = new(CreateObject);
+                EventManager.onRemoveObject.AddListener(RemoveItem);
             }
             private IGameObject CreateObject()
             {
