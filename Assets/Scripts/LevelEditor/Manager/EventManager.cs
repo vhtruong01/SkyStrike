@@ -21,7 +21,6 @@ namespace SkyStrike
             public static UnityEvent<IEditorData> onCreateObject { get; private set; }
             public static UnityEvent<IEditorData> onSelectWave { get; private set; }
             public static UnityEvent<IEditorData> onSelectLevel { get; private set; }
-            public static FuncEvent<IEditorData> onGetLevel { get; private set; }
 
             static EventManager()
             {
