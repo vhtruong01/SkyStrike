@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public interface ISubMenu
+        public interface ISubMenu : IObserver
         {
             public GameObject gameObject { get; }
             public bool SetData(IEditorData data);

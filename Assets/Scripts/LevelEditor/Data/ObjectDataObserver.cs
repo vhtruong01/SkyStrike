@@ -44,7 +44,7 @@ namespace SkyStrike
             public ObjectDataObserver Clone()
             {
                 ObjectDataObserver newData = new();
-                newData.metaData = metaData;
+                newData.metaData.SetData(metaData.data);
                 newData.rotation.SetData(rotation.data);
                 newData.position.SetData(position.data);
                 newData.velocity.SetData(velocity.data);

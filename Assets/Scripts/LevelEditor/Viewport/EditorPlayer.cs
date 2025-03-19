@@ -8,6 +8,7 @@ namespace SkyStrike
         public class EditorPlayer : MonoBehaviour
         {
             [SerializeField] private Button playGameButton;
+
             public void Awake()
             {
                 playGameButton.onClick.AddListener(PlayGame);

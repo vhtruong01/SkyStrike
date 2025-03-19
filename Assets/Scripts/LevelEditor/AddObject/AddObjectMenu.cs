@@ -26,16 +26,17 @@ namespace SkyStrike
             }
             public override void Init()
             {
-                foreach (var data in metaDataList)
+                foreach (var metaData in metaDataList)
                 {
                     ObjectDataObserver objectDataObserver = new();
                     objectDataObserver.isMetaData = true;
-                    objectDataObserver.metaData.SetData(data);
+                    objectDataObserver.metaData.SetData(metaData);
                     objectDataObserver.ResetData();
                     itemUIGroupPool.CreateItem(objectDataObserver);
                 }
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                     selectObjectTypeBtn.GetItem(i).onSelectUI.AddListener(SelectObjectType);
+                selectObjectTypeBtn.SelectFirstItem();
             }
             private void SelectObjectType(int type)
             {

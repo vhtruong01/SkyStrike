@@ -18,6 +18,13 @@ namespace SkyStrike
                 var actionDataGroup = this.data as ActionDataGroupObserver;
                 //
             }
+            //
+            public override void BindData()
+            {
+            }
+            public override void UnbindData()
+            {
+            }
         }
     }
 }

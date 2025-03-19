@@ -6,23 +6,29 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class WaveDataObserver : ICloneable<WaveDataObserver>
+        public class WaveDataObserver : ICloneable<WaveDataObserver>, IDataList<ObjectDataObserver>
         {
             private static readonly int min = 10000;
             private static readonly int max = 100000;
-            private Dictionary<int, ObjectDataObserver> objectDict;
-            public DataObserver<float> delay { get; set; }
-            public List<ObjectDataObserver> objectList { get; private set; }
+            private readonly List<ObjectDataObserver> objectList;
+            private readonly Dictionary<int, ObjectDataObserver> objectDict;
+            public DataObserver<float> delay { get; private set; }
+            public DataObserver<string> name { get; private set; }
+            public DataObserver<bool> isBoss { get; private set; }
 
             public WaveDataObserver()
             {
                 objectList = new();
                 objectDict = new();
                 delay = new();
+                name = new();
+                isBoss = new();
             }
-            public void AddObject(ObjectDataObserver objectData)
+            public List<ObjectDataObserver> GetList() => objectList;
+            public ObjectDataObserver CreateEmpty() => null;
+            public void Add(ObjectDataObserver data)
             {
-                objectList.Add(objectData);
+                objectList.Add(data);
                 int id;
                 int cnt = 0;
                 do
@@ -31,28 +37,32 @@ namespace SkyStrike
                     ++cnt;
                 }
                 while (objectDict.ContainsKey(id) && cnt < 10000);
-                objectData.id = id;
-                objectDict.Add(objectData.id, objectData);
+                data.id = id;
+                objectDict.Add(data.id, data);
             }
-            public void RemoveObject(ObjectDataObserver objectData)
+            public void Remove(ObjectDataObserver data)
             {
-                objectData.UnbindAll();
-                objectList.Remove(objectData);
-                objectDict.Remove(objectData.id);
+                data.UnbindAll();
+                objectList.Remove(data);
+                objectDict.Remove(data.id);
             }
-            public ObjectDataObserver GetObjectDataById(int id)
+            public void Remove(int index)
             {
-                return objectDict.TryGetValue(id, out ObjectDataObserver objectDataObserver) ? objectDataObserver : null;
+                var data = objectList[index];
+                data.UnbindAll();
+                objectList.RemoveAt(index);
+                objectDict.Remove(data.id);
             }
+            public void Swap(int leftIndex, int rightIndex) => objectList.Swap(leftIndex, rightIndex);
             public WaveDataObserver Clone()
             {
                 WaveDataObserver newWave = new();
                 foreach (var objectData in objectList)
-                    newWave.AddObject(objectData.Clone());
-                //
+                    newWave.Add(objectData.Clone());
+                newWave.delay.SetData(delay.data);
+                newWave.isBoss.SetData(isBoss.data);
                 return newWave;
             }
-
             public IGameData ToGameData()
             {
                 WaveData waveData = new();

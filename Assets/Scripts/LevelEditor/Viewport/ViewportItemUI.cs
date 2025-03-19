@@ -13,16 +13,15 @@ namespace SkyStrike
 
             public override void SetData(IEditorData data)
             {
-                this.data = data;
-                var objectDataObserver = this.data as ObjectDataObserver;
-                objectDataObserver.position.Bind(SetPosition);
-                objectDataObserver.scale.Bind(SetScale);
-                objectDataObserver.rotation.Bind(SetRotation);
+                var objectDataObserver = data as ObjectDataObserver;
                 icon.sprite = objectDataObserver.metaData.data.sprite;
                 icon.color = objectDataObserver.metaData.data.color;
+                base.SetData(data);
             }
             private void SetPosition(Vector2 pos)
             {
+                if (transform.position.x == pos.x && transform.position.y == pos.y)
+                    return;
                 transform.position = new(pos.x, pos.y, transform.position.z);
             }
             private void SetScale(Vector2 scale)
@@ -36,20 +35,27 @@ namespace SkyStrike
             public void OnDrag(PointerEventData eventData)
             {
                 isDrag = true;
-                (data as ObjectDataObserver).position.OnlySetData(transform.position);
+                (data as ObjectDataObserver).position.SetData(transform.position);
             }
             public override void OnPointerClick(PointerEventData eventData)
             {
-                if (!isDrag) InvokeData();
+                if (!isDrag)
+                    InvokeData();
                 isDrag = false;
             }
-            public override void RemoveData()
+            public override void BindData()
+            {
+                var objectDataObserver = data as ObjectDataObserver;
+                objectDataObserver.position.Bind(SetPosition);
+                objectDataObserver.scale.Bind(SetScale);
+                objectDataObserver.rotation.Bind(SetRotation);
+            }
+            public override void UnbindData()
             {
                 var objectDataObserver = data as ObjectDataObserver;
                 objectDataObserver.position.Unbind(SetPosition);
                 objectDataObserver.scale.Unbind(SetScale);
                 objectDataObserver.rotation.Unbind(SetRotation);
-                base.RemoveData();
             }
         }
     }

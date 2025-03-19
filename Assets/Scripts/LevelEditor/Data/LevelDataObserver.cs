@@ -13,18 +13,16 @@ namespace SkyStrike
 
             public LevelDataObserver() => waveList = new();
             public List<WaveDataObserver> GetList() => waveList;
-            public WaveDataObserver Create()
+            public WaveDataObserver CreateEmpty()
             {
                 WaveDataObserver newWave = new();
-                waveList.Add(newWave);
+                Add(newWave);
                 return newWave;
             }
+            public void Add(WaveDataObserver data) => waveList.Add(data);
             public void Remove(WaveDataObserver data) => waveList.Remove(data);
-            public void Swap(int leftIndex, int rightIndex)
-            {
-                if (leftIndex > 0 & rightIndex < waveList.Count)
-                    (waveList[leftIndex], waveList[rightIndex]) = (waveList[leftIndex], waveList[rightIndex]);
-            }
+            public void Remove(int index) => waveList.RemoveAt(index);
+            public void Swap(int leftIndex, int rightIndex) => waveList.Swap(leftIndex, rightIndex);
             public IGameData ToGameData()
             {
                 LevelData levelData = new();

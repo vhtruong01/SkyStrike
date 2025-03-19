@@ -1,13 +1,12 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class FloatSelectObjectMenu : Menu, IDragHandler
+        public class FloatSelectRefObjectMenu : Menu
         {
             [SerializeField] private UIGroupPool itemUIGroupPool;
             [SerializeField] private Image itemIcon;
@@ -19,12 +18,8 @@ namespace SkyStrike
             {
                 base.Awake();
                 itemUIGroupPool.selectDataCall = SelectReferenceObject;
-                DisplayRefObject(null);
             }
-            public override void Init() { }
-            public void OnDrag(PointerEventData eventData)
-            {
-            }
+            public override void Init() => DisplayRefObject(null);
             protected override void CreateObject(IEditorData data)
             {
                 if (data is ObjectDataObserver objectData)
@@ -33,18 +28,24 @@ namespace SkyStrike
             protected override void SelectObject(IEditorData data)
             {
                 curObjectData = data as ObjectDataObserver;
-                if (curObjectData != null)
-                    itemUIGroupPool.SelectItem(curObjectData.refData);
-                else itemUIGroupPool.SelectNone();
+                itemUIGroupPool.SelectItem(curObjectData?.refData);
                 DisplayRefObject(curObjectData?.refData);
             }
-            protected override void RemoveObject(IEditorData data) => SelectObject(null);
+            protected override void RemoveObject(IEditorData data)
+            {
+                if (curObjectData == data)
+                    SelectObject(null);
+                else if (curObjectData.refData == data)
+                    SelectReferenceObject(null);
+                itemUIGroupPool.RemoveItem(data);
+            }
             protected override void SelectWave(IEditorData data)
             {
                 var waveDataObserver = data as WaveDataObserver;
                 itemUIGroupPool.Clear();
-                foreach (var objectData in waveDataObserver.objectList)
+                foreach (var objectData in waveDataObserver.GetList())
                     DisplayObject(objectData);
+                DisplayRefObject(null);
             }
             private void DisplayObject(ObjectDataObserver data) => itemUIGroupPool.CreateItem(data);
             private void SelectReferenceObject(IEditorData data)

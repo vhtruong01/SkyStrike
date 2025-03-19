@@ -11,35 +11,29 @@ namespace SkyStrike
 
             public PhaseDataObserver() => actionDataList = new();
             public List<ActionDataGroupObserver> GetList() => actionDataList;
-            public ActionDataGroupObserver Create()
+            public ActionDataGroupObserver CreateEmpty()
             {
                 ActionDataGroupObserver actionData = new();
-                actionDataList.Add(actionData);
+                Add(actionData);
                 return actionData;
             }
-            public void Remove(ActionDataGroupObserver data)
-            {
-                if (actionDataList.Count > 1)
-                    actionDataList.Remove(data);
-            }
-            public void Swap(int leftIndex, int rightIndex)
-            {
-                if (leftIndex > 0 & rightIndex < actionDataList.Count)
-                    (actionDataList[leftIndex], actionDataList[rightIndex]) = (actionDataList[leftIndex], actionDataList[rightIndex]);
-            }
+            public void Add(ActionDataGroupObserver data) => actionDataList.Add(data);
+            public void Remove(ActionDataGroupObserver data) => actionDataList.Remove(data);
+            public void Remove(int index) => actionDataList.RemoveAt(index);
+            public void Swap(int leftIndex, int rightIndex) => actionDataList.Swap(leftIndex, rightIndex);
             public PhaseDataObserver Clone()
             {
                 PhaseDataObserver newPhase = new();
                 foreach (var actionData in actionDataList)
                     newPhase.actionDataList.Add(actionData.Clone());
                 if (newPhase.actionDataList.Count == 0)
-                    newPhase.Create();
+                    newPhase.CreateEmpty();
                 return newPhase;
             }
             public IGameData ToGameData()
             {
                 PhaseData phaseData = new();
-                phaseData.actions=new ActionGroupData[actionDataList.Count];
+                phaseData.actions = new ActionGroupData[actionDataList.Count];
                 for (int i = 0; i < actionDataList.Count; i++)
                     phaseData.actions[i] = actionDataList[i].ToGameData() as ActionGroupData;
                 return phaseData;

@@ -14,14 +14,6 @@ namespace SkyStrike
                 moveAction = new();
                 fireAction = new();
             }
-            public ActionDataGroupObserver Clone()
-            {
-                return new()
-                {
-                    fireAction = fireAction.Clone(),
-                    moveAction = moveAction.Clone()
-                };
-            }
             public IEditorData GetActionData(EActionType actionType)
             {
                 return actionType switch
@@ -31,7 +23,14 @@ namespace SkyStrike
                     _ => null,
                 };
             }
-
+            public ActionDataGroupObserver Clone()
+            {
+                return new()
+                {
+                    fireAction = fireAction.Clone(),
+                    moveAction = moveAction.Clone()
+                };
+            }
             public IGameData ToGameData()
             {
                 ActionGroupData actionGroupData = new();

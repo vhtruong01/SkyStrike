@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ObjectInfoMenu : SubMenu, IObserverMenu
+        public class ObjectInfoMenu : SubMenu
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private Vector2Property scale;
@@ -20,13 +20,13 @@ namespace SkyStrike
             [SerializeField] private Image referenceObjectIcon;
             [SerializeField] private Button referenceObjectBtn;
             [SerializeField] private TextMeshProUGUI referenceObjectText;
-            [SerializeField] private FloatSelectObjectMenu selectObjectMenu;
+            [SerializeField] private FloatSelectRefObjectMenu selectRefObjectMenu;
             private ObjectDataObserver curObjectData;
 
             public void Awake()
             {
                 addObjectBtn.onClick.AddListener(CreateObject);
-                referenceObjectBtn.onClick.AddListener(selectObjectMenu.Expand);
+                referenceObjectBtn.onClick.AddListener(selectRefObjectMenu.Expand);
                 EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             }
             private void DisplayReferenceObject(IEditorData data)
@@ -92,7 +92,7 @@ namespace SkyStrike
                 }
                 return true;
             }
-            public void BindData()
+            public override void BindData()
             {
                 position.Bind(curObjectData.position);
                 scale.Bind(curObjectData.scale);
@@ -101,7 +101,7 @@ namespace SkyStrike
                 velocity.Bind(curObjectData.velocity);
                 objectName.Bind(curObjectData.name);
             }
-            public void UnbindData()
+            public override void UnbindData()
             {
                 position.Unbind();
                 scale.Unbind();

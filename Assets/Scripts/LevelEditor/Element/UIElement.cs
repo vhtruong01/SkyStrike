@@ -7,7 +7,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class UIElement : MonoBehaviour, IUIElement
+        public class UIElement : MonoBehaviour, IUIElement, IObserver
         {
             [SerializeField] protected Image bg;
             public int? index { get; set; }
@@ -22,10 +22,18 @@ namespace SkyStrike
                 onSelectUI = new();
                 onClick = new();
             }
-            public virtual void SetData(IEditorData data) { }
             public virtual Image GetBackground() => bg;
             public virtual void OnPointerClick(PointerEventData eventData) => SelectAndInvoke();
-            public virtual void RemoveData() => data = null;
+            public virtual void SetData(IEditorData data)
+            {
+                this.data = data;
+                BindData();
+            }
+            public virtual void RemoveData()
+            {
+                UnbindData();
+                data = null;
+            }
             public virtual void InvokeData()
             {
                 if (data != null || !canRemove)
@@ -37,6 +45,8 @@ namespace SkyStrike
                 if (index != null)
                     onSelectUI.Invoke(index.Value);
             }
+            public virtual void BindData() { }
+            public virtual void UnbindData() { }
         }
     }
 }

@@ -21,6 +21,7 @@ namespace SkyStrike
                 scale = new();
                 delay = new();
                 isSyncRotation = new();
+                scale.SetData(1);
             }
             public MoveDataObserver Clone()
             {

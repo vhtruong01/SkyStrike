@@ -13,15 +13,22 @@ namespace SkyStrike
 
             public override void SetData(IEditorData data)
             {
-                var objectDataObserver = this.data as ObjectDataObserver;
-                objectDataObserver?.name.Unbind(ChangeName);
-                this.data = data;
-                objectDataObserver = this.data as ObjectDataObserver;
-                objectDataObserver.name.Bind(ChangeName);
+                var objectDataObserver = data as ObjectDataObserver;
                 image.sprite = objectDataObserver.metaData.data.sprite;
                 image.color = objectDataObserver.metaData.data.color;
+                base.SetData(data);
             }
             private void ChangeName(string name) => itemName.text = name;
+            public override void BindData()
+            {
+                var objectDataObserver = data as ObjectDataObserver;
+                objectDataObserver.name.Bind(ChangeName);
+            }
+            public override void UnbindData()
+            {
+                var objectDataObserver = data as ObjectDataObserver;
+                objectDataObserver.name.Unbind(ChangeName);
+            }
         }
     }
 }

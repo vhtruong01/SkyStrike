@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 namespace SkyStrike
 {
@@ -17,14 +17,11 @@ namespace SkyStrike
 
             public override void SetData(IEditorData data)
             {
-                var objectDataObserver = this.data as ObjectDataObserver;
-                objectDataObserver?.name.Unbind(ChangeName);
-                this.data = data;
-                objectDataObserver = this.data as ObjectDataObserver;
-                objectDataObserver.name.Bind(ChangeName);
+                var objectDataObserver = data as ObjectDataObserver;
                 itemId.text = "id: " + objectDataObserver.id.ToString();
                 spaceItem.sizeDelta = new(0, spaceItem.sizeDelta.y);
                 children.Clear();
+                base.SetData(data);
             }
             public void RemoveChild(HierarchyItemUI child)
             {
@@ -44,9 +41,25 @@ namespace SkyStrike
                 foreach (var child in children)
                     child.SetPadding(parentCount + 1);
             }
-            public int GetChildCount() => children.Count;
+            public int GetChildCount()
+            {
+                int rs = 1;
+                foreach (var child in children)
+                    rs += child.GetChildCount();
+                return rs;
+            }
             public override void OnPointerClick(PointerEventData eventData) => InvokeData();
             private void ChangeName(string name) => itemName.text = name;
+            public override void BindData()
+            {
+                var objectDataObserver = data as ObjectDataObserver;
+                objectDataObserver.name.Bind(ChangeName);
+            }
+            public override void UnbindData()
+            {
+                var objectDataObserver = data as ObjectDataObserver;
+                objectDataObserver.name.Unbind(ChangeName);
+            }
         }
     }
 }

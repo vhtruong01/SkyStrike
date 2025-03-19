@@ -2,7 +2,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public interface IObserverMenu
+        public interface IObserver
         {
             public void BindData();
             public void UnbindData();

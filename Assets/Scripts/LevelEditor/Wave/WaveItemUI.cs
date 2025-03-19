@@ -9,13 +9,23 @@ namespace SkyStrike
         {
             [SerializeField] private TextMeshProUGUI waveName;
 
-            public void SetName(string name) => waveName.text = name;
             public override void SetData(IEditorData data)
             {
-                this.data = data;
-                var waveDataObserver = this.data as WaveDataObserver;
+                var waveDataObserver = data as WaveDataObserver;
                 //
+                base.SetData(data);
             }
+            public override void BindData()
+            {
+                var waveDataObserver = data as WaveDataObserver;
+                waveDataObserver.name.Bind(ChangeName);
+            }
+            public override void UnbindData()
+            {
+                var waveDataObserver = data as WaveDataObserver;
+                waveDataObserver.name.Unbind(ChangeName);
+            }
+            private void ChangeName(string name) => waveName.text = name;
         }
     }
 }

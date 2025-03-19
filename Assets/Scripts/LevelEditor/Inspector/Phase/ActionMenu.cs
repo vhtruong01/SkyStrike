@@ -5,12 +5,10 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class ActionMenu : SubMenu, IObserverMenu
+        public abstract class ActionMenu : SubMenu
         {
             public IEditorData actionData { get; private set; }
 
-            public abstract void BindData();
-            public abstract void UnbindData();
             public override void Display(IEditorData data)
             {
                 bool isNewData = SetData(data);

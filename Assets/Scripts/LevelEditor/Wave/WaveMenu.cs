@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class WaveMenu : Menu
+        public class WaveMenu : Menu, IArrangeable
         {
             [SerializeField] private Button addWaveBtn;
             [SerializeField] private Button removeWaveBtn;
@@ -13,70 +13,64 @@ namespace SkyStrike
             [SerializeField] private Button moveLeftWaveBtn;
             [SerializeField] private Button moveRightWaveBtn;
             [SerializeField] private UIGroupPool waveUIGroupPool;
-            [SerializeField] private int minElement;
-            private LevelDataObserver levelDataObserver;
             private int currentWaveNameIndex;
+            private LevelDataObserver levelDataObserver;
+            private WaveDataObserver waveDataObserver;
 
             public override void Awake()
             {
                 base.Awake();
-                duplicateWaveBtn.interactable = false;
-                duplicateWaveBtn.onClick.AddListener(DuplicateWave);
-                addWaveBtn.onClick.AddListener(CreateWave);
-                removeWaveBtn.onClick.AddListener(RemoveWave);
-                moveLeftWaveBtn.onClick.AddListener(MoveLeftWave);
-                moveRightWaveBtn.onClick.AddListener(MoveRightWave);
+                addWaveBtn.onClick.AddListener(() => Create());
+                duplicateWaveBtn.onClick.AddListener(Duplicate);
+                removeWaveBtn.onClick.AddListener(Remove);
+                moveLeftWaveBtn.onClick.AddListener(MoveLeft);
+                moveRightWaveBtn.onClick.AddListener(MoveRight);
                 waveUIGroupPool.selectDataCall = EventManager.SelectWave;
             }
             public override void Init()
             {
                 levelDataObserver = EventManager.GetLevel() as LevelDataObserver;
-                for (int i = 0; i < minElement; i++)
-                    CreateWave();
+                Create();
                 waveUIGroupPool.SelectFirstItem();
             }
-            protected override void CreateObject(IEditorData data)
-            {
-                var waveData = waveUIGroupPool.GetSelectedItemComponent<UIElement>().data as WaveDataObserver;
-                waveData?.AddObject(data as ObjectDataObserver);
-            }
-            public void CreateWave()
-            {
-                waveUIGroupPool.CreateItem(out WaveItemUI wave, levelDataObserver.Create());
-                wave.SetName("Wave " + ++currentWaveNameIndex);
-            }
-            public void RemoveWave()
-            {
-                var selectedWave = waveUIGroupPool.GetSelectedItem() as WaveItemUI;
-                if (selectedWave != null)
-                {
-                    waveUIGroupPool.RemoveSelectedItem();
-                    levelDataObserver.Remove(selectedWave.data as WaveDataObserver);
-                }
-            }
-            public void MoveLeftWave()
-            {
-                if (waveUIGroupPool.TryGetValidSelectedIndex(out var index))
-                {
-                    waveUIGroupPool.MoveLeftSelectedItem();
-                    levelDataObserver.Swap(index - 1, index);
-                }
-            }
-            public void MoveRightWave()
-            {
-                if (waveUIGroupPool.TryGetValidSelectedIndex(out var index))
-                {
-                    waveUIGroupPool.MoveRightSelectedItem();
-                    levelDataObserver.Swap(index, index + 1);
-                }
-            }
-            public void DuplicateWave()
-            {
-                //
-            }
-            protected override void RemoveObject(IEditorData data) { }
+            protected override void CreateObject(IEditorData data) => waveDataObserver.Add(data as ObjectDataObserver);
             protected override void SelectObject(IEditorData data) { }
-            protected override void SelectWave(IEditorData data) { }
+            protected override void RemoveObject(IEditorData data) => waveDataObserver.Remove(data as ObjectDataObserver);
+            protected override void SelectWave(IEditorData data) => waveDataObserver = data as WaveDataObserver;
+            public void Create(WaveDataObserver waveData)
+            {
+                if (waveData != null)
+                    levelDataObserver.Add(waveData);
+                else waveData = levelDataObserver.CreateEmpty();
+                waveData.name.SetData("Wave " + ++currentWaveNameIndex);
+                waveUIGroupPool.CreateItem(waveData);
+            }
+            public void Create() => Create(null);
+            public void Remove()
+            {
+                if (waveUIGroupPool.CanRemoveSelectedIndex(out int curIndex))
+                {
+                    levelDataObserver.Remove(curIndex);
+                    waveUIGroupPool.RemoveItem(curIndex);
+                }
+            }
+            public void MoveLeft()
+            {
+                if (waveUIGroupPool.TryGetValidSelectedIndex(out var index))
+                {
+                    levelDataObserver.Swap(index - 1, index);
+                    waveUIGroupPool.MoveLeftSelectedItem();
+                }
+            }
+            public void MoveRight()
+            {
+                if (waveUIGroupPool.TryGetValidSelectedIndex(out var index))
+                {
+                    levelDataObserver.Swap(index, index + 1);
+                    waveUIGroupPool.MoveRightSelectedItem();
+                }
+            }
+            public void Duplicate() => Create(waveDataObserver.Clone());
         }
     }
 }

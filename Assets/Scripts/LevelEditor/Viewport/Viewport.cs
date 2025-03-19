@@ -23,6 +23,7 @@ namespace SkyStrike
                 waveMenuBtn.onClick.AddListener(waveMenu.Expand);
                 objectUIGroupPool.selectDataCall = EventManager.SelectObject;
             }
+            public override void Init() { }
             private void DisplayObject(ObjectDataObserver objectData) => objectUIGroupPool.CreateItem(objectData);
             protected override void CreateObject(IEditorData data)
             {
@@ -35,10 +36,9 @@ namespace SkyStrike
             {
                 var waveDataObserver = data as WaveDataObserver;
                 objectUIGroupPool.Clear();
-                foreach (var objectData in waveDataObserver.objectList)
+                foreach (var objectData in waveDataObserver.GetList())
                     DisplayObject(objectData);
             }
-            public override void Init() { }
         }
     }
 }

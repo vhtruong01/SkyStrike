@@ -43,7 +43,7 @@ namespace SkyStrike
                 item.onClick.AddListener(InvokeData);
                 return item;
             }
-            public void InvokeData(IEditorData data)
+            private void InvokeData(IEditorData data)
             {
                 if (canDeselect && data == GetSelectedItem()?.data)
                     selectDataCall?.Invoke(null);
@@ -77,13 +77,6 @@ namespace SkyStrike
                 }
                 return -1;
             }
-            public IUIElement GetItem(IEditorData data)
-            {
-                for (int i = 0; i < items.Count; i++)
-                    if (items[i].data == data)
-                        return items[i];
-                return null;
-            }
             public void SelectItem(IEditorData data)
             {
                 int index = GetItemIndex(data);
@@ -91,21 +84,30 @@ namespace SkyStrike
                     SelectItem(index);
                 else if (canDeselect) SelectNone();
             }
+            public bool CanRemoveSelectedIndex(out int index)
+            {
+                index = selectedItemIndex;
+                return index >= 0 && index < items.Count && (Count > 1 | canDeselect);
+            }
             public void MoveLeftSelectedItem()
             {
+                if (Count <= 1) return;
                 if (selectedItemIndex - 1 >= 0)
                 {
                     SwapItem(selectedItemIndex, selectedItemIndex - 1);
                     selectedItemIndex -= 1;
                 }
+                else MoveItemArray(ref selectedItemIndex, -1);
             }
             public void MoveRightSelectedItem()
             {
+                if (Count <= 1) return;
                 if (selectedItemIndex + 1 < items.Count)
                 {
                     SwapItem(selectedItemIndex, selectedItemIndex + 1);
                     selectedItemIndex += 1;
                 }
+                else MoveItemArray(ref selectedItemIndex, 0);
             }
             private void ReleaseItem(int index)
             {
@@ -133,31 +135,33 @@ namespace SkyStrike
                 items[i2].index = i2;
                 items[i1].index = i1;
             }
-            public void MoveItemArray(int startIndex, int newIndex, int len = 1)
+            public void MoveItemArray(ref int startIndex, int newIndex, int len = 1)
             {
-                //print(startIndex + " " + newIndex + " " + len);
+                print(startIndex + " " + newIndex + " " + len);
+                if (startIndex == newIndex) return;
                 IUIElement[] itemArr = new IUIElement[len];
                 for (int i = 0; i < len; i++)
                 {
                     itemArr[i] = GetItem(i + startIndex);
-                    int newPos;
-                    if (newIndex < 0)
-                        newPos = items.Count - 1 + pool.CountInactive;
-                    else
-                        newPos = newIndex + i + pool.CountInactive + (newIndex > startIndex + i ? 0 : 1);
-                    itemArr[i].gameObject.transform.SetSiblingIndex(newPos);
+                    //int newPos;
+                    //if (newIndex < 0)
+                    //    newPos = items.Count - 1 + pool.CountInactive;
+                    //else
+                    //    newPos = newIndex + i + pool.CountInactive;
+                    //itemArr[i].gameObject.transform.SetSiblingIndex(newPos);
                 }
                 if (startIndex > newIndex && newIndex >= 0)
                 {
-                    for (int i = startIndex + len - 1; i > newIndex + len; i--)
+                    for (int i = startIndex + len - 1; i >= newIndex + len; i--)
                     {
                         items[i] = items[i - len];
                         items[i].index = i;
                     }
-                    for (int i = newIndex + len; i > newIndex; i--)
+                    for (int i = newIndex + len - 1; i >= newIndex; i--)
                     {
-                        items[i] = itemArr[i - newIndex - 1];
+                        items[i] = itemArr[i - newIndex];
                         items[i].index = i;
+                        items[i].gameObject.transform.SetSiblingIndex(newIndex + pool.CountInactive);
                     }
                 }
                 else
@@ -172,16 +176,21 @@ namespace SkyStrike
                     {
                         items[i] = itemArr[i - newIndex + len - 1];
                         items[i].index = i;
+                        items[i].gameObject.transform.SetSiblingIndex(newIndex + pool.CountInactive);
                     }
                 }
+                string s = "";
+                for (int i = 0; i < items.Count; i++)
+                    s += i + "|" + items[i].index + " ";
+                print(s);
+                startIndex = itemArr[0].index.Value;
             }
             public void RemoveSelectedItem() => RemoveItem(selectedItemIndex);
             public void RemoveItem(IEditorData data) => RemoveItem(GetItemIndex(data));
             public void RemoveItem(int index)
             {
                 var item = GetItem(index);
-                if (item == null || (!canDeselect && items.Count < 2)) return;
-                if (!item.canRemove) return;
+                if (item == null || (!canDeselect && items.Count < 2) || !item.canRemove) return;
                 ReleaseItem(index);
                 for (int i = index; i < items.Count; i++)
                     items[i].index = i;
