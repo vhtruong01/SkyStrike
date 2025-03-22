@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class DataObserver<T> 
+        public class DataObserver<T>
         {
             public T data { get; private set; }
             public UnityEvent<T> onChangeData { get; private set; }
@@ -24,7 +24,6 @@ namespace SkyStrike
             public void Unbind(UnityAction<T> action) => onChangeData.RemoveListener(action);
             public void UnbindAll() => onChangeData.RemoveAllListeners();
             public void ResetData() => data = default;
-            public override string ToString() => data.ToString();
         }
     }
 }

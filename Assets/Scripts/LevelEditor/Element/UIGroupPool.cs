@@ -8,33 +8,52 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class UIGroupPool : UIGroup
+        public abstract class UIGroupPool<T> : UIGroup where T : class
         {
-            [SerializeField] private bool useSpecificColor;
+            [SerializeField] protected bool useSpecificColor;
+            [SerializeField] protected string defaultName;
             [SerializeField] protected Color selectedColor;
             [SerializeField] protected Color defaultColor;
-            [SerializeField] private GameObject prefab;
-            private ObjectPool<IUIElement> pool;
-            public UnityAction<IEditorData> selectDataCall { get; set; }
+            [SerializeField] protected GameObject prefab;
+            [SerializeField] protected Transform containerTransform;
+            protected List<UIElement<T>> items;
+            protected ObjectPool<UIElement<T>> pool;
+            protected UnityAction<T> selectDataCall;
+            protected UnityAction deselectDataCall;
+            private int currentWaveNameIndex = 0;
+            public override int Count => items.Count;
 
             public override void Awake()
             {
-                base.Awake();
+                selectedItemIndex = -1;
+                items = new();
                 pool = new(CreateObject);
                 if (!useSpecificColor)
                 {
                     selectedColor = EditorSetting.btnSelectedColor;
                     defaultColor = EditorSetting.btnDefaultColor;
                 }
-                foreach (var item in items)
+                for (int i = 0; i < containerTransform.childCount; i++)
                 {
+                    if (!containerTransform.GetChild(i).TryGetComponent<UIElement<T>>(out var item)) continue;
                     item.canRemove = false;
+                    item.index = items.Count;
+                    item.Init();
+                    item.onSelectUI.AddListener(SelectItem);
                     item.onClick.AddListener(InvokeData);
+                    if (selectedItemIndex != item.index)
+                        Diminish(item);
+                    items.Add(item);
                 }
             }
-            private IUIElement CreateObject()
+            public virtual void Init(UnityAction<T> selectCall, UnityAction deselectCall = null)
             {
-                var item = Instantiate(prefab, transform, false).GetComponent<IUIElement>()
+                selectDataCall = selectCall;
+                deselectDataCall = deselectCall;
+            }
+            protected UIElement<T> CreateObject()
+            {
+                var item = Instantiate(prefab, containerTransform, false).GetComponent<UIElement<T>>()
                     ?? throw new Exception("wrong prefab type");
                 item.gameObject.name = prefab.name;
                 item.canRemove = true;
@@ -43,113 +62,65 @@ namespace SkyStrike
                 item.onClick.AddListener(InvokeData);
                 return item;
             }
-            private void InvokeData(IEditorData data)
+            protected void InvokeData(T data)
             {
-                if (canDeselect && data == GetSelectedItem()?.data)
-                    selectDataCall?.Invoke(null);
+                var item = GetSelectedItem();
+                if (canDeselect && item != null && data == item?.data)
+                    selectDataCall?.Invoke(default);
                 else
                     selectDataCall?.Invoke(data);
             }
-            public IUIElement CreateItem(IEditorData data)
+            public virtual UIElement<T> CreateItem(T data)
             {
                 var item = pool.Get();
                 item.index = items.Count;
                 item.SetData(data);
+                if (!string.IsNullOrEmpty(defaultName))
+                    item.SetName(defaultName + " " + ++currentWaveNameIndex);
                 items.Add(item);
                 Diminish(item);
                 item.gameObject.SetActive(true);
                 item.gameObject.transform.SetAsLastSibling();
                 return item;
             }
-            public void CreateItem<T>(out T itemComponent, IEditorData data) where T : Component
-            {
-                var item = CreateItem(data);
-                itemComponent = item.gameObject.GetComponent<T>();
-            }
-            public T GetSelectedItemComponent<T>() where T : Component
-                => GetSelectedItem()?.gameObject.GetComponent<T>();
-            public int GetItemIndex(IEditorData data)
+            public int GetItemIndex(T data)
             {
                 for (int i = 0; i < items.Count; i++)
                 {
-                    if (items[i].data == data)
+                    if (items[i]?.data == data)
                         return i;
                 }
                 return -1;
             }
-            public void SelectItem(IEditorData data)
+            public UIElement<T> GetItem(T data) => GetItem(GetItemIndex(data));
+            public void SelectItem(T data) => SelectItem(GetItemIndex(data));
+            protected override void SelectItem(int index)
             {
-                int index = GetItemIndex(data);
-                if (index != -1)
-                    SelectItem(index);
-                else if (canDeselect) SelectNone();
+                base.SelectItem(index);
+                if (selectedItemIndex == -1)
+                    deselectDataCall?.Invoke();
             }
-            public bool CanRemoveSelectedIndex(out int index)
-            {
-                index = selectedItemIndex;
-                return index >= 0 && index < items.Count && (Count > 1 | canDeselect);
-            }
-            public void MoveLeftSelectedItem()
-            {
-                if (Count <= 1) return;
-                if (selectedItemIndex - 1 >= 0)
-                {
-                    SwapItem(selectedItemIndex, selectedItemIndex - 1);
-                    selectedItemIndex -= 1;
-                }
-                else MoveItemArray(ref selectedItemIndex, -1);
-            }
-            public void MoveRightSelectedItem()
-            {
-                if (Count <= 1) return;
-                if (selectedItemIndex + 1 < items.Count)
-                {
-                    SwapItem(selectedItemIndex, selectedItemIndex + 1);
-                    selectedItemIndex += 1;
-                }
-                else MoveItemArray(ref selectedItemIndex, 0);
-            }
-            private void ReleaseItem(int index)
+            protected virtual void ReleaseItem(int index)
             {
                 var item = items[index];
                 ReleaseItem(item);
                 item.gameObject.transform.SetAsFirstSibling();
                 items.RemoveAt(index);
             }
-            private void ReleaseItem(IUIElement item)
+            protected void ReleaseItem(UIElement<T> item)
             {
                 item.index = null;
                 item.gameObject.SetActive(false);
                 pool.Release(item);
                 item.RemoveData();
             }
-            private void SwapItem(int i1, int i2)
+            public virtual void MoveItemArray(ref int startIndex, int newIndex, int len = 1)
             {
-                if (i1 > i2)
-                    (i1, i2) = (i2, i1);
-                var item1 = GetItem(i1);
-                var item2 = GetItem(i2);
-                item1.gameObject.transform.SetSiblingIndex(i2 + pool.CountInactive);
-                item2.gameObject.transform.SetSiblingIndex(i1 + pool.CountInactive);
-                (items[i2], items[i1]) = (items[i1], items[i2]);
-                items[i2].index = i2;
-                items[i1].index = i1;
-            }
-            public void MoveItemArray(ref int startIndex, int newIndex, int len = 1)
-            {
-                print(startIndex + " " + newIndex + " " + len);
-                if (startIndex == newIndex) return;
-                IUIElement[] itemArr = new IUIElement[len];
+                //print(startIndex + " " + newIndex + " " + len);
+                if (startIndex == newIndex || len < 1) return;
+                UIElement<T>[] itemArr = new UIElement<T>[len];
                 for (int i = 0; i < len; i++)
-                {
                     itemArr[i] = GetItem(i + startIndex);
-                    //int newPos;
-                    //if (newIndex < 0)
-                    //    newPos = items.Count - 1 + pool.CountInactive;
-                    //else
-                    //    newPos = newIndex + i + pool.CountInactive;
-                    //itemArr[i].gameObject.transform.SetSiblingIndex(newPos);
-                }
                 if (startIndex > newIndex && newIndex >= 0)
                 {
                     for (int i = startIndex + len - 1; i >= newIndex + len; i--)
@@ -179,36 +150,50 @@ namespace SkyStrike
                         items[i].gameObject.transform.SetSiblingIndex(newIndex + pool.CountInactive);
                     }
                 }
-                string s = "";
-                for (int i = 0; i < items.Count; i++)
-                    s += i + "|" + items[i].index + " ";
-                print(s);
+                //string s = "";
+                //for (int i = 0; i < items.Count; i++)
+                //    s += i + "|" + items[i].index + " ";
+                //print(s);
                 startIndex = itemArr[0].index.Value;
             }
-            public void RemoveSelectedItem() => RemoveItem(selectedItemIndex);
-            public void RemoveItem(IEditorData data) => RemoveItem(GetItemIndex(data));
+            public UIElement<T> GetItem(int index)
+            {
+                return index < 0 || index >= items.Count ? null : items[index];
+            }
+            public override IUIElement GetBaseItem(int index) => GetItem(index);
+            public UIElement<T> GetSelectedItem() => GetItem(selectedItemIndex);
+            public bool TryGetValidSelectedIndex(out int index)
+            {
+                index = selectedItemIndex;
+                return index >= 0 & index < items.Count;
+            }
+            public void RemoveItem(T data) => RemoveItem(GetItemIndex(data));
             public void RemoveItem(int index)
             {
                 var item = GetItem(index);
                 if (item == null || (!canDeselect && items.Count < 2) || !item.canRemove) return;
-                ReleaseItem(index);
-                for (int i = index; i < items.Count; i++)
-                    items[i].index = i;
                 if (index == selectedItemIndex)
                 {
                     if (canDeselect)
-                        selectedItemIndex = -1;
+                        SelectNone();
                     else
                     {
-                        if (index >= items.Count)
-                            selectedItemIndex -= 1;
-                        SelectAndInvokeItem(selectedItemIndex);
+                        if (index != items.Count - 1)
+                        {
+                            SelectAndInvokeItem(index + 1);
+                            selectedItemIndex = index;
+                        }
+                        else SelectAndInvokeItem(index - 1);
                     }
                 }
+                ReleaseItem(index);
+                for (int i = index; i < items.Count; i++)
+                    items[i].index = i;
             }
             public void Clear()
             {
-                List<IUIElement> unremovedItem = new();
+                if (items.Count == 0) return;
+                List<UIElement<T>> unremovedItem = new();
                 SelectNone();
                 for (int i = 0; i < items.Count; i++)
                 {

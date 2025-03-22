@@ -8,10 +8,11 @@ namespace SkyStrike
         {
             public override void BindData()
             {
+                base.BindData();
             }
-
             public override void UnbindData()
             {
+                base.UnbindData();
             }
         }
     }

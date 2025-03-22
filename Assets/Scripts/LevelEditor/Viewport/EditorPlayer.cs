@@ -13,7 +13,7 @@ namespace SkyStrike
             {
                 playGameButton.onClick.AddListener(PlayGame);
             }
-            public void PlayGame() => EventManager.Play();
+            protected void PlayGame() => EventManager.Play();
         }
     }
 }

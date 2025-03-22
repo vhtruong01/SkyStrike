@@ -10,12 +10,8 @@ namespace SkyStrike
         {
             protected T value;
             protected DataObserver<T> dataObserver;
-            public UnityEvent<T> onValueChanged { get; protected set; }
+            protected UnityEvent<T> onValueChanged = new();
 
-            public virtual void Awake()
-            {
-                onValueChanged = new();
-            }
             protected abstract void OnValueChanged();
             public virtual void SetValue(T value) => this.value = value;
             public virtual void Bind(UnityAction<T> action) => onValueChanged.AddListener(action);
@@ -26,7 +22,7 @@ namespace SkyStrike
                 this.dataObserver = dataObserver;
                 this.dataObserver.Bind(SetValue);
                 onValueChanged.AddListener(this.dataObserver.SetData);
-            } 
+            }
             public virtual void Unbind()
             {
                 dataObserver?.Unbind(SetValue);

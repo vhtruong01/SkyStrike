@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479a2718f315b39428c5cbfd5aa937df, type: 3}
   m_Name: MetaData 7
   m_EditorClassIdentifier: 
-  <id>k__BackingField: 2
-  <sprite>k__BackingField: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  <id>k__BackingField: 7
+  <sprite>k__BackingField: {fileID: 21300000, guid: 127279d577f25ac4ea17dae3782e5074, type: 3}
   <color>k__BackingField: {r: 0, g: 1, b: 1, a: 1}
-  <type>k__BackingField: test3
+  <type>k__BackingField: test7
   <rotation>k__BackingField: 0
   <position>k__BackingField: {x: 0, y: 0}
   <scale>k__BackingField: {x: 1, y: 1}

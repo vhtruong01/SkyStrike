@@ -4,14 +4,18 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class FireDataObserver : ICloneable<FireDataObserver>
+        public class FireDataObserver : ActionDataObserver, IEditorData<FireData, ActionDataObserver>
         {
-            public FireDataObserver Clone()
+            public FireDataObserver() : base()
+            {
+
+            }
+            public override ActionDataObserver Clone()
             {
                 FireDataObserver newAction = new();
                 return newAction;
             }
-            public IGameData ToGameData()
+            public FireData ToGameData()
             {
                 FireData fireData = new();
                 return fireData;

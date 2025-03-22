@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,28 +5,28 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ObjectItemUI : UIElement
+        public class ObjectItemUI : UIElement<ObjectDataObserver>
         {
             [SerializeField] private Image image;
-            [SerializeField] private TextMeshProUGUI itemName;
 
-            public override void SetData(IEditorData data)
+            public override void SetData(ObjectDataObserver data)
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                image.sprite = objectDataObserver.metaData.data.sprite;
-                image.color = objectDataObserver.metaData.data.color;
                 base.SetData(data);
+                image.sprite = data.metaData.data.sprite;
+                image.color = data.metaData.data.color;
             }
-            private void ChangeName(string name) => itemName.text = name;
+            public override void SetName(string name)
+            {
+                base.SetName(name);
+                data.name.OnlySetData(name);
+            }
             public override void BindData()
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                objectDataObserver.name.Bind(ChangeName);
+                data.name.Bind(SetName);
             }
             public override void UnbindData()
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                objectDataObserver.name.Unbind(ChangeName);
+                data.name.Unbind(SetName);
             }
         }
     }

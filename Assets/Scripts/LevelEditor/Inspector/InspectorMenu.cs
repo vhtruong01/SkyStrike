@@ -11,58 +11,61 @@ namespace SkyStrike
             [SerializeField] private PhaseMenu phaseMenu;
             [SerializeField] private WaveInfoMenu waveInfoMenu;
             [SerializeField] private UIGroup switchSubMenuBtnGroup;
-            private bool isLock;
             private List<ISubMenu> subMenuList;
-            private int curSubMenuIndex;
+            private int curSubmenuIndex;
 
             public override void Awake()
             {
                 base.Awake();
-                subMenuList = new() { objectInfoMenu, phaseMenu, waveInfoMenu };
-                curSubMenuIndex = 0;
                 EventManager.onSelectMetaObject.AddListener(SelectMetaObject);
             }
             public override void Init()
             {
+                curSubmenuIndex = -1;
+                subMenuList = new() { objectInfoMenu, phaseMenu, waveInfoMenu };
                 for (int i = 0; i < subMenuList.Count; i++)
                 {
                     ISubMenu subMenu = subMenuList[i];
-                    subMenu.gameObject.SetActive(true);
-                    ISubMenu subMenuTmp = subMenu;
-                    var button = switchSubMenuBtnGroup.GetItem(i);
-                    button.onSelectUI.AddListener(SelectSubMenu);
-                    subMenu.Hide();
+                    subMenu.Init();
+                    switchSubMenuBtnGroup.GetBaseItem(i).onSelectUI.AddListener(SelectSubMenu);
                 }
             }
             private void SelectSubMenu(int index)
             {
-                if (curSubMenuIndex != index)
+                if (curSubmenuIndex != index)
                 {
-                    subMenuList[curSubMenuIndex].Hide();
-                    curSubMenuIndex = index;
+                    if (curSubmenuIndex != -1)
+                        subMenuList[curSubmenuIndex].Hide();
+                    curSubmenuIndex = index;
                 }
-                subMenuList[curSubMenuIndex].Show();
+                subMenuList[index].Show();
             }
-            private void SelectAndSetDataSubMenu(IEditorData data, int index)
+            protected override void CreateObject(ObjectDataObserver data) { }
+            protected override void RemoveObject(ObjectDataObserver data) => SelectObject(null);
+            protected override void SelectObject(ObjectDataObserver data)
             {
-                if (index < 0 || index >= subMenuList.Count) return;
-                subMenuList[index].Display(data);
-                switchSubMenuBtnGroup.SelectAndInvokeItem(index);
+                objectInfoMenu.Display(data);
+                int menuIndex = curSubmenuIndex;
+                if (menuIndex > 1) menuIndex = 0;
+                if (data?.phase != null)
+                {
+                    phaseMenu.Display(data?.phase);
+                    menuIndex = 0;
+                }
+                switchSubMenuBtnGroup.SelectAndInvokeItem(menuIndex);
             }
-            protected override void SelectObject(IEditorData data)
+            private void SelectMetaObject(ObjectDataObserver data)
             {
-                int index = curSubMenuIndex > 1 ? 0 : curSubMenuIndex;
-                SelectAndSetDataSubMenu(data, index);
-                subMenuList[1 - index].Display(data);
+                objectInfoMenu.Display(data);
+                phaseMenu.Display(null);
+                switchSubMenuBtnGroup.SelectAndInvokeItem(0);
             }
-            private void SelectMetaObject(IEditorData data) => SelectAndSetDataSubMenu(data, 0);
-            protected override void SelectWave(IEditorData data)
+            protected override void SelectWave(WaveDataObserver data)
             {
                 SelectObject(null);
-                SelectAndSetDataSubMenu(data, 2);
+                waveInfoMenu.Display(data);
+                switchSubMenuBtnGroup.SelectAndInvokeItem(2);
             }
-            protected override void CreateObject(IEditorData data) { }
-            protected override void RemoveObject(IEditorData data) => SelectObject(null);
         }
     }
 }

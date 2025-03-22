@@ -5,13 +5,17 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class LevelDataObserver : IDataList<WaveDataObserver>
+        public class LevelDataObserver : IDataList<WaveDataObserver>, IEditorData<LevelData, LevelDataObserver>
         {
             public string name;
             public int star;
-            private List<WaveDataObserver> waveList;
+            private readonly List<WaveDataObserver> waveList;
 
-            public LevelDataObserver() => waveList = new();
+            public LevelDataObserver()
+            {
+                waveList = new();
+                CreateEmpty();
+            }
             public List<WaveDataObserver> GetList() => waveList;
             public WaveDataObserver CreateEmpty()
             {
@@ -23,14 +27,20 @@ namespace SkyStrike
             public void Remove(WaveDataObserver data) => waveList.Remove(data);
             public void Remove(int index) => waveList.RemoveAt(index);
             public void Swap(int leftIndex, int rightIndex) => waveList.Swap(leftIndex, rightIndex);
-            public IGameData ToGameData()
+            public void Clear() => waveList.Clear();
+            public LevelData ToGameData()
             {
                 LevelData levelData = new();
                 levelData.waves = new WaveData[waveList.Count];
                 for (int i = 0; i < waveList.Count; i++)
-                    levelData.waves[i] = waveList[i].ToGameData() as WaveData;
+                    levelData.waves[i] = waveList[i].ToGameData();
                 return levelData;
             }
+            public LevelDataObserver Clone()
+            {
+                throw new System.NotImplementedException();
+            }
+
         }
     }
 }

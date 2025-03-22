@@ -6,17 +6,16 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ViewportItemUI : UIElement, IDragHandler
+        public class ViewportItemUI : UIElement<ObjectDataObserver>, IDragHandler
         {
             [SerializeField] private Image icon;
             private bool isDrag;
 
-            public override void SetData(IEditorData data)
+            public override void SetData(ObjectDataObserver data)
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                icon.sprite = objectDataObserver.metaData.data.sprite;
-                icon.color = objectDataObserver.metaData.data.color;
                 base.SetData(data);
+                icon.sprite = data.metaData.data.sprite;
+                icon.color = data.metaData.data.color;
             }
             private void SetPosition(Vector2 pos)
             {
@@ -35,7 +34,7 @@ namespace SkyStrike
             public void OnDrag(PointerEventData eventData)
             {
                 isDrag = true;
-                (data as ObjectDataObserver).position.SetData(transform.position);
+                data.position.SetData(transform.position);
             }
             public override void OnPointerClick(PointerEventData eventData)
             {
@@ -45,17 +44,15 @@ namespace SkyStrike
             }
             public override void BindData()
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                objectDataObserver.position.Bind(SetPosition);
-                objectDataObserver.scale.Bind(SetScale);
-                objectDataObserver.rotation.Bind(SetRotation);
+                data.position.Bind(SetPosition);
+                data.scale.Bind(SetScale);
+                data.rotation.Bind(SetRotation);
             }
             public override void UnbindData()
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                objectDataObserver.position.Unbind(SetPosition);
-                objectDataObserver.scale.Unbind(SetScale);
-                objectDataObserver.rotation.Unbind(SetRotation);
+                data.position.Unbind(SetPosition);
+                data.scale.Unbind(SetScale);
+                data.rotation.Unbind(SetRotation);
             }
         }
     }

@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ObjectInfoMenu : SubMenu
+        public class ObjectInfoMenu : SubMenu<ObjectDataObserver>
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private Vector2Property scale;
@@ -21,17 +21,20 @@ namespace SkyStrike
             [SerializeField] private Button referenceObjectBtn;
             [SerializeField] private TextMeshProUGUI referenceObjectText;
             [SerializeField] private FloatSelectRefObjectMenu selectRefObjectMenu;
-            private ObjectDataObserver curObjectData;
 
             public void Awake()
             {
                 addObjectBtn.onClick.AddListener(CreateObject);
                 referenceObjectBtn.onClick.AddListener(selectRefObjectMenu.Expand);
+            }
+            public override void Init()
+            {
+                base.Init();
                 EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             }
-            private void DisplayReferenceObject(IEditorData data)
+            private void DisplayReferenceObject(ObjectDataObserver refData)
             {
-                if (data is not ObjectDataObserver refData)
+                if (refData == null)
                 {
                     referenceObjectIcon.color = new();
                     referenceObjectText.text = "";
@@ -43,63 +46,23 @@ namespace SkyStrike
                     referenceObjectText.text = refData.name.data;
                 }
             }
-            public override bool CanDisplay() => curObjectData != null;
             private void CreateObject()
             {
-                var newData = curObjectData?.Clone();
-                if (newData != null)
-                    EventManager.CreateObject(newData);
-            }
-            public override void Display(IEditorData data)
-            {
-                bool isNewData = SetData(data);
-                if (!CanDisplay() || (!isNewData && curObjectData.isMetaData))
-                {
-                    curObjectData = null;
-                    UnbindData();
-                    Hide();
-                    return;
-                }
-                if (isNewData)
-                {
-                    UnbindData();
-                    BindData();
-                    type.text = curObjectData.metaData.data.type;
-                    icon.sprite = curObjectData.metaData.data.sprite;
-                    icon.color = curObjectData.metaData.data.color;
-                    DisplayReferenceObject(curObjectData.refData);
-                }
-            }
-            public override bool SetData(IEditorData data)
-            {
-                ObjectDataObserver newData = data as ObjectDataObserver;
-                if (curObjectData == newData) return false;
-                curObjectData = newData;
-                if (curObjectData != null)
-                {
-                    if (!curObjectData.isMetaData)
-                    {
-                        addObjectBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Duplicate";
-                        referenceObjectBtn.interactable = true;
-                    }
-                    else
-                    {
-                        addObjectBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Create";
-                        referenceObjectBtn.interactable = false;
-                        referenceObjectIcon.color = new();
-                        referenceObjectText.text = "";
-                    }
-                }
-                return true;
+                if (data != null)
+                    EventManager.CreateObject(data.Clone());
             }
             public override void BindData()
             {
-                position.Bind(curObjectData.position);
-                scale.Bind(curObjectData.scale);
-                rotation.Bind(curObjectData.rotation);
-                delay.Bind(curObjectData.delay);
-                velocity.Bind(curObjectData.velocity);
-                objectName.Bind(curObjectData.name);
+                position.Bind(data.position);
+                scale.Bind(data.scale);
+                rotation.Bind(data.rotation);
+                delay.Bind(data.delay);
+                velocity.Bind(data.velocity);
+                objectName.Bind(data.name);
+                type.text = data.metaData.data.type;
+                icon.sprite = data.metaData.data.sprite;
+                icon.color = data.metaData.data.color;
+                DisplayReferenceObject(data.refData);
             }
             public override void UnbindData()
             {
@@ -109,9 +72,6 @@ namespace SkyStrike
                 delay.Unbind();
                 velocity.Unbind();
                 objectName.Unbind();
-                if (curObjectData == null) return;
-                if (curObjectData.isMetaData)
-                    curObjectData.ResetData();
             }
         }
     }

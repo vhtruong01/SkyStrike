@@ -6,33 +6,37 @@ namespace SkyStrike
     {
         public class MoveActionMenu : ActionMenu
         {
-            [SerializeField] private BoolProperty syncRotation;
-            [SerializeField] private FloatProperty dirX;
-            [SerializeField] private FloatProperty dirY;
-            [SerializeField] private FloatProperty rotation;
-            [SerializeField] private FloatProperty delay;
-            [SerializeField] private FloatProperty scale;
+            [SerializeField] protected BoolProperty syncRotation;
+            [SerializeField] protected FloatProperty dirX;
+            [SerializeField] protected FloatProperty dirY;
+            [SerializeField] protected FloatProperty rotation;
+            [SerializeField] protected FloatProperty scale;
+            [SerializeField] protected FloatProperty accleration;
+            [SerializeField] protected FloatProperty radius;
 
             public override void BindData()
             {
-                var moveActionData = actionData as MoveDataObserver;
-                if (moveActionData == null) return;
+                base.BindData();
+                if (data is not MoveDataObserver moveActionData) return;
                 dirX.Bind(moveActionData.dirX);
                 dirY.Bind(moveActionData.dirY);
                 rotation.Bind(moveActionData.rotation);
-                delay.Bind(moveActionData.delay);
                 scale.Bind(moveActionData.scale);
+                accleration.Bind(moveActionData.accleration);
+                radius.Bind(moveActionData.radius);
                 syncRotation.Bind(moveActionData.isSyncRotation);
             }
             public override void UnbindData()
             {
-                var moveActionData = actionData as MoveDataObserver;
-                if (moveActionData == null) return;
+                base.UnbindData();
+                if (data is not MoveDataObserver moveActionData) return;
                 dirX.Unbind();
                 dirY.Unbind();
                 rotation.Unbind();
                 delay.Unbind();
                 scale.Unbind();
+                radius.Unbind();
+                accleration.Unbind();
                 syncRotation.Unbind();
             }
         }

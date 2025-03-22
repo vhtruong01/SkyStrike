@@ -7,33 +7,40 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class HierarchyItemUI : UIElement
+        public class HierarchyItemUI : UIElement<ObjectDataObserver>
         {
             private static readonly int paddingLen = 40;
             [SerializeField] private RectTransform spaceItem;
-            [SerializeField] private TextMeshProUGUI itemName;
             [SerializeField] private TextMeshProUGUI itemId;
             private readonly HashSet<HierarchyItemUI> children = new();
 
-            public override void SetData(IEditorData data)
+            public override void SetData(ObjectDataObserver data)
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                itemId.text = "id: " + objectDataObserver.id.ToString();
+                base.SetData(data);
+                itemId.text = "id: " + data.id.ToString();
                 spaceItem.sizeDelta = new(0, spaceItem.sizeDelta.y);
                 children.Clear();
-                base.SetData(data);
             }
             public void RemoveChild(HierarchyItemUI child)
             {
                 children.Remove(child);
                 child.SetPadding(0);
             }
+            public void RemoveAllChildren()
+            {
+                foreach (var child in children)
+                {
+                    child.data?.SetRefData(null);
+                    child.SetPadding(0);
+                }
+                children.Clear();
+            }
             public void AddChild(HierarchyItemUI newChild)
             {
                 if (newChild == this || children.Contains(newChild))
                     throw new System.Exception("invalid child");
                 children.Add(newChild);
-                newChild.SetPadding((data as ObjectDataObserver).GetParentCount() + 1);
+                newChild.SetPadding(data.GetParentCount() + 1);
             }
             private void SetPadding(int parentCount)
             {
@@ -49,16 +56,18 @@ namespace SkyStrike
                 return rs;
             }
             public override void OnPointerClick(PointerEventData eventData) => InvokeData();
-            private void ChangeName(string name) => itemName.text = name;
+            public override void SetName(string name)
+            {
+                base.SetName(name);
+                data.name.OnlySetData(name);
+            }
             public override void BindData()
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                objectDataObserver.name.Bind(ChangeName);
+                data.name.Bind(SetName);
             }
             public override void UnbindData()
             {
-                var objectDataObserver = data as ObjectDataObserver;
-                objectDataObserver.name.Unbind(ChangeName);
+                data.name.Unbind(SetName);
             }
         }
     }

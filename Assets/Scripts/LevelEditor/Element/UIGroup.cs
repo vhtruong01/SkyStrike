@@ -7,48 +7,39 @@ namespace SkyStrike
     {
         public class UIGroup : MonoBehaviour
         {
-            protected List<IUIElement> items;
-            protected int selectedItemIndex;
             [field: SerializeField] public bool canDeselect { get; set; }
-            public int Count => items.Count;
+            private readonly List<IUIElement> items = new();
+            protected int selectedItemIndex;
+            public virtual int Count => items.Count;
 
             public virtual void Awake()
             {
                 selectedItemIndex = -1;
-                items = new();
                 for (int i = 0; i < transform.childCount; i++)
                 {
                     if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var item)) continue;
+                    item.index = items.Count;
+                    item.Init();
+                    item.onSelectUI.AddListener(SelectItem);
+                    if (selectedItemIndex != item.index)
+                        Diminish(item);
                     items.Add(item);
                 }
-                for (int i = 0; i < items.Count; i++)
-                {
-                    items[i].index = i;
-                    items[i].Init();
-                    items[i].onSelectUI.AddListener(SelectItem);
-                    if (selectedItemIndex != i)
-                        Diminish(items[i]);
-                }
             }
-            public virtual IUIElement GetItem(int index)
+            public virtual IUIElement GetBaseItem(int index)
             {
                 return index < 0 || index >= items.Count ? null : items[index];
             }
-            public bool TryGetValidSelectedIndex(out int index)
-            {
-                index = selectedItemIndex;
-                return index >= 0 & index < items.Count;
-            }
-            public IUIElement GetSelectedItem() => GetItem(selectedItemIndex);
+            public int GetSelectedItemIndex() => selectedItemIndex;
             public void SelectFirstItem() => SelectAndInvokeItem(0);
-            public void SelectAndInvokeItem(int index) => GetItem(index)?.SelectAndInvoke();
             public void SelectNone() => SelectItem(-1);
-            public void SelectItem(int index)
+            public virtual void SelectAndInvokeItem(int index) => GetBaseItem(index)?.SelectAndInvoke();
+            protected virtual void SelectItem(int index)
             {
-                Diminish(GetSelectedItem());
-                if (canDeselect & selectedItemIndex == index) index = -1;
+                Diminish(GetBaseItem(selectedItemIndex));
+                if (canDeselect && selectedItemIndex == index) index = -1;
                 selectedItemIndex = index;
-                Highlight(GetSelectedItem());
+                Highlight(GetBaseItem(selectedItemIndex));
             }
             protected virtual void Highlight(IUIElement e)
                 => SetBackgroundColor(e, EditorSetting.btnSelectedColor);

@@ -4,13 +4,27 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class SubMenu : MonoBehaviour, ISubMenu
+        public abstract class SubMenu<T> : MonoBehaviour, ISubMenu where T : class
         {
-            public abstract bool SetData(IEditorData data);
-            public abstract void Display(IEditorData data);
-            public abstract bool CanDisplay();
+            protected T data;
+            public bool CanDisplay() => data != null;
             public abstract void BindData();
             public abstract void UnbindData();
+            public virtual void Init() => Hide();
+            public virtual void Display(T data)
+            {
+                if (!SetData(data)) return;
+                UnbindData();
+                if (!CanDisplay())
+                    Hide();
+                else BindData();
+            }
+            public virtual bool SetData(T data)
+            {
+                if (this.data == data) return false;
+                this.data = data;
+                return true;
+            }
             public virtual void Hide()
             {
                 if (gameObject.activeSelf)

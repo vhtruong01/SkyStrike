@@ -1,31 +1,22 @@
-using TMPro;
-using UnityEngine;
-
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class WaveItemUI : UIElement
+        public class WaveItemUI : UIElement<WaveDataObserver>
         {
-            [SerializeField] private TextMeshProUGUI waveName;
-
-            public override void SetData(IEditorData data)
+            public override void SetName(string name)
             {
-                var waveDataObserver = data as WaveDataObserver;
-                //
-                base.SetData(data);
+                base.SetName(name);
+                data.name.OnlySetData(name);
             }
             public override void BindData()
             {
-                var waveDataObserver = data as WaveDataObserver;
-                waveDataObserver.name.Bind(ChangeName);
+                data.name.Bind(SetName);
             }
             public override void UnbindData()
             {
-                var waveDataObserver = data as WaveDataObserver;
-                waveDataObserver.name.Unbind(ChangeName);
+                data.name.Unbind(SetName);
             }
-            private void ChangeName(string name) => waveName.text = name;
         }
     }
 }

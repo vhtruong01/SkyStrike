@@ -8,55 +8,54 @@ namespace SkyStrike
     {
         public class FloatSelectRefObjectMenu : Menu
         {
-            [SerializeField] private UIGroupPool itemUIGroupPool;
             [SerializeField] private Image itemIcon;
             [SerializeField] private TextMeshProUGUI itemId;
             [SerializeField] private TextMeshProUGUI itemName;
+            private ObjectItemList objectItemUIGroupPool;
             private ObjectDataObserver curObjectData;
 
             public override void Awake()
             {
                 base.Awake();
-                itemUIGroupPool.selectDataCall = SelectReferenceObject;
             }
-            public override void Init() => DisplayRefObject(null);
-            protected override void CreateObject(IEditorData data)
+            public override void Init()
             {
-                if (data is ObjectDataObserver objectData)
-                    DisplayObject(objectData);
+                DisplayRefObject(null);
+                objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
+                objectItemUIGroupPool.Init(SelectReferenceObject);
             }
-            protected override void SelectObject(IEditorData data)
+            protected override void CreateObject(ObjectDataObserver data) => DisplayObject(data);
+            protected override void SelectObject(ObjectDataObserver data)
             {
-                curObjectData = data as ObjectDataObserver;
-                itemUIGroupPool.SelectItem(curObjectData?.refData);
+                if (curObjectData == data) return;
+                curObjectData = data;
+                objectItemUIGroupPool.SelectItem(curObjectData?.refData);
                 DisplayRefObject(curObjectData?.refData);
             }
-            protected override void RemoveObject(IEditorData data)
+            protected override void RemoveObject(ObjectDataObserver data)
             {
                 if (curObjectData == data)
                     SelectObject(null);
                 else if (curObjectData.refData == data)
                     SelectReferenceObject(null);
-                itemUIGroupPool.RemoveItem(data);
+                objectItemUIGroupPool.RemoveItem(data);
             }
-            protected override void SelectWave(IEditorData data)
+            protected override void SelectWave(WaveDataObserver data)
             {
-                var waveDataObserver = data as WaveDataObserver;
-                itemUIGroupPool.Clear();
-                foreach (var objectData in waveDataObserver.GetList())
+                objectItemUIGroupPool.Clear();
+                foreach (var objectData in data.GetList())
                     DisplayObject(objectData);
                 DisplayRefObject(null);
             }
-            private void DisplayObject(ObjectDataObserver data) => itemUIGroupPool.CreateItem(data);
-            private void SelectReferenceObject(IEditorData data)
+            private void DisplayObject(ObjectDataObserver data) => objectItemUIGroupPool.CreateItem(data);
+            private void SelectReferenceObject(ObjectDataObserver refData)
             {
-                var refData = data as ObjectDataObserver;
                 if (curObjectData != null && curObjectData.refData != refData)
                 {
                     if (refData == null || refData.IsValidChild(curObjectData))
                     {
                         EventManager.SetRefObject(refData);
-                        curObjectData.refData = refData;
+                        curObjectData.SetRefData(refData);
                     }
                     else refData = null;
                 }
@@ -64,7 +63,7 @@ namespace SkyStrike
             }
             private void DisplayRefObject(ObjectDataObserver refData)
             {
-                if (refData != null)
+                if (refData != null && curObjectData != null)
                 {
                     itemIcon.sprite = refData.metaData.data.sprite;
                     itemIcon.color = refData.metaData.data.color;

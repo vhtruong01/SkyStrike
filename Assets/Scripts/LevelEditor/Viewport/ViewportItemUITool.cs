@@ -23,27 +23,31 @@ namespace SkyStrike
                 cutBtn.onClick.AddListener(Cut);
                 EventManager.onSelectObject.AddListener(SelectObject);
             }
-            private void SelectObject(IEditorData data)
+            private void SelectObject(ObjectDataObserver data)
             {
-                curObjectDataObserver = data as ObjectDataObserver;
+                curObjectDataObserver = data;
                 copyBtn.interactable = removeBtn.interactable = cutBtn.interactable = curObjectDataObserver != null;
             }
-            public void Copy()
+            protected void Copy()
             {
                 tempItemData = curObjectDataObserver;
                 if (!pasteBtn.interactable && tempItemData != null)
                     pasteBtn.interactable = true;
             }
-            public void Paste()
+            protected void Paste()
             {
                 EventManager.CreateObject(tempItemData.Clone());
             }
-            public void Remove()
+            protected void Remove()
             {
                 if (curObjectDataObserver != null)
+                {
                     EventManager.RemoveObject(curObjectDataObserver);
+                    curObjectDataObserver = null;
+                    removeBtn.interactable = cutBtn.interactable = false;
+                }
             }
-            public void Cut()
+            protected void Cut()
             {
                 Copy();
                 Remove();

@@ -5,11 +5,10 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ObjectDataObserver : ICloneable<ObjectDataObserver>
+        public class ObjectDataObserver : IEditorData<ObjectData, ObjectDataObserver>
         {
-            public bool isMetaData { get; set; }
             public int id { get; set; }
-            public ObjectDataObserver refData { get; set; }
+            public ObjectDataObserver refData { get; private set; }
             public DataObserver<ObjectMetaData> metaData { get; private set; }
             public DataObserver<Vector2> scale { get; private set; }
             public DataObserver<Vector2> velocity { get; private set; }
@@ -31,6 +30,7 @@ namespace SkyStrike
                 phase = new();
                 id = -1;
             }
+            public void SetRefData(ObjectDataObserver data) => refData = data;
             public bool IsValidChild(ObjectDataObserver data)
             {
                 if (data == this) return false;
@@ -73,7 +73,7 @@ namespace SkyStrike
                 name.UnbindAll();
                 scale.UnbindAll();
             }
-            public IGameData ToGameData()
+            public ObjectData ToGameData()
             {
                 ObjectData objectData = new();
                 objectData.id = id;
@@ -86,7 +86,7 @@ namespace SkyStrike
                 objectData.position = new(position.data);
                 objectData.velocity = new(velocity.data);
                 objectData.rotation = rotation.data;
-                objectData.phase = phase.ToGameData() as PhaseData;
+                objectData.phase = phase.ToGameData();
                 return objectData;
             }
         }

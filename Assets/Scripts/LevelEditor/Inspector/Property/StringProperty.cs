@@ -9,9 +9,8 @@ namespace SkyStrike
         {
             [SerializeField] private TMP_InputField x;
 
-            public override void Awake()
+            public void Awake()
             {
-                base.Awake();
                 x.onValueChanged.AddListener(s => OnValueChanged());
             }
             protected override void OnValueChanged()

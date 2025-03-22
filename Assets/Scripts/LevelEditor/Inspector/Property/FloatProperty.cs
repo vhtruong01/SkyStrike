@@ -10,9 +10,8 @@ namespace SkyStrike
             [SerializeField] private bool isWholeNumber;
             [SerializeField] private TMP_InputField x;
 
-            public override void Awake()
+            public void Awake()
             {
-                base.Awake();
                 x.text = "0";
                 x.onValueChanged.AddListener(s => OnValueChanged());
                 x.onSubmit.AddListener(s => CheckValue());

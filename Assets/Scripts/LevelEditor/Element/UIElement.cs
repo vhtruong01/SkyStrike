@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -7,24 +8,25 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class UIElement : MonoBehaviour, IUIElement, IObserver
+        public abstract class UIElement<T> : MonoBehaviour, IUIElement, IObserver where T : class
         {
-            [SerializeField] protected Image bg;
+            [SerializeField] protected TextMeshProUGUI itemName;
+
+            private Image bg;
             public int? index { get; set; }
             public bool canRemove { get; set; }
-            public IEditorData data { get; set; }
-            public UnityEvent<IEditorData> onClick { get; set; }
+            public T data { get; set; }
+            public UnityEvent<T> onClick { get; set; }
             public UnityEvent<int> onSelectUI { get; set; }
             public void Init()
             {
-                if (bg == null)
-                    bg = GetComponent<Image>();
+                bg = GetComponent<Image>();
                 onSelectUI = new();
                 onClick = new();
             }
             public virtual Image GetBackground() => bg;
             public virtual void OnPointerClick(PointerEventData eventData) => SelectAndInvoke();
-            public virtual void SetData(IEditorData data)
+            public virtual void SetData(T data)
             {
                 this.data = data;
                 BindData();
@@ -32,7 +34,7 @@ namespace SkyStrike
             public virtual void RemoveData()
             {
                 UnbindData();
-                data = null;
+                data = default;
             }
             public virtual void InvokeData()
             {
@@ -45,8 +47,13 @@ namespace SkyStrike
                 if (index != null)
                     onSelectUI.Invoke(index.Value);
             }
-            public virtual void BindData() { }
-            public virtual void UnbindData() { }
+            public virtual void SetName(string name)
+            {
+                if ( itemName != null)
+                    itemName.text = name;
+            }
+            public abstract void BindData();
+            public abstract void UnbindData();
         }
     }
 }

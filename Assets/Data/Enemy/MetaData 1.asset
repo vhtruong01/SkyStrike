@@ -15,7 +15,7 @@ MonoBehaviour:
   <id>k__BackingField: 1
   <sprite>k__BackingField: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   <color>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
-  <type>k__BackingField: test2
+  <type>k__BackingField: test1
   <rotation>k__BackingField: 0
   <position>k__BackingField: {x: 0, y: 0}
   <scale>k__BackingField: {x: 1, y: 1}

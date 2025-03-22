@@ -7,16 +7,16 @@ namespace SkyStrike
             public override void Init()
             {
             }
-            protected override void CreateObject(IEditorData data)
+            protected override void CreateObject(ObjectDataObserver data)
             {
             }
-            protected override void RemoveObject(IEditorData data)
+            protected override void RemoveObject(ObjectDataObserver data)
             {
             }
-            protected override void SelectObject(IEditorData data)
+            protected override void SelectObject(ObjectDataObserver data)
             {
             }
-            protected override void SelectWave(IEditorData data)
+            protected override void SelectWave(WaveDataObserver data)
             {
             }
         }

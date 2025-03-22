@@ -19,10 +19,10 @@ namespace SkyStrike
                 EventManager.onSelectWave.AddListener(SelectWave);
             }
             public abstract void Init();
-            protected abstract void CreateObject(IEditorData data);
-            protected abstract void RemoveObject(IEditorData data);
-            protected abstract void SelectObject(IEditorData data);
-            protected abstract void SelectWave(IEditorData data);
+            protected abstract void CreateObject(ObjectDataObserver data);
+            protected abstract void RemoveObject(ObjectDataObserver data);
+            protected abstract void SelectObject(ObjectDataObserver data);
+            protected abstract void SelectWave(WaveDataObserver data);
             public virtual void Collapse() => gameObject.SetActive(false);
             public virtual void Expand() => gameObject.SetActive(true); 
         }

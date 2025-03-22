@@ -4,26 +4,28 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class MoveDataObserver : ICloneable<MoveDataObserver>
+        public class MoveDataObserver : ActionDataObserver, IEditorData<MoveData, ActionDataObserver>
         {
             public DataObserver<float> dirX { get; private set; }
             public DataObserver<float> dirY { get; private set; }
             public DataObserver<float> rotation { get; private set; }
             public DataObserver<float> scale { get; private set; }
-            public DataObserver<float> delay { get; private set; }
+            public DataObserver<float> accleration { get; private set; }
+            public DataObserver<float> radius { get; private set; }
             public DataObserver<bool> isSyncRotation { get; private set; }
 
-            public MoveDataObserver()
+            public MoveDataObserver() : base()
             {
                 dirX = new();
                 dirY = new();
                 rotation = new();
                 scale = new();
-                delay = new();
+                accleration = new();
+                radius = new();
                 isSyncRotation = new();
                 scale.SetData(1);
             }
-            public MoveDataObserver Clone()
+            public override ActionDataObserver Clone()
             {
                 MoveDataObserver newAction = new();
                 newAction.dirX.SetData(dirX.data);
@@ -31,16 +33,20 @@ namespace SkyStrike
                 newAction.rotation.SetData(rotation.data);
                 newAction.scale.SetData(scale.data);
                 newAction.delay.SetData(delay.data);
+                newAction.isLoop.SetData(isLoop.data);
+                newAction.accleration.SetData(accleration.data);
+                newAction.radius.SetData(radius.data);
                 newAction.isSyncRotation.SetData(isSyncRotation.data);
                 return newAction;
             }
-            public IGameData ToGameData()
+            public MoveData ToGameData()
             {
                 MoveData moveData = new();
                 moveData.isSyncRotation = isSyncRotation.data;
                 moveData.rotation = rotation.data;
                 moveData.delay = delay.data;
                 moveData.scale = scale.data;
+                //
                 moveData.dir = new(dirX.data, dirY.data);
                 return moveData;
             }

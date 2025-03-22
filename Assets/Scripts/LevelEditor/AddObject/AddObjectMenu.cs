@@ -9,10 +9,10 @@ namespace SkyStrike
         public class AddObjectMenu : Menu
         {
             [SerializeField] private List<ObjectMetaData> metaDataList;
-            [SerializeField] private UIGroupPool itemUIGroupPool;
             [SerializeField] private UIGroup selectObjectTypeBtn;
             [SerializeField] private Menu hierarchyMenu;
             [SerializeField] private Button hierarchyBtn;
+            private ObjectItemList objectItemUIGroupPool;
 
             public override void Awake()
             {
@@ -22,38 +22,43 @@ namespace SkyStrike
                     Collapse();
                     hierarchyMenu.Expand();
                 });
-                itemUIGroupPool.selectDataCall = EventManager.SelectMetaObject;
             }
             public override void Init()
             {
+                objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
+                objectItemUIGroupPool.Init(SelectMetaObject);
                 foreach (var metaData in metaDataList)
                 {
                     ObjectDataObserver objectDataObserver = new();
-                    objectDataObserver.isMetaData = true;
                     objectDataObserver.metaData.SetData(metaData);
                     objectDataObserver.ResetData();
-                    itemUIGroupPool.CreateItem(objectDataObserver);
+                    objectItemUIGroupPool.CreateItem(objectDataObserver);
                 }
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
-                    selectObjectTypeBtn.GetItem(i).onSelectUI.AddListener(SelectObjectType);
+                    selectObjectTypeBtn.GetBaseItem(i).onSelectUI.AddListener(SelectObjectType);
                 selectObjectTypeBtn.SelectFirstItem();
             }
-            private void SelectObjectType(int type)
+            private void SelectMetaObject(ObjectDataObserver objectDataObserver)
             {
-                //
+                objectDataObserver?.ResetData();
+                EventManager.SelectMetaObject(objectDataObserver);
             }
-            protected override void CreateObject(IEditorData data) { }
-            protected override void RemoveObject(IEditorData data) { }
-            protected override void SelectObject(IEditorData data)
+            private void SelectObjectType(int index)
+            {
+                if (objectItemUIGroupPool.GetSelectedItemIndex() != index)
+                {
+
+                    //
+                }
+            }
+            protected override void CreateObject(ObjectDataObserver data) { }
+            protected override void RemoveObject(ObjectDataObserver data) { }
+            protected override void SelectObject(ObjectDataObserver data)
             {
                 if (data != null)
-                    itemUIGroupPool.SelectNone();
+                    objectItemUIGroupPool.SelectNone();
             }
-            protected override void SelectWave(IEditorData data) => itemUIGroupPool.SelectNone();
-            public void Start()
-            {
-                selectObjectTypeBtn.SelectFirstItem();
-            }
+            protected override void SelectWave(WaveDataObserver data) => objectItemUIGroupPool.SelectNone();
         }
     }
 }

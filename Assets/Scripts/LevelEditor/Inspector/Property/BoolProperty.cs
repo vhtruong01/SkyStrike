@@ -9,11 +9,10 @@ namespace SkyStrike
         {
             [SerializeField] private Toggle toggle;
 
-            public override void Awake()
+            public void Awake()
             {
-                base.Awake();
                 toggle.isOn = false;
-                toggle.onValueChanged.AddListener(b =>OnValueChanged());
+                toggle.onValueChanged.AddListener(b => OnValueChanged());
             }
             protected override void OnValueChanged()
             {

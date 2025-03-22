@@ -1,36 +1,25 @@
-using TMPro;
 using UnityEngine;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class ActionMenu : SubMenu
+        public abstract class ActionMenu : SubMenu<ActionDataObserver>
         {
-            public IEditorData actionData { get; private set; }
+            [SerializeField] private BoolProperty isLoop;
+            [SerializeField] protected FloatProperty delay;
 
-            public override void Display(IEditorData data)
+            public override void BindData()
             {
-                bool isNewData = SetData(data);
-                if (!CanDisplay())
-                {
-                    UnbindData();
-                    Hide();
-                    return;
-                }
-                if (isNewData)
-                {
-                    UnbindData();
-                    BindData();
-                }
+                isLoop.Bind(data.isLoop);
+                delay.Bind(data.delay);
             }
-            public override bool SetData(IEditorData data)
+            public override void UnbindData()
             {
-                if (actionData == data) return false;
-                actionData = data;
-                return true;
+                isLoop.Unbind();
+                delay.Unbind();
             }
-            public override bool CanDisplay() => actionData != null;
+            public override void Init() { }
         }
     }
 }
