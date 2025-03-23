@@ -53,12 +53,10 @@ namespace SkyStrike
             }
             public override void MoveItemArray(ref int startIndex, int newIndex, int len = 1)
             {
-                //
                 base.MoveItemArray(ref startIndex, newIndex, len);
-                var dataList= container.GetDataList();
-                dataList.Clear();
-                foreach(var item in items)
-                    dataList.Add(item.data);
+                var dataList = container.GetDataList();
+                for (int i = 0; i < items.Count; i++)
+                    dataList.Set(i, items[i].data);
             }
             protected void MoveLeftSelectedItem()
             {

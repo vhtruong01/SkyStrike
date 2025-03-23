@@ -41,14 +41,17 @@ namespace SkyStrike
             }
             public MoveData ToGameData()
             {
-                MoveData moveData = new();
-                moveData.isSyncRotation = isSyncRotation.data;
-                moveData.rotation = rotation.data;
-                moveData.delay = delay.data;
-                moveData.scale = scale.data;
-                //
-                moveData.dir = new(dirX.data, dirY.data);
-                return moveData;
+                return new()
+                {
+                    isSyncRotation = isSyncRotation.data,
+                    rotation = rotation.data,
+                    delay = delay.data,
+                    scale = scale.data,
+                    isLoop = isLoop.data,
+                    accleration = accleration.data,
+                    radius = radius.data,
+                    dir = new(dirX.data, dirY.data)
+                };
             }
         }
     }

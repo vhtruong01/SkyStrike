@@ -8,6 +8,8 @@ namespace SkyStrike
         public class WaveData : IGameData
         {
             public float delay;
+            public string name;
+            public bool isBoss;
             public ObjectData[] objectDataArr;
         }
     }

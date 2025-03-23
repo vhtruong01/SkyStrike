@@ -27,7 +27,7 @@ namespace SkyStrike
             public void Remove(WaveDataObserver data) => waveList.Remove(data);
             public void Remove(int index) => waveList.RemoveAt(index);
             public void Swap(int leftIndex, int rightIndex) => waveList.Swap(leftIndex, rightIndex);
-            public void Clear() => waveList.Clear();
+            public void Set(int index, WaveDataObserver data) => waveList[index] = data;
             public LevelData ToGameData()
             {
                 LevelData levelData = new();

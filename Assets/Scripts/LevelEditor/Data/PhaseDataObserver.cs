@@ -45,7 +45,7 @@ namespace SkyStrike
             public void Remove(ActionDataObserver data) => actionDataList.Remove(data);
             public void Remove(int index) => actionDataList.RemoveAt(index);
             public void Swap(int i1, int i2) => actionDataList.Swap(i1, i2);
-            public void Clear() => actionDataList.Clear();
+            public void Set(int index, ActionDataObserver data) => actionDataList[index] = data;
             public PhaseDataObserver Clone()
             {
                 PhaseDataObserver newPhase = new();

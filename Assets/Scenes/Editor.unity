@@ -518,7 +518,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1117092322}
+    m_TransformParent: {fileID: 666240298}
     m_Modifications:
     - target: {fileID: 762969318825897308, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1214,6 +1214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <canDeselect>k__BackingField: 1
   useSpecificColor: 1
+  defaultName: 
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   prefab: {fileID: 5495041822765154785, guid: c1605903d1e12aa4db1f9472df06aec9, type: 3}
@@ -2009,7 +2010,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 666240298}
+    m_TransformParent: {fileID: 1117092322}
     m_Modifications:
     - target: {fileID: 762969318825897308, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2030,6 +2031,10 @@ PrefabInstance:
     - target: {fileID: 762969318825897308, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814728051874979105, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
+      propertyPath: isWholeNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5980951411245145342, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_Pivot.x
@@ -2845,13 +2850,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7098befc816ec048ae71016b62b4fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: {fileID: 0}
+  isLoop: {fileID: 1988360584}
   delay: {fileID: 401360422}
   syncRotation: {fileID: 1991410113}
   dirX: {fileID: 946192311}
   dirY: {fileID: 1050140668}
   rotation: {fileID: 1374181475}
   scale: {fileID: 1671107800}
+  accleration: {fileID: 1180812614}
+  radius: {fileID: 1247632587}
 --- !u!224 &281920188 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8863852959414431856, guid: 9a8444afd1c6f304797b8b2385d59e38, type: 3}
@@ -3242,7 +3249,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 666240298}
+    m_TransformParent: {fileID: 1117092322}
     m_Modifications:
     - target: {fileID: 762969318825897308, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3263,6 +3270,10 @@ PrefabInstance:
     - target: {fileID: 762969318825897308, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814728051874979105, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
+      propertyPath: isWholeNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5980951411245145342, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_Pivot.x
@@ -3314,15 +3325,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5980951411245145342, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5980951411245145342, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5980951411245145342, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5980951411245145342, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3792,6 +3803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <canDeselect>k__BackingField: 1
   useSpecificColor: 0
+  defaultName: 
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   prefab: {fileID: 468944079057890043, guid: 1a1d3331ef894ed4eb1cb2ca71d0997d, type: 3}
@@ -4587,9 +4599,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1991410112}
+  - {fileID: 662019983}
   - {fileID: 892467662}
-  - {fileID: 1671107799}
-  - {fileID: 1180812613}
+  - {fileID: 1050140667}
   m_Father: {fileID: 278249121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4841,7 +4853,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1117092322}
+    m_TransformParent: {fileID: 666240298}
     m_Modifications:
     - target: {fileID: 762969318825897308, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6465,8 +6477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89f061384458a7429a16bc6f1d97537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: {fileID: 0}
-  delay: {fileID: 0}
+  isLoop: {fileID: 1988360584}
+  delay: {fileID: 401360422}
 --- !u!1 &931385147
 GameObject:
   m_ObjectHideFlags: 0
@@ -7076,8 +7088,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 662019983}
-  - {fileID: 1050140667}
+  - {fileID: 1671107799}
+  - {fileID: 1180812613}
   - {fileID: 856982783}
   m_Father: {fileID: 278249121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7292,6 +7304,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5980951411245145342, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
   m_PrefabInstance: {fileID: 346754328}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1180812614 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2814728051874979105, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
+  m_PrefabInstance: {fileID: 346754328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d420e5974637bc4a859f9f495b4eeb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1184001526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7681,6 +7704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <canDeselect>k__BackingField: 0
   useSpecificColor: 0
+  defaultName: Wave
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   prefab: {fileID: 7770940805011337503, guid: 2ea74809c53a9c742a964a31dffcf293, type: 3}
@@ -7797,6 +7821,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246981402}
   m_CullTransparentMesh: 1
+--- !u!114 &1247632587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2814728051874979105, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
+  m_PrefabInstance: {fileID: 1393574322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d420e5974637bc4a859f9f495b4eeb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1259214194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8023,6 +8058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <canDeselect>k__BackingField: 0
   useSpecificColor: 1
+  defaultName: 
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   prefab: {fileID: 6615387417059724066, guid: 60208190b385caa4ea92af771c428403, type: 3}
@@ -8156,6 +8192,10 @@ PrefabInstance:
     - target: {fileID: 762969318825897308, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814728051874979105, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
+      propertyPath: isWholeNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5980951411245145342, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_Pivot.x
@@ -8734,7 +8774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6803995777660074432, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_text
-      value: R
+      value: Radius
       objectReference: {fileID: 0}
     - target: {fileID: 9042391726403469451, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9140,6 +9180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <canDeselect>k__BackingField: 1
   useSpecificColor: 1
+  defaultName: 
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   prefab: {fileID: 4135288588978973809, guid: 8db64ffe4c728fb41b1bab1cb9a29895, type: 3}
@@ -10784,8 +10825,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768699610}
-  - component: {fileID: 1768699612}
   - component: {fileID: 1768699611}
+  - component: {fileID: 1768699612}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -10829,10 +10870,10 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -11299,7 +11340,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -115}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1818035639
 MonoBehaviour:
@@ -11520,7 +11561,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 771079885185848454, guid: d1472853e68c8c143b70d1d70f58836c, type: 3}
       propertyPath: m_Name
-      value: BoolProperty
+      value: LoopPanel
       objectReference: {fileID: 0}
     - target: {fileID: 1086592011491118164, guid: d1472853e68c8c143b70d1d70f58836c, type: 3}
       propertyPath: m_text
@@ -11916,6 +11957,10 @@ PrefabInstance:
     - target: {fileID: 8408665534081182616, guid: d115a042a4a0d0d40b261bad3a9a1c78, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -23.333332
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947262470752672616, guid: d115a042a4a0d0d40b261bad3a9a1c78, type: 3}
+      propertyPath: isWholeNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8947262470752672616, guid: d115a042a4a0d0d40b261bad3a9a1c78, type: 3}
       propertyPath: isNaturalNumber
@@ -13179,6 +13224,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978658793}
   m_CullTransparentMesh: 1
+--- !u!114 &1988360584 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4524367298074879873, guid: d1472853e68c8c143b70d1d70f58836c, type: 3}
+  m_PrefabInstance: {fileID: 1872547727}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc287e02d2954b847a1f306ae6d83720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1991075815 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8863852959414431856, guid: 9a8444afd1c6f304797b8b2385d59e38, type: 3}
@@ -13681,6 +13737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <canDeselect>k__BackingField: 1
   useSpecificColor: 1
+  defaultName: 
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   prefab: {fileID: 6615387417059724066, guid: 60208190b385caa4ea92af771c428403, type: 3}

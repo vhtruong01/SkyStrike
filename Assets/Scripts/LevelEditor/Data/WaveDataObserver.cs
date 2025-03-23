@@ -53,8 +53,8 @@ namespace SkyStrike
                 objectDataList.RemoveAt(index);
                 objectDict.Remove(data.id);
             }
-            public void Swap(int i1,int i2) => objectDataList.Swap(i1,i2);
-            public void Clear() => objectDataList.Clear();
+            public void Swap(int i1, int i2) => objectDataList.Swap(i1, i2);
+            public void Set(int index, ObjectDataObserver data) => objectDataList[index] = data;
             public WaveDataObserver Clone()
             {
                 WaveDataObserver newWave = new();
@@ -66,9 +66,13 @@ namespace SkyStrike
             }
             public WaveData ToGameData()
             {
-                WaveData waveData = new();
-                waveData.delay = delay.data;
-                waveData.objectDataArr = new ObjectData[objectDataList.Count];
+                WaveData waveData = new()
+                {
+                    delay = delay.data,
+                    isBoss = isBoss.data,
+                    name = name.data,
+                    objectDataArr = new ObjectData[objectDataList.Count]
+                };
                 for (int i = 0; i < objectDataList.Count; i++)
                     waveData.objectDataArr[i] = objectDataList[i].ToGameData();
                 return waveData;

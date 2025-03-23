@@ -75,19 +75,19 @@ namespace SkyStrike
             }
             public ObjectData ToGameData()
             {
-                ObjectData objectData = new();
-                objectData.id = id;
-                if (refData != null)
-                    objectData.refId = refData.id;
-                objectData.metaId = metaData.data.id;
-                objectData.delay = delay.data;
-                objectData.name = name.data;
-                objectData.scale = new(scale.data);
-                objectData.position = new(position.data);
-                objectData.velocity = new(velocity.data);
-                objectData.rotation = rotation.data;
-                objectData.phase = phase.ToGameData();
-                return objectData;
+                return new()
+                {
+                    id = id,
+                    refId = refData != null ? refData.id : -1,
+                    metaId = metaData.data.id,
+                    delay = delay.data,
+                    name = name.data,
+                    rotation = rotation.data,
+                    scale = new(scale.data),
+                    position = new(position.data),
+                    velocity = new(velocity.data),
+                    phase = phase?.ToGameData()
+                };
             }
         }
     }
