@@ -7,7 +7,8 @@ namespace SkyStrike
         [Serializable]
         public class PhaseData : IGameData
         {
-            public ActionGroupData[] actions;
+            public MoveData[] moveDataList;
+            public FireData[] fireDataList;
         }
     }
 }

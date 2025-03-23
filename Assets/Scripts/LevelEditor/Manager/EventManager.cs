@@ -13,7 +13,6 @@ namespace SkyStrike
             public static UnityEvent<ObjectDataObserver> onCreateObject { get; private set; }
             public static UnityEvent<WaveDataObserver> onSelectWave { get; private set; }
             public static UnityEvent<LevelDataObserver> onSelectLevel { get; private set; }
-            public static FuncEvent<LevelDataObserver> onGetLevel { get; private set; }
             public static UnityEvent onPlay { get; private set; }
 
             static EventManager()
@@ -25,7 +24,6 @@ namespace SkyStrike
                 onCreateObject = new();
                 onSelectWave = new();
                 onSelectLevel = new();
-                onGetLevel = new();
                 onPlay = new();
             }
             public static void SelectObject(ObjectDataObserver data) => onSelectObject.Invoke(data);
@@ -39,7 +37,6 @@ namespace SkyStrike
             public static void CreateObject(ObjectDataObserver data) => onCreateObject.Invoke(data);
             public static void SelectWave(WaveDataObserver data) => onSelectWave.Invoke(data);
             public static void SelectLevel(LevelDataObserver data) => onSelectLevel.Invoke(data);
-            public static LevelDataObserver GetLevel() => onGetLevel.Invoke();
             public static void Play() => onPlay.Invoke();
         }
     }

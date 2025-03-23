@@ -41,6 +41,18 @@ namespace SkyStrike
                     Add(actionData);
                 return actionData;
             }
+            private ActionDataObserver CreateItem()
+            {
+                switch (actionType)
+                {
+                    case EActionType.Move:
+                        return new MoveDataObserver();
+                    case EActionType.Fire:
+                        actionDataList = fireDataList;
+                        return new FireDataObserver();
+                }
+                return null;
+            }
             public void Add(ActionDataObserver data) => actionDataList.Add(data);
             public void Remove(ActionDataObserver data) => actionDataList.Remove(data);
             public void Remove(int index) => actionDataList.RemoveAt(index);
@@ -57,23 +69,16 @@ namespace SkyStrike
             }
             public PhaseData ToGameData()
             {
-                PhaseData phaseData = new();
-                //phaseData.actions = new ActionGroupData[actionDataList.Count];
-                //for (int i = 0; i < actionDataList.Count; i++)
-                //    phaseData.actions[i] = actionDataList[i].ToGameData() as ActionGroupData;
-                return phaseData;
-            }
-            private ActionDataObserver CreateItem()
-            {
-                switch (actionType)
+                PhaseData phaseData = new()
                 {
-                    case EActionType.Move:
-                        return new MoveDataObserver();
-                    case EActionType.Fire:
-                        actionDataList = fireDataList;
-                        return new FireDataObserver();
-                }
-                return null;
+                    moveDataList = new MoveData[moveDataList.Count],
+                    fireDataList = new FireData[fireDataList.Count]
+                };
+                for (int i = 0; i < moveDataList.Count; i++)
+                    phaseData.moveDataList[i] = (moveDataList[i] as MoveDataObserver).ToGameData();
+                for (int i = 0; i < fireDataList.Count; i++)
+                    phaseData.fireDataList[i] = (fireDataList[i] as FireDataObserver).ToGameData();
+                return phaseData;
             }
         }
     }

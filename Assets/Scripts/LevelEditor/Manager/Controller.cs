@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.IO;
 using SkyStrike.Game;
-using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
 
@@ -11,13 +10,13 @@ namespace SkyStrike
     {
         public class Controller : MonoBehaviour
         {
-            [SerializeField] private List<Menu> menus;
+            private Menu[] menus;
             private LevelDataObserver levelDataObserver;
 
             public void Awake()
             {
                 levelDataObserver = new();
-                EventManager.onGetLevel.AddListener(() => levelDataObserver);
+                menus = FindObjectsByType<Menu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 EventManager.onPlay.AddListener(TestLevel);
             }
             public void Start()
@@ -29,6 +28,7 @@ namespace SkyStrike
                     menu.Init();
                     if (!isActive) menu.Collapse();
                 }
+                EventManager.SelectLevel(levelDataObserver);
             }
             private void TestLevel()
             {

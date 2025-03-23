@@ -10577,7 +10577,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1705451515
 MonoBehaviour:
@@ -10625,6 +10625,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7dfca1fe0c273ca45b684d96b0dc4a06, type: 2}
   - {fileID: 11400000, guid: 6948b993c26b85f40ae84710746f5225, type: 2}
   - {fileID: 11400000, guid: 510507660b7a33044b324fbdcd012b94, type: 2}
+  - {fileID: 11400000, guid: 704b906ede4f4084e912e5a531c60460, type: 2}
+  - {fileID: 11400000, guid: c987d0f88b690114daa4405146a86a10, type: 2}
+  - {fileID: 11400000, guid: 39e5b1fb8e5c49f42943f75f8ed17a31, type: 2}
+  - {fileID: 11400000, guid: da9681054540ca344817e71892fa88cd, type: 2}
+  - {fileID: 11400000, guid: d8aaadc5bd9375348b67d24be78e06b1, type: 2}
 --- !u!1 &1811168858
 GameObject:
   m_ObjectHideFlags: 0

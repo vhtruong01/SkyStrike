@@ -14017,13 +14017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e4accff9ecc1b46b4b85916356ea89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menus:
-  - {fileID: 74682702}
-  - {fileID: 774334670}
-  - {fileID: 2023141254}
-  - {fileID: 1280579671}
-  - {fileID: 1449115376}
-  - {fileID: 1243432271}
 --- !u!1001 &2066112516
 PrefabInstance:
   m_ObjectHideFlags: 0
