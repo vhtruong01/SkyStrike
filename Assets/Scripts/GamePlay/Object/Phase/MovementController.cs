@@ -8,6 +8,8 @@ namespace SkyStrike
         public class MovementController : MonoBehaviour
         {
             private Rigidbody2D rig;
+            public Vec2 velocity { get; set; }
+
             public void Awake()
             {
                 rig = GetComponent<Rigidbody2D>();
@@ -17,10 +19,10 @@ namespace SkyStrike
                 if (action.delay > 0)
                     yield return new WaitForSeconds(action.delay);
                 //rig.linearVelocity=action.
-                float delta = 0;
-                while (delta < 10)
+                float time = ((action.dir - new Vector2(transform.position.x, transform.position.y)) / velocity).sqrMagnitude;
+                while (time > 0)
                 {
-                    delta += Time.deltaTime;
+                    time -= Time.deltaTime;
                     transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime);
                     yield return null;
                 }

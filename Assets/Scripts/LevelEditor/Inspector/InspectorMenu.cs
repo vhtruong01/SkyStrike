@@ -24,11 +24,7 @@ namespace SkyStrike
                 curSubmenuIndex = -1;
                 subMenuList = new() { objectInfoMenu, phaseMenu, waveInfoMenu };
                 for (int i = 0; i < subMenuList.Count; i++)
-                {
-                    ISubMenu subMenu = subMenuList[i];
-                    subMenu.Init();
                     switchSubMenuBtnGroup.GetBaseItem(i).onSelectUI.AddListener(SelectSubMenu);
-                }
             }
             private void SelectSubMenu(int index)
             {

@@ -17,6 +17,7 @@ namespace SkyStrike
             public override void Awake()
             {
                 base.Awake();
+                EventManager.onSetRefObject.AddListener(DisplayRefObject);
             }
             public override void Init()
             {
@@ -50,16 +51,12 @@ namespace SkyStrike
             private void DisplayObject(ObjectDataObserver data) => objectItemUIGroupPool.CreateItem(data);
             private void SelectReferenceObject(ObjectDataObserver refData)
             {
-                if (curObjectData != null && curObjectData.refData != refData)
+                if (curObjectData != null && curObjectData.refData != refData && (refData == null || refData.IsValidChild(curObjectData)))
                 {
-                    if (refData == null || refData.IsValidChild(curObjectData))
-                    {
-                        EventManager.SetRefObject(refData);
-                        curObjectData.SetRefData(refData);
-                    }
-                    else refData = null;
+                    EventManager.SetRefObject(refData);
+                    curObjectData.SetRefData(refData);
                 }
-                DisplayRefObject(refData);
+                else DisplayRefObject(null);
             }
             private void DisplayRefObject(ObjectDataObserver refData)
             {

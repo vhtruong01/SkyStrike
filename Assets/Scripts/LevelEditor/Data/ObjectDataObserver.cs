@@ -13,8 +13,8 @@ namespace SkyStrike
             public ObjectDataObserver refData { get; private set; }
             public DataObserver<ObjectMetaData> metaData { get; private set; }
             public DataObserver<Vector2> scale { get; private set; }
-            public DataObserver<Vector2> velocity { get; private set; }
             public DataObserver<Vector2> position { get; private set; }
+            public DataObserver<float> velocity { get; private set; }
             public DataObserver<float> rotation { get; private set; }
             public DataObserver<float> delay { get; private set; }
             public DataObserver<string> name { get; private set; }
@@ -90,24 +90,25 @@ namespace SkyStrike
                     delay = delay.data,
                     name = name.data,
                     rotation = rotation.data,
+                    velocity = velocity.data,
                     scale = new(scale.data),
                     position = new(position.data),
-                    velocity = new(velocity.data),
                     phase = phase.ExportData()
                 };
             }
             public void ImportData(ObjectData objectData)
             {
+                if (objectData == null) return;
                 id = objectData.id;
                 refId = objectData.refId;
                 metaData.SetData(EventManager.GetMetaData(objectData.metaId));
                 delay.SetData(objectData.delay);
                 name.SetData(objectData.name);
                 rotation.SetData(objectData.rotation);
-                scale.SetData(objectData.scale.Get());
-                position.SetData(objectData.position.Get());
-                velocity.SetData(objectData.velocity.Get());
-                phase.ImportData(objectData.phase);
+                velocity.SetData(objectData.velocity);
+                scale.SetData(objectData.scale.ToVector2());
+                position.SetData(objectData.position.ToVector2());
+                phase = new(objectData.phase);
             }
         }
     }

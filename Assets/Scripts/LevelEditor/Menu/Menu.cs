@@ -5,14 +5,14 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class Menu : MonoBehaviour
+        public abstract class Menu : MonoBehaviour, IMenu
         {
             [SerializeField] protected Button collapseBtn;
 
             public virtual void Awake()
             {
                 if (collapseBtn != null)
-                    collapseBtn.onClick.AddListener(Collapse);
+                    collapseBtn.onClick.AddListener(Hide);
                 EventManager.onCreateObject.AddListener(CreateObject);
                 EventManager.onSelectObject.AddListener(SelectObject);
                 EventManager.onRemoveObject.AddListener(RemoveObject);
@@ -23,8 +23,8 @@ namespace SkyStrike
             protected abstract void RemoveObject(ObjectDataObserver data);
             protected abstract void SelectObject(ObjectDataObserver data);
             protected abstract void SelectWave(WaveDataObserver data);
-            public virtual void Collapse() => gameObject.SetActive(false);
-            public virtual void Expand() => gameObject.SetActive(true); 
+            public virtual void Hide() => gameObject.SetActive(false);
+            public virtual void Show() => gameObject.SetActive(true);
         }
     }
 }

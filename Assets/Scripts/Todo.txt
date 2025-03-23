@@ -1,0 +1,18 @@
+-- editor --
+
+//UI
+drag + drop element
+resize menu 
+pin UI
+multi select
+
+
+//object
+change all children position
+fix delay + loop in phase menu
+bullet menu
+...
+
+
+
+-- main game --

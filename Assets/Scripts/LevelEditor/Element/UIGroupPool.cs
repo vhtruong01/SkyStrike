@@ -194,7 +194,7 @@ namespace SkyStrike
             }
             public void Clear()
             {
-                if (items.Count == 0) return;
+                if (items == null || items.Count == 0) return;
                 List<UIElement<T>> unremovedItem = new();
                 SelectNone();
                 for (int i = 0; i < items.Count; i++)

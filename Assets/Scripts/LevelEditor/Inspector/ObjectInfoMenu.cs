@@ -10,7 +10,7 @@ namespace SkyStrike
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private Vector2Property scale;
-            [SerializeField] private Vector2Property velocity;
+            [SerializeField] private FloatProperty velocity;
             [SerializeField] private FloatProperty rotation;
             [SerializeField] private StringProperty objectName;
             [SerializeField] private Image icon;
@@ -25,11 +25,10 @@ namespace SkyStrike
             public void Awake()
             {
                 addObjectBtn.onClick.AddListener(CreateObject);
-                referenceObjectBtn.onClick.AddListener(selectRefObjectMenu.Expand);
+                referenceObjectBtn.onClick.AddListener(selectRefObjectMenu.Show);
             }
             public override void Init()
             {
-                base.Init();
                 EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             }
             private void DisplayReferenceObject(ObjectDataObserver refData)

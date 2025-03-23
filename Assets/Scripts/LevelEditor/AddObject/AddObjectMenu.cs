@@ -19,8 +19,8 @@ namespace SkyStrike
                 base.Awake();
                 hierarchyBtn.onClick.AddListener(() =>
                 {
-                    Collapse();
-                    hierarchyMenu.Expand();
+                    Hide();
+                    hierarchyMenu.Show();
                 });
             }
             public override void Init()

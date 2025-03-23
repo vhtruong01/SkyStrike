@@ -12,25 +12,28 @@ namespace SkyStrike
         public class Controller : MonoBehaviour
         {
             [SerializeField] private Button saveBtn;
-            private Menu[] menus;
             private LevelDataObserver levelDataObserver;
 
             public void Awake()
             {
                 saveBtn.onClick.AddListener(WriteLevelData);
-                levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
-                menus = FindObjectsByType<Menu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 EventManager.onPlay.AddListener(TestLevel);
             }
             public void Start()
             {
-                foreach (var menu in menus)
+                var allObject = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                foreach (var obj in allObject)
                 {
+                    if (obj is not IMenu) continue;
+                    var menu = obj as IMenu;
                     bool isActive = menu.gameObject.activeSelf;
-                    if (!isActive) menu.Expand();
+                    if (!isActive)
+                        menu.gameObject.SetActive(true);
                     menu.Init();
-                    if (!isActive) menu.Collapse();
+                    if (!isActive)
+                        menu.gameObject.SetActive(false);
                 }
+                levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
                 EventManager.SelectLevel(levelDataObserver);
             }
             private void TestLevel()
@@ -49,7 +52,7 @@ namespace SkyStrike
                     string rs = "";
                     for (int j = 0; j < lv.waves[i].objectDataArr.Length; j++)
                     {
-                        rs += lv.waves[i].objectDataArr[j].id + "|" + lv.waves[i].objectDataArr[j].refId+"  ";
+                        rs += lv.waves[i].objectDataArr[j].id + "|" + lv.waves[i].objectDataArr[j].refId + "  ";
                     }
                     print(rs);
                 }

@@ -83,6 +83,7 @@ namespace SkyStrike
             }
             public void ImportData(WaveData waveData)
             {
+                if (waveData == null) return;
                 delay.SetData(waveData.delay);
                 isBoss.SetData(waveData.isBoss);
                 name.SetData(waveData.name);

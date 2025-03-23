@@ -83,6 +83,7 @@ namespace SkyStrike
             }
             public void ImportData(PhaseData phaseData)
             {
+                if (phaseData == null) return;  
                 for (int i = 0; i < phaseData.moveDataList.Length; i++)
                     moveDataList.Add(new MoveDataObserver(phaseData.moveDataList[i]));
                 for (int i = 0; i < phaseData.fireDataList.Length; i++)

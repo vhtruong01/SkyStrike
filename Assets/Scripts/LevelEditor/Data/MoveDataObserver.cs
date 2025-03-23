@@ -56,6 +56,7 @@ namespace SkyStrike
             }
             public void ImportData(MoveData moveData)
             {
+                if (moveData == null) return;
                 isSyncRotation.SetData(moveData.isSyncRotation);
                 rotation.SetData(moveData.rotation);
                 delay.SetData(moveData.delay);

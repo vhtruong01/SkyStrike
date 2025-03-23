@@ -19,4 +19,4 @@ MonoBehaviour:
   <rotation>k__BackingField: 0
   <position>k__BackingField: {x: 0, y: 0}
   <scale>k__BackingField: {x: 1, y: 1}
-  <velocity>k__BackingField: {x: 0, y: 0}
+  <velocity>k__BackingField: 1

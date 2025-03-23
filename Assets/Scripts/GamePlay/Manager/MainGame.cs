@@ -10,9 +10,11 @@ namespace SkyStrike
         {
             public static LevelData Level { get; set; }
             [SerializeField] private GameObjectManager gameObjectPool;
+            private Dictionary<int, ObjectData> objectDataDict;
 
             public void Awake()
             {
+                objectDataDict = new();
                 Level ??= Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
             }
             public void Start() => StartCoroutine(PlayGame());
@@ -32,12 +34,21 @@ namespace SkyStrike
                 List<Coroutine> coroutines = new();
                 for (int i = 0; i < wave.objectDataArr.Length; i++)
                 {
-                    var item = gameObjectPool.CreateItem(wave.objectDataArr[i]);
+                    var itemData = wave.objectDataArr[i];
+                    objectDataDict.Add(itemData.id, itemData);
+                }
+                for (int i = 0; i < wave.objectDataArr.Length; i++)
+                {
+                    var itemData = wave.objectDataArr[i];
+                    if (objectDataDict.TryGetValue(itemData.refId, out var refObjectData))
+                        itemData.phase = refObjectData.phase;
+                    var item = gameObjectPool.CreateItem(itemData);
                     Coroutine coroutine = StartCoroutine(item.Appear());
                     coroutines.Add(coroutine);
                 }
                 foreach (Coroutine coroutine in coroutines)
                     yield return coroutine;
+                objectDataDict.Clear();
             }
         }
     }

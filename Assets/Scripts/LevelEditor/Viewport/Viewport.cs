@@ -18,9 +18,9 @@ namespace SkyStrike
             public override void Awake()
             {
                 base.Awake();
-                inspectorMenuBtn.onClick.AddListener(inspectorMenu.Expand);
-                hierarchyMenuBtn.onClick.AddListener(hierarchyMenu.Expand);
-                waveMenuBtn.onClick.AddListener(waveMenu.Expand);
+                inspectorMenuBtn.onClick.AddListener(inspectorMenu.Show);
+                hierarchyMenuBtn.onClick.AddListener(hierarchyMenu.Show);
+                waveMenuBtn.onClick.AddListener(waveMenu.Show);
             }
             public override void Init()
             {

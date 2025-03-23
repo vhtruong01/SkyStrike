@@ -17,8 +17,8 @@ namespace SkyStrike
                 base.Awake();
                 addObjectBtn.onClick.AddListener(() =>
                 {
-                    Collapse();
-                    addObjectMenu.Expand();
+                    Hide();
+                    addObjectMenu.Show();
                 });
                 EventManager.onSetRefObject.AddListener(ReferenceObject);
             }
