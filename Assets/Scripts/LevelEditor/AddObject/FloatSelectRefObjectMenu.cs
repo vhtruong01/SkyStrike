@@ -67,8 +67,8 @@ namespace SkyStrike
                 {
                     itemIcon.sprite = refData.metaData.data.sprite;
                     itemIcon.color = refData.metaData.data.color;
-                    itemName.text = "Name: " + refData.name;
                     itemId.text = "Id: " + refData.id;
+                    itemName.text = "Name: " + refData.name.data;
                 }
                 else
                 {

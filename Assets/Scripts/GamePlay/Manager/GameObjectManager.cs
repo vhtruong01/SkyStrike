@@ -27,7 +27,7 @@ namespace SkyStrike
             {
                 var item = pool.Get();
                 item.SetData(data);
-                //item.gameObject.SetActive(true);
+                item.gameObject.SetActive(true);
                 return item;
             }
             public void RemoveItem(IGameObject item)

@@ -7,7 +7,9 @@ namespace SkyStrike
     {
         public class ObjectDataObserver : IEditorData<ObjectData, ObjectDataObserver>
         {
+            public readonly static int NULL_OBJECT_ID = -1;
             public int id { get; set; }
+            public int refId { get; private set; }
             public ObjectDataObserver refData { get; private set; }
             public DataObserver<ObjectMetaData> metaData { get; private set; }
             public DataObserver<Vector2> scale { get; private set; }
@@ -28,9 +30,15 @@ namespace SkyStrike
                 delay = new();
                 name = new();
                 phase = new();
-                id = -1;
+                id = NULL_OBJECT_ID;
+                refId = NULL_OBJECT_ID;
             }
-            public void SetRefData(ObjectDataObserver data) => refData = data;
+            public ObjectDataObserver(ObjectData objectData) : this() => ImportData(objectData);
+            public void SetRefData(ObjectDataObserver data)
+            {
+                refData = data;
+                refId = refData == null ? NULL_OBJECT_ID : refData.id;
+            }
             public bool IsValidChild(ObjectDataObserver data)
             {
                 if (data == this) return false;
@@ -39,7 +47,7 @@ namespace SkyStrike
             }
             public int GetParentCount()
             {
-                return 1 + (refData == null ? -1 : refData.GetParentCount());
+                return refData == null ? 0 : (1 + refData.GetParentCount());
             }
             public ObjectDataObserver Clone()
             {
@@ -51,7 +59,6 @@ namespace SkyStrike
                 newData.delay.SetData(delay.data);
                 newData.name.SetData(name.data);
                 newData.scale.SetData(scale.data);
-                newData.refData = null;
                 newData.phase = phase.Clone();
                 return newData;
             }
@@ -73,12 +80,12 @@ namespace SkyStrike
                 name.UnbindAll();
                 scale.UnbindAll();
             }
-            public ObjectData ToGameData()
+            public ObjectData ExportData()
             {
                 return new()
                 {
                     id = id,
-                    refId = refData != null ? refData.id : -1,
+                    refId = refId,
                     metaId = metaData.data.id,
                     delay = delay.data,
                     name = name.data,
@@ -86,8 +93,21 @@ namespace SkyStrike
                     scale = new(scale.data),
                     position = new(position.data),
                     velocity = new(velocity.data),
-                    phase = phase?.ToGameData()
+                    phase = phase.ExportData()
                 };
+            }
+            public void ImportData(ObjectData objectData)
+            {
+                id = objectData.id;
+                refId = objectData.refId;
+                metaData.SetData(EventManager.GetMetaData(objectData.metaId));
+                delay.SetData(objectData.delay);
+                name.SetData(objectData.name);
+                rotation.SetData(objectData.rotation);
+                scale.SetData(objectData.scale.Get());
+                position.SetData(objectData.position.Get());
+                velocity.SetData(objectData.velocity.Get());
+                phase.ImportData(objectData.phase);
             }
         }
     }

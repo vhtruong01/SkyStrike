@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike
@@ -15,12 +14,16 @@ namespace SkyStrike
             {
                 movementController = GetComponent<MovementController>();
             }
-            public IEnumerator Test(PhaseData phaseData)
+            public IEnumerator Begin(PhaseData phaseData)
             {
-                for (int i = 0; i < phaseData.actions.Length; i++)
+                yield return StartCoroutine(Move(phaseData.moveDataList));
+            }
+            private IEnumerator Move(MoveData[] actions)
+            {
+                for (int i = 0; i < actions.Length; i++)
                 {
-                    //List<Coroutine> coroutines = new();
-                    yield return StartCoroutine(movementController.Begin(phaseData.actions[i].moveData));
+                    print(actions[i]);
+                    yield return StartCoroutine(movementController.Begin(actions[i]));
                 }
             }
         }

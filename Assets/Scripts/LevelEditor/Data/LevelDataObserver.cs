@@ -11,10 +11,12 @@ namespace SkyStrike
             public int star;
             private readonly List<WaveDataObserver> waveList;
 
-            public LevelDataObserver()
+            public LevelDataObserver(LevelData levelData)
             {
                 waveList = new();
-                CreateEmpty();
+                if (levelData != null)
+                    ImportData(levelData);
+                else CreateEmpty();
             }
             public List<WaveDataObserver> GetList() => waveList;
             public WaveDataObserver CreateEmpty()
@@ -28,19 +30,23 @@ namespace SkyStrike
             public void Remove(int index) => waveList.RemoveAt(index);
             public void Swap(int leftIndex, int rightIndex) => waveList.Swap(leftIndex, rightIndex);
             public void Set(int index, WaveDataObserver data) => waveList[index] = data;
-            public LevelData ToGameData()
+            public LevelData ExportData()
             {
                 LevelData levelData = new();
                 levelData.waves = new WaveData[waveList.Count];
                 for (int i = 0; i < waveList.Count; i++)
-                    levelData.waves[i] = waveList[i].ToGameData();
+                    levelData.waves[i] = waveList[i].ExportData();
                 return levelData;
+            }
+            public void ImportData(LevelData levelData)
+            {
+                for (int i = 0; i < levelData.waves.Length; i++)
+                    Add(new(levelData.waves[i]));
             }
             public LevelDataObserver Clone()
             {
                 throw new System.NotImplementedException();
             }
-
         }
     }
 }

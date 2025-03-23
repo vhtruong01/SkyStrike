@@ -33,6 +33,7 @@ namespace SkyStrike
                 moveDataList = new();
                 fireDataList = new();
             }
+            public PhaseDataObserver(PhaseData phaseData) : this() => ImportData(phaseData);
             public List<ActionDataObserver> GetList() => actionDataList;
             public ActionDataObserver CreateEmpty()
             {
@@ -67,7 +68,7 @@ namespace SkyStrike
                     newPhase.fireDataList.Add(actionData.Clone());
                 return newPhase;
             }
-            public PhaseData ToGameData()
+            public PhaseData ExportData()
             {
                 PhaseData phaseData = new()
                 {
@@ -75,10 +76,17 @@ namespace SkyStrike
                     fireDataList = new FireData[fireDataList.Count]
                 };
                 for (int i = 0; i < moveDataList.Count; i++)
-                    phaseData.moveDataList[i] = (moveDataList[i] as MoveDataObserver).ToGameData();
+                    phaseData.moveDataList[i] = (moveDataList[i] as MoveDataObserver).ExportData();
                 for (int i = 0; i < fireDataList.Count; i++)
-                    phaseData.fireDataList[i] = (fireDataList[i] as FireDataObserver).ToGameData();
+                    phaseData.fireDataList[i] = (fireDataList[i] as FireDataObserver).ExportData();
                 return phaseData;
+            }
+            public void ImportData(PhaseData phaseData)
+            {
+                for (int i = 0; i < phaseData.moveDataList.Length; i++)
+                    moveDataList.Add(new MoveDataObserver(phaseData.moveDataList[i]));
+                for (int i = 0; i < phaseData.fireDataList.Length; i++)
+                    moveDataList.Add(new FireDataObserver(phaseData.fireDataList[i]));
             }
         }
     }

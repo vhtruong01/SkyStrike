@@ -72,6 +72,8 @@ namespace SkyStrike
             }
             public virtual UIElement<T> CreateItem(T data)
             {
+                if (data == null)
+                    throw new Exception("data must not be null");
                 var item = pool.Get();
                 item.index = items.Count;
                 item.SetData(data);

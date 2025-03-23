@@ -3,6 +3,7 @@ using System.IO;
 using SkyStrike.Game;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace SkyStrike
 {
@@ -10,12 +11,14 @@ namespace SkyStrike
     {
         public class Controller : MonoBehaviour
         {
+            [SerializeField] private Button saveBtn;
             private Menu[] menus;
             private LevelDataObserver levelDataObserver;
 
             public void Awake()
             {
-                levelDataObserver = new();
+                saveBtn.onClick.AddListener(WriteLevelData);
+                levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
                 menus = FindObjectsByType<Menu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 EventManager.onPlay.AddListener(TestLevel);
             }
@@ -38,15 +41,15 @@ namespace SkyStrike
             }
             public void WriteLevelData()
             {
-                var lv = levelDataObserver.ToGameData() as LevelData;
+                var lv = levelDataObserver.ExportData();
                 WriteToBinaryFile("test.dat", lv);
                 var newLv = ReadFromBinaryFile<LevelData>("test.dat");
-                for (int i = 0; i < lv.waves.Length; i++)
+                for (int i = 0; i < newLv.waves.Length; i++)
                 {
                     string rs = "";
                     for (int j = 0; j < lv.waves[i].objectDataArr.Length; j++)
                     {
-                        rs += lv.waves[i].objectDataArr[j].id + " ";
+                        rs += lv.waves[i].objectDataArr[j].id + "|" + lv.waves[i].objectDataArr[j].refId+"  ";
                     }
                     print(rs);
                 }

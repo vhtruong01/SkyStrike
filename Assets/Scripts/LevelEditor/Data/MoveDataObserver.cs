@@ -25,6 +25,7 @@ namespace SkyStrike
                 isSyncRotation = new();
                 scale.SetData(1);
             }
+            public MoveDataObserver(MoveData moveData) : this() => ImportData(moveData);
             public override ActionDataObserver Clone()
             {
                 MoveDataObserver newAction = new();
@@ -39,7 +40,7 @@ namespace SkyStrike
                 newAction.isSyncRotation.SetData(isSyncRotation.data);
                 return newAction;
             }
-            public MoveData ToGameData()
+            public MoveData ExportData()
             {
                 return new()
                 {
@@ -52,6 +53,18 @@ namespace SkyStrike
                     radius = radius.data,
                     dir = new(dirX.data, dirY.data)
                 };
+            }
+            public void ImportData(MoveData moveData)
+            {
+                isSyncRotation.SetData(moveData.isSyncRotation);
+                rotation.SetData(moveData.rotation);
+                delay.SetData(moveData.delay);
+                scale.SetData(moveData.scale);
+                isLoop.SetData(moveData.isLoop);
+                accleration.SetData(moveData.accleration);
+                radius.SetData(moveData.radius);
+                dirX.SetData(moveData.dir.x);
+                dirY.SetData(moveData.dir.y);
             }
         }
     }

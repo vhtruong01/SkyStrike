@@ -6,17 +6,23 @@ namespace SkyStrike
         {
             public override void SetName(string name)
             {
-                base.SetName(name);
-                data.name.OnlySetData(name);
+                if (!string.IsNullOrEmpty(data.name.data))
+                    Rename(name);
             }
             public override void BindData()
             {
-                data.name.Bind(SetName);
+                data.name.Bind(Rename);
             }
             public override void UnbindData()
             {
-                data.name.Unbind(SetName);
+                data.name.Unbind(Rename);
             }
+            private void Rename(string newName)
+            {
+                base.SetName(name);
+                data.name.OnlySetData(name);
+            }
+            public override WaveDataObserver DuplicateData() => data.Clone();   
         }
     }
 }

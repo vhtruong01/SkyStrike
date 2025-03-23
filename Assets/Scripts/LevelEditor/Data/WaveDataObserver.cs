@@ -24,20 +24,24 @@ namespace SkyStrike
                 name = new();
                 isBoss = new();
             }
+            public WaveDataObserver(WaveData waveData) : this() => ImportData(waveData);
             public List<ObjectDataObserver> GetList() => objectDataList;
             public ObjectDataObserver CreateEmpty() => null;
             public void Add(ObjectDataObserver data)
             {
                 objectDataList.Add(data);
-                int id;
-                int cnt = 0;
-                do
+                if (data.id == ObjectDataObserver.NULL_OBJECT_ID)
                 {
-                    id = Random.Range(min, max);
-                    ++cnt;
+                    int id;
+                    int cnt = 0;
+                    do
+                    {
+                        id = Random.Range(min, max);
+                        ++cnt;
+                    }
+                    while (objectDict.ContainsKey(id) && cnt < 10000);
+                    data.id = id;
                 }
-                while (objectDict.ContainsKey(id) && cnt < 10000);
-                data.id = id;
                 objectDict.Add(data.id, data);
             }
             public void Remove(ObjectDataObserver data)
@@ -64,7 +68,7 @@ namespace SkyStrike
                 newWave.isBoss.SetData(isBoss.data);
                 return newWave;
             }
-            public WaveData ToGameData()
+            public WaveData ExportData()
             {
                 WaveData waveData = new()
                 {
@@ -74,8 +78,18 @@ namespace SkyStrike
                     objectDataArr = new ObjectData[objectDataList.Count]
                 };
                 for (int i = 0; i < objectDataList.Count; i++)
-                    waveData.objectDataArr[i] = objectDataList[i].ToGameData();
+                    waveData.objectDataArr[i] = objectDataList[i].ExportData();
                 return waveData;
+            }
+            public void ImportData(WaveData waveData)
+            {
+                delay.SetData(waveData.delay);
+                isBoss.SetData(waveData.isBoss);
+                name.SetData(waveData.name);
+                for (int i = 0; i < waveData.objectDataArr.Length; i++)
+                    Add(new(waveData.objectDataArr[i]));
+                for (int i = 0; i < objectDataList.Count; i++)
+                    objectDataList[i].SetRefData(objectDict.GetValueOrDefault(objectDataList[i].refId));
             }
         }
     }

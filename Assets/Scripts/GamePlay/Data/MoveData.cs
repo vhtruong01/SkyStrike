@@ -15,6 +15,10 @@ namespace SkyStrike
             public float delay;
             public float accleration;
             public float radius;
+            public override string ToString()
+            {
+                return dir.ToString();
+            }
         }
     }
 }

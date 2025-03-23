@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace SkyStrike
 {
@@ -17,6 +16,8 @@ namespace SkyStrike
             public override void UnbindData()
             {
             }
+            public override ActionDataObserver DuplicateData() => data.Clone();
+
         }
     }
 }

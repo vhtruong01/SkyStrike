@@ -21,7 +21,8 @@ namespace SkyStrike
                 this.x = x;
                 this.y = y;
             }
-            public readonly Vector2 Get() => new (x, y);
+            public readonly Vector2 Get() => new(x, y);
+            public override string ToString() => $"[{x},{y}]";
         }
     }
 }

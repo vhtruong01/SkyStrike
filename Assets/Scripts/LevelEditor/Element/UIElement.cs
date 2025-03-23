@@ -52,6 +52,7 @@ namespace SkyStrike
                 if ( itemName != null)
                     itemName.text = name;
             }
+            public virtual T DuplicateData() => null;
             public abstract void BindData();
             public abstract void UnbindData();
         }

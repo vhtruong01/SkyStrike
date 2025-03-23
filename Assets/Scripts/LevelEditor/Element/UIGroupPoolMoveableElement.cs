@@ -44,7 +44,12 @@ namespace SkyStrike
                 return base.CreateItem(data);
             }
             protected void CreateEmptyItem() => CreateItem(null);
-            protected abstract void DuplicateSelectedItem();
+            protected void DuplicateSelectedItem()
+            {
+                var itemData = GetSelectedItem()?.DuplicateData();
+                if (itemData != null)
+                    CreateItem(itemData);
+            }
             protected void RemoveSelectedItem() => RemoveItem(selectedItemIndex);
             protected override void ReleaseItem(int index)
             {

@@ -45,13 +45,11 @@ namespace SkyStrike
             protected override void SelectObject(ObjectDataObserver data)
             {
                 objectInfoMenu.Display(data);
+                phaseMenu.Display(data?.phase);
                 int menuIndex = curSubmenuIndex;
-                if (menuIndex > 1) menuIndex = 0;
-                if (data?.phase != null)
-                {
-                    phaseMenu.Display(data?.phase);
-                    menuIndex = 0;
-                }
+                if (menuIndex < 2)
+                    menuIndex = data?.phase != null ? menuIndex : 0;
+                else menuIndex = 0;
                 switchSubMenuBtnGroup.SelectAndInvokeItem(menuIndex);
             }
             private void SelectMetaObject(ObjectDataObserver data)

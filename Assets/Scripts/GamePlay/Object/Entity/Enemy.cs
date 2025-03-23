@@ -29,12 +29,8 @@ namespace SkyStrike
             public override IEnumerator Appear()
             {
                 if (objectData.delay > 0)
-                {
-                    gameObject.SetActive(false);
                     yield return new WaitForSeconds(objectData.delay);
-                }
-                gameObject.SetActive(true);
-                yield return StartCoroutine(phaseManager.Test(phaseData));
+                yield return StartCoroutine(phaseManager.Begin(phaseData));
                 if (!isDie)
                 {
                     Die();
