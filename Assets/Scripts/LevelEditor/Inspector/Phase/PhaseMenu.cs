@@ -16,6 +16,7 @@ namespace SkyStrike
 
             public override void Init()
             {
+                base.Init();
                 curActionMenuIndex = -1;
                 actionMenus = new() { moveActionMenu, fireActionMenu };
                 actionUIGroupPool = gameObject.GetComponent<PhaseItemList>();
@@ -23,7 +24,7 @@ namespace SkyStrike
                 for (int i = 0; i < switchActionButtonGroup.Count; i++)
                 {
                     switchActionButtonGroup.GetBaseItem(i).onSelectUI.AddListener(ChangeActionType);
-                    actionMenus[i].Hide();
+                    actionMenus[i].Init();
                 }
                 switchActionButtonGroup.SelectFirstItem();
             }

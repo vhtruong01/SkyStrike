@@ -20,14 +20,22 @@ namespace SkyStrike
                     Hide();
                     addObjectMenu.Show();
                 });
-                EventManager.onSetRefObject.AddListener(ReferenceObject);
+                EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             }
             public override void Init()
             {
                 hierarchyUIGroupPool = gameObject.GetComponent<HierarchyItemList>();
                 hierarchyUIGroupPool.Init(EventManager.SelectObject);
             }
-            protected override void CreateObject(ObjectDataObserver data) => hierarchyUIGroupPool.CreateItem(data);
+            public HierarchyItemUI GetItem(int index)
+                => hierarchyUIGroupPool.GetItem(index) as HierarchyItemUI;
+            public HierarchyItemUI GetItem(ObjectDataObserver data)
+                => hierarchyUIGroupPool.GetItem(data) as HierarchyItemUI;
+            protected override void CreateObject(ObjectDataObserver data)
+            {
+                hierarchyUIGroupPool.CreateItem(data);
+                DisplayReferenceObject(data, data.refData);
+            }
             protected override void SelectObject(ObjectDataObserver data)
             {
                 if (data == null) hierarchyUIGroupPool.SelectNone();
@@ -36,8 +44,8 @@ namespace SkyStrike
             protected override void RemoveObject(ObjectDataObserver data)
             {
                 var itemIndex = hierarchyUIGroupPool.GetItemIndex(data);
-                var item = hierarchyUIGroupPool.GetItem(itemIndex) as HierarchyItemUI;
-                var refItem = hierarchyUIGroupPool.GetItem(data.refData) as HierarchyItemUI;
+                var item = GetItem(itemIndex);
+                var refItem = GetItem(data.refData);
                 refItem?.RemoveChild(item);
                 item.RemoveAllChildren();
                 hierarchyUIGroupPool.RemoveItem(itemIndex);
@@ -52,31 +60,37 @@ namespace SkyStrike
                     if (node.Value.parent == null)
                         CreateUI(node.Value);
             }
-            private void ReferenceObject(ObjectDataObserver refData)
+            private void DisplayReferenceObject(ObjectDataObserver curData, ObjectDataObserver refData)
             {
-                if (!hierarchyUIGroupPool.TryGetValidSelectedIndex(out int curObjectIndex)) return;
-                var curItem = hierarchyUIGroupPool.GetItem(curObjectIndex) as HierarchyItemUI;
-                var curData = hierarchyUIGroupPool.GetSelectedItem().data;
+                if (curData == null || (curData.refData == null && refData == null)) return;
+                var selectedItemData = hierarchyUIGroupPool.GetSelectedItem().data;
+                var curObjectIndex = hierarchyUIGroupPool.GetItemIndex(curData);
+                var curItem = GetItem(curObjectIndex);
                 int newPos = -1;
                 hierarchyUIGroupPool.SelectNone();
                 HierarchyItemUI refItem;
                 int refObjectIndex;
-                if (curData.refData != null)
+                if (curData.refData != null && curData.refData != refData)
                 {
                     refObjectIndex = hierarchyUIGroupPool.GetItemIndex(curData.refData);
-                    refItem = hierarchyUIGroupPool.GetItem(refObjectIndex) as HierarchyItemUI;
+                    refItem = GetItem(refObjectIndex);
                     if (refItem != null)
                         refItem.RemoveChild(curItem);
                 }
                 if (refData != null)
                 {
                     refObjectIndex = hierarchyUIGroupPool.GetItemIndex(refData);
-                    refItem = hierarchyUIGroupPool.GetItem(refObjectIndex) as HierarchyItemUI;
+                    refItem = GetItem(refObjectIndex);
                     newPos = refObjectIndex + (refObjectIndex < curObjectIndex ? 0 : -1) + refItem.GetChildCount();
                     refItem.AddChild(curItem);
                 }
                 hierarchyUIGroupPool.MoveItemArray(ref curObjectIndex, newPos, curItem.GetChildCount());
-                hierarchyUIGroupPool.SelectItem(curData);
+                hierarchyUIGroupPool.SelectItem(selectedItemData);
+            }
+            private void DisplayReferenceObject(ObjectDataObserver refData)
+            {
+                var selectedItemData = hierarchyUIGroupPool.GetSelectedItem()?.data;
+                DisplayReferenceObject(selectedItemData, refData);
             }
             private HierarchyItemUI CreateUI(Node node)
             {

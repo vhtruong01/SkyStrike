@@ -6,6 +6,7 @@ namespace SkyStrike
     {   
         public static class EditorSetting
         {
+            public static float WORLD_UNIT = 10;
             //menu
             public static int menuTitleSize = 36;
             public static int menuTitleHeight = 50;

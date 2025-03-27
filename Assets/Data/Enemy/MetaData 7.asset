@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MetaData 7
   m_EditorClassIdentifier: 
   <id>k__BackingField: 7
-  <sprite>k__BackingField: {fileID: 21300000, guid: 127279d577f25ac4ea17dae3782e5074, type: 3}
+  <sprite>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   <color>k__BackingField: {r: 0, g: 1, b: 1, a: 1}
   <type>k__BackingField: test7
   <rotation>k__BackingField: 0

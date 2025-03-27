@@ -16,16 +16,15 @@ namespace SkyStrike
             }
             public IEnumerator Begin(PhaseData phaseData)
             {
-                yield return StartCoroutine(Move(phaseData.moveDataList));
-            }
-            private IEnumerator Move(MoveData[] actions)
-            {
-                for (int i = 0; i < actions.Length; i++)
+                int i = 1;
+                for (i = 0; i < phaseData.moveDataList.Length; i++)
                 {
-                    print(actions[i]);
-                    yield return StartCoroutine(movementController.Begin(actions[i]));
+                    yield return StartCoroutine(movementController.Begin(phaseData.moveDataList[i]));
                 }
             }
+            //private IEnumerator Move(MoveData[] actions)
+            //{
+            //}
         }
     }
 }

@@ -1,9 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using SkyStrike.Game;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace SkyStrike
 {
@@ -11,9 +10,20 @@ namespace SkyStrike
     {
         public class Controller : MonoBehaviour
         {
+            protected static Camera _mainCam;
+            public static Camera mainCam
+            {
+                get
+                {
+                    if (_mainCam == null)
+                        _mainCam = Camera.main;
+                    return _mainCam;
+                }
+            }
             [SerializeField] private Button saveBtn;
             private LevelDataObserver levelDataObserver;
 
+            public void OnDisable() => _mainCam = null;
             public void Awake()
             {
                 saveBtn.onClick.AddListener(WriteLevelData);
@@ -40,7 +50,7 @@ namespace SkyStrike
             {
                 //MainGame.LevelData = levelDataObserver.ToGameData() as LevelData;
                 WriteLevelData();
-                SceneManager.LoadScene(1);
+                GameManager.LoadScene(EScene.MainGame);
             }
             public void WriteLevelData()
             {

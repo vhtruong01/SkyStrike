@@ -17,7 +17,13 @@ namespace SkyStrike
                 objectDataDict = new();
                 Level ??= Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
             }
-            public void Start() => StartCoroutine(PlayGame());
+            public void Start() => Restart();
+            public void Restart()
+            {
+                StopAllCoroutines();
+                gameObjectPool.Clear();
+                StartCoroutine(PlayGame());
+            }
             public IEnumerator PlayGame()
             {
                 var lv = Level;
@@ -32,6 +38,7 @@ namespace SkyStrike
                 if (wave.delay > 0)
                     yield return new WaitForSeconds(wave.delay);
                 List<Coroutine> coroutines = new();
+                objectDataDict.Clear();
                 for (int i = 0; i < wave.objectDataArr.Length; i++)
                 {
                     var itemData = wave.objectDataArr[i];
@@ -48,7 +55,6 @@ namespace SkyStrike
                 }
                 foreach (Coroutine coroutine in coroutines)
                     yield return coroutine;
-                objectDataDict.Clear();
             }
         }
     }

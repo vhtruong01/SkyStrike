@@ -29,6 +29,7 @@ namespace SkyStrike
             }
             public override void Init()
             {
+                base.Init();
                 EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             }
             private void DisplayReferenceObject(ObjectDataObserver refData)
@@ -48,7 +49,12 @@ namespace SkyStrike
             private void CreateObject()
             {
                 if (data != null)
-                    EventManager.CreateObject(data.Clone());
+                {
+                    var cloneData = data.Clone();
+                    if (data.id != ObjectDataObserver.NULL_OBJECT_ID)
+                        cloneData.SetRefData(data);
+                    EventManager.CreateObject(cloneData);
+                }
             }
             public override void BindData()
             {

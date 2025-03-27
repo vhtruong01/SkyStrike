@@ -8,13 +8,14 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class UIElement<T> : MonoBehaviour, IUIElement, IObserver where T : class
+        public abstract class UIElement<T> : MonoBehaviour, IUIElement, IDragHandler, IObserver where T : class
         {
             [SerializeField] protected TextMeshProUGUI itemName;
-
+            protected bool isDrag;
             private Image bg;
             public int? index { get; set; }
             public bool canRemove { get; set; }
+            public bool isExternalCall { get; set; }
             public T data { get; set; }
             public UnityEvent<T> onClick { get; set; }
             public UnityEvent<int> onSelectUI { get; set; }
@@ -25,7 +26,6 @@ namespace SkyStrike
                 onClick = new();
             }
             public virtual Image GetBackground() => bg;
-            public virtual void OnPointerClick(PointerEventData eventData) => SelectAndInvoke();
             public virtual void SetData(T data)
             {
                 this.data = data;
@@ -41,7 +41,7 @@ namespace SkyStrike
                 if (data != null || !canRemove)
                     onClick?.Invoke(data);
             }
-            public virtual void SelectAndInvoke()
+            public void SelectAndInvoke()
             {
                 InvokeData();
                 if (index != null)
@@ -49,12 +49,27 @@ namespace SkyStrike
             }
             public virtual void SetName(string name)
             {
-                if ( itemName != null)
+                if (itemName != null)
                     itemName.text = name;
             }
             public virtual T DuplicateData() => null;
             public abstract void BindData();
             public abstract void UnbindData();
+            public virtual void OnDrag(PointerEventData eventData)
+            {
+                isDrag = true;
+            }
+            public virtual void OnPointerClick(PointerEventData eventData)
+            {
+                if (!isDrag)
+                {
+                    if (isExternalCall)
+                        InvokeData();
+                    else
+                        SelectAndInvoke();
+                }
+                isDrag = false;
+            }
         }
     }
 }

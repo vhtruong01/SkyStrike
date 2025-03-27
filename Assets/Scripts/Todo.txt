@@ -1,18 +1,53 @@
 -- editor --
 
 //UI
-drag + drop element
+create grill--ok + snap object in viewport--ok
+drag + drop + rename element  in hierarchy --?hard
+zoom in/out viewport
+collapse,expand children in hierarchy
 resize menu 
-pin UI
+dockable UI
 multi select
+
+use bezier curve instead dir and radius
 
 
 //object
 change all children position
 fix delay + loop in phase menu
 bullet menu
+shield menu
+hp
+bitwise-shift
 ...
 
 
 
 -- main game --
+
+//UI
+ui toolkit
+
+
+//game 
+bullet
+animation curve
+
+
+
+-- effect  --
+
+vfx
+light
+effect
+shader
+
+
+-- main menu --
+
+loading scene
+main menu
+setting menu
+ship menu
+level menu 
+difficult menu

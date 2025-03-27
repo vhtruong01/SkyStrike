@@ -11,9 +11,10 @@ namespace SkyStrike
         public abstract class UIGroupPool<T> : UIGroup where T : class
         {
             [SerializeField] protected bool useSpecificColor;
-            [SerializeField] protected string defaultName;
+            [SerializeField] protected bool hasExternalCall;
             [SerializeField] protected Color selectedColor;
             [SerializeField] protected Color defaultColor;
+            [SerializeField] protected string defaultName;
             [SerializeField] protected GameObject prefab;
             [SerializeField] protected Transform containerTransform;
             protected List<UIElement<T>> items;
@@ -57,6 +58,7 @@ namespace SkyStrike
                     ?? throw new Exception("wrong prefab type");
                 item.gameObject.name = prefab.name;
                 item.canRemove = true;
+                item.isExternalCall = hasExternalCall;
                 item.Init();
                 item.onSelectUI.AddListener(SelectItem);
                 item.onClick.AddListener(InvokeData);
@@ -76,6 +78,7 @@ namespace SkyStrike
                     throw new Exception("data must not be null");
                 var item = pool.Get();
                 item.index = items.Count;
+                item.isExternalCall = hasExternalCall;
                 item.SetData(data);
                 if (!string.IsNullOrEmpty(defaultName))
                     item.SetName(defaultName + " " + ++currentWaveNameIndex);
@@ -152,10 +155,6 @@ namespace SkyStrike
                         items[i].gameObject.transform.SetSiblingIndex(newIndex + pool.CountInactive);
                     }
                 }
-                //string s = "";
-                //for (int i = 0; i < items.Count; i++)
-                //    s += i + "|" + items[i].index + " ";
-                //print(s);
                 startIndex = itemArr[0].index.Value;
             }
             public UIElement<T> GetItem(int index)

@@ -1,14 +1,13 @@
 using System.Collections;
-using UnityEngine;
 
 namespace SkyStrike
 {
     namespace Game
     {
-        public interface IGameObject
+        public interface IGameObject : IObject
         {
-            public GameObject gameObject { get; }
-            public void SetData(IGameData data);
+            public ObjectData data { get; }
+            public void SetData(ObjectData data);
             public IEnumerator Appear();
         }
     }

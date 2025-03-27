@@ -19,7 +19,6 @@ namespace SkyStrike
                 isLoop.Unbind();
                 delay.Unbind();
             }
-            public override void Init() { }
         }
     }
 }

@@ -35,6 +35,16 @@ namespace SkyStrike
             }
             public PhaseDataObserver(PhaseData phaseData) : this() => ImportData(phaseData);
             public List<ActionDataObserver> GetList() => actionDataList;
+            public List<ActionDataObserver> GetList(EActionType type)
+            {
+                return type switch
+                {
+                    EActionType.Move => moveDataList,
+                    EActionType.Fire => fireDataList,
+                    _ => null
+                };
+            }
+
             public ActionDataObserver CreateEmpty()
             {
                 ActionDataObserver actionData = CreateItem();
@@ -83,7 +93,7 @@ namespace SkyStrike
             }
             public void ImportData(PhaseData phaseData)
             {
-                if (phaseData == null) return;  
+                if (phaseData == null) return;
                 for (int i = 0; i < phaseData.moveDataList.Length; i++)
                     moveDataList.Add(new MoveDataObserver(phaseData.moveDataList[i]));
                 for (int i = 0; i < phaseData.fireDataList.Length; i++)

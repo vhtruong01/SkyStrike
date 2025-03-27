@@ -9,6 +9,7 @@ namespace SkyStrike
         {
             protected ObjectData objectData;
             protected PhaseData phaseData;
+            public ObjectData data => objectData;
             public int hp { get; protected set; }
             public bool isDie { get; protected set; }
 
@@ -22,7 +23,7 @@ namespace SkyStrike
                 }
             }
             public abstract void Die();
-            public abstract void SetData(IGameData data);
+            public abstract void SetData(ObjectData data);
             public abstract IEnumerator Appear();
         }
     }

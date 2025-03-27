@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 namespace SkyStrike
@@ -55,7 +54,6 @@ namespace SkyStrike
                     rs += child.GetChildCount();
                 return rs;
             }
-            public override void OnPointerClick(PointerEventData eventData) => InvokeData();
             public override void SetName(string name)
             {
                 base.SetName(name);

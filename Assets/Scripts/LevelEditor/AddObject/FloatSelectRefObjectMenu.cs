@@ -17,11 +17,11 @@ namespace SkyStrike
             public override void Awake()
             {
                 base.Awake();
-                EventManager.onSetRefObject.AddListener(DisplayRefObject);
+                EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             }
             public override void Init()
             {
-                DisplayRefObject(null);
+                DisplayReferenceObject(null);
                 objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
                 objectItemUIGroupPool.Init(SelectReferenceObject);
             }
@@ -31,7 +31,7 @@ namespace SkyStrike
                 if (curObjectData == data) return;
                 curObjectData = data;
                 objectItemUIGroupPool.SelectItem(curObjectData?.refData);
-                DisplayRefObject(curObjectData?.refData);
+                DisplayReferenceObject(curObjectData?.refData);
             }
             protected override void RemoveObject(ObjectDataObserver data)
             {
@@ -46,7 +46,7 @@ namespace SkyStrike
                 objectItemUIGroupPool.Clear();
                 foreach (var objectData in data.GetList())
                     DisplayObject(objectData);
-                DisplayRefObject(null);
+                DisplayReferenceObject(null);
             }
             private void DisplayObject(ObjectDataObserver data) => objectItemUIGroupPool.CreateItem(data);
             private void SelectReferenceObject(ObjectDataObserver refData)
@@ -56,9 +56,9 @@ namespace SkyStrike
                     EventManager.SetRefObject(refData);
                     curObjectData.SetRefData(refData);
                 }
-                else DisplayRefObject(null);
+                else DisplayReferenceObject(null);
             }
-            private void DisplayRefObject(ObjectDataObserver refData)
+            private void DisplayReferenceObject(ObjectDataObserver refData)
             {
                 if (refData != null && curObjectData != null)
                 {

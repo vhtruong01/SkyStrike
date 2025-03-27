@@ -11,6 +11,7 @@ namespace SkyStrike
             [SerializeField] private Button pasteBtn;
             [SerializeField] private Button removeBtn;
             [SerializeField] private Button cutBtn;
+            [SerializeField] private NormalButton snapButton;
             private ObjectDataObserver tempItemData;
             private ObjectDataObserver curObjectDataObserver;
 
@@ -22,6 +23,10 @@ namespace SkyStrike
                 removeBtn.onClick.AddListener(Remove);
                 cutBtn.onClick.AddListener(Cut);
                 EventManager.onSelectObject.AddListener(SelectObject);
+            }
+            public void Start()
+            {
+                snapButton.AddListener(SnappableElement.EnableSnapping, SnappableElement.isSnap);
             }
             private void SelectObject(ObjectDataObserver data)
             {

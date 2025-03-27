@@ -10,7 +10,7 @@ namespace SkyStrike
             public bool CanDisplay() => data != null;
             public abstract void BindData();
             public abstract void UnbindData();
-            public virtual void Init() { }
+            public virtual void Init() => Hide();
             public virtual void Display(T data)
             {
                 if (!SetData(data)) return;

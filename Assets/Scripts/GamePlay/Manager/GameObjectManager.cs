@@ -23,7 +23,7 @@ namespace SkyStrike
                 item.gameObject.name = prefab.name;
                 return item;
             }
-            public IGameObject CreateItem(IGameData data)
+            public IGameObject CreateItem(ObjectData data)
             {
                 var item = pool.Get();
                 item.SetData(data);
@@ -34,6 +34,15 @@ namespace SkyStrike
             {
                 item.gameObject.SetActive(false);
                 pool.Release(item);
+            }
+            public void Clear()
+            {
+                var allChildren = gameObject.GetComponentsInChildren<IGameObject>();
+                foreach (var child in allChildren)
+                {
+                    if (gameObject.activeSelf)
+                        pool.Release(child);
+                }
             }
         }
     }

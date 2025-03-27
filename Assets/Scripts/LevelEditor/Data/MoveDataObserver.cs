@@ -1,27 +1,25 @@
 using SkyStrike.Game;
+using System.Collections.Generic;
+using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class MoveDataObserver : ActionDataObserver, IEditorData<MoveData, ActionDataObserver>
+        public class MoveDataObserver : ActionDataObserver, IDataList<PointDataObserver>, IEditorData<MoveData, ActionDataObserver>
         {
-            public DataObserver<float> dirX { get; private set; }
-            public DataObserver<float> dirY { get; private set; }
+            private List<PointDataObserver> points;
             public DataObserver<float> rotation { get; private set; }
             public DataObserver<float> scale { get; private set; }
             public DataObserver<float> accleration { get; private set; }
-            public DataObserver<float> radius { get; private set; }
             public DataObserver<bool> isSyncRotation { get; private set; }
 
             public MoveDataObserver() : base()
             {
-                dirX = new();
-                dirY = new();
+                points = new();
                 rotation = new();
                 scale = new();
                 accleration = new();
-                radius = new();
                 isSyncRotation = new();
                 scale.SetData(1);
             }
@@ -29,20 +27,19 @@ namespace SkyStrike
             public override ActionDataObserver Clone()
             {
                 MoveDataObserver newAction = new();
-                newAction.dirX.SetData(dirX.data);
-                newAction.dirY.SetData(dirY.data);
                 newAction.rotation.SetData(rotation.data);
                 newAction.scale.SetData(scale.data);
                 newAction.delay.SetData(delay.data);
                 newAction.isLoop.SetData(isLoop.data);
                 newAction.accleration.SetData(accleration.data);
-                newAction.radius.SetData(radius.data);
                 newAction.isSyncRotation.SetData(isSyncRotation.data);
+                for (int i = 0; i < points.Count; i++)
+                    newAction.points.Add(points[i].Clone());
                 return newAction;
             }
             public MoveData ExportData()
             {
-                return new()
+                MoveData data = new()
                 {
                     isSyncRotation = isSyncRotation.data,
                     rotation = rotation.data,
@@ -50,9 +47,11 @@ namespace SkyStrike
                     scale = scale.data,
                     isLoop = isLoop.data,
                     accleration = accleration.data,
-                    radius = radius.data,
-                    dir = new(dirX.data, dirY.data)
+                    points = new Point[points.Count]
                 };
+                for (int i = 0; i < points.Count; i++)
+                    data.points[i] = points[i].ExportData();
+                return data;
             }
             public void ImportData(MoveData moveData)
             {
@@ -63,10 +62,28 @@ namespace SkyStrike
                 scale.SetData(moveData.scale);
                 isLoop.SetData(moveData.isLoop);
                 accleration.SetData(moveData.accleration);
-                radius.SetData(moveData.radius);
-                dirX.SetData(moveData.dir.x);
-                dirY.SetData(moveData.dir.y);
+                //for (int i = 0; i < moveData.points.Length; i++)
+                //    Add(new(moveData.points[i]));
             }
+            public List<PointDataObserver> GetList() => points;
+            public PointDataObserver CreateEmpty()
+            {
+                PointDataObserver newPoint = new();
+                Add(newPoint);
+                return newPoint;
+            }
+            public void Add(PointDataObserver data) => points.Add(data);
+            //
+            public void Remove(PointDataObserver data)
+            {
+                throw new System.NotImplementedException();
+            }
+            public void Remove(int index)
+            {
+                throw new System.NotImplementedException();
+            }
+            public void Swap(int leftIndex, int rightIndex) => points.Swap(leftIndex, rightIndex);
+            public void Set(int index, PointDataObserver data) => points[index] = data;
         }
     }
 }

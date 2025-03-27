@@ -15,14 +15,14 @@ namespace SkyStrike
             {
                 phaseManager = GetComponent<PhaseManager>();
             }
-            public override void SetData(IGameData data)
+            public override void SetData(ObjectData data)
             {
                 isDie = false;
-                objectData = data as ObjectData;
-                phaseData = objectData.phase;
+                objectData = data;
                 transform.position = new(objectData.position.x, objectData.position.y, transform.position.z);
                 transform.localScale = new(objectData.scale.x, objectData.scale.y, transform.localScale.z);
                 var metaData = EventManager.GetMetaData(objectData.metaId) as MetaData;
+                phaseData = objectData.phase;
                 spriteRenderer.color = metaData.color;
                 spriteRenderer.sprite = metaData.sprite;
             }

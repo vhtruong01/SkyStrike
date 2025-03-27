@@ -1,21 +1,31 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace SkyStrike
 {
     namespace Editor
     {
-        public class ViewportItemUI : UIElement<ObjectDataObserver>, IDragHandler
+        public class ViewportItemUI : UIElement<ObjectDataObserver>
         {
             [SerializeField] private Image icon;
-            private bool isDrag;
+            [SerializeField] private Image refIcon;
 
             public override void SetData(ObjectDataObserver data)
             {
                 base.SetData(data);
                 icon.sprite = data.metaData.data.sprite;
                 icon.color = data.metaData.data.color;
+                SetRefObject(data.refData);
+            }
+            public void SetRefObject(ObjectDataObserver refData)
+            {
+                if (refData == null) refIcon.color = new();
+                else
+                {
+                    refIcon.color = refData.metaData.data.color;
+                    refIcon.sprite = refData.metaData.data.sprite;
+                }
             }
             private void SetPosition(Vector2 pos)
             {
@@ -31,16 +41,10 @@ namespace SkyStrike
             {
                 transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, rotationZ);
             }
-            public void OnDrag(PointerEventData eventData)
+            public override void OnDrag(PointerEventData eventData)
             {
-                isDrag = true;
+                base.OnDrag(eventData);
                 data.position.SetData(transform.position);
-            }
-            public override void OnPointerClick(PointerEventData eventData)
-            {
-                if (!isDrag)
-                    InvokeData();
-                isDrag = false;
             }
             public override void BindData()
             {
