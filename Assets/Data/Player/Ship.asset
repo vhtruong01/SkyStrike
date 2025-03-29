@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624cf2dfe992303408f471728cfb1906, type: 3}
+  m_Name: Ship
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 11400000, guid: e2935ce5ab074454d9e3de2772e066e3, type: 2}
+  - {fileID: 11400000, guid: d1c96f9a463a8c347b6f017dc1f00bda, type: 2}
+  hp: 0
+  maxHp: 0
+  speed: 0
+  star: 0

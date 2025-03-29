@@ -9,7 +9,7 @@ namespace SkyStrike
     public class GameManager : MonoBehaviour
     {
         private static GameManager instance;
-        [SerializeField] private LoadingScene loadingScene;
+        [SerializeField] private LoadingScreen loadingScene;
         [SerializeField] private Camera cam;
         private EScene curScene;
         private List<AsyncOperation> scenesLoading;
@@ -22,10 +22,7 @@ namespace SkyStrike
             scenesLoading = new();
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        public void Start()
-        {
-            LoadScene(EScene.Editor);
-        }
+        public void Start() => LoadScene(EScene.MainMenu);
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => SceneManager.SetActiveScene(scene);
         public IEnumerator DisplayLoadingScene()
         {

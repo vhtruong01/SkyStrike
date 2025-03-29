@@ -16,6 +16,7 @@ namespace SkyStrike
                 transform.position = new(0, 0, transform.position.z);
                 Camera cam = Camera.main;
                 Vector2 worldSize = cam.ScreenToWorldPoint(new(Screen.width, Screen.height));
+                //print(Display.main.systemWidth + " " + Screen.width);
                 float screenWidth = worldSize.x;
                 float screenHeight = worldSize.y;
                 for (int i = -(int)screenWidth; i <= screenWidth; i++)

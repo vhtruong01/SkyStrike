@@ -9,7 +9,7 @@ namespace SkyStrike
         public class MainGame : MonoBehaviour
         {
             public static LevelData Level { get; set; }
-            [SerializeField] private GameObjectManager gameObjectPool;
+            //[SerializeField] private PoolManager gameObjectPool;
             private Dictionary<int, ObjectData> objectDataDict;
 
             public void Awake()
@@ -21,7 +21,7 @@ namespace SkyStrike
             public void Restart()
             {
                 StopAllCoroutines();
-                gameObjectPool.Clear();
+                //gameObjectPool.Clear();
                 StartCoroutine(PlayGame());
             }
             public IEnumerator PlayGame()
@@ -37,24 +37,24 @@ namespace SkyStrike
             {
                 if (wave.delay > 0)
                     yield return new WaitForSeconds(wave.delay);
-                List<Coroutine> coroutines = new();
-                objectDataDict.Clear();
-                for (int i = 0; i < wave.objectDataArr.Length; i++)
-                {
-                    var itemData = wave.objectDataArr[i];
-                    objectDataDict.Add(itemData.id, itemData);
-                }
-                for (int i = 0; i < wave.objectDataArr.Length; i++)
-                {
-                    var itemData = wave.objectDataArr[i];
-                    if (objectDataDict.TryGetValue(itemData.refId, out var refObjectData))
-                        itemData.phase = refObjectData.phase;
-                    var item = gameObjectPool.CreateItem(itemData);
-                    Coroutine coroutine = StartCoroutine(item.Appear());
-                    coroutines.Add(coroutine);
-                }
-                foreach (Coroutine coroutine in coroutines)
-                    yield return coroutine;
+                //List<Coroutine> coroutines = new();
+                //objectDataDict.Clear();
+                //for (int i = 0; i < wave.objectDataArr.Length; i++)
+                //{
+                //    var itemData = wave.objectDataArr[i];
+                //    objectDataDict.Add(itemData.id, itemData);
+                //}
+                //for (int i = 0; i < wave.objectDataArr.Length; i++)
+                //{
+                //    var itemData = wave.objectDataArr[i];
+                //    if (objectDataDict.TryGetValue(itemData.refId, out var refObjectData))
+                //        itemData.phase = refObjectData.phase;
+                //    var item = gameObjectPool.CreateItem(itemData);
+                //    Coroutine coroutine = StartCoroutine(item.Appear());
+                //    coroutines.Add(coroutine);
+                //}
+                //foreach (Coroutine coroutine in coroutines)
+                //    yield return coroutine;
             }
         }
     }

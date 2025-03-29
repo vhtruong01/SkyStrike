@@ -32,4 +32,8 @@ public static class ExtensionMethod
     public static Vector2 ToVector2(this Vector3 v) => new(v.x, v.y);
     public static Vector3 SetZ(this Vector2 v, float z) => new(v.x, v.y, z);
     public static Vector3 SetZ(this Vector3 v, float z) => new(v.x, v.y, z);
+    //Color
+    public static Color ChangeAlpha(this Color color, float alpha) => new(color.r, color.g, color.b, alpha);
+    //SO
+    public static void print(this ScriptableObject obj, object msg) => Debug.Log(msg);
 }

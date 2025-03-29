@@ -306,13 +306,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 5.02
   scatter:
     m_OverrideState: 1
-    m_Value: 0.7
+    m_Value: 0.39
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -321,7 +321,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   downscale:
     m_OverrideState: 1
     m_Value: 0
@@ -487,6 +487,7 @@ MonoBehaviour:
   m_Name: DefaultVolumeProfile
   m_EditorClassIdentifier: 
   components:
+  - {fileID: -3978695733392391637}
   - {fileID: 1247868777620691934}
   - {fileID: -277880470225475626}
   - {fileID: 2338690907228448291}
@@ -504,7 +505,6 @@ MonoBehaviour:
   - {fileID: 8549655192814258499}
   - {fileID: -7645455725216806467}
   - {fileID: -8186968272690591729}
-  - {fileID: -3978695733392391637}
   - {fileID: -1083910812058648046}
 --- !u!114 &156332030701414761
 MonoBehaviour:

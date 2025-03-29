@@ -26,12 +26,14 @@ bitwise-shift
 -- main game --
 
 //UI
-ui toolkit
+-- ui toolkit -- bad
+ui game play
 
 
 //game 
 bullet
 animation curve
+behavior tree
 
 
 
@@ -41,6 +43,7 @@ vfx
 light
 effect
 shader
+post processing
 
 
 -- main menu --
