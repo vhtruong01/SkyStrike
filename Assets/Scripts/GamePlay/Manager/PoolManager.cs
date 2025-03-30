@@ -9,7 +9,7 @@ namespace SkyStrike
         public abstract class PoolManager<T> : MonoBehaviour where T : MonoBehaviour
         {
             [SerializeField] private GameObject prefab;
-            private ObjectPool<T> pool;
+            protected ObjectPool<T> pool;
 
             public virtual void Awake()
             {

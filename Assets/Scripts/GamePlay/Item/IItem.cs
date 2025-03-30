@@ -4,7 +4,8 @@ namespace SkyStrike
     {
         public interface IItem : IObject
         {
-
+            public EItem type { get; }
+            public int quantity { get; }
         }
     }
 }

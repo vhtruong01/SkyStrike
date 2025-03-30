@@ -32,6 +32,13 @@ namespace SkyStrike
                 for (int i = 0; i < lv.waves.Length; i++)
                     yield return StartCoroutine(StartWave(lv.waves[i]));
                 print("end game");
+                int n = 3;
+                for (int i = 1; i <= n; i++)
+                {
+                    var item=EventManager.CreateItem((EItem)i);
+                    item.gameObject.transform.position = new(0, i, 0);
+                    yield return new WaitForSeconds(2f);
+                }
             }
             public IEnumerator StartWave(WaveData wave)
             {

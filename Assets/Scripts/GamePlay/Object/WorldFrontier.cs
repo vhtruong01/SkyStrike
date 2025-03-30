@@ -8,6 +8,7 @@ namespace SkyStrike
         {
             public void OnCollisionEnter2D(Collision2D collision)
             {
+                print(collision.gameObject);
                 Destroy(collision.gameObject);
             }
         }

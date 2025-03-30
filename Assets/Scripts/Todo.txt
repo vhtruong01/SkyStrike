@@ -1,7 +1,14 @@
 -- editor --
 
 //UI
-create grill--ok + snap object in viewport--ok
+wave menu -- ok
+hierarchy menu -- ok
+add object menu -- ok
+object info menu -- ok
+viewport -- ok
+grill + snap -- ok
+save/load level screen
+
 drag + drop + rename element  in hierarchy --?hard
 zoom in/out viewport
 collapse,expand children in hierarchy
@@ -28,10 +35,20 @@ bitwise-shift
 //UI
 -- ui toolkit -- bad
 ui game play
+main menu
+loading menu
+setting menu
+help menu
+exit menu
+select level menu
+ship custom menu
 
 
 //game 
 bullet
+enemy
+item--ok
+
 animation curve
 behavior tree
 
@@ -43,7 +60,7 @@ vfx
 light
 effect
 shader
-post processing
+post processing/bloom
 
 
 -- main menu --
