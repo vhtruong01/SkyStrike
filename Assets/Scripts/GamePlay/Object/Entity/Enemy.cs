@@ -19,10 +19,10 @@ namespace SkyStrike
             {
                 isDie = false;
                 objectData = data;
-                transform.position = new(objectData.position.x, objectData.position.y, transform.position.z);
-                transform.localScale = new(objectData.scale.x, objectData.scale.y, transform.localScale.z);
+                //transform.position = new(objectData.position.x, objectData.position.y, transform.position.z);
+                //transform.localScale = new(objectData.scale.x, objectData.scale.y, transform.localScale.z);
                 var metaData = EventManager.GetMetaData(objectData.metaId) as MetaData;
-                phaseData = objectData.phase;
+                phaseData = null;
                 spriteRenderer.color = metaData.color;
                 spriteRenderer.sprite = metaData.sprite;
             }

@@ -37,7 +37,7 @@ namespace SkyStrike
                 for (int i = 0; i < containerTransform.childCount; i++)
                 {
                     if (!containerTransform.GetChild(i).TryGetComponent<UIElement<T>>(out var item)) continue;
-                    item.canRemove = false;
+                    item.isDefault = true;
                     item.index = items.Count;
                     item.Init();
                     item.onSelectUI.AddListener(SelectItem);
@@ -57,7 +57,7 @@ namespace SkyStrike
                 var item = Instantiate(prefab, containerTransform, false).GetComponent<UIElement<T>>()
                     ?? throw new Exception("wrong prefab type");
                 item.gameObject.name = prefab.name;
-                item.canRemove = true;
+                item.isDefault = false;
                 item.isExternalCall = hasExternalCall;
                 item.Init();
                 item.onSelectUI.AddListener(SelectItem);
@@ -172,7 +172,7 @@ namespace SkyStrike
             public void RemoveItem(int index)
             {
                 var item = GetItem(index);
-                if (item == null || (!canDeselect && items.Count < 2) || !item.canRemove) return;
+                if (item == null || (!canDeselect && items.Count < 2) || item.isDefault) return;
                 if (index == selectedItemIndex)
                 {
                     if (canDeselect)
@@ -198,7 +198,7 @@ namespace SkyStrike
                 SelectNone();
                 for (int i = 0; i < items.Count; i++)
                 {
-                    if (items[i].canRemove)
+                    if (!items[i].isDefault)
                         ReleaseItem(items[i]);
                     else unremovedItem.Add(items[i]);
                 }

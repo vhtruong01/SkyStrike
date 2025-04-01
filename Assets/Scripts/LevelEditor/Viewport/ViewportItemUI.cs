@@ -33,30 +33,18 @@ namespace SkyStrike
                     return;
                 transform.position = new(pos.x, pos.y, transform.position.z);
             }
-            private void SetScale(Vector2 scale)
-            {
-                transform.localScale = new(scale.x, scale.y, transform.localScale.z);
-            }
-            private void SetRotation(float rotationZ)
-            {
-                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, rotationZ);
-            }
             public override void OnDrag(PointerEventData eventData)
             {
                 base.OnDrag(eventData);
-                data.position.SetData(transform.position);
+                data.SetPosition(transform.position);
             }
             public override void BindData()
             {
                 data.position.Bind(SetPosition);
-                data.scale.Bind(SetScale);
-                data.rotation.Bind(SetRotation);
             }
             public override void UnbindData()
             {
                 data.position.Unbind(SetPosition);
-                data.scale.Unbind(SetScale);
-                data.rotation.Unbind(SetRotation);
             }
         }
     }

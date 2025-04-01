@@ -14,7 +14,7 @@ namespace SkyStrike
             protected bool isDrag;
             private Image bg;
             public int? index { get; set; }
-            public bool canRemove { get; set; }
+            public bool isDefault { get; set; }
             public bool isExternalCall { get; set; }
             public T data { get; set; }
             public UnityEvent<T> onClick { get; set; }
@@ -38,7 +38,7 @@ namespace SkyStrike
             }
             public virtual void InvokeData()
             {
-                if (data != null || !canRemove)
+                if (data != null || isDefault)
                     onClick?.Invoke(data);
             }
             public void SelectAndInvoke()

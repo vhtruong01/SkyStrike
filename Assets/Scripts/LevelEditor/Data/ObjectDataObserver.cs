@@ -11,29 +11,23 @@ namespace SkyStrike
             public int id { get; set; }
             public int refId { get; private set; }
             public ObjectDataObserver refData { get; private set; }
-            public DataObserver<ObjectMetaData> metaData { get; private set; }
-            public DataObserver<Vector2> scale { get; private set; }
-            public DataObserver<Vector2> position { get; private set; }
-            public DataObserver<float> velocity { get; private set; }
-            public DataObserver<float> rotation { get; private set; }
+            public DataObserver<MetaData> metaData { get; private set; }
             public DataObserver<float> delay { get; private set; }
             public DataObserver<string> name { get; private set; }
-            public PhaseDataObserver phase { get; private set; }
+            public MoveDataObserver moveData { get; private set; }
+            public DataObserver<Vector2> position => moveData.First().midPos;
 
             public ObjectDataObserver()
             {
                 metaData = new();
-                rotation = new();
-                position = new();
-                velocity = new();
-                scale = new();
                 delay = new();
                 name = new();
-                phase = new();
+                moveData = new();
                 id = NULL_OBJECT_ID;
                 refId = NULL_OBJECT_ID;
             }
             public ObjectDataObserver(ObjectData objectData) : this() => ImportData(objectData);
+            public void SetPosition(Vector2 newPos) => moveData.First().Translate(newPos);
             public void SetRefData(ObjectDataObserver data)
             {
                 refData = data;
@@ -52,33 +46,21 @@ namespace SkyStrike
             public ObjectDataObserver Clone()
             {
                 ObjectDataObserver newData = new();
-                newData.metaData.SetData(metaData.data);
-                newData.rotation.SetData(rotation.data);
-                newData.position.SetData(position.data);
-                newData.velocity.SetData(velocity.data);
-                newData.delay.SetData(delay.data);
-                newData.name.SetData(name.data);
-                newData.scale.SetData(scale.data);
-                newData.phase = phase.Clone();
+                newData.metaData.OnlySetData(metaData.data);
+                newData.delay.OnlySetData(delay.data);
+                newData.name.OnlySetData(name.data);
+                newData.moveData = moveData.Clone();
                 return newData;
             }
             public void ResetData()
             {
-                rotation.SetData(metaData.data.rotation);
-                position.SetData(metaData.data.position);
-                velocity.SetData(metaData.data.velocity);
-                scale.SetData(metaData.data.scale);
                 delay.ResetData();
-                name.SetData(metaData.data.type);
+                name.OnlySetData(metaData.data.type);
             }
             public void UnbindAll()
             {
-                rotation.UnbindAll();
-                position.UnbindAll();
-                velocity.UnbindAll();
                 delay.UnbindAll();
                 name.UnbindAll();
-                scale.UnbindAll();
             }
             public ObjectData ExportData()
             {
@@ -89,11 +71,7 @@ namespace SkyStrike
                     metaId = metaData.data.id,
                     delay = delay.data,
                     name = name.data,
-                    rotation = rotation.data,
-                    velocity = velocity.data,
-                    scale = new(scale.data),
-                    position = new(position.data),
-                    phase = phase.ExportData()
+                    moveData = moveData.ExportData()
                 };
             }
             public void ImportData(ObjectData objectData)
@@ -101,14 +79,10 @@ namespace SkyStrike
                 if (objectData == null) return;
                 id = objectData.id;
                 refId = objectData.refId;
-                metaData.SetData(EventManager.GetMetaData(objectData.metaId));
-                delay.SetData(objectData.delay);
-                name.SetData(objectData.name);
-                rotation.SetData(objectData.rotation);
-                velocity.SetData(objectData.velocity);
-                scale.SetData(objectData.scale.ToVector2());
-                position.SetData(objectData.position.ToVector2());
-                phase = new(objectData.phase);
+                metaData.OnlySetData(EventManager.GetMetaData(objectData.metaId));
+                delay.OnlySetData(objectData.delay);
+                name.OnlySetData(objectData.name);
+                moveData = new(objectData.moveData);
             }
         }
     }

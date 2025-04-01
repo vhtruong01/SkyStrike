@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,28 +10,34 @@ namespace SkyStrike
         public class NormalButton : MonoBehaviour
         {
             private Image img;
-            private bool isHighlight;
             private Button button;
-            private UnityAction<bool> listener;
+            private UnityAction<bool> setActionValue;
+            private Func<bool> getActionValue;
+
 
             public void Awake()
             {
                 img = GetComponent<Image>();
                 button = GetComponent<Button>();
             }
-            public void AddListener(UnityAction<bool> call, bool state)
+            public void AddListener(UnityAction<bool> setValue, Func<bool> getValue)
             {
-                Click(state);
-                listener = call;
+                setActionValue = setValue;
+                getActionValue = getValue;
                 button.onClick.AddListener(Click);
+                Display();
             }
-            private void Click() => Click(!isHighlight);
-            private void Click(bool isHighlight)
+            private void Click()
             {
-                this.isHighlight = isHighlight;
-                img.color = this.isHighlight ? EditorSetting.btnSelectedColor : EditorSetting.btnDefaultColor;
-                listener?.Invoke(this.isHighlight);
+                setActionValue?.Invoke(!getActionValue.Invoke());
+                Display();
             }
+            private void Display()
+            {
+                if (getActionValue != null)
+                    img.color = getActionValue.Invoke() ? EditorSetting.btnSelectedColor : EditorSetting.btnDefaultColor;
+            }
+            public void OnEnable() => Display();
         }
     }
 }

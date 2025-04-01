@@ -4,14 +4,14 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class FireDataObserver : ActionDataObserver, IEditorData<FireData, ActionDataObserver>
+        public class FireDataObserver : IEditorData<FireData, FireDataObserver>
         {
             public FireDataObserver() : base()
             {
                 //
             }
             public FireDataObserver(FireData fireData) : this() => ImportData(fireData);
-            public override ActionDataObserver Clone()
+            public FireDataObserver Clone()
             {
                 FireDataObserver newAction = new();
                 return newAction;

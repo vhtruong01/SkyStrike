@@ -30,12 +30,12 @@ namespace SkyStrike
             public override void SetValue(float value)
             {
                 base.SetValue(value);
-                x.text = (Mathf.Round(value * unit * 1000) / 1000).ToString();
+                x.SetTextWithoutNotify((Mathf.Round(value * unit * 1000) / 1000).ToString());
             }
             private void CheckValue()
             {
                 if (!float.TryParse(x.text, out float newX) || (isWholeNumber && newX < 0))
-                    x.text = (value * unit).ToString();
+                    x.SetTextWithoutNotify((value * unit).ToString());
             }
             public void OnDisable() => CheckValue();
         }

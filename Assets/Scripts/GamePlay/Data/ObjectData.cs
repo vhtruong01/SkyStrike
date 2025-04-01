@@ -12,11 +12,7 @@ namespace SkyStrike
             public int metaId;
             public float delay;
             public string name;
-            public float rotation;
-            public float velocity;
-            public Vec2 scale;
-            public Vec2 position;
-            public PhaseData phase;
+            public MoveData moveData;
         }
     }
 }

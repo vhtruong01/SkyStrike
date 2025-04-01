@@ -14,7 +14,7 @@ namespace SkyStrike
             public void SetData(T data)
             {
                 OnlySetData(data);
-                onChangeData.Invoke(this.data);
+                onChangeData.Invoke(data);
             }
             public void Bind(UnityAction<T> call)
             {

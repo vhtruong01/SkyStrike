@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 479a2718f315b39428c5cbfd5aa937df, type: 3}
+  m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
   m_Name: MetaData 3
   m_EditorClassIdentifier: 
   <id>k__BackingField: 3
   <sprite>k__BackingField: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  <color>k__BackingField: {r: 0, g: 1, b: 0, a: 1}
-  <type>k__BackingField: test3
-  <rotation>k__BackingField: 0
-  <position>k__BackingField: {x: 0, y: 0}
-  <scale>k__BackingField: {x: 1, y: 1}
-  <velocity>k__BackingField: 1
+  <color>k__BackingField: {r: 0, g: 0.91085434, b: 1, a: 1}
+  <type>k__BackingField: Type 3

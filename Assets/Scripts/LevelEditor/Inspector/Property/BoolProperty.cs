@@ -22,7 +22,7 @@ namespace SkyStrike
             public override void SetValue(bool value)
             {
                 base.SetValue(value);
-                toggle.isOn = value;
+                toggle.SetIsOnWithoutNotify(value);
             }
         }
     }

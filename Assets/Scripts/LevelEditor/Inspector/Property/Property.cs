@@ -14,14 +14,15 @@ namespace SkyStrike
 
             protected abstract void OnValueChanged();
             public virtual void SetValue(T value) => this.value = value;
-            public virtual void Bind(UnityAction<T> action) => onValueChanged.AddListener(action);
-            public virtual void Bind(DataObserver<T> dataObserver)
+            public virtual void Bind(DataObserver<T> dataObserver, UnityAction<T> action = null)
             {
                 if (this.dataObserver != null)
                     throw new Exception("only one observer data");
                 this.dataObserver = dataObserver;
                 this.dataObserver.Bind(SetValue);
-                onValueChanged.AddListener(this.dataObserver.SetData);
+                if (action != null)
+                    onValueChanged.AddListener(action);
+                else onValueChanged.AddListener(this.dataObserver.SetData);
             }
             public virtual void Unbind()
             {

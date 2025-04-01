@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,8 @@ namespace SkyStrike
     {
         public class GameAsset : MonoBehaviour
         {
-            [SerializeField] private List<ObjectMetaData> metaDataList;
-            private Dictionary<int, ObjectMetaData> metaDataDict;
+            [SerializeField] private List<MetaData> metaDataList;
+            private Dictionary<int, MetaData> metaDataDict;
 
             public void Awake()
             {
@@ -17,7 +18,7 @@ namespace SkyStrike
                     metaDataDict.Add(item.id, item);
                 EventManager.onGetMetaData.AddListener(GetMetaData);
             }
-            private ObjectMetaData GetMetaData(int id) => metaDataDict[id];
+            private MetaData GetMetaData(int id) => metaDataDict[id];
         }
     }
 }

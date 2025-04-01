@@ -26,7 +26,7 @@ namespace SkyStrike
             }
             public void Start()
             {
-                snapButton.AddListener(SnappableElement.EnableSnapping, SnappableElement.isSnap);
+                snapButton.AddListener(SnappableElement.EnableSnapping, SnappableElement.IsSnap);
             }
             private void SelectObject(ObjectDataObserver data)
             {

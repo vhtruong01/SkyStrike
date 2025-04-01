@@ -64,8 +64,8 @@ namespace SkyStrike
                 WaveDataObserver newWave = new();
                 foreach (var objectData in objectDataList)
                     newWave.Add(objectData.Clone());
-                newWave.delay.SetData(delay.data);
-                newWave.isBoss.SetData(isBoss.data);
+                newWave.delay.OnlySetData(delay.data);
+                newWave.isBoss.OnlySetData(isBoss.data);
                 return newWave;
             }
             public WaveData ExportData()
@@ -84,9 +84,9 @@ namespace SkyStrike
             public void ImportData(WaveData waveData)
             {
                 if (waveData == null) return;
-                delay.SetData(waveData.delay);
-                isBoss.SetData(waveData.isBoss);
-                name.SetData(waveData.name);
+                delay.OnlySetData(waveData.delay);
+                isBoss.OnlySetData(waveData.isBoss);
+                name.OnlySetData(waveData.name);
                 for (int i = 0; i < waveData.objectDataArr.Length; i++)
                     Add(new(waveData.objectDataArr[i]));
                 for (int i = 0; i < objectDataList.Count; i++)

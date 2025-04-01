@@ -8,7 +8,6 @@ namespace SkyStrike
         public class InspectorMenu : Menu
         {
             [SerializeField] private ObjectInfoMenu objectInfoMenu;
-            [SerializeField] private PhaseMenu phaseMenu;
             [SerializeField] private WaveInfoMenu waveInfoMenu;
             [SerializeField] private UIGroup switchSubMenuBtnGroup;
             private List<ISubMenu> subMenuList;
@@ -22,8 +21,8 @@ namespace SkyStrike
             public override void Init()
             {
                 curSubmenuIndex = -1;
-                subMenuList = new() { objectInfoMenu, phaseMenu, waveInfoMenu };
-                for (int i = 0; i < subMenuList.Count; i++)
+                subMenuList = new() { objectInfoMenu, waveInfoMenu };
+                for (int i = 0; i < switchSubMenuBtnGroup.Count; i++)
                     switchSubMenuBtnGroup.GetBaseItem(i).onSelectUI.AddListener(SelectSubMenu);
             }
             private void SelectSubMenu(int index)
@@ -41,24 +40,18 @@ namespace SkyStrike
             protected override void SelectObject(ObjectDataObserver data)
             {
                 objectInfoMenu.Display(data);
-                phaseMenu.Display(data?.phase);
-                int menuIndex = curSubmenuIndex;
-                if (menuIndex < 2)
-                    menuIndex = data?.phase != null ? menuIndex : 0;
-                else menuIndex = 0;
-                switchSubMenuBtnGroup.SelectAndInvokeItem(menuIndex);
+                switchSubMenuBtnGroup.SelectAndInvokeItem(0);
             }
             private void SelectMetaObject(ObjectDataObserver data)
             {
                 objectInfoMenu.Display(data);
-                phaseMenu.Display(null);
                 switchSubMenuBtnGroup.SelectAndInvokeItem(0);
             }
             protected override void SelectWave(WaveDataObserver data)
             {
-                SelectObject(null);
+                objectInfoMenu.Display(null);
                 waveInfoMenu.Display(data);
-                switchSubMenuBtnGroup.SelectAndInvokeItem(2);
+                switchSubMenuBtnGroup.SelectAndInvokeItem(1);
             }
         }
     }

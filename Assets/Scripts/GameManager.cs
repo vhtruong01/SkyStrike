@@ -14,7 +14,7 @@ namespace SkyStrike
         private EScene curScene;
         private List<AsyncOperation> scenesLoading;
 
-
+        //
         private void Awake()
         {
             instance = this;

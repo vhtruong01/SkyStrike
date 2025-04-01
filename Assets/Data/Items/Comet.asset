@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e308f9ed07497c43927314f5022bece, type: 3}
   m_Name: Comet
   m_EditorClassIdentifier: 
-  type: 5
   itemName: Comet
-  sprite: {fileID: 7029301469737702658, guid: 3f67dc4938127194a8e3e0bbc1201605, type: 3}
-  amount: 1
+  type: 5
   animationType: 2
+  sprite: {fileID: 7029301469737702658, guid: 3f67dc4938127194a8e3e0bbc1201605, type: 3}
+  velocity: {x: 0, y: 1.25}
+  quantity: 0

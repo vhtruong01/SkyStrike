@@ -21,7 +21,7 @@ namespace SkyStrike
             public override void SetValue(string value)
             {
                 base.SetValue(value);
-                x.text = value;
+                x.SetTextWithoutNotify(value);
             }
         }
     }

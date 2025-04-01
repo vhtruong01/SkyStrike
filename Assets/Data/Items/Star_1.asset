@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e308f9ed07497c43927314f5022bece, type: 3}
   m_Name: Star_1
   m_EditorClassIdentifier: 
-  type: 2
   itemName: Star1
-  sprite: {fileID: 21300000, guid: bcc8614311839c84cb57505cc5770c57, type: 3}
-  amount: 1
+  type: 2
   animationType: 3
+  sprite: {fileID: 21300000, guid: bcc8614311839c84cb57505cc5770c57, type: 3}
+  velocity: {x: 0, y: 0.75}
+  quantity: 0

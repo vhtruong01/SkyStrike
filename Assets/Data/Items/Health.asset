@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e308f9ed07497c43927314f5022bece, type: 3}
   m_Name: Health
   m_EditorClassIdentifier: 
-  type: 1
   itemName: Health
-  sprite: {fileID: 7680820834086852892, guid: 76518027a654701479b18b203e5d2250, type: 3}
-  amount: 1
+  type: 1
   animationType: 1
+  sprite: {fileID: 7680820834086852892, guid: 76518027a654701479b18b203e5d2250, type: 3}
+  velocity: {x: 0, y: 1.25}
+  quantity: 0

@@ -36,13 +36,13 @@ namespace SkyStrike
             public override void SetValue(Vector2 value)
             {
                 base.SetValue(value);
-                x.text = (Mathf.Round(value.x * unit * 1000) / 1000).ToString();
-                y.text = (Mathf.Round(value.y * unit * 1000) / 1000).ToString();
+                x.SetTextWithoutNotify((Mathf.Round(value.x * unit * 1000) / 1000).ToString());
+                y.SetTextWithoutNotify((Mathf.Round(value.y * unit * 1000) / 1000).ToString());
             }
             private void CheckValue(TMP_InputField field, float defaultVal)
             {
                 if (!float.TryParse(field.text, out float val) || (isWholeNumber && val < 0))
-                    field.text = (defaultVal * unit).ToString();
+                    field.SetTextWithoutNotify((defaultVal * unit).ToString());
             }
             public void OnDisable()
             {

@@ -13,16 +13,16 @@ namespace SkyStrike
                 public Vec2 prevPos;
                 public Vec2 midPos;
                 public Vec2 nextPos;
-                public bool isStraight;
+                public bool isStraightLine;
+                public bool isImmortal;
+                public bool isLookAtPlayer;
+                public bool isFixedRotation;
+                public float rotation;
+                public float accleration;
+                public float scale;
+                public float standingTime;
+                public float travelTime;
             }
-            public bool isLoop;
-            public bool isSyncRotation;
-            public Vec2 dir;
-            public float rotation;
-            public float scale;
-            public float delay;
-            public float accleration;
-            public float radius;
             public Point[] points;
         }
     }

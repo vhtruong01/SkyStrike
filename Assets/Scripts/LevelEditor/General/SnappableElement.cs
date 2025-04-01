@@ -19,6 +19,7 @@ namespace SkyStrike
                 base.SetPosition(pos);
             }
             public static void EnableSnapping(bool enable) => isSnap = enable;
+            public static bool IsSnap() => isSnap;
         }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using SkyStrike.Game;
 
 namespace SkyStrike
 {
@@ -8,7 +9,7 @@ namespace SkyStrike
     {
         public class AddObjectMenu : Menu
         {
-            [SerializeField] private List<ObjectMetaData> metaDataList;
+            [SerializeField] private List<MetaData> metaDataList;
             [SerializeField] private UIGroup selectObjectTypeBtn;
             [SerializeField] private Menu hierarchyMenu;
             [SerializeField] private Button hierarchyBtn;
