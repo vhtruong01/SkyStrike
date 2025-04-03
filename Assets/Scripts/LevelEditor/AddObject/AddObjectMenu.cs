@@ -10,10 +10,12 @@ namespace SkyStrike
         public class AddObjectMenu : Menu
         {
             [SerializeField] private List<MetaData> metaDataList;
+            [SerializeField] private List<MetaData> bossMetaDataList;
             [SerializeField] private UIGroup selectObjectTypeBtn;
             [SerializeField] private Menu hierarchyMenu;
             [SerializeField] private Button hierarchyBtn;
             private ObjectItemList objectItemUIGroupPool;
+            private int curSubmenuIndex;
 
             public override void Awake()
             {
@@ -23,18 +25,13 @@ namespace SkyStrike
                     Hide();
                     hierarchyMenu.Show();
                 });
+                //coverBtn.onClick.AddListener(()=>coverBtn)
             }
             public override void Init()
             {
+                curSubmenuIndex = -1;
                 objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
                 objectItemUIGroupPool.Init(SelectMetaObject);
-                foreach (var metaData in metaDataList)
-                {
-                    ObjectDataObserver objectDataObserver = new();
-                    objectDataObserver.metaData.SetData(metaData);
-                    objectDataObserver.ResetData();
-                    objectItemUIGroupPool.CreateItem(objectDataObserver);
-                }
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                     selectObjectTypeBtn.GetBaseItem(i).onSelectUI.AddListener(SelectObjectType);
                 selectObjectTypeBtn.SelectFirstItem();
@@ -46,10 +43,18 @@ namespace SkyStrike
             }
             private void SelectObjectType(int index)
             {
-                if (objectItemUIGroupPool.GetSelectedItemIndex() != index)
+                if (curSubmenuIndex != index)
                 {
-
-                    //
+                    objectItemUIGroupPool.Clear();
+                    var list = index == 0 ? metaDataList : bossMetaDataList;
+                    foreach (var metaData in list)
+                    {
+                        ObjectDataObserver objectDataObserver = new();
+                        objectDataObserver.metaData.SetData(metaData);
+                        objectDataObserver.ResetData();
+                        objectItemUIGroupPool.CreateItem(objectDataObserver);
+                    }
+                    curSubmenuIndex = index;
                 }
             }
             protected override void CreateObject(ObjectDataObserver data) { }

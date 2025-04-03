@@ -9,11 +9,10 @@ namespace SkyStrike
     {
         public class ExtraPoint : MonoBehaviour, IDragHandler
         {
+            [field: SerializeField]public Image image { get; private set; }
             [SerializeField] private RectTransform connectionLine;
             public UnityAction<Vector2> call;
-            public Image image { get; private set; }
 
-            public void Awake() => image = GetComponent<Image>();
             public void OnDrag(PointerEventData eventData) => call?.Invoke(transform.position);
             public void Enable(bool isEnable)
             {

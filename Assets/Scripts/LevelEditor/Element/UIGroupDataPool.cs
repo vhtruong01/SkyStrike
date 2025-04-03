@@ -29,10 +29,10 @@ namespace SkyStrike
                 else data = dataList.CreateEmpty();
                 return CreateItem(data);
             }
-            public void RemoveSelectedItem()
+            public virtual bool RemoveSelectedItem()
             {
-                if (container?.GetDataList() == null) return;
-                RemoveItem(selectedItemIndex);
+                if (container?.GetDataList() == null) return false;
+                return RemoveItem(selectedItemIndex);
             }
             protected override void ReleaseItem(int index)
             {

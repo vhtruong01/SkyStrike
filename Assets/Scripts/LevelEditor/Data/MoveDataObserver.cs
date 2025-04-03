@@ -15,7 +15,8 @@ namespace SkyStrike
             public MoveDataObserver Clone()
             {
                 MoveDataObserver newData = new();
-                CreateEmpty();
+                if (points.Count == 0)
+                    CreateEmpty();
                 for (int i = 0; i < points.Count; i++)
                     newData.points.Add(points[i].Clone());
                 return newData;
@@ -32,9 +33,7 @@ namespace SkyStrike
             {
                 if (moveData == null || moveData.points.Length == 0) return;
                 for (int i = 0; i < moveData.points.Length; i++)
-                {
                     Add(new(moveData.points[i]));
-                }
             }
             public List<PointDataObserver> GetList() => points;
             public PointDataObserver CreateEmpty()

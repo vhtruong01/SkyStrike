@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ViewportItemUI : UIElement<ObjectDataObserver>
+        public class ViewportItemUI : UIElement<ObjectDataObserver>, IDragHandler, IPointerClickHandler
         {
             [SerializeField] private Image icon;
             [SerializeField] private Image refIcon;
@@ -33,10 +33,15 @@ namespace SkyStrike
                     return;
                 transform.position = new(pos.x, pos.y, transform.position.z);
             }
-            public override void OnDrag(PointerEventData eventData)
+            public void OnDrag(PointerEventData eventData)
             {
-                base.OnDrag(eventData);
+                isDrag = true;
                 data.SetPosition(transform.position);
+            }
+            public override void OnPointerClick(PointerEventData eventData)
+            {
+                if (!isDrag) InvokeData();
+                isDrag = false;
             }
             public override void BindData()
             {

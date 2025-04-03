@@ -27,37 +27,15 @@ namespace SkyStrike
             public override string ToString() => $"[{x},{y}]";
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector3 operator +(Vec2 a, Vector3 b) => new(a.x + b.x, a.y + b.y, b.z);
+            public static Vec2 operator +(Vec2 a, Vec2 b) => new(a.x + b.x, a.y + b.y);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector3 operator +(Vector3 b, Vec2 a) => new(b.x + a.x, b.y + a.y, b.z);
+            public static Vec2 operator -(Vec2 a, Vec2 b) => new(a.x - b.x, a.y - b.y);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector3 operator -(Vec2 a, Vector3 b) => new(a.x - b.x, a.y - b.y, b.z);
+            public static Vec2 operator *(float f, Vec2 a) => new(a.x * f, a.y * f);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector3 operator -(Vector3 b, Vec2 a) => new(b.x - a.x, b.y - a.y, b.z);
+            public static Vec2 operator *(Vec2 a, float f) => new(a.x * f, a.y * f);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector3 operator *(Vec2 a, Vector3 b) => new(a.x * b.x, a.y * b.y, b.z);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector3 operator *(Vector3 b, Vec2 a) => new(b.x * a.x, b.y * a.y, b.z);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector3 operator /(Vec2 a, Vector3 b) => new(a.x / b.x, a.y / b.y, b.z);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector3 operator /(Vector3 b, Vec2 a) => new(b.x / a.x, b.y / a.y, b.z);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector2 operator +(Vec2 a, Vector2 b) => new(a.x + b.x, a.y + b.y);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector2 operator +(Vector2 b, Vec2 a) => new(b.x + a.x, b.y + a.y);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector2 operator -(Vec2 a, Vector2 b) => new(a.x - b.x, a.y - b.y);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector2 operator -(Vector2 b, Vec2 a) => new(b.x - a.x, b.y - a.y);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector2 operator *(Vec2 a, Vector2 b) => new(a.x * b.x, a.y * b.y);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector2 operator *(Vector2 b, Vec2 a) => new(b.x * a.x, b.y * a.y);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector2 operator /(Vec2 a, Vector2 b) => new(a.x / b.x, a.y / b.y);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static Vector2 operator /(Vector2 b, Vec2 a) => new(b.x / a.x, b.y / a.y);
+            public static Vec2 operator /(Vec2 a, float f) => new(a.x / f, a.y / f);
         }
     }
 }

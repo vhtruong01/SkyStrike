@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public interface IUIElement : IObject, IPointerClickHandler
+        public interface IUIElement : IObject
         {
             public int? index { get; set; }
             public UnityEvent<int> onSelectUI { get; set; }

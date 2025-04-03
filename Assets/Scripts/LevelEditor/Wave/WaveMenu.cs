@@ -20,8 +20,8 @@ namespace SkyStrike
             {
                 base.Awake();
                 waveUIGroupPool = gameObject.GetComponent<WaveItemList>();
+                removeBtn.onClick.AddListener(() => waveUIGroupPool.RemoveSelectedItem());
                 addBtn.onClick.AddListener(waveUIGroupPool.CreateEmptyItem);
-                removeBtn.onClick.AddListener(waveUIGroupPool.RemoveSelectedItem);
                 duplicateBtn.onClick.AddListener(waveUIGroupPool.DuplicateSelectedItem);
                 moveLeftBtn.onClick.AddListener(waveUIGroupPool.MoveLeftSelectedItem);
                 moveRightBtn.onClick.AddListener(waveUIGroupPool.MoveRightSelectedItem);

@@ -7,24 +7,21 @@ add object menu -- ok
 object info menu -- ok
 viewport -- ok
 grill + snap -- ok
+use bezier curve -- ok
 save/load level screen
 
-drag + drop + rename element  in hierarchy --?hard
+resize - dock menu
+change object metadata
 zoom in/out viewport
-collapse,expand children in hierarchy
-resize menu 
-dockable UI
+
+drag + drop + rename element  in hierarchy - collapse,expand children in hierarchy
 multi select
 
-use bezier curve instead dir and radius
 
 
 //object
-change all children position
-fix delay + loop in phase menu
 bullet menu
-shield menu
-hp
+change all children position
 bitwise-shift
 ...
 
@@ -36,7 +33,7 @@ bitwise-shift
 -- ui toolkit -- bad
 ui game play
 main menu
-loading menu
+loading menu -- ok
 setting menu
 help menu
 exit menu
@@ -45,9 +42,9 @@ ship custom menu
 
 
 //game 
+item -- ok
+enemy -- fix
 bullet
-enemy
-item--ok
 
 animation curve
 behavior tree

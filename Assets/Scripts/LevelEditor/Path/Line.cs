@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace SkyStrike
 {
@@ -11,12 +12,12 @@ namespace SkyStrike
         {
             [SerializeField] private RawImage dot;
             private ObjectPool<RawImage> imagePool;
-            private Stack<RawImage> dots;
+            private Stack<RawImage> dots = new();
 
-            public void Awake()
+            public void Init()
             {
-                imagePool = new(createFunc: Create, actionOnGet: Get, actionOnRelease: Release);
                 dots = new();
+                imagePool = new(createFunc: Create, actionOnGet: Get, actionOnRelease: Release);
             }
             private RawImage Create() => Instantiate(dot, transform, false);
             private void Release(RawImage img) => img.gameObject.SetActive(false);
@@ -33,6 +34,11 @@ namespace SkyStrike
                     d.transform.position = positions[index].SetZ(d.transform.position.z);
                     index++;
                 }
+            }
+            public void Clear()
+            {
+                for (int i = dots.Count - 1; i >= 0; i--)
+                    imagePool.Release(dots.Pop());
             }
         }
     }

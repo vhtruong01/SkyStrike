@@ -8,18 +8,17 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class UIElement<T> : MonoBehaviour, IUIElement, IDragHandler, IObserver where T : class
+        public abstract class UIElement<T> : MonoBehaviour,IPointerClickHandler, IUIElement, IObserver where T : class
         {
             [SerializeField] protected TextMeshProUGUI itemName;
             protected bool isDrag;
             private Image bg;
             public int? index { get; set; }
             public bool isDefault { get; set; }
-            public bool isExternalCall { get; set; }
             public T data { get; set; }
             public UnityEvent<T> onClick { get; set; }
             public UnityEvent<int> onSelectUI { get; set; }
-            public void Init()
+            public virtual void Init()
             {
                 bg = GetComponent<Image>();
                 onSelectUI = new();
@@ -55,21 +54,7 @@ namespace SkyStrike
             public virtual T DuplicateData() => null;
             public abstract void BindData();
             public abstract void UnbindData();
-            public virtual void OnDrag(PointerEventData eventData)
-            {
-                isDrag = true;
-            }
-            public virtual void OnPointerClick(PointerEventData eventData)
-            {
-                if (!isDrag)
-                {
-                    if (isExternalCall)
-                        InvokeData();
-                    else
-                        SelectAndInvoke();
-                }
-                isDrag = false;
-            }
+            public virtual void OnPointerClick(PointerEventData eventData) => SelectAndInvoke();
         }
     }
 }

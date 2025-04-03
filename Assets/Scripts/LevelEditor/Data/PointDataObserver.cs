@@ -15,7 +15,7 @@ namespace SkyStrike
             public DataObserver<float> accleration { get; private set; }
             public DataObserver<float> standingTime { get; private set; }
             public DataObserver<float> travelTime { get; private set; }
-            public DataObserver<bool> isTraightLine { get; private set; }
+            public DataObserver<bool> isStraightLine { get; private set; }
             public DataObserver<bool> isLookAtPlayer { get; private set; }
             public DataObserver<bool> isImmortal { get; private set; }
             public DataObserver<bool> isFixedRotation { get; private set; }
@@ -30,7 +30,7 @@ namespace SkyStrike
                 travelTime = new();
                 accleration = new();
                 standingTime = new();
-                isTraightLine = new();
+                isStraightLine = new();
                 isLookAtPlayer = new();
                 isImmortal = new();
                 isFixedRotation = new();
@@ -57,7 +57,7 @@ namespace SkyStrike
                 accleration.UnbindAll();
                 standingTime.UnbindAll();
                 isImmortal.UnbindAll();
-                isTraightLine.UnbindAll();
+                isStraightLine.UnbindAll();
                 isLookAtPlayer.UnbindAll();
                 isFixedRotation.UnbindAll();
             }
@@ -74,7 +74,7 @@ namespace SkyStrike
                 newPoint.standingTime.OnlySetData(standingTime.data);
                 newPoint.isImmortal.OnlySetData(isImmortal.data);
                 newPoint.isLookAtPlayer.OnlySetData(isLookAtPlayer.data);
-                newPoint.isTraightLine.OnlySetData(isTraightLine.data);
+                newPoint.isStraightLine.OnlySetData(isStraightLine.data);
                 newPoint.isFixedRotation.OnlySetData(isFixedRotation.data);
                 return newPoint;
             }
@@ -85,7 +85,7 @@ namespace SkyStrike
                     prevPos = new(prePos.data),
                     midPos = new(midPos.data),
                     nextPos = new(nextPos.data),
-                    isStraightLine = isTraightLine.data,
+                    isStraightLine = isStraightLine.data,
                     isImmortal = isImmortal.data,
                     isLookAtPlayer = isLookAtPlayer.data,
                     isFixedRotation = isFixedRotation.data,
@@ -101,7 +101,7 @@ namespace SkyStrike
                 prePos.OnlySetData(pointData.prevPos.ToVector2());
                 midPos.OnlySetData(pointData.midPos.ToVector2());
                 nextPos.OnlySetData(pointData.nextPos.ToVector2());
-                isTraightLine.OnlySetData(pointData.isStraightLine);
+                isStraightLine.OnlySetData(pointData.isStraightLine);
                 isImmortal.OnlySetData(pointData.isImmortal);
                 isLookAtPlayer.OnlySetData(pointData.isLookAtPlayer);
                 isFixedRotation.OnlySetData(pointData.isFixedRotation);

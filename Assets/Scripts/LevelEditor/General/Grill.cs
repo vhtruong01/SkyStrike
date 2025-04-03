@@ -7,8 +7,9 @@ namespace SkyStrike
     {
         public class Grill : MonoBehaviour
         {
+            private static readonly Color axisColor = new(1, 0, 0, 0.33f);
+            private static readonly Color subaxisColor = new(1, 1, 1, 0.05f);
             [SerializeField] private float thickness;
-            [SerializeField] private Image imgPrefab;
 
             public void Start()
             {
@@ -26,10 +27,12 @@ namespace SkyStrike
             }
             private void CreateLine(float w, float h, Vector3 dir)
             {
-                var img = Instantiate(imgPrefab, transform, false);
+                var img = new GameObject("Line").AddComponent<Image>();
+                img.transform.SetParent(transform, false);
                 img.name = "Line";
                 img.rectTransform.sizeDelta = new Vector2(w, h);
                 img.transform.position = img.transform.position + dir;
+                img.color = dir == Vector3.zero ? axisColor : subaxisColor;
             }
         }
 

@@ -16,8 +16,8 @@ namespace SkyStrike
                 itemDict = new();
                 foreach (ItemData item in items)
                     itemDict.Add(item.type, item);
-                EventManager.onCreateItem.AddListener(CreateItem);
-                EventManager.onRemoveItem.AddListener(RemoveItem);
+                //EventManager.onCreateItem.AddListener(CreateItem);
+                //EventManager.onRemoveItem.AddListener(RemoveItem);
             }
             public Item CreateItem(EItem itemType)
             {

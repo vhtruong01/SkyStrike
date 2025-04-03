@@ -14,7 +14,7 @@ namespace SkyStrike
             [SerializeField] private FloatProperty standingTime;
             [SerializeField] private FloatProperty travelTime;
             [SerializeField] private BoolProperty isFixedRotation;
-            [SerializeField] private BoolProperty isTraightLine;
+            [SerializeField] private BoolProperty isStraightLine;
             [SerializeField] private BoolProperty isLookAtPlayer;
             [SerializeField] private BoolProperty isImmortal;
 
@@ -24,9 +24,10 @@ namespace SkyStrike
                 rotation.Bind(data.rotation);
                 accleration.Bind(data.accleration);
                 standingTime.Bind(data.standingTime);
+                travelTime.Bind(data.travelTime);
                 isFixedRotation.Bind(data.isFixedRotation);
                 isImmortal.Bind(data.isImmortal);
-                isTraightLine.Bind(data.isTraightLine);
+                isStraightLine.Bind(data.isStraightLine);
                 isLookAtPlayer.Bind(data.isLookAtPlayer);
                 position.Bind(data.midPos, data.Translate);
             }
@@ -35,10 +36,11 @@ namespace SkyStrike
             {
                 scale.Unbind();
                 rotation.Unbind();
+                travelTime.Unbind();
                 accleration.Unbind();
                 standingTime.Unbind();
                 isFixedRotation.Unbind();
-                isTraightLine.Unbind();
+                isStraightLine.Unbind();
                 isLookAtPlayer.Unbind();
                 isImmortal.Unbind();
                 position.Unbind();

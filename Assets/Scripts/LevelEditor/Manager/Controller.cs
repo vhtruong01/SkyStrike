@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.IO;
 using SkyStrike.Game;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 namespace SkyStrike
 {
@@ -44,6 +45,7 @@ namespace SkyStrike
                         menu.gameObject.SetActive(false);
                 }
                 levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
+                //levelDataObserver = new LevelDataObserver();
                 EventManager.SelectLevel(levelDataObserver);
             }
             private void TestLevel()
@@ -81,7 +83,7 @@ namespace SkyStrike
                     using Stream stream = File.Open(dataPath, FileMode.Open);
                     return (T)new BinaryFormatter().Deserialize(stream);
                 }
-                catch (System.Exception e)
+                catch (Exception e)
                 {
                     Debug.Log(e.Message);
                     return default;

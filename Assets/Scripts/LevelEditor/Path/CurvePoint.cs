@@ -6,20 +6,20 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class CurvePoint : UIElement<PointDataObserver>, IPointerClickHandler, IDragHandler
+        public class CurvePoint : UIElement<PointDataObserver>, IDragHandler
         {
             private static readonly float space = 0.5f;
             [SerializeField] private ExtraPoint extraPoint1;
             [SerializeField] private ExtraPoint extraPoint2;
-            [SerializeField] private RectTransform connectionLine1;
-            [SerializeField] private RectTransform connectionLine2;
             [SerializeField] private Line line;
             private CurvePoint prevPoint;
             private CurvePoint nextPoint;
             public UnityEvent<Vector2> onDrag { get; private set; }
 
-            public void Awake()
+            public override void Init()
             {
+                base.Init();
+                line.Init();
                 onDrag = new();
                 extraPoint1.call = MovePrevExtraPoint;
                 extraPoint2.call = MoveNextExtraPoint;
@@ -42,16 +42,23 @@ namespace SkyStrike
             }
             public void SetPrevPoint(CurvePoint point)
             {
-                extraPoint1.Enable(!(point == null || data.isTraightLine.data));
+                extraPoint1.Enable(!(point == null || data.isStraightLine.data));
                 prevPoint = point;
                 prevPoint?.SetNextPoint(this);
-                if (GetPointIndex() % 2 != 0)
+                Rename(index.Value);
+                if (index.Value % 2 != 0)
                     (extraPoint1.image.color, extraPoint2.image.color) = (extraPoint2.image.color, extraPoint1.image.color);
                 RefreshPath();
             }
+            private void Rename(int pointIndex)
+            {
+                itemName.text = pointIndex.ToString();
+                if (nextPoint != null)
+                    nextPoint.Rename(pointIndex + 1);
+            }
             public void SetNextPoint(CurvePoint point)
             {
-                extraPoint2.Enable(!(point == null || point.data.isTraightLine.data));
+                extraPoint2.Enable(!(point == null || point.data.isStraightLine.data));
                 nextPoint = point;
             }
             private void Render(ExtraPoint curPoint, ExtraPoint otherPoint)
@@ -64,9 +71,9 @@ namespace SkyStrike
             private void MoveExtraPoint(ExtraPoint curPoint, ExtraPoint otherPoint)
             {
                 Render(curPoint, otherPoint);
-                if (!data.isTraightLine.data)
+                if (!data.isStraightLine.data)
                     DrawLine();
-                if (nextPoint != null && !nextPoint.data.isTraightLine.data)
+                if (nextPoint != null && !nextPoint.data.isStraightLine.data)
                     nextPoint.DrawLine();
             }
             private void MoveNextExtraPoint(Vector2 pos)
@@ -84,12 +91,13 @@ namespace SkyStrike
             private void DrawLine()
             {
                 if (prevPoint != null)
-                    line.Draw(data.isTraightLine.data ? CreateStraightLine(prevPoint) : CreateCurveLine(prevPoint));
+                    line.Draw(data.isStraightLine.data ? CreateStraightLine(prevPoint) : CreateCurveLine(prevPoint));
+                else line.Clear();
             }
             private Vector2[] CreateStraightLine(CurvePoint endPoint)
             {
                 Vector2 dir = endPoint.transform.position - transform.position;
-                int pointCount = Mathf.CeilToInt(dir.magnitude / space);
+                int pointCount = Mathf.CeilToInt((dir.magnitude - space / 2) / space);
                 if (pointCount == 0) pointCount = 1;
                 dir = dir.normalized;
                 Vector2[] positions = new Vector2[pointCount - 1];
@@ -121,12 +129,16 @@ namespace SkyStrike
                 if (nextPoint != null)
                     nextPoint.DrawLine();
             }
-            private int GetPointIndex() => 1 + (prevPoint != null ? prevPoint.GetPointIndex() : -1);
-            public override void OnDrag(PointerEventData eventData)
+            public void OnDrag(PointerEventData eventData)
             {
-                base.OnDrag(eventData);
+                isDrag = true;
                 data.Translate(transform.position);
                 RefreshPath();
+            }
+            public override void OnPointerClick(PointerEventData eventData)
+            {
+                if (!isDrag) SelectAndInvoke();
+                isDrag = false;
             }
             public void SetPosition(Vector2 newPos)
             {

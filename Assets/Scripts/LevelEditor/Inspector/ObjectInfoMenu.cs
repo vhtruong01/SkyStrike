@@ -9,11 +9,13 @@ namespace SkyStrike
         public class ObjectInfoMenu : SubMenu<ObjectDataObserver>
         {
             [SerializeField] private StringProperty objectName;
+            [SerializeField] private FloatProperty velocity;
+            [SerializeField] private FloatProperty delay;
+            [SerializeField] private FloatProperty size;
+            [SerializeField] private IntProperty cloneCount;
             [SerializeField] private Image icon;
-            [SerializeField] private TextMeshProUGUI type;
             [SerializeField] private Button addObjectBtn;
             [SerializeField] private Button pathBtn;
-            [SerializeField] private FloatProperty delay;
             [SerializeField] private Image referenceObjectIcon;
             [SerializeField] private Button referenceObjectBtn;
             [SerializeField] private TextMeshProUGUI referenceObjectText;
@@ -37,15 +39,14 @@ namespace SkyStrike
                 {
                     referenceObjectIcon.color = new();
                     referenceObjectText.text = "";
-                    pathBtn.gameObject.SetActive(true);
                 }
                 else
                 {
                     referenceObjectIcon.color = refData.metaData.data.color;
                     referenceObjectIcon.sprite = refData.metaData.data.sprite;
                     referenceObjectText.text = refData.name.data;
-                    pathBtn.gameObject.SetActive(false);
                 }
+                pathBtn.gameObject.SetActive(refData == null && data.id != ObjectDataObserver.NULL_OBJECT_ID);
             }
             private void CreateObject()
             {
@@ -60,8 +61,10 @@ namespace SkyStrike
             public override void BindData()
             {
                 delay.Bind(data.delay);
+                size.Bind(data.size);
                 objectName.Bind(data.name);
-                type.text = data.metaData.data.type;
+                velocity.Bind(data.velocity);
+                cloneCount.Bind(data.cloneCount);
                 icon.sprite = data.metaData.data.sprite;
                 icon.color = data.metaData.data.color;
                 DisplayReferenceObject(data.refData);
@@ -69,7 +72,10 @@ namespace SkyStrike
             public override void UnbindData()
             {
                 delay.Unbind();
+                size.Unbind();
+                velocity.Unbind();
                 objectName.Unbind();
+                cloneCount.Unbind();
             }
         }
     }

@@ -11,7 +11,6 @@ namespace SkyStrike
         public abstract class UIGroupPool<T> : UIGroup where T : class
         {
             [SerializeField] protected bool useSpecificColor;
-            [SerializeField] protected bool hasExternalCall;
             [SerializeField] protected Color selectedColor;
             [SerializeField] protected Color defaultColor;
             [SerializeField] protected string defaultName;
@@ -58,7 +57,6 @@ namespace SkyStrike
                     ?? throw new Exception("wrong prefab type");
                 item.gameObject.name = prefab.name;
                 item.isDefault = false;
-                item.isExternalCall = hasExternalCall;
                 item.Init();
                 item.onSelectUI.AddListener(SelectItem);
                 item.onClick.AddListener(InvokeData);
@@ -78,7 +76,6 @@ namespace SkyStrike
                     throw new Exception("data must not be null");
                 var item = pool.Get();
                 item.index = items.Count;
-                item.isExternalCall = hasExternalCall;
                 item.SetData(data);
                 if (!string.IsNullOrEmpty(defaultName))
                     item.SetName(defaultName + " " + ++currentWaveNameIndex);
@@ -169,10 +166,10 @@ namespace SkyStrike
                 return index >= 0 & index < items.Count;
             }
             public void RemoveItem(T data) => RemoveItem(GetItemIndex(data));
-            public void RemoveItem(int index)
+            public bool RemoveItem(int index)
             {
                 var item = GetItem(index);
-                if (item == null || (!canDeselect && items.Count < 2) || item.isDefault) return;
+                if (item == null || (!canDeselect && items.Count < 2) || item.isDefault) return false;
                 if (index == selectedItemIndex)
                 {
                     if (canDeselect)
@@ -190,8 +187,9 @@ namespace SkyStrike
                 ReleaseItem(index);
                 for (int i = index; i < items.Count; i++)
                     items[i].index = i;
+                return true;
             }
-            public void Clear()
+            public virtual void Clear()
             {
                 if (items == null || items.Count == 0) return;
                 List<UIElement<T>> unremovedItem = new();

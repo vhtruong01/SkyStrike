@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike
@@ -8,60 +6,31 @@ namespace SkyStrike
     {
         public class MainGame : MonoBehaviour
         {
+            [SerializeField] private ObjectManager objectManager;
             public static LevelData Level { get; set; }
-            //[SerializeField] private PoolManager gameObjectPool;
-            private Dictionary<int, ObjectData> objectDataDict;
+            private int waveIndex;
 
-            public void Awake()
-            {
-                objectDataDict = new();
-                Level ??= Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
-            }
             public void Start() => Restart();
             public void Restart()
             {
-                StopAllCoroutines();
-                //gameObjectPool.Clear();
-                StartCoroutine(PlayGame());
-            }
-            public IEnumerator PlayGame()
-            {
-                var lv = Level;
-                if (lv == null) yield break;
                 print("start game");
-                for (int i = 0; i < lv.waves.Length; i++)
-                    yield return StartCoroutine(StartWave(lv.waves[i]));
-                print("end game");
-                int n = 3;
-                for (int i = 1; i <= n; i++)
-                {
-                    var item=EventManager.CreateItem((EItem)i);
-                    item.gameObject.transform.position = new(0, i, 0);
-                    yield return new WaitForSeconds(2f);
-                }
+                Level ??= Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
+                waveIndex = 0;
+                StartWave();
             }
-            public IEnumerator StartWave(WaveData wave)
+            private void StartWave()
             {
-                if (wave.delay > 0)
-                    yield return new WaitForSeconds(wave.delay);
-                //List<Coroutine> coroutines = new();
-                //objectDataDict.Clear();
-                //for (int i = 0; i < wave.objectDataArr.Length; i++)
-                //{
-                //    var itemData = wave.objectDataArr[i];
-                //    objectDataDict.Add(itemData.id, itemData);
-                //}
-                //for (int i = 0; i < wave.objectDataArr.Length; i++)
-                //{
-                //    var itemData = wave.objectDataArr[i];
-                //    if (objectDataDict.TryGetValue(itemData.refId, out var refObjectData))
-                //        itemData.phase = refObjectData.phase;
-                //    var item = gameObjectPool.CreateItem(itemData);
-                //    Coroutine coroutine = StartCoroutine(item.Appear());
-                //    coroutines.Add(coroutine);
-                //}
-                //foreach (Coroutine coroutine in coroutines)
-                //    yield return coroutine;
+                if (waveIndex >= Level.waves.Length)
+                {
+                    print("end game");
+                    return;
+                }
+                objectManager.CreateWave(Level.waves[waveIndex]);
+                waveIndex++;
+            }
+            private void RecallObject()
+            {
+
             }
         }
     }

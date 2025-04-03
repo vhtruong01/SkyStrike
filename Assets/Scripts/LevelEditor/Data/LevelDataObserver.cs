@@ -9,15 +9,10 @@ namespace SkyStrike
         {
             public string name;
             public int star;
-            private readonly List<WaveDataObserver> waveList;
+            private List<WaveDataObserver> waveList;
 
-            public LevelDataObserver(LevelData levelData)
-            {
-                waveList = new();
-                if (levelData != null)
-                    ImportData(levelData);
-                else CreateEmpty();
-            }
+            public LevelDataObserver() : this(null) { }
+            public LevelDataObserver(LevelData levelData) => ImportData(levelData);
             public List<WaveDataObserver> GetList() => waveList;
             public WaveDataObserver CreateEmpty()
             {
@@ -40,13 +35,16 @@ namespace SkyStrike
             }
             public void ImportData(LevelData levelData)
             {
+                waveList = new();
+                if (levelData == null)
+                {
+                    CreateEmpty();
+                    return;
+                }
                 for (int i = 0; i < levelData.waves.Length; i++)
                     Add(new(levelData.waves[i]));
             }
-            public LevelDataObserver Clone()
-            {
-                throw new System.NotImplementedException();
-            }
+            public LevelDataObserver Clone() => null;
         }
     }
 }

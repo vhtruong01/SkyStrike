@@ -13,6 +13,9 @@ namespace SkyStrike
             public ObjectDataObserver refData { get; private set; }
             public DataObserver<MetaData> metaData { get; private set; }
             public DataObserver<float> delay { get; private set; }
+            public DataObserver<float> velocity { get; private set; }
+            public DataObserver<float> size { get; private set; }
+            public DataObserver<int> cloneCount { get; private set; }
             public DataObserver<string> name { get; private set; }
             public MoveDataObserver moveData { get; private set; }
             public DataObserver<Vector2> position => moveData.First().midPos;
@@ -23,8 +26,12 @@ namespace SkyStrike
                 delay = new();
                 name = new();
                 moveData = new();
+                velocity = new();
+                size = new();
+                cloneCount = new();
                 id = NULL_OBJECT_ID;
                 refId = NULL_OBJECT_ID;
+                ResetData();
             }
             public ObjectDataObserver(ObjectData objectData) : this() => ImportData(objectData);
             public void SetPosition(Vector2 newPos) => moveData.First().Translate(newPos);
@@ -48,18 +55,28 @@ namespace SkyStrike
                 ObjectDataObserver newData = new();
                 newData.metaData.OnlySetData(metaData.data);
                 newData.delay.OnlySetData(delay.data);
+                newData.velocity.OnlySetData(velocity.data);
                 newData.name.OnlySetData(name.data);
+                newData.size.OnlySetData(size.data);
+                newData.cloneCount.OnlySetData(cloneCount.data);
                 newData.moveData = moveData.Clone();
                 return newData;
             }
             public void ResetData()
             {
-                delay.ResetData();
-                name.OnlySetData(metaData.data.type);
+                delay.SetData(0);
+                cloneCount.SetData(0);
+                velocity.SetData(1);
+                size.SetData(1);
+                if (metaData.data != null)
+                    name.OnlySetData(metaData.data.type);
             }
             public void UnbindAll()
             {
+                size.UnbindAll();
                 delay.UnbindAll();
+                velocity.UnbindAll();
+                cloneCount.UnbindAll();
                 name.UnbindAll();
             }
             public ObjectData ExportData()
@@ -70,7 +87,10 @@ namespace SkyStrike
                     refId = refId,
                     metaId = metaData.data.id,
                     delay = delay.data,
+                    velocity = velocity.data,
                     name = name.data,
+                    size = size.data,
+                    cloneCount = cloneCount.data,
                     moveData = moveData.ExportData()
                 };
             }
@@ -81,7 +101,10 @@ namespace SkyStrike
                 refId = objectData.refId;
                 metaData.OnlySetData(EventManager.GetMetaData(objectData.metaId));
                 delay.OnlySetData(objectData.delay);
+                velocity.OnlySetData(objectData.velocity);
                 name.OnlySetData(objectData.name);
+                size.OnlySetData(objectData.size);
+                cloneCount.OnlySetData(objectData.cloneCount);
                 moveData = new(objectData.moveData);
             }
         }
