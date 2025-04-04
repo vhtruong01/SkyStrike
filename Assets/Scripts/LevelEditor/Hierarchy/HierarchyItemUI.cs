@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 namespace SkyStrike
 {
@@ -20,6 +21,7 @@ namespace SkyStrike
                 spaceItem.sizeDelta = new(0, spaceItem.sizeDelta.y);
                 children.Clear();
             }
+            public override void OnPointerClick(PointerEventData eventData) => InvokeData();
             public void RemoveChild(HierarchyItemUI child)
             {
                 children.Remove(child);

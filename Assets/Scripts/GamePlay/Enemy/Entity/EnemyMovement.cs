@@ -8,13 +8,8 @@ namespace SkyStrike
     {
         public class EnemyMovement : MonoBehaviour
         {
-            public void StarMoving(ObjectData data)
-                => StartCoroutine(Move(data));
-            private IEnumerator Move(ObjectData data)
+            public IEnumerator Move(MoveData moveData)
             {
-                yield return new WaitForSeconds(data.delay);
-                MoveData moveData = data.moveData;
-                float velocity = data.velocity;
                 int index = 0;
                 while (index < moveData.points.Length)
                 {
@@ -32,17 +27,17 @@ namespace SkyStrike
                         Vector2 endPos = nextPoint.midPos.ToVector2();
                         if (nextPoint.isStraightLine)
                         {
-                            if (time <= 0 && velocity > 0) time = (startPos - endPos).magnitude / velocity;
+                            if (time <= 0 && moveData.velocity > 0) time = (startPos - endPos).magnitude / moveData.velocity;
                             yield return StartCoroutine(MoveStraight(startPos, endPos, time));
                         }
                         else
                         {
-                            if (time <= 0 && velocity > 0)
+                            if (time <= 0 && moveData.velocity > 0)
                                 time = ((startPos - pos2).magnitude
                                     + (pos2 - pos3).magnitude
                                     + (endPos - pos3).magnitude
                                     + (startPos - endPos).magnitude)
-                                    / velocity / 2;
+                                    / moveData.velocity / 2;
                             yield return StartCoroutine(MoveCurve(startPos, pos2, pos3, endPos, time));
                         }
                     }

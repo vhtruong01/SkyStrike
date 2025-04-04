@@ -4,6 +4,14 @@ namespace SkyStrike
     {
         public class PointItemList : UIGroupDataPool<PointDataObserver>
         {
+            public GridScreen screen { private get; set; }
+
+            protected override UIElement<PointDataObserver> CreateObject()
+            {
+                var item = base.CreateObject() as CurvePoint;
+                item.screen = screen;
+                return item;
+            }
             public override UIElement<PointDataObserver> CreateItemAndAddData(PointDataObserver data)
             {
                 var recentPoint = GetItem(items.Count - 1) as CurvePoint;

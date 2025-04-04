@@ -8,11 +8,12 @@ object info menu -- ok
 viewport -- ok
 grill + snap -- ok
 use bezier curve -- ok
+scale some menu -- ok
+
 save/load level screen
 
 resize - dock menu
 change object metadata
-zoom in/out viewport
 
 drag + drop + rename element  in hierarchy - collapse,expand children in hierarchy
 multi select
@@ -47,7 +48,7 @@ enemy -- fix
 bullet
 
 animation curve
-behavior tree
+boss behavior tree
 
 
 
@@ -68,3 +69,12 @@ setting menu
 ship menu
 level menu 
 difficult menu
+
+
+-----
+firebase 
+particalsystem
+dotween 
+profiler
+light
+addressable asset

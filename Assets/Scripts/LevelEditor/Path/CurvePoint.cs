@@ -14,6 +14,7 @@ namespace SkyStrike
             [SerializeField] private Line line;
             private CurvePoint prevPoint;
             private CurvePoint nextPoint;
+            public GridScreen screen { private get; set; }
             public UnityEvent<Vector2> onDrag { get; private set; }
 
             public override void Init()
@@ -36,8 +37,8 @@ namespace SkyStrike
             public override void SetData(PointDataObserver data)
             {
                 base.SetData(data);
-                transform.position = data.midPos.data.SetZ(transform.position.z);
-                extraPoint1.transform.position = data.prePos.data.SetZ(extraPoint1.transform.position.z);
+                transform.position = screen.GetPositionOnScreen(data.midPos.data.SetZ(transform.position.z));
+                extraPoint1.transform.position = screen.GetPositionOnScreen(data.prePos.data.SetZ(extraPoint1.transform.position.z));
                 Render(extraPoint1, extraPoint2);
             }
             public void SetPrevPoint(CurvePoint point)
@@ -78,15 +79,15 @@ namespace SkyStrike
             }
             private void MoveNextExtraPoint(Vector2 pos)
             {
-                data.nextPos.SetData(pos);
+                data.nextPos.SetData(screen.GetActualPosition(pos));
                 MoveExtraPoint(extraPoint2, extraPoint1);
-                data.prePos.SetData(extraPoint1.transform.position);
+                data.prePos.SetData(screen.GetActualPosition(extraPoint1.transform.position));
             }
             private void MovePrevExtraPoint(Vector2 pos)
             {
-                data.prePos.SetData(pos);
+                data.prePos.SetData(screen.GetActualPosition(pos));
                 MoveExtraPoint(extraPoint1, extraPoint2);
-                data.nextPos.SetData(extraPoint2.transform.position);
+                data.nextPos.SetData(screen.GetActualPosition(extraPoint2.transform.position));
             }
             private void DrawLine()
             {
@@ -132,7 +133,7 @@ namespace SkyStrike
             public void OnDrag(PointerEventData eventData)
             {
                 isDrag = true;
-                data.Translate(transform.position);
+                data.Translate(screen.GetActualPosition(transform.position));
                 RefreshPath();
             }
             public override void OnPointerClick(PointerEventData eventData)
@@ -142,9 +143,12 @@ namespace SkyStrike
             }
             public void SetPosition(Vector2 newPos)
             {
-                if (newPos.x == transform.position.x && newPos.y == transform.position.y) return;
-                transform.position = newPos.SetZ(transform.position.z);
-                RefreshPath();
+                newPos = screen.GetPositionOnScreen(newPos);
+                if (!newPos.IsAlmostEqual(transform.position))
+                {
+                    transform.position = newPos.SetZ(transform.position.z);
+                    RefreshPath();
+                }
             }
             public override void UnbindData()
             {

@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class PathMenu : Menu, IPointerClickHandler, IElementContainer<PointDataObserver>
+        public class PathMenu : ScalableMenu, IPointerClickHandler, IElementContainer<PointDataObserver>
         {
             [SerializeField] private Button straightPointBtn;
             [SerializeField] private Button curvePointBtn;
@@ -32,6 +32,7 @@ namespace SkyStrike
             {
                 pointItemList = gameObject.GetComponent<PointItemList>();
                 pointItemList.Init(DisplayPointInfo);
+                pointItemList.screen = screen;
                 for (int i = 0; i < switchPointTypeBtn.Count; i++)
                     switchPointTypeBtn.GetBaseItem(i).onSelectUI.AddListener(SelectPointType);
                 switchPointTypeBtn.SelectFirstItem();
@@ -58,8 +59,8 @@ namespace SkyStrike
             public void EnableAddPoint(bool isEnable) => isEnableAddPoint = isEnable;
             public void OnPointerClick(PointerEventData eventData)
             {
-                if (isEnableAddPoint && objectDataObserver != null)
-                    CreateNewPoint(eventData.pointerCurrentRaycast.worldPosition);
+                if (isEnableAddPoint && objectDataObserver != null && !isDrag)
+                    CreateNewPoint(screen.GetActualPosition(eventData.pointerCurrentRaycast.worldPosition));
             }
             private void CreateNewPoint(Vector2 pos)
             {

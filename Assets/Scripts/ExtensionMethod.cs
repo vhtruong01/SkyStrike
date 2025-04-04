@@ -29,6 +29,8 @@ public static class ExtensionMethod
         return value;
     }
     //Vector
+    public static bool IsAlmostEqual(this Vector2 v1, Vector2 v2)
+        => Mathf.Abs(v1.x - v2.x) <= 0.00001f && Mathf.Abs(v1.y - v2.y) <= 0.00001f;
     public static Vector2 ToVector2(this Vector3 v) => new(v.x, v.y);
     public static Vector3 SetZ(this Vector2 v, float z) => new(v.x, v.y, z);
     public static Vector3 SetZ(this Vector3 v, float z) => new(v.x, v.y, z);

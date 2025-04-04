@@ -51,7 +51,7 @@ namespace SkyStrike
                 selectDataCall = selectCall;
                 deselectDataCall = deselectCall;
             }
-            protected UIElement<T> CreateObject()
+            protected virtual UIElement<T> CreateObject()
             {
                 var item = Instantiate(prefab, containerTransform, false).GetComponent<UIElement<T>>()
                     ?? throw new Exception("wrong prefab type");

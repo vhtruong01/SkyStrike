@@ -51,12 +51,17 @@ namespace SkyStrike
             private void DisplayObject(ObjectDataObserver data) => objectItemUIGroupPool.CreateItem(data);
             private void SelectReferenceObject(ObjectDataObserver refData)
             {
-                if (curObjectData != null && curObjectData.refData != refData && (refData == null || refData.IsValidChild(curObjectData)))
+                if (curObjectData == null) return;
+                if (refData != curObjectData.refData)
                 {
-                    EventManager.SetRefObject(refData);
-                    curObjectData.SetRefData(refData);
+                    if (refData == null || refData.IsValidChild(curObjectData))
+                    {
+                        EventManager.SetRefObject(refData);
+                        curObjectData.SetRefData(refData);
+                    }
+                    else DisplayReferenceObject(null);
                 }
-                else DisplayReferenceObject(null);
+                else DisplayReferenceObject(refData);
             }
             private void DisplayReferenceObject(ObjectDataObserver refData)
             {

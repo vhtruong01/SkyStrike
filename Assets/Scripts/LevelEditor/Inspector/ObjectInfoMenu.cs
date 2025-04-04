@@ -60,10 +60,10 @@ namespace SkyStrike
             }
             public override void BindData()
             {
-                delay.Bind(data.delay);
+                delay.Bind(data.moveData.delay);
+                velocity.Bind(data.moveData.velocity);
                 size.Bind(data.size);
                 objectName.Bind(data.name);
-                velocity.Bind(data.velocity);
                 cloneCount.Bind(data.cloneCount);
                 icon.sprite = data.metaData.data.sprite;
                 icon.color = data.metaData.data.color;

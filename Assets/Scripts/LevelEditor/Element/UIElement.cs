@@ -8,7 +8,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class UIElement<T> : MonoBehaviour,IPointerClickHandler, IUIElement, IObserver where T : class
+        public abstract class UIElement<T> : MonoBehaviour, IPointerClickHandler, IUIElement, IObserver where T : class
         {
             [SerializeField] protected TextMeshProUGUI itemName;
             protected bool isDrag;

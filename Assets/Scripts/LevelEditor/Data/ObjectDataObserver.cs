@@ -12,8 +12,6 @@ namespace SkyStrike
             public int refId { get; private set; }
             public ObjectDataObserver refData { get; private set; }
             public DataObserver<MetaData> metaData { get; private set; }
-            public DataObserver<float> delay { get; private set; }
-            public DataObserver<float> velocity { get; private set; }
             public DataObserver<float> size { get; private set; }
             public DataObserver<int> cloneCount { get; private set; }
             public DataObserver<string> name { get; private set; }
@@ -23,10 +21,8 @@ namespace SkyStrike
             public ObjectDataObserver()
             {
                 metaData = new();
-                delay = new();
                 name = new();
                 moveData = new();
-                velocity = new();
                 size = new();
                 cloneCount = new();
                 id = NULL_OBJECT_ID;
@@ -54,8 +50,6 @@ namespace SkyStrike
             {
                 ObjectDataObserver newData = new();
                 newData.metaData.OnlySetData(metaData.data);
-                newData.delay.OnlySetData(delay.data);
-                newData.velocity.OnlySetData(velocity.data);
                 newData.name.OnlySetData(name.data);
                 newData.size.OnlySetData(size.data);
                 newData.cloneCount.OnlySetData(cloneCount.data);
@@ -64,18 +58,18 @@ namespace SkyStrike
             }
             public void ResetData()
             {
-                delay.SetData(0);
+                moveData.delay.SetData(0);
+                moveData.velocity.SetData(1);
                 cloneCount.SetData(0);
-                velocity.SetData(1);
                 size.SetData(1);
                 if (metaData.data != null)
                     name.OnlySetData(metaData.data.type);
             }
             public void UnbindAll()
             {
+                moveData.delay.UnbindAll();
+                moveData.velocity.UnbindAll();
                 size.UnbindAll();
-                delay.UnbindAll();
-                velocity.UnbindAll();
                 cloneCount.UnbindAll();
                 name.UnbindAll();
             }
@@ -86,8 +80,6 @@ namespace SkyStrike
                     id = id,
                     refId = refId,
                     metaId = metaData.data.id,
-                    delay = delay.data,
-                    velocity = velocity.data,
                     name = name.data,
                     size = size.data,
                     cloneCount = cloneCount.data,
@@ -100,8 +92,6 @@ namespace SkyStrike
                 id = objectData.id;
                 refId = objectData.refId;
                 metaData.OnlySetData(EventManager.GetMetaData(objectData.metaId));
-                delay.OnlySetData(objectData.delay);
-                velocity.OnlySetData(objectData.velocity);
                 name.OnlySetData(objectData.name);
                 size.OnlySetData(objectData.size);
                 cloneCount.OnlySetData(objectData.cloneCount);

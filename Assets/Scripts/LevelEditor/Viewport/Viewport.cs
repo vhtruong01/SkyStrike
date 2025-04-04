@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class Viewport : Menu
+        public class Viewport : ScalableMenu
         {
             [SerializeField] private Button inspectorMenuBtn;
             [SerializeField] private Menu inspectorMenu;
@@ -27,8 +27,8 @@ namespace SkyStrike
             {
                 viewportUIGroupPool = gameObject.GetComponent<ViewportItemList>();
                 viewportUIGroupPool.Init(EventManager.SelectObject);
+                viewportUIGroupPool.screen = screen;
             }
-            //
             public void SelectReferenceObject(ObjectDataObserver refData)
             {
                 (viewportUIGroupPool.GetSelectedItem() as ViewportItemUI).SetRefObject(refData);

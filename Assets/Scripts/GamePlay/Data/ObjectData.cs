@@ -11,8 +11,6 @@ namespace SkyStrike
             public int id;
             public int refId;
             public int metaId;
-            public float delay;
-            public float velocity;
             public float size;
             public int cloneCount;
             public string name;

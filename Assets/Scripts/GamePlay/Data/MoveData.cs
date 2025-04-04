@@ -26,19 +26,30 @@ namespace SkyStrike
                 public object Clone() => MemberwiseClone();
             }
             public Point[] points;
+            public float delay;
+            public float velocity;
 
-            public MoveData Clone(Vec2 pos)
+            public void Translate(Vec2 pos)
             {
-                MoveData newData = new();
-                newData.points = new Point[points.Length];
                 Vec2 dir = pos - points[0].midPos;
-                for (int i = 0; i < newData.points.Length; i++)
+                for (int i = 0; i < points.Length; i++)
                 {
-                    newData.points[i] = points[i].Clone() as Point;
-                    newData.points[i].prevPos += dir;
-                    newData.points[i].midPos += dir;
-                    newData.points[i].nextPos += dir;
+                    points[i] = points[i].Clone() as Point;
+                    points[i].prevPos += dir;
+                    points[i].midPos += dir;
+                    points[i].nextPos += dir;
                 }
+            }
+            public MoveData Clone()
+            {
+                MoveData newData = new()
+                {
+                    delay = delay,
+                    velocity = velocity,
+                    points = new Point[points.Length]
+                };
+                for (int i = 0; i < newData.points.Length; i++)
+                    newData.points[i] = points[i].Clone() as Point;
                 return newData;
             }
         }

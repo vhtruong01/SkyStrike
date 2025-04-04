@@ -6,8 +6,8 @@ namespace SkyStrike
     {
         public class SnappableElement : DraggableElement
         {
-            public static bool isSnap { get; private set; }
             private readonly static float epsilon = 1f / 3;
+            public static bool isSnap { get; private set; }
 
             protected override void SetPosition(Vector3 pos)
             {
