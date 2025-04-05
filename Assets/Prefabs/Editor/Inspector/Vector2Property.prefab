@@ -1095,8 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8187616573b0c524d88e10d47c49e0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseWorldUnit: 0
-  isWholeNumber: 0
+  isNonNegative: 0
   x: {fileID: 8312640232049715885}
   y: {fileID: 3114682632024833130}
 --- !u!1 &8972104414575357158

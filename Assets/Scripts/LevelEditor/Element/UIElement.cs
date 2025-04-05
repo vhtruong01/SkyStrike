@@ -11,7 +11,6 @@ namespace SkyStrike
         public abstract class UIElement<T> : MonoBehaviour, IPointerClickHandler, IUIElement, IObserver where T : class
         {
             [SerializeField] protected TextMeshProUGUI itemName;
-            protected bool isDrag;
             private Image bg;
             public int? index { get; set; }
             public bool isDefault { get; set; }
@@ -35,7 +34,7 @@ namespace SkyStrike
                 UnbindData();
                 data = default;
             }
-            public virtual void InvokeData()
+            public void InvokeData()
             {
                 if (data != null || isDefault)
                     onClick?.Invoke(data);
@@ -46,6 +45,7 @@ namespace SkyStrike
                 if (index != null)
                     onSelectUI.Invoke(index.Value);
             }
+            public virtual void Click() => SelectAndInvoke();
             public virtual void SetName(string name)
             {
                 if (itemName != null)
@@ -54,7 +54,7 @@ namespace SkyStrike
             public virtual T DuplicateData() => null;
             public abstract void BindData();
             public abstract void UnbindData();
-            public virtual void OnPointerClick(PointerEventData eventData) => SelectAndInvoke();
+            public virtual void OnPointerClick(PointerEventData eventData) => Click();
         }
     }
 }

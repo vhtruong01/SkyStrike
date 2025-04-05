@@ -7,7 +7,7 @@ namespace SkyStrike
     {
         public class Vector2Property : Property<Vector2>
         {
-            [SerializeField] private bool isWholeNumber;
+            [SerializeField] private bool isNonNegative;
             [SerializeField] private TMP_InputField x;
             [SerializeField] private TMP_InputField y;
 
@@ -22,8 +22,8 @@ namespace SkyStrike
             }
             protected override void OnValueChanged()
             {
-                if (!float.TryParse(x.text, out float newX) || (isWholeNumber && newX < 0)) return;
-                if (!float.TryParse(y.text, out float newY) || (isWholeNumber && newY < 0)) return;
+                if (!float.TryParse(x.text, out float newX) || (isNonNegative && newX < 0)) return;
+                if (!float.TryParse(y.text, out float newY) || (isNonNegative && newY < 0)) return;
                 if (value.x == newX && value.y == newY) return;
                 value.Set(newX, newY);
                 onValueChanged.Invoke(value);
@@ -36,7 +36,7 @@ namespace SkyStrike
             }
             private void CheckValue(TMP_InputField field, float defaultVal)
             {
-                if (!float.TryParse(field.text, out float val) || (isWholeNumber && val < 0))
+                if (!float.TryParse(field.text, out float val) || (isNonNegative && val < 0))
                     field.SetTextWithoutNotify(defaultVal.ToString());
             }
             public void OnDisable()

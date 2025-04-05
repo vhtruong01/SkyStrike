@@ -25,13 +25,12 @@ namespace SkyStrike
                     Hide();
                     hierarchyMenu.Show();
                 });
-                //coverBtn.onClick.AddListener(()=>coverBtn)
             }
             public override void Init()
             {
                 curSubmenuIndex = -1;
                 objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
-                objectItemUIGroupPool.Init(SelectMetaObject);
+                objectItemUIGroupPool.Init(SelectMetaObject,DuplicateObject);
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                     selectObjectTypeBtn.GetBaseItem(i).onSelectUI.AddListener(SelectObjectType);
                 selectObjectTypeBtn.SelectFirstItem();
@@ -41,6 +40,8 @@ namespace SkyStrike
                 objectDataObserver?.ResetData();
                 EventManager.SelectMetaObject(objectDataObserver);
             }
+            private void DuplicateObject(ObjectDataObserver objectData) 
+                => EventManager.CreateObject(objectData.Clone());
             private void SelectObjectType(int index)
             {
                 if (curSubmenuIndex != index)

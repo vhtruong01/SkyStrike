@@ -11,7 +11,6 @@ namespace SkyStrike
             [SerializeField] private Button straightPointBtn;
             [SerializeField] private Button curvePointBtn;
             [SerializeField] private NormalButton addPointBtn;
-            [SerializeField] private NormalButton snapBtn;
             [SerializeField] private Button removeBtn;
             [SerializeField] private Button clearBtn;
             [SerializeField] private UIGroup switchPointTypeBtn;
@@ -23,13 +22,14 @@ namespace SkyStrike
 
             public void Start()
             {
-                snapBtn.AddListener(SnappableElement.EnableSnapping, SnappableElement.IsSnap);
+                snapBtn.AddListener(screen.EnableSnap, screen.IsSnap);
                 addPointBtn.AddListener(EnableAddPoint, () => isEnableAddPoint);
                 removeBtn.onClick.AddListener(RemovePoint);
                 clearBtn.onClick.AddListener(Clear);
             }
             public override void Init()
             {
+                base.Init();
                 pointItemList = gameObject.GetComponent<PointItemList>();
                 pointItemList.Init(DisplayPointInfo);
                 pointItemList.screen = screen;
@@ -41,6 +41,7 @@ namespace SkyStrike
             {
                 pointMenu.Display(pointData);
                 pointMenu.Show();
+                pointMenu.SetTitle("Point " + pointItemList.GetItemIndex(pointData));
             }
             private void RemovePoint()
             {
@@ -66,7 +67,7 @@ namespace SkyStrike
             {
                 PointDataObserver pointData = new();
                 pointData.isStraightLine.SetData(pointType == 0);
-                pointData.Translate(pos);
+                pointData.ChangePosition(pos);
                 pointItemList.CreateItemAndAddData(pointData);
             }
             protected override void CreateObject(ObjectDataObserver data) { }

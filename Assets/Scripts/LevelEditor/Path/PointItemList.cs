@@ -4,7 +4,7 @@ namespace SkyStrike
     {
         public class PointItemList : UIGroupDataPool<PointDataObserver>
         {
-            public GridScreen screen { private get; set; }
+            public IScalableScreen screen { private get; set; }
 
             protected override UIElement<PointDataObserver> CreateObject()
             {

@@ -30,7 +30,7 @@ namespace SkyStrike
             public void Add(ObjectDataObserver data)
             {
                 objectDataList.Add(data);
-                if (data.id == ObjectDataObserver.NULL_OBJECT_ID)
+                if (data.id.data == ObjectDataObserver.NULL_OBJECT_ID)
                 {
                     int id;
                     int cnt = 0;
@@ -40,22 +40,22 @@ namespace SkyStrike
                         ++cnt;
                     }
                     while (objectDict.ContainsKey(id) && cnt < 10000);
-                    data.id = id;
+                    data.id.SetData(id);
                 }
-                objectDict.Add(data.id, data);
+                objectDict.Add(data.id.data, data);
             }
             public void Remove(ObjectDataObserver data)
             {
                 data.UnbindAll();
                 objectDataList.Remove(data);
-                objectDict.Remove(data.id);
+                objectDict.Remove(data.id.data);
             }
             public void Remove(int index)
             {
                 var data = objectDataList[index];
                 data.UnbindAll();
                 objectDataList.RemoveAt(index);
-                objectDict.Remove(data.id);
+                objectDict.Remove(data.id.data);
             }
             public void Swap(int i1, int i2) => objectDataList.Swap(i1, i2);
             public void Set(int index, ObjectDataObserver data) => objectDataList[index] = data;

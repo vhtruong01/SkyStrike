@@ -7,7 +7,7 @@ namespace SkyStrike
     {
         public class FloatProperty : Property<float>
         {
-            [SerializeField] private bool isWholeNumber;
+            [SerializeField] private bool isNonNegative;
             [SerializeField] private TMP_InputField x;
 
             public void Awake()
@@ -18,7 +18,7 @@ namespace SkyStrike
             }
             protected override void OnValueChanged()
             {
-                if (float.TryParse(x.text, out float newX) && value != newX && (!isWholeNumber || newX >= 0))
+                if (float.TryParse(x.text, out float newX) && value != newX && (!isNonNegative || newX >= 0))
                 {
                     if (value == newX) return;
                     value = newX;
@@ -32,7 +32,7 @@ namespace SkyStrike
             }
             private void CheckValue()
             {
-                if (!float.TryParse(x.text, out float newX) || (isWholeNumber && newX < 0))
+                if (!float.TryParse(x.text, out float newX) || (isNonNegative && newX < 0))
                     x.SetTextWithoutNotify(value.ToString());
             }
             public void OnDisable() => CheckValue();

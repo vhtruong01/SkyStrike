@@ -5,8 +5,9 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class GridScreen : MonoBehaviour
+        public class GridScreen : MonoBehaviour, IScalableScreen
         {
+            private readonly static float epsilon = 1f / 3;
             private static readonly Color axisColor = new(1, 0, 0, 0.33f);
             private static readonly Color subaxisColor = new(1, 1, 1, 0.05f);
             private static readonly float minSize = 0.5f;
@@ -15,10 +16,11 @@ namespace SkyStrike
             [SerializeField] private Slider scaleSlider;
             [SerializeField] private Transform lineContainer;
             private Vector3 originalScale;
+            private bool isSnap;
             private float halfWidth;
             private float halfHeight;
 
-            public void Start()
+            public void Init()
             {
                 if (thickness <= 0) return;
                 scaleSlider.minValue = minSize;
@@ -60,7 +62,19 @@ namespace SkyStrike
                            Mathf.Clamp(newPos.y, -boundY, boundY));
                 transform.position = newPos.SetZ(transform.position.z);
             }
+            public Vector2 RoundPosition(Vector2 pos)
+            {
+                pos = GetActualPosition(pos);
+                float deltaX = pos.x - Mathf.RoundToInt(pos.x);
+                if (Mathf.Abs(deltaX) <= epsilon)
+                    pos.x -= deltaX;
+                float deltaY = pos.y - Mathf.RoundToInt(pos.y);
+                if (Mathf.Abs(deltaY) <= epsilon)
+                    pos.y -= deltaY;
+                return GetPositionOnScreen(pos);
+            }
+            public bool IsSnap() => isSnap;
+            public void EnableSnap(bool snap) => isSnap = snap;
         }
-
     }
 }

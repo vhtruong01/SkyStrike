@@ -6,11 +6,10 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class ViewportItemUI : UIElement<ObjectDataObserver>, IDragHandler
+        public class ViewportItemUI : MoveableUIElement<ObjectDataObserver>
         {
             [SerializeField] private Image icon;
             [SerializeField] private Image refIcon;
-            public GridScreen screen { private get; set; }
 
             public override void SetData(ObjectDataObserver data)
             {
@@ -28,22 +27,13 @@ namespace SkyStrike
                     refIcon.sprite = refData.metaData.data.sprite;
                 }
             }
-            private void SetPosition(Vector2 newPos)
+            public override void OnDrag(PointerEventData eventData)
             {
-                newPos = screen.GetPositionOnScreen(newPos);
-                if (!newPos.IsAlmostEqual(transform.position))
-                    transform.position = newPos.SetZ(transform.position.z);
-            }
-            public void OnDrag(PointerEventData eventData)
-            {
-                isDrag = true;
+                base.OnDrag(eventData);
                 data.SetPosition(screen.GetActualPosition(transform.position));
             }
-            public override void OnPointerClick(PointerEventData eventData)
-            {
-                if (!isDrag) InvokeData();
-                isDrag = false;
-            }
+            //public override ondrag
+            public override void Click() => InvokeData();
             public override void BindData()
             {
                 data.position.Bind(SetPosition);

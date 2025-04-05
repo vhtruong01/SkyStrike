@@ -19,7 +19,7 @@ namespace SkyStrike
             protected List<UIElement<T>> items;
             protected ObjectPool<UIElement<T>> pool;
             protected UnityAction<T> selectDataCall;
-            protected UnityAction deselectDataCall;
+            protected UnityAction<T> deselectDataCall;
             private int currentWaveNameIndex = 0;
             public override int Count => items.Count;
 
@@ -46,7 +46,7 @@ namespace SkyStrike
                     items.Add(item);
                 }
             }
-            public virtual void Init(UnityAction<T> selectCall, UnityAction deselectCall = null)
+            public virtual void Init(UnityAction<T> selectCall, UnityAction<T> deselectCall = null)
             {
                 selectDataCall = selectCall;
                 deselectDataCall = deselectCall;
@@ -98,9 +98,10 @@ namespace SkyStrike
             public void SelectItem(T data) => SelectItem(GetItemIndex(data));
             protected override void SelectItem(int index)
             {
+                T prevData = GetSelectedItem()?.data;
                 base.SelectItem(index);
-                if (selectedItemIndex == -1)
-                    deselectDataCall?.Invoke();
+                if (selectedItemIndex == -1 && prevData != null)
+                    deselectDataCall?.Invoke(prevData);
             }
             protected virtual void ReleaseItem(int index)
             {

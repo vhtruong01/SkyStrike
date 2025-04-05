@@ -8,10 +8,12 @@ namespace SkyStrike
         public abstract class ScalableMenu : Menu, IDragHandler, IBeginDragHandler, IEndDragHandler
         {
             [SerializeField] protected GridScreen screen;
+            [SerializeField] protected NormalButton snapBtn;
             private Vector3 curPos;
             private Vector3 startPos;
             protected bool isDrag;
 
+            public override void Init() => screen.Init();
             public virtual void OnBeginDrag(PointerEventData eventData)
             {
                 isDrag = true;
@@ -19,7 +21,10 @@ namespace SkyStrike
                 startPos = eventData.pointerCurrentRaycast.worldPosition;
             }
             public virtual void OnDrag(PointerEventData eventData)
-                => screen.SetPosition(curPos + (eventData.pointerCurrentRaycast.worldPosition - startPos));
+            {
+                if (eventData.position.x > 0 && eventData.position.y > 0 && eventData.position.x < Screen.width && eventData.position.y < Screen.height)
+                    screen.SetPosition(curPos + (eventData.pointerCurrentRaycast.worldPosition - startPos));
+            }
             public void OnEndDrag(PointerEventData eventData) => isDrag = false;
         }
     }

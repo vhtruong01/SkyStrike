@@ -4,7 +4,7 @@ namespace SkyStrike
     {
         public class ViewportItemList : UIGroupPool<ObjectDataObserver>
         {
-            public GridScreen screen { private get; set; }
+            public IScalableScreen screen { private get; set; }
 
             protected override UIElement<ObjectDataObserver> CreateObject()
             {

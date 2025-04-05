@@ -1,5 +1,6 @@
 using SkyStrike.Game;
 using System.Collections.Generic;
+using UnityEngine;
 using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike
@@ -19,6 +20,12 @@ namespace SkyStrike
                 velocity = new();
             }
             public MoveDataObserver(MoveData moveData) : this() => ImportData(moveData);
+            public void Translate(Vector2 pos)
+            {
+                var dir = pos - points[0].midPos.data;
+                foreach (var point in points) 
+                    point.Translate(dir);
+            }
             public MoveDataObserver Clone()
             {
                 MoveDataObserver newData = new();

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class PointMenu : SubMenu<PointDataObserver>, IPointerClickHandler
+        public class PointMenu : SubMenu<PointDataObserver>, IDragHandler
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private FloatProperty scale;
@@ -17,6 +18,7 @@ namespace SkyStrike
             [SerializeField] private BoolProperty isStraightLine;
             [SerializeField] private BoolProperty isLookAtPlayer;
             [SerializeField] private BoolProperty isImmortal;
+            [SerializeField] private TextMeshProUGUI title;
 
             public override void BindData()
             {
@@ -29,9 +31,8 @@ namespace SkyStrike
                 isImmortal.Bind(data.isImmortal);
                 isStraightLine.Bind(data.isStraightLine);
                 isLookAtPlayer.Bind(data.isLookAtPlayer);
-                position.Bind(data.midPos, data.Translate);
+                position.Bind(data.midPos, data.ChangePosition);
             }
-            public void OnPointerClick(PointerEventData eventData) { }
             public override void UnbindData()
             {
                 scale.Unbind();
@@ -45,6 +46,8 @@ namespace SkyStrike
                 isImmortal.Unbind();
                 position.Unbind();
             }
+            public void SetTitle(string name) => title.text = name;
+            public void OnDrag(PointerEventData eventData) { }
         }
     }
 }

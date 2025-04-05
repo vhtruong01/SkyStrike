@@ -23,8 +23,13 @@ namespace SkyStrike
                 waveMenuBtn.onClick.AddListener(waveMenu.Show);
                 EventManager.onSetRefObject.AddListener(SelectReferenceObject);
             }
+            public void Start()
+            {      
+                snapBtn.AddListener(screen.EnableSnap, screen.IsSnap);
+            }
             public override void Init()
             {
+                base.Init();
                 viewportUIGroupPool = gameObject.GetComponent<ViewportItemList>();
                 viewportUIGroupPool.Init(EventManager.SelectObject);
                 viewportUIGroupPool.screen = screen;

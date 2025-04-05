@@ -10,10 +10,11 @@ grill + snap -- ok
 use bezier curve -- ok
 scale some menu -- ok
 
-save/load level screen
+-- save/load level screen
+-- resize - dock menu
+-- change object metadata
 
-resize - dock menu
-change object metadata
+
 
 drag + drop + rename element  in hierarchy - collapse,expand children in hierarchy
 multi select
@@ -21,7 +22,7 @@ multi select
 
 
 //object
-bullet menu
+-- bullet menu
 change all children position
 bitwise-shift
 ...
@@ -31,7 +32,7 @@ bitwise-shift
 -- main game --
 
 //UI
--- ui toolkit -- bad
+-- ui toolkit -- next unity version/next project
 ui game play
 main menu
 loading menu -- ok
@@ -48,6 +49,7 @@ enemy -- fix
 bullet
 
 animation curve
+dotween
 boss behavior tree
 
 

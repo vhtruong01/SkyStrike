@@ -8,7 +8,7 @@ namespace SkyStrike
         {
             protected IElementContainer<T> container;
 
-            public override void Init(UnityAction<T> selectCall, UnityAction deselectCall = null)
+            public override void Init(UnityAction<T> selectCall, UnityAction<T> deselectCall = null)
             {
                 base.Init(selectCall, deselectCall);
                 container = GetComponent<IElementContainer<T>>();

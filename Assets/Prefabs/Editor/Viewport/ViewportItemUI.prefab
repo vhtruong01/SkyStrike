@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8583300980757210691}
   - component: {fileID: 6353647554049173540}
   - component: {fileID: 625528822326662606}
-  - component: {fileID: 6826579216809305905}
   - component: {fileID: 7934161182254950433}
   m_Layer: 0
   m_Name: ViewportItemUI
@@ -79,19 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6826579216809305905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5495041822765154785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae212b71c82ba44fb190af73ef879bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rectTransform: {fileID: 0}
 --- !u!114 &7934161182254950433
 MonoBehaviour:
   m_ObjectHideFlags: 0

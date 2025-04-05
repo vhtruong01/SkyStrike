@@ -39,13 +39,13 @@ namespace SkyStrike
                 nextPos.OnlySetData(new(0, -1.5f));
             }
             public PointDataObserver(Point data) : this() => ImportData(data);
-            public void Translate(Vector2 pos)
+            public void Translate(Vector2 dir)
             {
-                Vector2 dir = pos - midPos.data;
-                midPos.SetData(pos);
+                midPos.SetData(midPos.data + dir);
                 prePos.SetData(prePos.data + dir);
                 nextPos.SetData(nextPos.data + dir);
             }
+            public void ChangePosition(Vector2 pos) => Translate(pos - midPos.data);
             public void UnbindAll()
             {
                 prePos.UnbindAll();
@@ -53,7 +53,7 @@ namespace SkyStrike
                 nextPos.UnbindAll();
                 scale.UnbindAll();
                 rotation.UnbindAll();
-                travelTime.UnbindAll(); 
+                travelTime.UnbindAll();
                 accleration.UnbindAll();
                 standingTime.UnbindAll();
                 isImmortal.UnbindAll();

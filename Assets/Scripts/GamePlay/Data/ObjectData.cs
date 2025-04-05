@@ -13,6 +13,7 @@ namespace SkyStrike
             public int metaId;
             public float size;
             public int cloneCount;
+            public float spawnInterval;
             public string name;
             public MoveData moveData;
         }

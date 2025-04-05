@@ -21,13 +21,6 @@ public static class ExtensionMethod
         }
         (list[leftIndex], list[rightIndex]) = (list[leftIndex], list[rightIndex]);
     }
-    //Float
-    public static float Round(this float value, float epsilon)
-    {
-        if (Mathf.Abs(value - Mathf.RoundToInt(value)) <= epsilon)
-            value = Mathf.RoundToInt(value);
-        return value;
-    }
     //Vector
     public static bool IsAlmostEqual(this Vector2 v1, Vector2 v2)
         => Mathf.Abs(v1.x - v2.x) <= 0.00001f && Mathf.Abs(v1.y - v2.y) <= 0.00001f;

@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 3393802047978821760}
   - component: {fileID: 3068975715785369473}
   - component: {fileID: 2699835285564285077}
-  - component: {fileID: 655917937092082182}
   - component: {fileID: 4907936982097760692}
   m_Layer: 5
   m_Name: NextPoint
@@ -202,19 +201,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &655917937092082182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346420731189277302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae212b71c82ba44fb190af73ef879bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rectTransform: {fileID: 0}
 --- !u!114 &4907936982097760692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,7 +509,6 @@ GameObject:
   - component: {fileID: 6043124891071872008}
   - component: {fileID: 1690956279848018182}
   - component: {fileID: 4583364917801091420}
-  - component: {fileID: 7534926945755476930}
   - component: {fileID: 3381513798644623981}
   m_Layer: 5
   m_Name: PrevPoint
@@ -589,19 +574,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7534926945755476930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4699765861704093966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae212b71c82ba44fb190af73ef879bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rectTransform: {fileID: 0}
 --- !u!114 &3381513798644623981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,7 +599,6 @@ GameObject:
   - component: {fileID: 4298139364612458270}
   - component: {fileID: 3311473617997117659}
   - component: {fileID: 6958530393586593853}
-  - component: {fileID: 6457341075865806242}
   - component: {fileID: 7698673192831270342}
   m_Layer: 5
   m_Name: CurvePoint
@@ -700,19 +671,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6457341075865806242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5563315938266245923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae212b71c82ba44fb190af73ef879bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rectTransform: {fileID: 0}
 --- !u!114 &7698673192831270342
 MonoBehaviour:
   m_ObjectHideFlags: 0

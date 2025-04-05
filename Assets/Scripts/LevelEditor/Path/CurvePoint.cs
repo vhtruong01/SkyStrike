@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class CurvePoint : UIElement<PointDataObserver>, IDragHandler
+        public class CurvePoint : MoveableUIElement<PointDataObserver>
         {
             private static readonly float space = 0.5f;
             [SerializeField] private ExtraPoint extraPoint1;
@@ -14,7 +14,6 @@ namespace SkyStrike
             [SerializeField] private Line line;
             private CurvePoint prevPoint;
             private CurvePoint nextPoint;
-            public GridScreen screen { private get; set; }
             public UnityEvent<Vector2> onDrag { get; private set; }
 
             public override void Init()
@@ -37,8 +36,8 @@ namespace SkyStrike
             public override void SetData(PointDataObserver data)
             {
                 base.SetData(data);
-                transform.position = screen.GetPositionOnScreen(data.midPos.data.SetZ(transform.position.z));
-                extraPoint1.transform.position = screen.GetPositionOnScreen(data.prePos.data.SetZ(extraPoint1.transform.position.z));
+                transform.position = screen.GetPositionOnScreen(data.midPos.data).SetZ(transform.position.z);
+                extraPoint1.transform.position = screen.GetPositionOnScreen(data.prePos.data).SetZ(extraPoint1.transform.position.z);
                 Render(extraPoint1, extraPoint2);
             }
             public void SetPrevPoint(CurvePoint point)
@@ -49,7 +48,7 @@ namespace SkyStrike
                 Rename(index.Value);
                 if (index.Value % 2 != 0)
                     (extraPoint1.image.color, extraPoint2.image.color) = (extraPoint2.image.color, extraPoint1.image.color);
-                RefreshPath();
+                Refresh();
             }
             private void Rename(int pointIndex)
             {
@@ -124,31 +123,17 @@ namespace SkyStrike
                 }
                 return positions;
             }
-            private void RefreshPath()
+            protected override void Refresh()
             {
                 DrawLine();
                 if (nextPoint != null)
                     nextPoint.DrawLine();
             }
-            public void OnDrag(PointerEventData eventData)
+            public override void OnDrag(PointerEventData eventData)
             {
-                isDrag = true;
-                data.Translate(screen.GetActualPosition(transform.position));
-                RefreshPath();
-            }
-            public override void OnPointerClick(PointerEventData eventData)
-            {
-                if (!isDrag) SelectAndInvoke();
-                isDrag = false;
-            }
-            public void SetPosition(Vector2 newPos)
-            {
-                newPos = screen.GetPositionOnScreen(newPos);
-                if (!newPos.IsAlmostEqual(transform.position))
-                {
-                    transform.position = newPos.SetZ(transform.position.z);
-                    RefreshPath();
-                }
+                base.OnDrag(eventData);
+                data.ChangePosition(screen.GetActualPosition(transform.position));
+                Refresh();
             }
             public override void UnbindData()
             {

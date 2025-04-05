@@ -13,6 +13,7 @@ namespace SkyStrike
             [SerializeField] private FloatProperty delay;
             [SerializeField] private FloatProperty size;
             [SerializeField] private IntProperty cloneCount;
+            [SerializeField] private FloatProperty spawnInterval;
             [SerializeField] private Image icon;
             [SerializeField] private Button addObjectBtn;
             [SerializeField] private Button pathBtn;
@@ -46,14 +47,14 @@ namespace SkyStrike
                     referenceObjectIcon.sprite = refData.metaData.data.sprite;
                     referenceObjectText.text = refData.name.data;
                 }
-                pathBtn.gameObject.SetActive(refData == null && data.id != ObjectDataObserver.NULL_OBJECT_ID);
+                pathBtn.gameObject.SetActive(refData == null && data.id.data != ObjectDataObserver.NULL_OBJECT_ID);
             }
             private void CreateObject()
             {
                 if (data != null)
                 {
                     var cloneData = data.Clone();
-                    if (data.id != ObjectDataObserver.NULL_OBJECT_ID)
+                    if (data.id.data != ObjectDataObserver.NULL_OBJECT_ID)
                         cloneData.SetRefData(data);
                     EventManager.CreateObject(cloneData);
                 }
@@ -65,6 +66,7 @@ namespace SkyStrike
                 size.Bind(data.size);
                 objectName.Bind(data.name);
                 cloneCount.Bind(data.cloneCount);
+                spawnInterval.Bind(data.spawnInterval);
                 icon.sprite = data.metaData.data.sprite;
                 icon.color = data.metaData.data.color;
                 DisplayReferenceObject(data.refData);
@@ -76,6 +78,7 @@ namespace SkyStrike
                 velocity.Unbind();
                 objectName.Unbind();
                 cloneCount.Unbind();
+                spawnInterval.Unbind();
             }
         }
     }

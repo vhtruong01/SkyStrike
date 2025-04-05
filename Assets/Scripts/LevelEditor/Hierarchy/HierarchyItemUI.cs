@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.EventSystems;
 
 namespace SkyStrike
 {
@@ -17,11 +16,10 @@ namespace SkyStrike
             public override void SetData(ObjectDataObserver data)
             {
                 base.SetData(data);
-                itemId.text = "id: " + data.id.ToString();
                 spaceItem.sizeDelta = new(0, spaceItem.sizeDelta.y);
                 children.Clear();
             }
-            public override void OnPointerClick(PointerEventData eventData) => InvokeData();
+            public override void Click() => InvokeData();
             public void RemoveChild(HierarchyItemUI child)
             {
                 children.Remove(child);
@@ -61,13 +59,16 @@ namespace SkyStrike
                 base.SetName(name);
                 data.name.OnlySetData(name);
             }
+            private void SetIdDisplay(int id) => itemId.text = "id: " + id.ToString();
             public override void BindData()
             {
                 data.name.Bind(SetName);
+                data.id.Bind(SetIdDisplay);
             }
             public override void UnbindData()
             {
                 data.name.Unbind(SetName);
+                data.id.Unbind(SetIdDisplay);
             }
         }
     }
