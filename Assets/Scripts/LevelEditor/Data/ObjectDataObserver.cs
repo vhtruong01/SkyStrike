@@ -30,7 +30,7 @@ namespace SkyStrike
                 cloneCount = new();
                 spawnInterval = new();
                 refId = NULL_OBJECT_ID;
-                id.SetData(NULL_OBJECT_ID);
+                id.OnlySetData(NULL_OBJECT_ID);
                 ResetData();
             }
             public ObjectDataObserver(ObjectData objectData) : this() => ImportData(objectData);
@@ -63,11 +63,11 @@ namespace SkyStrike
             }
             public void ResetData()
             {
-                moveData.delay.SetData(0);
-                moveData.velocity.SetData(1);
-                cloneCount.SetData(0);
-                spawnInterval.SetData(0.5f);
-                size.SetData(1);
+                moveData.delay.OnlySetData(0);
+                moveData.velocity.OnlySetData(1);
+                cloneCount.OnlySetData(0);
+                spawnInterval.OnlySetData(0.5f);
+                size.OnlySetData(1);
                 if (metaData.data != null)
                     name.OnlySetData(metaData.data.type);
             }

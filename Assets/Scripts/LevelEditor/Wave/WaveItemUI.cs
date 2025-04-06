@@ -4,10 +4,10 @@ namespace SkyStrike
     {
         public class WaveItemUI : UIElement<WaveDataObserver>
         {
-            public override void SetName(string name)
+            public override void SetName(string newName)
             {
-                if (!string.IsNullOrEmpty(data.name.data))
-                    Rename(name);
+                if (string.IsNullOrEmpty(data.name.data))
+                    Rename(newName);
             }
             public override void BindData()
             {
@@ -19,10 +19,10 @@ namespace SkyStrike
             }
             private void Rename(string newName)
             {
-                base.SetName(name);
-                data.name.OnlySetData(name);
+                base.SetName(newName);
+                data.name.OnlySetData(newName);
             }
-            public override WaveDataObserver DuplicateData() => data.Clone();   
+            public override WaveDataObserver DuplicateData() => data.Clone();
         }
     }
 }

@@ -63,10 +63,11 @@ namespace SkyStrike
             }
             private void Render(ExtraPoint curPoint, ExtraPoint otherPoint)
             {
+                Vector2 midPos = transform.position;
                 Vector2 curPos = curPoint.transform.position;
-                Vector2 otherPos = 2 * transform.position.ToVector2() - curPos;
-                curPoint.Render(curPos, transform.position);
-                otherPoint.Render(otherPos, transform.position);
+                Vector2 otherPos = 2 * midPos - curPos;
+                curPoint.Render(curPos, midPos, screen.GetScale);
+                otherPoint.Render(otherPos, midPos, screen.GetScale);
             }
             private void MoveExtraPoint(ExtraPoint curPoint, ExtraPoint otherPoint)
             {
@@ -78,15 +79,15 @@ namespace SkyStrike
             }
             private void MoveNextExtraPoint(Vector2 pos)
             {
-                data.nextPos.SetData(screen.GetActualPosition(pos));
+                data.nextPos.OnlySetData(screen.GetActualPosition(pos));
                 MoveExtraPoint(extraPoint2, extraPoint1);
-                data.prePos.SetData(screen.GetActualPosition(extraPoint1.transform.position));
+                data.prePos.OnlySetData(screen.GetActualPosition(extraPoint1.transform.position));
             }
             private void MovePrevExtraPoint(Vector2 pos)
             {
-                data.prePos.SetData(screen.GetActualPosition(pos));
+                data.prePos.OnlySetData(screen.GetActualPosition(pos));
                 MoveExtraPoint(extraPoint1, extraPoint2);
-                data.nextPos.SetData(screen.GetActualPosition(extraPoint2.transform.position));
+                data.nextPos.OnlySetData(screen.GetActualPosition(extraPoint2.transform.position));
             }
             private void DrawLine()
             {

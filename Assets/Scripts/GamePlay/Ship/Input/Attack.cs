@@ -19,7 +19,7 @@ namespace SkyStrike
             }
             public void Start()
             {
-                Enable(true);    
+                Enable(true);
             }
             public void OnEnable()
             {

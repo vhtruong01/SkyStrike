@@ -23,7 +23,7 @@ namespace SkyStrike
             public void Translate(Vector2 pos)
             {
                 var dir = pos - points[0].midPos.data;
-                foreach (var point in points) 
+                foreach (var point in points)
                     point.Translate(dir);
             }
             public MoveDataObserver Clone()

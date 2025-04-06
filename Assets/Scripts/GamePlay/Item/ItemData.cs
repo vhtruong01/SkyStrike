@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Game
     {
-        [CreateAssetMenu(fileName ="Item",menuName ="Data/Item")]
+        [CreateAssetMenu(fileName = "Item", menuName = "Data/Item")]
         public class ItemData : ScriptableObject
         {
             public string itemName;

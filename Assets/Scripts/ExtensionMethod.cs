@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class ExtensionMethod
 {
@@ -19,7 +19,7 @@ public static class ExtensionMethod
             rightIndex = leftIndex;
             leftIndex = 0;
         }
-        (list[leftIndex], list[rightIndex]) = (list[leftIndex], list[rightIndex]);
+        (list[leftIndex], list[rightIndex]) = (list[rightIndex], list[leftIndex]);
     }
     //Vector
     public static bool IsAlmostEqual(this Vector2 v1, Vector2 v2)

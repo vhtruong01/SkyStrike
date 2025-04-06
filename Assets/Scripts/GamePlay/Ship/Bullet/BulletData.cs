@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Ship
     {
-        [CreateAssetMenu(fileName ="Bullet",menuName ="Data/Bullet")]
+        [CreateAssetMenu(fileName = "Bullet", menuName = "Data/Bullet")]
         public class BulletData : ScriptableObject
         {
             public float timeLife;

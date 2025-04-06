@@ -15,6 +15,7 @@ namespace SkyStrike
             [SerializeField] private Button clearBtn;
             [SerializeField] private UIGroup switchPointTypeBtn;
             [SerializeField] private PointMenu pointMenu;
+            // flip x, flip y
             private bool isEnableAddPoint;
             private int pointType;
             private PointItemList pointItemList;

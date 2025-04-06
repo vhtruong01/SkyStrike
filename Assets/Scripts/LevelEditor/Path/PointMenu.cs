@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class PointMenu : SubMenu<PointDataObserver>, IDragHandler
+        public class PointMenu : SubMenu<PointDataObserver>, IDragHandler, IPointerDownHandler
         {
             [SerializeField] private Vector2Property position;
             [SerializeField] private FloatProperty scale;
@@ -48,6 +48,7 @@ namespace SkyStrike
             }
             public void SetTitle(string name) => title.text = name;
             public void OnDrag(PointerEventData eventData) { }
+            public void OnPointerDown(PointerEventData eventData) { }
         }
     }
 }

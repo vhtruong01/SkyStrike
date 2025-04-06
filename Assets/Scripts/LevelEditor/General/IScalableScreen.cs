@@ -6,6 +6,7 @@ namespace SkyStrike
     {
         public interface IScalableScreen
         {
+            public float GetScale { get; }
             public Vector2 GetActualPosition(Vector2 pos);
             public Vector2 GetPositionOnScreen(Vector2 pos);
             public Vector2 RoundPosition(Vector2 pos);

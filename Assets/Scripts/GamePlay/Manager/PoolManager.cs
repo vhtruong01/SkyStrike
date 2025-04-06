@@ -25,10 +25,11 @@ namespace SkyStrike
             protected T CreateItem()
             {
                 var item = pool.Get();
+                item.transform.localScale = Vector3.one;
                 item.gameObject.SetActive(true);
                 return item;
             }
-            public void RemoveItem(T item)
+            public virtual void RemoveItem(T item)
             {
                 item.gameObject.SetActive(false);
                 pool.Release(item);

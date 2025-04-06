@@ -1,7 +1,7 @@
+using SkyStrike.Game;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using SkyStrike.Game;
 
 namespace SkyStrike
 {
@@ -30,7 +30,7 @@ namespace SkyStrike
             {
                 curSubmenuIndex = -1;
                 objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
-                objectItemUIGroupPool.Init(SelectMetaObject,DuplicateObject);
+                objectItemUIGroupPool.Init(SelectMetaObject, DuplicateObject);
                 for (int i = 0; i < selectObjectTypeBtn.Count; i++)
                     selectObjectTypeBtn.GetBaseItem(i).onSelectUI.AddListener(SelectObjectType);
                 selectObjectTypeBtn.SelectFirstItem();
@@ -40,7 +40,7 @@ namespace SkyStrike
                 objectDataObserver?.ResetData();
                 EventManager.SelectMetaObject(objectDataObserver);
             }
-            private void DuplicateObject(ObjectDataObserver objectData) 
+            private void DuplicateObject(ObjectDataObserver objectData)
                 => EventManager.CreateObject(objectData.Clone());
             private void SelectObjectType(int index)
             {
@@ -51,8 +51,7 @@ namespace SkyStrike
                     foreach (var metaData in list)
                     {
                         ObjectDataObserver objectDataObserver = new();
-                        objectDataObserver.metaData.SetData(metaData);
-                        objectDataObserver.ResetData();
+                        objectDataObserver.metaData.OnlySetData(metaData);
                         objectItemUIGroupPool.CreateItem(objectDataObserver);
                     }
                     curSubmenuIndex = index;

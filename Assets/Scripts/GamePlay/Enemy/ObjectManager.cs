@@ -9,11 +9,13 @@ namespace SkyStrike
         {
             [SerializeField] private List<MetaData> metaDataList;
             private Dictionary<int, MetaData> metaDataDict;
-            Dictionary<int, ObjectData> objectDataDict;
+            private Dictionary<int, ObjectData> objectDataDict;
+            public int enemyCount { get; private set; }
 
             public override void Awake()
             {
                 base.Awake();
+                enemyCount = 0;
                 objectDataDict = new();
                 metaDataDict = new();
                 foreach (var metaData in metaDataList)
@@ -27,6 +29,7 @@ namespace SkyStrike
                 foreach (var objectData in waveData.objectDataArr)
                 {
                     objectData.metaData = metaDataDict[objectData.metaId];
+                    enemyCount += 1 + objectData.cloneCount;
                     Enemy enemy = CreateItem();
                     if (objectData.refId != -1)
                     {
@@ -39,7 +42,6 @@ namespace SkyStrike
                     }
                     enemy.SetData(objectData);
                     enemy.Strike(objectData.moveData);
-                    float delay = objectData.moveData.delay;
                     Enemy cloneEnemy;
                     for (int i = 1; i <= objectData.cloneCount; i++)
                     {
@@ -48,6 +50,11 @@ namespace SkyStrike
                         cloneEnemy.Strike(objectData.moveData, i);
                     }
                 }
+            }
+            public override void RemoveItem(Enemy item)
+            {
+                enemyCount--;
+                base.RemoveItem(item);
             }
             private MoveData GetMoveDataClone(int refId)
             {

@@ -1,9 +1,9 @@
+using SkyStrike.Game;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using SkyStrike.Game;
-using System.Runtime.Serialization.Formatters.Binary;
-using System;
 
 namespace SkyStrike
 {
@@ -58,8 +58,7 @@ namespace SkyStrike
             {
                 var lv = levelDataObserver.ExportData();
                 WriteToBinaryFile("test.dat", lv);
-                var newLv = ReadFromBinaryFile<LevelData>("test.dat");
-                for (int i = 0; i < newLv.waves.Length; i++)
+                for (int i = 0; i < lv.waves.Length; i++)
                 {
                     string rs = "";
                     for (int j = 0; j < lv.waves[i].objectDataArr.Length; j++)
@@ -69,10 +68,10 @@ namespace SkyStrike
                     print(rs);
                 }
             }
-            public static void WriteToBinaryFile<T>(string fileName, T objectToWrite, bool append = false)
+            public static void WriteToBinaryFile<T>(string fileName, T objectToWrite)
             {
                 string dataPath = Path.Combine(Application.persistentDataPath, fileName);
-                using Stream stream = File.Open(dataPath, append ? FileMode.Append : FileMode.Create);
+                using Stream stream = File.Open(dataPath, FileMode.OpenOrCreate);
                 new BinaryFormatter().Serialize(stream, objectToWrite);
             }
             public static T ReadFromBinaryFile<T>(string fileName)

@@ -19,7 +19,7 @@ namespace SkyStrike
             public void Awake()
             {
                 ship = GetComponentInParent<Entity>();
-                bulletPool = new(CreateBullet, GetBullet,ReleaseBullet);
+                bulletPool = new(CreateBullet, GetBullet, ReleaseBullet);
                 bulletContainer = new GameObject(bulletData.type + "Container");
                 waitForSeconds = new(bulletData.timeCountdown);
             }

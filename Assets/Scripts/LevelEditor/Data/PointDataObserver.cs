@@ -1,5 +1,5 @@
-using static SkyStrike.Game.MoveData;
 using UnityEngine;
+using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike
 {

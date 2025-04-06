@@ -20,7 +20,6 @@ namespace SkyStrike
             protected ObjectPool<UIElement<T>> pool;
             protected UnityAction<T> selectDataCall;
             protected UnityAction<T> deselectDataCall;
-            private int currentWaveNameIndex = 0;
             public override int Count => items.Count;
 
             public override void Awake()
@@ -75,10 +74,10 @@ namespace SkyStrike
                 if (data == null)
                     throw new Exception("data must not be null");
                 var item = pool.Get();
-                item.index = items.Count;
                 item.SetData(data);
+                item.index = items.Count;
                 if (!string.IsNullOrEmpty(defaultName))
-                    item.SetName(defaultName + " " + ++currentWaveNameIndex);
+                    item.SetName("New " + defaultName);
                 items.Add(item);
                 Diminish(item);
                 item.gameObject.SetActive(true);
@@ -98,9 +97,9 @@ namespace SkyStrike
             public void SelectItem(T data) => SelectItem(GetItemIndex(data));
             protected override void SelectItem(int index)
             {
-                T prevData = GetSelectedItem()?.data;
+                T prevData = (index == selectedItemIndex && index != -1) ? GetSelectedItem().data : null;
                 base.SelectItem(index);
-                if (selectedItemIndex == -1 && prevData != null)
+                if (prevData != null)
                     deselectDataCall?.Invoke(prevData);
             }
             protected virtual void ReleaseItem(int index)

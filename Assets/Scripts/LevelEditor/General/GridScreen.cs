@@ -19,6 +19,7 @@ namespace SkyStrike
             private bool isSnap;
             private float halfWidth;
             private float halfHeight;
+            public float GetScale => scaleSlider.value;
 
             public void Init()
             {

@@ -7,30 +7,37 @@ namespace SkyStrike
         public class MainGame : MonoBehaviour
         {
             [SerializeField] private ObjectManager objectManager;
-            public static LevelData Level { get; set; }
+            private LevelData level;
             private int waveIndex;
 
+            public void Awake()
+            {
+                EventManager.onRemoveEnemy.AddListener(RecallObject);
+            }
             public void Start() => Restart();
+            public void OpenEditor() => GameManager.LoadScene(EScene.Editor);
             public void Restart()
             {
                 print("start game");
-                Level ??= Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
+                level = Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
                 waveIndex = 0;
                 StartWave();
             }
             private void StartWave()
             {
-                if (waveIndex >= Level.waves.Length)
+                if (waveIndex >= level.waves.Length)
                 {
                     print("end game");
                     return;
                 }
-                objectManager.CreateWave(Level.waves[waveIndex]);
+                objectManager.CreateWave(level.waves[waveIndex]);
                 waveIndex++;
             }
-            private void RecallObject()
+            private void RecallObject(Enemy enemy)
             {
-
+                objectManager.RemoveItem(enemy);
+                if (objectManager.enemyCount == 0)
+                    StartWave();
             }
         }
     }

@@ -6,7 +6,7 @@ namespace SkyStrike
     {
         public interface ISkill
         {
-            public string skillName {  get; set; }
+            public string skillName { get; set; }
             public float timeCooldown { get; set; }
             public int point { get; set; }
             public int maxPoint { get; set; }

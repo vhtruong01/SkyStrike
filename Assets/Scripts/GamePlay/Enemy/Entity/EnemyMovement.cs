@@ -8,8 +8,12 @@ namespace SkyStrike
     {
         public class EnemyMovement : MonoBehaviour
         {
+            private MoveData moveData;
+            private Vector2 dir = Vector2.down;
+
             public IEnumerator Move(MoveData moveData)
             {
+                this.moveData = moveData;
                 int index = 0;
                 while (index < moveData.points.Length)
                 {
@@ -43,12 +47,14 @@ namespace SkyStrike
                     }
                     index++;
                 }
-                print("complete");
+                EventManager.RemoveEnemy(GetComponent<Enemy>());
             }
             private IEnumerator MoveStraight(Vector2 startPos, Vector2 endPos, float time)
             {
                 if (time <= 0) yield break;
                 float elapsedTime = 0;
+                //
+                Rotate(endPos - startPos);
                 while (elapsedTime < time)
                 {
                     transform.position = Vector2.Lerp(startPos, endPos, elapsedTime / time).SetZ(transform.position.z);
@@ -60,18 +66,27 @@ namespace SkyStrike
             {
                 if (time <= 0) yield break;
                 float elapsedTime = 0;
+                //
                 while (elapsedTime < time)
                 {
                     float t1 = elapsedTime / time;
                     float t2 = 1 - t1;
-                    transform.position = (t2 * t2 * t2 * pos1
+                    Vector3 newPos = (t2 * t2 * t2 * pos1
                         + 3 * t2 * t2 * t1 * pos2
                         + 3 * t1 * t1 * t2 * pos3
                         + t1 * t1 * t1 * pos4
                         ).SetZ(transform.position.z);
+                    Rotate((newPos - transform.position).normalized);
+                    transform.position = newPos;
                     yield return null;
                     elapsedTime += Time.deltaTime;
                 }
+            }
+            private void Rotate(Vector2 newDir)
+            {
+                if (newDir == Vector2.zero) return;
+                transform.Rotate(0, 0, Vector2.SignedAngle(dir, newDir));
+                dir = newDir;
             }
         }
     }

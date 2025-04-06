@@ -24,7 +24,7 @@ namespace SkyStrike
                 EventManager.onSetRefObject.AddListener(SelectReferenceObject);
             }
             public void Start()
-            {      
+            {
                 snapBtn.AddListener(screen.EnableSnap, screen.IsSnap);
             }
             public override void Init()

@@ -15,7 +15,7 @@ namespace SkyStrike
                 metaDataDict = new();
                 foreach (var item in metaDataList)
                     metaDataDict.Add(item.id, item);
-                EventManager.onGetMetaData.AddListener(GetMetaData);
+                //EventManager.onGetMetaData.AddListener(GetMetaData);
             }
             private IGameData GetMetaData(int id) => metaDataDict[id];
         }

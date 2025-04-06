@@ -16,7 +16,7 @@ namespace SkyStrike
 
             public void OnEnable()
             {
-                foreach (var skill in skills) 
+                foreach (var skill in skills)
                     skill.Reset();
                 hp = 4;
                 maxHp = 6;
