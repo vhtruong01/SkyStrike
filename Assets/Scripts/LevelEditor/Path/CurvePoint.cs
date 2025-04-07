@@ -92,12 +92,12 @@ namespace SkyStrike
             private void DrawLine()
             {
                 if (prevPoint != null)
-                    line.Draw(data.isStraightLine.data ? CreateStraightLine(prevPoint) : CreateCurveLine(prevPoint));
+                    line.Draw(data.isStraightLine.data ? CreateStraightLine() : CreateCurveLine());
                 else line.Clear();
             }
-            private Vector2[] CreateStraightLine(CurvePoint endPoint)
+            private Vector2[] CreateStraightLine()
             {
-                Vector2 dir = endPoint.transform.position - transform.position;
+                Vector2 dir = prevPoint.transform.position - transform.position;
                 int pointCount = Mathf.CeilToInt((dir.magnitude - space / 2) / space);
                 if (pointCount == 0) pointCount = 1;
                 dir = dir.normalized;
@@ -106,10 +106,13 @@ namespace SkyStrike
                     positions[i - 1] = i * space * dir + transform.position.ToVector2();
                 return positions;
             }
-            private Vector2[] CreateCurveLine(CurvePoint endPoint)
+            private Vector2[] CreateCurveLine()
             {
-                Vector2 dir = endPoint.transform.position - transform.position;
-                int pointCount = Mathf.CeilToInt(dir.magnitude / space * 1.5f);
+                float len = (transform.position - extraPoint1.transform.position).magnitude
+                    + (extraPoint1.transform.position - prevPoint.extraPoint2.transform.position).magnitude
+                    + (prevPoint.extraPoint2.transform.position - prevPoint.transform.position).magnitude
+                    + (prevPoint.transform.position - transform.position).magnitude;
+                int pointCount = Mathf.CeilToInt(len / 2 / space);
                 if (pointCount == 0) pointCount = 1;
                 Vector2[] positions = new Vector2[pointCount - 1];
                 for (int i = 1; i < pointCount; i++)
@@ -118,8 +121,8 @@ namespace SkyStrike
                     float t2 = 1 - t1;
                     positions[i - 1] = (t2 * t2 * t2 * transform.position
                         + 3 * t2 * t2 * t1 * extraPoint1.transform.position
-                        + 3 * t1 * t1 * t2 * endPoint.extraPoint2.transform.position
-                        + t1 * t1 * t1 * endPoint.transform.position
+                        + 3 * t1 * t1 * t2 * prevPoint.extraPoint2.transform.position
+                        + t1 * t1 * t1 * prevPoint.transform.position
                         ).ToVector2();
                 }
                 return positions;

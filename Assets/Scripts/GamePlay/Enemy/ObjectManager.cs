@@ -41,13 +41,13 @@ namespace SkyStrike
                         objectData.moveData.delay = oldData.delay;
                     }
                     enemy.SetData(objectData);
-                    enemy.Strike(objectData.moveData);
+                    enemy.Strike(objectData.moveData, waveData.delay);
                     Enemy cloneEnemy;
                     for (int i = 1; i <= objectData.cloneCount; i++)
                     {
                         cloneEnemy = CreateItem();
                         cloneEnemy.SetData(objectData);
-                        cloneEnemy.Strike(objectData.moveData, i);
+                        cloneEnemy.Strike(objectData.moveData, waveData.delay, i);
                     }
                 }
             }

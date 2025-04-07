@@ -28,7 +28,6 @@ namespace SkyStrike
                 scaleSlider.maxValue = maxSize;
                 originalScale = transform.localScale;
                 scaleSlider.onValueChanged.AddListener(Scale);
-                scaleSlider.SetValueWithoutNotify(1);
                 transform.position = new(0, 0, transform.position.z);
                 Vector2 worldSize = Controller.mainCam.ScreenToWorldPoint(new(Screen.width, Screen.height));
                 halfWidth = worldSize.x;
@@ -37,6 +36,7 @@ namespace SkyStrike
                     CreateLine(thickness, Screen.height / minSize, new(i, 0, 0));
                 for (int i = -(int)(halfHeight / minSize); i <= halfHeight / minSize; i++)
                     CreateLine(Screen.width / minSize, thickness, new(0, i, 0));
+                scaleSlider.value = 0.8f;
             }
             private void CreateLine(float w, float h, Vector3 dir)
             {

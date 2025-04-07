@@ -26,6 +26,16 @@ namespace SkyStrike
                 foreach (var point in points)
                     point.Translate(dir);
             }
+            public void FlipX()
+            {
+                float midX = points[0].midPos.data.x;
+                for (var i = 1; i < points.Count; i++)
+                {
+                    points[i].prePos.SetData(new(2 * midX - points[i].prePos.data.x,points[i].prePos.data.y));
+                    points[i].midPos.SetData(new(2 * midX - points[i].midPos.data.x,points[i].midPos.data.y));
+                    points[i].nextPos.SetData(new(2 * midX - points[i].nextPos.data.x,points[i].nextPos.data.y));
+                }
+            }
             public MoveDataObserver Clone()
             {
                 MoveDataObserver newData = new();

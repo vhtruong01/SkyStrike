@@ -28,12 +28,12 @@ namespace SkyStrike
                 transform.localScale *= data.size;
                 spawnInterval = data.spawnInterval;
             }
-            public void Strike(MoveData moveData, int queueIndex = 0)
-                => StartCoroutine(Prepare(moveData, queueIndex));
-            private IEnumerator Prepare(MoveData moveData, int queueIndex = 0)
+            public void Strike(MoveData moveData, float waveDelay, int queueIndex = 0)
+                => StartCoroutine(Prepare(moveData, waveDelay, queueIndex));
+            private IEnumerator Prepare(MoveData moveData, float waveDelay, int queueIndex)
             {
                 body.gameObject.SetActive(false);
-                yield return new WaitForSeconds(moveData.delay + spawnInterval * queueIndex);
+                yield return new WaitForSeconds(waveDelay + moveData.delay + spawnInterval * queueIndex);
                 body.gameObject.SetActive(true);
                 StartCoroutine(movement.Move(moveData));
             }

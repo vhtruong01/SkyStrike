@@ -13,7 +13,7 @@ scale some menu -- ok
 -- save/load level screen
 -- resize - dock menu
 -- change object metadata
-
+review wave
 
 
 drag + drop + rename element  in hierarchy - collapse,expand children in hierarchy

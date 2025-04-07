@@ -14,7 +14,7 @@ public static class ExtensionMethod
             leftIndex = rightIndex;
             rightIndex = list.Count - 1;
         }
-        if (rightIndex >= list.Count - 1)
+        if (rightIndex >= list.Count)
         {
             rightIndex = leftIndex;
             leftIndex = 0;

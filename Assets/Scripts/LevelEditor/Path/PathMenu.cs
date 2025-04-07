@@ -13,9 +13,9 @@ namespace SkyStrike
             [SerializeField] private NormalButton addPointBtn;
             [SerializeField] private Button removeBtn;
             [SerializeField] private Button clearBtn;
+            [SerializeField] private Button flipXBtn;
             [SerializeField] private UIGroup switchPointTypeBtn;
             [SerializeField] private PointMenu pointMenu;
-            // flip x, flip y
             private bool isEnableAddPoint;
             private int pointType;
             private PointItemList pointItemList;
@@ -27,6 +27,7 @@ namespace SkyStrike
                 addPointBtn.AddListener(EnableAddPoint, () => isEnableAddPoint);
                 removeBtn.onClick.AddListener(RemovePoint);
                 clearBtn.onClick.AddListener(Clear);
+                flipXBtn.onClick.AddListener(FlipX);
             }
             public override void Init()
             {
@@ -57,6 +58,11 @@ namespace SkyStrike
                 list.Clear();
                 pointItemList.CreateItemAndAddData(pos);
             }
+            public void FlipX()
+            {
+                (GetDataList() as MoveDataObserver)?.FlipX();
+                pointItemList.DisplayDataList();
+            }
             public void SelectPointType(int type) => pointType = type;
             public void EnableAddPoint(bool isEnable) => isEnableAddPoint = isEnable;
             public void OnPointerClick(PointerEventData eventData)
@@ -78,7 +84,7 @@ namespace SkyStrike
                 pointItemList.Clear();
                 DisplayPointInfo(null);
                 objectDataObserver = data;
-                if (data == null || data.refData != null) return;
+                if (data == null) return;
                 pointItemList.DisplayDataList();
             }
             protected override void RemoveObject(ObjectDataObserver data) => SelectObject(null);
