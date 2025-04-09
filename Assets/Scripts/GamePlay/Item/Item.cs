@@ -1,25 +1,22 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace SkyStrike
 {
     namespace Game
     {
-        public class Item : MonoBehaviour, IItem
+        public class Item : PoolableObject
         {
-            private SpriteRenderer spriteRenderer;
-            private Rigidbody2D rig;
-            private BoxCollider2D col;
             private Animator animator;
             private ItemData itemData;
-            public int quantity => itemData.quantity;
-            public EItem type => itemData.type;
+            private float elapsedTime;
+            //public int quantity => itemData.quantity;
+            //public EItem type => itemData.type;
 
-            public void Awake()
+            public override void Awake()
             {
-                spriteRenderer = GetComponent<SpriteRenderer>();
-                rig = GetComponent<Rigidbody2D>();
-                col = GetComponent<BoxCollider2D>();
+                base.Awake();
                 animator = GetComponent<Animator>();
             }
             public void SetData(ItemData data)
@@ -28,8 +25,35 @@ namespace SkyStrike
                 spriteRenderer.sprite = data.sprite;
                 gameObject.name = data.name;
                 col.size = data.sprite.bounds.size;
-                rig.linearVelocity = new Vector2(data.velocity.x, -data.velocity.y);
                 animator.SetTrigger(Enum.GetName(data.animationType.GetType(), data.animationType));
+                elapsedTime = 0;
+                transform.localScale = Vector3.one * (data.size == 0 ? 1 : data.size);
+            }
+            public void Appear(Vector2 dir)
+            {
+                StartCoroutine(Explode(dir));
+            }
+            private IEnumerator Explode(Vector2 dir)
+            {
+                float time = 1;
+                float curTime = 0;
+                Vector3 pos = transform.position;
+                while (curTime < time)
+                {
+                    transform.position = pos + (dir * Mathf.Pow(curTime / time, 0.3f)).SetZ(0);
+                    yield return null;
+                    curTime += Time.deltaTime;
+                }
+            }
+            public void Update()
+            {
+                if (elapsedTime >= ItemData.lifeTime)
+                {
+                    Release();
+                    return;
+                }
+                elapsedTime += Time.deltaTime;
+                transform.position += ItemData.dropVelocity * Time.deltaTime;
             }
         }
     }

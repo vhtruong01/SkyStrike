@@ -15,7 +15,6 @@ scale some menu -- ok
 -- change object metadata
 review wave
 
-
 drag + drop + rename element  in hierarchy - collapse,expand children in hierarchy
 multi select
 
@@ -23,7 +22,9 @@ multi select
 
 //object
 -- bullet menu
-change all children position
+change all children position -- ok 
+fix curvepoint
+
 bitwise-shift
 ...
 
@@ -48,6 +49,7 @@ item -- ok
 enemy -- fix
 bullet
 
+character controller
 animation curve
 dotween
 boss behavior tree

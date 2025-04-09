@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Game
     {
-        [CreateAssetMenu(fileName = "Ship", menuName = "Ship")]
+        [CreateAssetMenu(fileName = "Ship", menuName = "Data/Ship")]
         public class ShipData : ScriptableObject
         {
             public List<Skill> skills;
@@ -13,6 +13,7 @@ namespace SkyStrike
             public int maxHp;
             public float speed;
             public int star;
+            public Color bulletColor;
 
             public void OnEnable()
             {

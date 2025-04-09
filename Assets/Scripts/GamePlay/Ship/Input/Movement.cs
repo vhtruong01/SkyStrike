@@ -7,6 +7,7 @@ namespace SkyStrike
     {
         public class Movement : MonoBehaviour
         {
+            [SerializeField] private Joystick joystick;
             private float speedX = 3f;
             private float speedY = 2f;
             private float boundX;
@@ -31,7 +32,8 @@ namespace SkyStrike
             }
             public void Update()
             {
-                Vector2 move = moveAction.ReadValue<Vector2>() * Time.deltaTime;
+                //Vector2 move = moveAction.ReadValue<Vector2>() * Time.deltaTime;
+                Vector2 move = joystick.Direction * Time.deltaTime;
                 Vector3 newPos = new(Mathf.Clamp(move.x * speedX + transform.position.x, -boundX, boundX)
                                              , Mathf.Clamp(move.y * speedY + transform.position.y, -boundY, boundY)
                                              , transform.position.z);

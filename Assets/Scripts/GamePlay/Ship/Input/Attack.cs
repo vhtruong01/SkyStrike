@@ -3,17 +3,17 @@ using UnityEngine.InputSystem;
 
 namespace SkyStrike
 {
-    namespace Ship
+    namespace Game
     {
         public class Attack : MonoBehaviour
         {
             public bool isAttack { get; private set; }
             private InputAction attackAction;
-            private BulletManager bulletManager;
+            private ShipBulletManager bulletManager;
 
             public void Awake()
             {
-                bulletManager = GetComponent<BulletManager>();
+                bulletManager = GetComponent<ShipBulletManager>();
                 PlayerInput playerInput = GetComponent<PlayerInput>();
                 attackAction = playerInput.actions["attack"];
             }
@@ -38,9 +38,9 @@ namespace SkyStrike
             }
             public void Enable(bool enabled)
             {
-                isAttack = enabled;
-                if (isAttack) bulletManager?.Shoot();
-                else bulletManager?.StopShoot();
+                //isAttack = enabled;
+                //if (isAttack) bulletManager?.Shoot();
+                //else bulletManager?.StopShoot();
             }
         }
     }
