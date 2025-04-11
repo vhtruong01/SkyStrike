@@ -22,7 +22,6 @@ namespace SkyStrike
                     while (index < moveData.points.Length)
                     {
                         Point point = moveData.points[index];
-                        transform.position = point.midPos.ToVector2().SetZ(transform.position.z);
                         yield return new WaitForSeconds(point.standingTime);
                         //rotate
                         if (index < moveData.points.Length - 1)

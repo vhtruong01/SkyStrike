@@ -9,11 +9,12 @@ namespace SkyStrike
         public class ShipData : ScriptableObject
         {
             public List<Skill> skills;
-            public int hp;
-            public int maxHp;
-            public float speed;
-            public int star;
-            public Color bulletColor;
+            [field: SerializeField] public ShieldSkill shieldSkill {  get; set; }
+            [field: SerializeField] public int hp {  get; set; }
+            [field:SerializeField] public int maxHp {  get; set; }
+            [field: SerializeField] public float speed {  get; set; }
+            [field: SerializeField] public int star {  get; set; }
+            [field: SerializeField] public Color bulletColor {  get; set; }
 
             public void OnEnable()
             {
@@ -21,7 +22,7 @@ namespace SkyStrike
                     skill.Reset();
                 hp = 4;
                 maxHp = 6;
-                star = 1000;
+                star = 0;
             }
         }
     }

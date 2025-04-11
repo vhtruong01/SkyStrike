@@ -4,15 +4,46 @@ namespace SkyStrike
 {
     namespace Game
     {
-        [RequireComponent(typeof(ShipBulletManager))]
         public class Ship : MonoBehaviour
         {
-            private ShipBulletManager bulletManager;
+            [SerializeField] private ShipData shipData;
 
-            public void Awake()
+            public void OnTriggerEnter2D(Collider2D collision)
             {
-                bulletManager = GetComponent<ShipBulletManager>();
+                if (collision.CompareTag("Item"))
+                {
+                    Item item = collision.GetComponent<Item>();
+                    CollectItem(item);
+                    item.Release();
+                    return;
+                }
+                if (collision.CompareTag("EnemyBullet"))
+                {
+                    //
+                }
+            }
+            private void CollectItem(Item item)
+            {
+                switch (item.GetItemType())
+                {
+                    case EItem.Star1:
+                        shipData.star++;
+                        break;
+                    case EItem.Star5:
+                        shipData.star += 5;
+                        break;
+                    case EItem.Health:
+                        if (shipData.hp < shipData.maxHp)
+                        {
 
+                            shipData.hp++;
+                        }
+                        break;
+                    case EItem.Comet:
+                        break;
+                    case EItem.Shield:
+                        break;
+                }
             }
         }
     }

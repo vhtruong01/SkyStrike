@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace SkyStrike
 {
-    namespace Ship
+    namespace Game
     {
         public class Movement : MonoBehaviour
         {

@@ -4,9 +4,12 @@ namespace SkyStrike
     {
         public enum EShipBulletType
         {
-            Normal,
-            Laser,
-            Bomb,
+            NormalBullet,
+            DoubleBullet,
+            TripleBullet,
+            MagicBullet,
+            RocketBullet,
+            LaserBullet,
             //
         }
     }

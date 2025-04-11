@@ -9,9 +9,11 @@ namespace SkyStrike
         {
             public readonly static int NULL_OBJECT_ID = -1;
             public DataObserver<int> id { get; set; }
+            public EItem dropItemType { get; set; }
             public int refId { get; private set; }
             //
             public ObjectDataObserver refData { get; private set; }
+            //
             public DataObserver<MetaData> metaData { get; private set; }
             public DataObserver<float> size { get; private set; }
             public DataObserver<int> cloneCount { get; private set; }
@@ -68,6 +70,7 @@ namespace SkyStrike
                 cloneCount.OnlySetData(0);
                 spawnInterval.OnlySetData(0.5f);
                 size.OnlySetData(1);
+                dropItemType = EItem.None;
                 if (metaData.data != null)
                     name.OnlySetData(metaData.data.type);
             }
@@ -92,6 +95,7 @@ namespace SkyStrike
                     size = size.data,
                     cloneCount = cloneCount.data,
                     spawnInterval = spawnInterval.data,
+                    dropItemType = dropItemType,
                     moveData = moveData.ExportData()
                 };
             }
@@ -105,6 +109,7 @@ namespace SkyStrike
                 size.OnlySetData(objectData.size);
                 cloneCount.OnlySetData(objectData.cloneCount);
                 spawnInterval.SetData(objectData.spawnInterval);
+                dropItemType = objectData.dropItemType;
                 moveData = new(objectData.moveData);
             }
         }

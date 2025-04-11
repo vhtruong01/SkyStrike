@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e308f9ed07497c43927314f5022bece, type: 3}
   m_Name: Health
   m_EditorClassIdentifier: 
-  itemName: Health
-  type: 1
-  animationType: 1
-  sprite: {fileID: 7680820834086852892, guid: 76518027a654701479b18b203e5d2250, type: 3}
-  velocity: {x: 0, y: 1.25}
-  quantity: 0
+  <size>k__BackingField: 1.2
+  <sprite>k__BackingField: {fileID: -8630923909508717717, guid: 8ebca88f478e0814d9344c6205cecc67, type: 3}
+  <type>k__BackingField: 1
+  <animationType>k__BackingField: 0
+  <material>k__BackingField: {fileID: 2100000, guid: 594f81c5fde3635428785ae4e81fe6ef, type: 2}

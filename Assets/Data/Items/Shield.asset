@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e308f9ed07497c43927314f5022bece, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  itemName: Shield
-  type: 4
-  animationType: 2
-  sprite: {fileID: -5019525482502188444, guid: 81b24d838af78d2419e752041a4bbe05, type: 3}
-  velocity: {x: 0, y: 1.25}
-  quantity: 0
+  <size>k__BackingField: 1.2
+  <sprite>k__BackingField: {fileID: 21300000, guid: 81b24d838af78d2419e752041a4bbe05, type: 3}
+  <type>k__BackingField: 4
+  <animationType>k__BackingField: 0
+  <material>k__BackingField: {fileID: 2100000, guid: 594f81c5fde3635428785ae4e81fe6ef, type: 2}

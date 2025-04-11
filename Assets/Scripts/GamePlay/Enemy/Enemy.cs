@@ -6,50 +6,63 @@ namespace SkyStrike
     namespace Game
     {
         [RequireComponent(typeof(EnemyMovement))]
-        public class Enemy : PoolableObject
+        public class Enemy : PoolableObject<ObjectData>
         {
+            private ObjectData data;
             private EnemyMovement movement;
-            private Transform body;
             private float spawnInterval;
             private int hp;
+            private bool isDie;
+            public EItem dropItemType { get; set; }
 
             public override void Awake()
             {
                 base.Awake();
-                body = transform.GetChild(0);
                 movement = GetComponent<EnemyMovement>();
             }
-            public void SetData(ObjectData data)
+            public override void SetData(ObjectData data)
             {
-                hp = 1000;
+                this.data = data;
+                hp = data.metaData.maxHp;
                 spriteRenderer.sprite = data.metaData.sprite;
                 col.size = data.metaData.sprite.bounds.size / 2;
                 spriteRenderer.color = data.metaData.color;
                 transform.localScale *= data.size;
                 spawnInterval = data.spawnInterval;
+                isDie = false;
             }
-            public void Strike(MoveData moveData, float waveDelay, int queueIndex = 0)
+            public void Strike(MoveData moveData, float waveDelay, int queueIndex)
                 => StartCoroutine(Prepare(moveData, waveDelay, queueIndex));
-
-            public void TakeDamage(int dmg)
+            public bool TakeDamage(int dmg)
             {
-                hp -= dmg;
-                if (hp <= 0)
-                    Die();
+                if (!isDie)
+                {
+                    hp -= dmg;
+                    if (hp <= 0)
+                        Die();
+                    return true;
+                }
+                return false;
             }
             public void Die()
             {
-                print("die");
-                //EventManager.DropItem(EItem.Star1,transform.position);
-                EventManager.DropStar( transform.position,5);
+                isDie = true;
+                EventManager.DropStar(transform.position, data.metaData.star);
+                if (dropItemType != EItem.None)
+                    EventManager.DropItem(data.dropItemType, transform.position);
                 Release();
             }
             private IEnumerator Prepare(MoveData moveData, float waveDelay, int queueIndex)
             {
-                body.gameObject.SetActive(false);
+                Enable(false);
                 yield return new WaitForSeconds(waveDelay + moveData.delay + spawnInterval * queueIndex);
-                body.gameObject.SetActive(true);
+                Enable(true);
                 StartCoroutine(movement.Move(moveData));
+            }
+            private void Enable(bool isEnable)
+            {
+                col.enabled = isEnable;
+                spriteRenderer.enabled = isEnable;
             }
         }
     }

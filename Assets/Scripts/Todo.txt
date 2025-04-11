@@ -46,12 +46,11 @@ ship custom menu
 
 //game 
 item -- ok
-enemy -- fix
-bullet
+enemy -- ok
+bullet -- ok
 
 character controller
 animation curve
-dotween
 boss behavior tree
 
 
@@ -61,8 +60,8 @@ boss behavior tree
 vfx
 light
 effect
-shader
-post processing/bloom
+shader -- ok
+post processing/bloom -- ok
 
 
 -- main menu --
@@ -82,3 +81,6 @@ dotween
 profiler
 light
 addressable asset
+atlas
+
+sound/ui/enemy bullet/animation

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: NairanSubboss
   m_EditorClassIdentifier: 
   <id>k__BackingField: 25
+  <star>k__BackingField: 1
   <sprite>k__BackingField: {fileID: 21300000, guid: a20c2ddcb3e76014590b2d66c4e3946a, type: 3}
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <type>k__BackingField: Nairan subboss

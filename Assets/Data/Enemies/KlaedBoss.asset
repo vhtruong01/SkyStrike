@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: KlaedBoss
   m_EditorClassIdentifier: 
   <id>k__BackingField: 11
+  <star>k__BackingField: 49
+  <maxHp>k__BackingField: 1000000
   <sprite>k__BackingField: {fileID: 21300000, guid: db1a45229338ea84ba1b461c35452121, type: 3}
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <type>k__BackingField: Kla'ed boss

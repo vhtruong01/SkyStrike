@@ -4,18 +4,23 @@ namespace SkyStrike
 {
     namespace Game
     {
-        public class ShipBullet : PoolableObject
+        public class ShipBullet : PoolableObject<ShipBulletData>
         {
             private float timeLife;
-            private float speed;
             private int dmg;
+            private Vector3 speed;
 
-            public void SetData(ShipBulletData data)
+            public override void SetData(ShipBulletData data)
             {
-                timeLife = data.timeLife;
-                speed = data.speed;
-                spriteRenderer.sprite = data.sprite;
+                spriteRenderer.sprite = data.metaData.sprite;
+                spriteRenderer.material = data.metaData.material;
+                timeLife = data.metaData.timeLife;
                 dmg = data.dmg;
+            }
+            public void SetSpeed(Vector3 speed)
+            {
+                this.speed = speed;
+                transform.eulerAngles = transform.eulerAngles.SetZ(Vector2.SignedAngle(Vector2.up, speed));
             }
             public void Update()
             {
@@ -25,14 +30,15 @@ namespace SkyStrike
                     return;
                 }
                 timeLife -= Time.deltaTime;
-                transform.Translate(speed * Time.deltaTime * Vector3.up);
+                transform.position += speed * Time.deltaTime;
             }
             public override void OnTriggerEnter2D(Collider2D collision)
             {
                 if (collision.CompareTag("Enemy"))
                 {
-                    Enemy enemy = collision.GetComponentInParent<Enemy>();
-                    enemy.TakeDamage(dmg);
+                    Enemy enemy = collision.GetComponent<Enemy>();
+                    if (enemy.TakeDamage(dmg))
+                        Release();
                 }
             }
         }

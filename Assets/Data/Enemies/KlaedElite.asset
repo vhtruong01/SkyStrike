@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: KlaedElite
   m_EditorClassIdentifier: 
   <id>k__BackingField: 13
+  <star>k__BackingField: 5
+  <maxHp>k__BackingField: 20000
   <sprite>k__BackingField: {fileID: 21300000, guid: 8f62d3cecbf1f3c42b76a66a05c67aab, type: 3}
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <type>k__BackingField: Kla'ed elite

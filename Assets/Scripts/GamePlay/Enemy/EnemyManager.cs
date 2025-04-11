@@ -5,19 +5,21 @@ namespace SkyStrike
 {
     namespace Game
     {
-        public class EnemyManager : PoolManager<Enemy>
+        public class EnemyManager : PoolManager<Enemy, ObjectData>
         {
             [SerializeField] private List<MetaData> metaDataList;
             private Dictionary<int, MetaData> metaDataDict;
             private Dictionary<int, ObjectData> objectDataDict;
             private WaveData[] waves;
             private int waveIndex;
+            private float z;
 
             public override void Awake()
             {
                 base.Awake();
                 objectDataDict = new();
                 metaDataDict = new();
+                z = transform.position.z;
                 foreach (var metaData in metaDataList)
                     metaDataDict.Add(metaData.id, metaData);
             }
@@ -41,7 +43,6 @@ namespace SkyStrike
                 foreach (var objectData in waveData.objectDataArr)
                 {
                     objectData.metaData = metaDataDict[objectData.metaId];
-                    Enemy enemy = InstantiateItem();
                     if (objectData.refId != -1)
                     {
                         MoveData oldData = objectData.moveData;
@@ -51,14 +52,15 @@ namespace SkyStrike
                         objectData.moveData.velocity = oldData.velocity;
                         objectData.moveData.delay = oldData.delay;
                     }
-                    enemy.SetData(objectData);
-                    enemy.Strike(objectData.moveData, waveData.delay);
                     Enemy cloneEnemy;
-                    for (int i = 1; i <= objectData.cloneCount; i++)
+                    int enemyIndex = objectData.dropItemType == EItem.None ? -1 : Random.Range(0, objectData.cloneCount + 1);
+                    for (int i = 0; i <= objectData.cloneCount; i++)
                     {
-                        cloneEnemy = InstantiateItem();
-                        cloneEnemy.SetData(objectData);
+                        cloneEnemy = InstantiateItem(objectData, objectData.pos.SetZ(z));
                         cloneEnemy.Strike(objectData.moveData, waveData.delay, i);
+                        if (enemyIndex == i)
+                            cloneEnemy.dropItemType = objectData.dropItemType;
+                        else cloneEnemy.dropItemType = EItem.None;
                     }
                 }
             }

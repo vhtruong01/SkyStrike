@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - WorldCollider
+  - ShipBullet
+  - Item
+  - Enemy
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -13,9 +16,9 @@ TagManager:
   - Water
   - UI
   - PostProcessing
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Item
   - 
   - 
   - 
@@ -44,6 +47,18 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Item
+    uniqueID: 2442624399
+    locked: 0
+  - name: Bullet
+    uniqueID: 2325451561
+    locked: 0
+  - name: Enemy
+    uniqueID: 1411502773
+    locked: 0
+  - name: Player
+    uniqueID: 1399178649
     locked: 0
   - name: UI
     uniqueID: 790571263

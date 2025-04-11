@@ -10,6 +10,7 @@ namespace SkyStrike
             Star5,
             Shield,
             Comet,
+
         }
         public enum EItemAnimationType
         {

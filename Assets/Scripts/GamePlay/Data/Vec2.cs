@@ -22,9 +22,10 @@ namespace SkyStrike
                 this.x = x;
                 this.y = y;
             }
+            public readonly Vector3 SetZ(float z) => new(x, y, z);
             public readonly Vector2 ToVector2() => new(x, y);
             public readonly Vector3 ToVector3() => new(x, y, 0);
-            public override string ToString() => $"[{x},{y}]";
+            public override readonly string ToString() => $"[{x},{y}]";
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static Vec2 operator +(Vec2 a, Vec2 b) => new(a.x + b.x, a.y + b.y);

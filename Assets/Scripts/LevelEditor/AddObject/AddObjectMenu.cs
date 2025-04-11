@@ -64,7 +64,8 @@ namespace SkyStrike
                 if (data != null)
                     objectItemUIGroupPool.SelectNone();
             }
-            protected override void SelectWave(WaveDataObserver data) => objectItemUIGroupPool.SelectNone();
+            protected override void SelectWave(WaveDataObserver data) 
+                => objectItemUIGroupPool.SelectNone();
         }
     }
 }

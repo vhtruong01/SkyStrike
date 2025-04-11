@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: NairanCreep
   m_EditorClassIdentifier: 
   <id>k__BackingField: 22
+  <star>k__BackingField: 1
+  <maxHp>k__BackingField: 250
   <sprite>k__BackingField: {fileID: 21300000, guid: cbd3fcf832413e942ab744f4b3dfb6d7, type: 3}
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <type>k__BackingField: 'Nairan '

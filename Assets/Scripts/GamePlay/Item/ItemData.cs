@@ -9,12 +9,11 @@ namespace SkyStrike
         {
             public static readonly float lifeTime = 20;
             public static readonly Vector3 dropVelocity = new(0, -0.5f, 0);
-            public string itemName;
-            public float size;
-            public Sprite sprite;
-            public EItem type;
-            public EItemAnimationType animationType;
-            public Vector2 velocity;
+            [field: SerializeField] public float size {  get; private set; }
+            [field: SerializeField] public Sprite sprite { get; private set; }
+            [field: SerializeField] public EItem type { get; private set; }
+            [field: SerializeField] public EItemAnimationType animationType { get; private set; }
+            [field: SerializeField] public Material material { get; private set; }
         }
     }
 }

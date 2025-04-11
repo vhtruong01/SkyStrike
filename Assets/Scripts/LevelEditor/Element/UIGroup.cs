@@ -33,7 +33,8 @@ namespace SkyStrike
             public int GetSelectedItemIndex() => selectedItemIndex;
             public void SelectFirstItem() => SelectAndInvokeItem(0);
             public void SelectNone() => SelectItem(-1);
-            public virtual void SelectAndInvokeItem(int index) => GetBaseItem(index)?.SelectAndInvoke();
+            public virtual void SelectAndInvokeItem(int index) 
+                => GetBaseItem(index)?.SelectAndInvoke();
             protected virtual void SelectItem(int index)
             {
                 Diminish(GetBaseItem(selectedItemIndex));

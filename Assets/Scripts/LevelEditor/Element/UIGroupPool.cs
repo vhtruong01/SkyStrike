@@ -102,6 +102,8 @@ namespace SkyStrike
                 if (prevData != null)
                     deselectDataCall?.Invoke(prevData);
             }
+            public void SelectAndInvokeItem(T data)
+                => SelectAndInvokeItem(GetItemIndex(data));
             protected virtual void ReleaseItem(int index)
             {
                 var item = items[index];

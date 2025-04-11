@@ -1,4 +1,4 @@
-using System;
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -6,44 +6,50 @@ namespace SkyStrike
 {
     namespace Game
     {
-        public class Item : PoolableObject
+        public class Item : PoolableObject<ItemData>, IPullable
         {
-            private Animator animator;
-            private ItemData itemData;
+            private ItemData data;
             private float elapsedTime;
-            //public int quantity => itemData.quantity;
-            //public EItem type => itemData.type;
+            private Tweener tweener;
 
-            public override void Awake()
+            public EItem GetItemType() => data.type;
+            public override void SetData(ItemData data)
             {
-                base.Awake();
-                animator = GetComponent<Animator>();
-            }
-            public void SetData(ItemData data)
-            {
-                itemData = data;
-                spriteRenderer.sprite = data.sprite;
-                gameObject.name = data.name;
-                col.size = data.sprite.bounds.size;
-                animator.SetTrigger(Enum.GetName(data.animationType.GetType(), data.animationType));
-                elapsedTime = 0;
+                this.data = data;
                 transform.localScale = Vector3.one * (data.size == 0 ? 1 : data.size);
+                spriteRenderer.sprite = data.sprite;
+                spriteRenderer.material = data.material;
+                col.size = data.sprite.bounds.size;
+                elapsedTime = 0;
+                transform.eulerAngles = Vector3.zero;
             }
             public void Appear(Vector2 dir)
-            {
-                StartCoroutine(Explode(dir));
-            }
-            private IEnumerator Explode(Vector2 dir)
+                => StartCoroutine(HandleAffectedByExplode(dir));
+            private IEnumerator HandleAffectedByExplode(Vector2 dir)
             {
                 float time = 1;
                 float curTime = 0;
-                Vector3 pos = transform.position;
+                float delta;
+                Vector2 curDir = new();
                 while (curTime < time)
                 {
-                    transform.position = pos + (dir * Mathf.Pow(curTime / time, 0.3f)).SetZ(0);
+                    delta = Mathf.Sqrt(curTime / time);
+                    transform.position += ((dir * delta) - curDir).SetZ(0);
+                    curDir = dir * delta;
+                    transform.localScale = (delta + 1) * data.size / 2 * Vector3.one;
                     yield return null;
                     curTime += Time.deltaTime;
                 }
+                transform.localScale = data.size * Vector3.one;
+                /// item animation
+                //tweener = transform.DORotate(new(0, 0, 360), 5, RotateMode.FastBeyond360)
+                //        .SetEase(Ease.InOutFlash)
+                //        .SetLoops(-1);
+            }
+            public override void Release()
+            {
+                tweener?.Kill();
+                base.Release();
             }
             public void Update()
             {
@@ -55,6 +61,7 @@ namespace SkyStrike
                 elapsedTime += Time.deltaTime;
                 transform.position += ItemData.dropVelocity * Time.deltaTime;
             }
+            public void HandleAffectedByGravity(Vector2 dir) => transform.position += dir.SetZ(0);
         }
     }
 }
