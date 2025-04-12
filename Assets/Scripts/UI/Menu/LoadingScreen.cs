@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SkyStrike
@@ -12,19 +12,19 @@ namespace SkyStrike
             [SerializeField] private Slider progressBar;
             [SerializeField] private Image icon;
 
-            public IEnumerator ShowLoadingProgess(List<AsyncOperation> scensLoading)
+            public void Start()
+                => StartCoroutine(ShowLoadingProgess());
+            public IEnumerator ShowLoadingProgess()
             {
+                AsyncOperation asyncOperation = SceneManager.LoadSceneAsync((int)EScene.MainMenu);
                 float totalProgress = 0;
-                for (int i = 0; i < scensLoading.Count; i++)
+                while (!asyncOperation.isDone)
                 {
-                    while (!scensLoading[i].isDone)
-                    {
-                        foreach (AsyncOperation operation in scensLoading)
-                            totalProgress += operation.progress;
-                        progressBar.value = totalProgress / scensLoading.Count;
-                        yield return null;
-                    }
+                    totalProgress += asyncOperation.progress;
+                    progressBar.value = totalProgress;
+                    yield return null;
                 }
+                SceneManager.UnloadSceneAsync((int)EScene.Loading);
             }
         }
     }

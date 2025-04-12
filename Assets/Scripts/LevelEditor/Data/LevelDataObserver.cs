@@ -7,12 +7,17 @@ namespace SkyStrike
     {
         public class LevelDataObserver : IDataList<WaveDataObserver>, IEditorData<LevelData, LevelDataObserver>
         {
-            public string name;
-            public int star;
             private List<WaveDataObserver> waveList;
+            public DataObserver<int> star { get; private set; }
+            public DataObserver<string> levelName { get; private set; }
 
             public LevelDataObserver() : this(null) { }
-            public LevelDataObserver(LevelData levelData) => ImportData(levelData);
+            public LevelDataObserver(LevelData levelData)
+            {
+                star = new();
+                levelName = new();
+                ImportData(levelData);
+            }
             public List<WaveDataObserver> GetList() => waveList;
             public WaveDataObserver CreateEmpty()
             {
@@ -27,8 +32,12 @@ namespace SkyStrike
             public void Set(int index, WaveDataObserver data) => waveList[index] = data;
             public LevelData ExportData()
             {
-                LevelData levelData = new();
-                levelData.waves = new WaveData[waveList.Count];
+                LevelData levelData = new()
+                {
+                    name = levelName.data,
+                    star = star.data,
+                    waves = new WaveData[waveList.Count]
+                };
                 for (int i = 0; i < waveList.Count; i++)
                     levelData.waves[i] = waveList[i].ExportData();
                 return levelData;
@@ -41,6 +50,8 @@ namespace SkyStrike
                     CreateEmpty();
                     return;
                 }
+                levelName.SetData(levelData.name);
+                star.SetData(levelData.star);
                 for (int i = 0; i < levelData.waves.Length; i++)
                     Add(new(levelData.waves[i]));
             }

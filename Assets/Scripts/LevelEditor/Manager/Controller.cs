@@ -45,14 +45,13 @@ namespace SkyStrike
                         menu.gameObject.SetActive(false);
                 }
                 levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
-                //levelDataObserver = new LevelDataObserver();
                 EventManager.SelectLevel(levelDataObserver);
             }
             private void TestLevel()
             {
                 //MainGame.LevelData = levelDataObserver.ToGameData() as LevelData;
                 WriteLevelData();
-                GameManager.LoadScene(EScene.MainGame);
+                //GameManager.LoadScene(EScene.MainGame);
             }
             public void WriteLevelData()
             {

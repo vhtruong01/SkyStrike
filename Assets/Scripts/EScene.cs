@@ -2,7 +2,7 @@ namespace SkyStrike
 {
     public enum EScene
     {
-        None = 0,
+        Loading = 0,
         MainMenu,
         MainGame,
         Editor

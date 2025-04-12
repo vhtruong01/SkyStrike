@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace SkyStrike
 {
@@ -7,6 +8,7 @@ namespace SkyStrike
         [Serializable]
         public class LevelData : IGameData
         {
+            public int star;
             public string name;
             public WaveData[] waves;
         }

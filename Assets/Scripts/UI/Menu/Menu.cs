@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace SkyStrike
@@ -10,19 +9,20 @@ namespace SkyStrike
         public abstract class Menu : MonoBehaviour
         {
             [SerializeField] protected Button closeBtn;
-            private float disappearTime = 1;
+            protected float disappearTime = 4f/6;
             protected Animator animator;
-            public UnityAction closeAction { protected get; set; }
 
             public virtual void Awake()
             {
                 if (closeBtn != null)
-                    closeBtn.onClick.AddListener(() => StartCoroutine(Close()));
-                animator = GetComponent<Animator>();
+                    closeBtn.onClick.AddListener(Collapse);
+            }
+            public virtual void Start()
+            {
+                animator = GetComponent<Animator>();     
             }
             public virtual IEnumerator Close()
             {
-                closeAction?.Invoke();
                 if (animator != null)
                 {
                     animator.SetTrigger("Close");
@@ -30,6 +30,8 @@ namespace SkyStrike
                 }
                 gameObject.SetActive(false);
             }
+            public void Collapse() => StartCoroutine(Close());
+            public void Expand() => gameObject.SetActive(true);
         }
     }
 }

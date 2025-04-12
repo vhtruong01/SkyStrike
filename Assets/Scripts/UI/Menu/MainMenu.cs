@@ -13,35 +13,29 @@ namespace SkyStrike
             [SerializeField] private ShipMenu shipMenu;
             [SerializeField] private SettingMenu settingMenu;
             [SerializeField] private ExitMenu exitMenu;
-            [SerializeField] private Button lvButton;
+            [SerializeField] private Button levelButton;
             [SerializeField] private Button shipBtn;
             [SerializeField] private Button settingBtn;
             [SerializeField] private Button exitBtn;
-            [SerializeField] public Animator transition;
+            [SerializeField] private Animator transition;
+            [SerializeField] private Animator shipAnimator;
 
-            private float transitionTime = 1f;
-
-            public void Start()
+            public void Awake()
             {
-                lvButton.onClick.AddListener(() => StartCoroutine(EnterLevelMenu()));
-                settingBtn.onClick.AddListener(() => OpenMenu(settingMenu));
-                exitBtn.onClick.AddListener(() => OpenMenu(exitMenu));
-                shipBtn.onClick.AddListener(() => OpenMenu(shipMenu));
-                shipMenu.closeAction = settingMenu.closeAction = exitMenu.closeAction = OpenHomeMenu;
+                levelMenu.closeAction = () => StartCoroutine(EnterLevelMenu(false));
+                levelButton.onClick.AddListener(() => StartCoroutine(EnterLevelMenu(true)));
+                shipBtn.onClick.AddListener(shipMenu.Expand);
+                settingBtn.onClick.AddListener(settingMenu.Expand);
+                exitBtn.onClick.AddListener(exitMenu.Expand);
             }
-            private void OpenMenu(Menu menu)
+            public IEnumerator EnterLevelMenu(bool isEnable)
             {
-                menu.gameObject.SetActive(true);
-                if (menu != homeMenu)
-                    StartCoroutine(homeMenu.Close());
-            }
-            private void OpenHomeMenu() => homeMenu.gameObject.SetActive(true);
-            public IEnumerator EnterLevelMenu()
-            {
-                transition.SetTrigger("Fade");
-                yield return new WaitForSeconds(transitionTime);
-
-
+                transition.SetTrigger("Close");
+                shipAnimator.SetTrigger("Disappear");
+                yield return new WaitForSeconds(0.75f);
+                levelMenu.gameObject.SetActive(isEnable);
+                shipAnimator.SetTrigger("Appear");
+                transition.SetTrigger("Open");
             }
         }
     }

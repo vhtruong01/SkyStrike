@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class ExtensionMethod
 {
-    //List
+    // List
     public static void Swap<T>(this List<T> list, int leftIndex, int rightIndex)
     {
         if (leftIndex == rightIndex) return;
@@ -21,14 +21,14 @@ public static class ExtensionMethod
         }
         (list[leftIndex], list[rightIndex]) = (list[rightIndex], list[leftIndex]);
     }
-    //Vector
+    // Vector
     public static bool IsAlmostEqual(this Vector2 v1, Vector2 v2)
         => Mathf.Abs(v1.x - v2.x) <= 0.00001f && Mathf.Abs(v1.y - v2.y) <= 0.00001f;
     public static Vector2 ToVector2(this Vector3 v) => new(v.x, v.y);
     public static Vector3 SetZ(this Vector2 v, float z) => new(v.x, v.y, z);
     public static Vector3 SetZ(this Vector3 v, float z) => new(v.x, v.y, z);
-    //Color
+    // Color
     public static Color ChangeAlpha(this Color color, float alpha) => new(color.r, color.g, color.b, alpha);
-    //SO
+    // ScriptableObject
     public static void print(this ScriptableObject obj, object msg) => Debug.Log(msg);
 }

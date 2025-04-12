@@ -1,24 +1,31 @@
+using UnityEngine;
+
 namespace SkyStrike
 {
     namespace Editor
     {
         public class LevelMenu : Menu
         {
-            public override void Init()
+            [SerializeField] private StringProperty levelName;
+            [SerializeField] private IntProperty star;
+
+            public override void Awake()
             {
+                base.Awake();
+                EventManager.onSelectLevel.AddListener(SelectLevel);
             }
-            protected override void CreateObject(ObjectDataObserver data)
+            private void SelectLevel(LevelDataObserver levelData)
             {
+                star.Unbind();
+                levelName.Unbind();
+                star.Bind(levelData.star);
+                levelName.Bind(levelData.levelName);
             }
-            protected override void RemoveObject(ObjectDataObserver data)
-            {
-            }
-            protected override void SelectObject(ObjectDataObserver data)
-            {
-            }
-            protected override void SelectWave(WaveDataObserver data)
-            {
-            }
+            public override void Init() { }
+            protected override void CreateObject(ObjectDataObserver data) { }
+            protected override void RemoveObject(ObjectDataObserver data) { }
+            protected override void SelectObject(ObjectDataObserver data) { }
+            protected override void SelectWave(WaveDataObserver data) { }
         }
     }
 }

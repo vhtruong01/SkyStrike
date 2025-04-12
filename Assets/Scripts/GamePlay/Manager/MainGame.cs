@@ -15,7 +15,8 @@ namespace SkyStrike
                 var level = Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
                 enemyManager.Play(level.waves);
             }
-            public void OpenEditor() => GameManager.LoadScene(EScene.Editor);
+            public void OpenEditor() { }
+                //GameManager.LoadScene(EScene.Editor);
         }
     }
 }
