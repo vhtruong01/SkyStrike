@@ -13,7 +13,7 @@ namespace SkyStrike
             {
                 x.onValueChanged.AddListener(s => OnValueChanged());
             }
-            protected override void OnValueChanged()
+            public override void OnValueChanged()
             {
                 value = x.text;
                 onValueChanged.Invoke(value);

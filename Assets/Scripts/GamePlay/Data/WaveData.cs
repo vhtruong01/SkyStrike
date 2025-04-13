@@ -5,7 +5,7 @@ namespace SkyStrike
     namespace Game
     {
         [Serializable]
-        public class WaveData : IGameData
+        public class WaveData : IGame
         {
             public float delay;
             public string name;

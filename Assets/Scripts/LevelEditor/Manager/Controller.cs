@@ -1,9 +1,9 @@
-using SkyStrike.Game;
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.UI;
+using SkyStrike.Game;
 
 namespace SkyStrike
 {
@@ -21,22 +21,26 @@ namespace SkyStrike
                     return _mainCam;
                 }
             }
-            [SerializeField] private Button saveBtn;
-            private LevelDataObserver levelDataObserver;
+            [SerializeField] private List<EnemyMetaData> metaDataList;
+            private Dictionary<int, EnemyMetaData> metaDataDict;
 
-            public void OnDisable() => _mainCam = null;
             public void Awake()
             {
-                saveBtn.onClick.AddListener(WriteLevelData);
-                EventManager.onPlay.AddListener(TestLevel);
+                metaDataDict = new();
+                foreach (var item in metaDataList)
+                    metaDataDict.Add(item.id, item);
+                EventManager.onGetMetaData.AddListener(GetMetaData);
             }
+            private EnemyMetaData GetMetaData(int id) => metaDataDict.GetValueOrDefault(id);
+            public void OnDisable() => _mainCam = null;
+
             public void Start()
             {
                 var allObject = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 foreach (var obj in allObject)
                 {
-                    if (obj is not IMenu) continue;
-                    var menu = obj as IMenu;
+                    if (obj is not Menu) continue;
+                    var menu = obj as Menu;
                     bool isActive = menu.gameObject.activeSelf;
                     if (!isActive)
                         menu.gameObject.SetActive(true);
@@ -44,28 +48,13 @@ namespace SkyStrike
                     if (!isActive)
                         menu.gameObject.SetActive(false);
                 }
-                levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
+                LevelDataObserver levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
                 EventManager.SelectLevel(levelDataObserver);
             }
-            private void TestLevel()
+            public static void SaveLevelData(LevelDataObserver levelData)
             {
-                //MainGame.LevelData = levelDataObserver.ToGameData() as LevelData;
-                WriteLevelData();
-                //GameManager.LoadScene(EScene.MainGame);
-            }
-            public void WriteLevelData()
-            {
-                var lv = levelDataObserver.ExportData();
-                WriteToBinaryFile("test.dat", lv);
-                for (int i = 0; i < lv.waves.Length; i++)
-                {
-                    string rs = "";
-                    for (int j = 0; j < lv.waves[i].objectDataArr.Length; j++)
-                    {
-                        rs += lv.waves[i].objectDataArr[j].id + "|" + lv.waves[i].objectDataArr[j].refId + "  ";
-                    }
-                    print(rs);
-                }
+                WriteToBinaryFile("test.dat", levelData.ExportData());
+                print("saved");
             }
             public static void WriteToBinaryFile<T>(string fileName, T objectToWrite)
             {
@@ -87,7 +76,6 @@ namespace SkyStrike
                     return default;
                 }
             }
-            // save,load,new file....
         }
     }
 }

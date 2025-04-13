@@ -31,9 +31,9 @@ namespace SkyStrike
                 float midX = points[0].midPos.data.x;
                 for (var i = 1; i < points.Count; i++)
                 {
-                    points[i].prePos.SetData(new(2 * midX - points[i].prePos.data.x,points[i].prePos.data.y));
-                    points[i].midPos.SetData(new(2 * midX - points[i].midPos.data.x,points[i].midPos.data.y));
-                    points[i].nextPos.SetData(new(2 * midX - points[i].nextPos.data.x,points[i].nextPos.data.y));
+                    points[i].prePos.SetData(new(2 * midX - points[i].prePos.data.x, points[i].prePos.data.y));
+                    points[i].midPos.SetData(new(2 * midX - points[i].midPos.data.x, points[i].midPos.data.y));
+                    points[i].nextPos.SetData(new(2 * midX - points[i].nextPos.data.x, points[i].nextPos.data.y));
                 }
             }
             public MoveDataObserver Clone()
@@ -42,7 +42,7 @@ namespace SkyStrike
                 newData.delay.OnlySetData(delay.data);
                 newData.velocity.OnlySetData(velocity.data);
                 if (points.Count == 0)
-                    CreateEmpty();
+                    CreateEmpty(out _);
                 for (int i = 0; i < points.Count; i++)
                     newData.points.Add(points[i].Clone());
                 return newData;
@@ -64,15 +64,15 @@ namespace SkyStrike
                 delay.OnlySetData(moveData.delay);
                 velocity.OnlySetData(moveData.velocity);
                 if (moveData == null || moveData.points.Length == 0) return;
-                for (int i = 0; i < moveData.points.Length; i++)
-                    Add(new(moveData.points[i]));
+                if (moveData.points != null)
+                    for (int i = 0; i < moveData.points.Length; i++)
+                        Add(new(moveData.points[i]));
             }
-            public List<PointDataObserver> GetList() => points;
-            public PointDataObserver CreateEmpty()
+            public void GetList(out List<PointDataObserver> list) => list = points;
+            public void CreateEmpty(out PointDataObserver newPoint)
             {
-                PointDataObserver newPoint = new();
+                newPoint = new();
                 Add(newPoint);
-                return newPoint;
             }
             public void Add(PointDataObserver data) => points.Add(data);
             public void Remove(PointDataObserver data)
@@ -80,12 +80,12 @@ namespace SkyStrike
                 data.UnbindAll();
                 points.Remove(data);
             }
-            public void Remove(int index)
+            public void Remove(int index, out PointDataObserver pointData)
             {
-                points[index].UnbindAll();
+                pointData = points[index];
+                pointData.UnbindAll();
                 points.RemoveAt(index);
             }
-            public void Swap(int leftIndex, int rightIndex) => points.Swap(leftIndex, rightIndex);
             public void Set(int index, PointDataObserver data) => points[index] = data;
             public PointDataObserver First() => points[0];
         }

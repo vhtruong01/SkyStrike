@@ -9,8 +9,8 @@ namespace SkyStrike
     {
         public class AddObjectMenu : Menu
         {
-            [SerializeField] private List<MetaData> metaDataList;
-            [SerializeField] private List<MetaData> bossMetaDataList;
+            [SerializeField] private List<EnemyMetaData> metaDataList;
+            [SerializeField] private List<EnemyMetaData> bossMetaDataList;
             [SerializeField] private UIGroup selectObjectTypeBtn;
             [SerializeField] private Menu hierarchyMenu;
             [SerializeField] private Button hierarchyBtn;

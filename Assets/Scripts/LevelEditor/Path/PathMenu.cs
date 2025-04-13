@@ -53,9 +53,9 @@ namespace SkyStrike
             private void Clear()
             {
                 pointItemList.Clear();
-                var list = GetDataList().GetList();
-                var pos = list[0];
-                list.Clear();
+                GetDataList().GetList(out var dataList);
+                var pos = dataList[0];
+                dataList.Clear();
                 pointItemList.CreateItemAndAddData(pos);
             }
             public void FlipX()

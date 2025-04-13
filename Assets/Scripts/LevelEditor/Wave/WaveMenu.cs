@@ -19,15 +19,18 @@ namespace SkyStrike
             public override void Awake()
             {
                 base.Awake();
+                EventManager.onSelectLevel.AddListener(SelectLevel);
+            }
+            public override void Init()
+            {
                 waveUIGroupPool = gameObject.GetComponent<WaveItemList>();
+                waveUIGroupPool.Init(EventManager.SelectWave);
                 removeBtn.onClick.AddListener(() => waveUIGroupPool.RemoveSelectedItem());
                 addBtn.onClick.AddListener(waveUIGroupPool.CreateEmptyItem);
                 duplicateBtn.onClick.AddListener(waveUIGroupPool.DuplicateSelectedItem);
                 moveLeftBtn.onClick.AddListener(waveUIGroupPool.MoveLeftSelectedItem);
                 moveRightBtn.onClick.AddListener(waveUIGroupPool.MoveRightSelectedItem);
-                EventManager.onSelectLevel.AddListener(SelectLevel);
             }
-            public override void Init() => waveUIGroupPool.Init(EventManager.SelectWave);
             protected override void CreateObject(ObjectDataObserver data) => waveDataObserver.Add(data);
             protected override void SelectObject(ObjectDataObserver data) { }
             protected override void RemoveObject(ObjectDataObserver data) => waveDataObserver.Remove(data);

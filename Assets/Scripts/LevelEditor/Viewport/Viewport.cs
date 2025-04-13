@@ -52,7 +52,8 @@ namespace SkyStrike
             protected override void SelectWave(WaveDataObserver data)
             {
                 viewportUIGroupPool.Clear();
-                foreach (var objectData in data.GetList())
+                data.GetList(out var dataList);
+                foreach (var objectData in dataList)
                     CreateObject(objectData);
             }
         }

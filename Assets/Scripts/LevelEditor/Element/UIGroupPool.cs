@@ -8,7 +8,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class UIGroupPool<T> : UIGroup where T : class
+        public abstract class UIGroupPool<T> : UIGroup where T : IData
         {
             [SerializeField] protected bool useSpecificColor;
             [SerializeField] protected Color selectedColor;
@@ -64,7 +64,7 @@ namespace SkyStrike
             protected void InvokeData(T data)
             {
                 var item = GetSelectedItem();
-                if (canDeselect && item != null && data == item?.data)
+                if (canDeselect && item != null && Equals(data,item.data))
                     selectDataCall?.Invoke(default);
                 else
                     selectDataCall?.Invoke(data);
@@ -88,7 +88,7 @@ namespace SkyStrike
             {
                 for (int i = 0; i < items.Count; i++)
                 {
-                    if (items[i]?.data == data)
+                    if (Equals(data,items[i].data))
                         return i;
                 }
                 return -1;
@@ -97,7 +97,7 @@ namespace SkyStrike
             public void SelectItem(T data) => SelectItem(GetItemIndex(data));
             protected override void SelectItem(int index)
             {
-                T prevData = (index == selectedItemIndex && index != -1) ? GetSelectedItem().data : null;
+                T prevData = (index == selectedItemIndex && index != -1) ? GetSelectedItem().data : default;
                 base.SelectItem(index);
                 if (prevData != null)
                     deselectDataCall?.Invoke(prevData);

@@ -25,8 +25,8 @@ namespace SkyStrike
                 isBoss = new();
             }
             public WaveDataObserver(WaveData waveData) : this() => ImportData(waveData);
-            public List<ObjectDataObserver> GetList() => objectDataList;
-            public ObjectDataObserver CreateEmpty() => null;
+            public void GetList(out List<ObjectDataObserver> list) => list = objectDataList;
+            public void CreateEmpty(out ObjectDataObserver data) => data = null;
             public void Add(ObjectDataObserver data)
             {
                 objectDataList.Add(data);
@@ -50,15 +50,13 @@ namespace SkyStrike
                 objectDataList.Remove(data);
                 objectDict.Remove(data.id.data);
             }
-            public void Remove(int index)
+            public void Remove(int index, out ObjectDataObserver data)
             {
-                var data = objectDataList[index];
+                data = objectDataList[index];
                 data.UnbindAll();
                 objectDataList.RemoveAt(index);
                 objectDict.Remove(data.id.data);
             }
-            public void Swap(int i1, int i2) => objectDataList.Swap(i1, i2);
-            public void Set(int index, ObjectDataObserver data) => objectDataList[index] = data;
             public WaveDataObserver Clone()
             {
                 WaveDataObserver newWave = new();
@@ -93,8 +91,9 @@ namespace SkyStrike
                 delay.OnlySetData(waveData.delay);
                 isBoss.OnlySetData(waveData.isBoss);
                 name.OnlySetData(waveData.name);
-                for (int i = 0; i < waveData.objectDataArr.Length; i++)
-                    Add(new(waveData.objectDataArr[i]));
+                if (waveData.objectDataArr != null)
+                    for (int i = 0; i < waveData.objectDataArr.Length; i++)
+                        Add(new(waveData.objectDataArr[i]));
                 RefreshRefObject();
             }
             private void RefreshRefObject()
@@ -102,6 +101,8 @@ namespace SkyStrike
                 for (int i = 0; i < objectDataList.Count; i++)
                     objectDataList[i].SetRefData(objectDict.GetValueOrDefault(objectDataList[i].refId));
             }
+            public void Set(int index, ObjectDataObserver data)
+                => objectDict[index] = data;
         }
     }
 }

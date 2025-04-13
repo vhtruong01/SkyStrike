@@ -43,7 +43,7 @@ namespace SkyStrike
                 if (itemDict.TryGetValue(type, out ItemData itemData))
                 {
                     Item item = InstantiateItem(itemData, position);
-                    item.Appear(Random.Range(0.5f, 1.5f) * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
+                    item.Appear(Random.Range(0.5f, 1f) * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
                 }
             }
         }

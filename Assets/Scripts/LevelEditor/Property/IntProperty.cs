@@ -16,7 +16,7 @@ namespace SkyStrike
                 x.onValueChanged.AddListener(s => OnValueChanged());
                 x.onSubmit.AddListener(s => CheckValue());
             }
-            protected override void OnValueChanged()
+            public override void OnValueChanged()
             {
                 if (int.TryParse(x.text, out int newX) && value != newX && (!isNonNegative || newX >= 0))
                 {

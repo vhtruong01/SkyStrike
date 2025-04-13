@@ -54,7 +54,8 @@ namespace SkyStrike
             {
                 hierarchyUIGroupPool.Clear();
                 Dictionary<ObjectDataObserver, Node> marked = new();
-                foreach (var objectData in data.GetList())
+                data.GetList(out var list);
+                foreach (var objectData in list)
                     CreateNode(objectData, marked);
                 foreach (var node in marked)
                     if (node.Value.parent == null)

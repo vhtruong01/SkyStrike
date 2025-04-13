@@ -32,7 +32,6 @@ namespace SkyStrike
                 base.OnDrag(eventData);
                 data.SetPosition(screen.GetActualPosition(transform.position));
             }
-            //public override ondrag
             public override void Click() => InvokeData();
             public override void BindData()
             {

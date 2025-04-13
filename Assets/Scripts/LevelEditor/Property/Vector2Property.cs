@@ -20,7 +20,7 @@ namespace SkyStrike
                 y.onValueChanged.AddListener(s => OnValueChanged());
                 y.onSubmit.AddListener(s => CheckValue(y, value.y));
             }
-            protected override void OnValueChanged()
+            public override void OnValueChanged()
             {
                 if (!float.TryParse(x.text, out float newX) || (isNonNegative && newX < 0)) return;
                 if (!float.TryParse(y.text, out float newY) || (isNonNegative && newY < 0)) return;

@@ -4,26 +4,26 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class FireDataObserver : IEditorData<FireData, FireDataObserver>
+        public class FireDataObserver : IEditorData<BulletData, FireDataObserver>
         {
             public FireDataObserver() : base()
             {
                 //
             }
-            public FireDataObserver(FireData fireData) : this() => ImportData(fireData);
+            public FireDataObserver(BulletData fireData) : this() => ImportData(fireData);
             public FireDataObserver Clone()
             {
                 FireDataObserver newAction = new();
                 return newAction;
             }
-            public FireData ExportData()
+            public BulletData ExportData()
             {
-                FireData fireData = new();
+                BulletData fireData = new();
                 //
                 return fireData;
             }
 
-            public void ImportData(FireData data)
+            public void ImportData(BulletData data)
             {
                 //
             }

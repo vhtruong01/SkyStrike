@@ -5,7 +5,7 @@ namespace SkyStrike
     namespace Game
     {
         [CreateAssetMenu(fileName = "EnemyMetaData", menuName = "Data/EnemyMetaData")]
-        public class MetaData : ScriptableObject, IGameData
+        public class EnemyMetaData : ScriptableObject, IGame
         {
             [field: SerializeField] public int id { get; private set; }
             [field: SerializeField] public int star { get; private set; }

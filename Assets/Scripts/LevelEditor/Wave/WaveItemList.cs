@@ -12,13 +12,6 @@ namespace SkyStrike
                 for (int i = 0; i < items.Count; i++)
                     dataList.Set(i, items[i].data);
             }
-            public void CreateEmptyItem() => CreateItemAndAddData(null);
-            public void DuplicateSelectedItem()
-            {
-                var itemData = GetSelectedItem()?.DuplicateData();
-                if (itemData != null)
-                    CreateItemAndAddData(itemData);
-            }
             public void MoveLeftSelectedItem()
             {
                 if (container?.GetDataList() == null) return;
@@ -52,7 +45,8 @@ namespace SkyStrike
                 item1.gameObject.transform.SetSiblingIndex(i2 + pool.CountInactive);
                 item2.gameObject.transform.SetSiblingIndex(i1 + pool.CountInactive);
                 (items[i2], items[i1]) = (items[i1], items[i2]);
-                dataList.Swap(i1, i2);
+                //
+                //dataList.Swap(i1, i2);
                 items[i2].index = i2;
                 items[i1].index = i1;
             }

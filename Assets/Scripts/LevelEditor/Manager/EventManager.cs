@@ -11,11 +11,10 @@ namespace SkyStrike
             public static UnityEvent<ObjectDataObserver> onRemoveObject { get; private set; }
             public static UnityEvent<ObjectDataObserver> onSetRefObject { get; private set; }
             public static UnityEvent<ObjectDataObserver> onSelectMetaObject { get; private set; }
-            public static FuncEvent<int, MetaData> onGetMetaData { get; private set; }
             public static UnityEvent<ObjectDataObserver> onCreateObject { get; private set; }
             public static UnityEvent<WaveDataObserver> onSelectWave { get; private set; }
             public static UnityEvent<LevelDataObserver> onSelectLevel { get; private set; }
-            public static UnityEvent onPlay { get; private set; }
+            public static FuncEvent<int, EnemyMetaData> onGetMetaData { get; private set; }
 
             static EventManager()
             {
@@ -27,7 +26,6 @@ namespace SkyStrike
                 onSelectWave = new();
                 onSelectLevel = new();
                 onGetMetaData = new();
-                onPlay = new();
             }
             public static void SelectObject(ObjectDataObserver data) => onSelectObject.Invoke(data);
             public static void SetRefObject(ObjectDataObserver data) => onSetRefObject.Invoke(data);
@@ -37,11 +35,10 @@ namespace SkyStrike
                 onSelectObject.Invoke(null);
                 onSelectMetaObject.Invoke(data);
             }
-            public static MetaData GetMetaData(int id) => onGetMetaData.Invoke(id);
+            public static EnemyMetaData GetMetaData(int id) => onGetMetaData.Invoke(id);
             public static void CreateObject(ObjectDataObserver data) => onCreateObject.Invoke(data);
             public static void SelectWave(WaveDataObserver data) => onSelectWave.Invoke(data);
             public static void SelectLevel(LevelDataObserver data) => onSelectLevel.Invoke(data);
-            public static void Play() => onPlay.Invoke();
         }
     }
 }

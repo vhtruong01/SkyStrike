@@ -2,6 +2,6 @@ namespace SkyStrike
 {
     namespace Game
     {
-        public interface IGameData { }
+        public interface IGame : IData { }
     }
 }

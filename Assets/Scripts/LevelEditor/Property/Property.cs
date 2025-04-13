@@ -6,13 +6,13 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class Property<T> : MonoBehaviour
+        public abstract class Property<T> : MonoBehaviour, IProperty
         {
             protected T value;
             protected DataObserver<T> dataObserver;
             protected UnityEvent<T> onValueChanged = new();
 
-            protected abstract void OnValueChanged();
+            public abstract void OnValueChanged();
             public virtual void SetValue(T value) => this.value = value;
             public virtual void Bind(DataObserver<T> dataObserver, UnityAction<T> action = null)
             {
@@ -31,6 +31,9 @@ namespace SkyStrike
                 onValueChanged.RemoveAllListeners();
                 SetValue(default);
             }
+
+            public void Display(bool isEnable)
+                => gameObject.SetActive(isEnable);
         }
     }
 }

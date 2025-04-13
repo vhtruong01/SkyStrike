@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class UIGroupDataPool<T> : UIGroupPool<T> where T : class
+        public abstract class UIGroupDataPool<T> : UIGroupPool<T> where T : IEditor
         {
             protected IElementContainer<T> container;
 
@@ -16,7 +16,8 @@ namespace SkyStrike
             public virtual void DisplayDataList()
             {
                 Clear();
-                foreach (var data in container?.GetDataList().GetList())
+                container.GetDataList().GetList(out var dataList);
+                foreach (var data in dataList)
                     CreateItem(data);
                 if (!canDeselect) SelectFirstItem();
             }
@@ -26,8 +27,19 @@ namespace SkyStrike
                 if (dataList == null) return null;
                 if (data != null)
                     dataList.Add(data);
-                else data = dataList.CreateEmpty();
+                else dataList.CreateEmpty(out data);
                 return CreateItem(data);
+            }
+            public void CreateEmptyItem() => CreateItemAndAddData(default);
+            public void DuplicateSelectedItem()
+            {
+                var selectedItem = GetSelectedItem();
+                if (selectedItem != null)
+                {
+                    var itemData = GetSelectedItem().DuplicateData();
+                    if (itemData != null)
+                        CreateItemAndAddData(itemData);
+                }
             }
             public virtual bool RemoveSelectedItem()
             {
@@ -36,7 +48,7 @@ namespace SkyStrike
             }
             protected override void ReleaseItem(int index)
             {
-                container?.GetDataList().Remove(index);
+                container?.GetDataList().Remove(index, out _);
                 base.ReleaseItem(index);
             }
         }

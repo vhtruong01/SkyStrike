@@ -7,8 +7,8 @@ namespace SkyStrike
     {
         public class EnemyManager : PoolManager<Enemy, ObjectData>
         {
-            [SerializeField] private List<MetaData> metaDataList;
-            private Dictionary<int, MetaData> metaDataDict;
+            [SerializeField] private List<EnemyMetaData> metaDataList;
+            private Dictionary<int, EnemyMetaData> metaDataDict;
             private Dictionary<int, ObjectData> objectDataDict;
             private WaveData[] waves;
             private int waveIndex;

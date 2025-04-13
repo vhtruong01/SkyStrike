@@ -45,12 +45,13 @@ namespace SkyStrike
             }
             public override void Init()
             {
-                base.Init();
+                Show();
                 dropItemUIGroupPool = gameObject.GetComponent<DropItemList>();
                 dropItemUIGroupPool.Init(SelectDropItem);
                 foreach (var item in dropItemDataList)
                     dropItemUIGroupPool.CreateItem(item);
                 EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
+                Hide();
             }
             private void SelectDropItem(ItemData itemData)
             {

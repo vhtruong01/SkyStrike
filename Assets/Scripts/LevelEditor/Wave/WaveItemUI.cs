@@ -10,13 +10,9 @@ namespace SkyStrike
                     Rename(newName);
             }
             public override void BindData()
-            {
-                data.name.Bind(Rename);
-            }
+                => data.name.Bind(Rename);
             public override void UnbindData()
-            {
-                data.name.Unbind(Rename);
-            }
+                => data.name.Unbind(Rename);
             private void Rename(string newName)
             {
                 base.SetName(newName);

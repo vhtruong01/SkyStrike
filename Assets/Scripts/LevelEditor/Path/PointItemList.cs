@@ -22,7 +22,7 @@ namespace SkyStrike
             public override void DisplayDataList()
             {
                 Clear();
-                var dataList = container?.GetDataList()?.GetList();
+                container.GetDataList().GetList(out var dataList);
                 if (dataList == null || dataList.Count == 0) return;
                 foreach (var data in dataList)
                 {

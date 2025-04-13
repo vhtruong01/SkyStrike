@@ -5,10 +5,10 @@ namespace SkyStrike
     namespace Game
     {
         [Serializable]
-        public class MoveData : IGameData
+        public class MoveData : IGame
         {
             [Serializable]
-            public class Point : ICloneable
+            public class Point : ICloneable, IGame
             {
                 public Vec2 prevPos;
                 public Vec2 midPos;

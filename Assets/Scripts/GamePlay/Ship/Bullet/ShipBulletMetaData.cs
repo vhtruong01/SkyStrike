@@ -5,7 +5,7 @@ namespace SkyStrike
     namespace Game
     {
         [CreateAssetMenu(fileName = "Bullet", menuName = "Data/Bullet")]
-        public class ShipBulletMetaData : ScriptableObject
+        public class ShipBulletMetaData : ScriptableObject, IGame
         {
             [field: SerializeField] public int maxLevel { get; private set; }
             [field: SerializeField] public int dmg { get; private set; }

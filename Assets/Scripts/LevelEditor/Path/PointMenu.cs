@@ -20,6 +20,7 @@ namespace SkyStrike
             [SerializeField] private BoolProperty isImmortal;
             [SerializeField] private TextMeshProUGUI title;
 
+            public void Awake() => Init();
             public override void BindData()
             {
                 scale.Bind(data.scale);

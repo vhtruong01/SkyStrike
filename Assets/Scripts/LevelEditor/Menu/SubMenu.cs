@@ -4,7 +4,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class SubMenu<T> : MonoBehaviour, ISubMenu where T : class
+        public abstract class SubMenu<T> : MonoBehaviour, ISubMenu where T : IEditor
         {
             protected T data;
             public bool CanDisplay() => data != null;
@@ -21,7 +21,7 @@ namespace SkyStrike
             }
             public virtual bool SetData(T data)
             {
-                if (this.data == data) return false;
+                if (Equals(this.data, data)) return false;
                 this.data = data;
                 return true;
             }

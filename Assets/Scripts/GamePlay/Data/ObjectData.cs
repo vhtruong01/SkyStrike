@@ -5,9 +5,9 @@ namespace SkyStrike
     namespace Game
     {
         [Serializable]
-        public class ObjectData : IGameData
+        public class ObjectData : IGame
         {
-            [NonSerialized] public MetaData metaData;
+            [NonSerialized] public EnemyMetaData metaData;
             public int id;
             public int refId;
             public int metaId;

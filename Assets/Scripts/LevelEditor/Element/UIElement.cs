@@ -8,7 +8,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class UIElement<T> : MonoBehaviour, IPointerClickHandler, IUIElement, IObserver where T : class
+        public abstract class UIElement<T> : MonoBehaviour, IPointerClickHandler, IUIElement, IObserver where T : IData
         {
             [SerializeField] protected TextMeshProUGUI itemName;
             private Image bg;
@@ -51,7 +51,7 @@ namespace SkyStrike
                 if (itemName != null)
                     itemName.text = name;
             }
-            public virtual T DuplicateData() => null;
+            public virtual T DuplicateData() => default;
             public abstract void BindData();
             public abstract void UnbindData();
             public virtual void OnPointerClick(PointerEventData eventData) => Click();
