@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kla'ed - Support ship - Engine_0: 2916111691779428738
+      Kla'ed - Support ship - Engine_1: 6152786509266414012
+      Kla'ed - Support ship - Engine_2: 5819700983543653017
+      Kla'ed - Support ship - Engine_3: 7060716295869246090
+      Kla'ed - Support ship - Engine_4: 2091916684424473713
+      Kla'ed - Support ship - Engine_5: 780604709098620160
+      Kla'ed - Support ship - Engine_6: -6477695158366031596
+      Kla'ed - Support ship - Engine_7: -6785970477433577531
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -209,7 +209,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kla'ed - Ray_0: 4089303173491695827
+      Kla'ed - Ray_1: -2580991369434663170
+      Kla'ed - Ray_2: -1633190973299008982
+      Kla'ed - Ray_3: -6295127199299081123
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

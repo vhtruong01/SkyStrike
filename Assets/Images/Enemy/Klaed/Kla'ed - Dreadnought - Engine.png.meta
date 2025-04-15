@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kla'ed - Dreadnought - Engine_0: -4378392621394413665
+      Kla'ed - Dreadnought - Engine_1: 2261188117090686386
+      Kla'ed - Dreadnought - Engine_2: -1810622868165400390
+      Kla'ed - Dreadnought - Engine_3: 285661532616215054
+      Kla'ed - Dreadnought - Engine_4: 5281821743680684206
+      Kla'ed - Dreadnought - Engine_5: -3553791540201228743
+      Kla'ed - Dreadnought - Engine_6: 7944162219022089254
+      Kla'ed - Dreadnought - Engine_7: 7622337113654462775
+      Kla'ed - Dreadnought - Engine_8: 332677100965984576
+      Kla'ed - Dreadnought - Engine_9: 5897122637004537107
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

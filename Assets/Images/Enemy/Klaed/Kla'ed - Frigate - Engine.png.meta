@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kla'ed - Frigate - Engine_0: 8645048498599579005
+      Kla'ed - Frigate - Engine_1: 553332728198384853
+      Kla'ed - Frigate - Engine_2: 3173955377237940096
+      Kla'ed - Frigate - Engine_3: 3555899451495536359
+      Kla'ed - Frigate - Engine_4: 41393356667485333
+      Kla'ed - Frigate - Engine_5: -8040942445281551019
+      Kla'ed - Frigate - Engine_6: 4227770725328312225
+      Kla'ed - Frigate - Engine_7: 6315337602050630092
+      Kla'ed - Frigate - Engine_8: 8125947604856485035
+      Kla'ed - Frigate - Engine_9: -2919427235143491261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kla'ed - Torpedo_0: -5279504186367277253
+      Kla'ed - Torpedo_1: 3855726815207625778
+      Kla'ed - Torpedo_2: 3043803963436259420
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

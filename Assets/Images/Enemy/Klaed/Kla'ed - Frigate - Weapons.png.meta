@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kla'ed - Frigate - Weapons_0: -4968243437462496032
+      Kla'ed - Frigate - Weapons_1: 4307325168427530638
+      Kla'ed - Frigate - Weapons_2: -6998670831711484635
+      Kla'ed - Frigate - Weapons_3: 5660462278584853985
+      Kla'ed - Frigate - Weapons_4: 1733872414266724719
+      Kla'ed - Frigate - Weapons_5: -8001467842335806565
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
