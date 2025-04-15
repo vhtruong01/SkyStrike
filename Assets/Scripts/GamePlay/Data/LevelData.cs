@@ -7,10 +7,11 @@ namespace SkyStrike
         [Serializable]
         public class LevelData : IGame
         {
+            public int curBulletId;
             public int star;
             public string name;
             public WaveData[] waves;
-            public BulletData[] bullets;
+            public EnemyBulletData[] bullets;
         }
     }
 }

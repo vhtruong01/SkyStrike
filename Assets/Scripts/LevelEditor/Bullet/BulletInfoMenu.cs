@@ -11,21 +11,25 @@ namespace SkyStrike
             [SerializeField] private FloatProperty velocity;
             [SerializeField] private FloatProperty timeCooldown;
             [SerializeField] private FloatProperty spinSpeed;
-            [SerializeField] private FloatProperty length;
+            [SerializeField] private FloatProperty lifeTime;
             [SerializeField] private FloatProperty angleUnit;
+            [SerializeField] private FloatProperty startAngle;
             [SerializeField] private Vector2Property spacing;
             [SerializeField] private Vector2Property position;
             [SerializeField] private BoolProperty isCircle;
             [SerializeField] private BoolProperty isStartAwake;
+            [SerializeField] private BoolProperty isLookAtPlayer;
             [SerializeField] private IntProperty amount;
 
-            public void Awake()
+            public override void Init()
             {
+                base.Init();
                 isCircle.BindToOtherProperty(spacing, false);
                 isCircle.BindToOtherProperty(angleUnit, false);
-                isCircle.BindToOtherProperty(length, false);
                 isCircle.BindToOtherProperty(spinSpeed, true);
-                Init();
+                isCircle.BindToOtherProperty(startAngle, false);
+                isCircle.BindToOtherProperty(isLookAtPlayer, false);
+                isLookAtPlayer.BindToOtherProperty(startAngle, false);
             }
             public override void BindData()
             {
@@ -34,12 +38,14 @@ namespace SkyStrike
                 velocity.Bind(data.velocity);
                 timeCooldown.Bind(data.timeCooldown);
                 spinSpeed.Bind(data.spinSpeed);
-                length.Bind(data.length);
+                lifeTime.Bind(data.lifeTime);
                 angleUnit.Bind(data.angleUnit);
+                startAngle.Bind(data.startAngle);
                 spacing.Bind(data.spacing);
                 position.Bind(data.position);
                 isCircle.Bind(data.isCircle);
                 isStartAwake.Bind(data.isStartAwake);
+                isLookAtPlayer.Bind(data.isLookAtPlayer);
                 amount.Bind(data.amount);
             }
             public override void UnbindData()
@@ -49,12 +55,14 @@ namespace SkyStrike
                 velocity.Unbind();
                 timeCooldown.Unbind();
                 spinSpeed.Unbind();
-                length.Unbind();
+                startAngle.Unbind();
+                lifeTime.Unbind();
                 spacing.Unbind();
                 position.Unbind();
                 angleUnit.Unbind();
                 isCircle.Unbind();
                 isStartAwake.Unbind();
+                isLookAtPlayer.Unbind();
                 amount.Unbind();
             }
         }

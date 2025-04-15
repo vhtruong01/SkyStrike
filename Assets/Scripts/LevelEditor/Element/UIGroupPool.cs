@@ -63,11 +63,12 @@ namespace SkyStrike
             }
             protected void InvokeData(T data)
             {
+                if (selectDataCall == null) return;
                 var item = GetSelectedItem();
                 if (canDeselect && item != null && Equals(data,item.data))
-                    selectDataCall?.Invoke(default);
+                    selectDataCall.Invoke(default);
                 else
-                    selectDataCall?.Invoke(data);
+                    selectDataCall.Invoke(data);
             }
             public virtual UIElement<T> CreateItem(T data)
             {

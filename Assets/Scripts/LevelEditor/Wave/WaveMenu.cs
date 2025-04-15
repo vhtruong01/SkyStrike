@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class WaveMenu : Menu, IElementContainer<WaveDataObserver>
+        public class WaveMenu : EventNotifyMenu, IElementContainer<WaveDataObserver>
         {
             [SerializeField] private Button addBtn;
             [SerializeField] private Button removeBtn;
@@ -16,13 +16,10 @@ namespace SkyStrike
             private WaveItemList waveUIGroupPool;
             private WaveDataObserver waveDataObserver;
 
-            public override void Awake()
-            {
-                base.Awake();
-                EventManager.onSelectLevel.AddListener(SelectLevel);
-            }
             public override void Init()
             {
+                base.Init();
+                EventManager.onSelectLevel.AddListener(SelectLevel);
                 waveUIGroupPool = gameObject.GetComponent<WaveItemList>();
                 waveUIGroupPool.Init(EventManager.SelectWave);
                 removeBtn.onClick.AddListener(() => waveUIGroupPool.RemoveSelectedItem());

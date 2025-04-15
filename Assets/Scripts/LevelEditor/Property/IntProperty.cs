@@ -24,11 +24,8 @@ namespace SkyStrike
                     onValueChanged.Invoke(value);
                 }
             }
-            public override void SetValue(int value)
-            {
-                base.SetValue(value);
-                x.SetTextWithoutNotify(value.ToString());
-            }
+            public override void Refresh()
+                => x.SetTextWithoutNotify(value.ToString());
             private void CheckValue()
             {
                 if (!int.TryParse(x.text, out int newX) || (isNonNegative && newX < 0))

@@ -13,13 +13,20 @@ namespace SkyStrike
             protected UnityEvent<T> onValueChanged = new();
 
             public abstract void OnValueChanged();
-            public virtual void SetValue(T value) => this.value = value;
-            public virtual void Bind(DataObserver<T> dataObserver, UnityAction<T> action = null)
+            public abstract void Refresh();
+            public T GetValue() => value;
+            public void SetValue(T value)
+            {
+                if (Equals(this.value, value)) return;
+                this.value = value;
+                Refresh();
+            }
+            public virtual void Bind(DataObserver<T> dataObserver = null, UnityAction<T> action = null)
             {
                 if (this.dataObserver != null)
                     throw new Exception("only one observer data");
                 this.dataObserver = dataObserver;
-                this.dataObserver.Bind(SetValue);
+                this.dataObserver?.Bind(SetValue);
                 if (action != null)
                     onValueChanged.AddListener(action);
                 else onValueChanged.AddListener(this.dataObserver.SetData);
@@ -31,7 +38,6 @@ namespace SkyStrike
                 onValueChanged.RemoveAllListeners();
                 SetValue(default);
             }
-
             public void Display(bool isEnable)
                 => gameObject.SetActive(isEnable);
         }

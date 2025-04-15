@@ -22,6 +22,7 @@ namespace SkyStrike
                 public float accleration;
                 public float standingTime;
                 public float travelTime;
+                public int[] bulletIdArr;
 
                 public object Clone() => MemberwiseClone();
             }

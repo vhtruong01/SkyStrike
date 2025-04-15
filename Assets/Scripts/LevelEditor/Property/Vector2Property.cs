@@ -28,9 +28,8 @@ namespace SkyStrike
                 value.Set(newX, newY);
                 onValueChanged.Invoke(value);
             }
-            public override void SetValue(Vector2 value)
+            public override void Refresh()
             {
-                base.SetValue(value);
                 x.SetTextWithoutNotify((Mathf.Round(value.x * 1000) / 1000).ToString());
                 y.SetTextWithoutNotify((Mathf.Round(value.y * 1000) / 1000).ToString());
             }

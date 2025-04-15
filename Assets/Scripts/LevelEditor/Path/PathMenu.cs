@@ -16,11 +16,15 @@ namespace SkyStrike
             [SerializeField] private Button flipXBtn;
             [SerializeField] private UIGroup switchPointTypeBtn;
             [SerializeField] private PointMenu pointMenu;
+            [SerializeField] private BulletSelectionMenu bulletSelectionMenu;
+
             private bool isEnableAddPoint;
             private int pointType;
             private PointItemList pointItemList;
             private ObjectDataObserver objectDataObserver;
 
+            public void OnEnable()
+                => bulletSelectionMenu.Refresh();
             public void Start()
             {
                 snapBtn.AddListener(screen.EnableSnap, screen.IsSnap);
@@ -32,6 +36,8 @@ namespace SkyStrike
             public override void Init()
             {
                 base.Init();
+                pointMenu.gameObject.SetActive(true);
+                pointMenu.gameObject.SetActive(false);
                 pointItemList = gameObject.GetComponent<PointItemList>();
                 pointItemList.Init(DisplayPointInfo);
                 pointItemList.screen = screen;
@@ -41,6 +47,7 @@ namespace SkyStrike
             }
             private void DisplayPointInfo(PointDataObserver pointData)
             {
+                bulletSelectionMenu.SelectPoint(pointData);
                 pointMenu.Display(pointData);
                 pointMenu.Show();
                 pointMenu.SetTitle("Point " + pointItemList.GetItemIndex(pointData));

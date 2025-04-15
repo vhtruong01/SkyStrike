@@ -13,6 +13,7 @@ namespace SkyStrike
             private readonly List<ObjectDataObserver> objectDataList;
             private readonly Dictionary<int, ObjectDataObserver> objectDict;
             public DataObserver<float> delay { get; private set; }
+            public DataObserver<float> duration { get; private set; }
             public DataObserver<string> name { get; private set; }
             public DataObserver<bool> isBoss { get; private set; }
 
@@ -21,6 +22,7 @@ namespace SkyStrike
                 objectDataList = new();
                 objectDict = new();
                 delay = new();
+                duration = new();
                 name = new();
                 isBoss = new();
             }
@@ -39,7 +41,7 @@ namespace SkyStrike
                         id = Random.Range(min, max);
                         ++cnt;
                     }
-                    while (objectDict.ContainsKey(id) && cnt < 10000);
+                    while (objectDict.ContainsKey(id) && cnt < min);
                     data.id.SetData(id);
                 }
                 objectDict.Add(data.id.data, data);
@@ -70,6 +72,7 @@ namespace SkyStrike
                     newWave.objectDataList[i].SetRefData(newWave.objectDict.GetValueOrDefault(objectDataList[i].refId));
                 newWave.delay.OnlySetData(delay.data);
                 newWave.isBoss.OnlySetData(isBoss.data);
+                newWave.duration.OnlySetData(duration.data);
                 return newWave;
             }
             public WaveData ExportData()
@@ -78,6 +81,7 @@ namespace SkyStrike
                 {
                     delay = delay.data,
                     isBoss = isBoss.data,
+                    duration = duration.data,
                     name = name.data,
                     objectDataArr = new ObjectData[objectDataList.Count]
                 };
@@ -89,6 +93,7 @@ namespace SkyStrike
             {
                 if (waveData == null) return;
                 delay.OnlySetData(waveData.delay);
+                duration.OnlySetData(waveData.duration);
                 isBoss.OnlySetData(waveData.isBoss);
                 name.OnlySetData(waveData.name);
                 if (waveData.objectDataArr != null)
@@ -102,7 +107,7 @@ namespace SkyStrike
                     objectDataList[i].SetRefData(objectDict.GetValueOrDefault(objectDataList[i].refId));
             }
             public void Set(int index, ObjectDataObserver data)
-                => objectDict[index] = data;
+                => objectDataList[index] = data;
         }
     }
 }

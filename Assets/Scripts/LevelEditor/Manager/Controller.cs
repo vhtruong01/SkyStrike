@@ -39,8 +39,8 @@ namespace SkyStrike
                 var allObject = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 foreach (var obj in allObject)
                 {
-                    if (obj is not Menu) continue;
-                    var menu = obj as Menu;
+                    if (obj is not IInitiable) continue;
+                    var menu = obj as IInitiable;
                     bool isActive = menu.gameObject.activeSelf;
                     if (!isActive)
                         menu.gameObject.SetActive(true);

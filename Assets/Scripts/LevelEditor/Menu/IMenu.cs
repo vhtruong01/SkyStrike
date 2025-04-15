@@ -2,9 +2,8 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public interface IMenu : IObject
+        public interface IMenu : IObject, IInitiable
         {
-            public void Init();
             public void Hide();
             public void Show();
         }

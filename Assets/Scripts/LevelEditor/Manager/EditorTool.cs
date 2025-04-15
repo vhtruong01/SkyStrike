@@ -22,6 +22,8 @@ namespace SkyStrike
             [SerializeField] private Button pasteBtn;
             [SerializeField] private Button removeBtn;
             [SerializeField] private Button cutBtn;
+            [SerializeField] private Button bulletEditorBtn;
+            [SerializeField] private BulletEditor bulletEditor;
             private ObjectDataObserver tempItemData;
             private ObjectDataObserver curObjectDataObserver;
             private LevelDataObserver levelDataObserver;
@@ -35,6 +37,7 @@ namespace SkyStrike
                 cutBtn.onClick.AddListener(Cut);
                 playGameBtn.onClick.AddListener(TestGame);
                 levelInfoBtn.onClick.AddListener(levelMenu.Show);
+                bulletEditorBtn.onClick.AddListener(bulletEditor.Show);
                 saveLevelBtn.onClick.AddListener(SaveLevel);
                 exitBtn.onClick.AddListener(Application.Quit);
                 EventManager.onSelectLevel.AddListener(SelectLevel);

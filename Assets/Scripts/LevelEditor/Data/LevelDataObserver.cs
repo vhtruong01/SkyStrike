@@ -7,15 +7,18 @@ namespace SkyStrike
     {
         public class LevelDataObserver : IDataList<WaveDataObserver>, IDataList<BulletDataObserver>, IEditorData<LevelData, LevelDataObserver>
         {
+            private int curBulletId;
             private List<WaveDataObserver> waveList;
             private List<BulletDataObserver> bulletList;
             public DataObserver<int> star { get; private set; }
             public DataObserver<string> levelName { get; private set; }
+            private readonly Dictionary<int, BulletDataObserver> bulletDict;
 
             public LevelDataObserver() : this(null) { }
             public LevelDataObserver(LevelData levelData)
             {
                 star = new();
+                bulletDict = new();
                 levelName = new();
                 ImportData(levelData);
             }
@@ -32,21 +35,30 @@ namespace SkyStrike
                 data = waveList[index];
                 waveList.RemoveAt(index);
             }
-            //public void Swap(int leftIndex, int rightIndex) => waveList.Swap(leftIndex, rightIndex);
             public void Set(int index, WaveDataObserver data) => waveList[index] = data;
             public void GetList(out List<BulletDataObserver> list) => list = bulletList;
             public void CreateEmpty(out BulletDataObserver data)
             {
                 data = new();
-                bulletList.Add(data);
-                
+                Add(data);
             }
-            public void Add(BulletDataObserver data) => bulletList.Add(data);
-            public void Remove(BulletDataObserver data) => bulletList.Remove(data);
+            public void Add(BulletDataObserver data)
+            {
+                bulletList.Add(data);
+                if (data.id == BulletDataObserver.UNDEFINED_ID)
+                    data.id = ++curBulletId;
+                bulletDict.Add(data.id, data);
+            }
+            public void Remove(BulletDataObserver data)
+            {
+                bulletList.Remove(data);
+                bulletDict.Remove(data.id);
+            }
             public void Remove(int index, out BulletDataObserver data)
             {
                 data = bulletList[index];
                 bulletList.RemoveAt(index);
+                bulletDict.Remove(data.id);
             }
             public void Set(int index, BulletDataObserver data)
                 => bulletList[index] = data;
@@ -57,7 +69,8 @@ namespace SkyStrike
                     name = levelName.data,
                     star = star.data,
                     waves = new WaveData[waveList.Count],
-                    bullets = new BulletData[bulletList.Count]
+                    curBulletId = curBulletId,
+                    bullets = new EnemyBulletData[bulletList.Count]
                 };
                 for (int i = 0; i < waveList.Count; i++)
                     levelData.waves[i] = waveList[i].ExportData();
@@ -76,6 +89,7 @@ namespace SkyStrike
                 }
                 levelName.SetData(levelData.name);
                 star.SetData(levelData.star);
+                curBulletId = levelData.curBulletId;
                 if (levelData.waves != null)
                     for (int i = 0; i < levelData.waves.Length; i++)
                         Add(new WaveDataObserver(levelData.waves[i]));

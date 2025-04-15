@@ -11,7 +11,7 @@ namespace SkyStrike
         public abstract class UIElement<T> : MonoBehaviour, IPointerClickHandler, IUIElement, IObserver where T : IData
         {
             [SerializeField] protected TextMeshProUGUI itemName;
-            private Image bg;
+            protected Image bg;
             public int? index { get; set; }
             public bool isDefault { get; set; }
             public T data { get; set; }

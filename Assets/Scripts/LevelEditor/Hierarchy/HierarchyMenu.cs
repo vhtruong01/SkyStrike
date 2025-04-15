@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class HierarchyMenu : Menu
+        public class HierarchyMenu : EventNotifyMenu
         {
             [SerializeField] private Menu addObjectMenu;
             [SerializeField] private Button addObjectBtn;
@@ -20,10 +20,11 @@ namespace SkyStrike
                     Hide();
                     addObjectMenu.Show();
                 });
-                EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             }
             public override void Init()
             {
+                base.Init();
+                EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
                 hierarchyUIGroupPool = gameObject.GetComponent<HierarchyItemList>();
                 hierarchyUIGroupPool.Init(EventManager.SelectObject);
             }

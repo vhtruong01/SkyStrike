@@ -7,7 +7,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class AddObjectMenu : Menu
+        public class AddObjectMenu : EventNotifyMenu
         {
             [SerializeField] private List<EnemyMetaData> metaDataList;
             [SerializeField] private List<EnemyMetaData> bossMetaDataList;
@@ -28,6 +28,7 @@ namespace SkyStrike
             }
             public override void Init()
             {
+                base.Init();
                 curSubmenuIndex = -1;
                 objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
                 objectItemUIGroupPool.Init(SelectMetaObject, DuplicateObject);

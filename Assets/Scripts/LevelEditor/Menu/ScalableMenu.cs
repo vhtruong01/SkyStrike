@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class ScalableMenu : Menu, IDragHandler, IBeginDragHandler, IEndDragHandler
+        public abstract class ScalableMenu : EventNotifyMenu, IDragHandler, IBeginDragHandler, IEndDragHandler
         {
             [SerializeField] protected GridScreen screen;
             [SerializeField] protected NormalButton snapBtn;
@@ -13,7 +13,11 @@ namespace SkyStrike
             private Vector3 startPos;
             protected bool isDrag;
 
-            public override void Init() => screen.Init();
+            public override void Init()
+            {
+                base.Init();
+                screen.Init();
+            }
             public virtual void OnBeginDrag(PointerEventData eventData)
             {
                 isDrag = true;

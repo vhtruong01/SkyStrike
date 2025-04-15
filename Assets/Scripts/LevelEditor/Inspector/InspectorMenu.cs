@@ -5,7 +5,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class InspectorMenu : Menu
+        public class InspectorMenu : EventNotifyMenu
         {
             [SerializeField] private ObjectInfoMenu objectInfoMenu;
             [SerializeField] private WaveInfoMenu waveInfoMenu;
@@ -13,20 +13,14 @@ namespace SkyStrike
             private List<ISubMenu> subMenuList;
             private int curSubmenuIndex;
 
-            public override void Awake()
-            {
-                base.Awake();
-                EventManager.onSelectMetaObject.AddListener(SelectMetaObject);
-            }
             public override void Init()
             {
+                base.Init();
+                EventManager.onSelectMetaObject.AddListener(SelectMetaObject);
                 curSubmenuIndex = -1;
                 subMenuList = new() { objectInfoMenu, waveInfoMenu };
                 for (int i = 0; i < switchSubMenuBtnGroup.Count; i++)
-                {
                     switchSubMenuBtnGroup.GetBaseItem(i).onSelectUI.AddListener(SelectSubMenu);
-                    subMenuList[i].Init();
-                }
             }
             private void SelectSubMenu(int index)
             {

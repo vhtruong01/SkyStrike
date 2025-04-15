@@ -15,6 +15,7 @@ namespace SkyStrike
             public int cloneCount;
             public float spawnInterval;
             public string name;
+            public bool isMaintain;
             public MoveData moveData;
             public EItem dropItemType;
 

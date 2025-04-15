@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static SkyStrike.Game.MoveData;
 
@@ -19,6 +20,7 @@ namespace SkyStrike
             public DataObserver<bool> isLookAtPlayer { get; private set; }
             public DataObserver<bool> isImmortal { get; private set; }
             public DataObserver<bool> isFixedRotation { get; private set; }
+            public HashSet<int> bulletIdSet { get; private set; }
 
             public PointDataObserver()
             {
@@ -34,6 +36,7 @@ namespace SkyStrike
                 isLookAtPlayer = new();
                 isImmortal = new();
                 isFixedRotation = new();
+                bulletIdSet = new();
                 scale.OnlySetData(1);
                 prePos.OnlySetData(new(-1.5f, 0));
                 nextPos.OnlySetData(new(0, -1.5f));
@@ -76,11 +79,13 @@ namespace SkyStrike
                 newPoint.isLookAtPlayer.OnlySetData(isLookAtPlayer.data);
                 newPoint.isStraightLine.OnlySetData(isStraightLine.data);
                 newPoint.isFixedRotation.OnlySetData(isFixedRotation.data);
+                foreach (int id in bulletIdSet)
+                    newPoint.bulletIdSet.Add(id);
                 return newPoint;
             }
             public Point ExportData()
             {
-                return new()
+                Point pointData = new()
                 {
                     prevPos = new(prePos.data),
                     midPos = new(midPos.data),
@@ -94,7 +99,12 @@ namespace SkyStrike
                     accleration = accleration.data,
                     standingTime = standingTime.data,
                     travelTime = travelTime.data,
+                    bulletIdArr = new int[bulletIdSet.Count],
                 };
+                int index = 0;
+                foreach (int id in bulletIdSet)
+                    pointData.bulletIdArr[index++] = id;
+                return pointData;
             }
             public void ImportData(Point pointData)
             {
@@ -110,6 +120,9 @@ namespace SkyStrike
                 accleration.OnlySetData(pointData.accleration);
                 standingTime.OnlySetData(pointData.standingTime);
                 travelTime.OnlySetData(pointData.travelTime);
+                if (pointData.bulletIdArr == null) return;
+                foreach (int id in pointData.bulletIdArr)
+                    bulletIdSet.Add(id);
             }
         }
     }

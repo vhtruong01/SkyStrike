@@ -15,6 +15,7 @@ namespace SkyStrike
             [SerializeField] private FloatProperty velocity;
             [SerializeField] private FloatProperty delay;
             [SerializeField] private FloatProperty size;
+            [SerializeField] private BoolProperty isMaintain;
             [SerializeField] private IntProperty cloneCount;
             [SerializeField] private FloatProperty spawnInterval;
             [Header("Object")]
@@ -45,13 +46,12 @@ namespace SkyStrike
             }
             public override void Init()
             {
-                Show();
+                base.Init();    
                 dropItemUIGroupPool = gameObject.GetComponent<DropItemList>();
                 dropItemUIGroupPool.Init(SelectDropItem);
                 foreach (var item in dropItemDataList)
                     dropItemUIGroupPool.CreateItem(item);
                 EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
-                Hide();
             }
             private void SelectDropItem(ItemData itemData)
             {
@@ -100,6 +100,7 @@ namespace SkyStrike
                 objectName.Bind(data.name);
                 cloneCount.Bind(data.cloneCount);
                 spawnInterval.Bind(data.spawnInterval);
+                isMaintain.Bind(data.isMaintain);
                 icon.sprite = data.metaData.data.sprite;
                 icon.color = data.metaData.data.color;
                 DisplayReferenceObject(data.refData);
@@ -122,6 +123,7 @@ namespace SkyStrike
                 objectName.Unbind();
                 cloneCount.Unbind();
                 spawnInterval.Unbind();
+                isMaintain.Unbind();
             }
         }
     }

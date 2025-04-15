@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace SkyStrike
 {
@@ -19,8 +20,16 @@ namespace SkyStrike
             [SerializeField] private BoolProperty isLookAtPlayer;
             [SerializeField] private BoolProperty isImmortal;
             [SerializeField] private TextMeshProUGUI title;
+            [SerializeField] private BulletSelectionMenu bulletSelectionMenu;
+            [SerializeField] private Button bulletSelectionMenuBtn;
 
-            public void Awake() => Init();
+            public void Awake()
+                => bulletSelectionMenuBtn.onClick.AddListener(EnableBulletSelectionMenu);
+            private void EnableBulletSelectionMenu()
+            {
+                bool isEnable = bulletSelectionMenu.gameObject.activeSelf;
+                bulletSelectionMenu.gameObject.SetActive(!isEnable);
+            }
             public override void BindData()
             {
                 scale.Bind(data.scale);

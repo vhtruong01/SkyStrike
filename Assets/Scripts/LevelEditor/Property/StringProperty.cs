@@ -18,11 +18,8 @@ namespace SkyStrike
                 value = x.text;
                 onValueChanged.Invoke(value);
             }
-            public override void SetValue(string value)
-            {
-                base.SetValue(value);
-                x.SetTextWithoutNotify(value);
-            }
+            public override void Refresh()
+                => x.SetTextWithoutNotify(value);
         }
     }
 }

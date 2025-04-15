@@ -25,11 +25,8 @@ namespace SkyStrike
                     onValueChanged.Invoke(value);
                 }
             }
-            public override void SetValue(float value)
-            {
-                base.SetValue(value);
-                x.SetTextWithoutNotify((Mathf.Round(value * 1000) / 1000).ToString());
-            }
+            public override void Refresh()
+               => x.SetTextWithoutNotify((Mathf.Round(value * 1000) / 1000).ToString());
             private void CheckValue()
             {
                 if (!float.TryParse(x.text, out float newX) || (isNonNegative && newX < 0))

@@ -7,9 +7,8 @@ namespace SkyStrike
     {
         public class BulletEditor : Menu, IElementContainer<BulletDataObserver>
         {
-            [SerializeField] private Camera subCamera;
             [SerializeField] private GameObject reviewScreen;
-
+            [SerializeField] private BulletSpawner bulletSpawner;
             [SerializeField] private Button addBtn;
             [SerializeField] private Button removeBtn;
             [SerializeField] private Button duplicateBtn;
@@ -40,10 +39,6 @@ namespace SkyStrike
                 addBtn.onClick.AddListener(bulletUIGroupPool.CreateEmptyItem);
                 duplicateBtn.onClick.AddListener(bulletUIGroupPool.DuplicateSelectedItem);
             }
-            protected override void CreateObject(ObjectDataObserver data) { }
-            protected override void RemoveObject(ObjectDataObserver data) { }
-            protected override void SelectObject(ObjectDataObserver data) { }
-            protected override void SelectWave(WaveDataObserver data) { }
             private void RemoveBullet()
             {
                 bulletUIGroupPool.RemoveSelectedItem();
@@ -53,6 +48,7 @@ namespace SkyStrike
             {
                 bulletInfoMenu.Display(bulletData);
                 bulletInfoMenu.Show();
+                bulletSpawner.ChangeBulletSpawner(bulletData);
             }
             protected void SelectLevel(LevelDataObserver data)
             {

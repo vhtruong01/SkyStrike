@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Editor
     {
-        public class FloatSelectRefObjectMenu : Menu
+        public class FloatSelectRefObjectMenu : EventNotifyMenu
         {
             [SerializeField] private Image itemIcon;
             [SerializeField] private TextMeshProUGUI itemId;
@@ -14,18 +14,16 @@ namespace SkyStrike
             private ObjectItemList objectItemUIGroupPool;
             private ObjectDataObserver curObjectData;
 
-            public override void Awake()
-            {
-                base.Awake();
-                EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
-            }
             public override void Init()
             {
+                base.Init();
+                EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
                 DisplayReferenceObject(null);
                 objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
                 objectItemUIGroupPool.Init(SelectReferenceObject);
             }
-            protected override void CreateObject(ObjectDataObserver data) => DisplayObject(data);
+            protected override void CreateObject(ObjectDataObserver data) 
+                => DisplayObject(data);
             protected override void SelectObject(ObjectDataObserver data)
             {
                 if (curObjectData == data) return;
