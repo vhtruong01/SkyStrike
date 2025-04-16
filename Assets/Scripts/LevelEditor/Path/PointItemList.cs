@@ -6,6 +6,12 @@ namespace SkyStrike
         {
             public IScalableScreen screen { private get; set; }
 
+            public void SetTypeToLastPoint(bool isStraight)
+            {
+                var point = GetItem(items.Count - 1) as CurvePoint;
+                if (point != null)
+                    point.data.isStraightLine.OnlySetData(isStraight);
+            }
             protected override UIElement<PointDataObserver> CreateObject()
             {
                 var item = base.CreateObject() as CurvePoint;
@@ -16,7 +22,7 @@ namespace SkyStrike
             {
                 var recentPoint = GetItem(items.Count - 1) as CurvePoint;
                 var newPoint = base.CreateItemAndAddData(data) as CurvePoint;
-                LinkNewPoint(recentPoint, newPoint, null);
+                newPoint.SetPrevPoint(recentPoint);
                 return newPoint;
             }
             public override void DisplayDataList()
@@ -28,13 +34,8 @@ namespace SkyStrike
                 {
                     var recentPoint = GetItem(items.Count - 1) as CurvePoint;
                     var newPoint = CreateItem(data) as CurvePoint;
-                    LinkNewPoint(recentPoint, newPoint, null);
+                    newPoint.SetPrevPoint(recentPoint);
                 }
-            }
-            private void LinkNewPoint(CurvePoint prevPoint, CurvePoint newPoint, CurvePoint nextPoint)
-            {
-                newPoint.SetPrevPoint(prevPoint);
-                newPoint.SetNextPoint(nextPoint);
             }
             public override bool RemoveSelectedItem()
             {

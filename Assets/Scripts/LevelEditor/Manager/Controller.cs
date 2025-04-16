@@ -23,37 +23,46 @@ namespace SkyStrike
             }
             [SerializeField] private List<EnemyMetaData> metaDataList;
             private Dictionary<int, EnemyMetaData> metaDataDict;
+            private List<IMenu> menus;
+            private LevelDataObserver levelDataObserver;
 
+            private EnemyMetaData GetMetaData(int id) => metaDataDict.GetValueOrDefault(id);
+            public void OnDisable()
+                => _mainCam = null;
             public void Awake()
             {
+                //PlayerPrefs.DeleteAll();
                 metaDataDict = new();
+                menus = new();
                 foreach (var item in metaDataList)
                     metaDataDict.Add(item.id, item);
                 EventManager.onGetMetaData.AddListener(GetMetaData);
-            }
-            private EnemyMetaData GetMetaData(int id) => metaDataDict.GetValueOrDefault(id);
-            public void OnDisable() => _mainCam = null;
-
-            public void Start()
-            {
                 var allObject = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 foreach (var obj in allObject)
                 {
-                    if (obj is not IInitiable) continue;
-                    var menu = obj as IInitiable;
-                    bool isActive = menu.gameObject.activeSelf;
-                    if (!isActive)
-                        menu.gameObject.SetActive(true);
-                    menu.Init();
-                    if (!isActive)
-                        menu.gameObject.SetActive(false);
+                    UIGroup uIGroup = obj as UIGroup;
+                    if (uIGroup != null)
+                        uIGroup.Init();
+                    if (obj is IMenu)
+                        menus.Add(obj as IMenu);
                 }
-                LevelDataObserver levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
+                foreach (var menu in menus)
+                {
+                    menu.Init();
+                    menu.Restore();
+                }
+                levelDataObserver = new(ReadFromBinaryFile<LevelData>("test.dat"));
                 EventManager.SelectLevel(levelDataObserver);
             }
-            public static void SaveLevelData(LevelDataObserver levelData)
+            private void SaveSetting()
             {
-                WriteToBinaryFile("test.dat", levelData.ExportData());
+                foreach (var menu in menus)
+                    menu.SaveSetting();
+            }
+            public void SaveLevelData()
+            {
+                WriteToBinaryFile("test.dat", levelDataObserver.ExportData());
+                SaveSetting();
                 print("saved");
             }
             public static void WriteToBinaryFile<T>(string fileName, T objectToWrite)

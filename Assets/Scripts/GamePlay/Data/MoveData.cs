@@ -15,8 +15,9 @@ namespace SkyStrike
                 public Vec2 nextPos;
                 public bool isStraightLine;
                 public bool isImmortal;
-                public bool isLookAtPlayer;
+                public bool isLookingAtPlayer;
                 public bool isFixedRotation;
+                public bool isIgnoreVelocity;
                 public float rotation;
                 public float scale;
                 public float accleration;

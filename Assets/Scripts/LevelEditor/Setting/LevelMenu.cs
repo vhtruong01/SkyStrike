@@ -7,21 +7,19 @@ namespace SkyStrike
         public class LevelMenu : Menu
         {
             [SerializeField] private StringProperty levelName;
-            [SerializeField] private IntProperty star;
+            [SerializeField] private IntProperty starRating;
 
-            public override void Awake()
+            public override void Init()
             {
-                base.Awake();
                 EventManager.onSelectLevel.AddListener(SelectLevel);
             }
             private void SelectLevel(LevelDataObserver levelData)
             {
-                star.Unbind();
+                starRating.Unbind();
                 levelName.Unbind();
-                star.Bind(levelData.star);
+                starRating.Bind(levelData.starRating);
                 levelName.Bind(levelData.levelName);
             }
-            public override void Init() { }
         }
     }
 }

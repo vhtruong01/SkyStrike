@@ -6,7 +6,7 @@ namespace SkyStrike
     {
         public class BulletSelectionItemUI : UIElement<BulletDataObserver>
         {
-            [SerializeField] private BoolProperty check;
+            [SerializeField] private BoolProperty checker;
 
             public override void BindData()
                 => data.name.Bind(SetName);
@@ -15,10 +15,10 @@ namespace SkyStrike
             public override void Click()
             {
                 base.Click();
-                Check(!check.GetValue());
+                Check(!checker.GetValue());
             }
             public void Check(bool isCheck)
-                => check.SetValue(isCheck);
+                => checker.SetValue(isCheck);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace SkyStrike
             protected UnityAction<T> deselectDataCall;
             public override int Count => items.Count;
 
-            public override void Awake()
+            public override void Init()
             {
                 selectedItemIndex = -1;
                 items = new();
@@ -65,7 +65,7 @@ namespace SkyStrike
             {
                 if (selectDataCall == null) return;
                 var item = GetSelectedItem();
-                if (canDeselect && item != null && Equals(data,item.data))
+                if (canDeselect && item != null && Equals(data, item.data))
                     selectDataCall.Invoke(default);
                 else
                     selectDataCall.Invoke(data);
@@ -89,14 +89,14 @@ namespace SkyStrike
             {
                 for (int i = 0; i < items.Count; i++)
                 {
-                    if (Equals(data,items[i].data))
+                    if (Equals(data, items[i].data))
                         return i;
                 }
                 return -1;
             }
             public UIElement<T> GetItem(T data) => GetItem(GetItemIndex(data));
             public void SelectItem(T data) => SelectItem(GetItemIndex(data));
-            protected override void SelectItem(int index)
+            public override void SelectItem(int index)
             {
                 T prevData = (index == selectedItemIndex && index != -1) ? GetSelectedItem().data : default;
                 base.SelectItem(index);
@@ -108,9 +108,9 @@ namespace SkyStrike
             protected virtual void ReleaseItem(int index)
             {
                 var item = items[index];
+                items.RemoveAt(index);
                 ReleaseItem(item);
                 item.gameObject.transform.SetAsFirstSibling();
-                items.RemoveAt(index);
             }
             protected void ReleaseItem(UIElement<T> item)
             {
@@ -187,9 +187,9 @@ namespace SkyStrike
                         else SelectAndInvokeItem(index - 1);
                     }
                 }
+                for (int i = index + 1; i < items.Count; i++)
+                    items[i].index = i - 1;
                 ReleaseItem(index);
-                for (int i = index; i < items.Count; i++)
-                    items[i].index = i;
                 return true;
             }
             public virtual void Clear()

@@ -10,26 +10,21 @@ namespace SkyStrike
             [SerializeField] private ObjectInfoMenu objectInfoMenu;
             [SerializeField] private WaveInfoMenu waveInfoMenu;
             [SerializeField] private UIGroup switchSubMenuBtnGroup;
-            private List<ISubMenu> subMenuList;
+            private List<Menu> subMenuList;
             private int curSubmenuIndex;
 
             public override void Init()
             {
                 base.Init();
                 EventManager.onSelectMetaObject.AddListener(SelectMetaObject);
-                curSubmenuIndex = -1;
                 subMenuList = new() { objectInfoMenu, waveInfoMenu };
                 for (int i = 0; i < switchSubMenuBtnGroup.Count; i++)
                     switchSubMenuBtnGroup.GetBaseItem(i).onSelectUI.AddListener(SelectSubMenu);
             }
             private void SelectSubMenu(int index)
             {
-                if (curSubmenuIndex != index)
-                {
-                    if (curSubmenuIndex != -1)
-                        subMenuList[curSubmenuIndex].Hide();
-                    curSubmenuIndex = index;
-                }
+                subMenuList[curSubmenuIndex].Hide();
+                curSubmenuIndex = index;
                 subMenuList[index].Show();
             }
             protected override void CreateObject(ObjectDataObserver data) { }

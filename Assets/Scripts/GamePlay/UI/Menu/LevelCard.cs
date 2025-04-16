@@ -21,7 +21,7 @@ namespace SkyStrike
                 btn.onClick.AddListener(call);
                 levelName.text = levelData.name;
                 for (int i = 1; i <= starContainer.childCount; i++)
-                    if (i > levelData.star)
+                    if (i > levelData.starRating)
                     {
                         var icon = starContainer.GetChild(i - 1).GetComponent<Image>();
                         icon.color = icon.color.ChangeAlpha(0.2f);

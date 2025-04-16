@@ -21,7 +21,7 @@ namespace SkyStrike
             public DataObserver<Vector2> position { get; private set; }
             public DataObserver<bool> isCircle { get; private set; }
             public DataObserver<bool> isStartAwake { get; private set; }
-            public DataObserver<bool> isLookAtPlayer { get; private set; }
+            public DataObserver<bool> isLookingAtPlayer { get; private set; }
             public DataObserver<int> amount { get; private set; }
 
             public BulletDataObserver()
@@ -40,7 +40,7 @@ namespace SkyStrike
                 amount = new();
                 isCircle = new();
                 isStartAwake = new();
-                isLookAtPlayer = new();
+                isLookingAtPlayer = new();
                 size.SetData(1);
                 velocity.SetData(2.5f);
                 timeCooldown.SetData(2);
@@ -65,7 +65,7 @@ namespace SkyStrike
                 newData.amount.SetData(amount.data);
                 newData.isStartAwake.SetData(isStartAwake.data);
                 newData.isCircle.SetData(isCircle.data);
-                newData.isLookAtPlayer.SetData(isLookAtPlayer.data);
+                newData.isLookingAtPlayer.SetData(isLookingAtPlayer.data);
                 return newData;
             }
             public EnemyBulletData ExportData()
@@ -85,7 +85,7 @@ namespace SkyStrike
                     startAngle = startAngle.data,
                     isCircle = isCircle.data,
                     isStartAwake = isStartAwake.data,
-                    isLookAtPlayer=isLookAtPlayer.data,
+                    isLookingAtPlayer=isLookingAtPlayer.data,
                     amount = amount.data,
                 };
             }
@@ -104,7 +104,7 @@ namespace SkyStrike
                 startAngle.SetData(data.startAngle);
                 isCircle.SetData(data.isCircle);
                 isStartAwake.SetData(data.isStartAwake);
-                isLookAtPlayer.SetData(data.isLookAtPlayer);
+                isLookingAtPlayer.SetData(data.isLookingAtPlayer);
                 amount.SetData(data.amount);
             }
         }

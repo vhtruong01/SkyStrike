@@ -16,23 +16,16 @@ namespace SkyStrike
             private BulletItemList bulletUIGroupPool;
             private LevelDataObserver levelDataObserver;
 
-            public override void Awake()
-            {
-                base.Awake();
-                EventManager.onSelectLevel.AddListener(SelectLevel);
-            }
-            public override void Show()
-            {
-                base.Show();
-                reviewScreen.SetActive(gameObject.activeSelf);
-            }
+            public void OnEnable()
+                => reviewScreen.SetActive(true);
             public override void Hide()
             {
                 base.Hide();
-                reviewScreen.SetActive(gameObject.activeSelf);
+                reviewScreen.SetActive(false);
             }
             public override void Init()
             {
+                EventManager.onSelectLevel.AddListener(SelectLevel);
                 bulletUIGroupPool = GetComponent<BulletItemList>();
                 bulletUIGroupPool.Init(SelectBullet);
                 removeBtn.onClick.AddListener(RemoveBullet);

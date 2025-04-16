@@ -8,6 +8,7 @@ namespace SkyStrike
     {
         public class EditorTool : MonoBehaviour
         {
+            [SerializeField] private Controller controller;
             [Header("Level")]
             [SerializeField] private Button levelInfoBtn;
             [SerializeField] private Button playGameBtn;
@@ -26,7 +27,6 @@ namespace SkyStrike
             [SerializeField] private BulletEditor bulletEditor;
             private ObjectDataObserver tempItemData;
             private ObjectDataObserver curObjectDataObserver;
-            private LevelDataObserver levelDataObserver;
 
             public void Awake()
             {
@@ -40,7 +40,6 @@ namespace SkyStrike
                 bulletEditorBtn.onClick.AddListener(bulletEditor.Show);
                 saveLevelBtn.onClick.AddListener(SaveLevel);
                 exitBtn.onClick.AddListener(Application.Quit);
-                EventManager.onSelectLevel.AddListener(SelectLevel);
                 EventManager.onSelectObject.AddListener(SelectObject);
             }
             private void SelectObject(ObjectDataObserver data)
@@ -73,14 +72,12 @@ namespace SkyStrike
                 Remove();
             }
             private void SaveLevel() 
-                => Controller.SaveLevelData(levelDataObserver);
+                => controller.SaveLevelData();
             private void TestGame()
             {
                 SaveLevel();
                 GameManager.PlayGame();
             }
-            private void SelectLevel(LevelDataObserver levelDataObserver) 
-                => this.levelDataObserver = levelDataObserver;
         }
     }
 }

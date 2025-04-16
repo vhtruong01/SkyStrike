@@ -12,7 +12,7 @@ namespace SkyStrike
             protected int selectedItemIndex;
             public virtual int Count => items.Count;
 
-            public virtual void Awake()
+            public virtual void Init()
             {
                 selectedItemIndex = -1;
                 for (int i = 0; i < transform.childCount; i++)
@@ -35,7 +35,7 @@ namespace SkyStrike
             public void SelectNone() => SelectItem(-1);
             public virtual void SelectAndInvokeItem(int index) 
                 => GetBaseItem(index)?.SelectAndInvoke();
-            protected virtual void SelectItem(int index)
+            public virtual void SelectItem(int index)
             {
                 Diminish(GetBaseItem(selectedItemIndex));
                 if (canDeselect && selectedItemIndex == index) index = -1;

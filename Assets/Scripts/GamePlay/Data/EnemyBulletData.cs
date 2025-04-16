@@ -20,7 +20,7 @@ namespace SkyStrike
             public Vec2 position;
             public bool isCircle;
             public bool isStartAwake;
-            public bool isLookAtPlayer;
+            public bool isLookingAtPlayer;
             public int amount;
         }
     }

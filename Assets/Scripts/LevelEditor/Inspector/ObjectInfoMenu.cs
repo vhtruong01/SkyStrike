@@ -37,7 +37,7 @@ namespace SkyStrike
             private DropItemList dropItemUIGroupPool;
 
 
-            public void Awake()
+            public override void Awake()
             {
                 addObjectBtn.onClick.AddListener(CreateObject);
                 referenceObjectBtn.onClick.AddListener(selectRefObjectMenu.Show);

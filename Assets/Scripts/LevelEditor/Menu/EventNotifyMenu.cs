@@ -1,4 +1,3 @@
-using UnityEngine;
 namespace SkyStrike
 {
     namespace Editor

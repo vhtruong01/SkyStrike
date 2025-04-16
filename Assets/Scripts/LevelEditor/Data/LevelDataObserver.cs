@@ -10,14 +10,14 @@ namespace SkyStrike
             private int curBulletId;
             private List<WaveDataObserver> waveList;
             private List<BulletDataObserver> bulletList;
-            public DataObserver<int> star { get; private set; }
+            public DataObserver<int> starRating { get; private set; }
             public DataObserver<string> levelName { get; private set; }
             private readonly Dictionary<int, BulletDataObserver> bulletDict;
 
             public LevelDataObserver() : this(null) { }
             public LevelDataObserver(LevelData levelData)
             {
-                star = new();
+                starRating = new();
                 bulletDict = new();
                 levelName = new();
                 ImportData(levelData);
@@ -67,7 +67,7 @@ namespace SkyStrike
                 LevelData levelData = new()
                 {
                     name = levelName.data,
-                    star = star.data,
+                    starRating = starRating.data,
                     waves = new WaveData[waveList.Count],
                     curBulletId = curBulletId,
                     bullets = new EnemyBulletData[bulletList.Count]
@@ -88,7 +88,7 @@ namespace SkyStrike
                     return;
                 }
                 levelName.SetData(levelData.name);
-                star.SetData(levelData.star);
+                starRating.SetData(levelData.starRating);
                 curBulletId = levelData.curBulletId;
                 if (levelData.waves != null)
                     for (int i = 0; i < levelData.waves.Length; i++)

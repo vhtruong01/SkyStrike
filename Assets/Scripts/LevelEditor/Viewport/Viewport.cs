@@ -21,15 +21,11 @@ namespace SkyStrike
                 inspectorMenuBtn.onClick.AddListener(inspectorMenu.Show);
                 hierarchyMenuBtn.onClick.AddListener(hierarchyMenu.Show);
                 waveMenuBtn.onClick.AddListener(waveMenu.Show);
-                EventManager.onSetRefObject.AddListener(SelectReferenceObject);
-            }
-            public void Start()
-            {
-                snapBtn.AddListener(screen.EnableSnap, screen.IsSnap);
             }
             public override void Init()
             {
                 base.Init();
+                EventManager.onSetRefObject.AddListener(SelectReferenceObject);
                 viewportUIGroupPool = gameObject.GetComponent<ViewportItemList>();
                 viewportUIGroupPool.Init(EventManager.SelectObject);
                 viewportUIGroupPool.screen = screen;
@@ -55,6 +51,11 @@ namespace SkyStrike
                 data.GetList(out var dataList);
                 foreach (var objectData in dataList)
                     CreateObject(objectData);
+            }
+            public override void Restore()
+            {
+                base.Restore();
+                Show();
             }
         }
     }

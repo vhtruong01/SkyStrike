@@ -27,10 +27,10 @@ namespace SkyStrike
                 onValueChanged.Invoke(value);
                 EnableOtherProperty(value);
             }
-            private void EnableOtherProperty(bool isEnable)
+            private void EnableOtherProperty(bool isEnabled)
             {
-                onEnable.Invoke(isEnable);
-                onDisable.Invoke(!isEnable);
+                onEnable.Invoke(isEnabled);
+                onDisable.Invoke(!isEnabled);
             }
             public override void Refresh()
             {

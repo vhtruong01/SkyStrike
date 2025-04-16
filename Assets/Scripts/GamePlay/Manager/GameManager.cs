@@ -72,6 +72,7 @@ namespace SkyStrike
                 => SceneManager.LoadScene((int)sceneType);
             public static void PlayGame() => LoadScene(EScene.MainGame);
             public static void OpenMainMenu() => LoadScene(EScene.MainMenu);
+            public static void OpenEditor() => LoadScene(EScene.Editor);
         }
     }
 }

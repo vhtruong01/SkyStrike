@@ -38,8 +38,8 @@ namespace SkyStrike
                 onValueChanged.RemoveAllListeners();
                 SetValue(default);
             }
-            public void Display(bool isEnable)
-                => gameObject.SetActive(isEnable);
+            public void Display(bool isEnabled)
+                => gameObject.SetActive(isEnabled);
         }
     }
 }

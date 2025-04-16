@@ -17,18 +17,17 @@ namespace SkyStrike
             [SerializeField] private UIGroup switchPointTypeBtn;
             [SerializeField] private PointMenu pointMenu;
             [SerializeField] private BulletSelectionMenu bulletSelectionMenu;
-
-            private bool isEnableAddPoint;
+            private bool isEnabledAddPoint;
             private int pointType;
             private PointItemList pointItemList;
             private ObjectDataObserver objectDataObserver;
 
             public void OnEnable()
                 => bulletSelectionMenu.Refresh();
-            public void Start()
+            public override void Awake()
             {
-                snapBtn.AddListener(screen.EnableSnap, screen.IsSnap);
-                addPointBtn.AddListener(EnableAddPoint, () => isEnableAddPoint);
+                base.Awake();
+                addPointBtn.AddListener(EnableAddPoint, () => isEnabledAddPoint);
                 removeBtn.onClick.AddListener(RemovePoint);
                 clearBtn.onClick.AddListener(Clear);
                 flipXBtn.onClick.AddListener(FlipX);
@@ -71,17 +70,17 @@ namespace SkyStrike
                 pointItemList.DisplayDataList();
             }
             public void SelectPointType(int type) => pointType = type;
-            public void EnableAddPoint(bool isEnable) => isEnableAddPoint = isEnable;
+            public void EnableAddPoint(bool isEnabled) => isEnabledAddPoint = isEnabled;
             public void OnPointerClick(PointerEventData eventData)
             {
-                if (isEnableAddPoint && objectDataObserver != null && !isDrag)
+                if (isEnabledAddPoint && objectDataObserver != null && !isDragging)
                     CreateNewPoint(screen.GetActualPosition(eventData.pointerCurrentRaycast.worldPosition));
             }
             private void CreateNewPoint(Vector2 pos)
             {
                 PointDataObserver pointData = new();
-                pointData.isStraightLine.SetData(pointType == 0);
                 pointData.ChangePosition(pos);
+                pointItemList.SetTypeToLastPoint(pointType == 0);
                 pointItemList.CreateItemAndAddData(pointData);
             }
             protected override void CreateObject(ObjectDataObserver data) { }

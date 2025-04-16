@@ -29,7 +29,7 @@ namespace SkyStrike
             public void FlipX()
             {
                 float midX = points[0].midPos.data.x;
-                for (var i = 1; i < points.Count; i++)
+                for (var i = 0; i < points.Count; i++)
                 {
                     points[i].prePos.SetData(new(2 * midX - points[i].prePos.data.x, points[i].prePos.data.y));
                     points[i].midPos.SetData(new(2 * midX - points[i].midPos.data.x, points[i].midPos.data.y));
@@ -56,7 +56,10 @@ namespace SkyStrike
                     points = new Point[points.Count]
                 };
                 for (int i = 0; i < points.Count; i++)
-                    newData.points[i] = points[i].ExportData();
+                {
+                    var p = points[i].ExportData();
+                    newData.points[i] = p;
+                }
                 return newData;
             }
             public void ImportData(MoveData moveData)

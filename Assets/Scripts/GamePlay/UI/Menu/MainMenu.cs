@@ -28,12 +28,12 @@ namespace SkyStrike
                 settingBtn.onClick.AddListener(settingMenu.Expand);
                 exitBtn.onClick.AddListener(exitMenu.Expand);
             }
-            public IEnumerator EnterLevelMenu(bool isEnable)
+            public IEnumerator EnterLevelMenu(bool isEnabled)
             {
                 transition.SetTrigger("Close");
                 shipAnimator.SetTrigger("Disappear");
                 yield return new WaitForSeconds(0.75f);
-                levelMenu.gameObject.SetActive(isEnable);
+                levelMenu.gameObject.SetActive(isEnabled);
                 shipAnimator.SetTrigger("Appear");
                 transition.SetTrigger("Open");
             }

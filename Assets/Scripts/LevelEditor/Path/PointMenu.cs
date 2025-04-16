@@ -17,18 +17,27 @@ namespace SkyStrike
             [SerializeField] private FloatProperty travelTime;
             [SerializeField] private BoolProperty isFixedRotation;
             [SerializeField] private BoolProperty isStraightLine;
-            [SerializeField] private BoolProperty isLookAtPlayer;
+            [SerializeField] private BoolProperty isLookingAtPlayer;
             [SerializeField] private BoolProperty isImmortal;
+            [SerializeField] private BoolProperty isIgnoreVelocity;
             [SerializeField] private TextMeshProUGUI title;
             [SerializeField] private BulletSelectionMenu bulletSelectionMenu;
             [SerializeField] private Button bulletSelectionMenuBtn;
 
-            public void Awake()
-                => bulletSelectionMenuBtn.onClick.AddListener(EnableBulletSelectionMenu);
+            public override void Awake()
+            {
+                base.Awake();
+                bulletSelectionMenuBtn.onClick.AddListener(EnableBulletSelectionMenu);
+                isFixedRotation.BindToOtherProperty(rotation, true);
+                isFixedRotation.BindToOtherProperty(isLookingAtPlayer, false);
+                isLookingAtPlayer.BindToOtherProperty(rotation, false);
+                isStraightLine.BindToOtherProperty(accleration, true);
+                isIgnoreVelocity.BindToOtherProperty(travelTime, true);
+            }
             private void EnableBulletSelectionMenu()
             {
-                bool isEnable = bulletSelectionMenu.gameObject.activeSelf;
-                bulletSelectionMenu.gameObject.SetActive(!isEnable);
+                bool isEnabled = bulletSelectionMenu.gameObject.activeSelf;
+                bulletSelectionMenu.gameObject.SetActive(!isEnabled);
             }
             public override void BindData()
             {
@@ -37,10 +46,11 @@ namespace SkyStrike
                 accleration.Bind(data.accleration);
                 standingTime.Bind(data.standingTime);
                 travelTime.Bind(data.travelTime);
-                isFixedRotation.Bind(data.isFixedRotation);
                 isImmortal.Bind(data.isImmortal);
                 isStraightLine.Bind(data.isStraightLine);
-                isLookAtPlayer.Bind(data.isLookAtPlayer);
+                isFixedRotation.Bind(data.isFixedRotation);
+                isIgnoreVelocity.Bind(data.isIgnoreVelocity);
+                isLookingAtPlayer.Bind(data.isLookingAtPlayer);
                 position.Bind(data.midPos, data.ChangePosition);
             }
             public override void UnbindData()
@@ -52,7 +62,8 @@ namespace SkyStrike
                 standingTime.Unbind();
                 isFixedRotation.Unbind();
                 isStraightLine.Unbind();
-                isLookAtPlayer.Unbind();
+                isLookingAtPlayer.Unbind();
+                isIgnoreVelocity.Unbind();
                 isImmortal.Unbind();
                 position.Unbind();
             }

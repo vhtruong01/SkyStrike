@@ -37,6 +37,16 @@ namespace SkyStrike
                 levelDataObserver = data;
                 waveUIGroupPool.DisplayDataList();
             }
+            //public override void Restore()
+            //{
+            //    base.Restore();
+            //    waveUIGroupPool.SelectItem(PlayerPrefs.GetInt(GetType().Name + ".index", 0));
+            //}
+            //public override void SaveSetting()
+            //{
+            //    base.SaveSetting();
+            //    PlayerPrefs.SetInt(GetType().Name + ".index", waveUIGroupPool.GetSelectedItemIndex());
+            //}
             public IDataList<WaveDataObserver> GetDataList() => levelDataObserver;
         }
     }

@@ -28,7 +28,7 @@ namespace SkyStrike
                         {
                             Point nextPoint = moveData.points[index + 1];
                             yield return StartCoroutine(
-                                nextPoint.isStraightLine
+                                point.isStraightLine
                                 ? MoveStraight(point, nextPoint)
                                 : MoveCurve(point, nextPoint));
                         }
@@ -65,9 +65,12 @@ namespace SkyStrike
                         / moveData.velocity / 2;
                 if (time <= 0) yield break;
                 float elapsedTime = 0;
+                float deltaTime = Time.deltaTime;
+                float coefficient = 1;
                 //
                 while (elapsedTime < time)
                 {
+                    elapsedTime += deltaTime * coefficient;
                     float t1 = elapsedTime / time;
                     float t2 = 1 - t1;
                     Vector3 newPos = (t2 * t2 * t2 * startPos
@@ -75,10 +78,17 @@ namespace SkyStrike
                         + 3 * t1 * t1 * t2 * pos3
                         + t1 * t1 * t1 * nextPos
                         ).SetZ(transform.position.z);
-                    Rotate((newPos - transform.position).normalized);
-                    transform.position = newPos;
+                    //
+                    var dir = newPos - transform.position;
+                    float len = dir.magnitude;
+                    float time2 = len / moveData.velocity;
+                    coefficient = deltaTime / time2;
+                    dir *= coefficient;
+                    print(dir + " " + coefficient + " ");
+                    Rotate(dir.normalized);
+                    transform.position += dir;
+                    deltaTime = Time.deltaTime;
                     yield return null;
-                    elapsedTime += Time.deltaTime;
                 }
             }
             private void Rotate(Vector2 newDir)

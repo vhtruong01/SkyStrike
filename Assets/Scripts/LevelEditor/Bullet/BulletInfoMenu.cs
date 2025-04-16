@@ -18,7 +18,7 @@ namespace SkyStrike
             [SerializeField] private Vector2Property position;
             [SerializeField] private BoolProperty isCircle;
             [SerializeField] private BoolProperty isStartAwake;
-            [SerializeField] private BoolProperty isLookAtPlayer;
+            [SerializeField] private BoolProperty isLookingAtPlayer;
             [SerializeField] private IntProperty amount;
 
             public override void Init()
@@ -28,8 +28,8 @@ namespace SkyStrike
                 isCircle.BindToOtherProperty(angleUnit, false);
                 isCircle.BindToOtherProperty(spinSpeed, true);
                 isCircle.BindToOtherProperty(startAngle, false);
-                isCircle.BindToOtherProperty(isLookAtPlayer, false);
-                isLookAtPlayer.BindToOtherProperty(startAngle, false);
+                isCircle.BindToOtherProperty(isLookingAtPlayer, false);
+                isLookingAtPlayer.BindToOtherProperty(startAngle, false);
             }
             public override void BindData()
             {
@@ -45,7 +45,7 @@ namespace SkyStrike
                 position.Bind(data.position);
                 isCircle.Bind(data.isCircle);
                 isStartAwake.Bind(data.isStartAwake);
-                isLookAtPlayer.Bind(data.isLookAtPlayer);
+                isLookingAtPlayer.Bind(data.isLookingAtPlayer);
                 amount.Bind(data.amount);
             }
             public override void UnbindData()
@@ -62,7 +62,7 @@ namespace SkyStrike
                 angleUnit.Unbind();
                 isCircle.Unbind();
                 isStartAwake.Unbind();
-                isLookAtPlayer.Unbind();
+                isLookingAtPlayer.Unbind();
                 amount.Unbind();
             }
         }

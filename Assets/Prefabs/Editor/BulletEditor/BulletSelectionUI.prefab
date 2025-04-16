@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: {fileID: 4007116118751854971}
-  check: {fileID: 8513711278623248447}
+  checker: {fileID: 8513711278623248447}
 --- !u!222 &2726685926748040633
 CanvasRenderer:
   m_ObjectHideFlags: 0

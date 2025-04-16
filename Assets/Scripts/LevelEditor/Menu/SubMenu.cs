@@ -1,16 +1,14 @@
-using UnityEngine;
-
 namespace SkyStrike
 {
     namespace Editor
     {
-        public abstract class SubMenu<T> : MonoBehaviour, ISubMenu where T : IEditor
+        public abstract class SubMenu<T> : Menu, IObserver where T : IEditor
         {
             protected T data;
             public bool CanDisplay() => data != null;
             public abstract void BindData();
             public abstract void UnbindData();
-            public virtual void Init() => Hide();
+            public override void Init() { }
             public virtual void Display(T data)
             {
                 if (!SetData(data)) return;
@@ -25,15 +23,11 @@ namespace SkyStrike
                 this.data = data;
                 return true;
             }
-            public virtual void Hide()
+            public override void Show()
             {
-                if (gameObject.activeSelf)
-                    gameObject.SetActive(false);
-            }
-            public virtual void Show()
-            {
-                if (!gameObject.activeSelf && CanDisplay())
-                    gameObject.SetActive(true);
+                if (CanDisplay())
+                    base.Show();
+                else Hide();
             }
         }
     }

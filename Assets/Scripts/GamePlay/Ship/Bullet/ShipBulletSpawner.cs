@@ -12,11 +12,11 @@ namespace SkyStrike
             private Func<ShipBulletData, Vector3, ShipBullet> onCreateBullet;
             private UnityAction onSpawnBullet;
             private ShipBulletData bulletData;
-            public bool isEnable { get; set; }
+            public bool isEnabled { get; set; }
 
             public void Update()
             {
-                if (!isEnable) return;
+                if (!isEnabled) return;
                 elaspedTime += Time.deltaTime;
                 if (elaspedTime >= bulletData.timeCooldown)
                 {
@@ -28,7 +28,7 @@ namespace SkyStrike
             public void Init(ShipBulletData bulletData, Func<ShipBulletData, Vector3, ShipBullet> onCreateBullet)
             {
                 elaspedTime = 0;
-                isEnable = true;
+                isEnabled = true;
                 this.bulletData = bulletData;
                 this.onCreateBullet = onCreateBullet;
                 switch (bulletData.metaData.type)

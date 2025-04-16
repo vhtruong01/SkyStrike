@@ -6,9 +6,9 @@ namespace SkyStrike
         {
             private PointDataObserver pointDataObserver;
 
-            public override void Awake()
+            public override void Init()
             {
-                base.Awake();
+                base.Init();
                 selectDataCall = UpdateBulletList;
             }
             public void SetPoint(PointDataObserver point)

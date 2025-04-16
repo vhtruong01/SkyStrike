@@ -15,20 +15,30 @@ namespace SkyStrike
             [SerializeField] private float thickness;
             [SerializeField] private Slider scaleSlider;
             [SerializeField] private Transform lineContainer;
+            private NormalButton lockButton;
             private Vector3 originalScale;
-            private bool isSnap;
             private float halfWidth;
             private float halfHeight;
-            public float GetScale => scaleSlider.value;
-
+            public bool isLocked { get; set; }
+            public bool isSnapping {  get; set; }
+            public float scale
+            {
+                get => scaleSlider.value;
+                set
+                {
+                    scaleSlider.value = value;
+                    Scale(value);
+                }
+            }
             public void Init()
             {
+                lockButton = scaleSlider.GetComponentInChildren<NormalButton>();
+                lockButton.AddListener((enable) => isLocked = enable, () => isLocked);
                 if (thickness <= 0) return;
                 scaleSlider.minValue = minSize;
                 scaleSlider.maxValue = maxSize;
                 originalScale = transform.localScale;
                 scaleSlider.onValueChanged.AddListener(Scale);
-                transform.position = new(0, 0, transform.position.z);
                 Vector2 worldSize = Controller.mainCam.ScreenToWorldPoint(new(Screen.width, Screen.height));
                 halfWidth = worldSize.x;
                 halfHeight = worldSize.y;
@@ -36,7 +46,6 @@ namespace SkyStrike
                     CreateLine(thickness, Screen.height / minSize, new(i, 0, 0));
                 for (int i = -(int)(halfHeight / minSize); i <= halfHeight / minSize; i++)
                     CreateLine(Screen.width / minSize, thickness, new(0, i, 0));
-                scaleSlider.value = 0.8f;
             }
             private void CreateLine(float w, float h, Vector3 dir)
             {
@@ -52,13 +61,13 @@ namespace SkyStrike
                 SetPosition(transform.position);
             }
             public Vector2 GetActualPosition(Vector2 pos)
-                => (pos - new Vector2(transform.position.x, transform.position.y)) / scaleSlider.value;
+                => (pos - new Vector2(transform.position.x, transform.position.y)) / scale;
             public Vector2 GetPositionOnScreen(Vector2 pos)
-                => pos * scaleSlider.value + new Vector2(transform.position.x, transform.position.y);
+                => pos * scale + new Vector2(transform.position.x, transform.position.y);
             public void SetPosition(Vector2 newPos)
             {
-                float boundX = halfWidth * (scaleSlider.value / minSize - 1);
-                float boundY = halfHeight * (scaleSlider.value / minSize - 1);
+                float boundX = halfWidth * (scale / minSize - 1);
+                float boundY = halfHeight * (scale / minSize - 1);
                 newPos.Set(Mathf.Clamp(newPos.x, -boundX, boundX),
                            Mathf.Clamp(newPos.y, -boundY, boundY));
                 transform.position = newPos.SetZ(transform.position.z);
@@ -74,8 +83,6 @@ namespace SkyStrike
                     pos.y -= deltaY;
                 return GetPositionOnScreen(pos);
             }
-            public bool IsSnap() => isSnap;
-            public void EnableSnap(bool snap) => isSnap = snap;
         }
     }
 }

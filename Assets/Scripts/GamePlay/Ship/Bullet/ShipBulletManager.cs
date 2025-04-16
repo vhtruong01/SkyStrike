@@ -37,10 +37,10 @@ namespace SkyStrike
                     spawner.Upgrade();
                 else AddSpawner(bulletType);
             }
-            public void EnableFire(bool isEnable)
+            public void EnableFire(bool isEnabled)
             {
                 foreach (var spawner in spawners.Values)
-                    spawner.isEnable = isEnable;
+                    spawner.isEnabled = isEnabled;
             }
         }
     }

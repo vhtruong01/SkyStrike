@@ -14,14 +14,10 @@ namespace SkyStrike
             private UnityAction<bool> setActionValue;
             private Func<bool> getActionValue;
 
-
-            public void Awake()
+            public void AddListener(UnityAction<bool> setValue, Func<bool> getValue)
             {
                 img = GetComponent<Image>();
                 button = GetComponent<Button>();
-            }
-            public void AddListener(UnityAction<bool> setValue, Func<bool> getValue)
-            {
                 setActionValue = setValue;
                 getActionValue = getValue;
                 button.onClick.AddListener(Click);

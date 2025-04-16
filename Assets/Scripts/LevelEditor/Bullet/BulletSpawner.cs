@@ -9,8 +9,8 @@ namespace SkyStrike
         {
             private const float TAU = Mathf.PI * 2;
             [SerializeField] private BulletObject prefab;
-            private BulletDataObserver bulletData;
             private ObjectPool<BulletObject> objectPool;
+            private BulletDataObserver bulletData;
             private float elaspedTime;
             private float spawnerAngle;
             private Vector2 originalPos;
@@ -62,22 +62,26 @@ namespace SkyStrike
                 }
                 else
                 {
-                    float startAngle = bulletData.isLookAtPlayer.data ? 0 : (TAU / 360 * bulletData.startAngle.data);
+                    float startAngle = bulletData.isLookingAtPlayer.data ? 0 : (TAU / 360 * bulletData.startAngle.data);
                     float mid = 0.5f * (bulletData.amount.data - 1);
                     for (float i = -mid; i <= mid; i += 1f)
                     {
                         var bullet = objectPool.Get();
                         bullet.Init(bulletData,
-                            new(Mathf.Sin(startAngle + bulletData.angleUnit.data * i * TAU / 360), -Mathf.Cos(startAngle + bulletData.angleUnit.data * i * TAU / 360)),
-                            originalPos + bulletData.spacing.data * i);
+                            new(Mathf.Sin(startAngle + bulletData.angleUnit.data * i * TAU / 360), 
+                            -Mathf.Cos(startAngle + bulletData.angleUnit.data * i * TAU / 360)),
+                            originalPos + bulletData.position.data + bulletData.spacing.data * i);
                     }
                 }
             }
             public void ChangeBulletSpawner(BulletDataObserver bulletData)
             {
                 this.bulletData = bulletData;
-                elaspedTime = 0;
+                elaspedTime = bulletData.timeCooldown.data;
                 spawnerAngle = 0;
+                for (int i = 0; i < transform.childCount; i++)
+                    if (transform.GetChild(i).gameObject.activeSelf)
+                        objectPool.Release(transform.GetChild(i).GetComponent<BulletObject>());
             }
         }
     }

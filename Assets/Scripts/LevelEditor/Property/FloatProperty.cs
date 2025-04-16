@@ -12,9 +12,9 @@ namespace SkyStrike
 
             public void Awake()
             {
-                x.text = "0";
                 x.onValueChanged.AddListener(s => OnValueChanged());
                 x.onSubmit.AddListener(s => CheckValue());
+                Refresh();
             }
             public override void OnValueChanged()
             {

@@ -59,10 +59,10 @@ namespace SkyStrike
                 Enable(true);
                 StartCoroutine(movement.Move(moveData));
             }
-            private void Enable(bool isEnable)
+            private void Enable(bool isEnabled)
             {
-                col.enabled = isEnable;
-                spriteRenderer.enabled = isEnable;
+                col.enabled = isEnabled;
+                spriteRenderer.enabled = isEnabled;
             }
         }
     }

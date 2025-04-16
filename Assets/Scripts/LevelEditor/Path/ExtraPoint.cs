@@ -18,10 +18,10 @@ namespace SkyStrike
                 transform.position = eventData.pointerCurrentRaycast.worldPosition;
                 call?.Invoke(transform.position);
             }
-            public void Enable(bool isEnable)
+            public void Enable(bool isEnabled)
             {
-                gameObject.SetActive(isEnable);
-                connectionLine.gameObject.SetActive(isEnable);
+                gameObject.SetActive(isEnabled);
+                connectionLine.gameObject.SetActive(isEnabled);
             }
             public void Render(Vector2 newPos, Vector2 midPos, float scale)
             {

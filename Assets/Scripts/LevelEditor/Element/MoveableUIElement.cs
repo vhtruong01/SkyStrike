@@ -7,19 +7,19 @@ namespace SkyStrike
     {
         public abstract class MoveableUIElement<T> : UIElement<T>, IBeginDragHandler, IDragHandler where T : IEditor
         {
-            protected bool isDrag;
+            protected bool isDragging;
             public IScalableScreen screen { protected get; set; }
 
             public override void OnPointerClick(PointerEventData eventData)
             {
-                if (!isDrag) Click();
-                isDrag = false;
+                if (!isDragging) Click();
+                isDragging = false;
             }
-            public void OnBeginDrag(PointerEventData eventDataF) => isDrag = true;
+            public void OnBeginDrag(PointerEventData eventDataF) => isDragging = true;
             public virtual void OnDrag(PointerEventData eventData)
             {
                 Vector2 pos = eventData.pointerCurrentRaycast.worldPosition;
-                if (screen.IsSnap())
+                if (screen.isSnapping)
                     pos = screen.RoundPosition(pos);
                 transform.position = pos.SetZ(transform.position.z);
             }
