@@ -6,9 +6,9 @@ namespace SkyStrike
     namespace Game
     {
         [RequireComponent(typeof(EnemyMovement))]
+        [RequireComponent(typeof(EnemyBulletSpawner))]
         public class Enemy : PoolableObject<ObjectData>
         {
-            private ObjectData data;
             private EnemyMovement movement;
             private float spawnInterval;
             private int hp;
@@ -22,7 +22,7 @@ namespace SkyStrike
             }
             public override void SetData(ObjectData data)
             {
-                this.data = data;
+                base.SetData(data);
                 hp = data.metaData.maxHp;
                 spriteRenderer.sprite = data.metaData.sprite;
                 col.size = data.metaData.sprite.bounds.size / 2;
@@ -31,8 +31,8 @@ namespace SkyStrike
                 spawnInterval = data.spawnInterval;
                 isDie = false;
             }
-            public void Strike(MoveData moveData, float waveDelay, int queueIndex)
-                => StartCoroutine(Prepare(moveData, waveDelay, queueIndex));
+            public void Strike(float waveDelay, int queueIndex)
+                => StartCoroutine(Prepare(waveDelay, queueIndex));
             public bool TakeDamage(int dmg)
             {
                 if (!isDie)
@@ -50,19 +50,28 @@ namespace SkyStrike
                 EventManager.DropStar(transform.position, data.metaData.star);
                 if (dropItemType != EItem.None)
                     EventManager.DropItem(data.dropItemType, transform.position);
-                Release();
+                Disappear();
             }
-            private IEnumerator Prepare(MoveData moveData, float waveDelay, int queueIndex)
+            private IEnumerator Prepare(float waveDelay, int queueIndex)
             {
                 Enable(false);
-                yield return new WaitForSeconds(waveDelay + moveData.delay + spawnInterval * queueIndex);
+                yield return new WaitForSeconds(waveDelay + data.moveData.delay + spawnInterval * queueIndex);
                 Enable(true);
-                StartCoroutine(movement.Move(moveData));
+                StartCoroutine(movement.Move());
             }
             private void Enable(bool isEnabled)
             {
                 col.enabled = isEnabled;
                 spriteRenderer.enabled = isEnabled;
+            }
+            public void OnTriggerEnter2D(Collider2D collision)
+            {
+                if (collision.CompareTag("ShipBullet"))
+                {
+                    ShipBullet bullet = collision.GetComponent<ShipBullet>();
+                    if (TakeDamage(bullet.data.dmg))
+                        bullet.Disappear();
+                }
             }
         }
     }

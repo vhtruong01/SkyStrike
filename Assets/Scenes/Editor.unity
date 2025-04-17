@@ -1152,7 +1152,7 @@ MonoBehaviour:
   waveMenuBtn: {fileID: 798309240}
   waveMenu: {fileID: 1243432271}
   hierarchyMenuBtn: {fileID: 1533735420}
-  hierarchyMenu: {fileID: 1449115376}
+  addObjectMenu: {fileID: 2023141254}
 --- !u!114 &74682703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1946,10 +1946,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1835265941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -20}
-  m_SizeDelta: {x: 460, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &153465977
 MonoBehaviour:
@@ -3337,10 +3337,10 @@ RectTransform:
   - {fileID: 1575085123}
   m_Father: {fileID: 1835265941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -210}
-  m_SizeDelta: {x: 460, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &281920188 stripped
 RectTransform:
@@ -6452,10 +6452,10 @@ RectTransform:
   - {fileID: 1589073179}
   m_Father: {fileID: 1835265941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -100}
-  m_SizeDelta: {x: 460, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &743069578
 CanvasRenderer:
@@ -6524,7 +6524,7 @@ MonoBehaviour:
   timeCooldown: {fileID: 1927089300}
   spinSpeed: {fileID: 831281948}
   lifeTime: {fileID: 1230441898}
-  angleUnit: {fileID: 1383741598}
+  unitAngle: {fileID: 1383741598}
   startAngle: {fileID: 960258637}
   spacing: {fileID: 29063226}
   position: {fileID: 1539876836}
@@ -6797,7 +6797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &774334667
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16374,11 +16374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5993584394162405134, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_Name
-      value: AngleUnit
+      value: UnitAngle
       objectReference: {fileID: 0}
     - target: {fileID: 6803995777660074432, guid: c599b2f90f2af5843b467c99f8979d0d, type: 3}
       propertyPath: m_text
-      value: Angle unit
+      value: Unit angle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -71,8 +71,8 @@ namespace SkyStrike
             {
 
             }
-            private void SpawnBullet(Vector3 pos, Vector3 speed)
-                => onCreateBullet.Invoke(bulletData, pos).SetSpeed(speed);
+            private void SpawnBullet(Vector3 pos, Vector3 velocity)
+                => onCreateBullet.Invoke(bulletData, pos).SetVelocity(velocity);
         }
     }
 }

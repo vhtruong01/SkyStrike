@@ -7,7 +7,6 @@ namespace SkyStrike
     {
         public class BulletSpawner : MonoBehaviour
         {
-            private const float TAU = Mathf.PI * 2;
             [SerializeField] private BulletObject prefab;
             private ObjectPool<BulletObject> objectPool;
             private BulletDataObserver bulletData;
@@ -32,7 +31,7 @@ namespace SkyStrike
             private void ReleaseBullet(BulletObject bullet) => bullet.gameObject.SetActive(false);
             public void FixedUpdate()
             {
-                if (bulletData == null || bulletData.timeCooldown.data == 0) return;
+                if (bulletData == null) return;
                 elaspedTime += Time.fixedDeltaTime;
                 if (elaspedTime >= bulletData.timeCooldown.data)
                 {
@@ -40,9 +39,8 @@ namespace SkyStrike
                         Spawn();
                     if (bulletData.isCircle.data && bulletData.spinSpeed.data > 0)
                     {
-                        spawnerAngle += TAU / 360 * bulletData.spinSpeed.data * elaspedTime;
-                        if (spawnerAngle >= TAU)
-                            spawnerAngle -= TAU;
+                        spawnerAngle += bulletData.spinSpeed.data * elaspedTime;
+                        spawnerAngle %= 360;
                     }
                     elaspedTime = 0;
                 }
@@ -51,25 +49,25 @@ namespace SkyStrike
             {
                 if (bulletData.isCircle.data)
                 {
-                    float unitAngle = TAU / bulletData.amount.data;
+                    float unitAngle = 360 / bulletData.amount.data;
                     for (int i = 0; i < bulletData.amount.data; i++)
                     {
                         var bullet = objectPool.Get();
-                        float angle = unitAngle * i + spawnerAngle;
-                        Vector2 dir = new(Mathf.Cos(angle), Mathf.Sin(angle));
+                        float angle = Mathf.Deg2Rad * (unitAngle * i + spawnerAngle);
+                        Vector2 dir = new(Mathf.Sin(angle), -Mathf.Cos(angle));
                         bullet.Init(bulletData, dir, originalPos + bulletData.position.data);
                     }
                 }
                 else
                 {
-                    float startAngle = bulletData.isLookingAtPlayer.data ? 0 : (TAU / 360 * bulletData.startAngle.data);
+                    float startAngle = bulletData.isLookingAtPlayer.data ? 0 : bulletData.startAngle.data;
                     float mid = 0.5f * (bulletData.amount.data - 1);
                     for (float i = -mid; i <= mid; i += 1f)
                     {
                         var bullet = objectPool.Get();
                         bullet.Init(bulletData,
-                            new(Mathf.Sin(startAngle + bulletData.angleUnit.data * i * TAU / 360), 
-                            -Mathf.Cos(startAngle + bulletData.angleUnit.data * i * TAU / 360)),
+                            new(Mathf.Sin((startAngle + bulletData.unitAngle.data * i) * Mathf.Deg2Rad),
+                            -Mathf.Cos((startAngle + bulletData.unitAngle.data * i) * Mathf.Deg2Rad)),
                             originalPos + bulletData.position.data + bulletData.spacing.data * i);
                     }
                 }
@@ -77,6 +75,7 @@ namespace SkyStrike
             public void ChangeBulletSpawner(BulletDataObserver bulletData)
             {
                 this.bulletData = bulletData;
+                if (bulletData == null) return;
                 elaspedTime = bulletData.timeCooldown.data;
                 spawnerAngle = 0;
                 for (int i = 0; i < transform.childCount; i++)

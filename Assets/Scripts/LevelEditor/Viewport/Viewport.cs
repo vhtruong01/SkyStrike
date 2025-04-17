@@ -12,14 +12,14 @@ namespace SkyStrike
             [SerializeField] private Button waveMenuBtn;
             [SerializeField] private Menu waveMenu;
             [SerializeField] private Button hierarchyMenuBtn;
-            [SerializeField] private Menu hierarchyMenu;
+            [SerializeField] private Menu addObjectMenu;
             private ViewportItemList viewportUIGroupPool;
 
             public override void Awake()
             {
                 base.Awake();
                 inspectorMenuBtn.onClick.AddListener(inspectorMenu.Show);
-                hierarchyMenuBtn.onClick.AddListener(hierarchyMenu.Show);
+                hierarchyMenuBtn.onClick.AddListener(addObjectMenu.Show);
                 waveMenuBtn.onClick.AddListener(waveMenu.Show);
             }
             public override void Init()

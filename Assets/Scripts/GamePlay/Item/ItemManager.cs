@@ -33,10 +33,10 @@ namespace SkyStrike
             }
             private void RandomStar(Vector3 position, int amount, EItem type)
             {
-                float angleUnit = 2 * Mathf.PI / amount;
+                float unitAngle = 2 * Mathf.PI / amount;
                 float startAngle = Random.Range(0, Mathf.PI * 2);
                 for (int i = 0; i < amount; i++)
-                    CreateItem(type, position, i * angleUnit + startAngle + Random.Range(0, angleUnit * 2));
+                    CreateItem(type, position, i * unitAngle + startAngle + Random.Range(0, unitAngle * 2));
             }
             private void CreateItem(EItem type, Vector3 position, float angle)
             {

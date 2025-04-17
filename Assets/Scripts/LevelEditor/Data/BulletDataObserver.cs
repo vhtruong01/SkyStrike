@@ -15,7 +15,7 @@ namespace SkyStrike
             public DataObserver<float> timeCooldown { get; private set; }
             public DataObserver<float> spinSpeed { get; private set; }
             public DataObserver<float> lifeTime { get; private set; }
-            public DataObserver<float> angleUnit { get; private set; }
+            public DataObserver<float> unitAngle { get; private set; }
             public DataObserver<float> startAngle { get; private set; }
             public DataObserver<Vector2> spacing { get; private set; }
             public DataObserver<Vector2> position { get; private set; }
@@ -33,7 +33,7 @@ namespace SkyStrike
                 timeCooldown = new();
                 spinSpeed = new();
                 lifeTime = new();
-                angleUnit = new();
+                unitAngle = new();
                 startAngle = new();
                 spacing = new();
                 position = new();
@@ -58,7 +58,7 @@ namespace SkyStrike
                 newData.timeCooldown.SetData(timeCooldown.data);
                 newData.spinSpeed.SetData(spinSpeed.data);
                 newData.lifeTime.SetData(lifeTime.data);
-                newData.angleUnit.SetData(angleUnit.data);
+                newData.unitAngle.SetData(unitAngle.data);
                 newData.startAngle.SetData(startAngle.data);
                 newData.spacing.SetData(spacing.data);
                 newData.position.SetData(position.data);
@@ -81,7 +81,7 @@ namespace SkyStrike
                     position = new(position.data),
                     spinSpeed = spinSpeed.data,
                     lifeTime = lifeTime.data,
-                    angleUnit = angleUnit.data,
+                    unitAngle = unitAngle.data,
                     startAngle = startAngle.data,
                     isCircle = isCircle.data,
                     isStartAwake = isStartAwake.data,
@@ -100,7 +100,7 @@ namespace SkyStrike
                 position.SetData(data.position.ToVector2());
                 spinSpeed.SetData(data.spinSpeed);
                 lifeTime.SetData(data.lifeTime);
-                angleUnit.SetData(data.angleUnit);
+                unitAngle.SetData(data.unitAngle);
                 startAngle.SetData(data.startAngle);
                 isCircle.SetData(data.isCircle);
                 isStartAwake.SetData(data.isStartAwake);

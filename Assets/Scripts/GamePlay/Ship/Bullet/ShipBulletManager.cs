@@ -14,9 +14,9 @@ namespace SkyStrike
             {
                 base.Awake();
                 spawners = new();
-                AddSpawner(EShipBulletType.NormalBullet);
-                AddSpawner(EShipBulletType.DoubleBullet);
-                AddSpawner(EShipBulletType.TripleBullet);
+                //AddSpawner(EShipBulletType.NormalBullet);
+                //AddSpawner(EShipBulletType.DoubleBullet);
+                //AddSpawner(EShipBulletType.TripleBullet);
                 EnableFire(true);
             }
             public void AddSpawner(EShipBulletType bulletType)

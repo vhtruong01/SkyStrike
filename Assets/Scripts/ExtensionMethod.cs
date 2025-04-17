@@ -3,6 +3,7 @@ using UnityEngine;
 
 public static class ExtensionMethod
 {
+    public static readonly int NULL_ID = -1;
     // List
     public static void Swap<T>(this List<T> list, int leftIndex, int rightIndex)
     {

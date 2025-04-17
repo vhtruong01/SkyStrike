@@ -59,6 +59,7 @@ namespace SkyStrike
             private void Clear()
             {
                 pointItemList.Clear();
+                DisplayPointInfo(null);
                 GetDataList().GetList(out var dataList);
                 var pos = dataList[0];
                 dataList.Clear();

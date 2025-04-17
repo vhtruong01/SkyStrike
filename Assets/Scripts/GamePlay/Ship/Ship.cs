@@ -14,7 +14,7 @@ namespace SkyStrike
                 {
                     Item item = collision.GetComponent<Item>();
                     CollectItem(item);
-                    item.Release();
+                    item.Disappear();
                     return;
                 }
                 if (collision.CompareTag("EnemyBullet"))

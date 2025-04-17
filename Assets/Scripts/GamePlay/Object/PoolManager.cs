@@ -6,7 +6,7 @@ namespace SkyStrike
 {
     namespace Game
     {
-        public abstract class PoolManager<T, K> : MonoBehaviour where T : PoolableObject<K>
+        public abstract class PoolManager<T, K> : MonoBehaviour where T : PoolableObject<K> where K : IGame
         {
             [SerializeField] private PoolableObject<K> prefab;
             [SerializeField] private Transform container;

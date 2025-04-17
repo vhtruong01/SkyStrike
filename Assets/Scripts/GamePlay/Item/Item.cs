@@ -8,14 +8,13 @@ namespace SkyStrike
     {
         public class Item : PoolableObject<ItemData>, IPullable
         {
-            private ItemData data;
             private float elapsedTime;
             private Tweener tweener;
 
             public EItem GetItemType() => data.type;
             public override void SetData(ItemData data)
             {
-                this.data = data;
+                base.SetData(data);
                 transform.localScale = Vector3.one * (data.size == 0 ? 1 : data.size);
                 spriteRenderer.sprite = data.sprite;
                 spriteRenderer.material = data.material;
@@ -41,21 +40,21 @@ namespace SkyStrike
                     curTime += Time.deltaTime;
                 }
                 transform.localScale = data.size * Vector3.one;
-                /// item animation
+                // item animation
                 //tweener = transform.DORotate(new(0, 0, 360), 5, RotateMode.FastBeyond360)
                 //        .SetEase(Ease.InOutFlash)
                 //        .SetLoops(-1);
             }
-            public override void Release()
+            public override void Disappear()
             {
                 tweener?.Kill();
-                base.Release();
+                base.Disappear();
             }
             public void Update()
             {
                 if (elapsedTime >= ItemData.lifeTime)
                 {
-                    Release();
+                    Disappear();
                     return;
                 }
                 elapsedTime += Time.deltaTime;

@@ -8,40 +8,45 @@ namespace SkyStrike
     {
         public class EnemyMovement : MonoBehaviour
         {
-            private MoveData moveData;
+            private Enemy enemy;
+            private EnemyBulletSpawner spawner;
             private Vector2 dir;
 
-            public IEnumerator Move(MoveData moveData)
+            public void Awake()
             {
-                dir = Vector2.down;
-                transform.eulerAngles = new();
-                this.moveData = moveData;
-                if (moveData.velocity > 0)
-                {
-                    int index = 0;
-                    while (index < moveData.points.Length)
-                    {
-                        Point point = moveData.points[index];
-                        yield return new WaitForSeconds(point.standingTime);
-                        //rotate
-                        if (index < moveData.points.Length - 1)
-                        {
-                            Point nextPoint = moveData.points[index + 1];
-                            yield return StartCoroutine(
-                                point.isStraightLine
-                                ? MoveStraight(point, nextPoint)
-                                : MoveCurve(point, nextPoint));
-                        }
-                        index++;
-                    }
-                }
-                GetComponent<Enemy>().Release();
+                enemy = GetComponent<Enemy>();
+                spawner = GetComponent<EnemyBulletSpawner>();
             }
-            private IEnumerator MoveStraight(Point startPoint, Point nextPoint)
+            public IEnumerator Move()
+            {
+                MoveData moveData = enemy.data.moveData;
+                dir = Vector2.down;
+                transform.eulerAngles = new(0, 0, 0);
+                int index = 0;
+                while (index < moveData.points.Length)
+                {
+                    Point point = moveData.points[index];
+                    EnemyBulletData bulletData = point.bulletDataList.Length > 0 ? point.bulletDataList[0] : null;
+                    spawner.SetData(bulletData);
+                    yield return new WaitForSeconds(point.standingTime);
+                    if (index < moveData.points.Length - 1)
+                    {
+                        Point nextPoint = moveData.points[index + 1];
+                        yield return StartCoroutine(
+                            point.isStraightLine
+                            ? MoveStraight(point, nextPoint, moveData.velocity)
+                            : MoveCurve(point, nextPoint, moveData.velocity));
+                    }
+                    index++;
+                }
+                if (!enemy.data.isMaintain)
+                    enemy.Disappear();
+            }
+            private IEnumerator MoveStraight(Point startPoint, Point nextPoint, float velocity)
             {
                 Vector2 startPos = startPoint.midPos.ToVector2();
                 Vector2 nextPos = nextPoint.midPos.ToVector2();
-                float time = (startPos - nextPos).magnitude / moveData.velocity;
+                float time = (startPos - nextPos).magnitude / velocity;
                 if (time <= 0) yield break;
                 float elapsedTime = 0;
                 Rotate(nextPos - startPos);
@@ -52,7 +57,7 @@ namespace SkyStrike
                     elapsedTime += Time.deltaTime;
                 }
             }
-            private IEnumerator MoveCurve(Point startPoint, Point nextPoint)
+            private IEnumerator MoveCurve(Point startPoint, Point nextPoint, float velocity)
             {
                 Vector2 startPos = startPoint.midPos.ToVector2();
                 Vector2 pos2 = startPoint.nextPos.ToVector2();
@@ -62,7 +67,7 @@ namespace SkyStrike
                         + (pos2 - pos3).magnitude
                         + (nextPos - pos3).magnitude
                         + (startPos - nextPos).magnitude)
-                        / moveData.velocity / 2;
+                        / velocity / 2;
                 if (time <= 0) yield break;
                 float elapsedTime = 0;
                 float deltaTime = Time.deltaTime;
@@ -81,10 +86,9 @@ namespace SkyStrike
                     //
                     var dir = newPos - transform.position;
                     float len = dir.magnitude;
-                    float time2 = len / moveData.velocity;
+                    float time2 = len / velocity;
                     coefficient = deltaTime / time2;
                     dir *= coefficient;
-                    print(dir + " " + coefficient + " ");
                     Rotate(dir.normalized);
                     transform.position += dir;
                     deltaTime = Time.deltaTime;

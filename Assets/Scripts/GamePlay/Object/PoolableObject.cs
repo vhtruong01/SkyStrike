@@ -7,6 +7,7 @@ namespace SkyStrike
     {
         public abstract class PoolableObject<T> : MonoBehaviour, IPoolableObject
         {
+            public T data { get; protected set; }
             protected SpriteRenderer spriteRenderer;
             protected BoxCollider2D col;
             public UnityAction<PoolableObject<T>> onDestroy { private get; set; }
@@ -16,9 +17,8 @@ namespace SkyStrike
                 spriteRenderer = GetComponentInChildren<SpriteRenderer>();
                 col = GetComponentInChildren<BoxCollider2D>();
             }
-            public abstract void SetData(T data);
-            public virtual void Release() => onDestroy?.Invoke(this);
-            public virtual void OnTriggerEnter2D(Collider2D collision) { }
+            public virtual void SetData(T data) => this.data = data;
+            public virtual void Disappear() => onDestroy?.Invoke(this);
         }
     }
 }

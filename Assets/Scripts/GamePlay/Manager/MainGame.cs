@@ -13,7 +13,7 @@ namespace SkyStrike
             {
                 print("start game");
                 var level = Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
-                enemyManager.Play(level.waves);
+                enemyManager.Play(level);
             }
             public void OpenEditor() => GameManager.OpenEditor();
         }

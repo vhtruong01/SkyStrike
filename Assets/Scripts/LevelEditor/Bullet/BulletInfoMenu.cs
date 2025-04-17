@@ -12,7 +12,7 @@ namespace SkyStrike
             [SerializeField] private FloatProperty timeCooldown;
             [SerializeField] private FloatProperty spinSpeed;
             [SerializeField] private FloatProperty lifeTime;
-            [SerializeField] private FloatProperty angleUnit;
+            [SerializeField] private FloatProperty unitAngle;
             [SerializeField] private FloatProperty startAngle;
             [SerializeField] private Vector2Property spacing;
             [SerializeField] private Vector2Property position;
@@ -25,7 +25,7 @@ namespace SkyStrike
             {
                 base.Init();
                 isCircle.BindToOtherProperty(spacing, false);
-                isCircle.BindToOtherProperty(angleUnit, false);
+                isCircle.BindToOtherProperty(unitAngle, false);
                 isCircle.BindToOtherProperty(spinSpeed, true);
                 isCircle.BindToOtherProperty(startAngle, false);
                 isCircle.BindToOtherProperty(isLookingAtPlayer, false);
@@ -39,7 +39,7 @@ namespace SkyStrike
                 timeCooldown.Bind(data.timeCooldown);
                 spinSpeed.Bind(data.spinSpeed);
                 lifeTime.Bind(data.lifeTime);
-                angleUnit.Bind(data.angleUnit);
+                unitAngle.Bind(data.unitAngle);
                 startAngle.Bind(data.startAngle);
                 spacing.Bind(data.spacing);
                 position.Bind(data.position);
@@ -59,7 +59,7 @@ namespace SkyStrike
                 lifeTime.Unbind();
                 spacing.Unbind();
                 position.Unbind();
-                angleUnit.Unbind();
+                unitAngle.Unbind();
                 isCircle.Unbind();
                 isStartAwake.Unbind();
                 isLookingAtPlayer.Unbind();

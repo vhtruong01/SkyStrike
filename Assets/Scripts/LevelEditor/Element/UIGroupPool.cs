@@ -77,9 +77,9 @@ namespace SkyStrike
                 var item = pool.Get();
                 item.SetData(data);
                 item.index = items.Count;
-                if (!string.IsNullOrEmpty(defaultName))
-                    item.SetName("New " + defaultName);
                 items.Add(item);
+                if (!string.IsNullOrEmpty(defaultName))
+                    item.SetName("New " + defaultName + " " + items.Count);
                 Diminish(item);
                 item.gameObject.SetActive(true);
                 item.gameObject.transform.SetAsLastSibling();

@@ -4,7 +4,7 @@ namespace SkyStrike
     {
         public interface IPoolableObject
         {
-            public void Release();
+            public void Disappear();
         }
     }
 }

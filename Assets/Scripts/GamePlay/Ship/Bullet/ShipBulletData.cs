@@ -2,7 +2,7 @@ namespace SkyStrike
 {
     namespace Game
     {
-        public class ShipBulletData
+        public class ShipBulletData : IGame
         {
             public int lv { get; protected set; }
             public int dmg { get; protected set; }

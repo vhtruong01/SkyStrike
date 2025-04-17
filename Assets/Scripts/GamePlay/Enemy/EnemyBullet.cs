@@ -4,16 +4,16 @@ namespace SkyStrike
 {
     namespace Game
     {
-        public class ShipBullet : PoolableObject<ShipBulletData>
+        public class EnemyBullet : PoolableObject<EnemyBulletData>
         {
-            private float timeLife;
+            private float elapsedTime;
             private Vector3 velocity;
 
-            public override void SetData(ShipBulletData data)
+            public override void SetData(EnemyBulletData data)
             {
-                spriteRenderer.sprite = data.metaData.sprite;
-                spriteRenderer.material = data.metaData.material;
-                timeLife = data.metaData.timeLife;
+                base.SetData(data);
+                elapsedTime =  0;
+                transform.localScale = Vector3.one * data.size;
             }
             public void SetVelocity(Vector3 velocity)
             {
@@ -22,13 +22,10 @@ namespace SkyStrike
             }
             public void Update()
             {
-                if (timeLife <= 0)
-                {
-                    Disappear();
-                    return;
-                }
-                timeLife -= Time.deltaTime;
+                elapsedTime += Time.deltaTime;
                 transform.position += velocity * Time.deltaTime;
+                if (elapsedTime >= data.lifeTime)
+                    Disappear();
             }
         }
     }

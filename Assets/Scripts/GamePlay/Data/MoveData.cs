@@ -10,6 +10,7 @@ namespace SkyStrike
             [Serializable]
             public class Point : ICloneable, IGame
             {
+                [NonSerialized] public EnemyBulletData[] bulletDataList;
                 public Vec2 prevPos;
                 public Vec2 midPos;
                 public Vec2 nextPos;
