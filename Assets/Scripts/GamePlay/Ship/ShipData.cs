@@ -1,29 +1,42 @@
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Events;
 
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
+    public class ShipData
     {
-        [CreateAssetMenu(fileName = "Ship", menuName = "Data/Ship")]
-        public class ShipData : ScriptableObject, IGame
+        private int _hp;
+        private int _star;
+        public int hp
         {
-            public List<Skill> skills;
-            [field: SerializeField] public ShieldSkill shieldSkill { get; set; }
-            [field: SerializeField] public int hp { get; set; }
-            [field: SerializeField] public int maxHp { get; set; }
-            [field: SerializeField] public float speed { get; set; }
-            [field: SerializeField] public int star { get; set; }
-            [field: SerializeField] public Color bulletColor { get; set; }
-
-            public void OnEnable()
+            get => _hp;
+            set
             {
-                foreach (var skill in skills)
-                    skill.Reset();
-                hp = 4;
-                maxHp = 6;
-                star = 0;
+                _hp = value;
+                onCollectHealth.Invoke(hp);
             }
+        }
+        public int star
+        {
+            get => _star;
+            set
+            {
+                _star = value;
+                onCollectStar.Invoke(_star);
+            }
+        }
+        public int maxHp { get; set; }
+        public float speed { get; set; }
+        public UnityEvent<int> onCollectStar { get; private set; }
+        public UnityEvent<int> onCollectHealth { get; private set; }
+
+        public ShipData(ShipMetaData metaData)
+        {
+            onCollectStar = new();
+            onCollectHealth = new();
+            _hp = metaData.hp;
+            _star = metaData.star;
+            maxHp = metaData.maxHp;
+            speed = metaData.speed;
         }
     }
 }

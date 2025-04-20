@@ -1,10 +1,7 @@
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
+    public interface IPoolableObject
     {
-        public interface IPoolableObject
-        {
-            public void Disappear();
-        }
+        public void Disappear();
     }
 }

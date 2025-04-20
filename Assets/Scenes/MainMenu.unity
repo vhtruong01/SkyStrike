@@ -439,7 +439,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.29, y: 0, z: 0}
-  m_LocalScale: {x: 7.5, y: 7.5, z: 7.5}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -1037,6 +1037,7 @@ MonoBehaviour:
   gameManager: {fileID: 11400000, guid: ef8be5f747005cc43a2825657b590347, type: 2}
   container: {fileID: 365202706}
   levelCardPrefab: {fileID: 5338375196595777877, guid: 7e446c971dab34446952cd362c2fcff7, type: 3}
+  mainMenu: {fileID: 1395042807}
 --- !u!1 &365202705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,8 +1072,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0008544922, y: 0}
-  m_SizeDelta: {x: -1820.0001, y: 0}
+  m_AnchoredPosition: {x: -0.0009765625, y: 0}
+  m_SizeDelta: {x: -1819.7471, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &365202707
 MonoBehaviour:
@@ -1232,6 +1233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 702073771}
   - component: {fileID: 702073772}
+  - component: {fileID: 702073773}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -1288,6 +1290,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &702073773
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702073770}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &717028360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,10 +1689,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1395042806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -540}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948964842
 MonoBehaviour:
@@ -2679,7 +2693,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2752,6 +2766,7 @@ MonoBehaviour:
   shipMenu: {fileID: 2071086932}
   settingMenu: {fileID: 1277789680}
   exitMenu: {fileID: 810099818}
+  gameManager: {fileID: 11400000, guid: ef8be5f747005cc43a2825657b590347, type: 2}
   levelButton: {fileID: 736942166}
   shipBtn: {fileID: 2034719072}
   settingBtn: {fileID: 2093384199}
@@ -3721,7 +3736,6 @@ GameObject:
   - component: {fileID: 1851416936}
   - component: {fileID: 1851416935}
   - component: {fileID: 1851416937}
-  - component: {fileID: 1851416939}
   - component: {fileID: 1851416938}
   m_Layer: 5
   m_Name: HomePanel
@@ -3824,18 +3838,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!225 &1851416939
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851416933}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &1869986328
 GameObject:
   m_ObjectHideFlags: 0

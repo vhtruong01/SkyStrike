@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
-    {
         public class ShipBulletManager : PoolManager<ShipBullet, ShipBulletData>
         {
             [SerializeField] private List<ShipBulletMetaData> bulletDataList;
@@ -16,8 +14,7 @@ namespace SkyStrike
                 spawners = new();
                 //AddSpawner(EShipBulletType.NormalBullet);
                 //AddSpawner(EShipBulletType.DoubleBullet);
-                //AddSpawner(EShipBulletType.TripleBullet);
-                EnableFire(true);
+                AddSpawner(EShipBulletType.TripleBullet);
             }
             public void AddSpawner(EShipBulletType bulletType)
             {
@@ -37,11 +34,10 @@ namespace SkyStrike
                     spawner.Upgrade();
                 else AddSpawner(bulletType);
             }
-            public void EnableFire(bool isEnabled)
+            public void SetActive(bool isEnabled)
             {
                 foreach (var spawner in spawners.Values)
                     spawner.isEnabled = isEnabled;
             }
         }
     }
-}

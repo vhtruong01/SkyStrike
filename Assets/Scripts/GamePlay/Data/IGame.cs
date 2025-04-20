@@ -1,7 +1,4 @@
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
-    {
-        public interface IGame : IData { }
-    }
+    public interface IGame : IData { }
 }

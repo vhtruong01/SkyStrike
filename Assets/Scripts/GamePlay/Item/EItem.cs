@@ -1,23 +1,20 @@
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
+    public enum EItem
     {
-        public enum EItem
-        {
-            None = 0,
-            Health,
-            Star1,
-            Star5,
-            Shield,
-            Comet,
+        None = 0,
+        Health,
+        Star1,
+        Star5,
+        Shield,
+        Comet,
 
-        }
-        public enum EItemAnimationType
-        {
-            None = 0,
-            Zoom,
-            ZoomFade,
-            ZoomRotate
-        }
+    }
+    public enum EItemAnimationType
+    {
+        None = 0,
+        Zoom,
+        Rotate,
+        Fade,
     }
 }

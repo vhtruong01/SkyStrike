@@ -41,10 +41,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.5
+    - _Alpha: 1
     - _Float: 0.1
     m_Colors:
-    - _Color: {r: 2, g: 2, b: 2, a: 1}
+    - _Color: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7779978929065720409

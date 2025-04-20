@@ -2,28 +2,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SkyStrike
+namespace SkyStrike.UI
 {
-    namespace UI
+    public class HpBar : MonoBehaviour
     {
-        public class HpBar : MonoBehaviour
-        {
-            [SerializeField] private float dimAlpha;
-            [SerializeField] private List<Image> elements;
+        [SerializeField] private float dimAlpha;
+        [SerializeField] private List<Image> elements;
 
-            public void SetData(int value)
+        public void SetData(int value)
+        {
+            int n = Mathf.Min(value, elements.Count);
+            for (int i = 0; i < n; i++)
             {
-                int n = Mathf.Min(value, elements.Count);
-                for (int i = 0; i < n; i++)
-                {
-                    elements[i].gameObject.SetActive(true);
-                    elements[i].color = elements[i].color.ChangeAlpha(1);
-                }
-                for (int i = n; i < elements.Count; i++)
-                {
-                    elements[i].gameObject.SetActive(true);
-                    elements[i].color = elements[i].color.ChangeAlpha(dimAlpha);
-                }
+                elements[i].gameObject.SetActive(true);
+                elements[i].color = elements[i].color.ChangeAlpha(1);
+            }
+            for (int i = n; i < elements.Count; i++)
+            {
+                elements[i].gameObject.SetActive(true);
+                elements[i].color = elements[i].color.ChangeAlpha(dimAlpha);
             }
         }
     }

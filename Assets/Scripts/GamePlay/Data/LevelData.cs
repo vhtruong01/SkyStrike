@@ -1,17 +1,14 @@
 using System;
 
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
+    [Serializable]
+    public class LevelData : IGame
     {
-        [Serializable]
-        public class LevelData : IGame
-        {
-            public int curBulletId;
-            public int starRating;
-            public string name;
-            public WaveData[] waves;
-            public EnemyBulletData[] bullets;
-        }
+        public int curBulletId;
+        public int starRating;
+        public string name;
+        public WaveData[] waves;
+        public EnemyBulletData[] bullets;
     }
 }

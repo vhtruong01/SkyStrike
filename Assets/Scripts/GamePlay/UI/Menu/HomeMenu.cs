@@ -1,10 +1,7 @@
-namespace SkyStrike
+namespace SkyStrike.UI
 {
-    namespace UI
+    public class HomeMenu : Menu
     {
-        public class HomeMenu : Menu
-        {
 
-        }
     }
 }

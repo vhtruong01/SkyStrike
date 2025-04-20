@@ -1,10 +1,7 @@
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
+    public interface IPullable : IObject, IPoolableObject
     {
-        public interface IPullable : IObject, IPoolableObject
-        {
-            public void HandleAffectedByGravity(UnityEngine.Vector2 dir);
-        }
+        public void HandleAffectedByGravity(UnityEngine.Vector2 dir);
     }
 }

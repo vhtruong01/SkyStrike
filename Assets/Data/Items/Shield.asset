@@ -15,5 +15,5 @@ MonoBehaviour:
   <size>k__BackingField: 1.2
   <sprite>k__BackingField: {fileID: 21300000, guid: 81b24d838af78d2419e752041a4bbe05, type: 3}
   <type>k__BackingField: 4
-  <animationType>k__BackingField: 0
+  <animationType>k__BackingField: 1
   <material>k__BackingField: {fileID: 2100000, guid: 594f81c5fde3635428785ae4e81fe6ef, type: 2}
