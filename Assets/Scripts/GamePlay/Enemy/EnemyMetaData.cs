@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike.Game
@@ -11,5 +12,10 @@ namespace SkyStrike.Game
         [field: SerializeField] public Sprite sprite { get; private set; }
         [field: SerializeField] public Color color { get; private set; }
         [field: SerializeField] public string type { get; private set; }
+        [field: SerializeField] public List<Sprite> destructionSprites { get; private set; }
+        [field: SerializeField] public List<Sprite> engineSprites { get; private set; }
+        [field: SerializeField] public List<Sprite> shieldSprites { get; private set; }
+        [field: SerializeField] public List<Sprite> weaponSprites { get; private set; }
+
     }
 }

@@ -30,9 +30,9 @@ namespace SkyStrike.Game
         public virtual T InstantiateItem(K data, Vector3 position)
         {
             var item = pool.Get();
-            item.SetData(data);
             item.transform.localScale = Vector3.one;
             item.transform.position = position;
+            item.SetData(data);
             return item;
         }
         public void Clear()

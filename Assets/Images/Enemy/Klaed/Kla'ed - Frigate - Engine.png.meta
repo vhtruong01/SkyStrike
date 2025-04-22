@@ -64,7 +64,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -130,10 +130,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 9
-        width: 16
-        height: 8
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_1
       rect:
         serializedVersion: 2
-        x: 90
-        y: 9
-        width: 12
-        height: 8
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,10 +174,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_2
       rect:
         serializedVersion: 2
-        x: 156
-        y: 9
-        width: 70
-        height: 8
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +196,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_3
       rect:
         serializedVersion: 2
-        x: 284
-        y: 9
-        width: 8
-        height: 8
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +218,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_4
       rect:
         serializedVersion: 2
-        x: 346
-        y: 9
-        width: 12
-        height: 8
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,10 +240,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_5
       rect:
         serializedVersion: 2
-        x: 408
-        y: 9
-        width: 16
-        height: 8
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,10 +262,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_6
       rect:
         serializedVersion: 2
-        x: 474
-        y: 9
-        width: 12
-        height: 8
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,10 +284,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_7
       rect:
         serializedVersion: 2
-        x: 540
-        y: 9
-        width: 70
-        height: 8
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -306,10 +306,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_8
       rect:
         serializedVersion: 2
-        x: 668
-        y: 9
-        width: 8
-        height: 8
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,10 +328,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Engine_9
       rect:
         serializedVersion: 2
-        x: 730
-        y: 9
-        width: 12
-        height: 8
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -346,11 +346,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Kla'ed - Frigate - Engine_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2a546acaf7c95f4bbc454acfea58ec2
+      internalID: -2112937847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kla'ed - Frigate - Engine_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8470e7a12352c48904d7cde9396119
+      internalID: -1719544827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 63b5270aa9cf45344a8a5a31ea54dc5f
     internalID: 0
     vertices: []
     indices: 
@@ -362,6 +406,8 @@ TextureImporter:
     nameFileIdTable:
       Kla'ed - Frigate - Engine_0: 8645048498599579005
       Kla'ed - Frigate - Engine_1: 553332728198384853
+      Kla'ed - Frigate - Engine_10: -2112937847
+      Kla'ed - Frigate - Engine_11: -1719544827
       Kla'ed - Frigate - Engine_2: 3173955377237940096
       Kla'ed - Frigate - Engine_3: 3555899451495536359
       Kla'ed - Frigate - Engine_4: 41393356667485333

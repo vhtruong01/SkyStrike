@@ -7,12 +7,10 @@ namespace SkyStrike.Game
     {
         [SerializeField] private List<ItemData> items;
         private Dictionary<EItem, ItemData> itemDict;
-        private float speed;
 
         public override void Awake()
         {
             base.Awake();
-            speed = 0.75f;
             itemDict = new();
             foreach (ItemData item in items)
                 itemDict.Add(item.type, item);
@@ -43,7 +41,7 @@ namespace SkyStrike.Game
             if (itemDict.TryGetValue(type, out ItemData itemData))
             {
                 Item item = InstantiateItem(itemData, position);
-                item.Appear(Random.Range(0.25f, 1f) * speed * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
+                item.Appear(Random.Range(0.2f, 1f)  * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
             }
         }
     }

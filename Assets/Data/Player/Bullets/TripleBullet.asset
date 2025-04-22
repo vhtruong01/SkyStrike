@@ -12,11 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36986dba5959359438358f17466b3528, type: 3}
   m_Name: TripleBullet
   m_EditorClassIdentifier: 
-  <maxLevel>k__BackingField: 6
-  <dmg>k__BackingField: 200
+  <maxLevel>k__BackingField: 3
+  <scale>k__BackingField: 1
+  <dmg>k__BackingField: 300
   <speed>k__BackingField: 5
-  <timeCooldown>k__BackingField: 0.2
+  <timeCooldown>k__BackingField: 1
   <timeLife>k__BackingField: 3
   <sprite>k__BackingField: {fileID: 21300000, guid: 1ba7ab4a1e1687f4c94b51af173a31d9, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: cc09c45b41c48c6439cff1f63304028d, type: 2}
   <type>k__BackingField: 2
+  <dmgLvUp>k__BackingField: 2c01000090010000f4010000
+  <speedLvUp>k__BackingField: []
+  <cooldownLvUp>k__BackingField:
+  - 0.9
+  - 0.8
+  - 0.7
+  <scaleLvUp>k__BackingField:
+  - 1
+  - 1
+  - 1.2

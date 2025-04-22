@@ -1,7 +1,8 @@
 namespace SkyStrike.Game
 {
-    public interface IPullable : IObject, IPoolableObject
+    public interface IMagnetic : IObject, IPoolableObject
     {
+        public bool isMagnetic { get; set; }
         public void HandleAffectedByGravity(UnityEngine.Vector2 dir);
     }
 }

@@ -46,7 +46,7 @@ namespace SkyStrike
             }
             public override void Init()
             {
-                base.Init();    
+                base.Init();
                 dropItemUIGroupPool = gameObject.GetComponent<DropItemList>();
                 dropItemUIGroupPool.Init(SelectDropItem);
                 foreach (var item in dropItemDataList)

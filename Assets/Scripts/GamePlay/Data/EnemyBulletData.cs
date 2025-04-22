@@ -8,13 +8,13 @@ namespace SkyStrike.Game
         public int id;
         public string name;
         public float size;
-        public float velocity;//
+        public float velocity;
         public float timeCooldown;
         public float spinSpeed;
         public float lifeTime;
-        public float unitAngle;//
+        public float unitAngle;
         public float startAngle;
-        public Vec2 spacing;//
+        public Vec2 spacing;
         public Vec2 position;
         public bool isCircle;
         public bool isStartAwake;

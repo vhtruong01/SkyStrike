@@ -23,14 +23,16 @@ namespace SkyStrike
             [SerializeField] private Button pasteBtn;
             [SerializeField] private Button removeBtn;
             [SerializeField] private Button cutBtn;
+            [SerializeField] private Button editMovementBtn;
             [SerializeField] private Button bulletEditorBtn;
             [SerializeField] private BulletEditor bulletEditor;
+            [SerializeField] private PathMenu pathMenu;
             private ObjectDataObserver tempItemData;
             private ObjectDataObserver curObjectDataObserver;
 
             public void Awake()
             {
-                copyBtn.interactable = removeBtn.interactable = cutBtn.interactable = pasteBtn.interactable = false;
+                copyBtn.interactable = removeBtn.interactable = cutBtn.interactable = pasteBtn.interactable = editMovementBtn.interactable = false;
                 copyBtn.onClick.AddListener(Copy);
                 pasteBtn.onClick.AddListener(Paste);
                 removeBtn.onClick.AddListener(Remove);
@@ -38,6 +40,7 @@ namespace SkyStrike
                 playGameBtn.onClick.AddListener(TestGame);
                 levelInfoBtn.onClick.AddListener(levelMenu.Show);
                 bulletEditorBtn.onClick.AddListener(bulletEditor.Show);
+                editMovementBtn.onClick.AddListener(pathMenu.Show);
                 saveLevelBtn.onClick.AddListener(SaveLevel);
                 exitBtn.onClick.AddListener(Application.Quit);
                 EventManager.onSelectObject.AddListener(SelectObject);
@@ -45,7 +48,7 @@ namespace SkyStrike
             private void SelectObject(ObjectDataObserver data)
             {
                 curObjectDataObserver = data;
-                copyBtn.interactable = removeBtn.interactable = cutBtn.interactable = curObjectDataObserver != null;
+                copyBtn.interactable = removeBtn.interactable = cutBtn.interactable = editMovementBtn.interactable = curObjectDataObserver != null;
             }
             protected void Copy()
             {
@@ -71,7 +74,7 @@ namespace SkyStrike
                 Copy();
                 Remove();
             }
-            private void SaveLevel() 
+            private void SaveLevel()
                 => controller.SaveLevelData();
             private void TestGame()
             {

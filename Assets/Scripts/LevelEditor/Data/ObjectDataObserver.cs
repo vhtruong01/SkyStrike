@@ -108,9 +108,10 @@ namespace SkyStrike
             public void ImportData(ObjectData objectData)
             {
                 if (objectData == null) return;
+                EventManager.GetMetaData(objectData.metaId, out var meta);
+                metaData.OnlySetData(meta);
                 id.SetData(objectData.id);
                 refId = objectData.refId;
-                metaData.OnlySetData(EventManager.GetMetaData(objectData.metaId));
                 name.OnlySetData(objectData.name);
                 size.OnlySetData(objectData.size);
                 cloneCount.OnlySetData(objectData.cloneCount);

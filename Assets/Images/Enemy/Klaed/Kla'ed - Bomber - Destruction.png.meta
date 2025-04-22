@@ -85,7 +85,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -99,7 +99,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -151,19 +151,19 @@ TextureImporter:
       name: Kla'ed - Bomber - Destruction_0
       rect:
         serializedVersion: 2
-        x: 266
-        y: 9
-        width: 45
-        height: 44
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b733ca35959baf2b0800000000000000
+      spriteID: 4681dce7b7145444cbe4720e9cdec078
       internalID: -5549919797473692805
       vertices: []
       indices: 
@@ -173,19 +173,19 @@ TextureImporter:
       name: Kla'ed - Bomber - Destruction_1
       rect:
         serializedVersion: 2
-        x: 351
-        y: 29
-        width: 33
-        height: 33
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 335b5426a2432b630800000000000000
+      spriteID: f650671aade4b14438d0a67906022d28
       internalID: 3941269980544611635
       vertices: []
       indices: 
@@ -195,19 +195,19 @@ TextureImporter:
       name: Kla'ed - Bomber - Destruction_2
       rect:
         serializedVersion: 2
-        x: 437
-        y: 49
-        width: 11
-        height: 12
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc6c99ccaab875100800000000000000
+      spriteID: 771068abffabd6749ad50ec7693a1a81
       internalID: 96699482705086156
       vertices: []
       indices: 
@@ -217,19 +217,19 @@ TextureImporter:
       name: Kla'ed - Bomber - Destruction_3
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
-        width: 32
-        height: 29
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d9dac02e90146ca10800000000000000
+      spriteID: f3bf4a78f59ef49418638bb81a9c14f8
       internalID: 1929301001077829021
       vertices: []
       indices: 
@@ -239,19 +239,19 @@ TextureImporter:
       name: Kla'ed - Bomber - Destruction_4
       rect:
         serializedVersion: 2
-        x: 80
-        y: 16
-        width: 32
-        height: 29
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4d06ba3cb59189e30800000000000000
+      spriteID: 91d227a914bca7340bb1af92b8c2d301
       internalID: 4510382908727058644
       vertices: []
       indices: 
@@ -261,19 +261,19 @@ TextureImporter:
       name: Kla'ed - Bomber - Destruction_5
       rect:
         serializedVersion: 2
-        x: 144
-        y: 16
-        width: 32
-        height: 29
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5587fdc03e2a34df0800000000000000
+      spriteID: 084d0ca6a03bce74ca205015948a1d2b
       internalID: -197134862616922027
       vertices: []
       indices: 
@@ -283,19 +283,19 @@ TextureImporter:
       name: Kla'ed - Bomber - Destruction_6
       rect:
         serializedVersion: 2
-        x: 210
-        y: 18
-        width: 27
-        height: 27
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 793daccca2a66d8d0800000000000000
+      spriteID: 971abe3eb6821fc4caacf8038e60cf50
       internalID: -2821951384444021865
       vertices: []
       indices: 
@@ -305,218 +305,20 @@ TextureImporter:
       name: Kla'ed - Bomber - Destruction_7
       rect:
         serializedVersion: 2
-        x: 327
-        y: 26
-        width: 23
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6192c809f199cc8d0800000000000000
-      internalID: -2824714505420003050
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_8
-      rect:
-        serializedVersion: 2
-        x: 391
-        y: 24
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8aa000b613f1e0880800000000000000
-      internalID: -8642936337768379736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_9
-      rect:
-        serializedVersion: 2
-        x: 425
-        y: 29
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d152adabff775e150800000000000000
-      internalID: 5901254826974127389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_10
-      rect:
-        serializedVersion: 2
-        x: 455
-        y: 22
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa0a6fad82f3e7b10800000000000000
-      internalID: 1981090330794434730
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_11
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 27
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 087fc3d97784d8ad0800000000000000
-      internalID: -2698420923148732544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_12
-      rect:
-        serializedVersion: 2
-        x: 321
+        x: 448
         y: 0
-        width: 19
-        height: 22
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f88db306b3feb46d0800000000000000
-      internalID: -3005045288043030385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_13
-      rect:
-        serializedVersion: 2
-        x: 341
-        y: 10
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1252c0f790a4a89b0800000000000000
-      internalID: -5077164225260149471
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_14
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 2
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2a91ee0453851790800000000000000
-      internalID: -7559992002421351892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_15
-      rect:
-        serializedVersion: 2
-        x: 408
-        y: 9
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 84e90f2b4fb7e55b0800000000000000
-      internalID: -5377724614129443256
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Bomber - Destruction_16
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 8
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 557051fa3408a8a40800000000000000
-      internalID: 5371246533781292885
+      spriteID: b3b4c684851d7ab47bd7f58d58c5279a
+      internalID: -2824714505420003050
       vertices: []
       indices: 
       edges: []
@@ -525,7 +327,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b8e874e9faeaaba45af23294a04c78d0
     internalID: 0
     vertices: []
     indices: 
@@ -537,21 +339,12 @@ TextureImporter:
     nameFileIdTable:
       Kla'ed - Bomber - Destruction_0: -5549919797473692805
       Kla'ed - Bomber - Destruction_1: 3941269980544611635
-      Kla'ed - Bomber - Destruction_10: 1981090330794434730
-      Kla'ed - Bomber - Destruction_11: -2698420923148732544
-      Kla'ed - Bomber - Destruction_12: -3005045288043030385
-      Kla'ed - Bomber - Destruction_13: -5077164225260149471
-      Kla'ed - Bomber - Destruction_14: -7559992002421351892
-      Kla'ed - Bomber - Destruction_15: -5377724614129443256
-      Kla'ed - Bomber - Destruction_16: 5371246533781292885
       Kla'ed - Bomber - Destruction_2: 96699482705086156
       Kla'ed - Bomber - Destruction_3: 1929301001077829021
       Kla'ed - Bomber - Destruction_4: 4510382908727058644
       Kla'ed - Bomber - Destruction_5: -197134862616922027
       Kla'ed - Bomber - Destruction_6: -2821951384444021865
       Kla'ed - Bomber - Destruction_7: -2824714505420003050
-      Kla'ed - Bomber - Destruction_8: -8642936337768379736
-      Kla'ed - Bomber - Destruction_9: 5901254826974127389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

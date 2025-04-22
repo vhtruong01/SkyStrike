@@ -154,7 +154,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -168,7 +168,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -220,10 +220,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 10
-        width: 44
-        height: 47
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,10 +242,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_1
       rect:
         serializedVersion: 2
-        x: 74
-        y: 10
-        width: 44
-        height: 47
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -264,10 +264,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_2
       rect:
         serializedVersion: 2
-        x: 138
-        y: 10
-        width: 44
-        height: 47
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,10 +286,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_3
       rect:
         serializedVersion: 2
-        x: 202
-        y: 10
-        width: 44
-        height: 47
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -308,10 +308,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_4
       rect:
         serializedVersion: 2
-        x: 266
-        y: 10
-        width: 44
-        height: 47
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -330,10 +330,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_5
       rect:
         serializedVersion: 2
-        x: 330
-        y: 10
-        width: 44
-        height: 47
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,10 +352,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_6
       rect:
         serializedVersion: 2
-        x: 394
-        y: 10
-        width: 44
-        height: 47
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -374,10 +374,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_7
       rect:
         serializedVersion: 2
-        x: 458
-        y: 10
-        width: 44
-        height: 47
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -396,10 +396,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_8
       rect:
         serializedVersion: 2
-        x: 522
-        y: 10
-        width: 44
-        height: 47
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -418,10 +418,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_9
       rect:
         serializedVersion: 2
-        x: 586
-        y: 10
-        width: 44
-        height: 47
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -440,10 +440,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_10
       rect:
         serializedVersion: 2
-        x: 650
-        y: 10
-        width: 44
-        height: 47
+        x: 640
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -462,10 +462,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_11
       rect:
         serializedVersion: 2
-        x: 714
-        y: 10
-        width: 44
-        height: 47
+        x: 704
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -484,10 +484,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_12
       rect:
         serializedVersion: 2
-        x: 778
-        y: 10
-        width: 44
-        height: 47
+        x: 768
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -506,10 +506,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_13
       rect:
         serializedVersion: 2
-        x: 842
-        y: 10
-        width: 44
-        height: 47
+        x: 832
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -528,10 +528,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_14
       rect:
         serializedVersion: 2
-        x: 906
-        y: 10
-        width: 44
-        height: 47
+        x: 896
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -550,10 +550,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_15
       rect:
         serializedVersion: 2
-        x: 970
-        y: 10
-        width: 44
-        height: 47
+        x: 960
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -572,10 +572,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_16
       rect:
         serializedVersion: 2
-        x: 1034
-        y: 10
-        width: 44
-        height: 47
+        x: 1024
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -594,10 +594,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_17
       rect:
         serializedVersion: 2
-        x: 1098
-        y: 10
-        width: 44
-        height: 47
+        x: 1088
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -616,10 +616,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_18
       rect:
         serializedVersion: 2
-        x: 1162
-        y: 10
-        width: 44
-        height: 47
+        x: 1152
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -638,10 +638,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_19
       rect:
         serializedVersion: 2
-        x: 1226
-        y: 10
-        width: 44
-        height: 47
+        x: 1216
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -660,10 +660,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_20
       rect:
         serializedVersion: 2
-        x: 1290
-        y: 10
-        width: 44
-        height: 47
+        x: 1280
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -682,10 +682,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_21
       rect:
         serializedVersion: 2
-        x: 1354
-        y: 10
-        width: 44
-        height: 47
+        x: 1344
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -704,10 +704,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_22
       rect:
         serializedVersion: 2
-        x: 1418
-        y: 10
-        width: 44
-        height: 47
+        x: 1408
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -726,10 +726,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_23
       rect:
         serializedVersion: 2
-        x: 1482
-        y: 10
-        width: 44
-        height: 47
+        x: 1472
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -748,10 +748,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_24
       rect:
         serializedVersion: 2
-        x: 1546
-        y: 10
-        width: 44
-        height: 47
+        x: 1536
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -770,10 +770,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_25
       rect:
         serializedVersion: 2
-        x: 1610
-        y: 10
-        width: 44
-        height: 47
+        x: 1600
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -792,10 +792,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_26
       rect:
         serializedVersion: 2
-        x: 1674
-        y: 10
-        width: 44
-        height: 47
+        x: 1664
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -814,10 +814,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_27
       rect:
         serializedVersion: 2
-        x: 1738
-        y: 10
-        width: 44
-        height: 47
+        x: 1728
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -836,10 +836,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_28
       rect:
         serializedVersion: 2
-        x: 1802
-        y: 10
-        width: 44
-        height: 47
+        x: 1792
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -858,10 +858,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_29
       rect:
         serializedVersion: 2
-        x: 1866
-        y: 10
-        width: 44
-        height: 47
+        x: 1856
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -880,10 +880,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_30
       rect:
         serializedVersion: 2
-        x: 1930
-        y: 10
-        width: 44
-        height: 47
+        x: 1920
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -902,10 +902,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_31
       rect:
         serializedVersion: 2
-        x: 1994
-        y: 10
-        width: 44
-        height: 47
+        x: 1984
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -924,10 +924,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_32
       rect:
         serializedVersion: 2
-        x: 2058
-        y: 10
-        width: 44
-        height: 47
+        x: 2048
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -946,10 +946,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_33
       rect:
         serializedVersion: 2
-        x: 2122
-        y: 10
-        width: 44
-        height: 47
+        x: 2112
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -968,10 +968,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_34
       rect:
         serializedVersion: 2
-        x: 2186
-        y: 10
-        width: 44
-        height: 47
+        x: 2176
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -990,10 +990,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_35
       rect:
         serializedVersion: 2
-        x: 2250
-        y: 10
-        width: 44
-        height: 47
+        x: 2240
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1012,10 +1012,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_36
       rect:
         serializedVersion: 2
-        x: 2314
-        y: 10
-        width: 44
-        height: 47
+        x: 2304
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1034,10 +1034,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_37
       rect:
         serializedVersion: 2
-        x: 2378
-        y: 10
-        width: 44
-        height: 47
+        x: 2368
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1056,10 +1056,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_38
       rect:
         serializedVersion: 2
-        x: 2442
-        y: 10
-        width: 44
-        height: 47
+        x: 2432
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1078,10 +1078,10 @@ TextureImporter:
       name: Kla'ed - Frigate - Shield_39
       rect:
         serializedVersion: 2
-        x: 2506
-        y: 10
-        width: 44
-        height: 47
+        x: 2496
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1100,7 +1100,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0d26498dde9ad5b49810cce77fa59298
     internalID: 0
     vertices: []
     indices: 

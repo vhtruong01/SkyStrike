@@ -41,6 +41,8 @@ namespace SkyStrike.Game
         }
         public void SetAttackEnabled(bool isEnabled)
             => shipBulletManager.SetActive(isEnabled);
+        public void UpgradeBullet(EShipBulletType bulletType)
+            => shipBulletManager.UpgradeSpawner(bulletType);
     }
 
 }

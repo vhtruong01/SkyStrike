@@ -212,7 +212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: {fileID: 6352902071434559011}
   image: {fileID: 7542404097926106575}
-  selectBtn: {fileID: 0}
 --- !u!1 &8870540748650895100
 GameObject:
   m_ObjectHideFlags: 0

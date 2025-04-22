@@ -12,9 +12,9 @@ namespace SkyStrike
             [SerializeField] private Vector2Property position;
             [SerializeField] private FloatProperty scale;
             [SerializeField] private FloatProperty rotation;
-            [SerializeField] private FloatProperty accleration;
             [SerializeField] private FloatProperty standingTime;
             [SerializeField] private FloatProperty travelTime;
+            [SerializeField] private BoolProperty shield;
             [SerializeField] private BoolProperty isFixedRotation;
             [SerializeField] private BoolProperty isStraightLine;
             [SerializeField] private BoolProperty isLookingAtPlayer;
@@ -31,8 +31,8 @@ namespace SkyStrike
                 isFixedRotation.BindToOtherProperty(rotation, true);
                 isFixedRotation.BindToOtherProperty(isLookingAtPlayer, false);
                 isLookingAtPlayer.BindToOtherProperty(rotation, false);
-                isStraightLine.BindToOtherProperty(accleration, true);
                 isIgnoreVelocity.BindToOtherProperty(travelTime, true);
+                isImmortal.BindToOtherProperty(shield,false);
             }
             private void EnableBulletSelectionMenu()
             {
@@ -43,9 +43,9 @@ namespace SkyStrike
             {
                 scale.Bind(data.scale);
                 rotation.Bind(data.rotation);
-                accleration.Bind(data.accleration);
                 standingTime.Bind(data.standingTime);
                 travelTime.Bind(data.travelTime);
+                shield.Bind(data.shield);
                 isImmortal.Bind(data.isImmortal);
                 isStraightLine.Bind(data.isStraightLine);
                 isFixedRotation.Bind(data.isFixedRotation);
@@ -55,10 +55,10 @@ namespace SkyStrike
             }
             public override void UnbindData()
             {
+                shield.Unbind();
                 scale.Unbind();
                 rotation.Unbind();
                 travelTime.Unbind();
-                accleration.Unbind();
                 standingTime.Unbind();
                 isFixedRotation.Unbind();
                 isStraightLine.Unbind();

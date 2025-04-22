@@ -31,7 +31,7 @@ namespace SkyStrike.Game
             this.onCreateBullet = onCreateBullet;
             switch (bulletData.metaData.type)
             {
-                case EShipBulletType.NormalBullet:
+                case EShipBulletType.SingleBullet:
                     onSpawnBullet = SpawnNormalBullet;
                     break;
                 case EShipBulletType.DoubleBullet:
@@ -40,8 +40,8 @@ namespace SkyStrike.Game
                 case EShipBulletType.TripleBullet:
                     onSpawnBullet = SpawnTripleBullet;
                     break;
-                case EShipBulletType.MagicBullet:
-                    onSpawnBullet = SpawnMagicBullet;
+                case EShipBulletType.LaserBullet:
+                    onSpawnBullet = SpawnLaserBullet;
                     break;
                 case EShipBulletType.RocketBullet:
                     onSpawnBullet = SpawnRocketBullet;
@@ -61,7 +61,7 @@ namespace SkyStrike.Game
             SpawnBullet(transform.position + new Vector3(-0.25f, 0, 0), new(0, bulletData.speed, 0));
             SpawnBullet(transform.position + new Vector3(0.25f, 0, 0), new(0, bulletData.speed, 0));
         }
-        private void SpawnMagicBullet()
+        private void SpawnLaserBullet()
         {
 
         }

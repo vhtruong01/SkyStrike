@@ -17,9 +17,9 @@ namespace SkyStrike.Game
             public bool isLookingAtPlayer;
             public bool isFixedRotation;
             public bool isIgnoreVelocity;
+            public bool shield;
             public float rotation;
             public float scale;
-            public float accleration;
             public float standingTime;
             public float travelTime;
             public int[] bulletIdArr;

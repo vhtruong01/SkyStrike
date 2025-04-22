@@ -18,3 +18,41 @@ MonoBehaviour:
   <sprite>k__BackingField: {fileID: 21300000, guid: fc0036b9200b3b745a33e155c194fbfe, type: 3}
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <type>k__BackingField: Kla'ed fighter
+  <destructionSprites>k__BackingField:
+  - {fileID: -2585407298343817241, guid: 2f3ea5e8c47442849a5395bf727c326f, type: 3}
+  - {fileID: 5515153032251011373, guid: 2f3ea5e8c47442849a5395bf727c326f, type: 3}
+  - {fileID: 3956333529943996837, guid: 2f3ea5e8c47442849a5395bf727c326f, type: 3}
+  - {fileID: 1237885881015524949, guid: 2f3ea5e8c47442849a5395bf727c326f, type: 3}
+  - {fileID: 5791137323519358520, guid: 2f3ea5e8c47442849a5395bf727c326f, type: 3}
+  - {fileID: -3228317435703377596, guid: 2f3ea5e8c47442849a5395bf727c326f, type: 3}
+  - {fileID: 3978886274531221682, guid: 2f3ea5e8c47442849a5395bf727c326f, type: 3}
+  - {fileID: 5035985710184411535, guid: 2f3ea5e8c47442849a5395bf727c326f, type: 3}
+  <engineSprites>k__BackingField:
+  - {fileID: -2182140464356756402, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: -4477638840817135731, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: 5769060166076802611, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: 6859169734528745085, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: -4653633243704835262, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: 7223121881196557971, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: 4907506181161003314, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: 3146734885231753344, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: 2305378763052634117, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  - {fileID: -7947423008358506827, guid: 8b2bd005d20801146bfcbcf65083c7e7, type: 3}
+  <shieldSprites>k__BackingField:
+  - {fileID: -2030081181366369794, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: 2693372319036496733, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: -3271669753999456788, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: 2193352002912253697, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: 6570519815300533467, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: 8016945769181620913, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: -8528182868799488709, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: -6743451426665586753, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: -5407948854370418886, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  - {fileID: -3530609916859961458, guid: f0053cadb3c720840a44209a829bcd36, type: 3}
+  <weaponSprites>k__BackingField:
+  - {fileID: -8758653300271244462, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}
+  - {fileID: -7578695098569496965, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}
+  - {fileID: -4368441394139284477, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}
+  - {fileID: -8246348173835562534, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}
+  - {fileID: 5790805702800471361, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}
+  - {fileID: 1645027728090911166, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}

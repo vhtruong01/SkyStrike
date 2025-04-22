@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 
 namespace SkyStrike.Game
 {
+    public enum EScene
+    {
+        Loading = 0,
+        MainMenu,
+        MainGame,
+        Editor
+    }
     [CreateAssetMenu(fileName = "GameManager", menuName = "Game/GameManager")]
     public class GameManager : ScriptableObject
     {

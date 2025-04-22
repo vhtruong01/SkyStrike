@@ -2,12 +2,12 @@ namespace SkyStrike.Game
 {
     public enum EShipBulletType
     {
-        NormalBullet,
+        SingleBullet,
         DoubleBullet,
         TripleBullet,
+        LaserBullet,
         MagicBullet,
         RocketBullet,
-        LaserBullet,
         //
     }
 }

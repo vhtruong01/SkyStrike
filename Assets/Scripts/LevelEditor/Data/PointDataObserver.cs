@@ -13,9 +13,9 @@ namespace SkyStrike
             public DataObserver<Vector2> nextPos { get; private set; }
             public DataObserver<float> scale { get; private set; }
             public DataObserver<float> rotation { get; private set; }
-            public DataObserver<float> accleration { get; private set; }
             public DataObserver<float> standingTime { get; private set; }
             public DataObserver<float> travelTime { get; private set; }
+            public DataObserver<bool> shield { get; private set; }
             public DataObserver<bool> isStraightLine { get; private set; }
             public DataObserver<bool> isLookingAtPlayer { get; private set; }
             public DataObserver<bool> isImmortal { get; private set; }
@@ -31,8 +31,8 @@ namespace SkyStrike
                 scale = new();
                 rotation = new();
                 travelTime = new();
-                accleration = new();
                 standingTime = new();
+                shield= new();
                 isStraightLine = new();
                 isLookingAtPlayer = new();
                 isImmortal = new();
@@ -60,8 +60,8 @@ namespace SkyStrike
                 scale.UnbindAll();
                 rotation.UnbindAll();
                 travelTime.UnbindAll();
-                accleration.UnbindAll();
                 standingTime.UnbindAll();
+                shield.UnbindAll();
                 isImmortal.UnbindAll();
                 isStraightLine.UnbindAll();
                 isLookingAtPlayer.UnbindAll();
@@ -77,8 +77,8 @@ namespace SkyStrike
                 newPoint.scale.OnlySetData(scale.data);
                 newPoint.rotation.OnlySetData(rotation.data);
                 newPoint.travelTime.OnlySetData(travelTime.data);
-                newPoint.accleration.OnlySetData(accleration.data);
                 newPoint.standingTime.OnlySetData(standingTime.data);
+                newPoint.shield.OnlySetData(shield.data);
                 newPoint.isImmortal.OnlySetData(isImmortal.data);
                 newPoint.isLookingAtPlayer.OnlySetData(isLookingAtPlayer.data);
                 newPoint.isStraightLine.OnlySetData(isStraightLine.data);
@@ -100,9 +100,9 @@ namespace SkyStrike
                     isLookingAtPlayer = isLookingAtPlayer.data,
                     isFixedRotation = isFixedRotation.data,
                     isIgnoreVelocity = isIgnoreVelocity.data,
+                    shield = shield.data,
                     scale = scale.data,
                     rotation = rotation.data,
-                    accleration = accleration.data,
                     standingTime = standingTime.data,
                     travelTime = travelTime.data,
                     bulletIdArr = new int[bulletIdSet.Count],
@@ -122,9 +122,9 @@ namespace SkyStrike
                 isLookingAtPlayer.OnlySetData(pointData.isLookingAtPlayer);
                 isFixedRotation.OnlySetData(pointData.isFixedRotation);
                 isIgnoreVelocity.OnlySetData(pointData.isIgnoreVelocity);
+                shield.OnlySetData(pointData.shield);
                 scale.OnlySetData(pointData.scale);
                 rotation.OnlySetData(pointData.rotation);
-                accleration.OnlySetData(pointData.accleration);
                 standingTime.OnlySetData(pointData.standingTime);
                 travelTime.OnlySetData(pointData.travelTime);
                 if (pointData.bulletIdArr == null) return;

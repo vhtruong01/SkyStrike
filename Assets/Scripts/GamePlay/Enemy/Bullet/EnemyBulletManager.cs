@@ -13,9 +13,9 @@ namespace SkyStrike.Game
         {
             if (data == null || data.amount == 0) return;
             EnemyBullet bullet;
+            float unitAngle = data.isCircle ? 2 * Mathf.PI / data.amount : (Mathf.Deg2Rad * data.unitAngle);
             if (data.isCircle)
             {
-                float unitAngle = 2 * Mathf.PI / data.amount;
                 for (int i = 0; i < data.amount; i++)
                 {
                     bullet = InstantiateItem(data, position + data.position.SetZ(0));
@@ -28,7 +28,7 @@ namespace SkyStrike.Game
                 for (float i = -mid; i <= mid; i += 1f)
                 {
                     bullet = InstantiateItem(data, position + (data.position + data.spacing * i).SetZ(0));
-                    bullet.SetVelocity(new Vector3(Mathf.Sin(angle + data.unitAngle * i), -Mathf.Cos(angle + data.unitAngle * i), 0) * data.velocity);
+                    bullet.SetVelocity(new Vector3(Mathf.Sin(angle + unitAngle * i), -Mathf.Cos(angle + unitAngle * i), 0) * data.velocity);
                 }
             }
         }

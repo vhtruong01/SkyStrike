@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public abstract class PoolableObject<T> : MonoBehaviour, IPoolableObject
+    public abstract class PoolableObject<T> : MonoBehaviour, IPoolableObject, IInitializable<T>
     {
         public T data { get; protected set; }
         protected SpriteRenderer spriteRenderer;

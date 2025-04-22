@@ -13,6 +13,7 @@ namespace SkyStrike.Game
             spriteRenderer.sprite = data.metaData.sprite;
             spriteRenderer.material = data.metaData.material;
             timeLife = data.metaData.timeLife;
+            transform.localScale = Vector3.one * data.scale;
         }
         public void SetVelocity(Vector3 velocity)
         {

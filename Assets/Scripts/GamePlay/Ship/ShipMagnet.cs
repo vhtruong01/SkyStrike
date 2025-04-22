@@ -13,7 +13,7 @@ namespace SkyStrike.Game
         }
         public void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<IPullable>(out var obj))
+            if (collision.TryGetComponent<IMagnetic>(out var obj) && obj.isMagnetic)
             {
                 Vector2 dir = transform.position - obj.gameObject.transform.position;
                 obj.HandleAffectedByGravity(Mathf.Sqrt(1 - Mathf.Clamp(dir.magnitude / r, 0, 0.99f)) * 0.2f * dir);

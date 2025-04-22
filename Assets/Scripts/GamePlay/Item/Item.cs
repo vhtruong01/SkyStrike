@@ -4,10 +4,31 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public class Item : PoolableObject<ItemData>, IPullable
+    public enum EItem
+    {
+        None = 0,
+        Health,
+        Star1,
+        Star5,
+        Shield,
+        Comet,
+        SingleBullet,
+        DoubleBullet,
+        TripleBullet,
+        LaserBullet
+    }
+    public enum EItemAnimationType
+    {
+        None = 0,
+        Zoom,
+        Rotate,
+        Fade,
+    }
+    public class Item : PoolableObject<ItemData>, IMagnetic
     {
         private float elapsedTime;
         private Tweener tweener;
+        public bool isMagnetic { get; set; }
 
         public EItem GetItemType() => data.type;
         public override void SetData(ItemData data)
@@ -22,24 +43,28 @@ namespace SkyStrike.Game
             elapsedTime = 0;
         }
         public void Appear(Vector2 vel)
-            => StartCoroutine(HandleAffectedByExplode(vel));
+        {
+            isMagnetic = false;
+            StartCoroutine(HandleAffectedByExplode(vel));
+        }
         private IEnumerator HandleAffectedByExplode(Vector2 vel)
         {
-            float time = 1;
+            float time = 1f / vel.magnitude;
             float curTime = 0;
             float delta;
-            Vector2 curDir = new();
+            Vector2 prevDir = new();
             while (curTime < time)
             {
                 delta = curTime / time;
-                transform.position += ((vel * delta) - curDir).SetZ(0);
-                curDir = vel * delta;
+                transform.position += ((vel * delta) - prevDir).SetZ(0);
+                prevDir = vel * delta;
                 transform.localScale = (delta + 1) * data.size / 2 * Vector3.one;
                 yield return null;
                 curTime += Time.deltaTime;
             }
             transform.localScale = data.size * Vector3.one;
             tweener = GetAnimation(data.animationType);
+            isMagnetic = true;
         }
         private Tweener GetAnimation(EItemAnimationType type)
         {
@@ -47,7 +72,7 @@ namespace SkyStrike.Game
             switch (type)
             {
                 case EItemAnimationType.Zoom:
-                    tweener = transform.DOScale(0.75f, 5);
+                    tweener = transform.DOScale(1.5f * data.size, 2.5f);
                     break;
                 case EItemAnimationType.Fade:
                     tweener = spriteRenderer.DOFade(0.5f, 1);
@@ -57,11 +82,6 @@ namespace SkyStrike.Game
                     break;
             }
             return tweener.SetLoops(-1, LoopType.Yoyo);
-        }
-        public override void Disappear()
-        {
-            tweener?.Kill();
-            base.Disappear();
         }
         public void Update()
         {
@@ -74,5 +94,7 @@ namespace SkyStrike.Game
             transform.position += ItemData.dropVelocity * Time.deltaTime;
         }
         public void HandleAffectedByGravity(Vector2 dir) => transform.position += dir.SetZ(0);
+        public void OnDisable()
+            => tweener?.Kill();
     }
 }

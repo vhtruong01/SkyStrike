@@ -49,7 +49,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.12
+    - _Alpha: 0.1
     m_Colors:
     - _Color: {r: 2.670157, g: 2.670157, b: 2.670157, a: 1}
     - _MainColor: {r: 2.828427, g: 2.828427, b: 2.828427, a: 1}

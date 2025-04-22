@@ -35,7 +35,8 @@ namespace SkyStrike
                 onSelectObject.Invoke(null);
                 onSelectMetaObject.Invoke(data);
             }
-            public static EnemyMetaData GetMetaData(int id) => onGetMetaData.Invoke(id);
+            public static void GetMetaData(int id, out EnemyMetaData metaData)
+                => metaData = onGetMetaData.Invoke(id);
             public static void CreateObject(ObjectDataObserver data) => onCreateObject.Invoke(data);
             public static void SelectWave(WaveDataObserver data) => onSelectWave.Invoke(data);
             public static void SelectLevel(LevelDataObserver data) => onSelectLevel.Invoke(data);

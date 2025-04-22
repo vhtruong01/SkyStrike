@@ -4,29 +4,39 @@ using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike.Game
 {
-    public class EnemyMovement : MonoBehaviour
+    public class EnemyMovement : EnemyComponent
     {
-        private Enemy enemy;
-        private EnemyBulletSpawner spawner;
         private Vector2 dir;
+        private MoveData moveData;
 
-        public void Awake()
+        public override void SetData(EnemyData data)
         {
-            enemy = GetComponent<Enemy>();
-            spawner = GetComponent<EnemyBulletSpawner>();
+            base.SetData(data);
+            moveData = data.moveData;
         }
-        public IEnumerator Move()
+        public void Move() => StartCoroutine(Go());
+        private IEnumerator Go()
         {
-            MoveData moveData = enemy.data.moveData;
-            dir = Vector2.down;
+            dir = Vector2.up;
             transform.eulerAngles = new(0, 0, 0);
             int index = 0;
             while (index < moveData.points.Length)
             {
                 Point point = moveData.points[index];
-                EnemyBulletData bulletData = point.bulletDataList.Length > 0 ? point.bulletDataList[0] : null;
-                spawner.SetData(bulletData);
-                yield return new WaitForSeconds(point.standingTime);
+                EnemyBulletData bulletData = null;
+                if (point.bulletDataList != null && point.bulletDataList.Length > 0)
+                    bulletData = point.bulletDataList[0];
+                data.bulletData = bulletData;
+                data.shield = point.shield;
+                data.isImmortal = point.isImmortal;
+                notifyAction?.Invoke(EEnemyAction.Attack);
+                notifyAction?.Invoke(EEnemyAction.Defend);
+                if (point.standingTime > 0)
+                {
+                    notifyAction?.Invoke(EEnemyAction.Stand);
+                    yield return new WaitForSeconds(point.standingTime);
+                }
+                notifyAction?.Invoke(EEnemyAction.Move);
                 if (index < moveData.points.Length - 1)
                 {
                     Point nextPoint = moveData.points[index + 1];
@@ -37,14 +47,13 @@ namespace SkyStrike.Game
                 }
                 index++;
             }
-            if (!enemy.data.isMaintain)
-                enemy.Disappear();
+            notifyAction?.Invoke(EEnemyAction.Disappear);
         }
         private IEnumerator MoveStraight(Point startPoint, Point nextPoint, float velocity)
         {
             Vector2 startPos = startPoint.midPos.ToVector2();
             Vector2 nextPos = nextPoint.midPos.ToVector2();
-            float time = (startPos - nextPos).magnitude / velocity;
+            float time = startPoint.isIgnoreVelocity ? startPoint.travelTime : (startPos - nextPos).magnitude / velocity;
             if (time <= 0) yield break;
             float elapsedTime = 0;
             Rotate(nextPos - startPos);
@@ -61,11 +70,12 @@ namespace SkyStrike.Game
             Vector2 pos2 = startPoint.nextPos.ToVector2();
             Vector2 pos3 = nextPoint.prevPos.ToVector2();
             Vector2 nextPos = nextPoint.midPos.ToVector2();
-            float time = ((startPos - pos2).magnitude
+            float time = startPoint.isIgnoreVelocity ? startPoint.travelTime
+                    : (((startPos - pos2).magnitude
                     + (pos2 - pos3).magnitude
                     + (nextPos - pos3).magnitude
                     + (startPos - nextPos).magnitude)
-                    / velocity / 2;
+                    / velocity / 2);
             if (time <= 0) yield break;
             float elapsedTime = 0;
             float deltaTime = Time.deltaTime;
@@ -99,5 +109,6 @@ namespace SkyStrike.Game
             transform.Rotate(0, 0, Vector2.SignedAngle(dir, newDir));
             dir = newDir;
         }
+        public override void Interrupt() => StopAllCoroutines();
     }
 }

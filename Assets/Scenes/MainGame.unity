@@ -6078,9 +6078,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 593ed1fe63fb4ff448b8ff3bf42b08c7, type: 2}
   - {fileID: 11400000, guid: a2ded660ab54fd147a393318a0c67e6d, type: 2}
   - {fileID: 11400000, guid: 0c2ade6cba2611a4c8403a6d10e7525f, type: 2}
+  - {fileID: 11400000, guid: dadbb00695f2744449ef86993b40de4f, type: 2}
   - {fileID: 11400000, guid: 9324338094cd02949b0efe6d1e111fa8, type: 2}
   - {fileID: 11400000, guid: cd9d4b4895cdb2947bc3fcbf0698950d, type: 2}
-  - {fileID: 11400000, guid: dadbb00695f2744449ef86993b40de4f, type: 2}
 --- !u!114 &603340073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6480,10 +6480,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 654073404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e41bfd2708f16d47afe1941dae5f535, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ddcbfc13bfe86e4f950210ed5b0af66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 774566896679112776, guid: 6e8a77cd9226ebc41824c632b009333c, type: 3}
+  prefab: {fileID: 8944746483800074425, guid: 6e8a77cd9226ebc41824c632b009333c, type: 3}
   container: {fileID: 848623370}
 --- !u!1 &720350206
 GameObject:
@@ -13333,9 +13333,12 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 8b64e29315750ea458ef50cce66eb91b, type: 2}
   - {fileID: 11400000, guid: 0bc51e2e883e42d489ab0c00d5408db7, type: 2}
-  - {fileID: 11400000, guid: 9adff0911ae5e7d4b83becae05303353, type: 2}
-  - {fileID: 11400000, guid: 5c0f76e73e513b1428db3acfd773f132, type: 2}
   - {fileID: 11400000, guid: df765407e4c42dd4eb931f6516e0961f, type: 2}
+  - {fileID: 11400000, guid: cadfdd213ee4e854a90c6ede69a8ccd4, type: 2}
+  - {fileID: 11400000, guid: ebb9c09fc018bd443b1791890d9fd367, type: 2}
+  - {fileID: 11400000, guid: c18e3d28ea8cb8140ada48772bb5de1d, type: 2}
+  - {fileID: 11400000, guid: 5c0f76e73e513b1428db3acfd773f132, type: 2}
+  - {fileID: 11400000, guid: 9adff0911ae5e7d4b83becae05303353, type: 2}
 --- !u!1 &2106573123
 GameObject:
   m_ObjectHideFlags: 0
@@ -13508,9 +13511,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkyStrike.Game.MainGame, Assembly-CSharp
-        m_MethodName: Restart
+      - m_Target: {fileID: 855405712}
+        m_TargetAssemblyTypeName: SkyStrike.UI.GameUI, Assembly-CSharp
+        m_MethodName: OpenEditor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -91,7 +91,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -105,7 +105,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -157,10 +157,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_0
       rect:
         serializedVersion: 2
-        x: 323
-        y: 14
-        width: 57
-        height: 42
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +179,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_1
       rect:
         serializedVersion: 2
-        x: 384
-        y: 45
-        width: 14
-        height: 14
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -201,10 +201,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_2
       rect:
         serializedVersion: 2
-        x: 415
-        y: 32
-        width: 26
-        height: 20
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,10 +223,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_3
       rect:
         serializedVersion: 2
-        x: 449
-        y: 50
-        width: 8
-        height: 8
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,10 +245,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_4
       rect:
         serializedVersion: 2
-        x: 3
-        y: 20
-        width: 58
-        height: 24
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -267,10 +267,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_5
       rect:
         serializedVersion: 2
-        x: 67
-        y: 20
-        width: 58
-        height: 24
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,10 +289,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_6
       rect:
         serializedVersion: 2
-        x: 131
-        y: 20
-        width: 58
-        height: 24
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -311,10 +311,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_7
       rect:
         serializedVersion: 2
-        x: 195
-        y: 20
-        width: 58
-        height: 24
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -333,10 +333,10 @@ TextureImporter:
       name: Kla'ed - Torpedo Ship - Destruction_8
       rect:
         serializedVersion: 2
-        x: 274
-        y: 21
-        width: 27
-        height: 27
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -351,231 +351,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_9
-      rect:
-        serializedVersion: 2
-        x: 391
-        y: 29
-        width: 23
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d980ac843eda6efd0800000000000000
-      internalID: -2312970166917789539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_10
-      rect:
-        serializedVersion: 2
-        x: 455
-        y: 27
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 876a959b2c4fd97d0800000000000000
-      internalID: -2909900667040979336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_11
-      rect:
-        serializedVersion: 2
-        x: 489
-        y: 32
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 197131004a26ebd20800000000000000
-      internalID: 3296180433797191569
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_12
-      rect:
-        serializedVersion: 2
-        x: 519
-        y: 25
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 177299b1f2d591a10800000000000000
-      internalID: 1880636776311760753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_13
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 30
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9703a77747dc5c560800000000000000
-      internalID: 7333493468347117689
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_14
-      rect:
-        serializedVersion: 2
-        x: 405
-        y: 13
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c99a4eed833ac29a0800000000000000
-      internalID: -6256446317671437924
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_15
-      rect:
-        serializedVersion: 2
-        x: 429
-        y: 8
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 30f945a08f6292bf0800000000000000
-      internalID: -348704649377439997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_16
-      rect:
-        serializedVersion: 2
-        x: 472
-        y: 12
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7a7ad134da1f7220800000000000000
-      internalID: 2485735018003593851
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_17
-      rect:
-        serializedVersion: 2
-        x: 497
-        y: 8
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d228d154beeccee20800000000000000
-      internalID: 3381304930120598061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kla'ed - Torpedo Ship - Destruction_18
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 11
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c5c254097d1dbcb0800000000000000
-      internalID: -4846685218380003895
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 29959f66b1085a149bf3f9de91a029be
     internalID: 0
     vertices: []
     indices: 
@@ -587,15 +367,6 @@ TextureImporter:
     nameFileIdTable:
       Kla'ed - Torpedo Ship - Destruction_0: -2745590157331722333
       Kla'ed - Torpedo Ship - Destruction_1: 1243925677544614869
-      Kla'ed - Torpedo Ship - Destruction_10: -2909900667040979336
-      Kla'ed - Torpedo Ship - Destruction_11: 3296180433797191569
-      Kla'ed - Torpedo Ship - Destruction_12: 1880636776311760753
-      Kla'ed - Torpedo Ship - Destruction_13: 7333493468347117689
-      Kla'ed - Torpedo Ship - Destruction_14: -6256446317671437924
-      Kla'ed - Torpedo Ship - Destruction_15: -348704649377439997
-      Kla'ed - Torpedo Ship - Destruction_16: 2485735018003593851
-      Kla'ed - Torpedo Ship - Destruction_17: 3381304930120598061
-      Kla'ed - Torpedo Ship - Destruction_18: -4846685218380003895
       Kla'ed - Torpedo Ship - Destruction_2: 3083298802534585799
       Kla'ed - Torpedo Ship - Destruction_3: 4460688053017173590
       Kla'ed - Torpedo Ship - Destruction_4: -7924691877042614789
@@ -603,7 +374,6 @@ TextureImporter:
       Kla'ed - Torpedo Ship - Destruction_6: 2524081890366490122
       Kla'ed - Torpedo Ship - Destruction_7: 8084168360397578966
       Kla'ed - Torpedo Ship - Destruction_8: -3584983221100382607
-      Kla'ed - Torpedo Ship - Destruction_9: -2312970166917789539
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

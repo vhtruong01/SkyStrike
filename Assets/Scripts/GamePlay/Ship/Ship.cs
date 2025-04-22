@@ -10,7 +10,7 @@ namespace SkyStrike.Game
         [SerializeField] private SpriteRenderer planet;
         [SerializeField] private SpriteRenderer shield;
         private ShipCommand command;
-        public ShipData shipData {  get; private set; }
+        public ShipData shipData { get; private set; }
 
         public void Awake()
         {
@@ -45,8 +45,11 @@ namespace SkyStrike.Game
             if (collision.CompareTag("Item"))
             {
                 Item item = collision.GetComponent<Item>();
-                CollectItem(item);
-                item.Disappear();
+                if (item.gameObject.activeSelf)
+                {
+                    CollectItem(item);
+                    item.Disappear();
+                }
                 return;
             }
             if (collision.CompareTag("EnemyBullet"))
@@ -59,7 +62,7 @@ namespace SkyStrike.Game
             switch (item.GetItemType())
             {
                 case EItem.Star1:
-                        shipData.star++;
+                    shipData.star++;
                     break;
                 case EItem.Star5:
                     shipData.star += 5;
@@ -67,6 +70,18 @@ namespace SkyStrike.Game
                 case EItem.Health:
                     if (shipData.hp < shipData.maxHp)
                         shipData.hp++;
+                    break;
+                case EItem.SingleBullet:
+                    command.UpgradeBullet(EShipBulletType.SingleBullet);
+                    break;
+                case EItem.DoubleBullet:
+                    command.UpgradeBullet(EShipBulletType.DoubleBullet);
+                    break;
+                case EItem.TripleBullet:
+                    command.UpgradeBullet(EShipBulletType.TripleBullet);
+                    break;
+                case EItem.LaserBullet:
+                    command.UpgradeBullet(EShipBulletType.LaserBullet);
                     break;
                 case EItem.Comet:
                     break;

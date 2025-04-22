@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -114,7 +114,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 17
+        width: 16
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -134,9 +134,9 @@ TextureImporter:
       name: Kla'ed - Ray_1
       rect:
         serializedVersion: 2
-        x: 19
+        x: 16
         y: 0
-        width: 17
+        width: 16
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -156,9 +156,9 @@ TextureImporter:
       name: Kla'ed - Ray_2
       rect:
         serializedVersion: 2
-        x: 36
+        x: 32
         y: 0
-        width: 18
+        width: 16
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,9 +166,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a2a532a767db559e0800000000000000
+      spriteID: 78b9a1f7ec9533d4fbe609797b6e24c5
       internalID: -1633190973299008982
       vertices: []
       indices: 
@@ -178,9 +178,9 @@ TextureImporter:
       name: Kla'ed - Ray_3
       rect:
         serializedVersion: 2
-        x: 54
+        x: 48
         y: 0
-        width: 18
+        width: 16
         height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -188,9 +188,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d5ce0ed4a2733a8a0800000000000000
+      spriteID: 8d6ff335e41486d468178b819ed2b2b0
       internalID: -6295127199299081123
       vertices: []
       indices: 
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 073f0835f1bb1da45bb91e0cee5325b0
     internalID: 0
     vertices: []
     indices: 
