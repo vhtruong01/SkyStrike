@@ -35,7 +35,6 @@ namespace SkyStrike.Game
         {
             base.SetData(data);
             transform.localScale = Vector3.one * (data.size == 0 ? 1 : data.size);
-            transform.eulerAngles = Vector3.zero;
             spriteRenderer.sprite = data.sprite;
             spriteRenderer.material = data.material;
             spriteRenderer.color = spriteRenderer.color.ChangeAlpha(1);

@@ -7,13 +7,19 @@ namespace SkyStrike.Game
     public abstract class PoolManager<T, K> : MonoBehaviour where T : PoolableObject<K> where K : IGame
     {
         [SerializeField] private PoolableObject<K> prefab;
-        [SerializeField] private Transform container;
+        [SerializeField] private bool createOtherContainer;
+        private Transform container;
         protected ObjectPool<T> pool;
 
         public virtual void Awake()
         {
-            if (container == null)
-                container = transform;
+            if (createOtherContainer)
+            {
+                GameObject obj = new(prefab.name + "Pool");
+                container = obj.transform;
+                container.transform.SetParent(transform.parent, false);
+            }
+            else container = transform;
             pool = new(Create, Get, Release);
         }
         protected virtual void DestroyItem(T item) => pool.Release(item);
@@ -30,7 +36,6 @@ namespace SkyStrike.Game
         public virtual T InstantiateItem(K data, Vector3 position)
         {
             var item = pool.Get();
-            item.transform.localScale = Vector3.one;
             item.transform.position = position;
             item.SetData(data);
             return item;

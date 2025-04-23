@@ -1,3 +1,4 @@
+using SkyStrike.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ namespace SkyStrike.Game
                 print("end game");
                 return;
             }
-            print("wave: " + waveIndex);
+            print("wave: " + (1 + waveIndex));
             //if (waves[waveIndex].isBoss)
             WaveData waveData = levelData.waves[waveIndex];
             foreach (var objectData in waveData.objectDataArr)
@@ -53,7 +54,10 @@ namespace SkyStrike.Game
                 {
                     point.bulletDataList = new EnemyBulletData[point.bulletIdArr.Length];
                     for (int i = 0; i < point.bulletIdArr.Length; i++)
+                    {
                         point.bulletDataList[i] = bulletDataDict[point.bulletIdArr[i]];
+                        point.bulletDataList[i].color = ExtensionMethod.RandomColor();
+                    }
                 }
                 if (objectData.refId != -1)
                     objectData.CopyMoveData(CloneMoveData(objectData.refId));
@@ -68,7 +72,8 @@ namespace SkyStrike.Game
                     EventManager.CreateEnemy(objectData, dropItemType, delay);
                 }
             }
-            nextWaveCoroutine = StartCoroutine(WaitForNextWave(waveData.duration));
+            float waveDuration = waveData.objectDataArr.Length != 0 ? waveData.duration : 1;
+            nextWaveCoroutine = StartCoroutine(WaitForNextWave(waveDuration));
         }
         private IEnumerator WaitForNextWave(float time)
         {

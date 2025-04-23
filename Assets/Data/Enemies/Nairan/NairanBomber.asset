@@ -12,8 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
   m_Name: NairanBomber
   m_EditorClassIdentifier: 
-  <id>k__BackingField: 20
-  <star>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 21300000, guid: dbb88424f10c31b4b885d6119a006f12, type: 3}
+  race: 2
+  type: 0
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <type>k__BackingField: Nairan bomber
+  <sprite>k__BackingField: {fileID: 21300000, guid: dbb88424f10c31b4b885d6119a006f12, type: 3}
+  <destructionSprites>k__BackingField:
+  - {fileID: -6354222397065923665, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: -2438416726907542986, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: -1807294320895767501, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: -566083354886032, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: 5572545937485748557, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: 2937754051206365166, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: 2211287896692620030, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: -5139536211545893410, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: 761382655018447128, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: 7363667318075273917, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: 2853872555323384262, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: 2117776171319946049, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: -1836563508852752622, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: 1545404543839049356, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  - {fileID: -7343340321973124226, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
+  <engineSprites>k__BackingField:
+  - {fileID: 4500231158777745498, guid: a3572e424a7332149a9fe407a75f294f, type: 3}
+  - {fileID: -8859110014581220339, guid: a3572e424a7332149a9fe407a75f294f, type: 3}
+  - {fileID: -7201620079146846256, guid: a3572e424a7332149a9fe407a75f294f, type: 3}
+  - {fileID: 4589460955418011413, guid: a3572e424a7332149a9fe407a75f294f, type: 3}
+  - {fileID: -8377757409341978839, guid: a3572e424a7332149a9fe407a75f294f, type: 3}
+  - {fileID: -1070224690912298682, guid: a3572e424a7332149a9fe407a75f294f, type: 3}
+  - {fileID: -691701557965084494, guid: a3572e424a7332149a9fe407a75f294f, type: 3}
+  - {fileID: -1949089923569644753, guid: a3572e424a7332149a9fe407a75f294f, type: 3}
+  <shieldSprites>k__BackingField:
+  - {fileID: -6607276062874783198, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: -6733237836647847110, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: -2540019890203428693, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: 4650088989098591354, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: -7262597952505321657, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: -6913444507457792384, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: 244145557981439386, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: -7159073652866590531, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: -20698314528295450, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  - {fileID: 5811436630411727436, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
+  <weaponSprites>k__BackingField: []

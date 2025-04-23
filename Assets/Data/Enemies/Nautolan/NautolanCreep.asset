@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
+  m_Name: NautolanCreep
+  m_EditorClassIdentifier: 
+  race: 3
+  type: 2
+  <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <sprite>k__BackingField: {fileID: 21300000, guid: 5fef95713530ca844ae300cd37933484, type: 3}
+  <destructionSprites>k__BackingField:
+  - {fileID: 5232468386930967845, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 5559042017728256852, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: -1927074978729426944, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: -7641655376575094483, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 8878315478069922553, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 3373366595472094082, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 65417552885362158, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 6115050925389024346, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 3196727092020716741, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 1037602815515379746, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: -50923261351429717, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 5286733620589648431, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 7542997879190343227, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: -5226585856697351753, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: 3893000554299412586, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  - {fileID: -4834007582387125832, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
+  <engineSprites>k__BackingField:
+  - {fileID: -4162339017019704573, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: -2417963978457147864, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: 211147704883330518, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: 4112144763909216714, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: 217814098032141683, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: 1340272229705620886, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: -7380523217553611609, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: 407190786990179886, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: -5777676679864673245, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: -468922658540129199, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: -3144963568786256160, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: -6257983521553336908, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: 7932495621946587551, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: 4184759732872431038, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: 5117563147058432393, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  - {fileID: -7469127529760944134, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
+  <shieldSprites>k__BackingField:
+  - {fileID: 1013543538726083719, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: 1932266597414172514, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -4798284160516453500, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -205770342136182687, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -738406346676604809, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -4020863741384314997, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -8102777054803656548, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -1797362467069788640, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -6928200253820603091, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -3924248911176896734, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: 6627276950230070195, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: -8577256310995047874, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  - {fileID: 934047638254158545, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
+  <weaponSprites>k__BackingField:
+  - {fileID: -890952559573945103, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
+  - {fileID: 7980697631490298994, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
+  - {fileID: 1318467518653205625, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
+  - {fileID: -2312787045562173165, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
+  - {fileID: 760396124151451747, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
+  - {fileID: -8240889753089356293, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
+  - {fileID: 7680083943011690149, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}

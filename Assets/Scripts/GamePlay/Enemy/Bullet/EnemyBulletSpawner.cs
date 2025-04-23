@@ -24,10 +24,15 @@ namespace SkyStrike.Game
             elaspedTime += Time.deltaTime;
             if (elaspedTime >= bulletData.timeCooldown)
             {
-                if (bulletData.isCircle)
+                if (data.isLookingAtPlayer)
+                    angle = Vector2.SignedAngle(Vector2.down, Ship.pos - transform.position);
+                else
                 {
-                    angle += bulletData.spinSpeed * elaspedTime;
-                    angle %= 360;
+                    if (bulletData.isCircle)
+                    {
+                        angle += bulletData.spinSpeed * elaspedTime;
+                        angle %= 360;
+                    }
                 }
                 elaspedTime = 0;
                 EventManager.SpawnEnemyBullet(bulletData, transform.position, Mathf.Deg2Rad * angle);

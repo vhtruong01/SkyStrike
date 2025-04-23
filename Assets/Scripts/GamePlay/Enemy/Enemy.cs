@@ -11,6 +11,7 @@ namespace SkyStrike.Game
         Defend,
         Move,
         Die,
+        TakeDmg,
         Arrive,
         Disappear
     }
@@ -24,6 +25,7 @@ namespace SkyStrike.Game
         private EnemyBulletSpawner spawner;
         private EnemyMovement movement;
         private EnemyAnimationController animController;
+        private EnemyCommand command;
 
         public override void Awake()
         {
@@ -32,16 +34,19 @@ namespace SkyStrike.Game
             spawner = GetComponent<EnemyBulletSpawner>();
             enemyComponents = GetComponents<EnemyComponent>();
             animController = GetComponent<EnemyAnimationController>();
+            command = GetComponent<EnemyCommand>();
         }
         public override void SetData(EnemyData data)
         {
             base.SetData(data);
             data.hp = data.metaData.maxHp;
             spriteRenderer.sprite = data.metaData.sprite;
+            spriteRenderer.color = data.metaData.color;
             col.size = data.metaData.sprite.bounds.size / 2;
             spriteRenderer.color = data.metaData.color;
             transform.localScale = Vector3.one * data.size;
             data.isDie = false;
+            animController.EnableHighlightImg(data.dropItemType != EItem.None && data.metaData.CanHighLight());
             foreach (var comp in enemyComponents)
             {
                 comp.SetData(data);
@@ -57,19 +62,28 @@ namespace SkyStrike.Game
                     break;
                 case EEnemyAction.Move:
                     animController.SetTrigger(EAnimationType.Engine, true);
+                    movement.Move();
                     break;
                 case EEnemyAction.Attack:
+                    //animController.SetTrigger(EAnimationType.Weapon);
                     spawner.Spawn();
                     break;
                 case EEnemyAction.Defend:
                     animController.SetTrigger(EAnimationType.Shield, data.shield);
                     break;
+                case EEnemyAction.Arrive:
+                    command.MoveToNextPoint();
+                    break;
+                case EEnemyAction.TakeDmg:
+                    animController.SetTrigger(EAnimationType.Damage);
+                    break;
                 case EEnemyAction.Die:
                     animController.SetTrigger(EAnimationType.Destruction, true, DropItemAndDisappear);
                     break;
                 case EEnemyAction.Disappear:
-                    if (!data.isMaintain)
-                        Disappear();
+                    if (data.isMaintain)
+                        animController.SetTrigger(EAnimationType.Engine, false);
+                    else Disappear();
                     break;
             }
         }
@@ -83,6 +97,7 @@ namespace SkyStrike.Game
                 data.hp -= dmg;
                 if (data.hp <= 0)
                     Die();
+                else HandleEvent(EEnemyAction.TakeDmg);
             }
             return true;
         }
@@ -105,7 +120,7 @@ namespace SkyStrike.Game
             Enable(false);
             yield return new WaitForSeconds(delay);
             Enable(true);
-            movement.Move();
+            HandleEvent(EEnemyAction.Arrive);
         }
         private void Enable(bool isEnabled)
         {

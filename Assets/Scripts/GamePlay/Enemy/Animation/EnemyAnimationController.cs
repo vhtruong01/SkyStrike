@@ -4,42 +4,53 @@ using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
+    public enum EAnimationType
+    {
+        None = 0,
+        Weapon,
+        Engine,
+        Shield,
+        Damage,
+        Destruction
+    }
     public class EnemyAnimationController : EnemyComponent
     {
         [SerializeField] private SpriteRenderer shieldSpriteRenderer;
         [SerializeField] private SpriteRenderer engineSpriteRenderer;
+        [SerializeField] private SpriteRenderer highlightSpriteRenderer;
         private SpriteRenderer enemySpriteRenderer;
         private List<EnemyAnimation> animations;
-        private EnemyAnimation weaponAnimation;
-        private EnemyAnimation engineAnimation;
-        private EnemyAnimation destructionAnimation;
-        private EnemyAnimation shieldAnimation;
+        private SpriteChangeAnimation weaponAnimation;
+        private SpriteChangeAnimation engineAnimation;
+        private SpriteChangeAnimation destructionAnimation;
+        private SpriteChangeAnimation shieldAnimation;
+        private ValueChangeAnimation damageAnimation;
 
         public void Awake()
         {
             enemySpriteRenderer = GetComponent<SpriteRenderer>();
             EnableShieldImg(false);
             EnableEngineImg(false);
-            shieldAnimation = new(shieldSpriteRenderer)
-            {
-                startedAction = () => EnableShieldImg(true),
-                stoppedAction = () => EnableShieldImg(false)
-            };
-            engineAnimation = new(engineSpriteRenderer, interval: 0.1f, true)
-            {
-                startedAction = () => EnableEngineImg(true),
-                stoppedAction = () => EnableEngineImg(false)
-            };
-            weaponAnimation = new(enemySpriteRenderer, isLoop: true)
-            {
-                stoppedAction = RestoreDefaultImg
-            };
+            shieldAnimation = new(shieldSpriteRenderer);
+            shieldAnimation.SetStartedAction(() => EnableShieldImg(true))
+                           .SetStoppedAction(() => EnableShieldImg(false));
+            engineAnimation = new(engineSpriteRenderer, 0.1f);
+            engineAnimation.SetLoop(true)
+                           .SetStartedAction(() => EnableEngineImg(true))
+                           .SetStoppedAction(() => EnableEngineImg(false));
+            weaponAnimation = new(enemySpriteRenderer);
+            weaponAnimation.SetLoop(true).SetStoppedAction(RestoreDefaultImg);
             destructionAnimation = new(enemySpriteRenderer);
+            damageAnimation = new(HandleDamageTaken, 0, 1, 0.05f);
+            damageAnimation.SetCancelWhenFinished(true)
+                           .SetStartedAction(() => HandleDamageTaken(0))
+                           .SetStoppedAction(() => HandleDamageTaken(0));
             animations = new()
             {
                 shieldAnimation,
                 engineAnimation,
                 weaponAnimation,
+                damageAnimation,
                 destructionAnimation,
             };
         }
@@ -56,6 +67,9 @@ namespace SkyStrike.Game
             EnemyAnimation animation = null;
             switch (type)
             {
+                case EAnimationType.Damage:
+                    animation = damageAnimation;
+                    break;
                 case EAnimationType.Destruction:
                     animation = destructionAnimation;
                     break;
@@ -71,14 +85,13 @@ namespace SkyStrike.Game
             }
             ActiveAnimation(animation, state, finishedAction);
         }
-        public void FixedUpdate()
+        public void Update()
         {
             foreach (EnemyAnimation animation in animations)
-                animation.Animate(Time.fixedDeltaTime);
+                animation.Animate(Time.deltaTime);
         }
         public override void Interrupt()
         {
-            EnableShieldImg(false);
             foreach (EnemyAnimation animation in animations)
                 animation.Stop();
         }
@@ -104,7 +117,11 @@ namespace SkyStrike.Game
                 engineSpriteRenderer.sprite = data.metaData.engineSprites[0];
             engineSpriteRenderer.gameObject.SetActive(isEnabled);
         }
+        public void EnableHighlightImg(bool isEnabled)
+            => highlightSpriteRenderer.gameObject.SetActive(isEnabled);
         private void RestoreDefaultImg()
             => enemySpriteRenderer.sprite = data.metaData.sprite;
+        private void HandleDamageTaken(float alphaValue)
+            => enemySpriteRenderer.material.SetFloat("_Alpha", alphaValue);
     }
 }

@@ -1,17 +1,14 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
+    public interface IUIElement : IObject
     {
-        public interface IUIElement : IObject
-        {
-            public int? index { get; set; }
-            public UnityEvent<int> onSelectUI { get; set; }
-            public void Init();
-            public Image GetBackground();
-            public void SelectAndInvoke();
-        }
+        public int? index { get; set; }
+        public UnityEvent<int> onSelectUI { get; set; }
+        public void Init();
+        public Image GetBackground();
+        public void SelectAndInvoke();
     }
 }

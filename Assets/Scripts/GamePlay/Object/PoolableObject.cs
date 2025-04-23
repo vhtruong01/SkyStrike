@@ -15,7 +15,11 @@ namespace SkyStrike.Game
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             col = GetComponentInChildren<BoxCollider2D>();
         }
-        public virtual void SetData(T data) => this.data = data;
+        public virtual void SetData(T data)
+        {
+            this.data = data;
+            transform.eulerAngles = Vector3.zero;
+        }
         public virtual void Disappear() => onDestroy?.Invoke(this);
     }
 }

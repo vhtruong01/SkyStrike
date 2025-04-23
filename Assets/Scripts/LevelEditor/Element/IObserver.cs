@@ -1,11 +1,8 @@
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
+    public interface IObserver
     {
-        public interface IObserver
-        {
-            public void BindData();
-            public void UnbindData();
-        }
+        public void BindData();
+        public void UnbindData();
     }
 }

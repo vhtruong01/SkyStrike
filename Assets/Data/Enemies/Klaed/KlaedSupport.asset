@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
   m_Name: KlaedSupport
   m_EditorClassIdentifier: 
-  <id>k__BackingField: 16
-  <star>k__BackingField: 1
-  <maxHp>k__BackingField: 750
-  <sprite>k__BackingField: {fileID: 21300000, guid: 7ef4dac69022a3c43b1654dc039e6f27, type: 3}
+  race: 1
+  type: 6
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <type>k__BackingField: Kla'ed support
+  <sprite>k__BackingField: {fileID: 21300000, guid: 7ef4dac69022a3c43b1654dc039e6f27, type: 3}
   <destructionSprites>k__BackingField:
   - {fileID: -1045999264940459617, guid: 976de83d79e805a4a86e96b23b52351b, type: 3}
   - {fileID: 7170499875810483126, guid: 976de83d79e805a4a86e96b23b52351b, type: 3}

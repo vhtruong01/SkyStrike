@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
   m_Name: KlaedSubboss
   m_EditorClassIdentifier: 
-  <id>k__BackingField: 15
-  <star>k__BackingField: 14
-  <maxHp>k__BackingField: 100000
-  <sprite>k__BackingField: {fileID: 21300000, guid: 12c88afc28db88b498a886af4a2600b9, type: 3}
+  race: 1
+  type: 5
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <type>k__BackingField: Kla'ed subboss
+  <sprite>k__BackingField: {fileID: 21300000, guid: 12c88afc28db88b498a886af4a2600b9, type: 3}
   <destructionSprites>k__BackingField:
   - {fileID: 4582761352444331583, guid: 68f3a2dc31b65f742833156b77ecfa31, type: 3}
   - {fileID: -2913332006258989180, guid: 68f3a2dc31b65f742833156b77ecfa31, type: 3}

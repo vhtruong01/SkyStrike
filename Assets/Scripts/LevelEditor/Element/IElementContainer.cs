@@ -1,10 +1,7 @@
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
+    public interface IElementContainer<T> where T : IEditor
     {
-        public interface IElementContainer<T> where T : IEditor
-        {
-            public IDataList<T> GetDataList();
-        }
+        public IDataList<T> GetDataList();
     }
 }

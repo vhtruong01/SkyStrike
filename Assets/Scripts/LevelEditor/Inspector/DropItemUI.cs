@@ -2,22 +2,19 @@ using SkyStrike.Game;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
+    public class DropItemUI : UIElement<ItemData>
     {
-        public class DropItemUI : UIElement<ItemData>
-        {
-            [SerializeField] private Image image;
+        [SerializeField] private Image image;
 
-            public override void SetData(ItemData data)
-            {
-                base.SetData(data);
-                image.sprite = data.sprite;
-                itemName.text = data.type.ToString();
-            }
-            public override void BindData() { }
-            public override void UnbindData() { }
+        public override void SetData(ItemData data)
+        {
+            base.SetData(data);
+            image.sprite = data.sprite;
+            itemName.text = data.type.ToString();
         }
+        public override void BindData() { }
+        public override void UnbindData() { }
     }
 }

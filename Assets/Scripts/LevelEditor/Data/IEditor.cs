@@ -1,7 +1,4 @@
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
-    {
-        public interface IEditor : IData { }
-    }
+    public interface IEditor : IData { }
 }

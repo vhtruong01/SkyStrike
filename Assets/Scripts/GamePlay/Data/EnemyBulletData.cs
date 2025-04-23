@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace SkyStrike.Game
 {
@@ -20,5 +21,6 @@ namespace SkyStrike.Game
         public bool isStartAwake;
         public bool isLookingAtPlayer;//
         public int amount;
+        [NonSerialized] public Color color;
     }
 }

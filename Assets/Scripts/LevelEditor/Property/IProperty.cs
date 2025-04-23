@@ -1,12 +1,9 @@
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
+    public interface IProperty
     {
-        public interface IProperty
-        {
-            public void OnValueChanged();
-            public void Refresh();
-            public void Display(bool isEnabled);
-        }
+        public void OnValueChanged();
+        public void Refresh();
+        public void Display(bool isEnabled);
     }
 }

@@ -10,6 +10,7 @@ namespace SkyStrike.Game
         public static UnityEvent<EnemyBulletData, Vector3, float> onSpawnEnemyBullet { get; private set; }
         public static UnityEvent<ObjectData, EItem, float> onCreateEnemy { get; private set; }
         public static UnityEvent onPlayNextWave { get; private set; }
+        public static FuncEvent<Vector3> onGetShipPosition { get; private set; }
 
         static EventManager()
         {
@@ -18,6 +19,7 @@ namespace SkyStrike.Game
             onSpawnEnemyBullet = new();
             onCreateEnemy = new();
             onPlayNextWave = new();
+            onGetShipPosition = new();
         }
         public static void DropItem(EItem type, Vector3 position)
             => onDropItem.Invoke(type, position);

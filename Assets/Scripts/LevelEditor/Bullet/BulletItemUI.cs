@@ -1,24 +1,21 @@
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
+    public class BulletItemUI : UIElement<BulletDataObserver>
     {
-        public class BulletItemUI : UIElement<BulletDataObserver>
+        public override void SetName(string newName)
         {
-            public override void SetName(string newName)
-            {
-                if (string.IsNullOrEmpty(data.name.data))
-                    Rename(newName);
-            }
-            public override void BindData()
-                => data.name.Bind(Rename);
-            public override void UnbindData()
-                => data.name.Unbind(Rename);
-            private void Rename(string newName)
-            {
-                base.SetName(newName);
-                data.name.OnlySetData(newName);
-            }
-            public override BulletDataObserver DuplicateData() => data.Clone();
+            if (string.IsNullOrEmpty(data.name.data))
+                Rename(newName);
         }
+        public override void BindData()
+            => data.name.Bind(Rename);
+        public override void UnbindData()
+            => data.name.Unbind(Rename);
+        private void Rename(string newName)
+        {
+            base.SetName(newName);
+            data.name.OnlySetData(newName);
+        }
+        public override BulletDataObserver DuplicateData() => data.Clone();
     }
 }

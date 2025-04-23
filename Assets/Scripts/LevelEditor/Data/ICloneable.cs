@@ -1,10 +1,7 @@
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
+    public interface ICloneable<T> : IEditor where T : IEditor
     {
-        public interface ICloneable<T> : IEditor where T : IEditor
-        {
-            public T Clone();
-        }
+        public T Clone();
     }
 }

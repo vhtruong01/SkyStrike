@@ -1,25 +1,22 @@
 using TMPro;
 using UnityEngine;
 
-namespace SkyStrike
+namespace SkyStrike.Editor
 {
-    namespace Editor
+    public class StringProperty : Property<string>
     {
-        public class StringProperty : Property<string>
-        {
-            [SerializeField] private TMP_InputField x;
+        [SerializeField] private TMP_InputField x;
 
-            public void Awake()
-            {
-                x.onValueChanged.AddListener(s => OnValueChanged());
-            }
-            public override void OnValueChanged()
-            {
-                value = x.text;
-                onValueChanged.Invoke(value);
-            }
-            public override void Refresh()
-                => x.SetTextWithoutNotify(value);
+        public void Awake()
+        {
+            x.onValueChanged.AddListener(s => OnValueChanged());
         }
+        public override void OnValueChanged()
+        {
+            value = x.text;
+            onValueChanged.Invoke(value);
+        }
+        public override void Refresh()
+            => x.SetTextWithoutNotify(value);
     }
 }

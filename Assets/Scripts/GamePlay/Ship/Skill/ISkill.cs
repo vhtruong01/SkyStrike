@@ -1,18 +1,15 @@
 using UnityEngine;
 
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
+    public interface ISkill
     {
-        public interface ISkill
-        {
-            public string skillName { get; set; }
-            public float timeCooldown { get; set; }
-            public int point { get; set; }
-            public int maxPoint { get; set; }
-            public Sprite sprite { get; set; }
+        public string skillName { get; set; }
+        public float timeCooldown { get; set; }
+        public int point { get; set; }
+        public int maxPoint { get; set; }
+        public Sprite sprite { get; set; }
 
-            public void Active();
-        }
+        public void Active();
     }
 }

@@ -1,16 +1,13 @@
 using UnityEngine;
 
-namespace SkyStrike
+namespace SkyStrike.Game
 {
-    namespace Game
+    [CreateAssetMenu(fileName = "Laser", menuName = "Skill/Laser")]
+    public class LaserSkill : Skill
     {
-        [CreateAssetMenu(fileName = "Laser", menuName = "Skill/Laser")]
-        public class LaserSkill : Skill
+        public override void Active()
         {
-            public override void Active()
-            {
-                this.print(1);
-            }
+            this.print(1);
         }
     }
 }

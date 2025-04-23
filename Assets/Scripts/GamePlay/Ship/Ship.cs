@@ -6,6 +6,7 @@ namespace SkyStrike.Game
 {
     public class Ship : MonoBehaviour
     {
+        public static Vector3 pos { get; private set; }
         [SerializeField] private ShipMetaData shipMetaData;
         [SerializeField] private SpriteRenderer planet;
         [SerializeField] private SpriteRenderer shield;
@@ -23,6 +24,7 @@ namespace SkyStrike.Game
             command.SetAttackEnabled(false);
             shipData = new(shipMetaData);
         }
+        public void Update() => pos = transform.position;
         public IEnumerator PrepareFlying()
         {
             float appearTime = 2.5f;

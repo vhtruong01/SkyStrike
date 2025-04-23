@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
+  m_Name: NautolanSupport
+  m_EditorClassIdentifier: 
+  race: 3
+  type: 6
+  <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <sprite>k__BackingField: {fileID: 21300000, guid: 9609910d8f1561549a0ce7bb34ceeaba, type: 3}
+  <destructionSprites>k__BackingField:
+  - {fileID: -8969907158417123467, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: -6380974797942779011, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: -6771674197844395130, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: -2120020415320061184, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: 5250979219244125534, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: 3553606606388353657, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: -8345365457759831333, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: -2428651329247507735, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: -275312850708280790, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: 4942599435289936034, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: -732301325644483216, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: 7630092386742953059, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  - {fileID: -3858075037368466980, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
+  <engineSprites>k__BackingField:
+  - {fileID: 3558173018850813039, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 4301226818092057713, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 4896199308403825957, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 9016125255745211252, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 2629746138854056948, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: -449245604479773317, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: -5349623416046685625, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: -1736478364877655557, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  <shieldSprites>k__BackingField: []
+  <weaponSprites>k__BackingField: []

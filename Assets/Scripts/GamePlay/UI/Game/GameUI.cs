@@ -11,9 +11,11 @@ namespace SkyStrike.UI
         [SerializeField] private MovingBackground movingBg;
         [SerializeField] private SkillButton skillButtonPrefab;
         [SerializeField] private Transform skillGroupContainer;
+        [SerializeField] private GameObject uiContent;
         [SerializeField] private TextMeshProUGUI star;
         [SerializeField] private HpBar hpBar;
         [SerializeField] private Button startButton;
+        [SerializeField] private Slider levelProcess;
         [SerializeField] private Ship ship;
         [SerializeField] private MainGame game;
         private Animator uiAnimator;
@@ -21,9 +23,11 @@ namespace SkyStrike.UI
 
         public void Awake()
         {
+            uiContent.SetActive(false);
             uiAnimator = GetComponent<Animator>();
             startBtnMaterial = startButton.GetComponent<Image>().material;
             startButton.onClick.AddListener(() => StartCoroutine(StartGame()));
+            levelProcess.value = 0;
         }
         public IEnumerator Start()
         {
@@ -34,7 +38,7 @@ namespace SkyStrike.UI
             while (elapsedTime < totalTime)
             {
                 startBtnMaterial.SetFloat("_Threshold", elapsedTime);
-                elapsedTime += Time.deltaTime ;
+                elapsedTime += Time.deltaTime;
                 yield return null;
             }
         }
@@ -44,6 +48,7 @@ namespace SkyStrike.UI
             movingBg.enabled = true;
             yield return StartCoroutine(ship.PrepareFlying());
             startButton.gameObject.SetActive(false);
+            uiContent.SetActive(true);
             uiAnimator.SetTrigger("Appear");
             yield return StartCoroutine(ship.StartFlying());
             game.Restart();
