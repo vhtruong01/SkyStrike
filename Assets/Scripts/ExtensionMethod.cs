@@ -7,22 +7,30 @@ namespace SkyStrike
     {
         public static readonly int NULL_ID = -1;
         public static Color[] colors = new Color[] {
-            new(1, 1, 0),
-            new(0.5f, 1, 0),
-            new(1, 0.5f, 0),
-            new(0, 0.5f, 1),
-            new(0, 1, 1),
-            new(0, 1, 0.5f),
-            new(1, 1, 0),
-            new(1, 0, 0.5f),
-            new(1, 0, 0),
-            new(1, 0.5f, 0.5f),
             new(1, 1, 0.5f),
-            new(0.5f, 1, 1),
-            new(0.5f, 0.5f, 1),
             new(1, 0.5f, 1),
+            new(0.5f, 1, 1),
             new(1, 0.5f, 0.5f),
-            new(1, 0.5f, 1)
+            new(0.5f, 0.5f, 1),
+            new(0.5f, 1, 0.5f),            
+            new(1, 1, 0.75f),
+            new(1, 0.75f, 1),
+            new(0.75f, 1, 1),
+            new(1, 0.75f, 0.75f),
+            new(0.75f, 0.75f, 1),
+            new(0.75f, 1, 0.75f),
+            new(0.75f, 0.75f, 0.5f),
+            new(0.75f, 0.5f, 0.75f),
+            new(0.5f, 0.75f, 0.75f),
+            new(0.75f, 0.5f, 0.5f),
+            new(0.5f, 0.5f, 0.75f),
+            new(0.5f, 0.75f, 0.5f),
+            new(1, 0.75f, 0.5f),
+            new(1, 0.5f, 0.75f),
+            new(0.75f, 0.5f, 1),
+            new(0.75f, 1, 0.5f),
+            new(0.5f, 0.75f, 1),
+            new(0.5f, 1, 0.75f),
         };
         // List
         public static void Swap<T>(this List<T> list, int leftIndex, int rightIndex)
@@ -50,7 +58,7 @@ namespace SkyStrike
         public static Vector3 SetZ(this Vector3 v, float z) => new(v.x, v.y, z);
         // Color
         public static Color ChangeAlpha(this Color color, float alpha) => new(color.r, color.g, color.b, alpha);
-        public static Color RandomColor() => colors[Random.Range(0, colors.Length)];
+        public static Color RandomColor(this GameObject obj) => colors[Random.Range(0, colors.Length)];
         // ScriptableObject
         public static void print(this ScriptableObject obj, object msg) => Debug.Log(msg);
     }

@@ -3,23 +3,26 @@ using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public abstract class PoolableObject<T> : MonoBehaviour, IPoolableObject, IInitializable<T>
+    public interface IPoolableObject : IObject
     {
-        public T data { get; protected set; }
-        protected SpriteRenderer spriteRenderer;
-        protected BoxCollider2D col;
+        public void Disappear();
+    }
+    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(SpriteRenderer))]
+    public abstract class PoolableObject<T> : MonoBehaviour, IPoolableObject, IRefreshable
+    {
+        public T data { get; set; }
+        protected SpriteRenderer spriteRenderer { get; set; }
+        protected BoxCollider2D col2D { get; set; }
         public UnityAction<PoolableObject<T>> onDestroy { private get; set; }
 
         public virtual void Awake()
         {
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            col = GetComponentInChildren<BoxCollider2D>();
+            col2D = GetComponent<BoxCollider2D>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            data = GetComponent<T>();
         }
-        public virtual void SetData(T data)
-        {
-            this.data = data;
-            transform.eulerAngles = Vector3.zero;
-        }
+        public abstract void Refresh();
         public virtual void Disappear() => onDestroy?.Invoke(this);
     }
 }

@@ -1,20 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike.Game
 {
-    public class EnemyMovement : EnemyComponent
+    public class EnemyMovement : MonoBehaviour, IEnemyComponent, IMoveable
     {
-        private MoveData moveData;
+        public EnemyData data { get; set; }
+        public UnityAction<EEntityAction> notifyAction { get; set; }
 
-        public override void SetData(EnemyData data)
-        {
-            base.SetData(data);
-            moveData = data.moveData;
-        }
+        public void Awake()
+            => data = GetComponent<EnemyData>();
         public void Move()
         {
+            MoveData moveData = data.moveData;
             Point point = moveData.points[data.pointIndex];
             if (data.pointIndex < moveData.points.Length - 1)
             {
@@ -92,7 +92,7 @@ namespace SkyStrike.Game
             transform.eulerAngles = new(0, 0, Vector2.SignedAngle(Vector2.up, dir));
         }
         private void FinishMoving()
-            => notifyAction?.Invoke(EEnemyAction.Arrive);
-        public override void Interrupt() => StopAllCoroutines();
+            => notifyAction?.Invoke(EEntityAction.Arrive);
+        public void Interrupt() => StopAllCoroutines();
     }
 }

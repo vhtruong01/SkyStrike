@@ -1,41 +1,42 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike.Game
 {
     public class ShipBulletManager : PoolManager<ShipBullet, ShipBulletData>
     {
-        [SerializeField] private List<ShipBulletMetaData> bulletDataList;
-        private Dictionary<EShipBulletType, ShipBulletSpawner> spawners;
-
         public override void Awake()
         {
             base.Awake();
-            spawners = new();
-            AddSpawner(EShipBulletType.SingleBullet);
+            EventManager.onSpawnShipBullet.AddListener(SpawnBullet);
         }
-        public void AddSpawner(EShipBulletType bulletType)
+        private void SpawnBullet(ShipBulletMetaData metaData)
         {
-            foreach (ShipBulletMetaData data in bulletDataList)
-                if (data.type == bulletType)
-                {
-                    ShipBulletSpawner spawner = gameObject.AddComponent<ShipBulletSpawner>();
-                    ShipBulletData bulletData = new(bulletDataList[(int)bulletType]);
-                    spawner.Init(bulletData, InstantiateItem);
-                    spawners.Add(bulletType, spawner);
-                    return;
-                }
+            Vector3 pos = transform.position;
+            switch (metaData.type)
+            {
+                case EShipBulletType.SingleBullet:
+                    SpawnBullet(metaData, pos, new(0, metaData.speed, 0));
+                    break;
+                case EShipBulletType.DoubleBullet:
+                    SpawnBullet(metaData, pos + new Vector3(-0.25f, 0, 0), new(0, metaData.speed, 0));
+                    SpawnBullet(metaData, pos + new Vector3(0.25f, 0, 0), new(0, metaData.speed, 0)); 
+                    break;
+                case EShipBulletType.TripleBullet:
+                    SpawnBullet(metaData, pos, new(-metaData.speed * Mathf.Sin(Mathf.PI / 12), metaData.speed, 0));
+                    SpawnBullet(metaData, pos, new(0, metaData.speed, 0));
+                    SpawnBullet(metaData, pos, new(metaData.speed * Mathf.Sin(Mathf.PI / 12), metaData.speed, 0));
+                    break;
+                case EShipBulletType.LaserBullet:
+                    break;
+                case EShipBulletType.RocketBullet:
+                    break;
+            }
         }
-        public void UpgradeSpawner(EShipBulletType bulletType)
+        private void SpawnBullet(ShipBulletMetaData metaData, Vector3 pos, Vector3 velocity)
         {
-            if (spawners.TryGetValue(bulletType, out ShipBulletSpawner spawner))
-                spawner.Upgrade();
-            else AddSpawner(bulletType);
-        }
-        public void SetActive(bool isEnabled)
-        {
-            foreach (var spawner in spawners.Values)
-                spawner.isEnabled = isEnabled;
+            var bullet = InstantiateItem(pos);
+            bullet.data.SetExtraData(velocity);
+            bullet.data.UpdateDataAndRefresh(metaData);
         }
     }
 }

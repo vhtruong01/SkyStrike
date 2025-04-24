@@ -7,7 +7,6 @@ namespace SkyStrike.Game
     {
         protected float startVal;
         protected float endVal;
-        protected float totalTime;
         protected UnityAction<float> setValueAction;
 
         public ValueChangeAnimation(UnityAction<float> setVal, float startVal, float endVal, float totalTime)
@@ -19,23 +18,26 @@ namespace SkyStrike.Game
         }
         public override void Animate(float deltaTime)
         {
+            //dir
             if (!isActive) return;
             elapedTime += deltaTime;
             setValueAction.Invoke(Mathf.Lerp(startVal, endVal, elapedTime / totalTime));
-            Debug.Log(Mathf.Lerp(startVal, endVal, elapedTime / totalTime));
             if (elapedTime >= totalTime)
             {
                 if (isLoop) Reset();
                 else
                 {
                     isActive = false;
-                    if (isCancelWhenFinish)
+                    if (!isPauseAnimationOnComplete)
                         Stop();
                 }
                 finishedAction?.Invoke();
             }
         }
-        protected override void Reset() 
-            => elapedTime = 0;
+        public override IEntityAnimation Reset()
+        {
+            elapedTime = 0;
+            return this;
+        }
     }
 }

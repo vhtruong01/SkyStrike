@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SkyStrike.Editor
 {
-    public class BulletDataObserver : IEditorData<EnemyBulletData, BulletDataObserver>
+    public class BulletDataObserver : IEditorData<EnemyBulletMetaData, BulletDataObserver>
     {
         public static readonly int UNDEFINED_ID = -1;
         public int id { get; set; }
@@ -46,7 +46,7 @@ namespace SkyStrike.Editor
             lifeTime.SetData(15);
 
         }
-        public BulletDataObserver(EnemyBulletData bulletData) : this() => ImportData(bulletData);
+        public BulletDataObserver(EnemyBulletMetaData bulletData) : this() => ImportData(bulletData);
         public BulletDataObserver Clone()
         {
             BulletDataObserver newData = new();
@@ -66,7 +66,7 @@ namespace SkyStrike.Editor
             newData.isLookingAtPlayer.SetData(isLookingAtPlayer.data);
             return newData;
         }
-        public EnemyBulletData ExportData()
+        public EnemyBulletMetaData ExportData()
         {
             return new()
             {
@@ -87,7 +87,7 @@ namespace SkyStrike.Editor
                 amount = amount.data,
             };
         }
-        public void ImportData(EnemyBulletData data)
+        public void ImportData(EnemyBulletMetaData data)
         {
             id = data.id;
             name.SetData(data.name);

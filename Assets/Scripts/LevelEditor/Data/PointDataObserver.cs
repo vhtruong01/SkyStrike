@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using static SkyStrike.Game.MoveData;
 
@@ -18,7 +17,7 @@ namespace SkyStrike.Editor
         public DataObserver<bool> isLookingAtPlayer { get; private set; }
         public DataObserver<bool> isImmortal { get; private set; }
         public DataObserver<bool> isIgnoreVelocity { get; private set; }
-        public HashSet<int> bulletIdSet { get; private set; }
+        public int bulletId { get; private set; }
 
         public PointDataObserver()
         {
@@ -33,12 +32,12 @@ namespace SkyStrike.Editor
             isStraightLine = new();
             isLookingAtPlayer = new();
             isImmortal = new();
-            bulletIdSet = new();
             isIgnoreVelocity = new();
             isStraightLine.SetData(true);
             scale.OnlySetData(1);
             prePos.OnlySetData(new(-1.5f, 0));
             nextPos.OnlySetData(new(0, -1.5f));
+            bulletId = BulletDataObserver.UNDEFINED_ID;
         }
         public PointDataObserver(Point data) : this() => ImportData(data);
         public void Translate(Vector2 dir)
@@ -48,6 +47,12 @@ namespace SkyStrike.Editor
             nextPos.SetData(nextPos.data + dir);
         }
         public void ChangePosition(Vector2 pos) => Translate(pos - midPos.data);
+        public void SetBulletId(int id)
+        {
+            if (bulletId == id)
+                bulletId = BulletDataObserver.UNDEFINED_ID;
+            else bulletId = id;
+        }
         public void UnbindAll()
         {
             prePos.UnbindAll();
@@ -78,8 +83,7 @@ namespace SkyStrike.Editor
             newPoint.isLookingAtPlayer.OnlySetData(isLookingAtPlayer.data);
             newPoint.isStraightLine.OnlySetData(isStraightLine.data);
             newPoint.isIgnoreVelocity.OnlySetData(isIgnoreVelocity.data);
-            foreach (int id in bulletIdSet)
-                newPoint.bulletIdSet.Add(id);
+            newPoint.bulletId = bulletId;
             return newPoint;
         }
         public Point ExportData()
@@ -98,11 +102,8 @@ namespace SkyStrike.Editor
                 rotation = rotation.data,
                 standingTime = standingTime.data,
                 travelTime = travelTime.data,
-                bulletIdArr = new int[bulletIdSet.Count],
+                bulletId = bulletId
             };
-            int index = 0;
-            foreach (int id in bulletIdSet)
-                pointData.bulletIdArr[index++] = id;
             return pointData;
         }
         public void ImportData(Point pointData)
@@ -119,9 +120,7 @@ namespace SkyStrike.Editor
             rotation.OnlySetData(pointData.rotation);
             standingTime.OnlySetData(pointData.standingTime);
             travelTime.OnlySetData(pointData.travelTime);
-            if (pointData.bulletIdArr == null) return;
-            foreach (int id in pointData.bulletIdArr)
-                bulletIdSet.Add(id);
+            bulletId = pointData.bulletId;
         }
     }
 }

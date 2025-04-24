@@ -68,7 +68,7 @@ namespace SkyStrike.Editor
                 starRating = starRating.data,
                 waves = new WaveData[waveList.Count],
                 curBulletId = curBulletId,
-                bullets = new EnemyBulletData[bulletList.Count]
+                bullets = new EnemyBulletMetaData[bulletList.Count]
             };
             for (int i = 0; i < waveList.Count; i++)
                 levelData.waves[i] = waveList[i].ExportData();

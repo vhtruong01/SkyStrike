@@ -1,75 +1,68 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public class ShipBulletSpawner : MonoBehaviour
+    public class ShipBulletSpawner : MonoBehaviour, ISpawnable
     {
-        private float elaspedTime;
-        private Func<ShipBulletData, Vector3, ShipBullet> onCreateBullet;
-        private UnityAction onSpawnBullet;
-        private ShipBulletData bulletData;
-        public bool isEnabled { get; set; }
+        private class SimpleSpawner
+        {
+            private float elaspedTime;
+            private ShipBulletMetaData metaData;
 
+            public SimpleSpawner(ShipBulletMetaData metaData)
+                => this.metaData = metaData;
+            public void Update(float deltaTime)
+            {
+                elaspedTime += deltaTime;
+                if (elaspedTime >= metaData.timeCooldown)
+                {
+                    elaspedTime = 0;
+                    EventManager.SpawnShipBullet(metaData);
+                }
+            }
+            public void Upgrade() => metaData.LevelUp();
+        }
+        [SerializeField] private List<ShipBulletMetaData> bulletDataList;
+        private bool isEnabled;
+        private Dictionary<EShipBulletType, SimpleSpawner> spawners;
+
+        public UnityAction<EEntityAction> notifyAction { get; set; }
+
+        public void Awake()
+        {
+            spawners = new();
+            AddSpawner(EShipBulletType.SingleBullet);
+            AddSpawner(EShipBulletType.DoubleBullet);
+            AddSpawner(EShipBulletType.TripleBullet);
+        }
+        public void AddSpawner(EShipBulletType bulletType)
+        {
+            foreach (ShipBulletMetaData data in bulletDataList)
+                if (data.type == bulletType)
+                {
+                    data.Reset();
+                    SimpleSpawner spawner = new(data);
+                    spawners.Add(bulletType, spawner);
+                    return;
+                }
+        }
+        public void UpgradeSpawner(EShipBulletType bulletType)
+        {
+            if (spawners.TryGetValue(bulletType, out SimpleSpawner spawner))
+                spawner.Upgrade();
+            else AddSpawner(bulletType);
+        }
         public void Update()
         {
             if (!isEnabled) return;
-            elaspedTime += Time.deltaTime;
-            if (elaspedTime >= bulletData.timeCooldown)
-            {
-                onSpawnBullet.Invoke();
-                elaspedTime = 0;
-            }
+            float deltaTime = Time.deltaTime;
+            foreach (var spawner in spawners.Values)
+                spawner.Update(deltaTime);
         }
-        public void Upgrade() => bulletData.LevelUp();
-        public void Init(ShipBulletData bulletData, Func<ShipBulletData, Vector3, ShipBullet> onCreateBullet)
-        {
-            elaspedTime = 0;
-            isEnabled = true;
-            this.bulletData = bulletData;
-            this.onCreateBullet = onCreateBullet;
-            switch (bulletData.metaData.type)
-            {
-                case EShipBulletType.SingleBullet:
-                    onSpawnBullet = SpawnNormalBullet;
-                    break;
-                case EShipBulletType.DoubleBullet:
-                    onSpawnBullet = SpawnDoubleBullet;
-                    break;
-                case EShipBulletType.TripleBullet:
-                    onSpawnBullet = SpawnTripleBullet;
-                    break;
-                case EShipBulletType.LaserBullet:
-                    onSpawnBullet = SpawnLaserBullet;
-                    break;
-                case EShipBulletType.RocketBullet:
-                    onSpawnBullet = SpawnRocketBullet;
-                    break;
-            }
-        }
-        private void SpawnNormalBullet()
-            => SpawnBullet(transform.position, new(0, bulletData.speed, 0));
-        private void SpawnTripleBullet()
-        {
-            SpawnBullet(transform.position, new(-bulletData.speed * Mathf.Sin(Mathf.PI / 12), bulletData.speed, 0));
-            SpawnBullet(transform.position, new(0, bulletData.speed, 0));
-            SpawnBullet(transform.position, new(bulletData.speed * Mathf.Sin(Mathf.PI / 12), bulletData.speed, 0));
-        }
-        private void SpawnDoubleBullet()
-        {
-            SpawnBullet(transform.position + new Vector3(-0.25f, 0, 0), new(0, bulletData.speed, 0));
-            SpawnBullet(transform.position + new Vector3(0.25f, 0, 0), new(0, bulletData.speed, 0));
-        }
-        private void SpawnLaserBullet()
-        {
-
-        }
-        private void SpawnRocketBullet()
-        {
-
-        }
-        private void SpawnBullet(Vector3 pos, Vector3 velocity)
-            => onCreateBullet.Invoke(bulletData, pos).SetVelocity(velocity);
+        public void Spawn() => isEnabled = true;
+        public void Stop() => isEnabled = false;
+        public void Interrupt() => Stop();
     }
 }

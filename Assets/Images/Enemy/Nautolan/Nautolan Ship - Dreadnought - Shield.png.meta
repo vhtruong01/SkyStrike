@@ -94,7 +94,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -108,7 +108,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -132,7 +132,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -160,20 +160,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 5
-        width: 114
-        height: 114
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0cc2d35c6750396e0800000000000000
-      internalID: -1832114615736259392
+      spriteID: 3662ba9139d3874479ca02078a20dd0c
+      internalID: -1537442209
       vertices: []
       indices: 
       edges: []
@@ -182,20 +182,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_1
       rect:
         serializedVersion: 2
-        x: 135
-        y: 5
-        width: 114
-        height: 114
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f78ef5d2d57f0230800000000000000
-      internalID: 3607231374940866544
+      spriteID: 0bd891620eaa5c64393af822a4d137f7
+      internalID: -164446547
       vertices: []
       indices: 
       edges: []
@@ -204,20 +204,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_2
       rect:
         serializedVersion: 2
-        x: 263
-        y: 5
-        width: 114
-        height: 114
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5093412d77f5da4b0800000000000000
-      internalID: -5427577007681292027
+      spriteID: 7d78038b289cc03459d417ce060de203
+      internalID: -2003609440
       vertices: []
       indices: 
       edges: []
@@ -226,20 +226,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_3
       rect:
         serializedVersion: 2
-        x: 391
-        y: 5
-        width: 114
-        height: 114
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b88b50f05e7932ae0800000000000000
-      internalID: -1575248434594203509
+      spriteID: 68726fa95aad6c749b1c58b9c7b13398
+      internalID: 1389965858
       vertices: []
       indices: 
       edges: []
@@ -248,20 +248,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_4
       rect:
         serializedVersion: 2
-        x: 519
-        y: 5
-        width: 114
-        height: 114
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ff7349a9ea2655d0800000000000000
-      internalID: -3074222512578265097
+      spriteID: 887ad834c955fce4796bcf513501b81e
+      internalID: 1200716548
       vertices: []
       indices: 
       edges: []
@@ -270,20 +270,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_5
       rect:
         serializedVersion: 2
-        x: 647
-        y: 5
-        width: 114
-        height: 114
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68d82c22eb62e5070800000000000000
-      internalID: 8096951778127547782
+      spriteID: 0b6d0e308d7e96149be2619d32609013
+      internalID: 645533022
       vertices: []
       indices: 
       edges: []
@@ -292,20 +292,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_6
       rect:
         serializedVersion: 2
-        x: 775
-        y: 5
-        width: 114
-        height: 114
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4a25a469f4ddf7d00800000000000000
-      internalID: 972739378428924580
+      spriteID: 29386bdda3aa99c43a58121efcd51c38
+      internalID: -1488683432
       vertices: []
       indices: 
       edges: []
@@ -314,20 +314,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_7
       rect:
         serializedVersion: 2
-        x: 903
-        y: 5
-        width: 114
-        height: 114
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9498d7dcd40788da0800000000000000
-      internalID: -5942376228853020343
+      spriteID: de14c24b4b69d254db72bcfa92910fc7
+      internalID: 348957693
       vertices: []
       indices: 
       edges: []
@@ -336,20 +336,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_8
       rect:
         serializedVersion: 2
-        x: 1031
-        y: 5
-        width: 114
-        height: 114
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2c450b7d5fd5bbaa0800000000000000
-      internalID: -6144213956149881662
+      spriteID: 55d55d0f2ea570c4380bd5b12dd49d42
+      internalID: 153224022
       vertices: []
       indices: 
       edges: []
@@ -358,20 +358,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_9
       rect:
         serializedVersion: 2
-        x: 1159
-        y: 5
-        width: 114
-        height: 114
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e2b8c7cae572f6ee0800000000000000
-      internalID: -1265749682693567698
+      spriteID: 6a5c7a0dcb2dcfb4aa07ba9d9a358a62
+      internalID: -459394391
       vertices: []
       indices: 
       edges: []
@@ -380,20 +380,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_10
       rect:
         serializedVersion: 2
-        x: 1287
-        y: 5
-        width: 114
-        height: 114
+        x: 1280
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f72b62f5d74e039b0800000000000000
-      internalID: -5102327150692355457
+      spriteID: 4b7f68788c39bfa458323f5a3ebf31d1
+      internalID: -846165178
       vertices: []
       indices: 
       edges: []
@@ -402,20 +402,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_11
       rect:
         serializedVersion: 2
-        x: 1415
-        y: 5
-        width: 114
-        height: 114
+        x: 1408
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b7a9870d8756528a0800000000000000
-      internalID: -6330542131631318405
+      spriteID: 463647ef9dd34ef43b17356647e82a75
+      internalID: 1038169830
       vertices: []
       indices: 
       edges: []
@@ -424,20 +424,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_12
       rect:
         serializedVersion: 2
-        x: 1543
-        y: 5
-        width: 114
-        height: 114
+        x: 1536
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b3bc5d5f2d62f2810800000000000000
-      internalID: 1742654268325088059
+      spriteID: 4e336cb7b60fbc3469f23e53fccb6be0
+      internalID: -1469533202
       vertices: []
       indices: 
       edges: []
@@ -446,20 +446,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_13
       rect:
         serializedVersion: 2
-        x: 1671
-        y: 5
-        width: 114
-        height: 114
+        x: 1664
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4e8bf72774d525930800000000000000
-      internalID: 4130466369697200356
+      spriteID: 678b4a535a523af4e9209576ed2ed386
+      internalID: 16256211
       vertices: []
       indices: 
       edges: []
@@ -468,20 +468,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_14
       rect:
         serializedVersion: 2
-        x: 1799
-        y: 5
-        width: 114
-        height: 114
+        x: 1792
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8085e69d79c0dcf40800000000000000
-      internalID: 5750266145549473800
+      spriteID: 10a3deb4a0ec4034bbf17266c4334f8a
+      internalID: -1859322068
       vertices: []
       indices: 
       edges: []
@@ -490,20 +490,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_15
       rect:
         serializedVersion: 2
-        x: 1927
-        y: 5
-        width: 114
-        height: 114
+        x: 1920
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ddb02601d5787e8f0800000000000000
-      internalID: -511291198906692643
+      spriteID: 88c0084feb1544345a99128bdaeffffa
+      internalID: -284636014
       vertices: []
       indices: 
       edges: []
@@ -512,20 +512,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_16
       rect:
         serializedVersion: 2
-        x: 2055
-        y: 5
-        width: 114
-        height: 114
+        x: 2048
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0b75865b6956e14a0800000000000000
-      internalID: -6620742704225036368
+      spriteID: f8a9b68263ff83646b16f1391262b14c
+      internalID: 1007973946
       vertices: []
       indices: 
       edges: []
@@ -534,20 +534,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_17
       rect:
         serializedVersion: 2
-        x: 2183
-        y: 5
-        width: 114
-        height: 114
+        x: 2176
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 79106ec9fdac796a0800000000000000
-      internalID: -6442457680171368041
+      spriteID: 60e25b586f108894ca79c428cf6a6b35
+      internalID: -1310852968
       vertices: []
       indices: 
       edges: []
@@ -556,20 +556,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_18
       rect:
         serializedVersion: 2
-        x: 2311
-        y: 5
-        width: 114
-        height: 114
+        x: 2304
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 76df3a903a6484920800000000000000
-      internalID: 2974705219933568359
+      spriteID: b2671f8246857a5478c36e8af0e0c6eb
+      internalID: 102001575
       vertices: []
       indices: 
       edges: []
@@ -578,20 +578,20 @@ TextureImporter:
       name: Nautolan Ship - Dreadnought - Shield_19
       rect:
         serializedVersion: 2
-        x: 2439
-        y: 5
-        width: 114
-        height: 114
+        x: 2432
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1622a0e60d86c7dd0800000000000000
-      internalID: -2486997649806712223
+      spriteID: 70a26ba7cc1041f41824cf6b275f618e
+      internalID: -1642012080
       vertices: []
       indices: 
       edges: []
@@ -600,7 +600,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0f2c2c35998d55e4a9627661bc9b8599
     internalID: 0
     vertices: []
     indices: 
@@ -609,7 +609,27 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nautolan Ship - Dreadnought - Shield_0: -1537442209
+      Nautolan Ship - Dreadnought - Shield_1: -164446547
+      Nautolan Ship - Dreadnought - Shield_10: -846165178
+      Nautolan Ship - Dreadnought - Shield_11: 1038169830
+      Nautolan Ship - Dreadnought - Shield_12: -1469533202
+      Nautolan Ship - Dreadnought - Shield_13: 16256211
+      Nautolan Ship - Dreadnought - Shield_14: -1859322068
+      Nautolan Ship - Dreadnought - Shield_15: -284636014
+      Nautolan Ship - Dreadnought - Shield_16: 1007973946
+      Nautolan Ship - Dreadnought - Shield_17: -1310852968
+      Nautolan Ship - Dreadnought - Shield_18: 102001575
+      Nautolan Ship - Dreadnought - Shield_19: -1642012080
+      Nautolan Ship - Dreadnought - Shield_2: -2003609440
+      Nautolan Ship - Dreadnought - Shield_3: 1389965858
+      Nautolan Ship - Dreadnought - Shield_4: 1200716548
+      Nautolan Ship - Dreadnought - Shield_5: 645533022
+      Nautolan Ship - Dreadnought - Shield_6: -1488683432
+      Nautolan Ship - Dreadnought - Shield_7: 348957693
+      Nautolan Ship - Dreadnought - Shield_8: 153224022
+      Nautolan Ship - Dreadnought - Shield_9: -459394391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

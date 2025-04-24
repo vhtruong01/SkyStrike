@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,10 +124,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Engine_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 11
-        width: 16
-        height: 13
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Engine_1
       rect:
         serializedVersion: 2
-        x: 88
-        y: 13
-        width: 16
-        height: 11
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +168,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Engine_2
       rect:
         serializedVersion: 2
-        x: 152
-        y: 12
-        width: 16
-        height: 12
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +190,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Engine_3
       rect:
         serializedVersion: 2
-        x: 216
-        y: 11
-        width: 16
-        height: 14
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +212,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Engine_4
       rect:
         serializedVersion: 2
-        x: 280
-        y: 10
-        width: 16
-        height: 14
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +234,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Engine_5
       rect:
         serializedVersion: 2
-        x: 344
-        y: 12
-        width: 16
-        height: 12
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,10 +256,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Engine_6
       rect:
         serializedVersion: 2
-        x: 408
-        y: 12
-        width: 16
-        height: 12
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Engine_7
       rect:
         serializedVersion: 2
-        x: 472
-        y: 12
-        width: 16
-        height: 13
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b4c44be8643558341b1faf37e5cf9fb0
     internalID: 0
     vertices: []
     indices: 
@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nairan - Torpedo Ship - Engine_0: 5586334234020633538
+      Nairan - Torpedo Ship - Engine_1: 8549751728648108187
+      Nairan - Torpedo Ship - Engine_2: -6895697791003038313
+      Nairan - Torpedo Ship - Engine_3: -7995300848885505583
+      Nairan - Torpedo Ship - Engine_4: -2888865564710709500
+      Nairan - Torpedo Ship - Engine_5: -8634983252631513514
+      Nairan - Torpedo Ship - Engine_6: -8331798602626183093
+      Nairan - Torpedo Ship - Engine_7: -6658552434592537552
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

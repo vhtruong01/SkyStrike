@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1456450575626005375}
   - component: {fileID: 2224853654365653261}
-  - component: {fileID: -7155573818991099188}
   - component: {fileID: 5784760579321711422}
+  - component: {fileID: -7155573818991099188}
+  - component: {fileID: 4910534486047539466}
   m_Layer: 7
   m_Name: ShipBullet
   m_TagString: ShipBullet
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1969515735
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 93ab20b7efc1e1743b26a9f4207da941, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -89,18 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7155573818991099188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715472480678562029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd36c0c34a5b224bb3bee386eba7fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &5784760579321711422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.07, y: 0.35}
+    oldSize: {x: 0.089999996, y: 0.35999998}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -147,3 +136,27 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.07, y: 0.14}
   m_EdgeRadius: 0
+--- !u!114 &-7155573818991099188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715472480678562029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd36c0c34a5b224bb3bee386eba7fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4910534486047539466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715472480678562029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24729857a2dcc304899d6e7efc4c6ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

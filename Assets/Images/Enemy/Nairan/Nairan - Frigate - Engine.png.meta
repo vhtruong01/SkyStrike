@@ -106,7 +106,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -120,7 +120,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -144,7 +144,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -172,10 +172,10 @@ TextureImporter:
       name: Nairan - Frigate - Engine_0
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 0
-        width: 8
-        height: 15
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Nairan - Frigate - Engine_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 8
-        width: 8
-        height: 6
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +216,10 @@ TextureImporter:
       name: Nairan - Frigate - Engine_2
       rect:
         serializedVersion: 2
-        x: 36
-        y: 6
-        width: 8
-        height: 9
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,10 +238,10 @@ TextureImporter:
       name: Nairan - Frigate - Engine_3
       rect:
         serializedVersion: 2
-        x: 84
-        y: 9
-        width: 8
-        height: 6
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +260,10 @@ TextureImporter:
       name: Nairan - Frigate - Engine_4
       rect:
         serializedVersion: 2
-        x: 91
-        y: 2
-        width: 10
-        height: 12
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,10 +282,10 @@ TextureImporter:
       name: Nairan - Frigate - Engine_5
       rect:
         serializedVersion: 2
-        x: 100
-        y: 5
-        width: 8
-        height: 10
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,10 +304,10 @@ TextureImporter:
       name: Nairan - Frigate - Engine_6
       rect:
         serializedVersion: 2
-        x: 148
-        y: 3
-        width: 8
-        height: 12
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,10 +326,10 @@ TextureImporter:
       name: Nairan - Frigate - Engine_7
       rect:
         serializedVersion: 2
-        x: 155
-        y: 1
-        width: 11
-        height: 13
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,363 +344,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_8
-      rect:
-        serializedVersion: 2
-        x: 164
-        y: 7
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c96de3063b24e5830800000000000000
-      internalID: 4061757252116076188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_9
-      rect:
-        serializedVersion: 2
-        x: 212
-        y: 2
-        width: 8
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 47955768a39742e70800000000000000
-      internalID: 9089523240211405172
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_10
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 0
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d9040a3420c015a70800000000000000
-      internalID: 8813839149604815005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_11
-      rect:
-        serializedVersion: 2
-        x: 228
-        y: 8
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fd9c366e7aabedbd0800000000000000
-      internalID: -2603438304285963809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_12
-      rect:
-        serializedVersion: 2
-        x: 276
-        y: 0
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9afb0ad065ae37de0800000000000000
-      internalID: -1336467009082179671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_13
-      rect:
-        serializedVersion: 2
-        x: 284
-        y: 8
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 14f7937d46c305020800000000000000
-      internalID: 2328427411155812161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_14
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 2
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac9e1a424daefd800800000000000000
-      internalID: 639487868978457034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_15
-      rect:
-        serializedVersion: 2
-        x: 340
-        y: 9
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b8ad2a0d2b0853c0800000000000000
-      internalID: -4370731150290868042
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_16
-      rect:
-        serializedVersion: 2
-        x: 345
-        y: 1
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b2bd6174059ef5fe0800000000000000
-      internalID: -1197982444857926869
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_17
-      rect:
-        serializedVersion: 2
-        x: 356
-        y: 4
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a4df204a400ee930800000000000000
-      internalID: 4174274223523484836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_18
-      rect:
-        serializedVersion: 2
-        x: 404
-        y: 1
-        width: 8
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 46f7da74dcad8f8c0800000000000000
-      internalID: -3965178896694018204
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_19
-      rect:
-        serializedVersion: 2
-        x: 411
-        y: 3
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d3ab7f929fccc9cc0800000000000000
-      internalID: -3702859423082366403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_20
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 3
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b9d10b48cb94fb270800000000000000
-      internalID: 8268408514904333723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_21
-      rect:
-        serializedVersion: 2
-        x: 468
-        y: 1
-        width: 8
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b21f22f6d41361f0800000000000000
-      internalID: -1052974974455835980
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_22
-      rect:
-        serializedVersion: 2
-        x: 475
-        y: 2
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3308afb4b2e11ec90800000000000000
-      internalID: -7142394362725760973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nairan - Frigate - Engine_23
-      rect:
-        serializedVersion: 2
-        x: 484
-        y: 8
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f709397389b455980800000000000000
-      internalID: -8550845200353488769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ca80f09744e2a3745bfe9e871f7e2185
     internalID: 0
     vertices: []
     indices: 
@@ -709,7 +357,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nairan - Frigate - Engine_0: -6497971099765170066
+      Nairan - Frigate - Engine_1: -7343040294464336396
+      Nairan - Frigate - Engine_2: 3864201710506444075
+      Nairan - Frigate - Engine_3: 1244908868272612150
+      Nairan - Frigate - Engine_4: -4728901123870420585
+      Nairan - Frigate - Engine_5: -179745453449084228
+      Nairan - Frigate - Engine_6: -8355919912835434445
+      Nairan - Frigate - Engine_7: -6676984150056906788
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,15 +1,20 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public class EnemyBulletSpawner : EnemyComponent
+    public class EnemyBulletSpawner : MonoBehaviour, IEnemyComponent, ISpawnable
     {
         private float elaspedTime;
         private float angle;
         private bool isSpawn;
-        private EnemyBulletData bulletData;
+        private EnemyBulletMetaData bulletData;
+        public EnemyData data { get; set; }
+        public UnityAction<EEntityAction> notifyAction { get; set; }
 
-        public override void Interrupt() => isSpawn = false;
+        public void Awake()
+            => data = GetComponent<EnemyData>();
+        public void Interrupt() => Stop();
         public void Spawn()
         {
             bulletData = data.bulletData;
@@ -18,9 +23,14 @@ namespace SkyStrike.Game
             elaspedTime = bulletData.isStartAwake ? bulletData.timeCooldown : 0;
             angle = bulletData.isCircle ? 0 : bulletData.startAngle;
         }
+        public void Stop()
+        {
+            isSpawn = false;
+            bulletData = null;
+        }
         public void Update()
         {
-            if (!isSpawn || bulletData == null) return;
+            if (!isSpawn) return;
             elaspedTime += Time.deltaTime;
             if (elaspedTime >= bulletData.timeCooldown)
             {

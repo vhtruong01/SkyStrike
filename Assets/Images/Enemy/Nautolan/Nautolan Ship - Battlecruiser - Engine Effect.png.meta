@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,7 +120,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -148,20 +148,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Engine Effect_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 29
-        width: 14
-        height: 18
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 368ae754a9d0ecc60800000000000000
-      internalID: 7840218957540665443
+      spriteID: bf9e99e38b889dd4c8ef19974ec0a774
+      internalID: -1468071281
       vertices: []
       indices: 
       edges: []
@@ -170,20 +170,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Engine Effect_1
       rect:
         serializedVersion: 2
-        x: 69
-        y: 29
-        width: 14
-        height: 18
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 203e14cb4eca978b0800000000000000
-      internalID: -5153898200137866494
+      spriteID: f65f6d5992ea8144a9b44bc12d213e4a
+      internalID: 625032426
       vertices: []
       indices: 
       edges: []
@@ -192,20 +192,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Engine Effect_2
       rect:
         serializedVersion: 2
-        x: 173
-        y: 29
-        width: 14
-        height: 18
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90c763fd5b0bf2600800000000000000
-      internalID: 445769183313427465
+      spriteID: 831d082268d286b459a14c023fde02fe
+      internalID: 811140164
       vertices: []
       indices: 
       edges: []
@@ -214,20 +214,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Engine Effect_3
       rect:
         serializedVersion: 2
-        x: 197
-        y: 29
-        width: 14
-        height: 18
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b274d3e2419a98370800000000000000
-      internalID: 8325371290311280427
+      spriteID: 3a2a609ecec640247a4e66d237a73182
+      internalID: -1852439013
       vertices: []
       indices: 
       edges: []
@@ -236,20 +236,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Engine Effect_4
       rect:
         serializedVersion: 2
-        x: 301
-        y: 28
-        width: 14
-        height: 19
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5b2d985ff7f656f0800000000000000
-      internalID: -696096416306746533
+      spriteID: e8223779ff9c59049807d40803b61baa
+      internalID: 1782146108
       vertices: []
       indices: 
       edges: []
@@ -258,20 +258,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Engine Effect_5
       rect:
         serializedVersion: 2
-        x: 325
-        y: 28
-        width: 14
-        height: 19
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f4d854161382190f0800000000000000
-      internalID: -1112063440433345201
+      spriteID: 8e3729a92e30a3146b416b8ec207c884
+      internalID: 521907112
       vertices: []
       indices: 
       edges: []
@@ -280,20 +280,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Engine Effect_6
       rect:
         serializedVersion: 2
-        x: 429
-        y: 29
-        width: 14
-        height: 18
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8027eccf22be60a30800000000000000
-      internalID: 4181287839562887688
+      spriteID: f0bcbdf963ca4e748b99c6865a0acba4
+      internalID: 200207632
       vertices: []
       indices: 
       edges: []
@@ -302,196 +302,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Engine Effect_7
       rect:
         serializedVersion: 2
-        x: 453
-        y: 29
-        width: 14
-        height: 18
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0cfc42efd97973100800000000000000
-      internalID: 87705422586499008
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Engine Effect_8
-      rect:
-        serializedVersion: 2
-        x: 557
-        y: 29
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f959dd4ddc1717950800000000000000
-      internalID: 6445057670597416351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Engine Effect_9
-      rect:
-        serializedVersion: 2
-        x: 581
-        y: 29
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a0d7a2ef857ee6a0800000000000000
-      internalID: -6418063158112956254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Engine Effect_10
-      rect:
-        serializedVersion: 2
-        x: 685
-        y: 29
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9132780aa39260f80800000000000000
-      internalID: -8140773944647539943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Engine Effect_11
-      rect:
-        serializedVersion: 2
-        x: 709
-        y: 29
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d29ccb21482fe5990800000000000000
-      internalID: -7395206889031808723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Engine Effect_12
-      rect:
-        serializedVersion: 2
-        x: 813
-        y: 28
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 557229960c6ba9650800000000000000
-      internalID: 6240501171196405589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Engine Effect_13
-      rect:
-        serializedVersion: 2
-        x: 837
-        y: 28
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d2edb693841b4cc0800000000000000
-      internalID: -3725861711316655401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Engine Effect_14
-      rect:
-        serializedVersion: 2
-        x: 941
-        y: 29
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 54dacf7583040d140800000000000000
-      internalID: 4742361018359655749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Engine Effect_15
-      rect:
-        serializedVersion: 2
-        x: 965
-        y: 29
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fc87b967749527400800000000000000
-      internalID: 320416686964177103
+      spriteID: b8a9793cafe3dc645ac9b4424fa02a23
+      internalID: 535141936
       vertices: []
       indices: 
       edges: []
@@ -500,7 +324,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b26fed85fec4e5a45828d3634185b1e0
     internalID: 0
     vertices: []
     indices: 
@@ -509,7 +333,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nautolan Ship - Battlecruiser - Engine Effect_0: -1468071281
+      Nautolan Ship - Battlecruiser - Engine Effect_1: 625032426
+      Nautolan Ship - Battlecruiser - Engine Effect_2: 811140164
+      Nautolan Ship - Battlecruiser - Engine Effect_3: -1852439013
+      Nautolan Ship - Battlecruiser - Engine Effect_4: 1782146108
+      Nautolan Ship - Battlecruiser - Engine Effect_5: 521907112
+      Nautolan Ship - Battlecruiser - Engine Effect_6: 200207632
+      Nautolan Ship - Battlecruiser - Engine Effect_7: 535141936
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

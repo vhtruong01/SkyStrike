@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,7 +99,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -127,10 +127,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 27
-        width: 64
-        height: 87
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,10 +149,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 27
-        width: 64
-        height: 87
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_2
       rect:
         serializedVersion: 2
-        x: 288
-        y: 27
-        width: 64
-        height: 87
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_3
       rect:
         serializedVersion: 2
-        x: 416
-        y: 27
-        width: 64
-        height: 87
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_4
       rect:
         serializedVersion: 2
-        x: 544
-        y: 27
-        width: 64
-        height: 87
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_5
       rect:
         serializedVersion: 2
-        x: 672
-        y: 27
-        width: 64
-        height: 87
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,10 +259,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_6
       rect:
         serializedVersion: 2
-        x: 800
-        y: 27
-        width: 64
-        height: 87
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,10 +281,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_7
       rect:
         serializedVersion: 2
-        x: 928
-        y: 27
-        width: 64
-        height: 87
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -303,10 +303,10 @@ TextureImporter:
       name: Nairan - Battlecruiser - Weapons_8
       rect:
         serializedVersion: 2
-        x: 1056
-        y: 27
-        width: 64
-        height: 87
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,7 +325,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 372622a213123d84d8cc86980e597c91
     internalID: 0
     vertices: []
     indices: 
@@ -334,7 +334,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nairan - Battlecruiser - Weapons_0: 7409901365637005311
+      Nairan - Battlecruiser - Weapons_1: 145220010421194361
+      Nairan - Battlecruiser - Weapons_2: -1675746796770868302
+      Nairan - Battlecruiser - Weapons_3: 1383019860088299758
+      Nairan - Battlecruiser - Weapons_4: -3999402750196592955
+      Nairan - Battlecruiser - Weapons_5: -7330499183786701830
+      Nairan - Battlecruiser - Weapons_6: -1338137821318675818
+      Nairan - Battlecruiser - Weapons_7: 7476698145910807598
+      Nairan - Battlecruiser - Weapons_8: -6230573696637192213
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

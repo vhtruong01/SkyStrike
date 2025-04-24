@@ -1,4 +1,3 @@
-using SkyStrike.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +11,7 @@ namespace SkyStrike.Game
         private LevelData levelData;
         private int waveIndex;
         private Coroutine nextWaveCoroutine;
-        private Dictionary<int, EnemyBulletData> bulletDataDict;
+        private Dictionary<int, EnemyBulletMetaData> bulletDataDict;
         private Dictionary<int, ObjectData> objectDataDict;
 
         public void Awake()
@@ -32,8 +31,9 @@ namespace SkyStrike.Game
             waveIndex = 0;
             objectDataDict.Clear();
             bulletDataDict.Clear();
-            foreach (var bullet in levelData.bullets)
-                bulletDataDict.Add(bullet.id, bullet);
+            if (levelData.bullets != null)
+                foreach (var bullet in levelData.bullets)
+                    bulletDataDict.Add(bullet.id, bullet);
             StartWave();
         }
         public void StartWave()
@@ -52,12 +52,9 @@ namespace SkyStrike.Game
             {
                 foreach (var point in objectData.moveData.points)
                 {
-                    point.bulletDataList = new EnemyBulletData[point.bulletIdArr.Length];
-                    for (int i = 0; i < point.bulletIdArr.Length; i++)
-                    {
-                        point.bulletDataList[i] = bulletDataDict[point.bulletIdArr[i]];
-                        point.bulletDataList[i].color = ExtensionMethod.RandomColor();
-                    }
+                    point.bulletData = bulletDataDict.GetValueOrDefault(point.bulletId);
+                    if (point.bulletData != null)
+                        point.bulletData.color = gameObject.RandomColor();
                 }
                 if (objectData.refId != -1)
                     objectData.CopyMoveData(CloneMoveData(objectData.refId));

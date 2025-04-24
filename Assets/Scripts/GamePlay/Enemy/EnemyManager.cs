@@ -17,13 +17,11 @@ namespace SkyStrike.Game
                 metaDataDict.Add(metaData.id, metaData);
             EventManager.onCreateEnemy.AddListener(CreateEnemy);
         }
-        public void CreateEnemy(ObjectData objectData, EItem itemType, float delay)
+        protected void CreateEnemy(ObjectData objectData, EItem itemType, float delay)
         {
-            EnemyData enemyData = new(objectData, metaDataDict[objectData.metaId])
-            {
-                dropItemType = itemType
-            };
-            Enemy enemy = InstantiateItem(enemyData, objectData.pos.SetZ(0));
+            Enemy enemy = InstantiateItem(objectData.pos.SetZ(0));
+            enemy.data.SetExtraData(objectData, itemType);
+            enemy.data.UpdateDataAndRefresh(metaDataDict[objectData.metaId]);
             enemy.Strike(delay);
         }
         protected override void DestroyItem(Enemy enemy)
@@ -32,6 +30,5 @@ namespace SkyStrike.Game
             if (pool.CountActive == 0)
                 EventManager.PlayNextWave();
         }
-
     }
 }

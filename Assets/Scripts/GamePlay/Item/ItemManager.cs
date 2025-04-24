@@ -5,25 +5,26 @@ namespace SkyStrike.Game
 {
     public class ItemManager : PoolManager<Item, ItemData>
     {
-        [SerializeField] private List<ItemData> items;
-        private Dictionary<EItem, ItemData> itemDict;
+        [SerializeField] private List<ItemMetaData> items;
+        private Dictionary<EItem, ItemMetaData> itemDict;
 
         public override void Awake()
         {
             base.Awake();
             itemDict = new();
-            foreach (ItemData item in items)
+            foreach (ItemMetaData item in items)
                 itemDict.Add(item.type, item);
             EventManager.onDropItem.AddListener(DropItem);
             EventManager.onDropStar.AddListener(DropStar);
         }
-        public void DropItem(EItem type, Vector3 position)
+        private void DropItem(EItem type, Vector3 position)
         {
             if (type == EItem.None) return;
             CreateItem(type, position, Random.Range(0, 2 * Mathf.PI));
         }
-        public void DropStar(Vector3 position, int amount)
+        private void DropStar(Vector3 position, int amount)
         {
+            if (amount == 0) return;
             int star5 = amount / 10;
             int star1 = amount - star5 * 5;
             RandomStar(position, star1, EItem.Star1);
@@ -38,10 +39,11 @@ namespace SkyStrike.Game
         }
         private void CreateItem(EItem type, Vector3 position, float angle)
         {
-            if (itemDict.TryGetValue(type, out ItemData itemData))
+            if (itemDict.TryGetValue(type, out ItemMetaData itemMetaData))
             {
-                Item item = InstantiateItem(itemData, position);
-                item.Appear(Random.Range(0.2f, 1f)  * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
+                Item item = InstantiateItem(position);
+                item.data.UpdateDataAndRefresh(itemMetaData);
+                item.Appear(Random.Range(0.2f, 1f) * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
             }
         }
     }

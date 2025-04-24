@@ -8,7 +8,7 @@ namespace SkyStrike.Game
         [Serializable]
         public class Point : ICloneable, IGame
         {
-            [NonSerialized] public EnemyBulletData[] bulletDataList;
+            [NonSerialized] public EnemyBulletMetaData bulletData;
             public Vec2 prevPos;
             public Vec2 midPos;
             public Vec2 nextPos;
@@ -21,7 +21,7 @@ namespace SkyStrike.Game
             public float scale;
             public float standingTime;
             public float travelTime;
-            public int[] bulletIdArr;
+            public int bulletId;
 
             public object Clone() => MemberwiseClone();
         }

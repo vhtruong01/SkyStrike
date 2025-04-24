@@ -4,10 +4,10 @@ using UnityEngine.Pool;
 
 namespace SkyStrike.Game
 {
-    public abstract class PoolManager<T, K> : MonoBehaviour where T : PoolableObject<K> where K : IGame
+    public abstract class PoolManager<T, K> : MonoBehaviour where T : PoolableObject<K>
     {
-        [SerializeField] private PoolableObject<K> prefab;
         [SerializeField] private bool createOtherContainer;
+        [SerializeField] private PoolableObject<K> prefab;
         private Transform container;
         protected ObjectPool<T> pool;
 
@@ -23,7 +23,7 @@ namespace SkyStrike.Game
             pool = new(Create, Get, Release);
         }
         protected virtual void DestroyItem(T item) => pool.Release(item);
-        protected virtual T Create()
+        private T Create()
         {
             var item = (Instantiate(prefab, container, false).GetComponent<T>())
                 ?? throw new Exception("wrong prefab type");
@@ -31,13 +31,12 @@ namespace SkyStrike.Game
             item.onDestroy = a => DestroyItem(a as T);
             return item;
         }
-        protected virtual void Get(T item) => item.gameObject.SetActive(true);
-        protected virtual void Release(T item) => item.gameObject.SetActive(false);
-        public virtual T InstantiateItem(K data, Vector3 position)
+        private void Get(T item) => item.gameObject.SetActive(true);
+        private void Release(T item) => item.gameObject.SetActive(false);
+        protected T InstantiateItem(Vector3 position)
         {
             var item = pool.Get();
             item.transform.position = position;
-            item.SetData(data);
             return item;
         }
         public void Clear()

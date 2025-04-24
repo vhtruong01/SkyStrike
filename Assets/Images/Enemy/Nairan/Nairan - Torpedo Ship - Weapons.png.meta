@@ -70,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -136,10 +136,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 16
-        width: 56
-        height: 30
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_1
       rect:
         serializedVersion: 2
-        x: 68
-        y: 16
-        width: 56
-        height: 30
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,10 +180,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_2
       rect:
         serializedVersion: 2
-        x: 132
-        y: 16
-        width: 56
-        height: 30
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,10 +202,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_3
       rect:
         serializedVersion: 2
-        x: 196
-        y: 16
-        width: 56
-        height: 30
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,10 +224,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_4
       rect:
         serializedVersion: 2
-        x: 260
-        y: 16
-        width: 56
-        height: 34
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,10 +246,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_5
       rect:
         serializedVersion: 2
-        x: 324
-        y: 16
-        width: 56
-        height: 30
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,10 +268,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_6
       rect:
         serializedVersion: 2
-        x: 388
-        y: 16
-        width: 56
-        height: 30
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,10 +290,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_7
       rect:
         serializedVersion: 2
-        x: 452
-        y: 16
-        width: 56
-        height: 30
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,10 +312,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_8
       rect:
         serializedVersion: 2
-        x: 516
-        y: 15
-        width: 56
-        height: 31
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -334,10 +334,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_9
       rect:
         serializedVersion: 2
-        x: 580
-        y: 15
-        width: 56
-        height: 31
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,10 +356,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_10
       rect:
         serializedVersion: 2
-        x: 644
-        y: 16
-        width: 56
-        height: 30
+        x: 640
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -378,10 +378,10 @@ TextureImporter:
       name: Nairan - Torpedo Ship - Weapons_11
       rect:
         serializedVersion: 2
-        x: 708
-        y: 16
-        width: 56
-        height: 30
+        x: 704
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -400,7 +400,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 459ac6e8bde335b4d9cd4d0402d049ef
     internalID: 0
     vertices: []
     indices: 
@@ -409,7 +409,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nairan - Torpedo Ship - Weapons_0: -4793935544653399539
+      Nairan - Torpedo Ship - Weapons_1: -8475720888531049612
+      Nairan - Torpedo Ship - Weapons_10: -6327086653106297690
+      Nairan - Torpedo Ship - Weapons_11: 2879276960528706432
+      Nairan - Torpedo Ship - Weapons_2: 115605355869473175
+      Nairan - Torpedo Ship - Weapons_3: 698246441159480528
+      Nairan - Torpedo Ship - Weapons_4: -2651317183836308042
+      Nairan - Torpedo Ship - Weapons_5: 3168571346586363983
+      Nairan - Torpedo Ship - Weapons_6: -6014466625399396931
+      Nairan - Torpedo Ship - Weapons_7: 6152407315749292705
+      Nairan - Torpedo Ship - Weapons_8: 6109756140196244030
+      Nairan - Torpedo Ship - Weapons_9: -2809509940723565632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

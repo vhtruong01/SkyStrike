@@ -26,13 +26,6 @@ MonoBehaviour:
   - {fileID: 65417552885362158, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
   - {fileID: 6115050925389024346, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
   - {fileID: 3196727092020716741, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
-  - {fileID: 1037602815515379746, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
-  - {fileID: -50923261351429717, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
-  - {fileID: 5286733620589648431, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
-  - {fileID: 7542997879190343227, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
-  - {fileID: -5226585856697351753, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
-  - {fileID: 3893000554299412586, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
-  - {fileID: -4834007582387125832, guid: 8e9baa06e332fc1478ecb1b326ab0adc, type: 3}
   <engineSprites>k__BackingField:
   - {fileID: -4162339017019704573, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
   - {fileID: -2417963978457147864, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
@@ -42,14 +35,6 @@ MonoBehaviour:
   - {fileID: 1340272229705620886, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
   - {fileID: -7380523217553611609, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
   - {fileID: 407190786990179886, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
-  - {fileID: -5777676679864673245, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
-  - {fileID: -468922658540129199, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
-  - {fileID: -3144963568786256160, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
-  - {fileID: -6257983521553336908, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
-  - {fileID: 7932495621946587551, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
-  - {fileID: 4184759732872431038, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
-  - {fileID: 5117563147058432393, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
-  - {fileID: -7469127529760944134, guid: 6d831d5fdbbe8ac45a52e6be8446f8aa, type: 3}
   <shieldSprites>k__BackingField:
   - {fileID: 1013543538726083719, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}
   - {fileID: 1932266597414172514, guid: 644933cbf62045d4eab1d5110a57e684, type: 3}

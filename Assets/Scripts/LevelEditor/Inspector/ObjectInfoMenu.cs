@@ -20,7 +20,7 @@ namespace SkyStrike.Editor
         [SerializeField] private Image icon;
         [SerializeField] private Image referenceObjectIcon;
         [Header("DropItem")]
-        [SerializeField] private List<ItemData> dropItemDataList;
+        [SerializeField] private List<ItemMetaData> dropItemDataList;
         [SerializeField] private Button selectDropItemBtn;
         [SerializeField] private GameObject dropItemView;
         [SerializeField] private Image dropItemIcon;
@@ -51,7 +51,7 @@ namespace SkyStrike.Editor
                 dropItemUIGroupPool.CreateItem(item);
             EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
         }
-        private void SelectDropItem(ItemData itemData)
+        private void SelectDropItem(ItemMetaData itemData)
         {
             if (itemData == null)
             {

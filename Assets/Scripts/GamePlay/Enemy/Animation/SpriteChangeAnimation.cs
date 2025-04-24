@@ -6,24 +6,32 @@ namespace SkyStrike.Game
     public class SpriteChangeAnimation : EnemyAnimation
     {
         protected int curIndex;
-        protected float interval = 0.06f;
         protected SpriteRenderer spriteRenderer;
         protected List<Sprite> sprites;
 
-        public SpriteChangeAnimation(SpriteRenderer spriteRenderer, float interval = 0.06f)
+        public SpriteChangeAnimation(SpriteRenderer spriteRenderer, float interval)
         {
             this.interval = interval;
             this.spriteRenderer = spriteRenderer;
         }
         public void SetData(List<Sprite> sprites)
             => this.sprites = sprites;
-        protected override void Reset()
+        public override IEntityAnimation Reset()
         {
             elapedTime = 0;
             curIndex = 0;
+            return this;
+        }
+        public override IEntityAnimation SetTotalTime(float totalTime)
+        {
+            base.SetTotalTime(totalTime);
+            if (sprites.Count > 0)
+                interval = totalTime / sprites.Count;
+            return this;
         }
         public override void Animate(float deltaTime)
         {
+            //dir
             if (!isActive || sprites.Count == 0) return;
             elapedTime += deltaTime;
             if (elapedTime < curIndex * interval) return;
@@ -35,7 +43,7 @@ namespace SkyStrike.Game
                 else
                 {
                     isActive = false;
-                    if (isCancelWhenFinish)
+                    if (!isPauseAnimationOnComplete)
                         Stop();
                 }
                 finishedAction?.Invoke();

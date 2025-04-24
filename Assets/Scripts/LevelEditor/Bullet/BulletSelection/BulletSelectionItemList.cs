@@ -7,7 +7,7 @@ namespace SkyStrike.Editor
         public override void Init()
         {
             base.Init();
-            selectDataCall = UpdateBulletList;
+            selectDataCall = UpdateBullet;
         }
         public void SetPoint(PointDataObserver point)
         {
@@ -17,16 +17,14 @@ namespace SkyStrike.Editor
             for (int i = 0; i < items.Count; i++)
             {
                 var item = items[i] as BulletSelectionItemUI;
-                item.Check(point.bulletIdSet.Contains(item.data.id));
+                item.Check(point.bulletId == item.data.id);
             }
         }
-        public void UpdateBulletList(BulletDataObserver bulletData)
+        public void UpdateBullet(BulletDataObserver bulletData)
         {
             if (pointDataObserver == null) return;
-            if (pointDataObserver.bulletIdSet.Contains(bulletData.id))
-                pointDataObserver.bulletIdSet.Remove(bulletData.id);
-            else
-                pointDataObserver.bulletIdSet.Add(bulletData.id);
+            //(GetSelectedItem() as BulletSelectionItemUI)?.Check(false);
+            pointDataObserver.SetBulletId(bulletData.id);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace SkyStrike.Game
 {
     [Serializable]
-    public class EnemyBulletData : IGame
+    public class EnemyBulletMetaData : IGame
     {
         public int id;
         public string name;
@@ -19,7 +19,7 @@ namespace SkyStrike.Game
         public Vec2 position;
         public bool isCircle;
         public bool isStartAwake;
-        public bool isLookingAtPlayer;//
+        public bool isLookingAtPlayer;
         public int amount;
         [NonSerialized] public Color color;
     }

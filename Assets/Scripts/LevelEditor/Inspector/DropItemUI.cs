@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 namespace SkyStrike.Editor
 {
-    public class DropItemUI : UIElement<ItemData>
+    public class DropItemUI : UIElement<ItemMetaData>
     {
         [SerializeField] private Image image;
 
-        public override void SetData(ItemData data)
+        public override void SetData(ItemMetaData data)
         {
             base.SetData(data);
             image.sprite = data.sprite;

@@ -133,7 +133,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -147,7 +147,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -171,7 +171,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -199,20 +199,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 99
-        width: 52
-        height: 16
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba8420075db5db3a0800000000000000
-      internalID: -6648056502663624533
+      spriteID: 70ef632725a89734498484ab573c0bdc
+      internalID: -2071555688
       vertices: []
       indices: 
       edges: []
@@ -221,20 +221,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_1
       rect:
         serializedVersion: 2
-        x: 166
-        y: 99
-        width: 52
-        height: 16
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f9d9fd8c66f3e42b0800000000000000
-      internalID: -5598467576085635681
+      spriteID: 64582c8c5ba412040af9a92f4492a8b2
+      internalID: -1017747561
       vertices: []
       indices: 
       edges: []
@@ -243,20 +243,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_2
       rect:
         serializedVersion: 2
-        x: 294
-        y: 99
-        width: 52
-        height: 16
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7f5cf481583a2c580800000000000000
-      internalID: -8808298129149409801
+      spriteID: 2c2a3b168751f3543a98f169a38749ec
+      internalID: -1131350913
       vertices: []
       indices: 
       edges: []
@@ -265,20 +265,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_3
       rect:
         serializedVersion: 2
-        x: 422
-        y: 99
-        width: 52
-        height: 16
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b9e1879b6805e3470800000000000000
-      internalID: 8376220896523198107
+      spriteID: ec864275d7799b9479067a25a4f71c85
+      internalID: -1181382670
       vertices: []
       indices: 
       edges: []
@@ -287,20 +287,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_4
       rect:
         serializedVersion: 2
-        x: 550
-        y: 99
-        width: 52
-        height: 16
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dcc8058d399c59f40800000000000000
-      internalID: 5734711337352727757
+      spriteID: bcf5a59f2fe1e574d92c5891c60033ce
+      internalID: 96219480
       vertices: []
       indices: 
       edges: []
@@ -309,20 +309,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_5
       rect:
         serializedVersion: 2
-        x: 678
-        y: 99
-        width: 52
-        height: 16
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 378c9397e486d0070800000000000000
-      internalID: 8074224393195735155
+      spriteID: fb8c383bcde1ffa4f8d941e9559fbd60
+      internalID: -1421292439
       vertices: []
       indices: 
       edges: []
@@ -331,20 +331,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_6
       rect:
         serializedVersion: 2
-        x: 806
-        y: 99
-        width: 52
-        height: 16
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4e564a3bf7fb34450800000000000000
-      internalID: 6071907277821208036
+      spriteID: d73c9e66240260f43b9241b0914d9ddb
+      internalID: 1956544229
       vertices: []
       indices: 
       edges: []
@@ -353,20 +353,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_7
       rect:
         serializedVersion: 2
-        x: 934
-        y: 99
-        width: 52
-        height: 16
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1652ba1bd9bac6b40800000000000000
-      internalID: 5434907544108344673
+      spriteID: b5959823700373a448e97fccf55fad16
+      internalID: 891979219
       vertices: []
       indices: 
       edges: []
@@ -375,20 +375,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_8
       rect:
         serializedVersion: 2
-        x: 1062
-        y: 99
-        width: 52
-        height: 16
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ce603f03b6728760800000000000000
-      internalID: 7458654444305018562
+      spriteID: 778ec0a4b726715439f89ee537a076cc
+      internalID: 2100126644
       vertices: []
       indices: 
       edges: []
@@ -397,20 +397,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_9
       rect:
         serializedVersion: 2
-        x: 1190
-        y: 99
-        width: 52
-        height: 16
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d86f05ff3b3a8fe90800000000000000
-      internalID: -6991658428014725491
+      spriteID: 48631064ff8adc14ea8e1b7cd47de5c9
+      internalID: -1616200288
       vertices: []
       indices: 
       edges: []
@@ -419,504 +419,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Shield_10
       rect:
         serializedVersion: 2
-        x: 1318
-        y: 99
-        width: 52
-        height: 16
+        x: 1280
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bdb97df2c7e2e53c0800000000000000
-      internalID: -4369003477589320741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_11
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95f1beb4aeed06ce0800000000000000
-      internalID: -1413885185116922023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_12
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bafefa46c64bff0a0800000000000000
-      internalID: -6845554530941145173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_13
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bc7379c3e64754270800000000000000
-      internalID: 8234115510528587723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_14
-      rect:
-        serializedVersion: 2
-        x: 205
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8fac1960209451c0800000000000000
-      internalID: -4515826057468924018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_15
-      rect:
-        serializedVersion: 2
-        x: 279
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 92c22fcc2f056c720800000000000000
-      internalID: 2866067216618630185
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_16
-      rect:
-        serializedVersion: 2
-        x: 333
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 008dde2fb6cf73bc0800000000000000
-      internalID: -3803293819723720704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_17
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 68691146bddea7840800000000000000
-      internalID: 5222748244422006406
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_18
-      rect:
-        serializedVersion: 2
-        x: 461
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 56bb040dc557a3340800000000000000
-      internalID: 4844313390681733989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_19
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e28726ab618db4890800000000000000
-      internalID: -7472641564563310546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_20
-      rect:
-        serializedVersion: 2
-        x: 589
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 93f6c606aac2d7050800000000000000
-      internalID: 5799841005396848441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_21
-      rect:
-        serializedVersion: 2
-        x: 663
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8c613e563c7f1be0800000000000000
-      internalID: -1504347177568080754
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_22
-      rect:
-        serializedVersion: 2
-        x: 717
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0327a1a2d6e3451c0800000000000000
-      internalID: -4515915887767031248
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_23
-      rect:
-        serializedVersion: 2
-        x: 791
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44623ee6822f84af0800000000000000
-      internalID: -411813110431406524
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_24
-      rect:
-        serializedVersion: 2
-        x: 845
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fee411a12722716c0800000000000000
-      internalID: -4172828656276517137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_25
-      rect:
-        serializedVersion: 2
-        x: 919
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 66776738e34e39670800000000000000
-      internalID: 8544423875196647270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_26
-      rect:
-        serializedVersion: 2
-        x: 973
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 635da3db4325e53d0800000000000000
-      internalID: -3216042697429428938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_27
-      rect:
-        serializedVersion: 2
-        x: 1047
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9358a0e56fb82e990800000000000000
-      internalID: -7358164950914005703
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_28
-      rect:
-        serializedVersion: 2
-        x: 1101
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2ee3939c67b53c9f0800000000000000
-      internalID: -449414972066677022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_29
-      rect:
-        serializedVersion: 2
-        x: 1175
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 25ff51b3621c6f8a0800000000000000
-      internalID: -6271613061122621614
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_30
-      rect:
-        serializedVersion: 2
-        x: 1229
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d9cc9ee3fe9c6cdd0800000000000000
-      internalID: -2466061716548891491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_31
-      rect:
-        serializedVersion: 2
-        x: 1303
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f16f519299979810800000000000000
-      internalID: 1772053833176801778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nautolan Ship - Battlecruiser - Shield_32
-      rect:
-        serializedVersion: 2
-        x: 1357
-        y: 69
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c28c7cce7b79b3e0800000000000000
-      internalID: -2037461571881631036
+      spriteID: d1b4555f21ee7c34cb241c047b5a6433
+      internalID: -1559273600
       vertices: []
       indices: 
       edges: []
@@ -925,7 +441,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f27333e2b3dc50449911047b40ce0823
     internalID: 0
     vertices: []
     indices: 
@@ -934,7 +450,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nautolan Ship - Battlecruiser - Shield_0: -2071555688
+      Nautolan Ship - Battlecruiser - Shield_1: -1017747561
+      Nautolan Ship - Battlecruiser - Shield_10: -1559273600
+      Nautolan Ship - Battlecruiser - Shield_2: -1131350913
+      Nautolan Ship - Battlecruiser - Shield_3: -1181382670
+      Nautolan Ship - Battlecruiser - Shield_4: 96219480
+      Nautolan Ship - Battlecruiser - Shield_5: -1421292439
+      Nautolan Ship - Battlecruiser - Shield_6: 1956544229
+      Nautolan Ship - Battlecruiser - Shield_7: 891979219
+      Nautolan Ship - Battlecruiser - Shield_8: 2100126644
+      Nautolan Ship - Battlecruiser - Shield_9: -1616200288
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

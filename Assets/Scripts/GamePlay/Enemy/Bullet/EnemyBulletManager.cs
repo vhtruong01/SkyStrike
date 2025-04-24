@@ -9,30 +9,35 @@ namespace SkyStrike.Game
             base.Awake();
             EventManager.onSpawnEnemyBullet.AddListener(SpawnBullet);
         }
-        public void SpawnBullet(EnemyBulletData data, Vector3 position, float angle)
+        public void SpawnBullet(EnemyBulletMetaData metaData, Vector3 position, float angle)
         {
-            if (data == null || data.amount == 0) return;
-            EnemyBullet bullet = null;
-            float unitAngle = data.isCircle ? 2 * Mathf.PI / data.amount : (Mathf.Deg2Rad * data.unitAngle);
-            if (data.isCircle)
+            if (metaData == null || metaData.amount == 0) return;
+            float unitAngle = metaData.isCircle ? 2 * Mathf.PI / metaData.amount : (Mathf.Deg2Rad * metaData.unitAngle);
+            if (metaData.isCircle)
             {
-                for (int i = 0; i < data.amount; i++)
+                for (int i = 0; i < metaData.amount; i++)
                 {
-                    bullet = InstantiateItem(data, position + data.position.SetZ(0));
-                    bullet.SetVelocity(new Vector3(Mathf.Sin(angle + unitAngle * i), -Mathf.Cos(angle + unitAngle * i), 0) * data.velocity);
-                    bullet.SetColor(data.color);
+                    Vector3 velocity = new(Mathf.Sin(angle + unitAngle * i) * metaData.velocity,
+                                           -Mathf.Cos(angle + unitAngle * i) * metaData.velocity);
+                    CreateBullet(position + metaData.position.SetZ(0), velocity, metaData);
                 }
             }
             else
             {
-                float mid = 0.5f * (data.amount - 1);
+                float mid = 0.5f * (metaData.amount - 1);
                 for (float i = -mid; i <= mid; i += 1f)
                 {
-                    bullet = InstantiateItem(data, position + (data.position + data.spacing * i).SetZ(0));
-                    bullet.SetVelocity(new Vector3(Mathf.Sin(angle + unitAngle * i), -Mathf.Cos(angle + unitAngle * i), 0) * data.velocity);
-                    bullet.SetColor(data.color);
+                    Vector3 velocity = new(Mathf.Sin(angle + unitAngle * i) * metaData.velocity,
+                                           -Mathf.Cos(angle + unitAngle * i) * metaData.velocity);
+                    CreateBullet(position + (metaData.position + metaData.spacing * i).SetZ(0), velocity, metaData);
                 }
             }
+        }
+        private void CreateBullet(Vector3 position, Vector3 velocity, EnemyBulletMetaData metaData)
+        {
+            var bullet = InstantiateItem(position);
+            bullet.data.SetExtraData(velocity);
+            bullet.data.UpdateDataAndRefresh(metaData);
         }
     }
 }

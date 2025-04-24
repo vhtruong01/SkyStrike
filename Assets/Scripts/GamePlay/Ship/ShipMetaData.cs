@@ -7,19 +7,18 @@ namespace SkyStrike.Game
     public class ShipMetaData : ScriptableObject, IGame
     {
         public List<Skill> skills;
-        [field: SerializeField] public ShieldSkill shieldSkill { get; set; }
         [field: SerializeField] public int hp { get; set; }
         [field: SerializeField] public int maxHp { get; set; }
         [field: SerializeField] public float speed { get; set; }
         [field: SerializeField] public int star { get; set; }
 
-        public void OnEnable()
+        public void Reset()
         {
             foreach (var skill in skills)
                 skill.Reset();
-            hp = 4;
-            maxHp = 6;
             star = 0;
+            hp = 4;
+            maxHp = 7;
         }
     }
 }

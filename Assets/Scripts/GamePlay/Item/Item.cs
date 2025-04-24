@@ -4,42 +4,24 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public enum EItem
+    public interface IItem : IPoolableObject
     {
-        None = 0,
-        Health,
-        Star1,
-        Star5,
-        Shield,
-        Comet,
-        SingleBullet,
-        DoubleBullet,
-        TripleBullet,
-        LaserBullet
+        public EItem GetItemType();
     }
-    public enum EItemAnimationType
+    [RequireComponent(typeof(ItemData))]    
+    public class Item : PoolableObject<ItemData>, IMagnetic, IItem
     {
-        None = 0,
-        Zoom,
-        Rotate,
-        Fade,
-    }
-    public class Item : PoolableObject<ItemData>, IMagnetic
-    {
-        private float elapsedTime;
         private Tweener tweener;
         public bool isMagnetic { get; set; }
 
-        public EItem GetItemType() => data.type;
-        public override void SetData(ItemData data)
+        public EItem GetItemType() => data.metaData.type;
+        public override void Refresh()
         {
-            base.SetData(data);
-            transform.localScale = Vector3.one * (data.size == 0 ? 1 : data.size);
-            spriteRenderer.sprite = data.sprite;
-            spriteRenderer.material = data.material;
+            transform.localScale = Vector3.one * (data.metaData.size == 0 ? 1 : data.metaData.size);
+            spriteRenderer.sprite = data.metaData.sprite;
+            spriteRenderer.material = data.metaData.material;
             spriteRenderer.color = spriteRenderer.color.ChangeAlpha(1);
-            col.size = data.sprite.bounds.size;
-            elapsedTime = 0;
+            col2D.size = data.metaData.sprite.bounds.size;
         }
         public void Appear(Vector2 vel)
         {
@@ -57,12 +39,12 @@ namespace SkyStrike.Game
                 delta = curTime / time;
                 transform.position += ((vel * delta) - prevDir).SetZ(0);
                 prevDir = vel * delta;
-                transform.localScale = (delta + 1) * data.size / 2 * Vector3.one;
+                transform.localScale = (delta + 1) * data.metaData.size / 2 * Vector3.one;
                 yield return null;
                 curTime += Time.deltaTime;
             }
-            transform.localScale = data.size * Vector3.one;
-            tweener = GetAnimation(data.animationType);
+            transform.localScale = data.metaData.size * Vector3.one;
+            tweener = GetAnimation(data.metaData.animationType);
             isMagnetic = true;
         }
         private Tweener GetAnimation(EItemAnimationType type)
@@ -71,7 +53,7 @@ namespace SkyStrike.Game
             switch (type)
             {
                 case EItemAnimationType.Zoom:
-                    tweener = transform.DOScale(1.5f * data.size, 2.5f);
+                    tweener = transform.DOScale(1.5f * data.metaData.size, 2.5f);
                     break;
                 case EItemAnimationType.Fade:
                     tweener = spriteRenderer.DOFade(0.5f, 1);
@@ -84,15 +66,13 @@ namespace SkyStrike.Game
         }
         public void Update()
         {
-            if (elapsedTime >= ItemData.lifeTime)
-            {
-                Disappear();
-                return;
-            }
-            elapsedTime += Time.deltaTime;
+            data.elapsedTime += Time.deltaTime;
             transform.position += ItemData.dropVelocity * Time.deltaTime;
+            if (data.elapsedTime >= ItemData.lifeTime)
+                Disappear();
         }
-        public void HandleAffectedByGravity(Vector2 dir) => transform.position += dir.SetZ(0);
+        public void HandleAffectedByGravity(Vector2 dir) 
+            => transform.position += dir.SetZ(0);
         public void OnDisable()
             => tweener?.Kill();
     }

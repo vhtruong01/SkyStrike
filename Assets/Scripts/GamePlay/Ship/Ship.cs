@@ -1,17 +1,18 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public class Ship : MonoBehaviour
+    [RequireComponent(typeof(ShipData))]
+    public class Ship : MonoBehaviour, IEntity, IRefreshable
     {
         public static Vector3 pos { get; private set; }
-        [SerializeField] private ShipMetaData shipMetaData;
         [SerializeField] private SpriteRenderer planet;
         [SerializeField] private SpriteRenderer shield;
-        private ShipCommand command;
-        public ShipData shipData { get; private set; }
+        public ShipData data { get; private set; }
+        public UnityAction<EEntityAction> notifyAction { get; set; }
 
         public void Awake()
         {
@@ -20,9 +21,7 @@ namespace SkyStrike.Game
             planet.transform.position = Vector3.zero;
             planet.transform.localScale = new(20, 20, 20);
             planet.gameObject.SetActive(true);
-            command = GetComponent<ShipCommand>();
-            command.SetAttackEnabled(false);
-            shipData = new(shipMetaData);
+            data = GetComponent<ShipData>();
         }
         public void Update() => pos = transform.position;
         public IEnumerator PrepareFlying()
@@ -30,6 +29,7 @@ namespace SkyStrike.Game
             float appearTime = 2.5f;
             transform.DOScale(1.25f, appearTime);
             planet.transform.DOScale(0, appearTime);
+            notifyAction.Invoke(EEntityAction.StopAttack);
             yield return new WaitForSeconds(appearTime);
             planet.gameObject.SetActive(false);
         }
@@ -39,17 +39,19 @@ namespace SkyStrike.Game
             shield.DOFade(0, appearTime);
             shield.transform.DOScale(1.5f, appearTime);
             yield return new WaitForSeconds(1);
-            command.SetAttackEnabled(true);
+            //command.SetAttackEnabled(true);
+
             shield.gameObject.SetActive(false);
+            notifyAction.Invoke(EEntityAction.Attack);
         }
         public void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Item"))
             {
-                Item item = collision.GetComponent<Item>();
+                var item = collision.GetComponent<IItem>();
                 if (item.gameObject.activeSelf)
                 {
-                    CollectItem(item);
+                    CollectItem(item.GetItemType());
                     item.Disappear();
                 }
                 return;
@@ -59,37 +61,52 @@ namespace SkyStrike.Game
                 //
             }
         }
-        private void CollectItem(Item item)
+        private void CollectItem(EItem type)
         {
-            switch (item.GetItemType())
+            switch (type)
             {
                 case EItem.Star1:
-                    shipData.star++;
+                    data.star++;
                     break;
                 case EItem.Star5:
-                    shipData.star += 5;
+                    data.star += 5;
                     break;
                 case EItem.Health:
-                    if (shipData.hp < shipData.maxHp)
-                        shipData.hp++;
+                    data.hp++;
                     break;
-                case EItem.SingleBullet:
-                    command.UpgradeBullet(EShipBulletType.SingleBullet);
-                    break;
-                case EItem.DoubleBullet:
-                    command.UpgradeBullet(EShipBulletType.DoubleBullet);
-                    break;
-                case EItem.TripleBullet:
-                    command.UpgradeBullet(EShipBulletType.TripleBullet);
-                    break;
-                case EItem.LaserBullet:
-                    command.UpgradeBullet(EShipBulletType.LaserBullet);
-                    break;
+                //case EItem.SingleBullet:
+                //    command.UpgradeBullet(EShipBulletType.SingleBullet);
+                //    break;
+                //case EItem.DoubleBullet:
+                //    command.UpgradeBullet(EShipBulletType.DoubleBullet);
+                //    break;
+                //case EItem.TripleBullet:
+                //    command.UpgradeBullet(EShipBulletType.TripleBullet);
+                //    break;
+                //case EItem.LaserBullet:
+                //    command.UpgradeBullet(EShipBulletType.LaserBullet);
+                //    break;
                 case EItem.Comet:
                     break;
                 case EItem.Shield:
                     break;
             }
+        }
+        public void DropItemAndDisappear()
+        {
+
+        }
+        public void Disappear()
+        {
+        }
+        public void Die()
+        {
+        }
+        public void Interrupt()
+        {
+        }
+        public void Refresh()
+        {
         }
     }
 }

@@ -55,10 +55,10 @@ namespace SkyStrike.UI
         }
         public void SetShipData()
         {
-            ship.shipData.onCollectHealth.AddListener(hpBar.SetData);
-            ship.shipData.onCollectStar.AddListener(val => star.text = val.ToString());
-            hpBar.SetData(ship.shipData.hp);
-            star.text = ship.shipData.star.ToString();
+            ship.data.onCollectHealth.AddListener(hpBar.SetData);
+            ship.data.onCollectStar.AddListener(val => star.text = val.ToString());
+            hpBar.SetData(ship.data.hp);
+            star.text = ship.data.star.ToString();
             //foreach (var skill in ship.shipData.skills)
             //{
             //    var skillUI = Instantiate(skillButtonPrefab, skillGroupContainer, false);

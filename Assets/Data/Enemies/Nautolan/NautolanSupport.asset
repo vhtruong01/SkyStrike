@@ -24,20 +24,14 @@ MonoBehaviour:
   - {fileID: 5250979219244125534, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
   - {fileID: 3553606606388353657, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
   - {fileID: -8345365457759831333, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
-  - {fileID: -2428651329247507735, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
-  - {fileID: -275312850708280790, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
-  - {fileID: 4942599435289936034, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
-  - {fileID: -732301325644483216, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
-  - {fileID: 7630092386742953059, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
-  - {fileID: -3858075037368466980, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
   <engineSprites>k__BackingField:
-  - {fileID: 3558173018850813039, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
-  - {fileID: 4301226818092057713, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
-  - {fileID: 4896199308403825957, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
-  - {fileID: 9016125255745211252, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
-  - {fileID: 2629746138854056948, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
-  - {fileID: -449245604479773317, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
-  - {fileID: -5349623416046685625, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
-  - {fileID: -1736478364877655557, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 1249022025, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: -2131148581, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 1824005041, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 1782540125, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: -232235868, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 834144188, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: -515424229, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
+  - {fileID: 1005444353, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
   <shieldSprites>k__BackingField: []
   <weaponSprites>k__BackingField: []

@@ -1,48 +1,60 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace SkyStrike.Game
 {
-    public class ShipCommand : MonoBehaviour
+    public class ShipCommand : Commander
     {
-        [SerializeField] private Joystick joystick;
-        private float speedX = 5f;
-        private float speedY = 5f;
-        private float boundX;
-        private float boundY;
-        private InputAction moveAction;
-        private ShipBulletManager shipBulletManager;
-
-        public void Awake()
+        public override void HandleEvent(EEntityAction action)
         {
-            Camera cam = Camera.main;
-            boundX = cam.ScreenToWorldPoint(new(Screen.width, 0)).x;
-            boundY = cam.ScreenToWorldPoint(new(0, Screen.height)).y;
-            PlayerInput playerInput = GetComponent<PlayerInput>();
-            moveAction = playerInput.actions["move"];
-            shipBulletManager = GetComponent<ShipBulletManager>();
+            switch (action)
+            {
+                //case EEntityAction.TakeDmg:
+                //    animator.SetTrigger(EAnimationType.Damage).Start();
+                //    break;
+                //case EEntityAction.Move:
+                //    animator.SetTrigger(EAnimationType.Engine).Start();
+                //    movement.Move();
+                //    break;
+                //case EEntityAction.Stand:
+                //    animator.SetTrigger(EAnimationType.Engine).Stop();
+                //    break;
+                case EEntityAction.Attack:
+                    //animator.SetTrigger(EAnimationType.Weapon)
+                    //         .SetTotalTime(data.bulletData.timeCooldown).ResetAndStart();
+                    spawner.Spawn();
+                    break;
+                case EEntityAction.StopAttack:
+                    //animator.SetTrigger(EAnimationType.Weapon).Stop();
+                    spawner.Stop();
+                    break;
+                    //case EEntityAction.Defend:
+                    //    animator.SetTrigger(EAnimationType.Shield).Start();
+                    //    break;
+                    //case EEntityAction.Unprotected:
+                    //    animator.SetTrigger(EAnimationType.Shield).Stop();
+                    //    break;
+                    //case EEntityAction.Highlight:
+                    //    animator.SetTrigger(EAnimationType.HighLight).Start();
+                    //    break;
+                    //case EEntityAction.Die:
+                    //    InterruptAllComponents();
+                    //    animator.SetTrigger(EAnimationType.Destruction)
+                    //             .SetFinishedAction(entity.DropItemAndDisappear).Start();
+                    //    break;
+                    //case EEntityAction.Disappear:
+                    //    if (data.isMaintain)
+                    //        animator.SetTrigger(EAnimationType.Engine).Stop();
+                    //    else entity.Disappear();
+                    //    break;
+                    //case EEntityAction.Arrive:
+                    //    StartCoroutine(MoveToNextPoint());
+                    //    break;
+            }
         }
-        public void OnEnable()
+        public override void Interrupt()
         {
-            moveAction.Enable();
         }
-        public void OnDisable()
-        {
-            moveAction.Disable();
-        }
-        public void Update()
-        {
-            //Vector2 move = moveAction.ReadValue<Vector2>() * Time.deltaTime;
-            Vector2 move = joystick.Direction * Time.deltaTime;
-            Vector3 newPos = new(Mathf.Clamp(move.x * speedX + transform.position.x, -boundX, boundX)
-                                         , Mathf.Clamp(move.y * speedY + transform.position.y, -boundY, boundY)
-                                         , transform.position.z);
-            transform.position = newPos;
-        }
-        public void SetAttackEnabled(bool isEnabled)
-            => shipBulletManager.SetActive(isEnabled);
-        public void UpgradeBullet(EShipBulletType bulletType)
-            => shipBulletManager.UpgradeSpawner(bulletType);
     }
-
 }

@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,7 +99,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -127,20 +127,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 18
-        width: 74
-        height: 91
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef7dbb65432b6b220800000000000000
-      internalID: 2501382580914083838
+      spriteID: 99e8f86c179fa4e41a812231b42c87b2
+      internalID: -123470966
       vertices: []
       indices: 
       edges: []
@@ -149,20 +149,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_1
       rect:
         serializedVersion: 2
-        x: 155
-        y: 18
-        width: 74
-        height: 91
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2a6c3d673f9b8c800800000000000000
-      internalID: 632960202967336610
+      spriteID: e8eee8f8312ae6c4dacf8e4ec384e5d6
+      internalID: -1933531808
       vertices: []
       indices: 
       edges: []
@@ -171,20 +171,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_2
       rect:
         serializedVersion: 2
-        x: 283
-        y: 18
-        width: 74
-        height: 91
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f834eef4df4f41470800000000000000
-      internalID: 8364579776738771855
+      spriteID: b98f1c3aafca4574bb44c4ac5a8b7f9e
+      internalID: 462360119
       vertices: []
       indices: 
       edges: []
@@ -193,20 +193,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_3
       rect:
         serializedVersion: 2
-        x: 411
-        y: 18
-        width: 74
-        height: 91
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6a590a421903cdde0800000000000000
-      internalID: -1307116391901391450
+      spriteID: bc28aa72c4300d44eb96fb7ab36ffe6a
+      internalID: 1943713406
       vertices: []
       indices: 
       edges: []
@@ -215,20 +215,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_4
       rect:
         serializedVersion: 2
-        x: 539
-        y: 18
-        width: 74
-        height: 91
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 92eae4dd0093869a0800000000000000
-      internalID: -6239674607846117847
+      spriteID: 3afa0e60e58687345bdff9b7f7f3d7c5
+      internalID: -635254193
       vertices: []
       indices: 
       edges: []
@@ -237,20 +237,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_5
       rect:
         serializedVersion: 2
-        x: 667
-        y: 18
-        width: 74
-        height: 91
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f9bd7c79e9a4675b0800000000000000
-      internalID: -5371023460580992097
+      spriteID: 43bde2623696c8340873e026f986ad7e
+      internalID: -175885760
       vertices: []
       indices: 
       edges: []
@@ -259,20 +259,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_6
       rect:
         serializedVersion: 2
-        x: 795
-        y: 18
-        width: 74
-        height: 91
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 668524a3096157c40800000000000000
-      internalID: 5509334527866198118
+      spriteID: c892b10e3dba783479eee280bebe2b4c
+      internalID: -2121545105
       vertices: []
       indices: 
       edges: []
@@ -281,20 +281,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_7
       rect:
         serializedVersion: 2
-        x: 923
-        y: 18
-        width: 74
-        height: 91
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 587ddf94adb4c37c0800000000000000
-      internalID: -4090310960642926715
+      spriteID: d933955757e71de4eb50765cd479c5c4
+      internalID: 1277533431
       vertices: []
       indices: 
       edges: []
@@ -303,20 +303,20 @@ TextureImporter:
       name: Nautolan Ship - Battlecruiser - Weapons_8
       rect:
         serializedVersion: 2
-        x: 1051
-        y: 18
-        width: 74
-        height: 91
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4b96f892ee86a2b00800000000000000
-      internalID: 804570855547824564
+      spriteID: c990a4065ebc1d64c92a9efc293a2404
+      internalID: -563010233
       vertices: []
       indices: 
       edges: []
@@ -325,7 +325,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4fa1cb7913181fd458f7ca7d1f68b224
     internalID: 0
     vertices: []
     indices: 
@@ -334,7 +334,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nautolan Ship - Battlecruiser - Weapons_0: -123470966
+      Nautolan Ship - Battlecruiser - Weapons_1: -1933531808
+      Nautolan Ship - Battlecruiser - Weapons_2: 462360119
+      Nautolan Ship - Battlecruiser - Weapons_3: 1943713406
+      Nautolan Ship - Battlecruiser - Weapons_4: -635254193
+      Nautolan Ship - Battlecruiser - Weapons_5: -175885760
+      Nautolan Ship - Battlecruiser - Weapons_6: -2121545105
+      Nautolan Ship - Battlecruiser - Weapons_7: 1277533431
+      Nautolan Ship - Battlecruiser - Weapons_8: -563010233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

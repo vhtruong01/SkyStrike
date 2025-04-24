@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,20 +124,20 @@ TextureImporter:
       name: Nautolan Ship - Support - Engine Effect_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 8
-        width: 26
-        height: 18
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f646bf5328b216130800000000000000
-      internalID: 3558173018850813039
+      spriteID: 2306b2f05160db946bd83072821df5aa
+      internalID: 1249022025
       vertices: []
       indices: 
       edges: []
@@ -146,20 +146,20 @@ TextureImporter:
       name: Nautolan Ship - Support - Engine Effect_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 8
-        width: 26
-        height: 18
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 174c2ce800701bb30800000000000000
-      internalID: 4301226818092057713
+      spriteID: 8dc0f0072f97b144c9325fdfd5fc8679
+      internalID: -2131148581
       vertices: []
       indices: 
       edges: []
@@ -168,20 +168,20 @@ TextureImporter:
       name: Nautolan Ship - Support - Engine Effect_2
       rect:
         serializedVersion: 2
-        x: 147
-        y: 7
-        width: 26
-        height: 19
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 52d5cee645bc2f340800000000000000
-      internalID: 4896199308403825957
+      spriteID: 0ad4ff7ed1f52214fb10ecf8f5065dca
+      internalID: 1824005041
       vertices: []
       indices: 
       edges: []
@@ -190,20 +190,20 @@ TextureImporter:
       name: Nautolan Ship - Support - Engine Effect_3
       rect:
         serializedVersion: 2
-        x: 211
-        y: 8
-        width: 26
-        height: 18
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 47b0f1f8626bf1d70800000000000000
-      internalID: 9016125255745211252
+      spriteID: 601c2a27a84e9cf48b58d7071866fd15
+      internalID: 1782540125
       vertices: []
       indices: 
       edges: []
@@ -212,20 +212,20 @@ TextureImporter:
       name: Nautolan Ship - Support - Engine Effect_4
       rect:
         serializedVersion: 2
-        x: 275
-        y: 8
-        width: 26
-        height: 18
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4f3e9d72e2cbe7420800000000000000
-      internalID: 2629746138854056948
+      spriteID: 91e924c44d1d6f74681bc813b31733d0
+      internalID: -232235868
       vertices: []
       indices: 
       edges: []
@@ -234,20 +234,20 @@ TextureImporter:
       name: Nautolan Ship - Support - Engine Effect_5
       rect:
         serializedVersion: 2
-        x: 339
-        y: 8
-        width: 26
-        height: 18
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b75d310c085f3c9f0800000000000000
-      internalID: -449245604479773317
+      spriteID: e39cac1fe6f57c94f80527fc7cea4cf8
+      internalID: 834144188
       vertices: []
       indices: 
       edges: []
@@ -256,20 +256,20 @@ TextureImporter:
       name: Nautolan Ship - Support - Engine Effect_6
       rect:
         serializedVersion: 2
-        x: 403
-        y: 7
-        width: 26
-        height: 19
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 742fc6cb8d152c5b0800000000000000
-      internalID: -5349623416046685625
+      spriteID: 9c722a5eb271983418dbe85804089a8f
+      internalID: -515424229
       vertices: []
       indices: 
       edges: []
@@ -278,20 +278,20 @@ TextureImporter:
       name: Nautolan Ship - Support - Engine Effect_7
       rect:
         serializedVersion: 2
-        x: 467
-        y: 8
-        width: 26
-        height: 18
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bf1f05d902ac6e7e0800000000000000
-      internalID: -1736478364877655557
+      spriteID: 3a6c00b63346b2b499a2f585857a65dd
+      internalID: 1005444353
       vertices: []
       indices: 
       edges: []
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4c6adcde96753e344b5939e0aa54f712
     internalID: 0
     vertices: []
     indices: 
@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nautolan Ship - Support - Engine Effect_0: 1249022025
+      Nautolan Ship - Support - Engine Effect_1: -2131148581
+      Nautolan Ship - Support - Engine Effect_2: 1824005041
+      Nautolan Ship - Support - Engine Effect_3: 1782540125
+      Nautolan Ship - Support - Engine Effect_4: -232235868
+      Nautolan Ship - Support - Engine Effect_5: 834144188
+      Nautolan Ship - Support - Engine Effect_6: -515424229
+      Nautolan Ship - Support - Engine Effect_7: 1005444353
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

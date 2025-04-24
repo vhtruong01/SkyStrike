@@ -1,9 +1,11 @@
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public class ShipData
+    public class ShipData : GameData<ShipMetaData>
     {
+        [SerializeField] private ShipMetaData shipMetaData;
         private int _hp;
         private int _star;
         public int hp
@@ -11,8 +13,11 @@ namespace SkyStrike.Game
             get => _hp;
             set
             {
-                _hp = value;
-                onCollectHealth.Invoke(hp);
+                if (value < maxHp)
+                {
+                    _hp = value;
+                    onCollectHealth.Invoke(hp);
+                }
             }
         }
         public int star
@@ -29,10 +34,17 @@ namespace SkyStrike.Game
         public UnityEvent<int> onCollectStar { get; private set; }
         public UnityEvent<int> onCollectHealth { get; private set; }
 
-        public ShipData(ShipMetaData metaData)
+        public override void Awake()
         {
+            base.Awake();
             onCollectStar = new();
             onCollectHealth = new();
+            shipMetaData.Reset();
+        }
+        public void Start()
+            => UpdateDataAndRefresh(shipMetaData);
+        protected override void SetData(ShipMetaData metaData)
+        {
             _hp = metaData.hp;
             _star = metaData.star;
             maxHp = metaData.maxHp;

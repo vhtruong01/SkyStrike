@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <maxLevel>k__BackingField: 6
   <scale>k__BackingField: 1
-  <dmg>k__BackingField: 200
+  <dmg>k__BackingField: 0
   <speed>k__BackingField: 5
   <timeCooldown>k__BackingField: 0.5
   <timeLife>k__BackingField: 3

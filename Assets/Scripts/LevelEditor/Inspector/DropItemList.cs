@@ -2,5 +2,5 @@ using SkyStrike.Game;
 
 namespace SkyStrike.Editor
 {
-    public class DropItemList : UIGroupPool<ItemData> { }
+    public class DropItemList : UIGroupPool<ItemMetaData> { }
 }

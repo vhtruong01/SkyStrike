@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,20 +124,20 @@ TextureImporter:
       name: Nautolan Ship - Torpedo Ship - Shield_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 33
-        width: 62
-        height: 16
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: beb57b90221d70de0800000000000000
-      internalID: -1366894017761551381
+      spriteID: ed9c473d3d68f3144b87cca791680010
+      internalID: -992201736
       vertices: []
       indices: 
       edges: []
@@ -146,20 +146,20 @@ TextureImporter:
       name: Nautolan Ship - Torpedo Ship - Shield_1
       rect:
         serializedVersion: 2
-        x: 92
-        y: 37
-        width: 8
-        height: 12
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 82144490f144d3b30800000000000000
-      internalID: 4268642921907241256
+      spriteID: 4960c27a3d338e5439d65fa2e5a65145
+      internalID: -1667153082
       vertices: []
       indices: 
       edges: []
@@ -168,20 +168,20 @@ TextureImporter:
       name: Nautolan Ship - Torpedo Ship - Shield_2
       rect:
         serializedVersion: 2
-        x: 152
-        y: 37
-        width: 16
-        height: 12
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d26e52cd09931f070800000000000000
-      internalID: 8138349295966742061
+      spriteID: dec9acc4b6221a844954790a8f7f61a0
+      internalID: -497219346
       vertices: []
       indices: 
       edges: []
@@ -190,20 +190,20 @@ TextureImporter:
       name: Nautolan Ship - Torpedo Ship - Shield_3
       rect:
         serializedVersion: 2
-        x: 209
-        y: 37
-        width: 30
-        height: 12
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b89955ebae7ab150800000000000000
-      internalID: 5889158739492706486
+      spriteID: da28edc7c4800fc4294ebed45f7412c1
+      internalID: -2146983358
       vertices: []
       indices: 
       edges: []
@@ -212,20 +212,20 @@ TextureImporter:
       name: Nautolan Ship - Torpedo Ship - Shield_4
       rect:
         serializedVersion: 2
-        x: 266
-        y: 37
-        width: 44
-        height: 12
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c3229209527731e0800000000000000
-      internalID: -2218178564835892285
+      spriteID: f7078b02ca1e3324cacd6b4f4937dcef
+      internalID: -2091069209
       vertices: []
       indices: 
       edges: []
@@ -234,20 +234,20 @@ TextureImporter:
       name: Nautolan Ship - Torpedo Ship - Shield_5
       rect:
         serializedVersion: 2
-        x: 323
-        y: 36
-        width: 58
-        height: 13
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 262b0a607d33e1fa0800000000000000
-      internalID: -5828163869148663198
+      spriteID: a284242f91a85a14cb68477cec8a0edc
+      internalID: 485092009
       vertices: []
       indices: 
       edges: []
@@ -256,20 +256,20 @@ TextureImporter:
       name: Nautolan Ship - Torpedo Ship - Shield_6
       rect:
         serializedVersion: 2
-        x: 385
-        y: 33
-        width: 62
-        height: 16
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b2f321d8e1bbd04f0800000000000000
-      internalID: -860826213867700437
+      spriteID: a462ea0107873f04aac304aaf34ab32c
+      internalID: 271911967
       vertices: []
       indices: 
       edges: []
@@ -278,20 +278,20 @@ TextureImporter:
       name: Nautolan Ship - Torpedo Ship - Shield_7
       rect:
         serializedVersion: 2
-        x: 449
-        y: 33
-        width: 62
-        height: 16
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bb431658eed372060800000000000000
-      internalID: 6928574646382048443
+      spriteID: 87b3e39f692cfea49999f0853dd05890
+      internalID: -1311791952
       vertices: []
       indices: 
       edges: []
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 309ac9adf7236dd409f0fa75933a1a5f
     internalID: 0
     vertices: []
     indices: 
@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nautolan Ship - Torpedo Ship - Shield_0: -992201736
+      Nautolan Ship - Torpedo Ship - Shield_1: -1667153082
+      Nautolan Ship - Torpedo Ship - Shield_2: -497219346
+      Nautolan Ship - Torpedo Ship - Shield_3: -2146983358
+      Nautolan Ship - Torpedo Ship - Shield_4: -2091069209
+      Nautolan Ship - Torpedo Ship - Shield_5: 485092009
+      Nautolan Ship - Torpedo Ship - Shield_6: 271911967
+      Nautolan Ship - Torpedo Ship - Shield_7: -1311791952
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

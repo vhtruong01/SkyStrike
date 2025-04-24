@@ -73,7 +73,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -87,7 +87,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -111,7 +111,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,10 +139,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 12
-        width: 36
-        height: 32
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_1
       rect:
         serializedVersion: 2
-        x: 78
-        y: 12
-        width: 36
-        height: 32
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_2
       rect:
         serializedVersion: 2
-        x: 142
-        y: 12
-        width: 36
-        height: 32
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_3
       rect:
         serializedVersion: 2
-        x: 206
-        y: 12
-        width: 36
-        height: 32
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,10 +227,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_4
       rect:
         serializedVersion: 2
-        x: 270
-        y: 12
-        width: 36
-        height: 32
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +249,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_5
       rect:
         serializedVersion: 2
-        x: 334
-        y: 12
-        width: 36
-        height: 32
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,10 +271,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_6
       rect:
         serializedVersion: 2
-        x: 398
-        y: 12
-        width: 36
-        height: 32
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,10 +293,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_7
       rect:
         serializedVersion: 2
-        x: 462
-        y: 12
-        width: 36
-        height: 32
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +315,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_8
       rect:
         serializedVersion: 2
-        x: 526
-        y: 12
-        width: 36
-        height: 32
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,10 +337,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_9
       rect:
         serializedVersion: 2
-        x: 590
-        y: 12
-        width: 36
-        height: 32
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,10 +359,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_10
       rect:
         serializedVersion: 2
-        x: 654
-        y: 12
-        width: 36
-        height: 32
+        x: 640
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_11
       rect:
         serializedVersion: 2
-        x: 718
-        y: 12
-        width: 36
-        height: 32
+        x: 704
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -403,10 +403,10 @@ TextureImporter:
       name: Nautolan Ship - Scout - Shield_12
       rect:
         serializedVersion: 2
-        x: 782
-        y: 12
-        width: 36
-        height: 32
+        x: 768
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,7 +425,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6baf46bd9ba4c534592573274d377eab
     internalID: 0
     vertices: []
     indices: 
@@ -434,7 +434,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nautolan Ship - Scout - Shield_0: 1013543538726083719
+      Nautolan Ship - Scout - Shield_1: 1932266597414172514
+      Nautolan Ship - Scout - Shield_10: 6627276950230070195
+      Nautolan Ship - Scout - Shield_11: -8577256310995047874
+      Nautolan Ship - Scout - Shield_12: 934047638254158545
+      Nautolan Ship - Scout - Shield_2: -4798284160516453500
+      Nautolan Ship - Scout - Shield_3: -205770342136182687
+      Nautolan Ship - Scout - Shield_4: -738406346676604809
+      Nautolan Ship - Scout - Shield_5: -4020863741384314997
+      Nautolan Ship - Scout - Shield_6: -8102777054803656548
+      Nautolan Ship - Scout - Shield_7: -1797362467069788640
+      Nautolan Ship - Scout - Shield_8: -6928200253820603091
+      Nautolan Ship - Scout - Shield_9: -3924248911176896734
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

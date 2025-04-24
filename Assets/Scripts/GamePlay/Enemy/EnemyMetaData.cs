@@ -51,7 +51,7 @@ namespace SkyStrike.Game
         [field: SerializeField] public List<Sprite> shieldSprites { get; private set; }
         [field: SerializeField] public List<Sprite> weaponSprites { get; private set; }
 
-        public bool CanHighLight()
+        public bool CanHighlight()
         {
             if (type == EnemyType.Boss || type == EnemyType.Subboss || type == EnemyType.Elite)
                 return false;

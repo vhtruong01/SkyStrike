@@ -118,7 +118,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -132,7 +132,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -156,7 +156,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -184,10 +184,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
-        width: 32
-        height: 29
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 16
-        width: 32
-        height: 29
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_2
       rect:
         serializedVersion: 2
-        x: 144
-        y: 16
-        width: 32
-        height: 29
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,10 +250,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_3
       rect:
         serializedVersion: 2
-        x: 208
-        y: 16
-        width: 32
-        height: 29
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_4
       rect:
         serializedVersion: 2
-        x: 272
-        y: 16
-        width: 32
-        height: 29
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +294,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_5
       rect:
         serializedVersion: 2
-        x: 336
-        y: 16
-        width: 32
-        height: 29
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,10 +316,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_6
       rect:
         serializedVersion: 2
-        x: 400
-        y: 16
-        width: 32
-        height: 29
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,10 +338,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_7
       rect:
         serializedVersion: 2
-        x: 464
-        y: 16
-        width: 32
-        height: 29
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,10 +360,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_8
       rect:
         serializedVersion: 2
-        x: 528
-        y: 16
-        width: 32
-        height: 29
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,10 +382,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_9
       rect:
         serializedVersion: 2
-        x: 592
-        y: 16
-        width: 32
-        height: 29
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,10 +404,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_10
       rect:
         serializedVersion: 2
-        x: 656
-        y: 16
-        width: 32
-        height: 29
+        x: 640
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,10 +426,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_11
       rect:
         serializedVersion: 2
-        x: 720
-        y: 16
-        width: 32
-        height: 29
+        x: 704
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -448,10 +448,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_12
       rect:
         serializedVersion: 2
-        x: 784
-        y: 16
-        width: 32
-        height: 29
+        x: 768
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,10 +470,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_13
       rect:
         serializedVersion: 2
-        x: 848
-        y: 16
-        width: 32
-        height: 29
+        x: 832
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -492,10 +492,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_14
       rect:
         serializedVersion: 2
-        x: 912
-        y: 16
-        width: 32
-        height: 29
+        x: 896
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -514,10 +514,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_15
       rect:
         serializedVersion: 2
-        x: 976
-        y: 16
-        width: 32
-        height: 29
+        x: 960
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -536,10 +536,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_16
       rect:
         serializedVersion: 2
-        x: 1040
-        y: 16
-        width: 32
-        height: 29
+        x: 1024
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -558,10 +558,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_17
       rect:
         serializedVersion: 2
-        x: 1104
-        y: 16
-        width: 32
-        height: 29
+        x: 1088
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -580,10 +580,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_18
       rect:
         serializedVersion: 2
-        x: 1168
-        y: 16
-        width: 32
-        height: 29
+        x: 1152
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -602,10 +602,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_19
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 16
-        width: 32
-        height: 29
+        x: 1216
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -624,10 +624,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_20
       rect:
         serializedVersion: 2
-        x: 1296
-        y: 16
-        width: 32
-        height: 29
+        x: 1280
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -646,10 +646,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_21
       rect:
         serializedVersion: 2
-        x: 1360
-        y: 16
-        width: 32
-        height: 29
+        x: 1344
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -668,10 +668,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_22
       rect:
         serializedVersion: 2
-        x: 1424
-        y: 16
-        width: 32
-        height: 29
+        x: 1408
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -690,10 +690,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_23
       rect:
         serializedVersion: 2
-        x: 1488
-        y: 16
-        width: 32
-        height: 29
+        x: 1472
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -712,10 +712,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_24
       rect:
         serializedVersion: 2
-        x: 1552
-        y: 16
-        width: 32
-        height: 29
+        x: 1536
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -734,10 +734,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_25
       rect:
         serializedVersion: 2
-        x: 1616
-        y: 16
-        width: 32
-        height: 29
+        x: 1600
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -756,10 +756,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_26
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 16
-        width: 32
-        height: 29
+        x: 1664
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -778,10 +778,10 @@ TextureImporter:
       name: Nairan - Fighter - Weapons_27
       rect:
         serializedVersion: 2
-        x: 1744
-        y: 16
-        width: 32
-        height: 29
+        x: 1728
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -800,7 +800,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 528173a0815c90a47a1a50dc07eef6ad
     internalID: 0
     vertices: []
     indices: 
@@ -809,7 +809,35 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nairan - Fighter - Weapons_0: -8039214679314751138
+      Nairan - Fighter - Weapons_1: -4575152212895385080
+      Nairan - Fighter - Weapons_10: 8931803912018768725
+      Nairan - Fighter - Weapons_11: -7377978840922158683
+      Nairan - Fighter - Weapons_12: 3641314963571539290
+      Nairan - Fighter - Weapons_13: -8841882454140841929
+      Nairan - Fighter - Weapons_14: -2310887663325377602
+      Nairan - Fighter - Weapons_15: -2191874720293687994
+      Nairan - Fighter - Weapons_16: -5648465479338029060
+      Nairan - Fighter - Weapons_17: 6586029044100296370
+      Nairan - Fighter - Weapons_18: -189047730367270773
+      Nairan - Fighter - Weapons_19: -915071234568314298
+      Nairan - Fighter - Weapons_2: -8800666057171792092
+      Nairan - Fighter - Weapons_20: 342154396945117201
+      Nairan - Fighter - Weapons_21: -260182298333026862
+      Nairan - Fighter - Weapons_22: -5851774795420105051
+      Nairan - Fighter - Weapons_23: 6361629084038365487
+      Nairan - Fighter - Weapons_24: -4010899771306128002
+      Nairan - Fighter - Weapons_25: 5675953865497402895
+      Nairan - Fighter - Weapons_26: -546286365037970974
+      Nairan - Fighter - Weapons_27: -8502915425750156006
+      Nairan - Fighter - Weapons_3: 7951271422879432646
+      Nairan - Fighter - Weapons_4: -6058159595438426396
+      Nairan - Fighter - Weapons_5: 296008323125808302
+      Nairan - Fighter - Weapons_6: 8264639552158699665
+      Nairan - Fighter - Weapons_7: 1721679087970888679
+      Nairan - Fighter - Weapons_8: 2834991303061739965
+      Nairan - Fighter - Weapons_9: 2971683659380988040
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

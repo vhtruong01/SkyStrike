@@ -5905,8 +5905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6be21553926464796742379ad73e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: -7155573818991099188, guid: d04e6c7393d6ffb44a2a9edd9f7fa16a, type: 3}
   createOtherContainer: 1
+  prefab: {fileID: -7155573818991099188, guid: d04e6c7393d6ffb44a2a9edd9f7fa16a, type: 3}
   bulletDataList:
   - {fileID: 11400000, guid: 593ed1fe63fb4ff448b8ff3bf42b08c7, type: 2}
   - {fileID: 11400000, guid: a2ded660ab54fd147a393318a0c67e6d, type: 2}
@@ -6285,8 +6285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3a0dccb62bc942b3f8163f5743d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2007058167723866401, guid: 2d2a922f9405c04438992b8069fa8d1c, type: 3}
   createOtherContainer: 0
+  prefab: {fileID: 2007058167723866401, guid: 2d2a922f9405c04438992b8069fa8d1c, type: 3}
   metaDataList:
   - {fileID: 11400000, guid: 704b906ede4f4084e912e5a531c60460, type: 2}
   - {fileID: 11400000, guid: c987d0f88b690114daa4405146a86a10, type: 2}
@@ -6316,8 +6316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddcbfc13bfe86e4f950210ed5b0af66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8944746483800074425, guid: 6e8a77cd9226ebc41824c632b009333c, type: 3}
   createOtherContainer: 1
+  prefab: {fileID: 8944746483800074425, guid: 6e8a77cd9226ebc41824c632b009333c, type: 3}
 --- !u!1 &720350206
 GameObject:
   m_ObjectHideFlags: 0
@@ -6526,7 +6526,7 @@ MonoBehaviour:
   movingBg: {fileID: 276858439}
   skillButtonPrefab: {fileID: 7869402540029580579, guid: 6fd7b6ccf02710544864f9b71afa8195, type: 3}
   skillGroupContainer: {fileID: 1966678834}
-  uiContentGroup: {fileID: 1051281649}
+  uiContent: {fileID: 1051281647}
   star: {fileID: 1375100025}
   hpBar: {fileID: 219125325}
   startButton: {fileID: 1301990852}
@@ -12995,8 +12995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0e365d5964b8b4fb9da4bd0adf3042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4303619859786479038, guid: 86b132c9317324b4ab544916f70acd39, type: 3}
   createOtherContainer: 0
+  prefab: {fileID: 4303619859786479038, guid: 86b132c9317324b4ab544916f70acd39, type: 3}
   items:
   - {fileID: 11400000, guid: 8b64e29315750ea458ef50cce66eb91b, type: 2}
   - {fileID: 11400000, guid: 0bc51e2e883e42d489ab0c00d5408db7, type: 2}

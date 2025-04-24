@@ -2,26 +2,19 @@ using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public abstract class EnemyAnimation
+    public abstract class EnemyAnimation : IEntityAnimation
     {
-        protected bool isLoop = false;
-        protected float elapedTime;
+        protected bool isLoop;
         protected bool isActive;
-        protected bool isCancelWhenFinish;
+        protected bool isPauseAnimationOnComplete;
+        protected float elapedTime;
+        protected float totalTime;
+        protected float interval;
+        protected EAnimationDirection direction;
         protected UnityAction finishedAction;
         protected UnityAction startedAction;
         protected UnityAction stoppedAction;
 
-        public EnemyAnimation SetLoop(bool isLoop)
-        {
-            this.isLoop = isLoop;
-            return this;
-        }
-        public EnemyAnimation SetFinishedAction(UnityAction finishedAction)
-        {
-            this.finishedAction = finishedAction;
-            return this;
-        }
         public EnemyAnimation SetStartedAction(UnityAction startedAction)
         {
             this.startedAction = startedAction;
@@ -32,24 +25,53 @@ namespace SkyStrike.Game
             this.stoppedAction = stoppedAction;
             return this;
         }
-        public EnemyAnimation SetCancelWhenFinished(bool b)
+        public virtual IEntityAnimation SetTotalTime(float totalTime)
         {
-            isCancelWhenFinish = b;
+            this.totalTime = totalTime;
             return this;
         }
+        public virtual IEntityAnimation SetInterval(float interval)
+        {
+            this.interval = interval;
+            return this;
+        }
+        public IEntityAnimation SetLoop(bool isLoop)
+        {
+            this.isLoop = isLoop;
+            return this;
+        }
+        public IEntityAnimation SetFinishedAction(UnityAction finishedAction)
+        {
+            this.finishedAction = finishedAction;
+            return this;
+        }
+        public IEntityAnimation PauseAnimationOnComplete(bool isPause)
+        {
+            isPauseAnimationOnComplete = isPause;
+            return this;
+        }
+        public IEntityAnimation SetDirection(EAnimationDirection direction)
+        {
+            this.direction = direction;
+            return this;
+        }
+        public abstract IEntityAnimation Reset();
         public void Start()
         {
             if (isActive) return;
-            isActive = true;
-            Reset();
-            startedAction?.Invoke();
+            ResetAndStart();
         }
         public void Stop()
         {
             isActive = false;
             stoppedAction?.Invoke();
         }
-        protected abstract void Reset();
+        public void ResetAndStart()
+        {
+            isActive = true;
+            _ = Reset();
+            startedAction?.Invoke();
+        }
         public abstract void Animate(float deltaTime);
     }
 }

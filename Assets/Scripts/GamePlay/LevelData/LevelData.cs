@@ -9,6 +9,6 @@ namespace SkyStrike.Game
         public int starRating;
         public string name;
         public WaveData[] waves;
-        public EnemyBulletData[] bullets;
+        public EnemyBulletMetaData[] bullets;
     }
 }

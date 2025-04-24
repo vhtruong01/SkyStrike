@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,7 +120,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -509,7 +509,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nautolan - Bomb_0: 1670050155456109725
+      Nautolan - Bomb_1: 8191152458732764619
+      Nautolan - Bomb_10: 1376665699654723836
+      Nautolan - Bomb_11: -916424344776919674
+      Nautolan - Bomb_12: 6651415027270894115
+      Nautolan - Bomb_13: -3036373977725182226
+      Nautolan - Bomb_14: 2750709111938759733
+      Nautolan - Bomb_15: 1633158149888353376
+      Nautolan - Bomb_2: -5232028524170049445
+      Nautolan - Bomb_3: 2749985050334193627
+      Nautolan - Bomb_4: 6675278894761798591
+      Nautolan - Bomb_5: 1305863969937362218
+      Nautolan - Bomb_6: 4138550570399145243
+      Nautolan - Bomb_7: -5919199753219571524
+      Nautolan - Bomb_8: -4040189689325903384
+      Nautolan - Bomb_9: -2721433694757593945
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
