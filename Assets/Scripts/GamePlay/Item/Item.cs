@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public interface IItem : IPoolableObject
+    public interface IItem : IObject
     {
         public EItem GetItemType();
+        public void Interact(ICollector collector);
     }
-    [RequireComponent(typeof(ItemData))]    
     public class Item : PoolableObject<ItemData>, IMagnetic, IItem
     {
         private Tweener tweener;
@@ -18,10 +18,11 @@ namespace SkyStrike.Game
         public override void Refresh()
         {
             transform.localScale = Vector3.one * (data.metaData.size == 0 ? 1 : data.metaData.size);
+            transform.rotation = Quaternion.identity;
             spriteRenderer.sprite = data.metaData.sprite;
-            spriteRenderer.material = data.metaData.material;
             spriteRenderer.color = spriteRenderer.color.ChangeAlpha(1);
             col2D.size = data.metaData.sprite.bounds.size;
+            spriteRenderer.sharedMaterial = data.metaData.material;
         }
         public void Appear(Vector2 vel)
         {
@@ -71,9 +72,20 @@ namespace SkyStrike.Game
             if (data.elapsedTime >= ItemData.lifeTime)
                 Disappear();
         }
-        public void HandleAffectedByGravity(Vector2 dir) 
+        public void HandleAffectedByGravity(Vector2 dir)
             => transform.position += dir.SetZ(0);
-        public void OnDisable()
-            => tweener?.Kill();
+        private void OnDisable()
+        {
+            if (tweener != null && tweener.IsActive())
+                tweener.Kill();
+        }
+        public void Interact(ICollector collector)
+        {
+            if (gameObject.activeSelf)
+            {
+                collector.Collect(GetItemType());
+                Disappear();
+            }
+        }
     }
 }

@@ -10,10 +10,7 @@ namespace SkyStrike.Game
         Star5,
         Shield,
         Comet,
-        SingleBullet,
-        DoubleBullet,
-        TripleBullet,
-        LaserBullet
+        WeaponPoint,
     }
     public enum EItemAnimationType
     {
@@ -23,7 +20,7 @@ namespace SkyStrike.Game
         Fade,
     }
     [CreateAssetMenu(fileName = "Item", menuName = "Data/Item")]
-    public class ItemMetaData : ScriptableObject, IGame
+    public class ItemMetaData : ScriptableObject, IMetaData, IGame
     {
         [field: SerializeField] public float size { get; private set; }
         [field: SerializeField] public Sprite sprite { get; private set; }

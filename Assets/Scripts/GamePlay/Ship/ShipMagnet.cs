@@ -5,24 +5,25 @@ namespace SkyStrike.Game
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(CircleCollider2D))]
-    public class ShipMagnet : MonoBehaviour, IEntityComponent
+    public class ShipMagnet : MonoBehaviour, IShipComponent
     {
-        private float radius;
         private Rigidbody2D rigi;
+        public IEntity entity { get; set; }
+        public ShipData data { get; set; }
         public UnityAction<EEntityAction> notifyAction { get; set; }
 
-        public void Awake()
+        public void Init()
         {
-            radius = GetComponent<CircleCollider2D>().radius;
+            GetComponent<CircleCollider2D>().radius = data.metaData.magnetRadius;
             rigi = GetComponent<Rigidbody2D>();
             rigi.simulated = true;
         }
-        public void OnTriggerStay2D(Collider2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.CompareTag("Item") && collision.TryGetComponent<IMagnetic>(out var obj) && obj.isMagnetic)
+            if (collision.TryGetComponent<IMagnetic>(out var obj) && obj.isMagnetic)
             {
-                Vector2 dir = transform.position - obj.gameObject.transform.position;
-                obj.HandleAffectedByGravity(Mathf.Sqrt(1 - Mathf.Clamp(dir.magnitude / radius, 0, 0.99f)) * 0.1f * dir);
+                Vector2 dir = entity.position - obj.gameObject.transform.position;
+                obj.HandleAffectedByGravity(Mathf.Sqrt(1 - Mathf.Clamp(dir.magnitude / data.metaData.magnetRadius, 0, 0.99f)) * 0.1f * dir);
             }
         }
         public void Interrupt() => rigi.simulated = false;

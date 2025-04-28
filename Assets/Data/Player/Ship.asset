@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624cf2dfe992303408f471728cfb1906, type: 3}
   m_Name: Ship
   m_EditorClassIdentifier: 
-  skills:
-  - {fileID: 11400000, guid: e2935ce5ab074454d9e3de2772e066e3, type: 2}
-  - {fileID: 11400000, guid: d1c96f9a463a8c347b6f017dc1f00bda, type: 2}
-  hp: 0
-  maxHp: 0
-  speed: 0
-  star: 0
+  <skills>k__BackingField: []
+  <hp>k__BackingField: 4
+  <maxHp>k__BackingField: 7
+  <speed>k__BackingField: 5
+  <magnetRadius>k__BackingField: 1.25

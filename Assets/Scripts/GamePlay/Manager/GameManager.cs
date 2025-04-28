@@ -2,18 +2,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace SkyStrike.Game
 {
-    public enum EScene
-    {
-        Loading = 0,
-        MainMenu,
-        MainGame,
-        Editor
-    }
-    [CreateAssetMenu(fileName = "GameManager", menuName = "Game/GameManager")]
+    [CreateAssetMenu(fileName = "GameDataManager", menuName = "Game/GameDataManager")]
     public class GameManager : ScriptableObject
     {
         [SerializeField, Range(0, 1)] private float _soundVolume;
@@ -48,8 +40,10 @@ namespace SkyStrike.Game
                 PlayerPrefs.SetFloat("isMute", isMute ? 0 : 1);
             }
         }
+
+        //
         public void OnEnable() => Awake();
-        public void Awake()
+        private void Awake()
         {
             _soundVolume = PlayerPrefs.GetFloat("soundVolume", 0.75f);
             _sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.75f);
@@ -73,10 +67,5 @@ namespace SkyStrike.Game
                 return null;
             }
         }
-        private static void LoadScene(EScene sceneType)
-            => SceneManager.LoadScene((int)sceneType);
-        public static void PlayGame() => LoadScene(EScene.MainGame);
-        public static void OpenMainMenu() => LoadScene(EScene.MainMenu);
-        public static void OpenEditor() => LoadScene(EScene.Editor);
     }
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 namespace SkyStrike.Game
 {
     [Serializable]
-    public class EnemyBulletMetaData : IGame
+    public class EnemyBulletMetaData : IMetaData, IGame
     {
         public int id;
         public string name;
         public float size;
-        public float velocity;
+        public float velocity;//speed
         public float timeCooldown;
         public float spinSpeed;
         public float lifeTime;

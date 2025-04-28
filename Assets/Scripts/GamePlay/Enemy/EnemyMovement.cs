@@ -8,23 +8,18 @@ namespace SkyStrike.Game
     public class EnemyMovement : MonoBehaviour, IEnemyComponent, IMoveable
     {
         public EnemyData data { get; set; }
+        public IEntity entity { get; set; }
         public UnityAction<EEntityAction> notifyAction { get; set; }
 
-        public void Awake()
-            => data = GetComponent<EnemyData>();
         public void Move()
         {
             MoveData moveData = data.moveData;
             Point point = moveData.points[data.pointIndex];
-            if (data.pointIndex < moveData.points.Length - 1)
-            {
-                Point nextPoint = moveData.points[data.pointIndex + 1];
-                StartCoroutine(
-                point.isStraightLine
-                    ? MoveStraight(point, nextPoint, moveData.velocity)
-                    : MoveCurve(point, nextPoint, moveData.velocity));
-            }
-            else FinishMoving();
+            Point nextPoint = moveData.points[data.pointIndex + 1];
+            StartCoroutine(
+            point.isStraightLine
+                ? MoveStraight(point, nextPoint, moveData.velocity)
+                : MoveCurve(point, nextPoint, moveData.velocity));
         }
         private IEnumerator MoveStraight(Point startPoint, Point nextPoint, float velocity)
         {
@@ -37,7 +32,7 @@ namespace SkyStrike.Game
                 Rotate(nextPos - startPos);
                 while (elapsedTime < time)
                 {
-                    transform.position = Vector2.Lerp(startPos, nextPos, elapsedTime / time).SetZ(transform.position.z);
+                    entity.position = Vector2.Lerp(startPos, nextPos, elapsedTime / time).SetZ(entity.position.z);
                     yield return null;
                     elapsedTime += Time.deltaTime;
                 }
@@ -71,15 +66,15 @@ namespace SkyStrike.Game
                         + 3 * t2 * t2 * t1 * pos2
                         + 3 * t1 * t1 * t2 * pos3
                         + t1 * t1 * t1 * nextPos
-                        ).SetZ(transform.position.z);
+                        ).SetZ(entity.position.z);
                     //
-                    var dir = newPos - transform.position;
+                    var dir = newPos - entity.position;
                     float len = dir.magnitude;
                     float time2 = len / velocity;
                     coefficient = deltaTime / time2;
                     dir *= coefficient;
                     Rotate(dir.normalized);
-                    transform.position += dir;
+                    entity.position += dir;
                     deltaTime = Time.deltaTime;
                     yield return null;
                 }
@@ -89,7 +84,7 @@ namespace SkyStrike.Game
         private void Rotate(Vector2 dir)
         {
             if (dir == Vector2.zero) return;
-            transform.eulerAngles = new(0, 0, Vector2.SignedAngle(Vector2.up, dir));
+            entity.transform.eulerAngles = new(0, 0, Vector2.SignedAngle(Vector2.up, dir));
         }
         private void FinishMoving()
             => notifyAction?.Invoke(EEntityAction.Arrive);

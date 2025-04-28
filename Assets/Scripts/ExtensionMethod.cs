@@ -5,14 +5,14 @@ namespace SkyStrike
 {
     public static class ExtensionMethod
     {
-        public static readonly int NULL_ID = -1;
-        public static Color[] colors = new Color[] {
+        public static int NULL_ID { get; } = -1;
+        public static readonly Color[] colors = new Color[] {
             new(1, 1, 0.5f),
             new(1, 0.5f, 1),
             new(0.5f, 1, 1),
             new(1, 0.5f, 0.5f),
             new(0.5f, 0.5f, 1),
-            new(0.5f, 1, 0.5f),            
+            new(0.5f, 1, 0.5f),
             new(1, 1, 0.75f),
             new(1, 0.75f, 1),
             new(0.75f, 1, 1),

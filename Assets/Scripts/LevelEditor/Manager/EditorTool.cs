@@ -77,7 +77,7 @@ namespace SkyStrike.Editor
         private void TestGame()
         {
             SaveLevel();
-            GameManager.PlayGame();
+            SceneSwapper.PlayGame();
         }
     }
 }

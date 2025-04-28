@@ -4,21 +4,22 @@ using UnityEngine;
 namespace SkyStrike.Game
 {
     [CreateAssetMenu(fileName = "Ship", menuName = "Data/Ship")]
-    public class ShipMetaData : ScriptableObject, IGame
+    public class ShipMetaData : ScriptableObject, IMetaData, IGame
     {
-        public List<Skill> skills;
-        [field: SerializeField] public int hp { get; set; }
-        [field: SerializeField] public int maxHp { get; set; }
-        [field: SerializeField] public float speed { get; set; }
-        [field: SerializeField] public int star { get; set; }
+        [field: SerializeField] public List<Skill> skills { get; private set; }
+        [field: SerializeField] public int hp { get; private set; }
+        [field: SerializeField] public int maxHp { get; private set; }
+        [field: SerializeField] public float speed { get; private set; }
+        [field: SerializeField] public float magnetRadius { get; private set; }
 
         public void Reset()
         {
-            foreach (var skill in skills)
-                skill.Reset();
-            star = 0;
+            speed = 5;
             hp = 4;
             maxHp = 7;
+            magnetRadius = 1.25f;
+            foreach (var skill in skills)
+                skill.Reset();
         }
     }
 }

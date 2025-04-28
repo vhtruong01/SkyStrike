@@ -1,70 +1,47 @@
 using System.Collections;
-using UnityEngine;
 
 namespace SkyStrike.Game
 {
     public class EnemyCommander : Commander, IEnemyComponent
     {
-        protected IAnimator animator;
         public EnemyData data { get; set; }
 
-        public override void Awake()
+        protected override void SetData()
         {
-            base.Awake();
             data = GetComponent<EnemyData>();
-            animator = GetComponent<IAnimator>();
+            foreach (var comp in GetComponentsInChildren<IEnemyComponent>(true))
+                comp.data = data;
         }
-        public override void HandleEvent(EEntityAction action)
+        public override void Init()
         {
-            switch (action)
-            {
-                case EEntityAction.TakeDmg:
-                    animator.SetTrigger(EAnimationType.Damage).Start();
-                    //
-                    break;
-                case EEntityAction.Move:
-                    animator.SetTrigger(EAnimationType.Engine).Start();
-                    movement.Move();
-                    break;
-                case EEntityAction.Stand:
-                    animator.SetTrigger(EAnimationType.Engine).Stop();
-                    //
-                    break;
-                case EEntityAction.Attack:
-                    animator.SetTrigger(EAnimationType.Weapon)
-                             .SetTotalTime(data.bulletData.timeCooldown).ResetAndStart();
-                    spawner.Spawn();
-                    break;
-                case EEntityAction.StopAttack:
-                    animator.SetTrigger(EAnimationType.Weapon).Stop();
-                    spawner.Stop();
-                    break;
-                case EEntityAction.Defend:
-                    animator.SetTrigger(EAnimationType.Shield).Start();
-                    //
-                    break;
-                case EEntityAction.Unprotected:
-                    animator.SetTrigger(EAnimationType.Shield).Stop();
-                    //
-                    break;
-                case EEntityAction.Highlight:
-                    animator.SetTrigger(EAnimationType.HighLight).Start();
-                    //
-                    break;
-                case EEntityAction.Die:
-                    InterruptAllComponents();
-                    animator.SetTrigger(EAnimationType.Destruction)
-                             .SetFinishedAction(entity.DropItemAndDisappear).Start();
-                    break;
-                case EEntityAction.Disappear:
-                    if (data.isMaintain)
-                        animator.SetTrigger(EAnimationType.Engine).Stop();
-                    else entity.Disappear();
-                    break;
-                case EEntityAction.Arrive:
-                    StartCoroutine(MoveToNextPoint());
-                    break;
-            }
+            entityEvents[EEntityAction.Stand] =
+                () => animator.SetTrigger(EAnimationType.Engine).Stop();
+            entityEvents[EEntityAction.Move] =
+                () => animator.SetTrigger(EAnimationType.Engine)
+                              .SetStartedAction(movement.Move).Play();
+            entityEvents[EEntityAction.Attack] =
+                () => animator.SetTrigger(EAnimationType.MainWeapon)
+                              .SetDuration(data.bulletData.timeCooldown)
+                              .SetStartedAction(spawner.Spawn).Play();
+            entityEvents[EEntityAction.StopAttack] =
+                () => animator.SetTrigger(EAnimationType.MainWeapon)
+                              .SetStoppedAction(spawner.Stop).Stop();
+            entityEvents[EEntityAction.Defend] =
+                () => animator.SetTrigger(EAnimationType.Shield).Play();
+            entityEvents[EEntityAction.Unprotected] =
+                () => animator.SetTrigger(EAnimationType.Shield).Stop();
+            entityEvents[EEntityAction.TakeDamage] =
+                () => animator.SetTrigger(EAnimationType.Damaged).Restart();
+            entityEvents[EEntityAction.Highlight] =
+                () => animator.SetTrigger(EAnimationType.Highlight).Play();
+            entityEvents[EEntityAction.Disappear] =
+                () => entity.Disappear();
+            entityEvents[EEntityAction.Die] =
+                () => animator.SetTrigger(EAnimationType.Destruction)
+                              .SetStartedAction(InterruptAllComponents)
+                              .SetFinishedAction(entity.DropItemAndDisappear).Play();
+            entityEvents[EEntityAction.Arrive] =
+                () => StartCoroutine(MoveToNextPoint());
         }
         private IEnumerator MoveToNextPoint()
         {
@@ -73,21 +50,28 @@ namespace SkyStrike.Game
             if (data.pointIndex < moveData.points.Length)
             {
                 MoveData.Point point = moveData.points[data.pointIndex];
-                data.bulletData = point.bulletData;
-                notifyAction?.Invoke(data.bulletData != null ? EEntityAction.Attack : EEntityAction.StopAttack);
+                if (data.bulletData != point.bulletData)
+                {
+                    data.bulletData = point.bulletData;
+                    notifyAction.Invoke(data.bulletData != null ? EEntityAction.Attack : EEntityAction.StopAttack);
+                }
                 data.isImmortal = point.isImmortal;
-                data.shield = !data.isImmortal && point.shield;
-                notifyAction?.Invoke(data.shield ? EEntityAction.Defend : EEntityAction.Unprotected);
+                bool shield = !data.isImmortal && point.shield;
+                if (data.shield != shield)
+                {
+                    data.shield = shield;
+                    notifyAction.Invoke(data.shield ? EEntityAction.Defend : EEntityAction.Unprotected);
+                }
                 data.isLookingAtPlayer = point.isLookingAtPlayer;
                 if (point.standingTime > 0)
                 {
-                    notifyAction?.Invoke(EEntityAction.Stand);
-                    yield return new WaitForSeconds(point.standingTime);
+                    notifyAction.Invoke(EEntityAction.Stand);
+                    yield return new UnityEngine.WaitForSeconds(point.standingTime);
                 }
-                notifyAction?.Invoke(EEntityAction.Move);
             }
-            else notifyAction?.Invoke(EEntityAction.Disappear);
+            if (data.pointIndex < moveData.points.Length - 1)
+                notifyAction.Invoke(EEntityAction.Move);
+            else notifyAction.Invoke(data.isMaintain ? EEntityAction.Stand : EEntityAction.Disappear);
         }
-        public override void Interrupt() => StopAllCoroutines();
     }
 }

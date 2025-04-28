@@ -2,19 +2,18 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public abstract class GameData<T> : MonoBehaviour, IGame
+    public abstract class GameData<T, K> : MonoBehaviour where T : IMetaData where K : IEventData
     {
+        [field: SerializeField] public T metaData { get; protected set; }
         protected IRefreshable mainObject;
-        public T metaData {  get; protected set; }
 
         public virtual void Awake()
-            => mainObject = GetComponent<IRefreshable>();
-        public void UpdateDataAndRefresh(T data)
+            => mainObject = GetComponentInChildren<IRefreshable>();
+        public void SetData(K eventData)
         {
-            metaData = data;
-            SetData(data);
-            mainObject?.Refresh();
+            ChangeData(eventData);
+            mainObject.Refresh();
         }
-        protected abstract void SetData(T metaData);
+        protected abstract void ChangeData(K eventData);
     }
 }

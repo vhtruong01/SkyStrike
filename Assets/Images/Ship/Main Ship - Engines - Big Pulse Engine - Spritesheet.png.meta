@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,10 +112,10 @@ TextureImporter:
       name: Main Ship - Engines - Big Pulse Engine - Spritesheet_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 2
-        width: 162
-        height: 61
+        x: 0
+        y: 48
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: Main Ship - Engines - Big Pulse Engine - Spritesheet_1
       rect:
         serializedVersion: 2
-        x: 15
-        y: 2
-        width: 18
-        height: 13
+        x: 48
+        y: 48
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,10 +156,10 @@ TextureImporter:
       name: Main Ship - Engines - Big Pulse Engine - Spritesheet_2
       rect:
         serializedVersion: 2
-        x: 63
-        y: 2
-        width: 18
-        height: 13
+        x: 96
+        y: 48
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: Main Ship - Engines - Big Pulse Engine - Spritesheet_3
       rect:
         serializedVersion: 2
-        x: 111
-        y: 2
-        width: 18
-        height: 13
+        x: 144
+        y: 48
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,11 +196,99 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Main Ship - Engines - Big Pulse Engine - Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8df9c6d71280942bf8eeb1906e5c53
+      internalID: -761556631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Ship - Engines - Big Pulse Engine - Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 540c6cbc19a1cf7469eadd4164612d8c
+      internalID: 754510664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Ship - Engines - Big Pulse Engine - Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b02356c6bd974f441b99d3270ef378c2
+      internalID: -131142767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main Ship - Engines - Big Pulse Engine - Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c27912a826a20ad4cb44cd063478ef23
+      internalID: 1506810993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bbd71ddc7daef1b4a8ff1cc4f1e83eac
     internalID: 0
     vertices: []
     indices: 
@@ -209,7 +297,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Main Ship - Engines - Big Pulse Engine - Spritesheet_0: 4968947374870374438
+      Main Ship - Engines - Big Pulse Engine - Spritesheet_1: -4143182619152427845
+      Main Ship - Engines - Big Pulse Engine - Spritesheet_2: 6820808570861443419
+      Main Ship - Engines - Big Pulse Engine - Spritesheet_3: 215932272471981764
+      Main Ship - Engines - Big Pulse Engine - Spritesheet_4: -761556631
+      Main Ship - Engines - Big Pulse Engine - Spritesheet_5: 754510664
+      Main Ship - Engines - Big Pulse Engine - Spritesheet_6: -131142767
+      Main Ship - Engines - Big Pulse Engine - Spritesheet_7: 1506810993
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

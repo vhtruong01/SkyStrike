@@ -3,36 +3,36 @@ using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public class ShipMovement : MonoBehaviour, IMoveable
+    public class ShipMovement : MonoBehaviour, IShipComponent, IMoveable
     {
-        private float speedX = 5f;
-        private float speedY = 4f;
         private float boundX;
         private float boundY;
         private Joystick joystick;
+        public IEntity entity { get; set; }
+        public ShipData data { get; set; }
         public UnityAction<EEntityAction> notifyAction { get; set; }
-        public bool canMove { get; set; }
 
-        public void Awake()
+        public void Init()
         {
             Camera cam = Camera.main;
             joystick = FindAnyObjectByType<Joystick>();
             boundX = cam.ScreenToWorldPoint(new(Screen.width, 0)).x;
             boundY = cam.ScreenToWorldPoint(new(0, Screen.height)).y;
-            canMove = true;
+            entity.transform.localScale = Vector3.one;
+            entity.position = Vector3.zero;
         }
-        public void Update()
+        private void Update()
         {
-            if (canMove)
+            if (data.canMove)
                 Move();
         }
         public void Move()
         {
-            Vector2 move = joystick.Direction * Time.deltaTime;
-            transform.position = new(Mathf.Clamp(move.x * speedX + transform.position.x, -boundX, boundX),
-                                 Mathf.Clamp(move.y * speedY + transform.position.y, -boundY, boundY),
-                                 transform.position.z);
+            Vector2 dir = joystick.Direction * Time.deltaTime;
+            entity.position = new(Mathf.Clamp(dir.x * data.speed + entity.position.x, -boundX, boundX),
+                                  Mathf.Clamp(dir.y * 0.75f * data.speed + entity.position.y, -boundY, boundY),
+                                  entity.position.z);
         }
-        public void Interrupt() => canMove = false;
+        public void Interrupt() => data.canMove = false;
     }
 }

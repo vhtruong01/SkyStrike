@@ -52,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -118,10 +118,10 @@ TextureImporter:
       name: Main Ship - Shields - Front and Side Shield_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 18
-        width: 52
-        height: 34
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +140,10 @@ TextureImporter:
       name: Main Ship - Shields - Front and Side Shield_1
       rect:
         serializedVersion: 2
-        x: 70
-        y: 18
-        width: 52
-        height: 34
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: Main Ship - Shields - Front and Side Shield_2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 18
-        width: 52
-        height: 34
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: Main Ship - Shields - Front and Side Shield_3
       rect:
         serializedVersion: 2
-        x: 198
-        y: 18
-        width: 52
-        height: 34
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: Main Ship - Shields - Front and Side Shield_4
       rect:
         serializedVersion: 2
-        x: 262
-        y: 18
-        width: 52
-        height: 34
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: Main Ship - Shields - Front and Side Shield_5
       rect:
         serializedVersion: 2
-        x: 326
-        y: 18
-        width: 52
-        height: 34
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f0761a25110dae54bae22f9651584a0f
     internalID: 0
     vertices: []
     indices: 
@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Main Ship - Shields - Front and Side Shield_0: 8750295261629121697
+      Main Ship - Shields - Front and Side Shield_1: 8505258775091169397
+      Main Ship - Shields - Front and Side Shield_2: 2975968906857299237
+      Main Ship - Shields - Front and Side Shield_3: 8479493046639426775
+      Main Ship - Shields - Front and Side Shield_4: -1488889956880743766
+      Main Ship - Shields - Front and Side Shield_5: 223991586006138174
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

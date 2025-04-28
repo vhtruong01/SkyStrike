@@ -64,7 +64,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -130,10 +130,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 17
-        width: 34
-        height: 30
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_1
       rect:
         serializedVersion: 2
-        x: 79
-        y: 17
-        width: 34
-        height: 30
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,10 +174,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_2
       rect:
         serializedVersion: 2
-        x: 143
-        y: 17
-        width: 34
-        height: 30
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +196,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_3
       rect:
         serializedVersion: 2
-        x: 207
-        y: 17
-        width: 34
-        height: 30
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +218,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_4
       rect:
         serializedVersion: 2
-        x: 271
-        y: 17
-        width: 34
-        height: 30
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,10 +240,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_5
       rect:
         serializedVersion: 2
-        x: 335
-        y: 17
-        width: 34
-        height: 30
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,10 +262,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_6
       rect:
         serializedVersion: 2
-        x: 399
-        y: 17
-        width: 34
-        height: 30
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,10 +284,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_7
       rect:
         serializedVersion: 2
-        x: 463
-        y: 17
-        width: 34
-        height: 30
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -306,10 +306,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_8
       rect:
         serializedVersion: 2
-        x: 527
-        y: 17
-        width: 34
-        height: 30
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,10 +328,10 @@ TextureImporter:
       name: Main Ship - Shields - Invincibility Shield_9
       rect:
         serializedVersion: 2
-        x: 591
-        y: 17
-        width: 34
-        height: 30
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -350,7 +350,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c0238e3944747ec4a87d3b49044f6cac
     internalID: 0
     vertices: []
     indices: 
@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Main Ship - Shields - Invincibility Shield_0: -7185637956740736104
+      Main Ship - Shields - Invincibility Shield_1: 3066962688185937846
+      Main Ship - Shields - Invincibility Shield_2: -8234150838995869079
+      Main Ship - Shields - Invincibility Shield_3: -2198592717483152453
+      Main Ship - Shields - Invincibility Shield_4: -733672781905135858
+      Main Ship - Shields - Invincibility Shield_5: -6973448484612026494
+      Main Ship - Shields - Invincibility Shield_6: 2234710901924121866
+      Main Ship - Shields - Invincibility Shield_7: 513955238083294641
+      Main Ship - Shields - Invincibility Shield_8: -8765888365032802262
+      Main Ship - Shields - Invincibility Shield_9: -578589546221845060
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -49,7 +49,7 @@ namespace SkyStrike.UI
             gameManager.curLevel = levelData;
             transition.SetTrigger("Close");
             yield return new WaitForSeconds(0.5f);
-            GameManager.PlayGame();
+            SceneSwapper.PlayGame();
         }
     }
 }

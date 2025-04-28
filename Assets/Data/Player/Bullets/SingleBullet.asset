@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: SingleBullet
   m_EditorClassIdentifier: 
   <maxLevel>k__BackingField: 6
-  <scale>k__BackingField: 1
-  <dmg>k__BackingField: 0
-  <speed>k__BackingField: 5
-  <timeCooldown>k__BackingField: 0.5
   <timeLife>k__BackingField: 3
   <sprite>k__BackingField: {fileID: 21300000, guid: 93ab20b7efc1e1743b26a9f4207da941, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: 836961755fc688b48b6e78efcd32dfa1, type: 2}
   <type>k__BackingField: 0
-  <dmgLvUp>k__BackingField: c8000000c8000000c80000002c01000090010000f4010000
+  <dmgLvUp>k__BackingField: 10270000c8000000c80000002c01000090010000f4010000
   <speedLvUp>k__BackingField:
   - 6
   - 6.3

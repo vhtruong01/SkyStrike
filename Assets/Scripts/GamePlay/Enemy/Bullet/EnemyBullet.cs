@@ -3,16 +3,15 @@ using UnityEngine;
 namespace SkyStrike.Game
 {
     [RequireComponent(typeof(EnemyBulletData))]
-    public class EnemyBullet : PoolableObject<EnemyBulletData>, IBullet
+    public class EnemyBullet : PoolableObject<EnemyBulletData>, IDamager
     {
-        public int GetDamage() => data.damage;
         public override void Refresh()
         {
             transform.eulerAngles = transform.eulerAngles.SetZ(Vector2.SignedAngle(Vector2.up, data.velocity));
             transform.localScale = Vector3.one * data.metaData.size;
             spriteRenderer.color = data.color;
         }
-        public void Update()
+        private void Update()
         {
             data.elapsedTime += Time.deltaTime;
             if (data.isLookingAtPlayer)
@@ -36,5 +35,7 @@ namespace SkyStrike.Game
             if (data.elapsedTime >= data.metaData.lifeTime)
                 Disappear();
         }
+        public void AfterHit() => Disappear();
+        public int GetDamage() => data.damage;
     }
 }

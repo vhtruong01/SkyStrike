@@ -5,47 +5,44 @@ namespace SkyStrike.Game
 {
     public class EnemyBulletSpawner : MonoBehaviour, IEnemyComponent, ISpawnable
     {
+        private readonly EnemyBulletData.EnemyBulletEventData bulletEventData = new();
         private float elaspedTime;
         private float angle;
-        private bool isSpawn;
-        private EnemyBulletMetaData bulletData;
+        public IEntity entity { get; set; }
         public EnemyData data { get; set; }
         public UnityAction<EEntityAction> notifyAction { get; set; }
 
-        public void Awake()
-            => data = GetComponent<EnemyData>();
-        public void Interrupt() => Stop();
         public void Spawn()
         {
-            bulletData = data.bulletData;
-            if (bulletData == null) return;
-            isSpawn = true;
-            elaspedTime = bulletData.isStartAwake ? bulletData.timeCooldown : 0;
-            angle = bulletData.isCircle ? 0 : bulletData.startAngle;
+            if (bulletEventData.metaData == data.bulletData) return;
+            if (data.bulletData != null)
+            {
+                var metaData = bulletEventData.metaData = data.bulletData;
+                data.isSpawn = true;
+                elaspedTime = metaData.isStartAwake ? metaData.timeCooldown : 0;
+                angle = metaData.isCircle ? 0 : metaData.startAngle;
+            }
+            else data.isSpawn = false;
         }
-        public void Stop()
+        public void Stop() => data.isSpawn = false;
+        public void Interrupt() => Stop();
+        private void Update()
         {
-            isSpawn = false;
-            bulletData = null;
-        }
-        public void Update()
-        {
-            if (!isSpawn) return;
+            if (!data.isSpawn) return;
             elaspedTime += Time.deltaTime;
-            if (elaspedTime >= bulletData.timeCooldown)
+            if (elaspedTime >= bulletEventData.metaData.timeCooldown)
             {
                 if (data.isLookingAtPlayer)
-                    angle = Vector2.SignedAngle(Vector2.down, Ship.pos - transform.position);
-                else
+                    angle = Vector2.SignedAngle(Vector2.down, Ship.pos - entity.position);
+                else if (bulletEventData.metaData.isCircle)
                 {
-                    if (bulletData.isCircle)
-                    {
-                        angle += bulletData.spinSpeed * elaspedTime;
-                        angle %= 360;
-                    }
+                    angle += bulletEventData.metaData.spinSpeed * elaspedTime;
+                    angle %= 360;
                 }
                 elaspedTime = 0;
-                EventManager.SpawnEnemyBullet(bulletData, transform.position, Mathf.Deg2Rad * angle);
+                bulletEventData.position = entity.position;
+                bulletEventData.angle = Mathf.Deg2Rad * angle;
+                EventManager.Active(bulletEventData);
             }
         }
     }

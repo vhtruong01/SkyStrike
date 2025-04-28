@@ -21,7 +21,7 @@ namespace SkyStrike.Game
         Nautolan
     }
     [CreateAssetMenu(fileName = "EnemyMetaData", menuName = "Data/EnemyMetaData")]
-    public class EnemyMetaData : ScriptableObject, IGame
+    public class EnemyMetaData : ScriptableObject, IMetaData, IGame
     {
         private static readonly float coefficient = 1.05f;
         private static readonly int minHp = 350;
@@ -43,6 +43,9 @@ namespace SkyStrike.Game
                 _ => 0,
             };
         }
+        //
+        public int score => 1;
+        public int exp => 1;
         public int maxHp => (int)(minHp * Mathf.Pow(coefficient, star) * star);
         [field: SerializeField] public Color color { get; private set; }
         [field: SerializeField] public Sprite sprite { get; private set; }

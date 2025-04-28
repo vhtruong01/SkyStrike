@@ -55,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,19 +121,19 @@ TextureImporter:
       name: Main Ship - Weapons - Auto Cannon_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 15
-        width: 26
-        height: 19
+        x: 0
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0280f97b7584d7800800000000000000
+      spriteID: 82b450c7fce04ee4f91d9dde8493435f
       internalID: 611724665972262944
       vertices: []
       indices: 
@@ -143,19 +143,19 @@ TextureImporter:
       name: Main Ship - Weapons - Auto Cannon_1
       rect:
         serializedVersion: 2
-        x: 59
-        y: 15
-        width: 26
-        height: 26
+        x: 48
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 115abb33ced68ece0800000000000000
+      spriteID: 36f30037068f662428a4f7d1514b98df
       internalID: -1375728824914041583
       vertices: []
       indices: 
@@ -165,19 +165,19 @@ TextureImporter:
       name: Main Ship - Weapons - Auto Cannon_2
       rect:
         serializedVersion: 2
-        x: 107
-        y: 15
-        width: 26
-        height: 28
+        x: 96
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e65c1373add378750800000000000000
+      spriteID: 65fb2036290cac441ae3ae7a2c812e1e
       internalID: 6307077810593842542
       vertices: []
       indices: 
@@ -187,19 +187,19 @@ TextureImporter:
       name: Main Ship - Weapons - Auto Cannon_3
       rect:
         serializedVersion: 2
-        x: 153
-        y: 15
-        width: 28
-        height: 29
+        x: 144
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b9db5cd0d9b443460800000000000000
+      spriteID: 42bf99d4520c7eb49ab38ca1f23069c9
       internalID: 7220479240494759323
       vertices: []
       indices: 
@@ -209,19 +209,19 @@ TextureImporter:
       name: Main Ship - Weapons - Auto Cannon_4
       rect:
         serializedVersion: 2
-        x: 200
-        y: 15
-        width: 31
-        height: 29
+        x: 192
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7dae9673148b1f3f0800000000000000
+      spriteID: 297dc8e4ac009784eb6a3c10759c7d4f
       internalID: -868710662863721769
       vertices: []
       indices: 
@@ -231,19 +231,19 @@ TextureImporter:
       name: Main Ship - Weapons - Auto Cannon_5
       rect:
         serializedVersion: 2
-        x: 251
-        y: 15
-        width: 29
-        height: 23
+        x: 240
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b457d44a37a17d040800000000000000
+      spriteID: e1ca78c1eaa365e45b538c92a82c7e0d
       internalID: 4672232222400279883
       vertices: []
       indices: 
@@ -253,19 +253,19 @@ TextureImporter:
       name: Main Ship - Weapons - Auto Cannon_6
       rect:
         serializedVersion: 2
-        x: 299
-        y: 15
-        width: 26
-        height: 19
+        x: 288
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 869d3e65bfc891600800000000000000
+      spriteID: cce0096389ed0734a91ccec08d139733
       internalID: 439537449767786856
       vertices: []
       indices: 
@@ -275,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1976923ec3ca92f45866a739b643c030
     internalID: 0
     vertices: []
     indices: 
@@ -284,7 +284,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Main Ship - Weapons - Auto Cannon_0: 611724665972262944
+      Main Ship - Weapons - Auto Cannon_1: -1375728824914041583
+      Main Ship - Weapons - Auto Cannon_2: 6307077810593842542
+      Main Ship - Weapons - Auto Cannon_3: 7220479240494759323
+      Main Ship - Weapons - Auto Cannon_4: -868710662863721769
+      Main Ship - Weapons - Auto Cannon_5: 4672232222400279883
+      Main Ship - Weapons - Auto Cannon_6: 439537449767786856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

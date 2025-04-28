@@ -9,11 +9,11 @@ namespace SkyStrike.Game
         DoubleBullet,
         TripleBullet,
         LaserBullet,
+        MissileBullet,
         MagicBullet,
-        RocketBullet,
     }
     [CreateAssetMenu(fileName = "Bullet", menuName = "Data/Bullet")]
-    public class ShipBulletMetaData : ScriptableObject, IGame
+    public class ShipBulletMetaData : ScriptableObject, IMetaData, IGame
     {
         public int lv { get; private set; }
         public int dmg { get; private set; }

@@ -76,7 +76,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -90,7 +90,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 33
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -142,10 +142,10 @@ TextureImporter:
       name: Main Ship - Engines - Base Engine - Spritesheet_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 59
-        width: 7
-        height: 7
+        x: 0
+        y: 48
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +164,10 @@ TextureImporter:
       name: Main Ship - Engines - Base Engine - Spritesheet_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 59
-        width: 7
-        height: 7
+        x: 48
+        y: 48
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,10 +186,10 @@ TextureImporter:
       name: Main Ship - Engines - Base Engine - Spritesheet_2
       rect:
         serializedVersion: 2
-        x: 61
-        y: 58
-        width: 7
-        height: 8
+        x: 96
+        y: 48
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,10 +208,10 @@ TextureImporter:
       name: Main Ship - Engines - Base Engine - Spritesheet_3
       rect:
         serializedVersion: 2
-        x: 76
-        y: 58
-        width: 7
-        height: 8
+        x: 0
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,10 +230,10 @@ TextureImporter:
       name: Main Ship - Engines - Base Engine - Spritesheet_4
       rect:
         serializedVersion: 2
-        x: 109
-        y: 59
-        width: 7
-        height: 8
+        x: 48
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,10 +252,10 @@ TextureImporter:
       name: Main Ship - Engines - Base Engine - Spritesheet_5
       rect:
         serializedVersion: 2
-        x: 124
-        y: 59
-        width: 7
-        height: 8
+        x: 96
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,10 +274,10 @@ TextureImporter:
       name: Main Ship - Engines - Base Engine - Spritesheet_6
       rect:
         serializedVersion: 2
-        x: 13
-        y: 11
-        width: 7
-        height: 7
+        x: 144
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,165 +292,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Main Ship - Engines - Base Engine - Spritesheet_7
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 11
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04ab116495bdc7090800000000000000
-      internalID: -8035306458661668288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Ship - Engines - Base Engine - Spritesheet_8
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 8
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6026bdc6cdaf057b0800000000000000
-      internalID: -5237410542005820922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Ship - Engines - Base Engine - Spritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 8
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 563d8f8749fe11e00800000000000000
-      internalID: 1013854812098843493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Ship - Engines - Base Engine - Spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 109
-        y: 7
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d2a7d82d4e16878c0800000000000000
-      internalID: -4001340633505760723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Ship - Engines - Base Engine - Spritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 124
-        y: 7
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d9c2fc268421c050800000000000000
-      internalID: 5818972352237717977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Ship - Engines - Base Engine - Spritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 157
-        y: 10
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f1ca5bff715d466e0800000000000000
-      internalID: -1845115648264000481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Ship - Engines - Base Engine - Spritesheet_13
-      rect:
-        serializedVersion: 2
-        x: 172
-        y: 10
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a31f82923db318220800000000000000
-      internalID: 2486334247399911738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0433f2e6e6fc09b42b4a3003c50ef61d
     internalID: 0
     vertices: []
     indices: 
@@ -459,7 +305,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Main Ship - Engines - Base Engine - Spritesheet_0: 1271113504822893776
+      Main Ship - Engines - Base Engine - Spritesheet_1: -6640372162995760384
+      Main Ship - Engines - Base Engine - Spritesheet_2: 6240578527328996810
+      Main Ship - Engines - Base Engine - Spritesheet_3: -2798598458224673691
+      Main Ship - Engines - Base Engine - Spritesheet_4: -4849164567197781785
+      Main Ship - Engines - Base Engine - Spritesheet_5: -4535602452247532629
+      Main Ship - Engines - Base Engine - Spritesheet_6: 1718605459228644740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace SkyStrike.Game
 {
-    public class EnemyData : GameData<EnemyMetaData>
+    public class EnemyData : GameData<EnemyMetaData, EnemyData.EnemyEventData>
     {
         public EnemyBulletMetaData bulletData { get; set; }
         public MoveData moveData { get; set; }
@@ -15,24 +13,34 @@ namespace SkyStrike.Game
         public bool isMaintain { get; set; }
         public int pointIndex { get; set; }
         public bool isLookingAtPlayer { get; set; }
+        public bool isSpawn { get; set; }
 
-        public void SetExtraData(ObjectData objectData,EItem itemType)
+        protected override void ChangeData(EnemyEventData eventData)
         {
-            moveData = objectData.moveData;
-            size = objectData.size;
-            isMaintain = objectData.isMaintain;
-            dropItemType = itemType;
-        }
-        protected override void SetData(EnemyMetaData data)
-        {
-            bulletData = null;
-            metaData = data;
+            metaData = eventData.metaData;
+            moveData = eventData.moveData;
+            isMaintain = eventData.isMaintain;
+            dropItemType = eventData.dropItemType;
+            size = eventData.size;
             hp = metaData.maxHp;
+            bulletData = null;
             isDie = false;
             shield = false;
             isImmortal = false;
-            pointIndex = -1;
+            isSpawn = false;
             isLookingAtPlayer = false;
+            pointIndex = -1;
+        }
+
+        public class EnemyEventData : IEventData
+        {
+            public float size { get; set; }
+            public bool isMaintain { get; set; }
+            public float delay { get; set; }
+            public EItem dropItemType { get; set; }
+            public UnityEngine.Vector3 position { get; set; }
+            public MoveData moveData { get; set; }
+            public EnemyMetaData metaData { get; set; }
         }
     }
 }

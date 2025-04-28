@@ -4,17 +4,15 @@ using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    [RequireComponent(typeof(EnemyData))]
     public class Enemy : PoolableObject<EnemyData>, IEnemyComponent, IEntity
     {
+        private readonly ItemData.ItemEventData itemEventData = new();
         private Rigidbody2D rigi;
+        public IEntity entity { get; set; }
         public UnityAction<EEntityAction> notifyAction { get; set; }
 
-        public override void Awake()
-        {
-            base.Awake();
-            rigi = GetComponent<Rigidbody2D>();
-        }
+        public void Init()
+            => rigi = GetComponent<Rigidbody2D>();
         public override void Refresh()
         {
             rigi.simulated = true;
@@ -22,12 +20,10 @@ namespace SkyStrike.Game
             spriteRenderer.color = data.metaData.color;
             col2D.size = data.metaData.sprite.bounds.size / 2;
             spriteRenderer.color = data.metaData.color;
-            transform.localScale = Vector3.one * data.size;
+            entity.transform.localScale = Vector3.one * data.size;
             if (data.dropItemType != EItem.None && data.metaData.CanHighlight())
                 notifyAction?.Invoke(EEntityAction.Highlight);
         }
-        public void Strike(float delay)
-            => StartCoroutine(Prepare(delay));
         public bool TakeDamage(int dmg)
         {
             if (data.isDie || data.isImmortal) return false;
@@ -36,22 +32,38 @@ namespace SkyStrike.Game
                 data.hp -= dmg;
                 if (data.hp <= 0)
                     Die();
-                else notifyAction?.Invoke(EEntityAction.TakeDmg);
+                else notifyAction?.Invoke(EEntityAction.TakeDamage);
             }
             return true;
         }
         public void Die()
         {
+            Enable(false);
             data.isDie = true;
             notifyAction?.Invoke(EEntityAction.Die);
         }
         public void DropItemAndDisappear()
         {
-            EventManager.DropStar(transform.position, data.metaData.star);
+            itemEventData.position = entity.position;
+            if (data.metaData.star != 0)
+            {
+                int star5 = data.metaData.star / 10;
+                int star1 = data.metaData.star - star5 * 5;
+                DropItem(EItem.Star5, star5);
+                DropItem(EItem.Star1, star1);
+            }
             if (data.dropItemType != EItem.None)
-                EventManager.DropItem(data.dropItemType, transform.position);
+                DropItem(data.dropItemType, 1);
             Disappear();
         }
+        private void DropItem(EItem itemType, int amount)
+        {
+            itemEventData.itemType = itemType;
+            itemEventData.amount = amount;
+            EventManager.Active(itemEventData);
+        }
+        public void Strike(float delay)
+            => StartCoroutine(Prepare(delay));
         private IEnumerator Prepare(float delay)
         {
             Enable(false);
@@ -59,19 +71,14 @@ namespace SkyStrike.Game
             Enable(true);
             notifyAction?.Invoke(EEntityAction.Arrive);
         }
-        private void Enable(bool isEnabled)
+        public void Interrupt() => rigi.simulated = false;
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            col2D.enabled = isEnabled;
-            spriteRenderer.enabled = isEnabled;
-        }
-        public void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("ShipBullet") && collision.TryGetComponent<IBullet>(out var bullet))
+            if (collision.CompareTag("ShipBullet") && collision.TryGetComponent<IDamager>(out var bullet))
             {
-                if (bullet.gameObject.activeSelf && TakeDamage(bullet.GetDamage()))
-                    bullet.Disappear();
+                bullet.OnHit(this);
+                return;
             }
         }
-        public void Interrupt() => rigi.simulated = false;
     }
 }

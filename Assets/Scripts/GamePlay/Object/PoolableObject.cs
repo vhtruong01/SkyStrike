@@ -18,11 +18,24 @@ namespace SkyStrike.Game
 
         public virtual void Awake()
         {
-            col2D = GetComponent<BoxCollider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            col2D = GetComponent<BoxCollider2D>();
             data = GetComponent<T>();
         }
         public abstract void Refresh();
-        public virtual void Disappear() => onDestroy?.Invoke(this);
+        public void SetMaterial(Material material)
+            => spriteRenderer.sharedMaterial = material;
+        public virtual void Disappear()
+            => onDestroy?.Invoke(this);
+        public void Enable(bool isEnable)
+        {
+            col2D.enabled = isEnable;
+            spriteRenderer.enabled = isEnable;
+        }
+        public void Active(bool isActive)
+        {
+            if (gameObject.activeSelf != isActive)
+                gameObject.SetActive(isActive);
+        }
     }
 }

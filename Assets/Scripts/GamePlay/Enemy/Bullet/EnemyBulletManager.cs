@@ -4,40 +4,45 @@ namespace SkyStrike.Game
 {
     public class EnemyBulletManager : PoolManager<EnemyBullet, EnemyBulletData>
     {
-        public override void Awake()
+        private readonly EnemyBulletData.EnemyBulletEventData bulletEventData = new();
+
+        private void OnEnable()
+            => EventManager.Subscribe<EnemyBulletData.EnemyBulletEventData>(SpawnBullet);
+        private void OnDisable()
+            => EventManager.Unsubscribe<EnemyBulletData.EnemyBulletEventData>(SpawnBullet);
+        private void SpawnBullet(EnemyBulletData.EnemyBulletEventData eventData)
         {
-            base.Awake();
-            EventManager.onSpawnEnemyBullet.AddListener(SpawnBullet);
-        }
-        public void SpawnBullet(EnemyBulletMetaData metaData, Vector3 position, float angle)
-        {
+            var metaData = bulletEventData.metaData = eventData.metaData;
             if (metaData == null || metaData.amount == 0) return;
-            float unitAngle = metaData.isCircle ? 2 * Mathf.PI / metaData.amount : (Mathf.Deg2Rad * metaData.unitAngle);
+            float unitAngle = metaData.isCircle
+                              ? 2 * Mathf.PI / metaData.amount
+                              : (Mathf.Deg2Rad * metaData.unitAngle);
             if (metaData.isCircle)
+                SpawnCircle(eventData, unitAngle);
+            else SpawnStraight(eventData, unitAngle);
+        }
+        private void SpawnCircle(EnemyBulletData.EnemyBulletEventData eventData, float unitAngle)
+        {
+            for (int i = 0; i < eventData.metaData.amount; i++)
             {
-                for (int i = 0; i < metaData.amount; i++)
-                {
-                    Vector3 velocity = new(Mathf.Sin(angle + unitAngle * i) * metaData.velocity,
-                                           -Mathf.Cos(angle + unitAngle * i) * metaData.velocity);
-                    CreateBullet(position + metaData.position.SetZ(0), velocity, metaData);
-                }
-            }
-            else
-            {
-                float mid = 0.5f * (metaData.amount - 1);
-                for (float i = -mid; i <= mid; i += 1f)
-                {
-                    Vector3 velocity = new(Mathf.Sin(angle + unitAngle * i) * metaData.velocity,
-                                           -Mathf.Cos(angle + unitAngle * i) * metaData.velocity);
-                    CreateBullet(position + (metaData.position + metaData.spacing * i).SetZ(0), velocity, metaData);
-                }
+                bulletEventData.velocity = new(Mathf.Sin(eventData.angle + unitAngle * i) * eventData.metaData.velocity,
+                                               -Mathf.Cos(eventData.angle + unitAngle * i) * eventData.metaData.velocity);
+                bulletEventData.position = eventData.position + eventData.metaData.position.SetZ(0);
+                var bullet = InstantiateItem(bulletEventData.position);
+                bullet.data.SetData(bulletEventData);
             }
         }
-        private void CreateBullet(Vector3 position, Vector3 velocity, EnemyBulletMetaData metaData)
+        private void SpawnStraight(EnemyBulletData.EnemyBulletEventData eventData, float unitAngle)
         {
-            var bullet = InstantiateItem(position);
-            bullet.data.SetExtraData(velocity);
-            bullet.data.UpdateDataAndRefresh(metaData);
+            float mid = 0.5f * (eventData.metaData.amount - 1);
+            for (float i = -mid; i <= mid; i += 1f)
+            {
+                bulletEventData.velocity = new(Mathf.Sin(eventData.angle + unitAngle * i) * eventData.metaData.velocity,
+                                               -Mathf.Cos(eventData.angle + unitAngle * i) * eventData.metaData.velocity);
+                bulletEventData.position = eventData.position + (eventData.metaData.position + eventData.metaData.spacing * i).SetZ(0);
+                var bullet = InstantiateItem(bulletEventData.position);
+                bullet.data.SetData(bulletEventData);
+            }
         }
     }
 }
