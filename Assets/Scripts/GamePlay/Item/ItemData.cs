@@ -4,14 +4,14 @@ namespace SkyStrike.Game
 {
     public class ItemData : GameData<ItemMetaData, ItemData.ItemEventData>
     {
-        public static readonly float lifeTime = 20;
+        public static readonly float defaultlifetime = 10;
         public static readonly Vector3 dropVelocity = new(0, -0.5f, 0);
-        public float elapsedTime { get; set; }
+        public float lifetime { get; set; }
 
         protected override void ChangeData(ItemEventData eventData)
         {
             metaData = eventData.metaData;
-            elapsedTime = 0;
+            lifetime = defaultlifetime;
         }
 
         public class ItemEventData : IEventData

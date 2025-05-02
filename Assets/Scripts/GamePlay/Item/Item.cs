@@ -6,15 +6,15 @@ namespace SkyStrike.Game
 {
     public interface IItem : IObject
     {
-        public EItem GetItemType();
+        public EItem itemType { get; }
         public void Interact(ICollector collector);
     }
     public class Item : PoolableObject<ItemData>, IMagnetic, IItem
     {
         private Tweener tweener;
-        public bool isMagnetic { get; set; }
+        public bool isMagnetic { get; private set; }
+        public EItem itemType => data.metaData.type;
 
-        public EItem GetItemType() => data.metaData.type;
         public override void Refresh()
         {
             transform.localScale = Vector3.one * (data.metaData.size == 0 ? 1 : data.metaData.size);
@@ -25,13 +25,10 @@ namespace SkyStrike.Game
             spriteRenderer.sharedMaterial = data.metaData.material;
         }
         public void Appear(Vector2 vel)
-        {
-            isMagnetic = false;
-            StartCoroutine(HandleAffectedByExplode(vel));
-        }
+            => StartCoroutine(HandleAffectedByExplode(vel));
         private IEnumerator HandleAffectedByExplode(Vector2 vel)
         {
-            float time = 1f / vel.magnitude;
+            float time = 0.75f / vel.magnitude;
             float curTime = 0;
             float delta;
             Vector2 prevDir = new();
@@ -67,25 +64,28 @@ namespace SkyStrike.Game
         }
         public void Update()
         {
-            data.elapsedTime += Time.deltaTime;
+            if (!isActive) return;
+            data.lifetime -= Time.deltaTime;
             transform.position += ItemData.dropVelocity * Time.deltaTime;
-            if (data.elapsedTime >= ItemData.lifeTime)
+            if (data.lifetime <= 0)
                 Disappear();
         }
         public void HandleAffectedByGravity(Vector2 dir)
-            => transform.position += dir.SetZ(0);
-        private void OnDisable()
-        {
-            if (tweener != null && tweener.IsActive())
-                tweener.Kill();
-        }
+            => transform.position += dir.SetZ(transform.position.z);
         public void Interact(ICollector collector)
         {
-            if (gameObject.activeSelf)
+            if (isActive)
             {
-                collector.Collect(GetItemType());
+                collector.Collect(itemType);
                 Disappear();
             }
+        }
+        public override void Disappear()
+        {
+            base.Disappear();
+            if (tweener != null && tweener.IsActive())
+                tweener.Kill();
+            isMagnetic = false;
         }
     }
 }

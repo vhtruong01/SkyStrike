@@ -1,77 +1,38 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public enum EEntityAction
+    public abstract class Commander : MonoBehaviour, IEntityComponent
     {
-        None = 0,
-        Stand,
-        Move,
-        Attack,
-        StopAttack,
-        Defend,
-        Unprotected,
-        TakeDamage,
-        Highlight,
-        Arrive,
-        Disappear,
-        Die,
-        //
-        Invincible,
-        ActiveLaser,
-        ActiveMissile,
-        ActiveDoubleBulletWeapon,
-        ActiveTripleBulletWeapon,
-        //
-        Win,
-        Lose,
-    }
-    public interface ICommander : IEntityComponent
-    {
-        public void HandleEvent(EEntityAction action);
-    }
-    public abstract class Commander : MonoBehaviour, ICommander
-    {
-        protected readonly Dictionary<EEntityAction, UnityAction> entityEvents = new();
+        [SerializeField] protected GameObject entityObject;
         protected IEntityComponent[] entityComponents;
-        protected ISpawnable spawner;
-        protected IMoveable movement;
-        protected IAnimator animator;
+        public ISpawnable spawner { get; private set; }
+        public IMoveable movement {  get; private set; }
+        public IAnimator animator {  get; private set; }
         public IEntity entity { get; set; }
-        public UnityAction<EEntityAction> notifyAction { get; set; }
 
         public virtual void Awake()
         {
+            if (entityObject == null)
+                entityObject = gameObject;
+            entityComponents = entityObject.GetComponentsInChildren<IEntityComponent>(true);
             movement = GetComponentInChildren<IMoveable>(true);
             spawner = GetComponentInChildren<ISpawnable>(true);
-            entity = GetComponentInChildren<IEntity>(true);
             animator = GetComponentInChildren<IAnimator>(true);
-            entityComponents = GetComponentsInChildren<IEntityComponent>(true);
+            entity = GetComponentInChildren<IEntity>(true);
             SetData();
             foreach (var comp in entityComponents)
-            {
                 comp.entity = entity;
-                comp.notifyAction = HandleEvent;
+            foreach (var comp in entityObject.GetComponentsInChildren<IInitalizable>(true))
                 comp.Init();
-            }
         }
         protected abstract void SetData();
+        public abstract void Interrupt();
         public abstract void Init();
-        public virtual void Interrupt()
-            => StopAllCoroutines();
-        public void HandleEvent(EEntityAction action)
-        {
-            if (entityEvents.TryGetValue(action, out var evt))
-                evt.Invoke();
-        }
         public void InterruptAllComponents()
         {
             foreach (var comp in entityComponents)
                 comp.Interrupt();
         }
-        public virtual void OnDisable()
-            => InterruptAllComponents();
     }
 }

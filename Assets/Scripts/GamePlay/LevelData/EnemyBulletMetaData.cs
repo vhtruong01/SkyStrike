@@ -12,7 +12,7 @@ namespace SkyStrike.Game
         public float velocity;//speed
         public float timeCooldown;
         public float spinSpeed;
-        public float lifeTime;
+        public float lifetime;
         public float unitAngle;
         public float startAngle;
         public Vec2 spacing;

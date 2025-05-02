@@ -2,21 +2,50 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public class Skill : ScriptableObject, ISkill
+    public abstract class Skill<T> : MonoBehaviour, IShipComponent, ISkill where T : SkillData
     {
-        [field: SerializeField] public string skillName { get; set; }
-        [field: SerializeField] public float timeCooldown { get; set; }
-        [field: SerializeField] public int point { get; set; }
-        [field: SerializeField] public int maxPoint { get; set; }
-        [field: SerializeField] public Sprite sprite { get; set; }
+        [SerializeField] protected T skillData;
+        protected Coroutine coroutine;
+        protected IAnimation anim;
+        public IEntity entity { get; set; }
+        public ShipData shipData { get; set; }
 
-        public virtual void Active()
+        public virtual void Init()
         {
-            this.print("Use skill: " + skillName);
+            anim = GetComponentInChildren<IAnimation>(true) ?? new NullAnimation();
+            skillData.onActive = Active;
+            skillData.onUpgrade = Upgrade;
+            Upgrade();
         }
-        public void Reset()
+        public void Update()
         {
-            point = 3;
+            if (skillData.elapsedTime < skillData.cooldown)
+            {
+                skillData.elapsedTime += Time.deltaTime;
+                skillData.UpdateCooldownDisplay();
+                return;
+            }
+            AutoActive();
         }
+        public virtual void AutoActive() { }
+        public void Active()
+        {
+            if (skillData.elapsedTime >= skillData.cooldown)
+            {
+                if (coroutine != null)
+                    StopCoroutine(coroutine);
+                Execute();
+                skillData.elapsedTime = 0;
+            }
+        }
+        public void Deactive()
+        {
+            if (coroutine != null)
+                StopCoroutine(coroutine);
+            anim.Stop();
+        }
+        public abstract void Execute();
+        public abstract void Upgrade();
+        public void Interrupt() => Deactive();
     }
 }

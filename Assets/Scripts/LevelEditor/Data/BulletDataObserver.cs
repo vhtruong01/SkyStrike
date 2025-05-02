@@ -12,7 +12,7 @@ namespace SkyStrike.Editor
         public DataObserver<float> velocity { get; private set; }
         public DataObserver<float> timeCooldown { get; private set; }
         public DataObserver<float> spinSpeed { get; private set; }
-        public DataObserver<float> lifeTime { get; private set; }
+        public DataObserver<float> lifetime { get; private set; }
         public DataObserver<float> unitAngle { get; private set; }
         public DataObserver<float> startAngle { get; private set; }
         public DataObserver<Vector2> spacing { get; private set; }
@@ -30,7 +30,7 @@ namespace SkyStrike.Editor
             velocity = new();
             timeCooldown = new();
             spinSpeed = new();
-            lifeTime = new();
+            lifetime = new();
             unitAngle = new();
             startAngle = new();
             spacing = new();
@@ -43,7 +43,7 @@ namespace SkyStrike.Editor
             velocity.SetData(2.5f);
             timeCooldown.SetData(2);
             amount.SetData(1);
-            lifeTime.SetData(15);
+            lifetime.SetData(15);
 
         }
         public BulletDataObserver(EnemyBulletMetaData bulletData) : this() => ImportData(bulletData);
@@ -55,7 +55,7 @@ namespace SkyStrike.Editor
             newData.velocity.SetData(velocity.data);
             newData.timeCooldown.SetData(timeCooldown.data);
             newData.spinSpeed.SetData(spinSpeed.data);
-            newData.lifeTime.SetData(lifeTime.data);
+            newData.lifetime.SetData(lifetime.data);
             newData.unitAngle.SetData(unitAngle.data);
             newData.startAngle.SetData(startAngle.data);
             newData.spacing.SetData(spacing.data);
@@ -78,7 +78,7 @@ namespace SkyStrike.Editor
                 spacing = new(spacing.data),
                 position = new(position.data),
                 spinSpeed = spinSpeed.data,
-                lifeTime = lifeTime.data,
+                lifetime = lifetime.data,
                 unitAngle = unitAngle.data,
                 startAngle = startAngle.data,
                 isCircle = isCircle.data,
@@ -97,7 +97,7 @@ namespace SkyStrike.Editor
             spacing.SetData(data.spacing.ToVector2());
             position.SetData(data.position.ToVector2());
             spinSpeed.SetData(data.spinSpeed);
-            lifeTime.SetData(data.lifeTime);
+            lifetime.SetData(data.lifetime);
             unitAngle.SetData(data.unitAngle);
             startAngle.SetData(data.startAngle);
             isCircle.SetData(data.isCircle);

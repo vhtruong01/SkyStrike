@@ -1,48 +1,73 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
+    [RequireComponent(typeof(EnemyCommander))]
     public class Enemy : PoolableObject<EnemyData>, IEnemyComponent, IEntity
     {
+        [SerializeField] private MaterialAlphaAnimation damagedAnimation;
+        [SerializeField] private SpriteAnimation destructionAnimation;
         private readonly ItemData.ItemEventData itemEventData = new();
         private Rigidbody2D rigi;
+        private EnemyCommander commander;
+        private IAnimator animator;
         public IEntity entity { get; set; }
-        public UnityAction<EEntityAction> notifyAction { get; set; }
+        public EnemyData enemyData { get; set; }
 
         public void Init()
-            => rigi = GetComponent<Rigidbody2D>();
-        public override void Refresh()
+        {
+            rigi = GetComponent<Rigidbody2D>();
+            commander = GetComponent<EnemyCommander>();
+            animator = commander.animator;
+        }
+        public void UpdateData()
         {
             rigi.simulated = true;
+            damagedAnimation.SetData(spriteRenderer.sprite);
+            destructionAnimation.SetData(enemyData.metaData.destructionSprites);
+            if (enemyData.dropItemType != EItem.None && enemyData.metaData.CanHighlight())
+                animator.GetAnimation(EAnimationType.Highlight).Play();
+            destructionAnimation.SetFinishedAction(DropItemAndDisapear);
+        }
+        public override void Refresh()
+        {
             spriteRenderer.sprite = data.metaData.sprite;
             spriteRenderer.color = data.metaData.color;
             col2D.size = data.metaData.sprite.bounds.size / 2;
             spriteRenderer.color = data.metaData.color;
             entity.transform.localScale = Vector3.one * data.size;
-            if (data.dropItemType != EItem.None && data.metaData.CanHighlight())
-                notifyAction?.Invoke(EEntityAction.Highlight);
         }
-        public bool TakeDamage(int dmg)
+        public void Launch(float delay)
+            => StartCoroutine(Prepare(delay));
+        private IEnumerator Prepare(float delay)
         {
-            if (data.isDie || data.isImmortal) return false;
+            Enable(false);
+            yield return new WaitForSeconds(delay);
+            Enable(true);
+            commander.Reload();
+        }
+        public void Interrupt()
+            => rigi.simulated = false;
+        public bool TakeDamage(IDamager damager)
+        {
+            if (!isActive || enemyData.isImmortal) return false;
             if (!data.shield)
             {
-                data.hp -= dmg;
+                data.hp -= damager.GetDamage();
                 if (data.hp <= 0)
                     Die();
-                else notifyAction?.Invoke(EEntityAction.TakeDamage);
+                else animator.GetAnimation(EAnimationType.Damaged).Play();
             }
             return true;
         }
         public void Die()
         {
             Enable(false);
-            data.isDie = true;
-            notifyAction?.Invoke(EEntityAction.Die);
+            commander.InterruptAllComponents();
+            animator.GetAnimation(EAnimationType.Destruction).Play();
         }
-        public void DropItemAndDisappear()
+        public void DropItemAndDisapear()
         {
             itemEventData.position = entity.position;
             if (data.metaData.star != 0)
@@ -62,16 +87,6 @@ namespace SkyStrike.Game
             itemEventData.amount = amount;
             EventManager.Active(itemEventData);
         }
-        public void Strike(float delay)
-            => StartCoroutine(Prepare(delay));
-        private IEnumerator Prepare(float delay)
-        {
-            Enable(false);
-            yield return new WaitForSeconds(delay);
-            Enable(true);
-            notifyAction?.Invoke(EEntityAction.Arrive);
-        }
-        public void Interrupt() => rigi.simulated = false;
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("ShipBullet") && collision.TryGetComponent<IDamager>(out var bullet))

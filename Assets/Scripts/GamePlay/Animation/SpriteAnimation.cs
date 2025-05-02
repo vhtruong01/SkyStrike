@@ -3,12 +3,19 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
+    [RequireComponent(typeof(SpriteRenderer))]
     public class SpriteAnimation : SimpleAnimation
     {
+        [SerializeField] protected bool autoPlay;
         [SerializeField] protected float interval = 0.075f;
+        [field: SerializeField] protected override float delay { get; set; }
+        [field: SerializeField] public bool pauseAnimationOnFinish { get; protected set; }
         [SerializeField] protected List<Sprite> sprites;
         protected SpriteRenderer spriteRenderer;
         protected int spriteIndex;
+        protected override float startVal { get; set; }
+        protected override float endVal { get; set; }
+        protected override float duration { get; set; }
         protected int index
         {
             get => spriteIndex;
@@ -22,13 +29,24 @@ namespace SkyStrike.Game
             }
         }
 
+        public void OnEnable()
+        {
+            if (autoPlay)
+                Restart();
+        }
+        public void OnDisable()
+        {
+            if (autoPlay)
+                Pause();
+        }
         public override void Init()
         {
             base.Init();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            SetData(sprites);
-            SetStartedAction(() => spriteRenderer.gameObject.SetActive(true));
-            SetStoppedAction(() => spriteRenderer.gameObject.SetActive(false));
+            if (sprites != null && sprites.Count > 0)
+                SetData(sprites);
+            if (autoPlay)
+                Play();
         }
         public void SetData(List<Sprite> sprites)
         {
@@ -36,10 +54,16 @@ namespace SkyStrike.Game
             if (this.sprites != sprites && sprites != null)
                 isDirty = true;
             this.sprites = sprites;
-            spriteRenderer.sprite = null;
+            SetDefault();
             startVal = -0.1f;
             endVal = sprites.Count - (isYoyo ? 0.9f : 0.1f);
-            duration = interval * (sprites.Count - 1);
+            SetDuration(interval * (sprites.Count - 1), delay);
+        }
+        protected override void SetDefault()
+        {
+            if (pauseAnimationOnFinish && sprites.Count > 0)
+                spriteRenderer.sprite = sprites[0];
+            else spriteRenderer.sprite = null;
         }
         public IAnimation SetInterval(float interval)
         {

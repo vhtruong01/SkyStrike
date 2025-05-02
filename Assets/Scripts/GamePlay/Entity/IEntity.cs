@@ -10,8 +10,6 @@ namespace SkyStrike.Game
             set => transform.position = value;
         }
         public Transform transform { get; }
-
-        public void DropItemAndDisappear();
         public void Disappear();
         public void Die();
     }

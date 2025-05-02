@@ -6,9 +6,7 @@ namespace SkyStrike.Game
 {
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private List<EnemyMetaData> metaDataList;
         private readonly EnemyData.EnemyEventData enemyEventData = new();
-        private Dictionary<int, EnemyMetaData> metaDataDict;
         private Dictionary<int, EnemyBulletMetaData> bulletDataDict;
         private Dictionary<int, ObjectData> objectDataDict;
         private Coroutine nextWaveCoroutine;
@@ -19,9 +17,6 @@ namespace SkyStrike.Game
         {
             bulletDataDict = new();
             objectDataDict = new();
-            metaDataDict = new();
-            foreach (var metaData in metaDataList)
-                metaDataDict.Add(metaData.id, metaData);
         }
         public void Start()
         {
@@ -70,7 +65,7 @@ namespace SkyStrike.Game
                 enemyEventData.size = objectData.size;
                 enemyEventData.position = objectData.pos.SetZ(0);
                 enemyEventData.moveData = objectData.moveData;
-                enemyEventData.metaData = metaDataDict[objectData.metaId];
+                enemyEventData.metaId = objectData.metaId;
                 for (int i = 0; i <= objectData.cloneCount; i++)
                 {
                     enemyEventData.dropItemType = randomEnemyIndex == i ? objectData.dropItemType : EItem.None;

@@ -1,54 +1,43 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
     public enum EAnimationType
     {
         None = 0,
-        MainWeapon,
-        Engine,
-        Shield,
         Damaged,
         Highlight,
         Destruction,
-        //
-        Missile,
-        Laser,
-        DoubleBulletWeapon,
-        TripleBulletWeapon,
-        Invincibility
+        MainWeapon,
+        Engine,
+        Shield,
     }
     public interface IAnimator : IEntityComponent
     {
-        public IAnimation SetTrigger(EAnimationType type);
+        public IAnimation GetAnimation(EAnimationType type);
         public abstract void OnDestroy();
     }
-    public abstract class EntityAnimator : MonoBehaviour, IAnimator
+    public class EntityAnimator : MonoBehaviour, IAnimator
     {
+        private readonly NullAnimation nullAnimation = new("Empty animation");
         private Dictionary<EAnimationType, IAnimation> animations;
         public IEntity entity { get; set; }
-        public UnityAction<EEntityAction> notifyAction { get; set; }
 
         public virtual void Init()
         {
             animations = new();
-            foreach(var animation in GetComponentsInChildren<IAnimation>(true))
-            {
+            foreach (var animation in GetComponentsInChildren<IAnimation>(true))
                 animations[animation.type] = animation;
-                animation.Init();
-            }
         }
-        public virtual IAnimation SetTrigger(EAnimationType type)
+        public virtual IAnimation GetAnimation(EAnimationType type)
         {
             if (animations.TryGetValue(type, out var animation))
                 return animation;
-            return null;
+            return nullAnimation;
         }
         public void Interrupt()
         {
-            if (animations == null) return;
             foreach (var animation in animations.Values)
                 animation.Stop();
         }

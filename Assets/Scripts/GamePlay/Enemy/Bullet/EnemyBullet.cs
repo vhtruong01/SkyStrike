@@ -3,8 +3,10 @@ using UnityEngine;
 namespace SkyStrike.Game
 {
     [RequireComponent(typeof(EnemyBulletData))]
-    public class EnemyBullet : PoolableObject<EnemyBulletData>, IDamager
+    public class EnemyBullet : PoolableObject<EnemyBulletData>, IDamager, IReflectable, IDestroyable
     {
+        public EDamageType damageType => EDamageType.Normal;
+
         public override void Refresh()
         {
             transform.eulerAngles = transform.eulerAngles.SetZ(Vector2.SignedAngle(Vector2.up, data.velocity));
@@ -13,7 +15,8 @@ namespace SkyStrike.Game
         }
         private void Update()
         {
-            data.elapsedTime += Time.deltaTime;
+            if (!isActive) return;
+            data.lifetime -= Time.deltaTime;
             if (data.isLookingAtPlayer)
             {
                 data.curViewTime += Time.deltaTime;
@@ -32,10 +35,19 @@ namespace SkyStrike.Game
                 }
             }
             transform.position += data.velocity * Time.deltaTime;
-            if (data.elapsedTime >= data.metaData.lifeTime)
+            if (data.lifetime <= 0)
                 Disappear();
         }
         public void AfterHit() => Disappear();
         public int GetDamage() => data.damage;
+        public void Reflect(Vector2 normal)
+        {
+            float angle = Vector2.SignedAngle(normal, data.velocity) * 2 * Mathf.Deg2Rad;
+            float sin = Mathf.Sin(Mathf.PI - angle);
+            float cos = Mathf.Cos(Mathf.PI - angle);
+            float x = data.velocity.x;
+            float y = data.velocity.y;
+            data.velocity = new(x * cos - y * sin, x * sin + y * cos, data.velocity.z);
+        }
     }
 }

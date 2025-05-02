@@ -57,6 +57,6 @@ Material:
     - _Alpha: 1
     - _Brightness: 0.2
     m_Colors:
-    - _Color: {r: 1.2217027, g: 1.4142135, b: 0, a: 1}
+    - _Color: {r: 2.5882354, g: 2.9960787, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

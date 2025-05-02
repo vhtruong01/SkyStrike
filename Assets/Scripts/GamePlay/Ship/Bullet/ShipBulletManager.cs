@@ -15,6 +15,7 @@ namespace SkyStrike.Game
             Vector3 pos = eventData.position;
             var metaData = eventData.metaData;
             bulletEventData.metaData = metaData;
+            bulletEventData.damageType = eventData.damageType;
             switch (metaData.type)
             {
                 case EShipBulletType.SingleBullet:
@@ -30,13 +31,12 @@ namespace SkyStrike.Game
                     SpawnBullet(pos, new(metaData.speed * Mathf.Sin(Mathf.PI / 12), metaData.speed, 0));
                     break;
                 case EShipBulletType.MissileBullet:
-                    //
+                    SpawnBullet(pos, new(0, metaData.speed, 0));
                     break;
             }
         }
         private void SpawnBullet(Vector3 pos, Vector3 velocity)
         {
-            bulletEventData.position = pos;
             bulletEventData.velocity = velocity;
             var bullet = InstantiateItem(pos);
             bullet.data.SetData(bulletEventData);

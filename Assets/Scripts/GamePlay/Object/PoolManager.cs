@@ -6,8 +6,8 @@ namespace SkyStrike.Game
 {
     public abstract class PoolManager<T, K> : MonoBehaviour where T : PoolableObject<K>
     {
-        [SerializeField] protected bool createOtherContainer;
-        [SerializeField] protected PoolableObject<K> prefab;
+        [SerializeField] private bool createOtherContainer;
+        [SerializeField] private PoolableObject<K> prefab;
         private Transform container;
         protected ObjectPool<T> pool;
         private Material material;
@@ -23,6 +23,7 @@ namespace SkyStrike.Game
             else container = transform;
             pool = new(Create, Get, Release);
             material = prefab.GetComponent<SpriteRenderer>().sharedMaterial;
+            material.enableInstancing = true;
         }
         protected virtual void DestroyItem(T item) => pool.Release(item);
         private T Create()
@@ -30,8 +31,7 @@ namespace SkyStrike.Game
             var item = (Instantiate(prefab, container, false).GetComponent<T>())
                 ?? throw new Exception("wrong prefab type");
             item.gameObject.name = prefab.name;
-            item.SetMaterial(material);
-            item.onDestroy = a => DestroyItem(a as T);
+            item.Init(material, i => DestroyItem(i as T));
             return item;
         }
         private void Get(T item) => item.Active(true);
@@ -47,7 +47,7 @@ namespace SkyStrike.Game
             var allChildren = gameObject.GetComponentsInChildren<T>();
             foreach (var child in allChildren)
             {
-                if (gameObject.activeSelf)
+                if (child.isActive)
                     pool.Release(child);
             }
         }

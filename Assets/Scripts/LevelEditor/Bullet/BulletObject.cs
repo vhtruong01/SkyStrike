@@ -21,7 +21,7 @@ namespace SkyStrike.Editor
         {
             elapsedTime += Time.fixedDeltaTime;
             transform.position += velocity * Time.fixedDeltaTime;
-            if (elapsedTime >= bulletData.lifeTime.data)
+            if (elapsedTime >= bulletData.lifetime.data)
                 onDestroy.Invoke(this);
         }
         public void Init(BulletDataObserver bulletData, Vector2 dir, Vector2 pos)

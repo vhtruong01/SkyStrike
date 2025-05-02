@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
@@ -8,13 +7,14 @@ namespace SkyStrike.Game
     public class ShipMagnet : MonoBehaviour, IShipComponent
     {
         private Rigidbody2D rigi;
+        private CircleCollider2D circleCollider;
         public IEntity entity { get; set; }
-        public ShipData data { get; set; }
-        public UnityAction<EEntityAction> notifyAction { get; set; }
+        public ShipData shipData { get; set; }
 
         public void Init()
         {
-            GetComponent<CircleCollider2D>().radius = data.metaData.magnetRadius;
+            circleCollider = GetComponent<CircleCollider2D>();
+            circleCollider.radius = shipData.magnetRadius;
             rigi = GetComponent<Rigidbody2D>();
             rigi.simulated = true;
         }
@@ -22,8 +22,9 @@ namespace SkyStrike.Game
         {
             if (collision.TryGetComponent<IMagnetic>(out var obj) && obj.isMagnetic)
             {
-                Vector2 dir = entity.position - obj.gameObject.transform.position;
-                obj.HandleAffectedByGravity(Mathf.Sqrt(1 - Mathf.Clamp(dir.magnitude / data.metaData.magnetRadius, 0, 0.99f)) * 0.1f * dir);
+                Vector2 s = entity.position - obj.gameObject.transform.position;
+                Vector2 dir = Mathf.Sqrt(1 - Mathf.Clamp(s.magnitude / shipData.magnetRadius, 0, 0.99f)) * 0.1f * s;
+                obj.HandleAffectedByGravity(dir);
             }
         }
         public void Interrupt() => rigi.simulated = false;

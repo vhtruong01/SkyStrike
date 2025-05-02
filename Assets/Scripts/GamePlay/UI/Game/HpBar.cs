@@ -9,15 +9,16 @@ namespace SkyStrike.UI
         [SerializeField] private float dimAlpha;
         [SerializeField] private List<Image> elements;
 
-        public void SetData(int value)
+        public void UpdateHealthDisplay(int value)
         {
+            if (value < 0) return;
             int n = Mathf.Min(value, elements.Count);
             for (int i = 0; i < n; i++)
             {
                 elements[i].gameObject.SetActive(true);
                 elements[i].color = elements[i].color.ChangeAlpha(1);
             }
-            for (int i = n; i < elements.Count; i++)
+            for (int i = Mathf.Max(0, n); i < elements.Count; i++)
             {
                 elements[i].gameObject.SetActive(true);
                 elements[i].color = elements[i].color.ChangeAlpha(dimAlpha);

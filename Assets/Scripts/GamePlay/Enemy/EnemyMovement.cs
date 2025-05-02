@@ -1,25 +1,45 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike.Game
 {
     public class EnemyMovement : MonoBehaviour, IEnemyComponent, IMoveable
     {
-        public EnemyData data { get; set; }
+        private SpriteAnimation anim;
         public IEntity entity { get; set; }
-        public UnityAction<EEntityAction> notifyAction { get; set; }
+        public EnemyData enemyData { get; set; }
+        //
 
+        public void Init()
+            => anim = GetComponentInChildren<SpriteAnimation>(true);
+        public void UpdateData()
+            => anim.SetData(enemyData.metaData.engineSprites);
+        public IEnumerator Travel(float delay)
+        {
+            anim.Stop();
+            yield return new WaitForSeconds(delay);
+            if (enemyData.pointIndex < enemyData.moveData.points.Length - 1)
+            {
+                //
+                Move();
+                Point point = enemyData.moveData.points[enemyData.pointIndex];
+                Point nextPoint = enemyData.moveData.points[enemyData.pointIndex + 1];
+                yield return StartCoroutine(
+                point.isStraightLine
+                    ? MoveStraight(point, nextPoint, enemyData.moveData.velocity)
+                    : MoveCurve(point, nextPoint, enemyData.moveData.velocity));
+            }
+        }
         public void Move()
         {
-            MoveData moveData = data.moveData;
-            Point point = moveData.points[data.pointIndex];
-            Point nextPoint = moveData.points[data.pointIndex + 1];
-            StartCoroutine(
-            point.isStraightLine
-                ? MoveStraight(point, nextPoint, moveData.velocity)
-                : MoveCurve(point, nextPoint, moveData.velocity));
+            anim.Play();
+            enemyData.canMove = true;
+        }
+        public void Stop()
+        {
+            anim.Stop();
+            enemyData.canMove = false;
         }
         private IEnumerator MoveStraight(Point startPoint, Point nextPoint, float velocity)
         {
@@ -28,6 +48,7 @@ namespace SkyStrike.Game
             float time = startPoint.isIgnoreVelocity ? startPoint.travelTime : (startPos - nextPos).magnitude / velocity;
             if (time > 0)
             {
+                if (!enemyData.canMove) yield return null;
                 float elapsedTime = 0;
                 Rotate(nextPos - startPos);
                 while (elapsedTime < time)
@@ -37,7 +58,6 @@ namespace SkyStrike.Game
                     elapsedTime += Time.deltaTime;
                 }
             }
-            FinishMoving();
         }
         private IEnumerator MoveCurve(Point startPoint, Point nextPoint, float velocity)
         {
@@ -53,6 +73,7 @@ namespace SkyStrike.Game
                     / velocity / 2);
             if (time > 0)
             {
+                if (!enemyData.canMove) yield return null;
                 float elapsedTime = 0;
                 float deltaTime = Time.deltaTime;
                 float coefficient = 1;
@@ -79,15 +100,16 @@ namespace SkyStrike.Game
                     yield return null;
                 }
             }
-            FinishMoving();
         }
         private void Rotate(Vector2 dir)
         {
             if (dir == Vector2.zero) return;
             entity.transform.eulerAngles = new(0, 0, Vector2.SignedAngle(Vector2.up, dir));
         }
-        private void FinishMoving()
-            => notifyAction?.Invoke(EEntityAction.Arrive);
-        public void Interrupt() => StopAllCoroutines();
+        public void Interrupt()
+        {
+            StopAllCoroutines();
+            Stop();
+        }
     }
 }

@@ -13,12 +13,12 @@ namespace SkyStrike.Game
     }
     public interface IAnimation
     {
-        public EAnimationType type { get; set; }
+        public EAnimationType type { get; }
+        public bool isNull { get; }
         public void Init();
         public void Play();
         public void Pause();
         public void Stop();
-        public void Finish();
         public void Restart();
         public void Kill();
         public IAnimation SetDelay(float delay);
@@ -27,14 +27,10 @@ namespace SkyStrike.Game
         public IAnimation SetStoppedAction(UnityAction stoppedAction);
         public IAnimation SetFinishedAction(UnityAction finishedAction);
     }
-    public abstract class SimpleAnimation : MonoBehaviour, IAnimation
+    public abstract class SimpleAnimation : MonoBehaviour, IAnimation, IInitalizable
     {
-        [field: SerializeField] public EAnimationType type { get; set; }
+        [field: SerializeField] public EAnimationType type { get; private set; }
         [SerializeField] private ELoopType loopType;
-        [SerializeField] protected float startVal = 0;
-        [SerializeField] protected float endVal = 1;
-        [SerializeField] protected float duration = 1;
-        [SerializeField] protected float delay = 0;
         protected bool isDirty = false;
         protected bool isYoyo = false;
         protected int loops = 1;
@@ -42,10 +38,14 @@ namespace SkyStrike.Game
         protected UnityAction startedAction;
         protected UnityAction stoppedAction;
         protected UnityAction finishedAction;
+        public bool isNull => false;
+        protected abstract float delay { get; set; }
+        protected abstract float startVal { get; set; }
+        protected abstract float endVal { get; set; }
+        protected abstract float duration { get; set; }
 
         public virtual void Init()
         {
-            if (endVal == 0 && endVal == startVal) endVal = 1;
             bool isLoop = loopType == ELoopType.YoyoLoop || loopType == ELoopType.RestartLoop;
             isYoyo = loopType == ELoopType.YoyoLoop || loopType == ELoopType.TwoDir;
             loops = isLoop ? -1 : (isYoyo ? 2 : 1);
@@ -55,15 +55,17 @@ namespace SkyStrike.Game
         {
             if (tweener != null && tweener.IsActive())
                 tweener.Kill();
+            isDirty = false;
             tweener = DOTween.To(ChangeValue, startVal, endVal, duration)
+                             .Pause()
                              .SetLoops(loops, isYoyo ? LoopType.Yoyo : LoopType.Restart)
                              .SetDelay(delay)
                              .SetAutoKill(false).SetEase(Ease.Linear)
-                             .Pause();
-            SetStartedAction(startedAction);
-            SetStoppedAction(stoppedAction);
-            SetFinishedAction(finishedAction);
-            isDirty = false;
+                             .OnComplete(() =>
+                             {
+                                 SetDefault();
+                                 finishedAction?.Invoke();
+                             });
         }
         public virtual void Play()
         {
@@ -71,28 +73,19 @@ namespace SkyStrike.Game
                 Restart();
             else startedAction?.Invoke();
         }
-        public virtual void Stop()
+        public void Stop()
         {
-            gameObject.SetActive(false);
+            SetDefault();
             tweener?.Pause();
             stoppedAction?.Invoke();
         }
-        public virtual void Pause() => tweener?.Pause();
-        public virtual void Restart()
+        public void Pause() => tweener?.Pause();
+        public void Restart()
         {
             startedAction?.Invoke();
             if (duration > 0 && startVal != endVal && isDirty)
                 CreateTweener();
-            if (tweener != null)
-            {
-                gameObject.SetActive(true);
-                tweener.Restart();
-            }
-        }
-        public void Finish()
-        {
-            finishedAction?.Invoke();
-            stoppedAction?.Invoke();
+            tweener?.Restart();
         }
         public void Kill()
         {
@@ -128,13 +121,12 @@ namespace SkyStrike.Game
             stoppedAction = action;
             return this;
         }
-        public IAnimation SetFinishedAction(UnityAction action)
+        public IAnimation SetFinishedAction(UnityAction finishedAction)
         {
-            finishedAction = action;
-            if (tweener != null)
-                tweener.onComplete = Finish;
+            this.finishedAction = finishedAction;
             return this;
         }
         protected abstract void ChangeValue(float value);
+        protected abstract void SetDefault();
     }
 }

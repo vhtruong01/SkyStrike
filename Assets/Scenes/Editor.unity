@@ -3201,10 +3201,7 @@ MonoBehaviour:
   dropItemDataList:
   - {fileID: 11400000, guid: df765407e4c42dd4eb931f6516e0961f, type: 2}
   - {fileID: 11400000, guid: 5c0f76e73e513b1428db3acfd773f132, type: 2}
-  - {fileID: 11400000, guid: 9adff0911ae5e7d4b83becae05303353, type: 2}
-  - {fileID: 11400000, guid: ebb9c09fc018bd443b1791890d9fd367, type: 2}
-  - {fileID: 11400000, guid: cadfdd213ee4e854a90c6ede69a8ccd4, type: 2}
-  - {fileID: 11400000, guid: c18e3d28ea8cb8140ada48772bb5de1d, type: 2}
+  - {fileID: 11400000, guid: 5c0f76e73e513b1428db3acfd773f132, type: 2}
   selectDropItemBtn: {fileID: 1707110599}
   dropItemView: {fileID: 1319218168}
   dropItemIcon: {fileID: 382532916}
@@ -6527,7 +6524,7 @@ MonoBehaviour:
   velocity: {fileID: 543933649}
   timeCooldown: {fileID: 1927089300}
   spinSpeed: {fileID: 831281948}
-  lifeTime: {fileID: 1230441898}
+  lifetime: {fileID: 1230441898}
   unitAngle: {fileID: 1383741598}
   startAngle: {fileID: 960258637}
   spacing: {fileID: 29063226}
@@ -12722,7 +12719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -14.999756}
+  m_AnchoredPosition: {x: 0, y: -14.999695}
   m_SizeDelta: {x: -20, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1440621758
@@ -19304,7 +19301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -14.999756}
+  m_AnchoredPosition: {x: 0, y: -14.999695}
   m_SizeDelta: {x: -20, y: -50.000015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112242789

@@ -9,7 +9,7 @@ namespace SkyStrike.Editor
         [SerializeField] private FloatProperty velocity;
         [SerializeField] private FloatProperty timeCooldown;
         [SerializeField] private FloatProperty spinSpeed;
-        [SerializeField] private FloatProperty lifeTime;
+        [SerializeField] private FloatProperty lifetime;
         [SerializeField] private FloatProperty unitAngle;
         [SerializeField] private FloatProperty startAngle;
         [SerializeField] private Vector2Property spacing;
@@ -36,7 +36,7 @@ namespace SkyStrike.Editor
             velocity.Bind(data.velocity);
             timeCooldown.Bind(data.timeCooldown);
             spinSpeed.Bind(data.spinSpeed);
-            lifeTime.Bind(data.lifeTime);
+            lifetime.Bind(data.lifetime);
             unitAngle.Bind(data.unitAngle);
             startAngle.Bind(data.startAngle);
             spacing.Bind(data.spacing);
@@ -54,7 +54,7 @@ namespace SkyStrike.Editor
             timeCooldown.Unbind();
             spinSpeed.Unbind();
             startAngle.Unbind();
-            lifeTime.Unbind();
+            lifetime.Unbind();
             spacing.Unbind();
             position.Unbind();
             unitAngle.Unbind();

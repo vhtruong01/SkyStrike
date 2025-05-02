@@ -1,5 +1,6 @@
 using SkyStrike.Game;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,23 +17,38 @@ namespace SkyStrike.UI
         [SerializeField] private HpBar hpBar;
         [SerializeField] private Button startButton;
         [SerializeField] private Slider levelProcess;
-        private Animator uiAnimator;
+        [SerializeField] private ShipData shipData;
         private Material startBtnMaterial;
+        private List<SkillButton> skillButtons;
 
         public void Awake()
         {
+            levelProcess.value = 0;
             uiContent.SetActive(false);
-            uiAnimator = GetComponent<Animator>();
             startBtnMaterial = startButton.GetComponent<Image>().material;
             startButton.onClick.AddListener(() =>
             {
                 startButton.gameObject.SetActive(false);
                 EventManager.Active(EEventSysType.PrepareGame);
             });
-            levelProcess.value = 0;
+            skillButtons = new();
         }
         public IEnumerator Start()
         {
+            shipData.onHealthChanged = hpBar.UpdateHealthDisplay;
+            shipData.onCollectStar = UpdateStarDisplay;
+            hpBar.UpdateHealthDisplay(shipData.health);
+            UpdateStarDisplay(shipData.totalStar);
+            foreach (var skill in shipData.skillDataList)
+            {
+                if (skill.hide) continue;
+                var skillUI = Instantiate(skillButtonPrefab, skillGroupContainer, false);
+                skillUI.name = skill.skillName;
+                skillUI.SetData(skill);
+                skillButtons.Add(skillUI);
+                skill.onCooldown = skillUI.UpdateTimeDisplay;
+                skillUI.UpdateTimeDisplay(skill.elapsedTime, skill.cooldown);
+            }
             movingBg.enabled = false;
             float elapsedTime = 0;
             float totalTime = 2f;
@@ -43,20 +59,8 @@ namespace SkyStrike.UI
                 yield return null;
             }
         }
-            //startButton.interactable = false;
-
-        public void SetShipData()
-        {
-            //ship.data.onCollectHealth.AddListener(hpBar.SetData);
-            //ship.data.onCollectStar.AddListener(val => star.text = val.ToString());
-            //hpBar.SetData(ship.data.hp);
-            //star.text = ship.data.star.ToString();
-            //foreach (var skill in ship.data.metaData.skills)
-            //{
-            //    var skillUI = Instantiate(skillButtonPrefab, skillGroupContainer, false);
-            //    skillUI.SetData(skill);
-            //}
-        }
+        private void UpdateStarDisplay(int amount)
+            => star.text = amount.ToString();
         public void OpenEditor() => SceneSwapper.OpenEditor();
     }
 }
