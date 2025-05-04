@@ -11,7 +11,8 @@ namespace SkyStrike.Game
         [SerializeField, Range(0, 1)] private float _soundVolume;
         [SerializeField, Range(0, 1)] private float _sfxVolume;
         [SerializeField] private bool _isMute;
-        public LevelData curLevel { get; set; }
+        public int curLevelIndex { get; set; }
+        public LevelData curLevel => levelDataList[curLevelIndex];
         public LevelData[] levelDataList { get; private set; }
         public float soundVolume
         {
@@ -53,6 +54,7 @@ namespace SkyStrike.Game
             levelDataList = new LevelData[textAssets.Length];
             for (int i = 0; i < textAssets.Length; i++)
                 levelDataList[i] = ReadTextAssetFile(textAssets[i]);
+            curLevelIndex = Mathf.Min(levelDataList.Length - 1, PlayerPrefs.GetInt("curLevel", 0));
         }
         private LevelData ReadTextAssetFile(TextAsset data)
         {

@@ -1,4 +1,3 @@
-using DG.Tweening.Core.Easing;
 using SkyStrike.Game;
 using System.Collections;
 using UnityEngine;
@@ -8,12 +7,11 @@ namespace SkyStrike.UI
 {
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] private HomeMenu homeMenu;
-        [SerializeField] private LevelMenu levelMenu;
-        [SerializeField] private ShipMenu shipMenu;
-        [SerializeField] private SettingMenu settingMenu;
-        [SerializeField] private ExitMenu exitMenu;
         [SerializeField] private GameManager gameManager;
+        [SerializeField] private GameObject shipMenu;
+        [SerializeField] private GameObject settingMenu;
+        [SerializeField] private GameObject exitMenu;
+        [SerializeField] private GameObject levelMenu;
         [SerializeField] private Button levelButton;
         [SerializeField] private Button shipBtn;
         [SerializeField] private Button settingBtn;
@@ -23,32 +21,19 @@ namespace SkyStrike.UI
 
         public void Awake()
         {
-            levelButton.onClick.AddListener(() => StartCoroutine(EnterLevelMenu()));
-            shipBtn.onClick.AddListener(shipMenu.Expand);
-            settingBtn.onClick.AddListener(settingMenu.Expand);
-            exitBtn.onClick.AddListener(exitMenu.Expand);
+            levelButton.onClick.AddListener(() => StartCoroutine(PlayGame()));
+            shipBtn.onClick.AddListener(() => shipMenu.SetActive(true));
+            settingBtn.onClick.AddListener(() => settingMenu.SetActive(true));
+            exitBtn.onClick.AddListener(() => exitMenu.SetActive(true));
         }
-        public IEnumerator EnterLevelMenu()
+        public IEnumerator PlayGame()
         {
+            levelMenu.SetActive(false);
+            yield return new WaitForSeconds(0.25f);
             transition.SetTrigger("Close");
             shipAnimator.SetTrigger("Disappear");
             yield return new WaitForSeconds(0.75f);
-            levelMenu.gameObject.SetActive(true);
             transition.SetTrigger("Open");
-        }
-        public IEnumerator CloseLevelMenu()
-        {
-            transition.SetTrigger("Close");
-            yield return new WaitForSeconds(0.5f);
-            levelMenu.gameObject.SetActive(false);
-            shipAnimator.SetTrigger("Appear");
-            transition.SetTrigger("Open");
-        }
-        public IEnumerator PlayGame(LevelData levelData)
-        {
-            gameManager.curLevel = levelData;
-            transition.SetTrigger("Close");
-            yield return new WaitForSeconds(0.5f);
             SceneSwapper.PlayGame();
         }
     }

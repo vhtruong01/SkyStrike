@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 34658077}
   m_Layer: 7
   m_Name: Engine
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 212553054}
   m_Layer: 7
   m_Name: Line
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5655,7 +5655,7 @@ GameObject:
   - component: {fileID: 293732317}
   m_Layer: 7
   m_Name: Gears
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5802,7 +5802,7 @@ GameObject:
   - component: {fileID: 498989701}
   m_Layer: 7
   m_Name: MainEngine
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6081,7 +6081,7 @@ GameObject:
   - component: {fileID: 603340068}
   m_Layer: 7
   m_Name: Ship
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6266,7 +6266,7 @@ GameObject:
   - component: {fileID: 642521330}
   m_Layer: 7
   m_Name: Halo
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11904,7 +11904,7 @@ GameObject:
   - component: {fileID: 1034120536}
   m_Layer: 7
   m_Name: Missile
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12045,7 +12045,7 @@ GameObject:
   - component: {fileID: 1041620078}
   m_Layer: 7
   m_Name: Damaged
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12490,7 +12490,7 @@ GameObject:
   - component: {fileID: 1178354892}
   m_Layer: 7
   m_Name: DoubleBulletWeapon
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12968,7 +12968,7 @@ GameObject:
   - component: {fileID: 1390799598}
   m_Layer: 7
   m_Name: TripleBulletWeapon
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13104,7 +13104,7 @@ GameObject:
   - component: {fileID: 1422940869}
   m_Layer: 7
   m_Name: Invincibility
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13220,7 +13220,7 @@ GameObject:
   - component: {fileID: 1430306803}
   m_Layer: 7
   m_Name: PreviewLine
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13435,7 +13435,7 @@ GameObject:
   - component: {fileID: 1484160996}
   m_Layer: 7
   m_Name: EngineAnimation
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13621,7 +13621,7 @@ GameObject:
   - component: {fileID: 1777527955}
   m_Layer: 7
   m_Name: Highlight
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13804,7 +13804,7 @@ GameObject:
   - component: {fileID: 1817042659}
   m_Layer: 7
   m_Name: Animation
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13853,7 +13853,7 @@ GameObject:
   - component: {fileID: 1818061361}
   m_Layer: 7
   m_Name: Destruction
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14118,7 +14118,7 @@ GameObject:
   - component: {fileID: 1849902059}
   m_Layer: 7
   m_Name: Entity
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14577,7 +14577,7 @@ GameObject:
   - component: {fileID: 1944050255}
   m_Layer: 7
   m_Name: Laser
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14866,7 +14866,7 @@ GameObject:
   - component: {fileID: 1997766335}
   m_Layer: 7
   m_Name: Shield
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15062,7 +15062,7 @@ GameObject:
   - component: {fileID: 2023172991}
   m_Layer: 7
   m_Name: Magnet
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15443,7 +15443,7 @@ GameObject:
   - component: {fileID: 2137386640}
   m_Layer: 7
   m_Name: SingleBulletWeapon
-  m_TagString: Player
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -29,6 +29,10 @@ namespace SkyStrike.Game
             }
         }
 
+        public void Awake()
+        {
+            if (autoPlay) Init();
+        }
         public void OnEnable()
         {
             if (autoPlay)
@@ -44,9 +48,11 @@ namespace SkyStrike.Game
             base.Init();
             spriteRenderer = GetComponent<SpriteRenderer>();
             if (sprites != null && sprites.Count > 0)
+            {
                 SetData(sprites);
-            if (autoPlay)
-                Play();
+                if (autoPlay)
+                    Play();
+            }
         }
         public void SetData(List<Sprite> sprites)
         {

@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Ship
   - ShipBullet
-  - Item
   - Enemy
   - EnemyBullet
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - PostProcessing
-  - Player
+  - Ship
   - Enemy
   - Item
   - 
