@@ -13,12 +13,7 @@ namespace SkyStrike.Editor
 
         public virtual void Start()
            => snapBtn.AddListener((b) => screen.isSnapping = b, () => screen.isSnapping);
-        public override void Init()
-        {
-            base.Init();
-            screen.Init();
-        }
-        public override void Restore()
+        protected override void Restore()
         {
             base.Restore();
             string screenClassName = GetType().Name + "." + screen.GetType().Name;
@@ -29,13 +24,13 @@ namespace SkyStrike.Editor
                                             PlayerPrefs.GetFloat(screenClassName + ".position.y", 0),
                                             screen.transform.position.z);
         }
-        public virtual void OnBeginDrag(PointerEventData eventData)
+        public void OnBeginDrag(PointerEventData eventData)
         {
             isDragging = true;
             curPos = screen.transform.position;
             startPos = eventData.pointerCurrentRaycast.worldPosition;
         }
-        public virtual void OnDrag(PointerEventData eventData)
+        public void OnDrag(PointerEventData eventData)
         {
             if (!screen.isLocked && eventData.position.x > 0 && eventData.position.y > 0 && eventData.position.x < Screen.width && eventData.position.y < Screen.height)
                 screen.SetPosition(curPos + (eventData.pointerCurrentRaycast.worldPosition - startPos));

@@ -2,7 +2,7 @@ namespace SkyStrike.Editor
 {
     public abstract class EventNotifyMenu : Menu
     {
-        public override void Init()
+        protected override void Preprocess()
         {
             EventManager.onCreateObject.AddListener(CreateObject);
             EventManager.onSelectObject.AddListener(SelectObject);

@@ -1,37 +1,51 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SkyStrike.Editor
 {
-    public class UIGroup : MonoBehaviour
+    public class UIGroup : MonoBehaviour, IInitalizable
     {
-        [field: SerializeField] public bool canDeselect { get; set; }
+        [SerializeField] protected bool canDeselect;
+        [SerializeField] protected bool useSpecificColor;
+        [SerializeField] protected Color selectedColor;
+        [SerializeField] protected Color defaultColor;
         private readonly List<IUIElement> items = new();
         protected int selectedItemIndex;
-        public virtual int Count => items.Count;
 
-        public virtual void Init()
+        public void Init()
         {
             selectedItemIndex = -1;
+            if (!useSpecificColor)
+            {
+                selectedColor = EditorSetting.btnSelectedColor;
+                defaultColor = EditorSetting.btnDefaultColor;
+            }
+            Preprocess();
+        }
+        protected virtual void Preprocess()
+        {
             for (int i = 0; i < transform.childCount; i++)
             {
                 if (!transform.GetChild(i).TryGetComponent<IUIElement>(out var item)) continue;
-                item.index = items.Count;
                 item.Init();
+                item.index = items.Count;
                 item.onSelectUI.AddListener(SelectItem);
                 if (selectedItemIndex != item.index)
                     Diminish(item);
                 items.Add(item);
             }
         }
-        public virtual IUIElement GetBaseItem(int index)
+        public void AddListener(UnityAction<int> call)
         {
-            return index < 0 || index >= items.Count ? null : items[index];
+            foreach (var item in items)
+                item.onSelectUI.AddListener(call);
+            SelectFirstItem();
         }
         public int GetSelectedItemIndex() => selectedItemIndex;
-        public void SelectFirstItem() => SelectAndInvokeItem(0);
+        protected void SelectFirstItem() => SelectAndInvokeItem(0);
         public void SelectNone() => SelectItem(-1);
-        public virtual void SelectAndInvokeItem(int index)
+        public void SelectAndInvokeItem(int index)
             => GetBaseItem(index)?.SelectAndInvoke();
         public virtual void SelectItem(int index)
         {
@@ -40,14 +54,13 @@ namespace SkyStrike.Editor
             selectedItemIndex = index;
             Highlight(GetBaseItem(selectedItemIndex));
         }
-        protected virtual void Highlight(IUIElement e)
-            => SetBackgroundColor(e, EditorSetting.btnSelectedColor);
-        protected virtual void Diminish(IUIElement e)
-            => SetBackgroundColor(e, EditorSetting.btnDefaultColor);
-        protected void SetBackgroundColor(IUIElement e, Color color)
-        {
-            if (e != null)
-                e.GetBackground().color = color;
-        }
+        public virtual IUIElement GetBaseItem(int index)
+            => index < 0 || index >= items.Count ? null : items[index];
+        protected void Highlight(IUIElement e)
+            => SetBackgroundColor(e, selectedColor);
+        protected void Diminish(IUIElement e)
+            => SetBackgroundColor(e, defaultColor);
+        private void SetBackgroundColor(IUIElement e, Color color)
+            => e?.SetBackgroundColor(color);
     }
 }

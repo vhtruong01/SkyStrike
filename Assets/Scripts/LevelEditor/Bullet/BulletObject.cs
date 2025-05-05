@@ -5,17 +5,11 @@ namespace SkyStrike.Editor
 {
     public class BulletObject : MonoBehaviour
     {
-        private SpriteRenderer spriteRenderer;
         private BulletDataObserver bulletData;
         private float elapsedTime;
         private Vector3 velocity;
         public UnityEvent<BulletObject> onDestroy { get; private set; }
 
-        public void Awake()
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            elapsedTime = 0;
-        }
         public void Init() => onDestroy = new();
         public void FixedUpdate()
         {

@@ -18,7 +18,9 @@ namespace SkyStrike.Editor
             button = gameObject.GetComponent<Button>();
             button.onClick.AddListener(SelectAndInvoke);
         }
-        public Image GetBackground() => bg;
         public void SelectAndInvoke() => onSelectUI.Invoke(index.Value);
+
+        public void SetBackgroundColor(Color c)
+            => bg.color = c;
     }
 }

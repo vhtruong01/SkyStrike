@@ -5,10 +5,13 @@ namespace SkyStrike.Game
     [RequireComponent(typeof(EnemyBulletData))]
     public class EnemyBullet : PoolableObject<EnemyBulletData>, IDamager, IReflectable, IDestroyable
     {
+        private SpriteAnimation anm;
+
         public EDamageType damageType => EDamageType.Normal;
 
         public override void Refresh()
         {
+            //
             transform.eulerAngles = transform.eulerAngles.SetZ(Vector2.SignedAngle(Vector2.up, data.velocity));
             transform.localScale = Vector3.one * data.metaData.size;
             spriteRenderer.color = data.color;

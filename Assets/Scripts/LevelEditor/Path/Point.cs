@@ -4,14 +4,14 @@ using UnityEngine.EventSystems;
 
 namespace SkyStrike.Editor
 {
-    public class CurvePoint : MoveableUIElement<PointDataObserver>
+    public class Point : MoveableUIElement<PointDataObserver>
     {
         private static readonly float space = 0.5f;
         [SerializeField] private ExtraPoint extraPoint1;
         [SerializeField] private ExtraPoint extraPoint2;
         [SerializeField] private Line line;
-        private CurvePoint prevPoint;
-        private CurvePoint nextPoint;
+        private Point prevPoint;
+        private Point nextPoint;
         public UnityEvent<Vector2> onDrag { get; private set; }
 
         public override void Init()
@@ -21,6 +21,7 @@ namespace SkyStrike.Editor
             onDrag = new();
             extraPoint1.call = MovePrevExtraPoint;
             extraPoint2.call = MoveNextExtraPoint;
+            extraPoint1.cam = extraPoint2.cam = screen.cam;
         }
         public override void RemoveData()
         {
@@ -45,7 +46,7 @@ namespace SkyStrike.Editor
             if (nextPoint != null)
                 nextPoint.RefreshName();
         }
-        public void SetPrevPoint(CurvePoint point)
+        public void SetPrevPoint(Point point)
         {
             extraPoint1.Enable(!(point == null || point.data.isStraightLine.data));
             prevPoint = point;
@@ -56,7 +57,7 @@ namespace SkyStrike.Editor
             if (index.Value % 2 != 0)
                 (extraPoint1.image.color, extraPoint2.image.color) = (extraPoint2.image.color, extraPoint1.image.color);
         }
-        public void SetNextPoint(CurvePoint point)
+        public void SetNextPoint(Point point)
         {
             nextPoint = point;
             extraPoint2.Enable(!(point == null || data.isStraightLine.data));

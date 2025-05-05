@@ -32,12 +32,8 @@ namespace SkyStrike.Editor
         }
         public override void Click() => InvokeData();
         public override void BindData()
-        {
-            data.position.Bind(SetPosition);
-        }
+            => data.position.Bind(SetPosition);
         public override void UnbindData()
-        {
-            data.position.Unbind(SetPosition);
-        }
+            => data.position.Unbind(SetPosition);
     }
 }

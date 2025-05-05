@@ -1,4 +1,4 @@
 namespace SkyStrike.Editor
 {
-    public class BulletItemList : UIGroupDataPool<BulletDataObserver> { }
+    public class BulletItemList : UIGroupPool<BulletDataObserver> { }
 }

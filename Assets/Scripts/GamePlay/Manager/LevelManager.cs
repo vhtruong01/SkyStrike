@@ -21,7 +21,7 @@ namespace SkyStrike.Game
         public void Start()
         {
             //
-            levelData = Editor.Controller.ReadFromBinaryFile<LevelData>("test.dat");
+            levelData = IO.ReadFromBinaryFile<LevelData>("test.dat");
         }
         private void OnEnable()
             => EventManager.Subscribe(EEventType.PlayNextWave, StartNextWave);

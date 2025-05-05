@@ -1,10 +1,9 @@
 namespace SkyStrike.Editor
 {
-    public interface IMenu : IObject, IInitiable
+    public interface IMenu : IInitalizable
     {
         public void Hide();
         public void Show();
-        public void Restore();
         public void SaveSetting();
     }
 }

@@ -1204,7 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995e522974d708548bc9297a3de5da8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 1
+  canDeselect: 1
   useSpecificColor: 1
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1397,7 +1397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a3b1acbe9d62e4186bac1991dc95d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 0
+  canDeselect: 0
+  useSpecificColor: 0
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &92109818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2155,7 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14108deb9b1837a4ab866af36c4e9284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 0
+  canDeselect: 0
   useSpecificColor: 0
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2279,7 +2282,6 @@ GameObject:
   - component: {fileID: 178648118}
   - component: {fileID: 178648121}
   - component: {fileID: 178648120}
-  - component: {fileID: 178648119}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -2307,19 +2309,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -50}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &178648119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178648117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!114 &178648120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3104,7 +3093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a3b1acbe9d62e4186bac1991dc95d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 0
+  canDeselect: 0
+  useSpecificColor: 0
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &270609888
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,7 +3215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1856f2bd81a943b1a5428ad02955d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 0
+  canDeselect: 0
   useSpecificColor: 1
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -5880,7 +5872,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a3b1acbe9d62e4186bac1991dc95d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 0
+  canDeselect: 0
+  useSpecificColor: 0
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &679465604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6699,7 +6694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23594bc3ca538c640989c9611b31a596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 1
+  canDeselect: 1
   useSpecificColor: 0
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -7215,7 +7210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b91c113dcd5ad4ba083c180905f224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 1
+  canDeselect: 1
   useSpecificColor: 1
   selectedColor: {r: 0, g: 0.6603774, b: 0.6603774, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 0}
@@ -10937,7 +10932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d560a899dbd7cf46b5772ae4f82535a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 0
+  canDeselect: 0
   useSpecificColor: 0
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -11262,7 +11257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf324c4ab6c11f4c833f43ede681eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 0
+  canDeselect: 0
   useSpecificColor: 1
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -12719,7 +12714,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -14.999695}
+  m_AnchoredPosition: {x: 0, y: -14.999756}
   m_SizeDelta: {x: -20, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1440621758
@@ -12930,7 +12925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a65375f29b49643a812b602e3d14f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 1
+  canDeselect: 1
   useSpecificColor: 1
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -18011,7 +18006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2023141251
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18126,7 +18121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf324c4ab6c11f4c833f43ede681eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canDeselect>k__BackingField: 1
+  canDeselect: 1
   useSpecificColor: 1
   selectedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -18853,31 +18848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e4accff9ecc1b46b4b85916356ea89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metaDataList:
-  - {fileID: 11400000, guid: 704b906ede4f4084e912e5a531c60460, type: 2}
-  - {fileID: 11400000, guid: c987d0f88b690114daa4405146a86a10, type: 2}
-  - {fileID: 11400000, guid: fcdaf1877a10ed74ebd3c0ff073ea6a3, type: 2}
-  - {fileID: 11400000, guid: 510507660b7a33044b324fbdcd012b94, type: 2}
-  - {fileID: 11400000, guid: a2c26bc97660a874ebd42a2d8ebe4619, type: 2}
-  - {fileID: 11400000, guid: 39e5b1fb8e5c49f42943f75f8ed17a31, type: 2}
-  - {fileID: 11400000, guid: 7dfca1fe0c273ca45b684d96b0dc4a06, type: 2}
-  - {fileID: 11400000, guid: 6948b993c26b85f40ae84710746f5225, type: 2}
-  - {fileID: 11400000, guid: 210baffb4eddf64428f2d229f8244a2e, type: 2}
-  - {fileID: 11400000, guid: ad7ff3379cbda754fa743849ea6202cb, type: 2}
-  - {fileID: 11400000, guid: 3674798d292ef4749888b933df3b70b8, type: 2}
-  - {fileID: 11400000, guid: 165814c8b25ed8c49a8b97a7982a34fd, type: 2}
-  - {fileID: 11400000, guid: b5bf5ec8aa271f947b1aafba13e44e21, type: 2}
-  - {fileID: 11400000, guid: 526ae3d8513b7e548bbdb1d2a8c88a43, type: 2}
-  - {fileID: 11400000, guid: 2f7f20fcd46cccf4c83af5e6349edb32, type: 2}
-  - {fileID: 11400000, guid: 23fc7a53634125343935d47e7a39c31f, type: 2}
-  - {fileID: 11400000, guid: 30b33c0fb9173d04396b04aa645fca76, type: 2}
-  - {fileID: 11400000, guid: f66dc4ef3ed43a14eb9711b72d514dad, type: 2}
-  - {fileID: 11400000, guid: ab129ee67c8d4cb409b46c7c0cc90091, type: 2}
-  - {fileID: 11400000, guid: cfd2458439cb3b74f94cdf5152b0fd38, type: 2}
-  - {fileID: 11400000, guid: 01c80a232b017b349bdf98aa572082ce, type: 2}
-  - {fileID: 11400000, guid: 2b952c4f71b3e184d89a4815b15c0436, type: 2}
-  - {fileID: 11400000, guid: cc84f4dcffead6e41aceaf9d2ccb0352, type: 2}
-  - {fileID: 11400000, guid: c6d74e3eaecaacd41a7827f857580e5b, type: 2}
 --- !u!1001 &2066112516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19301,7 +19271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -14.999695}
+  m_AnchoredPosition: {x: 0, y: -14.999756}
   m_SizeDelta: {x: -20, y: -50.000015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112242789

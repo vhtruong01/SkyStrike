@@ -1,44 +1,39 @@
 namespace SkyStrike.Editor
 {
-    public class PointItemList : UIGroupDataPool<PointDataObserver>
+    public class PointItemList : UIGroupPool<PointDataObserver>
     {
         public IScalableScreen screen { private get; set; }
 
+        public void FlipX()
+        {
+            (dataList as MoveDataObserver)?.FlipX();
+            RefreshDataList();
+        }
         public void SetTypeToLastPoint(bool isStraight)
         {
-            var point = GetItem(items.Count - 1) as CurvePoint;
+            var point = GetItem(items.Count - 1) as Point;
             if (point != null)
                 point.data.isStraightLine.OnlySetData(isStraight);
         }
-        protected override UIElement<PointDataObserver> CreateObject()
+        public override UIElement<PointDataObserver> CreateItem(PointDataObserver data)
         {
-            var item = base.CreateObject() as CurvePoint;
-            item.screen = screen;
-            return item;
-        }
-        public override UIElement<PointDataObserver> CreateItemAndAddData(PointDataObserver data)
-        {
-            var recentPoint = GetItem(items.Count - 1) as CurvePoint;
-            var newPoint = base.CreateItemAndAddData(data) as CurvePoint;
+            var recentPoint = GetItem(items.Count - 1) as Point;
+            var newPoint = base.CreateItem(data) as Point;
             newPoint.SetPrevPoint(recentPoint);
             return newPoint;
         }
-        public override void DisplayDataList()
+
+        public void RemoveDataList()
         {
-            Clear();
-            container.GetDataList().GetList(out var dataList);
-            if (dataList == null || dataList.Count == 0) return;
-            foreach (var data in dataList)
-            {
-                var recentPoint = GetItem(items.Count - 1) as CurvePoint;
-                var newPoint = CreateItem(data) as CurvePoint;
-                newPoint.SetPrevPoint(recentPoint);
-            }
+            dataList.GetList(out var list);
+            var pos = list[0];
+            list.Clear();
+            CreateItemAndAddData(pos);
         }
-        public override bool RemoveSelectedItem()
+        public bool RemovePoint()
         {
             if (selectedItemIndex == 0) return false;
-            return base.RemoveSelectedItem();
+            return RemoveSelectedItem();
         }
     }
 }

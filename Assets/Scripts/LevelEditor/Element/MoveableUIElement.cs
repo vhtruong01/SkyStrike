@@ -6,7 +6,6 @@ namespace SkyStrike.Editor
     public abstract class MoveableUIElement<T> : UIElement<T>, IBeginDragHandler, IDragHandler where T : IEditor
     {
         protected bool isDragging;
-        public IScalableScreen screen { protected get; set; }
 
         public override void OnPointerClick(PointerEventData eventData)
         {

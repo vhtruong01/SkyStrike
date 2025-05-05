@@ -53,6 +53,7 @@ namespace SkyStrike.Game
         [field: SerializeField] public List<Sprite> engineSprites { get; private set; }
         [field: SerializeField] public List<Sprite> shieldSprites { get; private set; }
         [field: SerializeField] public List<Sprite> weaponSprites { get; private set; }
+        [field: SerializeField] public List<Sprite> bulletSprites { get; private set; }
 
         public bool CanHighlight()
         {

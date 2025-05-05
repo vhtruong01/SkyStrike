@@ -10,25 +10,21 @@ namespace SkyStrike.Editor
         [SerializeField] private Button addObjectBtn;
         private HierarchyItemList hierarchyUIGroupPool;
 
-        public override void Awake()
+        protected override void Preprocess()
         {
-            base.Awake();
+            base.Preprocess();
+            EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             addObjectBtn.onClick.AddListener(() =>
             {
                 Hide();
                 addObjectMenu.Show();
             });
-        }
-        public override void Init()
-        {
-            base.Init();
-            EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             hierarchyUIGroupPool = gameObject.GetComponent<HierarchyItemList>();
             hierarchyUIGroupPool.Init(EventManager.SelectObject);
         }
-        public HierarchyItemUI GetItem(int index)
+        private HierarchyItemUI GetItem(int index)
             => hierarchyUIGroupPool.GetItem(index) as HierarchyItemUI;
-        public HierarchyItemUI GetItem(ObjectDataObserver data)
+        private HierarchyItemUI GetItem(ObjectDataObserver data)
             => hierarchyUIGroupPool.GetItem(data) as HierarchyItemUI;
         protected override void CreateObject(ObjectDataObserver data)
         {

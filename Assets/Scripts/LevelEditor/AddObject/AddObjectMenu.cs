@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace SkyStrike.Editor
 {
+    [RequireComponent(typeof(ObjectItemList))]
     public class AddObjectMenu : EventNotifyMenu
     {
         [SerializeField] private List<EnemyMetaData> metaDataList;
@@ -12,28 +13,31 @@ namespace SkyStrike.Editor
         [SerializeField] private UIGroup selectObjectTypeBtn;
         [SerializeField] private Menu hierarchyMenu;
         [SerializeField] private Button hierarchyBtn;
+        private Dictionary<int, EnemyMetaData> metaDataDict;
         private ObjectItemList objectItemUIGroupPool;
         private int curSubmenuIndex;
 
-        public override void Awake()
+        private EnemyMetaData GetMetaData(int id) => metaDataDict.GetValueOrDefault(id);
+        protected override void Preprocess()
         {
-            base.Awake();
+            base.Preprocess();
+            metaDataDict = new();
+            foreach (var item in metaDataList)
+                metaDataDict.Add(item.id, item);
+            foreach (var item in bossMetaDataList)
+                metaDataDict.Add(item.id, item);
+            EventManager.onGetMetaData.AddListener(GetMetaData);
             hierarchyBtn.onClick.AddListener(() =>
             {
                 Hide();
                 hierarchyMenu.Show();
             });
-        }
-        public override void Init()
-        {
-            base.Init();
             curSubmenuIndex = -1;
             objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
             objectItemUIGroupPool.Init(SelectMetaObject, DuplicateObject);
-            for (int i = 0; i < selectObjectTypeBtn.Count; i++)
-                selectObjectTypeBtn.GetBaseItem(i).onSelectUI.AddListener(SelectObjectType);
-            selectObjectTypeBtn.SelectFirstItem();
         }
+        public void Start()
+            => selectObjectTypeBtn.AddListener(SelectObjectType);
         private void SelectMetaObject(ObjectDataObserver objectDataObserver)
         {
             objectDataObserver?.ResetData();

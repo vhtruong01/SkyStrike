@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
 
 namespace SkyStrike
 {
+    // Unity inspector
     public class ReadOnlyAttribute : PropertyAttribute { }
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
@@ -15,6 +19,29 @@ namespace SkyStrike
             GUI.enabled = false;
             EditorGUI.PropertyField(position, property, label, true);
             GUI.enabled = true;
+        }
+    }
+    public static class IO
+    {
+        public static void WriteToBinaryFile<T>(string fileName, T objectToWrite)
+        {
+            string dataPath = Path.Combine(Application.persistentDataPath, fileName);
+            using Stream stream = File.Open(dataPath, FileMode.OpenOrCreate);
+            new BinaryFormatter().Serialize(stream, objectToWrite);
+        }
+        public static T ReadFromBinaryFile<T>(string fileName)
+        {
+            try
+            {
+                string dataPath = Path.Combine(Application.persistentDataPath, fileName);
+                using Stream stream = File.Open(dataPath, FileMode.Open);
+                return (T)new BinaryFormatter().Deserialize(stream);
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+                return default;
+            }
         }
     }
     public static class ExtensionMethod
@@ -72,7 +99,7 @@ namespace SkyStrike
         public static Vector3 SetZ(this Vector3 v, float z) => new(v.x, v.y, z);
         // Color
         public static Color ChangeAlpha(this Color color, float alpha) => new(color.r, color.g, color.b, alpha);
-        public static Color RandomColor(this GameObject obj) => colors[Random.Range(0, colors.Length)];
+        public static Color RandomColor(this GameObject obj) => colors[UnityEngine.Random.Range(0, colors.Length)];
         // ScriptableObject
         public static void print(this ScriptableObject obj, object msg) => Debug.Log(msg);
     }

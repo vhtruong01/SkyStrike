@@ -15,10 +15,10 @@ namespace SkyStrike.Editor
             for (int i = 0; i < bulletList.Count; i++)
                 bulletSelectionItemList.CreateItem(bulletList[i]);
         }
-        public override void Init()
+        protected override void Preprocess()
         {
-            bulletSelectionItemList = GetComponent<BulletSelectionItemList>();
             EventManager.onSelectLevel.AddListener(SelectLevel);
+            bulletSelectionItemList = GetComponent<BulletSelectionItemList>();
         }
         private void SelectLevel(LevelDataObserver levelDataObserver)
             => levelDataObserver.GetList(out bulletList);

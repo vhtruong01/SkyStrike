@@ -15,13 +15,16 @@ namespace SkyStrike.Editor
         public T data { get; set; }
         public UnityEvent<T> onClick { get; set; }
         public UnityEvent<int> onSelectUI { get; set; }
+        public IScalableScreen screen { protected get; set; }
+
         public virtual void Init()
         {
             bg = GetComponent<Image>();
             onSelectUI = new();
             onClick = new();
         }
-        public virtual Image GetBackground() => bg;
+        public void SetBackgroundColor(Color c)
+            => bg.color = c;
         public virtual void SetData(T data)
         {
             this.data = data;

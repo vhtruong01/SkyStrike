@@ -19,9 +19,9 @@ namespace SkyStrike.Editor
         [SerializeField] private BoolProperty isLookingAtPlayer;
         [SerializeField] private IntProperty amount;
 
-        public override void Init()
+        protected override void Preprocess()
         {
-            base.Init();
+            base.Preprocess();
             isCircle.BindToOtherProperty(spacing, false);
             isCircle.BindToOtherProperty(unitAngle, false);
             isCircle.BindToOtherProperty(spinSpeed, true);

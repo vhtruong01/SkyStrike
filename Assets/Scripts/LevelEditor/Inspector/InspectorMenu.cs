@@ -11,14 +11,14 @@ namespace SkyStrike.Editor
         private List<Menu> subMenuList;
         private int curSubmenuIndex;
 
-        public override void Init()
+        protected override void Preprocess()
         {
-            base.Init();
+            base.Preprocess();
             EventManager.onSelectMetaObject.AddListener(SelectMetaObject);
             subMenuList = new() { objectInfoMenu, waveInfoMenu };
-            for (int i = 0; i < switchSubMenuBtnGroup.Count; i++)
-                switchSubMenuBtnGroup.GetBaseItem(i).onSelectUI.AddListener(SelectSubMenu);
         }
+        public void Start()
+            => switchSubMenuBtnGroup.AddListener(SelectSubMenu);
         private void SelectSubMenu(int index)
         {
             subMenuList[curSubmenuIndex].Hide();

@@ -6,8 +6,8 @@ namespace SkyStrike.Editor
         public bool CanDisplay() => data != null;
         public abstract void BindData();
         public abstract void UnbindData();
-        public override void Init() { }
-        public virtual void Display(T data)
+        protected override void Preprocess() { }
+        public void Display(T data)
         {
             if (!SetData(data)) return;
             UnbindData();
@@ -15,7 +15,7 @@ namespace SkyStrike.Editor
                 Hide();
             else BindData();
         }
-        public virtual bool SetData(T data)
+        public bool SetData(T data)
         {
             if (Equals(this.data, data)) return false;
             this.data = data;

@@ -1,4 +1,3 @@
-using SkyStrike.Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,17 +47,15 @@ namespace SkyStrike.Editor
             curObjectDataObserver = data;
             copyBtn.interactable = removeBtn.interactable = cutBtn.interactable = editMovementBtn.interactable = curObjectDataObserver != null;
         }
-        protected void Copy()
+        private void Copy()
         {
             tempItemData = curObjectDataObserver;
             if (!pasteBtn.interactable && tempItemData != null)
                 pasteBtn.interactable = true;
         }
-        protected void Paste()
-        {
-            EventManager.CreateObject(tempItemData.Clone());
-        }
-        protected void Remove()
+        private void Paste()
+            => EventManager.CreateObject(tempItemData.Clone());
+        private void Remove()
         {
             if (curObjectDataObserver != null)
             {
@@ -67,7 +64,7 @@ namespace SkyStrike.Editor
                 removeBtn.interactable = cutBtn.interactable = false;
             }
         }
-        protected void Cut()
+        private void Cut()
         {
             Copy();
             Remove();

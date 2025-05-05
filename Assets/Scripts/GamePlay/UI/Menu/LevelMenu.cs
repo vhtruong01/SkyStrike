@@ -11,6 +11,12 @@ namespace SkyStrike.UI
         [SerializeField] private LevelIcon levelIcon0Prefab;
         [SerializeField] private LevelIcon levelIcon1Prefab;
         [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private Transform line;
+        [SerializeField] private float lineSpeed = 3f;
+        private readonly float duration = 10;
+        private float elapsedTime;
+        private Vector3 originalLinePos;
+
         private LevelIcon prevLevelIcon;
 
         public override void Start()
@@ -34,6 +40,17 @@ namespace SkyStrike.UI
             int padding = (int)((scrollW - iconW) / 2);
             layoutGroup.padding.left = layoutGroup.padding.right = padding;
             scroll.horizontalNormalizedPosition = prevLevelIcon.index / (index - 1);
+            originalLinePos=line.position;
+        }
+        public void Update()
+        {
+            line.position += new Vector3(0, -Time.deltaTime * lineSpeed, 0);
+            elapsedTime -= Time.deltaTime;
+            if (elapsedTime < 0)
+            {
+                elapsedTime = duration;
+                line.position = originalLinePos;
+            }
         }
         public void SelectLevel(LevelIcon icon)
         {

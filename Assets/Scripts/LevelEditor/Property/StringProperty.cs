@@ -8,9 +8,7 @@ namespace SkyStrike.Editor
         [SerializeField] private TMP_InputField x;
 
         public void Awake()
-        {
-            x.onValueChanged.AddListener(s => OnValueChanged());
-        }
+            => x.onValueChanged.AddListener(s => OnValueChanged());
         public override void OnValueChanged()
         {
             value = x.text;

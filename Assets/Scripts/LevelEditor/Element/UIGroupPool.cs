@@ -8,9 +8,6 @@ namespace SkyStrike.Editor
 {
     public abstract class UIGroupPool<T> : UIGroup where T : IData
     {
-        [SerializeField] protected bool useSpecificColor;
-        [SerializeField] protected Color selectedColor;
-        [SerializeField] protected Color defaultColor;
         [SerializeField] protected string defaultName;
         [SerializeField] protected GameObject prefab;
         [SerializeField] protected Transform containerTransform;
@@ -18,18 +15,14 @@ namespace SkyStrike.Editor
         protected ObjectPool<UIElement<T>> pool;
         protected UnityAction<T> selectDataCall;
         protected UnityAction<T> deselectDataCall;
-        public override int Count => items.Count;
+        protected IDataList<T> dataList;
+        private IScalableScreen screen;
 
-        public override void Init()
+        protected override void Preprocess()
         {
-            selectedItemIndex = -1;
+            screen = GetComponentInChildren<IScalableScreen>(true);
             items = new();
             pool = new(CreateObject);
-            if (!useSpecificColor)
-            {
-                selectedColor = EditorSetting.btnSelectedColor;
-                defaultColor = EditorSetting.btnDefaultColor;
-            }
             for (int i = 0; i < containerTransform.childCount; i++)
             {
                 if (!containerTransform.GetChild(i).TryGetComponent<UIElement<T>>(out var item)) continue;
@@ -43,7 +36,7 @@ namespace SkyStrike.Editor
                 items.Add(item);
             }
         }
-        public virtual void Init(UnityAction<T> selectCall, UnityAction<T> deselectCall = null)
+        public void Init(UnityAction<T> selectCall, UnityAction<T> deselectCall = null)
         {
             selectDataCall = selectCall;
             deselectDataCall = deselectCall;
@@ -53,13 +46,15 @@ namespace SkyStrike.Editor
             var item = Instantiate(prefab, containerTransform, false).GetComponent<UIElement<T>>()
                 ?? throw new Exception("wrong prefab type");
             item.gameObject.name = prefab.name;
+            if (screen != null)
+                item.screen = screen;
             item.isDefault = false;
             item.Init();
             item.onSelectUI.AddListener(SelectItem);
             item.onClick.AddListener(InvokeData);
             return item;
         }
-        protected void InvokeData(T data)
+        private void InvokeData(T data)
         {
             if (selectDataCall == null) return;
             var item = GetSelectedItem();
@@ -103,14 +98,15 @@ namespace SkyStrike.Editor
         }
         public void SelectAndInvokeItem(T data)
             => SelectAndInvokeItem(GetItemIndex(data));
-        protected virtual void ReleaseItem(int index)
+        private void ReleaseItem(int index)
         {
+            dataList?.Remove(index, out _);
             var item = items[index];
             items.RemoveAt(index);
             ReleaseItem(item);
             item.gameObject.transform.SetAsFirstSibling();
         }
-        protected void ReleaseItem(UIElement<T> item)
+        private void ReleaseItem(UIElement<T> item)
         {
             item.index = null;
             item.gameObject.SetActive(false);
@@ -154,18 +150,16 @@ namespace SkyStrike.Editor
                 }
             }
             startIndex = itemArr[0].index.Value;
+            if (dataList != null)
+                for (int i = 0; i < items.Count; i++)
+                    dataList.Set(i, items[i].data);
         }
         public UIElement<T> GetItem(int index)
-        {
-            return index < 0 || index >= items.Count ? null : items[index];
-        }
+            => index < 0 || index >= items.Count ? null : items[index];
         public override IUIElement GetBaseItem(int index) => GetItem(index);
         public UIElement<T> GetSelectedItem() => GetItem(selectedItemIndex);
-        public bool TryGetValidSelectedIndex(out int index)
-        {
-            index = selectedItemIndex;
-            return index >= 0 & index < items.Count;
-        }
+        public bool RemoveSelectedItem()
+            => RemoveItem(selectedItemIndex);
         public void RemoveItem(T data) => RemoveItem(GetItemIndex(data));
         public bool RemoveItem(int index)
         {
@@ -190,7 +184,7 @@ namespace SkyStrike.Editor
             ReleaseItem(index);
             return true;
         }
-        public virtual void Clear()
+        public void Clear()
         {
             if (items == null || items.Count == 0) return;
             List<UIElement<T>> unremovedItem = new();
@@ -203,9 +197,74 @@ namespace SkyStrike.Editor
             }
             items = unremovedItem;
         }
-        protected override void Highlight(IUIElement e)
-            => SetBackgroundColor(e, selectedColor);
-        protected override void Diminish(IUIElement e)
-            => SetBackgroundColor(e, defaultColor);
+        public void RefreshDataList() => DisplayDataList(dataList);
+        public void DisplayDataList(IDataList<T> dataList)
+        {
+            Clear();
+            this.dataList = dataList;
+            dataList.GetList(out var lst);
+            foreach (var data in lst)
+                CreateItem(data);
+            if (!canDeselect) SelectFirstItem();
+        }
+        public UIElement<T> CreateItemAndAddData(T data)
+        {
+            if (dataList != null)
+            {
+                if (data != null)
+                    dataList.Add(data);
+                else dataList.CreateEmpty(out data);
+            }
+            return CreateItem(data);
+        }
+        public void CreateEmptyItem()
+            => CreateItemAndAddData(default);
+        public void DuplicateSelectedItem()
+        {
+            var selectedItem = GetSelectedItem();
+            if (selectedItem != null)
+            {
+                var itemData = GetSelectedItem().DuplicateData();
+                if (itemData != null)
+                    CreateItemAndAddData(itemData);
+            }
+        }
+        public void MoveLeftSelectedItem()
+        {
+            if (items.Count <= 1 || selectedItemIndex == -1) return;
+            if (selectedItemIndex - 1 >= 0)
+            {
+                SwapItem(selectedItemIndex, selectedItemIndex - 1);
+                selectedItemIndex -= 1;
+            }
+            else MoveItemArray(ref selectedItemIndex, -1);
+        }
+        public void MoveRightSelectedItem()
+        {
+            if (items.Count <= 1 || selectedItemIndex == -1) return;
+            if (selectedItemIndex + 1 < items.Count)
+            {
+                SwapItem(selectedItemIndex, selectedItemIndex + 1);
+                selectedItemIndex += 1;
+            }
+            else MoveItemArray(ref selectedItemIndex, 0);
+        }
+        private void SwapItem(int i1, int i2)
+        {
+            if (i1 > i2)
+                (i1, i2) = (i2, i1);
+            var item1 = GetItem(i1);
+            var item2 = GetItem(i2);
+            item1.gameObject.transform.SetSiblingIndex(i2 + pool.CountInactive);
+            item2.gameObject.transform.SetSiblingIndex(i1 + pool.CountInactive);
+            (items[i2], items[i1]) = (items[i1], items[i2]);
+            if (dataList != null)
+            {
+                dataList.GetList(out var list);
+                list.Swap(i1, i2);
+            }
+            items[i2].index = i2;
+            items[i1].index = i1;
+        }
     }
 }

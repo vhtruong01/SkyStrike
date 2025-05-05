@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 namespace SkyStrike.Editor
 {
-    public class FloatSelectRefObjectMenu : EventNotifyMenu
+    [RequireComponent (typeof(ObjectItemList))]
+    public class SelectRefObjectMenu : EventNotifyMenu
     {
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI itemId;
@@ -12,9 +13,9 @@ namespace SkyStrike.Editor
         private ObjectItemList objectItemUIGroupPool;
         private ObjectDataObserver curObjectData;
 
-        public override void Init()
+        protected override void Preprocess()
         {
-            base.Init();
+            base.Preprocess();
             EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             DisplayReferenceObject(null);
             objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
@@ -45,7 +46,8 @@ namespace SkyStrike.Editor
                 DisplayObject(objectData);
             DisplayReferenceObject(null);
         }
-        private void DisplayObject(ObjectDataObserver data) => objectItemUIGroupPool.CreateItem(data);
+        private void DisplayObject(ObjectDataObserver data) 
+            => objectItemUIGroupPool.CreateItem(data);
         private void SelectReferenceObject(ObjectDataObserver refData)
         {
             if (curObjectData == null) return;

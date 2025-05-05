@@ -51,7 +51,7 @@ namespace SkyStrike.Editor
             {
                 delay = delay.data,
                 velocity = velocity.data,
-                points = new Point[points.Count]
+                points = new MoveData.Point[points.Count]
             };
             for (int i = 0; i < points.Count; i++)
             {

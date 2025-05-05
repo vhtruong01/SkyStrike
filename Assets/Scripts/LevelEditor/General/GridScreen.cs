@@ -14,9 +14,9 @@ namespace SkyStrike.Editor
         [SerializeField] private Slider scaleSlider;
         [SerializeField] private Transform lineContainer;
         private NormalButton lockButton;
-        private Vector3 originalScale;
         private float halfWidth;
         private float halfHeight;
+        public Camera cam { get; private set; }
         public bool isLocked { get; set; }
         public bool isSnapping { get; set; }
         public float scale
@@ -30,14 +30,13 @@ namespace SkyStrike.Editor
         }
         public void Init()
         {
+            cam = Camera.main;
             lockButton = scaleSlider.GetComponentInChildren<NormalButton>();
-            lockButton.AddListener((enable) => isLocked = enable, () => isLocked);
             if (thickness <= 0) return;
             scaleSlider.minValue = minSize;
             scaleSlider.maxValue = maxSize;
-            originalScale = transform.localScale;
             scaleSlider.onValueChanged.AddListener(Scale);
-            Vector2 worldSize = Controller.mainCam.ScreenToWorldPoint(new(Screen.width, Screen.height));
+            Vector2 worldSize = Camera.main.ScreenToWorldPoint(new(Screen.width, Screen.height));
             halfWidth = worldSize.x;
             halfHeight = worldSize.y;
             for (int i = -(int)(halfWidth / minSize); i <= halfWidth / minSize; i++)
@@ -45,17 +44,19 @@ namespace SkyStrike.Editor
             for (int i = -(int)(halfHeight / minSize); i <= halfHeight / minSize; i++)
                 CreateLine(Screen.width / minSize, thickness, new(0, i, 0));
         }
+        public void Start()
+            => lockButton.AddListener((enable) => isLocked = enable, () => isLocked);
         private void CreateLine(float w, float h, Vector3 dir)
         {
             var img = new GameObject("Line").AddComponent<Image>();
             img.transform.SetParent(lineContainer, false);
             img.rectTransform.sizeDelta = new Vector2(w, h);
-            img.transform.position = img.transform.position + dir;
+            img.transform.position += dir * scale;
             img.color = dir == Vector3.zero ? axisColor : subaxisColor;
         }
         public void Scale(float size)
         {
-            transform.localScale = (originalScale * size).SetZ(originalScale.z);
+            transform.localScale = Vector3.one * size;
             SetPosition(transform.position);
         }
         public Vector2 GetActualPosition(Vector2 pos)

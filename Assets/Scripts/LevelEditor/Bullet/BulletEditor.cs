@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace SkyStrike.Editor
 {
-    public class BulletEditor : Menu, IElementContainer<BulletDataObserver>
+    public class BulletEditor : Menu
     {
         [SerializeField] private GameObject reviewScreen;
         [SerializeField] private BulletSpawner bulletSpawner;
@@ -12,7 +12,6 @@ namespace SkyStrike.Editor
         [SerializeField] private Button duplicateBtn;
         [SerializeField] private BulletInfoMenu bulletInfoMenu;
         private BulletItemList bulletUIGroupPool;
-        private LevelDataObserver levelDataObserver;
 
         public void OnEnable()
             => reviewScreen.SetActive(true);
@@ -21,7 +20,7 @@ namespace SkyStrike.Editor
             base.Hide();
             reviewScreen.SetActive(false);
         }
-        public override void Init()
+        protected override void Preprocess()
         {
             EventManager.onSelectLevel.AddListener(SelectLevel);
             bulletUIGroupPool = GetComponent<BulletItemList>();
@@ -42,10 +41,6 @@ namespace SkyStrike.Editor
             bulletSpawner.ChangeBulletSpawner(bulletData);
         }
         protected void SelectLevel(LevelDataObserver data)
-        {
-            levelDataObserver = data;
-            bulletUIGroupPool.DisplayDataList();
-        }
-        public IDataList<BulletDataObserver> GetDataList() => levelDataObserver;
+            => bulletUIGroupPool.DisplayDataList(data);
     }
 }

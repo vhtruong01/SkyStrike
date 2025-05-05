@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 namespace SkyStrike.Editor
 {
+    [RequireComponent(typeof(ViewportItemList))]
     public class Viewport : ScalableMenu
     {
         [SerializeField] private Button inspectorMenuBtn;
@@ -13,35 +14,33 @@ namespace SkyStrike.Editor
         [SerializeField] private Menu addObjectMenu;
         private ViewportItemList viewportUIGroupPool;
 
-        public override void Awake()
+        protected override void Preprocess()
         {
-            base.Awake();
+            base.Preprocess();
+            EventManager.onSetRefObject.AddListener(SelectReferenceObject);
             inspectorMenuBtn.onClick.AddListener(inspectorMenu.Show);
             hierarchyMenuBtn.onClick.AddListener(addObjectMenu.Show);
             waveMenuBtn.onClick.AddListener(waveMenu.Show);
-        }
-        public override void Init()
-        {
-            base.Init();
-            EventManager.onSetRefObject.AddListener(SelectReferenceObject);
             viewportUIGroupPool = gameObject.GetComponent<ViewportItemList>();
             viewportUIGroupPool.Init(EventManager.SelectObject);
-            viewportUIGroupPool.screen = screen;
+        }
+        public override void Start()
+        {
+            base.Start();
+            Show();
         }
         public void SelectReferenceObject(ObjectDataObserver refData)
-        {
-            (viewportUIGroupPool.GetSelectedItem() as ViewportItemUI).SetRefObject(refData);
-        }
+            => (viewportUIGroupPool.GetSelectedItem() as ViewportItemUI).SetRefObject(refData);
         protected override void CreateObject(ObjectDataObserver data) => viewportUIGroupPool.CreateItem(data);
         protected override void RemoveObject(ObjectDataObserver data) => viewportUIGroupPool.RemoveItem(data);
         protected override void SelectObject(ObjectDataObserver data)
         {
-            if (data == null) viewportUIGroupPool.SelectNone();
-            else
+            if (data != null)
             {
                 viewportUIGroupPool.SelectItem(data);
                 SelectReferenceObject(data.refData);
             }
+            else viewportUIGroupPool.SelectNone();
         }
         protected override void SelectWave(WaveDataObserver data)
         {
@@ -49,11 +48,6 @@ namespace SkyStrike.Editor
             data.GetList(out var dataList);
             foreach (var objectData in dataList)
                 CreateObject(objectData);
-        }
-        public override void Restore()
-        {
-            base.Restore();
-            Show();
         }
     }
 }

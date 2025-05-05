@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 namespace SkyStrike.Editor
 {
-    public class PathMenu : ScalableMenu, IPointerClickHandler, IElementContainer<PointDataObserver>
+    [RequireComponent(typeof(PointItemList))]
+    public class PathMenu : ScalableMenu, IPointerClickHandler
     {
         [SerializeField] private Button straightPointBtn;
         [SerializeField] private Button curvePointBtn;
@@ -22,25 +23,23 @@ namespace SkyStrike.Editor
 
         public void OnEnable()
             => bulletSelectionMenu.Refresh();
-        public override void Awake()
+        protected override void Preprocess()
         {
-            base.Awake();
+            base.Preprocess();
             addPointBtn.AddListener(EnableAddPoint, () => isEnabledAddPoint);
             removeBtn.onClick.AddListener(RemovePoint);
             clearBtn.onClick.AddListener(Clear);
             flipXBtn.onClick.AddListener(FlipX);
-        }
-        public override void Init()
-        {
-            base.Init();
             pointMenu.gameObject.SetActive(true);
             pointMenu.gameObject.SetActive(false);
             pointItemList = gameObject.GetComponent<PointItemList>();
             pointItemList.Init(DisplayPointInfo);
             pointItemList.screen = screen;
-            for (int i = 0; i < switchPointTypeBtn.Count; i++)
-                switchPointTypeBtn.GetBaseItem(i).onSelectUI.AddListener(SelectPointType);
-            switchPointTypeBtn.SelectFirstItem();
+        }
+        public override void Start()
+        {
+            base.Start();
+            switchPointTypeBtn.AddListener(SelectPointType);
         }
         private void DisplayPointInfo(PointDataObserver pointData)
         {
@@ -52,25 +51,17 @@ namespace SkyStrike.Editor
         }
         private void RemovePoint()
         {
-            bool isRemoved = pointItemList.RemoveSelectedItem();
+            bool isRemoved = pointItemList.RemovePoint();
             if (isRemoved) DisplayPointInfo(null);
         }
         private void Clear()
         {
-            pointItemList.Clear();
+            pointItemList.RemoveDataList();
             DisplayPointInfo(null);
-            GetDataList().GetList(out var dataList);
-            var pos = dataList[0];
-            dataList.Clear();
-            pointItemList.CreateItemAndAddData(pos);
         }
-        public void FlipX()
-        {
-            (GetDataList() as MoveDataObserver)?.FlipX();
-            pointItemList.DisplayDataList();
-        }
-        public void SelectPointType(int type) => pointType = type;
-        public void EnableAddPoint(bool isEnabled) => isEnabledAddPoint = isEnabled;
+        private void FlipX() => pointItemList.FlipX();
+        private void SelectPointType(int type) => pointType = type;
+        private void EnableAddPoint(bool isEnabled) => isEnabledAddPoint = isEnabled;
         public void OnPointerClick(PointerEventData eventData)
         {
             if (isEnabledAddPoint && objectDataObserver != null && !isDragging)
@@ -90,11 +81,10 @@ namespace SkyStrike.Editor
             pointItemList.Clear();
             DisplayPointInfo(null);
             objectDataObserver = data;
-            if (data == null) return;
-            pointItemList.DisplayDataList();
+            if (data != null)
+                pointItemList.DisplayDataList(data.moveData);
         }
         protected override void RemoveObject(ObjectDataObserver data) => SelectObject(null);
         protected override void SelectWave(WaveDataObserver data) => SelectObject(null);
-        public IDataList<PointDataObserver> GetDataList() => objectDataObserver?.moveData;
     }
 }

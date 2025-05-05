@@ -7,10 +7,8 @@ namespace SkyStrike.Editor
         [SerializeField] private StringProperty levelName;
         [SerializeField] private IntProperty starRating;
 
-        public override void Init()
-        {
-            EventManager.onSelectLevel.AddListener(SelectLevel);
-        }
+        protected override void Preprocess()
+            => EventManager.onSelectLevel.AddListener(SelectLevel);
         private void SelectLevel(LevelDataObserver levelData)
         {
             starRating.Unbind();

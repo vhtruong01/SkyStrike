@@ -27,29 +27,28 @@ namespace SkyStrike.Editor
         [Header("RefObject")]
         [SerializeField] private TextMeshProUGUI referenceObjectText;
         [SerializeField] private Button referenceObjectBtn;
-        [SerializeField] private FloatSelectRefObjectMenu selectRefObjectMenu;
+        [SerializeField] private SelectRefObjectMenu selectRefObjectMenu;
         [Header("Other")]
         [SerializeField] private Button addObjectBtn;
         [SerializeField] private Button pathBtn;
         [SerializeField] private PathMenu pathMenu;
         private DropItemList dropItemUIGroupPool;
 
-
-        public override void Awake()
+        protected override void Preprocess()
         {
+            base.Preprocess();
             addObjectBtn.onClick.AddListener(CreateObject);
             referenceObjectBtn.onClick.AddListener(selectRefObjectMenu.Show);
             pathBtn.onClick.AddListener(pathMenu.Show);
             selectDropItemBtn.onClick.AddListener(() => dropItemView.SetActive(!dropItemView.activeSelf));
-        }
-        public override void Init()
-        {
-            base.Init();
             dropItemUIGroupPool = gameObject.GetComponent<DropItemList>();
             dropItemUIGroupPool.Init(SelectDropItem);
+            EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
+        }
+        public void Start()
+        {
             foreach (var item in dropItemDataList)
                 dropItemUIGroupPool.CreateItem(item);
-            EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
         }
         private void SelectDropItem(ItemMetaData itemData)
         {

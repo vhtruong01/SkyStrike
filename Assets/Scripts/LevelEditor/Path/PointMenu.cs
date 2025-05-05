@@ -21,9 +21,9 @@ namespace SkyStrike.Editor
         [SerializeField] private BulletSelectionMenu bulletSelectionMenu;
         [SerializeField] private Button bulletSelectionMenuBtn;
 
-        public override void Awake()
+        protected override void Preprocess()
         {
-            base.Awake();
+            base.Preprocess();
             bulletSelectionMenuBtn.onClick.AddListener(EnableBulletSelectionMenu);
             isLookingAtPlayer.BindToOtherProperty(rotation, false);
             isIgnoreVelocity.BindToOtherProperty(travelTime, true);

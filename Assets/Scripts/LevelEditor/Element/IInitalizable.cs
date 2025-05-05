@@ -1,6 +1,6 @@
 namespace SkyStrike.Editor
 {
-    public interface IInitiable : IObject
+    public interface IInitalizable : IObject
     {
         public void Init();
     }

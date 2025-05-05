@@ -4,26 +4,27 @@ namespace SkyStrike.Editor
     {
         private PointDataObserver pointDataObserver;
 
-        public override void Init()
-        {
-            base.Init();
-            selectDataCall = UpdateBullet;
-        }
+        public void Start()
+            => selectDataCall = UpdateBullet;
         public void SetPoint(PointDataObserver point)
         {
             pointDataObserver = point;
             if (point == null) return;
-            SelectNone();
-            for (int i = 0; i < items.Count; i++)
-            {
-                var item = items[i] as BulletSelectionItemUI;
-                item.Check(point.bulletId == item.data.id);
-            }
+            if (point.bulletId != BulletDataObserver.UNDEFINED_ID)
+                for (int i = 0; i < items.Count; i++)
+                {
+                    var item = items[i] as BulletSelectionItemUI;
+                    if (point.bulletId == item.data.id)
+                    {
+                        SelectItem(i);
+                        break;
+                    }
+                }
+            else SelectNone();
         }
         public void UpdateBullet(BulletDataObserver bulletData)
         {
             if (pointDataObserver == null) return;
-            //(GetSelectedItem() as BulletSelectionItemUI)?.Check(false);
             pointDataObserver.SetBulletId(bulletData.id);
         }
     }

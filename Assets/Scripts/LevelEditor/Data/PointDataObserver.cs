@@ -3,7 +3,7 @@ using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike.Editor
 {
-    public class PointDataObserver : IEditorData<Point, PointDataObserver>
+    public class PointDataObserver : IEditorData<Game.MoveData.Point, PointDataObserver>
     {
         public DataObserver<Vector2> prePos { get; private set; }
         public DataObserver<Vector2> midPos { get; private set; }
@@ -39,7 +39,7 @@ namespace SkyStrike.Editor
             nextPos.OnlySetData(new(0, -1.5f));
             bulletId = BulletDataObserver.UNDEFINED_ID;
         }
-        public PointDataObserver(Point data) : this() => ImportData(data);
+        public PointDataObserver(Game.MoveData.Point data) : this() => ImportData(data);
         public void Translate(Vector2 dir)
         {
             midPos.SetData(midPos.data + dir);
@@ -86,9 +86,9 @@ namespace SkyStrike.Editor
             newPoint.bulletId = bulletId;
             return newPoint;
         }
-        public Point ExportData()
+        public Game.MoveData.Point ExportData()
         {
-            Point pointData = new()
+            Game.MoveData.Point pointData = new()
             {
                 prevPos = new(prePos.data),
                 midPos = new(midPos.data),
@@ -106,7 +106,7 @@ namespace SkyStrike.Editor
             };
             return pointData;
         }
-        public void ImportData(Point pointData)
+        public void ImportData(Game.MoveData.Point pointData)
         {
             prePos.OnlySetData(pointData.prevPos.ToVector2());
             midPos.OnlySetData(pointData.midPos.ToVector2());

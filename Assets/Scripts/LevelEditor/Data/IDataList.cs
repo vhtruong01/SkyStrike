@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace SkyStrike.Editor
 {
-    public interface IDataList<T> : IEditor where T : IEditor
+    public interface IDataList<T> : IEditor where T : IData
     {
         public void GetList(out List<T> list);
         public void CreateEmpty(out T data);
