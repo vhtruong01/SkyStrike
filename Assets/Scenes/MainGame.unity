@@ -324,7 +324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &83474184
 Transform:
   m_ObjectHideFlags: 0
@@ -12936,6 +12936,7 @@ MonoBehaviour:
   prefab: {fileID: 1922562494460900975, guid: a6d9c538b5146fd4db4b4608c9e8e2d6, type: 3}
   metaDataList:
   - {fileID: 11400000, guid: 733ba20cb330e6c44ab12e3f731b8b3b, type: 2}
+  - {fileID: 11400000, guid: a95c927a5b39a4a4ba9db3deb3f52f25, type: 2}
 --- !u!1 &1034120532
 GameObject:
   m_ObjectHideFlags: 0
