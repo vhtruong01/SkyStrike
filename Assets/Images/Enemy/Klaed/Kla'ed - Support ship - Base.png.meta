@@ -103,10 +103,10 @@ TextureImporter:
       name: Kla'ed - Support ship - Base_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 14
-        width: 30
-        height: 30
+        x: 18
+        y: 21
+        width: 28
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

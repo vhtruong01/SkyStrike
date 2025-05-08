@@ -29,6 +29,7 @@ namespace SkyStrike.Editor
             var pos = list[0];
             list.Clear();
             CreateItemAndAddData(pos);
+            RefreshDataList();
         }
         public bool RemovePoint()
         {

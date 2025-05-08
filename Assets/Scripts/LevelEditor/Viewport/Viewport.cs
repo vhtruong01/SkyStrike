@@ -12,7 +12,7 @@ namespace SkyStrike.Editor
         [SerializeField] private Menu waveMenu;
         [SerializeField] private Button hierarchyMenuBtn;
         [SerializeField] private Menu addObjectMenu;
-        private ViewportItemList viewportUIGroupPool;
+        private ViewportItemList group;
 
         protected override void Preprocess()
         {
@@ -21,8 +21,8 @@ namespace SkyStrike.Editor
             inspectorMenuBtn.onClick.AddListener(inspectorMenu.Show);
             hierarchyMenuBtn.onClick.AddListener(addObjectMenu.Show);
             waveMenuBtn.onClick.AddListener(waveMenu.Show);
-            viewportUIGroupPool = gameObject.GetComponent<ViewportItemList>();
-            viewportUIGroupPool.Init(EventManager.SelectObject);
+            group = gameObject.GetComponent<ViewportItemList>();
+            group.Init(EventManager.SelectObject);
         }
         public override void Start()
         {
@@ -30,21 +30,21 @@ namespace SkyStrike.Editor
             Show();
         }
         public void SelectReferenceObject(ObjectDataObserver refData)
-            => (viewportUIGroupPool.GetSelectedItem() as ViewportItemUI).SetRefObject(refData);
-        protected override void CreateObject(ObjectDataObserver data) => viewportUIGroupPool.CreateItem(data);
-        protected override void RemoveObject(ObjectDataObserver data) => viewportUIGroupPool.RemoveItem(data);
+            => (group.GetSelectedItem() as ViewportItemUI).SetRefObject(refData);
+        protected override void CreateObject(ObjectDataObserver data) => group.CreateItem(data);
+        protected override void RemoveObject(ObjectDataObserver data) => group.RemoveItem(data);
         protected override void SelectObject(ObjectDataObserver data)
         {
             if (data != null)
             {
-                viewportUIGroupPool.SelectItem(data);
+                group.SelectItem(data);
                 SelectReferenceObject(data.refData);
             }
-            else viewportUIGroupPool.SelectNone();
+            else group.SelectNone();
         }
         protected override void SelectWave(WaveDataObserver data)
         {
-            viewportUIGroupPool.Clear();
+            group.Clear();
             data.GetList(out var dataList);
             foreach (var objectData in dataList)
                 CreateObject(objectData);

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NairanFighter
   m_EditorClassIdentifier: 
   race: 2
-  type: 4
+  <type>k__BackingField: 4
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <sprite>k__BackingField: {fileID: 21300000, guid: 4ec08a9248defd747a3553a8e0a5a83d, type: 3}
   <destructionSprites>k__BackingField:
@@ -91,3 +91,4 @@ MonoBehaviour:
   - {fileID: 5675953865497402895, guid: 826c6ad8cfdb1ff45a67570f8e80ac8f, type: 3}
   - {fileID: -546286365037970974, guid: 826c6ad8cfdb1ff45a67570f8e80ac8f, type: 3}
   - {fileID: -8502915425750156006, guid: 826c6ad8cfdb1ff45a67570f8e80ac8f, type: 3}
+  <bulletSprites>k__BackingField: []

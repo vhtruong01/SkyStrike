@@ -4,7 +4,9 @@ namespace SkyStrike.Game
 {
     public class ShipBullet : PoolableObject<ShipBulletData>, IDamager
     {
-        public EDamageType damageType => data.damageType;
+        [SerializeField] private SpriteAnimation anim;
+        private IDamageable target;
+        public EDamageType damageType => data.metaData.damageType;
 
         public override void Refresh()
         {
@@ -13,13 +15,33 @@ namespace SkyStrike.Game
             transform.localScale = Vector3.one * data.metaData.scale;
             transform.eulerAngles = transform.eulerAngles.SetZ(Vector2.SignedAngle(Vector2.up, data.velocity));
             spriteRenderer.sharedMaterial = data.metaData.material;
+            if (data.metaData.type == EShipBulletType.MissileBullet)
+                FindTarget();
+            else target = null;
+            //if (anim != null)
+                //anim.SetData(data.metaData.spriteList);
         }
         private void Update()
         {
             data.lifetime -= Time.deltaTime;
-            transform.position += data.velocity * Time.deltaTime;
+            if (target != null)
+            {
+                if (target.isActive)
+                {
+                    data.angularVelocity = Vector3.Cross(transform.up, target.position - transform.position).normalized.z;
+                    transform.eulerAngles += new Vector3(0, 0, data.angularVelocity * Time.deltaTime * 135);
+                }
+                else data.lifetime = 0;
+            }
+            transform.Translate(data.velocity * Time.deltaTime);
             if (data.lifetime <= 0)
                 Disappear();
+        }
+        private void FindTarget()
+        {
+            var hit = Physics2D.CircleCast(new(), 8f, Vector2.up, 0, LayerMask.GetMask("Enemy"));
+            if (hit.collider != null)
+                target = hit.collider.GetComponent<IDamageable>();
         }
         public int GetDamage() => data.metaData.dmg;
         public void AfterHit() => Disappear();

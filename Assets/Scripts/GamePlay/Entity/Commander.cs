@@ -9,7 +9,8 @@ namespace SkyStrike.Game
         public ISpawnable spawner { get; private set; }
         public IMoveable movement {  get; private set; }
         public IAnimator animator {  get; private set; }
-        public IEntity entity { get; set; }
+        public IAnimator enti {  get; private set; }
+        public IObject entity { get; set; }
 
         public virtual void Awake()
         {

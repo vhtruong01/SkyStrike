@@ -2,34 +2,26 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
+    [RequireComponent(typeof(SpriteAnimation))]
     public class EnemyShield : MonoBehaviour, IEnemyComponent, ISkill
     {
-        public EnemyData enemyData { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public IEntity entity { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-        public void Active()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Deactive()
-        {
-            throw new System.NotImplementedException();
-        }
+        private SpriteAnimation anim;
+        public EnemyData enemyData { get; set; }
+        public IObject entity { get; set; }
 
         public void Init()
+            => anim = GetComponent<SpriteAnimation>();
+        public void Active()
         {
-            throw new System.NotImplementedException();
+            enemyData.shield = true;
+            anim.Restart();
         }
-
-        public void Interrupt()
+        public void Deactive()
         {
-            throw new System.NotImplementedException();
+            enemyData.shield = false;
+            anim.Stop();
         }
-
-        public void UpdateData()
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Interrupt() => Deactive();
+        public void RefreshData() => anim.SetData(enemyData.metaData.shieldSprites);
     }
 }

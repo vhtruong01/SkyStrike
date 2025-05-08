@@ -4,18 +4,17 @@ namespace SkyStrike.Game
 {
     public class ShipBulletManager : PoolManager<ShipBullet, ShipBulletData>
     {
-        private readonly ShipBulletData.ShipBulletEventData bulletEventData = new();
+        private readonly ShipBulletEventData bulletEventData = new();
 
         private void OnEnable()
-            => EventManager.Subscribe<ShipBulletData.ShipBulletEventData>(SpawnBullet);
+            => EventManager.Subscribe<ShipBulletEventData>(SpawnBullet);
         private void OnDisable()
-            => EventManager.Unsubscribe<ShipBulletData.ShipBulletEventData>(SpawnBullet);
-        private void SpawnBullet(ShipBulletData.ShipBulletEventData eventData)
+            => EventManager.Unsubscribe<ShipBulletEventData>(SpawnBullet);
+        private void SpawnBullet(ShipBulletEventData eventData)
         {
             Vector3 pos = eventData.position;
             var metaData = eventData.metaData;
             bulletEventData.metaData = metaData;
-            bulletEventData.damageType = eventData.damageType;
             switch (metaData.type)
             {
                 case EShipBulletType.SingleBullet:

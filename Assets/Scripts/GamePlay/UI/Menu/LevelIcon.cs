@@ -18,6 +18,7 @@ namespace SkyStrike.UI
         [SerializeField] private TextMeshProUGUI score;
         [SerializeField] private List<Image> stars;
         private Button btn;
+        private Image bg;
         private UnityAction<LevelIcon> call;
         public bool isLock { get; set; }
         public int index { get; private set; }
@@ -25,6 +26,7 @@ namespace SkyStrike.UI
         public void Awake()
         {
             btn = GetComponent<Button>();
+            bg = GetComponent<Image>();
             btn.onClick.AddListener(Appear);
             Disappear();
         }
@@ -60,10 +62,12 @@ namespace SkyStrike.UI
             img.gameObject.SetActive(true);
             while (elapsedTime < time)
             {
+                float delta = elapsedTime / time;
                 elapsedTime += Time.deltaTime;
                 img.transform.localScale = Vector3.one * (1 + elapsedTime);
-                img.color = img.color.ChangeAlpha(1 - elapsedTime / time);
+                img.color = img.color.ChangeAlpha(1 - delta);
                 yield return null;
+                bg.color = bg.color.ChangeAlpha(0.02f * delta);
             }
             elapsedTime = 0;
             time = 0.25f;
@@ -78,6 +82,7 @@ namespace SkyStrike.UI
         public void Disappear()
         {
             StopAllCoroutines();
+            bg.color = bg.color.ChangeAlpha(0);
             img.gameObject.SetActive(false);
             levelInfoGroup.alpha = 0;
         }

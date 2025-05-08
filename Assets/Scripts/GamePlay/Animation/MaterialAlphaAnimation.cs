@@ -1,11 +1,12 @@
-using UnityEngine;
+ using UnityEngine;
 
 namespace SkyStrike.Game
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class MaterialAlphaAnimation : SimpleAnimation
+    public sealed class MaterialAlphaAnimation : SimpleAnimation
     {
-        protected SpriteRenderer spriteRenderer;
+        private SpriteRenderer spriteRenderer;
+        private static readonly string key = "_Alpha";
         [field: SerializeField] protected override float startVal { get; set; } = 0;
         [field: SerializeField] protected override float endVal { get; set; } = 1;
         [field: SerializeField] protected override float duration { get; set; } = 2.5f;
@@ -20,7 +21,7 @@ namespace SkyStrike.Game
         public void SetData(Sprite sprite)
             => spriteRenderer.sprite = sprite;
         protected override void ChangeValue(float value)
-            => spriteRenderer.material.SetFloat("_Alpha", value);
+            => spriteRenderer.material.SetFloat(key, value);
         protected override void SetDefault()
             => ChangeValue(0);
     }

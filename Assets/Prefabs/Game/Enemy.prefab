@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1862310892760994793}
   - component: {fileID: 3063146869349276910}
   - component: {fileID: 3896984344509779980}
+  - component: {fileID: 9039881819589212598}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Enemy
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 1411502773
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: -4968243437462496032, guid: cfc8472d2a8371f42b965b5ee99b32bf, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 1.939394, y: 1.939394}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3063146869349276910
@@ -120,6 +121,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3e14d4dd30e944aaf45d8d722d38e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9039881819589212598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842196032168144053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdafbc756bfd73649ab151c8adb0404d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <type>k__BackingField: 0
+  loopType: 2
+  autoPlay: 0
+  interval: 0.075
+  <delay>k__BackingField: 0
+  <pauseAnimationOnFinish>k__BackingField: 0
+  sprites: []
 --- !u!1 &4314800306552034032
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,13 +512,14 @@ GameObject:
   - component: {fileID: 699907850176183579}
   - component: {fileID: 6898654960542916507}
   - component: {fileID: 2149663414501175718}
+  - component: {fileID: 83344314359224764}
   m_Layer: 8
   m_Name: Shield
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &699907850176183579
 Transform:
   m_ObjectHideFlags: 0
@@ -584,10 +605,22 @@ MonoBehaviour:
   <type>k__BackingField: 0
   loopType: 2
   autoPlay: 0
-  interval: 0.075
+  interval: 0.08
   <delay>k__BackingField: 0
   <pauseAnimationOnFinish>k__BackingField: 0
   sprites: []
+--- !u!114 &83344314359224764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933940242543306529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abaa87541317bed45a1670c4315b6fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5974511350364225487
 GameObject:
   m_ObjectHideFlags: 0

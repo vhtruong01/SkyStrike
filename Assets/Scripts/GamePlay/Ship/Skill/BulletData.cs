@@ -25,6 +25,7 @@ namespace SkyStrike.Game
         [field: SerializeField] public List<int> dmgList { get; private set; }
         [field: SerializeField] public List<float> speedList { get; private set; }
         [field: SerializeField] public List<float> scaleList { get; private set; }
+        [field: SerializeField] public List<Sprite> spriteList { get; private set; }
 
         protected override void Upgrade()
         {

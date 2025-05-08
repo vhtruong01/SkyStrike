@@ -6,7 +6,7 @@ namespace SkyStrike.Game
     [CreateAssetMenu(fileName = "Laser", menuName = "Data/Laser")]
     public class LaserData : SkillData
     {
-        [field: SerializeField,ReadOnly] public float damageInterval { get; private set; } = 0.5f;
+        [field: SerializeField] public float damageInterval { get; private set; } = 0.25f;
         [field: SerializeField,ReadOnly] public float len { get; private set; } = 12;
         [field: SerializeField,ReadOnly] public float duration { get; private set; }
         [field: SerializeField,ReadOnly] public float size { get; private set; }

@@ -12,7 +12,7 @@ namespace SkyStrike.Editor
         //
         public ObjectDataObserver refData { get; private set; }
         //
-        public DataObserver<EnemyMetaData> metaData { get; private set; }
+        public DataObserver<ObjectMetaData> metaData { get; private set; }
         public DataObserver<float> size { get; private set; }
         public DataObserver<int> cloneCount { get; private set; }
         public DataObserver<float> spawnInterval { get; private set; }

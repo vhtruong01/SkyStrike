@@ -11,7 +11,7 @@ namespace SkyStrike.Editor
         [SerializeField] private Button removeBtn;
         [SerializeField] private Button duplicateBtn;
         [SerializeField] private BulletInfoMenu bulletInfoMenu;
-        private BulletItemList bulletUIGroupPool;
+        private BulletItemList group;
 
         public void OnEnable()
             => reviewScreen.SetActive(true);
@@ -23,15 +23,15 @@ namespace SkyStrike.Editor
         protected override void Preprocess()
         {
             EventManager.onSelectLevel.AddListener(SelectLevel);
-            bulletUIGroupPool = GetComponent<BulletItemList>();
-            bulletUIGroupPool.Init(SelectBullet);
+            group = GetComponent<BulletItemList>();
+            group.Init(SelectBullet);
             removeBtn.onClick.AddListener(RemoveBullet);
-            addBtn.onClick.AddListener(bulletUIGroupPool.CreateEmptyItem);
-            duplicateBtn.onClick.AddListener(bulletUIGroupPool.DuplicateSelectedItem);
+            addBtn.onClick.AddListener(group.CreateEmptyItem);
+            duplicateBtn.onClick.AddListener(group.DuplicateSelectedItem);
         }
         private void RemoveBullet()
         {
-            bulletUIGroupPool.RemoveSelectedItem();
+            group.RemoveSelectedItem();
             SelectBullet(null);
         }
         private void SelectBullet(BulletDataObserver bulletData)
@@ -41,6 +41,6 @@ namespace SkyStrike.Editor
             bulletSpawner.ChangeBulletSpawner(bulletData);
         }
         protected void SelectLevel(LevelDataObserver data)
-            => bulletUIGroupPool.DisplayDataList(data);
+            => group.DisplayDataList(data);
     }
 }

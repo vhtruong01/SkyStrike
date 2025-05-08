@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NautolanSubboss
   m_EditorClassIdentifier: 
   race: 3
-  type: 5
+  <type>k__BackingField: 5
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <sprite>k__BackingField: {fileID: 21300000, guid: 07755c9fc00758e46a689cd8187fcfe3, type: 3}
   <destructionSprites>k__BackingField:
@@ -60,3 +60,4 @@ MonoBehaviour:
   - {fileID: -2121545105, guid: 7d722535f1f9d2d4ba47e462f28f9cc0, type: 3}
   - {fileID: 1277533431, guid: 7d722535f1f9d2d4ba47e462f28f9cc0, type: 3}
   - {fileID: -563010233, guid: 7d722535f1f9d2d4ba47e462f28f9cc0, type: 3}
+  <bulletSprites>k__BackingField: []

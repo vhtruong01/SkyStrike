@@ -4,19 +4,20 @@ using UnityEngine;
 namespace SkyStrike.Game
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class SpriteAnimation : SimpleAnimation
+    public sealed class SpriteAnimation : SimpleAnimation
     {
-        [SerializeField] protected bool autoPlay;
-        [SerializeField] protected float interval = 0.075f;
+        [SerializeField] private bool autoPlay;
+        [SerializeField] private float interval = 0.075f;
+        [SerializeField] private float spinSpeed = 0f;
         [field: SerializeField] protected override float delay { get; set; }
-        [field: SerializeField] public bool pauseAnimationOnFinish { get; protected set; }
-        [SerializeField] protected List<Sprite> sprites;
-        protected SpriteRenderer spriteRenderer;
-        protected int spriteIndex;
+        [field: SerializeField] public bool pauseAnimationOnFinish { get; private set; }
+        [SerializeField] private List<Sprite> sprites;
+        private SpriteRenderer spriteRenderer;
+        private int spriteIndex;
         protected override float startVal { get; set; }
         protected override float endVal { get; set; }
         protected override float duration { get; set; }
-        protected int index
+        private int index
         {
             get => spriteIndex;
             set
@@ -53,6 +54,7 @@ namespace SkyStrike.Game
                 if (autoPlay)
                     Play();
             }
+            else SetDefault();
         }
         public void SetData(List<Sprite> sprites)
         {
@@ -70,6 +72,7 @@ namespace SkyStrike.Game
             if (pauseAnimationOnFinish && sprites.Count > 0)
                 spriteRenderer.sprite = sprites[0];
             else spriteRenderer.sprite = null;
+            transform.localRotation = Quaternion.identity;
         }
         public IAnimation SetInterval(float interval)
         {
@@ -79,6 +82,13 @@ namespace SkyStrike.Game
             return this;
         }
         protected override void ChangeValue(float value)
-            => index = index < value ? Mathf.FloorToInt(value) : Mathf.CeilToInt(value);
+        {
+            index = index < value ? Mathf.FloorToInt(value) : Mathf.CeilToInt(value);
+            if (spinSpeed != 0)
+            {
+                float z = transform.eulerAngles.z + spinSpeed * Time.deltaTime;
+                transform.localEulerAngles = transform.eulerAngles.SetZ(z);
+            }
+        }
     }
 }

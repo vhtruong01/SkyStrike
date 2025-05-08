@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public class ShipGear : MonoBehaviour, IShipComponent
+    public sealed class ShipGear : MonoBehaviour, IShipComponent
     {
         [SerializeField, Range(0f, 1f)] private float velocityCoefficient;
         private bool canMove;
         private Vector3 relativePos;
-        public IEntity entity { get; set; }
+        public IObject entity { get; set; }
         public ShipData shipData { get; set; }
 
         public void Init()
@@ -24,7 +24,7 @@ namespace SkyStrike.Game
             {
                 Vector2 target = entity.position + relativePos;
                 if (transform.position.x != target.x || transform.position.y != target.y)
-                    transform.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * shipData.speed * velocityCoefficient).SetZ(transform.position.z);
+                    transform.position = Vector2.MoveTowards(transform.position, target, Time.unscaledDeltaTime * shipData.speed * velocityCoefficient).SetZ(transform.position.z);
             }
         }
         public void Interrupt() => canMove = false;

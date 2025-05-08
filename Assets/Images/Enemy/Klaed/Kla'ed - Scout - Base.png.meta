@@ -103,10 +103,10 @@ TextureImporter:
       name: Kla'ed - Scout - Base_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 18
-        width: 24
-        height: 24
+        x: 21
+        y: 19
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

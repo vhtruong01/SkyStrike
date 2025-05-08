@@ -8,7 +8,7 @@ namespace SkyStrike.Editor
     {
         [SerializeField] private Menu addObjectMenu;
         [SerializeField] private Button addObjectBtn;
-        private HierarchyItemList hierarchyUIGroupPool;
+        private HierarchyItemList group;
 
         protected override void Preprocess()
         {
@@ -19,35 +19,35 @@ namespace SkyStrike.Editor
                 Hide();
                 addObjectMenu.Show();
             });
-            hierarchyUIGroupPool = gameObject.GetComponent<HierarchyItemList>();
-            hierarchyUIGroupPool.Init(EventManager.SelectObject);
+            group = gameObject.GetComponent<HierarchyItemList>();
+            group.Init(EventManager.SelectObject);
         }
         private HierarchyItemUI GetItem(int index)
-            => hierarchyUIGroupPool.GetItem(index) as HierarchyItemUI;
+            => group.GetItem(index) as HierarchyItemUI;
         private HierarchyItemUI GetItem(ObjectDataObserver data)
-            => hierarchyUIGroupPool.GetItem(data) as HierarchyItemUI;
+            => group.GetItem(data) as HierarchyItemUI;
         protected override void CreateObject(ObjectDataObserver data)
         {
-            hierarchyUIGroupPool.CreateItem(data);
+            group.CreateItem(data);
             DisplayReferenceObject(data, data.refData);
         }
         protected override void SelectObject(ObjectDataObserver data)
         {
-            if (data == null) hierarchyUIGroupPool.SelectNone();
-            else hierarchyUIGroupPool.SelectItem(data);
+            if (data == null) group.SelectNone();
+            else group.SelectItem(data);
         }
         protected override void RemoveObject(ObjectDataObserver data)
         {
-            var itemIndex = hierarchyUIGroupPool.GetItemIndex(data);
+            var itemIndex = group.GetItemIndex(data);
             var item = GetItem(itemIndex);
             var refItem = GetItem(data.refData);
             refItem?.RemoveChild(item);
             item.RemoveAllChildren();
-            hierarchyUIGroupPool.RemoveItem(itemIndex);
+            group.RemoveItem(itemIndex);
         }
         protected override void SelectWave(WaveDataObserver data)
         {
-            hierarchyUIGroupPool.Clear();
+            group.Clear();
             Dictionary<ObjectDataObserver, Node> marked = new();
             data.GetList(out var list);
             foreach (var objectData in list)
@@ -59,38 +59,38 @@ namespace SkyStrike.Editor
         private void DisplayReferenceObject(ObjectDataObserver curData, ObjectDataObserver refData)
         {
             if (curData == null || (curData.refData == null && refData == null)) return;
-            var selectedItemData = hierarchyUIGroupPool.GetSelectedItem().data;
-            var curObjectIndex = hierarchyUIGroupPool.GetItemIndex(curData);
+            var selectedItemData = group.GetSelectedItem().data;
+            var curObjectIndex = group.GetItemIndex(curData);
             var curItem = GetItem(curObjectIndex);
             int newPos = -1;
-            hierarchyUIGroupPool.SelectNone();
+            group.SelectNone();
             HierarchyItemUI refItem;
             int refObjectIndex;
             if (curData.refData != null && curData.refData != refData)
             {
-                refObjectIndex = hierarchyUIGroupPool.GetItemIndex(curData.refData);
+                refObjectIndex = group.GetItemIndex(curData.refData);
                 refItem = GetItem(refObjectIndex);
                 if (refItem != null)
                     refItem.RemoveChild(curItem);
             }
             if (refData != null)
             {
-                refObjectIndex = hierarchyUIGroupPool.GetItemIndex(refData);
+                refObjectIndex = group.GetItemIndex(refData);
                 refItem = GetItem(refObjectIndex);
                 newPos = refObjectIndex + (refObjectIndex < curObjectIndex ? 0 : -1) + refItem.GetChildCount();
                 refItem.AddChild(curItem);
             }
-            hierarchyUIGroupPool.MoveItemArray(ref curObjectIndex, newPos, curItem.GetChildCount());
-            hierarchyUIGroupPool.SelectItem(selectedItemData);
+            group.MoveItemArray(ref curObjectIndex, newPos, curItem.GetChildCount());
+            group.SelectItem(selectedItemData);
         }
         private void DisplayReferenceObject(ObjectDataObserver refData)
         {
-            var selectedItemData = hierarchyUIGroupPool.GetSelectedItem()?.data;
+            var selectedItemData = group.GetSelectedItem()?.data;
             DisplayReferenceObject(selectedItemData, refData);
         }
         private HierarchyItemUI CreateUI(Node node)
         {
-            var itemUI = hierarchyUIGroupPool.CreateItem(node.data).gameObject.GetComponent<HierarchyItemUI>();
+            var itemUI = group.CreateItem(node.data).gameObject.GetComponent<HierarchyItemUI>();
             for (int i = 0; i < node.children.Count; i++)
                 itemUI.AddChild(CreateUI(node.children[i]));
             return itemUI;

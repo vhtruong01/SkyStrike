@@ -4,8 +4,12 @@ namespace SkyStrike.Game
 {
     public class EnemyCommander : Commander, IEnemyComponent
     {
+        private ISkill shieldSkill;
         private IEnemyComponent[] comps;
         public EnemyData enemyData { get; set; }
+
+        public override void Init()
+            => shieldSkill = GetComponentInChildren<ISkill>(true);
 
         protected override void SetData()
         {
@@ -17,7 +21,7 @@ namespace SkyStrike.Game
         public void Reload()
         {
             foreach (var comp in comps)
-                comp.UpdateData();
+                comp.RefreshData();
             StartCoroutine(Strike());
         }
         private IEnumerator Strike()
@@ -29,12 +33,13 @@ namespace SkyStrike.Game
                 enemyData.bulletData = point.bulletData;
                 spawner.Spawn();
                 enemyData.isImmortal = point.isImmortal;
-                //bool shield = !data.isImmortal && point.shield;
-                //if (data.shield != shield)
-                //{
-                //    data.shield = shield;
-                //    //notifyAction.Invoke(data.shield ? EEntityAction.Defend : EEntityAction.Unprotected);
-
+                bool shield = !point.isImmortal && point.shield;
+                if (enemyData.shield ^ shield)
+                {
+                    if (shield)
+                        shieldSkill.Active();
+                    else shieldSkill.Deactive();
+                }
                 enemyData.isLookingAtPlayer = point.isLookingAtPlayer;
                 yield return StartCoroutine(movement.Travel(point.standingTime));
                 enemyData.pointIndex++;
@@ -42,11 +47,10 @@ namespace SkyStrike.Game
             if (!enemyData.isMaintain)
             {
                 InterruptAllComponents();
-                entity.Disappear();
+                (entity as IEntity).Disappear();
             }
         }
         public override void Interrupt() => StopAllCoroutines();
-        public override void Init() { }
-        public void UpdateData() { }
+        public void RefreshData() { }
     }
 }

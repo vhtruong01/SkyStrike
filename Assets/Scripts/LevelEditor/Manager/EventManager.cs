@@ -12,7 +12,7 @@ namespace SkyStrike.Editor
         public static UnityEvent<ObjectDataObserver> onCreateObject { get; private set; }
         public static UnityEvent<WaveDataObserver> onSelectWave { get; private set; }
         public static UnityEvent<LevelDataObserver> onSelectLevel { get; private set; }
-        public static FuncEvent<int, EnemyMetaData> onGetMetaData { get; private set; }
+        public static FuncEvent<int, ObjectMetaData> onGetMetaData { get; private set; }
 
         static EventManager()
         {
@@ -33,7 +33,7 @@ namespace SkyStrike.Editor
             onSelectObject.Invoke(null);
             onSelectMetaObject.Invoke(data);
         }
-        public static void GetMetaData(int id, out EnemyMetaData metaData)
+        public static void GetMetaData(int id, out ObjectMetaData metaData)
             => metaData = onGetMetaData.Invoke(id);
         public static void CreateObject(ObjectDataObserver data) => onCreateObject.Invoke(data);
         public static void SelectWave(WaveDataObserver data) => onSelectWave.Invoke(data);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public class Ship : Commander, IShipComponent, IEntity, ICollector
+    public sealed class Ship : Commander, IShipComponent, IEntity, ICollector
     {
         public static Vector3 pos { get; private set; }
         [field: SerializeField] public ShipData shipData { get; set; }
@@ -11,6 +11,7 @@ namespace SkyStrike.Game
 
         public IEnumerator Start()
         {
+
             // test
             yield return StartCoroutine(movement.Travel(2));
         }

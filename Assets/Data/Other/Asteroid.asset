@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
+  m_Name: Asteroid
+  m_EditorClassIdentifier: 
+  <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <sprite>k__BackingField: {fileID: -8533231144320634874, guid: e99efcff0f1be3a4b8014fbef313d294, type: 3}
+  race: 1
+  <type>k__BackingField: 8
+  <destructionSprites>k__BackingField:
+  - {fileID: -1496537863, guid: e81b6aa6313bd3f47bfe5cf99fecd84d, type: 3}
+  - {fileID: -1447563666, guid: e81b6aa6313bd3f47bfe5cf99fecd84d, type: 3}
+  - {fileID: 559769917, guid: e81b6aa6313bd3f47bfe5cf99fecd84d, type: 3}
+  - {fileID: 1917367544, guid: e81b6aa6313bd3f47bfe5cf99fecd84d, type: 3}
+  - {fileID: -318349818, guid: e81b6aa6313bd3f47bfe5cf99fecd84d, type: 3}
+  - {fileID: -1767231952, guid: e81b6aa6313bd3f47bfe5cf99fecd84d, type: 3}
+  - {fileID: -327648945, guid: e81b6aa6313bd3f47bfe5cf99fecd84d, type: 3}
+  <engineSprites>k__BackingField:
+  - {fileID: 5354007501973836183, guid: aca202c26a064634ebe65d56a3d561ad, type: 3}
+  - {fileID: 4103666175311166162, guid: aca202c26a064634ebe65d56a3d561ad, type: 3}
+  - {fileID: 8003187237941425895, guid: aca202c26a064634ebe65d56a3d561ad, type: 3}
+  <shieldSprites>k__BackingField: []
+  <weaponSprites>k__BackingField: []
+  <bulletSprites>k__BackingField: []

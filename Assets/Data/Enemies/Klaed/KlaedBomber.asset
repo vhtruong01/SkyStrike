@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
   m_Name: KlaedBomber
   m_EditorClassIdentifier: 
-  race: 1
-  type: 0
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <sprite>k__BackingField: {fileID: 21300000, guid: 5b16ecb535edaf24fbae306e17b78b5e, type: 3}
+  race: 1
+  <type>k__BackingField: 0
   <destructionSprites>k__BackingField:
   - {fileID: -5549919797473692805, guid: 502f70ae17906c6498297dae82869481, type: 3}
   - {fileID: 3941269980544611635, guid: 502f70ae17906c6498297dae82869481, type: 3}
@@ -44,3 +44,4 @@ MonoBehaviour:
   - {fileID: 6894738624611423755, guid: 259857a9f17762e45a3ae2fd61340411, type: 3}
   - {fileID: -6410874521561399579, guid: 259857a9f17762e45a3ae2fd61340411, type: 3}
   <weaponSprites>k__BackingField: []
+  <bulletSprites>k__BackingField: []

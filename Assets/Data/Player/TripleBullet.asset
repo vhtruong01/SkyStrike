@@ -27,7 +27,7 @@ MonoBehaviour:
   <sprite>k__BackingField: {fileID: 21300000, guid: 1ba7ab4a1e1687f4c94b51af173a31d9, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: 19a516f686caae84b9c8f2a9e71f4c8b, type: 2}
   <type>k__BackingField: 2
-  <damageType>k__BackingField: 0
+  <damageType>k__BackingField: 1
   <dmgList>k__BackingField: 64000000
   <speedList>k__BackingField:
   - 5

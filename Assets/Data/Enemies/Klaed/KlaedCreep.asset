@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
   m_Name: KlaedCreep
   m_EditorClassIdentifier: 
-  race: 1
-  type: 2
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <sprite>k__BackingField: {fileID: 21300000, guid: 270f8519fcb3b704cb2a2e960a805003, type: 3}
+  race: 1
+  <type>k__BackingField: 2
   <destructionSprites>k__BackingField:
   - {fileID: -1514354751551358698, guid: 2fe6cddc1c9978e4895b38721dd0eeb1, type: 3}
   - {fileID: -5755276634370742524, guid: 2fe6cddc1c9978e4895b38721dd0eeb1, type: 3}
@@ -59,3 +59,4 @@ MonoBehaviour:
   - {fileID: 6222008191029150973, guid: 1bad084e5f12b074db30544954d29c75, type: 3}
   - {fileID: 2845854080590936551, guid: 1bad084e5f12b074db30544954d29c75, type: 3}
   - {fileID: -2408007684638279896, guid: 1bad084e5f12b074db30544954d29c75, type: 3}
+  <bulletSprites>k__BackingField: []

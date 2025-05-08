@@ -18,8 +18,8 @@ namespace SkyStrike.Editor
         [SerializeField] private BulletSelectionMenu bulletSelectionMenu;
         private bool isEnabledAddPoint;
         private int pointType;
-        private PointItemList pointItemList;
-        private ObjectDataObserver objectDataObserver;
+        private PointItemList group;
+        private ObjectDataObserver objectData;
 
         public void OnEnable()
             => bulletSelectionMenu.Refresh();
@@ -32,9 +32,9 @@ namespace SkyStrike.Editor
             flipXBtn.onClick.AddListener(FlipX);
             pointMenu.gameObject.SetActive(true);
             pointMenu.gameObject.SetActive(false);
-            pointItemList = gameObject.GetComponent<PointItemList>();
-            pointItemList.Init(DisplayPointInfo);
-            pointItemList.screen = screen;
+            group = gameObject.GetComponent<PointItemList>();
+            group.Init(DisplayPointInfo);
+            group.screen = screen;
         }
         public override void Start()
         {
@@ -47,42 +47,42 @@ namespace SkyStrike.Editor
             bulletSelectionMenu.SelectPoint(pointData);
             pointMenu.Display(pointData);
             pointMenu.Show();
-            pointMenu.SetTitle("Point " + pointItemList.GetItemIndex(pointData));
+            pointMenu.SetTitle("Point " + group.GetItemIndex(pointData));
         }
         private void RemovePoint()
         {
-            bool isRemoved = pointItemList.RemovePoint();
+            bool isRemoved = group.RemovePoint();
             if (isRemoved) DisplayPointInfo(null);
         }
         private void Clear()
         {
-            pointItemList.RemoveDataList();
+            group.RemoveDataList();
             DisplayPointInfo(null);
         }
-        private void FlipX() => pointItemList.FlipX();
+        private void FlipX() => group.FlipX();
         private void SelectPointType(int type) => pointType = type;
         private void EnableAddPoint(bool isEnabled) => isEnabledAddPoint = isEnabled;
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (isEnabledAddPoint && objectDataObserver != null && !isDragging)
+            if (isEnabledAddPoint && objectData != null && !isDragging)
                 CreateNewPoint(screen.GetActualPosition(eventData.pointerCurrentRaycast.worldPosition));
         }
         private void CreateNewPoint(Vector2 pos)
         {
             PointDataObserver pointData = new();
             pointData.ChangePosition(pos);
-            pointItemList.SetTypeToLastPoint(pointType == 0);
-            pointItemList.CreateItemAndAddData(pointData);
+            group.SetTypeToLastPoint(pointType == 0);
+            group.CreateItemAndAddData(pointData);
         }
         protected override void CreateObject(ObjectDataObserver data) { }
         protected override void SelectObject(ObjectDataObserver data)
         {
-            if (data == objectDataObserver) return;
-            pointItemList.Clear();
+            if (data == objectData) return;
+            group.Clear();
             DisplayPointInfo(null);
-            objectDataObserver = data;
+            objectData = data;
             if (data != null)
-                pointItemList.DisplayDataList(data.moveData);
+                group.DisplayDataList(data.moveData);
         }
         protected override void RemoveObject(ObjectDataObserver data) => SelectObject(null);
         protected override void SelectWave(WaveDataObserver data) => SelectObject(null);

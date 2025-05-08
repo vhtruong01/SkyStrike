@@ -32,7 +32,7 @@ namespace SkyStrike.Game
         {
             if (collision.CompareTag("EnemyBullet") && collision.TryGetComponent<IReflectable>(out var obj))
             {
-                Vector2 normal = obj.gameObject.transform.position - transform.position;
+                Vector2 normal = obj.position - transform.position;
                 obj.Reflect(normal);
             }
         }

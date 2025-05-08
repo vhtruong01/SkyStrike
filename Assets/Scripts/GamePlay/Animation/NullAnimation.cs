@@ -2,9 +2,9 @@ using UnityEngine.Events;
 
 namespace SkyStrike.Game
 {
-    public class NullAnimation : IAnimation
+    public sealed class NullAnimation : IAnimation
     {
-        private string msg;
+        private readonly string msg;
         public EAnimationType type => EAnimationType.None;
         public bool isNull => true;
         public NullAnimation() { }

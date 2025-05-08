@@ -10,7 +10,7 @@ namespace SkyStrike.Editor
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI itemId;
         [SerializeField] private TextMeshProUGUI itemName;
-        private ObjectItemList objectItemUIGroupPool;
+        private ObjectItemList group;
         private ObjectDataObserver curObjectData;
 
         protected override void Preprocess()
@@ -18,8 +18,8 @@ namespace SkyStrike.Editor
             base.Preprocess();
             EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
             DisplayReferenceObject(null);
-            objectItemUIGroupPool = gameObject.GetComponent<ObjectItemList>();
-            objectItemUIGroupPool.Init(SelectReferenceObject);
+            group = gameObject.GetComponent<ObjectItemList>();
+            group.Init(SelectReferenceObject);
         }
         protected override void CreateObject(ObjectDataObserver data)
             => DisplayObject(data);
@@ -27,7 +27,7 @@ namespace SkyStrike.Editor
         {
             if (curObjectData == data) return;
             curObjectData = data;
-            objectItemUIGroupPool.SelectItem(curObjectData?.refData);
+            group.SelectItem(curObjectData?.refData);
             DisplayReferenceObject(curObjectData?.refData);
         }
         protected override void RemoveObject(ObjectDataObserver data)
@@ -36,18 +36,18 @@ namespace SkyStrike.Editor
                 SelectObject(null);
             else if (curObjectData.refData == data)
                 SelectReferenceObject(null);
-            objectItemUIGroupPool.RemoveItem(data);
+            group.RemoveItem(data);
         }
         protected override void SelectWave(WaveDataObserver data)
         {
-            objectItemUIGroupPool.Clear();
+            group.Clear();
             data.GetList(out var dataList);
             foreach (var objectData in dataList)
                 DisplayObject(objectData);
             DisplayReferenceObject(null);
         }
         private void DisplayObject(ObjectDataObserver data) 
-            => objectItemUIGroupPool.CreateItem(data);
+            => group.CreateItem(data);
         private void SelectReferenceObject(ObjectDataObserver refData)
         {
             if (curObjectData == null) return;

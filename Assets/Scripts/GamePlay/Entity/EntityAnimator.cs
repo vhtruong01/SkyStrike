@@ -13,16 +13,16 @@ namespace SkyStrike.Game
         Engine,
         Shield,
     }
-    public interface IAnimator : IEntityComponent
+    public interface IAnimator
     {
         public IAnimation GetAnimation(EAnimationType type);
         public abstract void OnDestroy();
     }
-    public class EntityAnimator : MonoBehaviour, IAnimator
+    public class EntityAnimator : MonoBehaviour, IAnimator, IEntityComponent
     {
         private readonly NullAnimation nullAnimation = new("Empty animation");
         private Dictionary<EAnimationType, IAnimation> animations;
-        public IEntity entity { get; set; }
+        public IObject entity { get; set; }
 
         public virtual void Init()
         {

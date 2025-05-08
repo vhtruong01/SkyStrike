@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public class ShipMovement : MonoBehaviour, IShipComponent, IMoveable
+    public sealed class ShipMovement : MonoBehaviour, IShipComponent, IMoveable
     {
         private float boundX;
         private float boundY;
         private IInput input;
         private IAnimation anim;
-        public IEntity entity { get; set; }
+        public IObject entity { get; set; }
         public ShipData shipData { get; set; }
 
         public void Init()
@@ -27,10 +27,11 @@ namespace SkyStrike.Game
         private void Update()
         {
             if (!shipData.canMove || input == null) return;
-            Vector2 dir = input.Direction * Time.deltaTime;
-            entity.position = new(Mathf.Clamp(dir.x * shipData.speed + entity.position.x, -boundX, boundX),
-                                  Mathf.Clamp(dir.y * 0.75f * shipData.speed + entity.position.y, -boundY, boundY),
-                                  entity.position.z);
+            Vector2 dir = input.Direction * Time.unscaledDeltaTime;
+            if (dir.x != 0 && dir.y != 0)
+                entity.position = new(Mathf.Clamp(dir.x * shipData.speed + entity.position.x, -boundX, boundX),
+                                      Mathf.Clamp(dir.y * 0.75f * shipData.speed + entity.position.y, -boundY, boundY),
+                                      entity.position.z);
         }
         public IEnumerator Travel(float delay)
         {

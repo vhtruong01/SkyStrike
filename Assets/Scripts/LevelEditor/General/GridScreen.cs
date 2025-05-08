@@ -36,6 +36,10 @@ namespace SkyStrike.Editor
             scaleSlider.minValue = minSize;
             scaleSlider.maxValue = maxSize;
             scaleSlider.onValueChanged.AddListener(Scale);
+        }
+        public void Start()
+        {
+            lockButton.AddListener((enable) => isLocked = enable, () => isLocked);
             Vector2 worldSize = Camera.main.ScreenToWorldPoint(new(Screen.width, Screen.height));
             halfWidth = worldSize.x;
             halfHeight = worldSize.y;
@@ -44,8 +48,6 @@ namespace SkyStrike.Editor
             for (int i = -(int)(halfHeight / minSize); i <= halfHeight / minSize; i++)
                 CreateLine(Screen.width / minSize, thickness, new(0, i, 0));
         }
-        public void Start()
-            => lockButton.AddListener((enable) => isLocked = enable, () => isLocked);
         private void CreateLine(float w, float h, Vector3 dir)
         {
             var img = new GameObject("Line").AddComponent<Image>();

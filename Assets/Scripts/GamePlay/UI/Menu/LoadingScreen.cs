@@ -14,6 +14,7 @@ namespace SkyStrike.UI
             => StartCoroutine(ShowLoadingProgess());
         public IEnumerator ShowLoadingProgess()
         {
+            yield return new WaitForSeconds(0.5f);
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync((int)EScene.MainMenu);
             float totalProgress = 0;
             while (!asyncOperation.isDone)

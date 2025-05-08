@@ -2,13 +2,13 @@ namespace SkyStrike.Editor
 {
     public class BulletSelectionItemList : UIGroupPool<BulletDataObserver>
     {
-        private PointDataObserver pointDataObserver;
+        private PointDataObserver pointData;
 
         public void Start()
             => selectDataCall = UpdateBullet;
         public void SetPoint(PointDataObserver point)
         {
-            pointDataObserver = point;
+            pointData = point;
             if (point == null) return;
             if (point.bulletId != BulletDataObserver.UNDEFINED_ID)
                 for (int i = 0; i < items.Count; i++)
@@ -24,8 +24,8 @@ namespace SkyStrike.Editor
         }
         public void UpdateBullet(BulletDataObserver bulletData)
         {
-            if (pointDataObserver == null) return;
-            pointDataObserver.SetBulletId(bulletData.id);
+            if (pointData == null) return;
+            pointData.SetBulletId(bulletData.id);
         }
     }
 }

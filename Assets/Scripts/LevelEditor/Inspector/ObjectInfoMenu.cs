@@ -32,7 +32,7 @@ namespace SkyStrike.Editor
         [SerializeField] private Button addObjectBtn;
         [SerializeField] private Button pathBtn;
         [SerializeField] private PathMenu pathMenu;
-        private DropItemList dropItemUIGroupPool;
+        private DropItemList group;
 
         protected override void Preprocess()
         {
@@ -41,14 +41,14 @@ namespace SkyStrike.Editor
             referenceObjectBtn.onClick.AddListener(selectRefObjectMenu.Show);
             pathBtn.onClick.AddListener(pathMenu.Show);
             selectDropItemBtn.onClick.AddListener(() => dropItemView.SetActive(!dropItemView.activeSelf));
-            dropItemUIGroupPool = gameObject.GetComponent<DropItemList>();
-            dropItemUIGroupPool.Init(SelectDropItem);
+            group = gameObject.GetComponent<DropItemList>();
+            group.Init(SelectDropItem);
             EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
         }
         public void Start()
         {
             foreach (var item in dropItemDataList)
-                dropItemUIGroupPool.CreateItem(item);
+                group.CreateItem(item);
         }
         private void SelectDropItem(ItemMetaData itemData)
         {
@@ -106,11 +106,11 @@ namespace SkyStrike.Editor
                 foreach (var dropItemData in dropItemDataList)
                     if (dropItemData.type == data.dropItemType)
                     {
-                        dropItemUIGroupPool.SelectAndInvokeItem(dropItemData);
+                        group.SelectAndInvokeItem(dropItemData);
                         return;
                     }
             }
-            else dropItemUIGroupPool.SelectAndInvokeItem(null);
+            else group.SelectAndInvokeItem(null);
         }
         public override void UnbindData()
         {

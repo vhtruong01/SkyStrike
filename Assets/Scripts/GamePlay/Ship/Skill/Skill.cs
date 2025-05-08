@@ -7,7 +7,7 @@ namespace SkyStrike.Game
         [SerializeField] protected T skillData;
         protected Coroutine coroutine;
         protected IAnimation anim;
-        public IEntity entity { get; set; }
+        public IObject entity { get; set; }
         public ShipData shipData { get; set; }
 
         public virtual void Init()

@@ -3,7 +3,6 @@ using System;
 
 namespace SkyStrike.Game
 {
-    public interface IEventData { }
     public static partial class EventManager
     {
         private static Dictionary<Type, Delegate> eventsData = new();

@@ -4,13 +4,13 @@ namespace SkyStrike.Game
 {
     public class EnemyBulletManager : PoolManager<EnemyBullet, EnemyBulletData>
     {
-        private readonly EnemyBulletData.EnemyBulletEventData bulletEventData = new();
+        private readonly EnemyBulletEventData bulletEventData = new();
 
         private void OnEnable()
-            => EventManager.Subscribe<EnemyBulletData.EnemyBulletEventData>(SpawnBullet);
+            => EventManager.Subscribe<EnemyBulletEventData>(SpawnBullet);
         private void OnDisable()
-            => EventManager.Unsubscribe<EnemyBulletData.EnemyBulletEventData>(SpawnBullet);
-        private void SpawnBullet(EnemyBulletData.EnemyBulletEventData eventData)
+            => EventManager.Unsubscribe<EnemyBulletEventData>(SpawnBullet);
+        private void SpawnBullet(EnemyBulletEventData eventData)
         {
             var metaData = bulletEventData.metaData = eventData.metaData;
             if (metaData == null || metaData.amount == 0) return;
@@ -21,7 +21,7 @@ namespace SkyStrike.Game
                 SpawnCircle(eventData, unitAngle);
             else SpawnStraight(eventData, unitAngle);
         }
-        private void SpawnCircle(EnemyBulletData.EnemyBulletEventData eventData, float unitAngle)
+        private void SpawnCircle(EnemyBulletEventData eventData, float unitAngle)
         {
             for (int i = 0; i < eventData.metaData.amount; i++)
             {
@@ -32,7 +32,7 @@ namespace SkyStrike.Game
                 bullet.data.SetData(bulletEventData);
             }
         }
-        private void SpawnStraight(EnemyBulletData.EnemyBulletEventData eventData, float unitAngle)
+        private void SpawnStraight(EnemyBulletEventData eventData, float unitAngle)
         {
             float mid = 0.5f * (eventData.metaData.amount - 1);
             for (float i = -mid; i <= mid; i += 1f)

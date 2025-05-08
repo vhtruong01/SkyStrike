@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public class EnemyBulletData : GameData<EnemyBulletMetaData, EnemyBulletData.EnemyBulletEventData>
+    public class EnemyBulletData : GameData<EnemyBulletMetaData, EnemyBulletEventData>
     {
         public static readonly float maxViewAngle = 90;
         public static readonly float maxRotationAngle = 10;
@@ -23,14 +23,6 @@ namespace SkyStrike.Game
             curViewTime = 0;
             color = metaData.color;
             isLookingAtPlayer = metaData.isLookingAtPlayer;
-        }
-
-        public class EnemyBulletEventData : IEventData
-        {
-            public float angle { get; set; }
-            public Vector3 velocity { get; set; }
-            public Vector3 position { get; set; }
-            public EnemyBulletMetaData metaData { get; set; }
         }
     }
 }

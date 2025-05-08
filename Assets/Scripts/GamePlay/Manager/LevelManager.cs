@@ -6,12 +6,14 @@ namespace SkyStrike.Game
 {
     public class LevelManager : MonoBehaviour
     {
-        private readonly EnemyData.EnemyEventData enemyEventData = new();
+        private readonly EnemyEventData enemyEventData = new();
+        private readonly SpecialObjectEventData specialObjectEventData = new();
         private Dictionary<int, EnemyBulletMetaData> bulletDataDict;
         private Dictionary<int, ObjectData> objectDataDict;
         private Coroutine nextWaveCoroutine;
         private LevelData levelData;
         private int waveIndex;
+        private IObjectEventData objectEventData;
 
         public void Awake()
         {
@@ -51,30 +53,35 @@ namespace SkyStrike.Game
             foreach (var objectData in waveData.objectDataArr)
                 objectDataDict.Add(objectData.id, objectData);
             foreach (var objectData in waveData.objectDataArr)
-            {
+                CreateObject(objectData, waveData.delay);
+            float waveDuration = waveData.objectDataArr.Length != 0 ? waveData.duration : 1;
+            nextWaveCoroutine = StartCoroutine(WaitForNextWave(waveDuration));
+        }
+        private void CreateObject(ObjectData objectData, float delay)
+        {
+            bool isEnemy = objectData.metaId > 0;
+            objectEventData = isEnemy ? enemyEventData : specialObjectEventData;
+            objectEventData.isMaintain = objectData.isMaintain;
+            objectEventData.size = objectData.size;
+            objectEventData.position = objectData.pos.SetZ(0);
+            objectEventData.moveData = objectData.moveData;
+            objectEventData.metaId = objectData.metaId;
+            if (objectData.refId != -1)
+                objectData.CopyMoveData(CloneMoveData(objectData.refId));
+            if (isEnemy)
                 foreach (var point in objectData.moveData.points)
                 {
                     point.bulletData = bulletDataDict.GetValueOrDefault(point.bulletId);
                     if (point.bulletData != null)
                         point.bulletData.color = gameObject.RandomColor();
                 }
-                if (objectData.refId != -1)
-                    objectData.CopyMoveData(CloneMoveData(objectData.refId));
-                int randomEnemyIndex = objectData.dropItemType == EItem.None ? -1 : Random.Range(0, objectData.cloneCount + 1);
-                enemyEventData.isMaintain = objectData.isMaintain;
-                enemyEventData.size = objectData.size;
-                enemyEventData.position = objectData.pos.SetZ(0);
-                enemyEventData.moveData = objectData.moveData;
-                enemyEventData.metaId = objectData.metaId;
-                for (int i = 0; i <= objectData.cloneCount; i++)
-                {
-                    enemyEventData.dropItemType = randomEnemyIndex == i ? objectData.dropItemType : EItem.None;
-                    enemyEventData.delay = waveData.delay + objectData.moveData.delay + i * objectData.spawnInterval;
-                    EventManager.Active(enemyEventData);
-                }
+            int randomEnemyIndex = objectData.dropItemType == EItem.None ? -1 : Random.Range(0, objectData.cloneCount + 1);
+            for (int i = 0; i <= objectData.cloneCount; i++)
+            {
+                objectEventData.dropItemType = randomEnemyIndex == i ? objectData.dropItemType : EItem.None;
+                objectEventData.delay = delay + objectData.moveData.delay + i * objectData.spawnInterval;
+                EventManager.Active(objectEventData);
             }
-            float waveDuration = waveData.objectDataArr.Length != 0 ? waveData.duration : 1;
-            nextWaveCoroutine = StartCoroutine(WaitForNextWave(waveDuration));
         }
         private IEnumerator WaitForNextWave(float time)
         {

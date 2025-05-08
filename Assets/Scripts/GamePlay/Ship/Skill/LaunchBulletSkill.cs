@@ -2,7 +2,7 @@ namespace SkyStrike.Game
 {
     public class LaunchBulletSkill : Skill<BulletData>
     {
-        private readonly ShipBulletData.ShipBulletEventData bulletEventData = new();
+        private readonly ShipBulletEventData bulletEventData = new();
 
         public override void Init()
         {

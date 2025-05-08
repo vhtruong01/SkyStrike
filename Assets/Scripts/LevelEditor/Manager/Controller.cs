@@ -7,7 +7,7 @@ namespace SkyStrike.Editor
     public class Controller : MonoBehaviour
     {
         private List<IMenu> menus;
-        private LevelDataObserver levelDataObserver;
+        private LevelDataObserver levelData;
 
         public void Awake()
         {
@@ -22,12 +22,12 @@ namespace SkyStrike.Editor
         public void Start()
         {
             //PlayerPrefs.DeleteAll();
-            levelDataObserver = new(IO.ReadFromBinaryFile<LevelData>("test.dat"));
-            EventManager.SelectLevel(levelDataObserver);        
+            levelData = new(IO.ReadFromBinaryFile<LevelData>("test.dat"));
+            EventManager.SelectLevel(levelData);        
         }
         public void SaveLevelData()
         {
-            IO.WriteToBinaryFile("test.dat", levelDataObserver.ExportData());
+            IO.WriteToBinaryFile("test.dat", levelData.ExportData());
             foreach (var menu in menus)
                 menu.SaveSetting();
             print("saved");

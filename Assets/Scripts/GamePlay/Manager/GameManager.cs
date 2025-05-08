@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    [CreateAssetMenu(fileName = "GameDataManager", menuName = "Game/GameDataManager")]
+    [CreateAssetMenu(fileName = "GameData", menuName = "GameData")]
     public class GameManager : ScriptableObject
     {
         [SerializeField, Range(0, 1)] private float _soundVolume;

@@ -20,12 +20,13 @@ MonoBehaviour:
   - 0.5
   <cooldown>k__BackingField: 0.5
   <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 0.50401795
-  <damageInterval>k__BackingField: 0.5
+  <elapsedTime>k__BackingField: 0.5
+  <damageInterval>k__BackingField: 0.25
   <len>k__BackingField: 12
   <duration>k__BackingField: 2
   <size>k__BackingField: 0.33
   <damage>k__BackingField: 500
+  <damageType>k__BackingField: 2
   <durationList>k__BackingField:
   - 2
   <damageList>k__BackingField: f4010000

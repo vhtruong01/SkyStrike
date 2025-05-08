@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NairanSupport
   m_EditorClassIdentifier: 
   race: 2
-  type: 6
+  <type>k__BackingField: 6
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <sprite>k__BackingField: {fileID: 21300000, guid: f45a00832a2948f48bee4d52b7f26545, type: 3}
   <destructionSprites>k__BackingField:
@@ -43,3 +43,4 @@ MonoBehaviour:
   - {fileID: -5115236924938432474, guid: ef31e10384679b54d9d1787101cbe690, type: 3}
   <shieldSprites>k__BackingField: []
   <weaponSprites>k__BackingField: []
+  <bulletSprites>k__BackingField: []

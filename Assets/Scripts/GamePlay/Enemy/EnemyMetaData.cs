@@ -13,6 +13,7 @@ namespace SkyStrike.Game
         Subboss,
         Support,
         Torpedo,
+        Asteroid,
     }
     public enum EnemyRace
     {
@@ -21,13 +22,13 @@ namespace SkyStrike.Game
         Nautolan
     }
     [CreateAssetMenu(fileName = "Enemy", menuName = "Data/Enemy")]
-    public class EnemyMetaData : ScriptableObject, IMetaData, IGame
+    public class EnemyMetaData : ObjectMetaData, IMetaData, IGame
     {
         private static readonly float hpCoefficient = 1.05f;
-        private static readonly int minHp = 350;
+        private static readonly int minHp = 500;
         [SerializeField] private EnemyRace race;
-        [SerializeField] private EnemyType type;
-        public int id => (int)race * 10 + (int)type;
+        [field: SerializeField] public EnemyType type { get; private set; }
+        public override int id => (int)race * 10 + (int)type;
         public int star
         {
             get => type switch
@@ -43,12 +44,8 @@ namespace SkyStrike.Game
                 _ => 0,
             };
         }
-        //
-        public int exp => 1;
         public int score => (int)Mathf.Max(maxHp, Mathf.Round(maxHp / 1000) * 1000);
-        public int maxHp => (int)(minHp * Mathf.Pow(hpCoefficient, star) * star);
-        [field: SerializeField] public Color color { get; private set; }
-        [field: SerializeField] public Sprite sprite { get; private set; }
+        public int maxHp => (int)(minHp * (1 + Mathf.Pow(hpCoefficient, star) * star));
         [field: SerializeField] public List<Sprite> destructionSprites { get; private set; }
         [field: SerializeField] public List<Sprite> engineSprites { get; private set; }
         [field: SerializeField] public List<Sprite> shieldSprites { get; private set; }
@@ -61,6 +58,6 @@ namespace SkyStrike.Game
                 return false;
             return true;
         }
-        public string GetName() => race.ToString() + " " + type.ToString();
+        public override string GetName() => race.ToString() + " " + type.ToString();
     }
 }

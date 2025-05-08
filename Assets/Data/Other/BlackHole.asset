@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1b739b2e2683f4f86bea1e9645e793, type: 3}
+  m_Name: BlackHole
+  m_EditorClassIdentifier: 
+  <color>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
+  <sprite>k__BackingField: {fileID: 8107366635331182373, guid: 1151931b47cf4e14c9d8e9c447ae3d1b, type: 3}
+  <bodyType>k__BackingField: 3
+  <objectName>k__BackingField: BlackHole
+  <sprites>k__BackingField: []

@@ -1,0 +1,459 @@
+fileFormatVersion: 2
+guid: 7734cf09cb82e1747bf66d68974f4aea
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -33366858322724224
+    second: Starry background - Layer X -Rotary Star_0
+  - first:
+      213: 6546272560271996899
+    second: Starry background - Layer X -Rotary Star_1
+  - first:
+      213: -2907197468975948572
+    second: Starry background - Layer X -Rotary Star_2
+  - first:
+      213: -2713716380045066398
+    second: Starry background - Layer X -Rotary Star_3
+  - first:
+      213: -6322918873735107772
+    second: Starry background - Layer X -Rotary Star_4
+  - first:
+      213: -335312604765203026
+    second: Starry background - Layer X -Rotary Star_5
+  - first:
+      213: 1380194466908616341
+    second: Starry background - Layer X -Rotary Star_6
+  - first:
+      213: 3014271970723925178
+    second: Starry background - Layer X -Rotary Star_7
+  - first:
+      213: -8376009392596461224
+    second: Starry background - Layer X -Rotary Star_8
+  - first:
+      213: 1644834092634417258
+    second: Starry background - Layer X -Rotary Star_9
+  - first:
+      213: 5339770396801689550
+    second: Starry background - Layer X -Rotary Star_10
+  - first:
+      213: -6852159053357764396
+    second: Starry background - Layer X -Rotary Star_11
+  - first:
+      213: 6067389232177377096
+    second: Starry background - Layer X -Rotary Star_12
+  - first:
+      213: -1121140504669702421
+    second: Starry background - Layer X -Rotary Star_13
+  - first:
+      213: -4547491632755136836
+    second: Starry background - Layer X -Rotary Star_14
+  - first:
+      213: 8361406729127201228
+    second: Starry background - Layer X -Rotary Star_15
+  - first:
+      213: -2467420228026158436
+    second: Starry background - Layer X -Rotary Star_16
+  - first:
+      213: 2945526844581810476
+    second: Starry background - Layer X -Rotary Star_17
+  - first:
+      213: -9014979904081845019
+    second: Starry background - Layer X -Rotary Star_18
+  - first:
+      213: 131428404805701690
+    second: Starry background - Layer X -Rotary Star_19
+  - first:
+      213: -348450319952190642
+    second: Starry background - Layer X -Rotary Star_20
+  - first:
+      213: 4885864208518400519
+    second: Starry background - Layer X -Rotary Star_21
+  - first:
+      213: -2509548757014646679
+    second: Starry background - Layer X -Rotary Star_22
+  - first:
+      213: -3293525405216239453
+    second: Starry background - Layer X -Rotary Star_23
+  - first:
+      213: 246546449152703915
+    second: Starry background - Layer X -Rotary Star_24
+  - first:
+      213: 8924044031520315233
+    second: Starry background - Layer X -Rotary Star_25
+  - first:
+      213: -2862862459427606333
+    second: Starry background - Layer X -Rotary Star_26
+  - first:
+      213: -583735913812430489
+    second: Starry background - Layer X -Rotary Star_27
+  - first:
+      213: -3375287208629582839
+    second: Starry background - Layer X -Rotary Star_28
+  - first:
+      213: 261037036256693737
+    second: Starry background - Layer X -Rotary Star_29
+  - first:
+      213: 1689165428724043207
+    second: Starry background - Layer X -Rotary Star_30
+  - first:
+      213: 6271327315973636473
+    second: Starry background - Layer X -Rotary Star_31
+  - first:
+      213: -7042914491195923103
+    second: Starry background - Layer X -Rotary Star_32
+  - first:
+      213: -2165446310808322249
+    second: Starry background - Layer X -Rotary Star_33
+  - first:
+      213: 7843410849029256733
+    second: Starry background - Layer X -Rotary Star_34
+  - first:
+      213: 5494185333096080425
+    second: Starry background - Layer X -Rotary Star_35
+  - first:
+      213: 6644836805200045250
+    second: Starry background - Layer X -Rotary Star_36
+  - first:
+      213: 8061926543396233644
+    second: Starry background - Layer X -Rotary Star_37
+  - first:
+      213: -271498925748345198
+    second: Starry background - Layer X -Rotary Star_38
+  - first:
+      213: 2840037001322307307
+    second: Starry background - Layer X -Rotary Star_39
+  - first:
+      213: 8587398446850818944
+    second: Starry background - Layer X -Rotary Star_40
+  - first:
+      213: -1198998471096291357
+    second: Starry background - Layer X -Rotary Star_41
+  - first:
+      213: 8374596633633383780
+    second: Starry background - Layer X -Rotary Star_42
+  - first:
+      213: -5241656457624947226
+    second: Starry background - Layer X -Rotary Star_43
+  - first:
+      213: -6645319821563681131
+    second: Starry background - Layer X -Rotary Star_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08a3766e405798ff0800000000000000
+      internalID: -33366858322724224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e736edb53809da50800000000000000
+      internalID: 6546272560271996899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_2
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec16c11e4f87a7d0800000000000000
+      internalID: -2907197468975948572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_3
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26f314a8451f65ad0800000000000000
+      internalID: -2713716380045066398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_4
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44be76bd8ca7048a0800000000000000
+      internalID: -6322918873735107772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_5
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5524866fab85bf0800000000000000
+      internalID: -335312604765203026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_6
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5963c091e8f672310800000000000000
+      internalID: 1380194466908616341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_7
+      rect:
+        serializedVersion: 2
+        x: 4480
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abc8a671368d4d920800000000000000
+      internalID: 3014271970723925178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starry background - Layer X -Rotary Star_8
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 0
+        width: 640
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 859d3fed5df62cb80800000000000000
+      internalID: -8376009392596461224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6d2b2e7c8b54c414f95708254d3d1f52
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Starry background - Layer X -Rotary Star_0: -33366858322724224
+      Starry background - Layer X -Rotary Star_1: 6546272560271996899
+      Starry background - Layer X -Rotary Star_2: -2907197468975948572
+      Starry background - Layer X -Rotary Star_3: -2713716380045066398
+      Starry background - Layer X -Rotary Star_4: -6322918873735107772
+      Starry background - Layer X -Rotary Star_5: -335312604765203026
+      Starry background - Layer X -Rotary Star_6: 1380194466908616341
+      Starry background - Layer X -Rotary Star_7: 3014271970723925178
+      Starry background - Layer X -Rotary Star_8: -8376009392596461224
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NautolanCreep
   m_EditorClassIdentifier: 
   race: 3
-  type: 2
+  <type>k__BackingField: 2
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <sprite>k__BackingField: {fileID: 21300000, guid: 5fef95713530ca844ae300cd37933484, type: 3}
   <destructionSprites>k__BackingField:
@@ -57,3 +57,4 @@ MonoBehaviour:
   - {fileID: 760396124151451747, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
   - {fileID: -8240889753089356293, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
   - {fileID: 7680083943011690149, guid: 9813005a5ddb15d49a20fce95cd8c8db, type: 3}
+  <bulletSprites>k__BackingField: []

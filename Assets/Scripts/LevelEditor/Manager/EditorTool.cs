@@ -25,7 +25,7 @@ namespace SkyStrike.Editor
         [SerializeField] private BulletEditor bulletEditor;
         [SerializeField] private PathMenu pathMenu;
         private ObjectDataObserver tempItemData;
-        private ObjectDataObserver curObjectDataObserver;
+        private ObjectDataObserver curObjectData;
 
         public void Awake()
         {
@@ -44,12 +44,12 @@ namespace SkyStrike.Editor
         }
         private void SelectObject(ObjectDataObserver data)
         {
-            curObjectDataObserver = data;
-            copyBtn.interactable = removeBtn.interactable = cutBtn.interactable = editMovementBtn.interactable = curObjectDataObserver != null;
+            curObjectData = data;
+            copyBtn.interactable = removeBtn.interactable = cutBtn.interactable = editMovementBtn.interactable = curObjectData != null;
         }
         private void Copy()
         {
-            tempItemData = curObjectDataObserver;
+            tempItemData = curObjectData;
             if (!pasteBtn.interactable && tempItemData != null)
                 pasteBtn.interactable = true;
         }
@@ -57,10 +57,10 @@ namespace SkyStrike.Editor
             => EventManager.CreateObject(tempItemData.Clone());
         private void Remove()
         {
-            if (curObjectDataObserver != null)
+            if (curObjectData != null)
             {
-                EventManager.RemoveObject(curObjectDataObserver);
-                curObjectDataObserver = null;
+                EventManager.RemoveObject(curObjectData);
+                curObjectData = null;
                 removeBtn.interactable = cutBtn.interactable = false;
             }
         }

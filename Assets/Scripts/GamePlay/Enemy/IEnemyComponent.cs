@@ -3,6 +3,6 @@ namespace SkyStrike.Game
     public interface IEnemyComponent : IEntityComponent
     {
         public EnemyData enemyData { get; set; }
-        public void UpdateData();
+        public void RefreshData();
     }
 }

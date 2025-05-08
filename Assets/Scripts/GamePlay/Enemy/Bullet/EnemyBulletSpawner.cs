@@ -4,16 +4,16 @@ namespace SkyStrike.Game
 {
     public class EnemyBulletSpawner : MonoBehaviour, IEnemyComponent, ISpawnable
     {
-        private readonly EnemyBulletData.EnemyBulletEventData bulletEventData = new();
+        private readonly EnemyBulletEventData bulletEventData = new();
         private float elaspedTime;
         private float angle;
         private SpriteAnimation anim;
-        public IEntity entity { get; set; }
+        public IObject entity { get; set; }
         public EnemyData enemyData { get; set; }
 
         public void Init()
             => anim = GetComponentInChildren<SpriteAnimation>(true);
-        public void UpdateData()
+        public void RefreshData()
             => anim.SetData(enemyData.metaData.weaponSprites);
         public void Spawn()
         {

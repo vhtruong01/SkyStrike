@@ -3,16 +3,17 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    [RequireComponent(typeof(EnemyCommander))]
-    public class Enemy : PoolableObject<EnemyData>, IEnemyComponent, IEntity
+    public class Enemy : ObjectEntity<EnemyMetaData>, IEnemyComponent, IEntity
     {
+        private readonly BossEventData bossEventData = new();
         [SerializeField] private MaterialAlphaAnimation damagedAnimation;
         [SerializeField] private SpriteAnimation destructionAnimation;
-        private readonly ItemData.ItemEventData itemEventData = new();
+        private readonly ItemEventData itemEventData = new();
+        private readonly DamageVisualizerEventData damageVisualizer = new();
         private Rigidbody2D rigi;
         private EnemyCommander commander;
         private IAnimator animator;
-        public IEntity entity { get; set; }
+        public IObject entity { get; set; }
         public EnemyData enemyData { get; set; }
 
         public void Init()
@@ -21,7 +22,7 @@ namespace SkyStrike.Game
             commander = GetComponent<EnemyCommander>();
             animator = commander.animator;
         }
-        public void UpdateData()
+        public void RefreshData()
         {
             rigi.simulated = true;
             damagedAnimation.SetData(spriteRenderer.sprite);
@@ -29,18 +30,13 @@ namespace SkyStrike.Game
             if (enemyData.dropItemType != EItem.None && enemyData.metaData.CanHighlight())
                 animator.GetAnimation(EAnimationType.Highlight).Play();
             destructionAnimation.SetFinishedAction(DropItemAndDisapear);
+            if (enemyData.metaData.type == EnemyType.Boss)
+            {
+                bossEventData.bossData = enemyData;
+                EventManager.Active(bossEventData);
+            }
         }
-        public override void Refresh()
-        {
-            spriteRenderer.sprite = data.metaData.sprite;
-            spriteRenderer.color = data.metaData.color;
-            col2D.size = data.metaData.sprite.bounds.size / 2;
-            spriteRenderer.color = data.metaData.color;
-            entity.transform.localScale = Vector3.one * data.size;
-        }
-        public void Launch(float delay)
-            => StartCoroutine(Prepare(delay));
-        private IEnumerator Prepare(float delay)
+        protected override IEnumerator Prepare(float delay)
         {
             Enable(false);
             yield return new WaitForSeconds(delay);
@@ -52,14 +48,22 @@ namespace SkyStrike.Game
         public bool TakeDamage(IDamager damager)
         {
             if (!isActive || enemyData.isImmortal) return false;
-            if (!data.shield)
+            if (!enemyData.shield || damager.damageType == EDamageType.Slashing)
             {
-                data.hp -= damager.GetDamage();
-                if (data.hp <= 0)
+                enemyData.hp -= damager.GetDamage();
+                DisplayDamage(damager.GetDamage(), damager.damageType);
+                if (enemyData.hp <= 0)
                     Die();
                 else animator.GetAnimation(EAnimationType.Damaged).Play();
             }
             return true;
+        }
+        private void DisplayDamage(int damage, EDamageType damageType)
+        {
+            damageVisualizer.damage = damage;
+            damageVisualizer.damageType = damageType;
+            damageVisualizer.position = transform.position + Random.insideUnitSphere * 0.5f;
+            EventManager.Active(damageVisualizer);
         }
         public void Die()
         {
@@ -77,8 +81,8 @@ namespace SkyStrike.Game
                 DropItem(EItem.Star5, star5);
                 DropItem(EItem.Star1, star1);
             }
-            if (data.dropItemType != EItem.None)
-                DropItem(data.dropItemType, 1);
+            if (enemyData.dropItemType != EItem.None)
+                DropItem(enemyData.dropItemType, 1);
             Disappear();
         }
         private void DropItem(EItem itemType, int amount)

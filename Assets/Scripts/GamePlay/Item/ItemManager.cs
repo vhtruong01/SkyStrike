@@ -16,10 +16,10 @@ namespace SkyStrike.Game
                 itemDict.Add(item.type, item);
         }
         private void OnEnable()
-            => EventManager.Subscribe<ItemData.ItemEventData>(DropItem);
+            => EventManager.Subscribe<ItemEventData>(DropItem);
         private void OnDisable()
-            => EventManager.Unsubscribe<ItemData.ItemEventData>(DropItem);
-        private void DropItem(ItemData.ItemEventData eventData)
+            => EventManager.Unsubscribe<ItemEventData>(DropItem);
+        private void DropItem(ItemEventData eventData)
         {
             if (eventData.itemType == EItem.None || eventData.amount == 0) return;
             float unitAngle = 2 * Mathf.PI / eventData.amount;

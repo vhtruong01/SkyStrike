@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike.Game
@@ -14,6 +15,7 @@ namespace SkyStrike.Game
         private Tweener tweener;
         public bool isMagnetic { get; private set; }
         public EItem itemType => data.metaData.type;
+        private readonly Dictionary<EItemAnimationType, Tweener> animationDict = new();
 
         public override void Refresh()
         {
@@ -43,24 +45,28 @@ namespace SkyStrike.Game
             }
             transform.localScale = data.metaData.size * Vector3.one;
             tweener = GetAnimation(data.metaData.animationType);
+            tweener.Restart();
             isMagnetic = true;
         }
         private Tweener GetAnimation(EItemAnimationType type)
         {
-            Tweener tweener = null;
-            switch (type)
+            if (!animationDict.TryGetValue(type, out var tweener))
             {
-                case EItemAnimationType.Zoom:
-                    tweener = transform.DOScale(1.5f * data.metaData.size, 2.5f);
-                    break;
-                case EItemAnimationType.Fade:
-                    tweener = spriteRenderer.DOFade(0.5f, 1);
-                    break;
-                case EItemAnimationType.Rotate:
-                    tweener = transform.DORotate(new(0, 0, 360), 10, RotateMode.FastBeyond360).SetEase(Ease.InOutFlash);
-                    break;
+                switch (type)
+                {
+                    case EItemAnimationType.Zoom:
+                        tweener = transform.DOScale(1.5f * data.metaData.size, 2.5f);
+                        break;
+                    case EItemAnimationType.Fade:
+                        tweener = spriteRenderer.DOFade(0.5f, 1);
+                        break;
+                    case EItemAnimationType.Rotate:
+                        tweener = transform.DORotate(new(0, 0, 360), 10, RotateMode.FastBeyond360).SetEase(Ease.InOutFlash);
+                        break;
+                }
+                animationDict[type] = tweener.SetLoops(-1, LoopType.Yoyo).Pause();
             }
-            return tweener.SetLoops(-1, LoopType.Yoyo);
+            return tweener;
         }
         public void Update()
         {
@@ -83,9 +89,10 @@ namespace SkyStrike.Game
         public override void Disappear()
         {
             base.Disappear();
-            if (tweener != null && tweener.IsActive())
-                tweener.Kill();
+            tweener?.Pause();
             isMagnetic = false;
         }
+        public void OnDestroy()
+            => tweener?.Kill();
     }
 }

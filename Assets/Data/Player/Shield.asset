@@ -20,11 +20,11 @@ MonoBehaviour:
   - 5
   <cooldown>k__BackingField: 5
   <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 5.000421
+  <elapsedTime>k__BackingField: 5
   <duration>k__BackingField: 10
-  <scale>k__BackingField: 2
+  <scale>k__BackingField: 1.2
   <durationList>k__BackingField:
   - 10
   <scaleList>k__BackingField:
-  - 2
-  - 3
+  - 1.2
+  - 1.5

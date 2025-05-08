@@ -9,6 +9,8 @@ namespace SkyStrike.Game
         PlayNextWave,
         CreateEnemy,
         CreateItem,
+        SlowTime,
+        ShakeScreen,
 
     }
     public enum EEventSysType

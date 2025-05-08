@@ -14,12 +14,15 @@ namespace SkyStrike.UI
         [SerializeField] private Transform skillGroupContainer;
         [SerializeField] private GameObject uiContent;
         [SerializeField] private TextMeshProUGUI star;
+        [SerializeField] private TextMeshProUGUI score;
+        [SerializeField] private TextMeshProUGUI time;
         [SerializeField] private HpBar hpBar;
         [SerializeField] private Button startButton;
         [SerializeField] private Slider levelProcess;
         [SerializeField] private ShipData shipData;
         private Material startBtnMaterial;
         private List<SkillButton> skillButtons;
+
 
         public void Awake()
         {
@@ -30,6 +33,7 @@ namespace SkyStrike.UI
             {
                 startButton.gameObject.SetActive(false);
                 EventManager.Active(EEventSysType.PrepareGame);
+                StartCoroutine(CountTime());
             });
             skillButtons = new();
         }
@@ -57,6 +61,17 @@ namespace SkyStrike.UI
                 startBtnMaterial.SetFloat("_Threshold", elapsedTime);
                 elapsedTime += Time.deltaTime;
                 yield return null;
+            }
+            movingBg.enabled = true;
+        }
+        public IEnumerator CountTime()
+        {
+            float totalTime = 0;
+            while (true)
+            {
+                totalTime += 1;
+                time.text = totalTime.ToString();
+                yield return new WaitForSeconds(1);
             }
         }
         private void UpdateStarDisplay(int amount)

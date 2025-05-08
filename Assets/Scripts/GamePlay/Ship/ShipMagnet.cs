@@ -4,11 +4,11 @@ namespace SkyStrike.Game
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(CircleCollider2D))]
-    public class ShipMagnet : MonoBehaviour, IShipComponent
+    public sealed class ShipMagnet : MonoBehaviour, IShipComponent
     {
         private Rigidbody2D rigi;
         private CircleCollider2D circleCollider;
-        public IEntity entity { get; set; }
+        public IObject entity { get; set; }
         public ShipData shipData { get; set; }
 
         public void Init()
@@ -22,7 +22,7 @@ namespace SkyStrike.Game
         {
             if (collision.TryGetComponent<IMagnetic>(out var obj) && obj.isMagnetic)
             {
-                Vector2 s = entity.position - obj.gameObject.transform.position;
+                Vector2 s = entity.position - obj.position;
                 Vector2 dir = Mathf.Sqrt(1 - Mathf.Clamp(s.magnitude / shipData.magnetRadius, 0, 0.99f)) * 0.1f * s;
                 obj.HandleAffectedByGravity(dir);
             }

@@ -17,19 +17,31 @@ MonoBehaviour:
   <skillName>k__BackingField: Missile
   <icon>k__BackingField: {fileID: 21300000, guid: 27f7d8053038d6749903b9edfc181218, type: 3}
   <cooldownList>k__BackingField:
-  - 0.5
-  <cooldown>k__BackingField: 0.5
+  - 2
+  <cooldown>k__BackingField: 2
   <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 0.5
+  <elapsedTime>k__BackingField: 2.0047057
   <dmg>k__BackingField: 100
   <speed>k__BackingField: 5
   <scale>k__BackingField: 1
-  <timeLife>k__BackingField: 5
+  <lifetime>k__BackingField: 10
   <sprite>k__BackingField: {fileID: -6345550270201846964, guid: e166899afaf16fd45b054b81f6ee4a9f, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: a9c88f0cc40449042a10b6f958d95c00, type: 2}
   <type>k__BackingField: 3
+  <damageType>k__BackingField: 2
   <dmgList>k__BackingField: 64000000
   <speedList>k__BackingField:
   - 5
   <scaleList>k__BackingField:
   - 1
+  <spriteList>k__BackingField:
+  - {fileID: 3988828326770655150, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: -8024733606947100112, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: 3692025383023953489, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: 1137453674460749875, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: -3352014669084381124, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: -4653297501129094095, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: -2228092687517378546, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: -1542530954104006472, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: -444571773457118995, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  - {fileID: 2212986679589364865, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
