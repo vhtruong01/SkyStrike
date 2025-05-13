@@ -9676,13 +9676,14 @@ GameObject:
   m_Component:
   - component: {fileID: 642521329}
   - component: {fileID: 642521330}
+  - component: {fileID: 642521331}
   m_Layer: 7
   m_Name: Halo
   m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &642521329
 Transform:
   m_ObjectHideFlags: 0
@@ -9753,6 +9754,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &642521331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642521328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e1c49aea8624c4abe7993927590662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &654073404
 GameObject:
   m_ObjectHideFlags: 0
@@ -11201,10 +11214,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tap to Start...
+  m_text: Tap to start...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4701c9e91a097ae498be5d06c82066e9, type: 2}
+  m_sharedMaterial: {fileID: -6727766436361875506, guid: 4701c9e91a097ae498be5d06c82066e9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11234,7 +11247,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

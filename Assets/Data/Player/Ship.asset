@@ -23,23 +23,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d1c96f9a463a8c347b6f017dc1f00bda, type: 2}
   - {fileID: 11400000, guid: e2935ce5ab074454d9e3de2772e066e3, type: 2}
   defaultHp: 7
-  defaultExp: 1000
+  defaultExp: 901
   defaultEnergy: 200
   defaultRecoverSpeed: 10
   defaultSpeed: 5
   defaultMagnetRadius: 1.25
   <maxLv>k__BackingField: 10
   <speed>k__BackingField: 5
-  <skillPoint>k__BackingField: 0
+  <skillPoint>k__BackingField: 1
   <magnetRadius>k__BackingField: 1.25
   <recoverSpeed>k__BackingField: 10
   <invincibility>k__BackingField: 0
   <shield>k__BackingField: 0
   <isSpawn>k__BackingField: 1
   <canMove>k__BackingField: 1
-  <lv>k__BackingField: 1
+  <lv>k__BackingField: 2
   _hp: 6
-  _energy: 200
-  _star: 5
-  _score: 6144
-  _exp: 600
+  _energy: 360
+  _star: 10
+  _score: 10240
+  _exp: 99
