@@ -10,37 +10,33 @@ namespace SkyStrike.Game
         CreateEnemy,
         CreateItem,
         SlowTime,
+        StopTime,
         ShakeScreen,
-
-    }
-    public enum EEventSysType
-    {
         PrepareGame,
         StartGame,
         EndGame,
-
+        Warning
     }
     public static partial class EventManager
     {
         private static Dictionary<EEventType, Delegate> events = new();
-        private static Action<EEventSysType> sysEvent;
-        public static void SubscribeSysEvent(Action<EEventSysType> sysAction)
-            => sysEvent = sysAction;
         public static void Subscribe(EEventType type, UnityAction action)
+            => Subscribe(type, action as Delegate);
+        public static void Unsubscribe(EEventType type, UnityAction action)
+            => Unsubscribe(type, action as Delegate);
+        private static void Subscribe(EEventType type, Delegate action)
         {
             if (action == null) return;
             if (events.ContainsKey(type))
                 events[type] = Delegate.Combine(events[type], action);
-            else events[type] = (action as Delegate);
+            else events[type] = action;
         }
-        public static void Unsubscribe(EEventType type, UnityAction action)
+        private static void Unsubscribe(EEventType type, Delegate action)
         {
             if (events.ContainsKey(type))
                 events[type] = Delegate.Remove(events[type], action);
         }
         public static void Active(EEventType type)
             => events.GetValueOrDefault(type)?.DynamicInvoke();
-        public static void Active(EEventSysType type)
-            => sysEvent.Invoke(type);
     }
 }

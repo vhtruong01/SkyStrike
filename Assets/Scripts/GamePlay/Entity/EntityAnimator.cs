@@ -20,7 +20,6 @@ namespace SkyStrike.Game
     }
     public class EntityAnimator : MonoBehaviour, IAnimator, IEntityComponent
     {
-        private readonly NullAnimation nullAnimation = new("Empty animation");
         private Dictionary<EAnimationType, IAnimation> animations;
         public IObject entity { get; set; }
 
@@ -34,7 +33,7 @@ namespace SkyStrike.Game
         {
             if (animations.TryGetValue(type, out var animation))
                 return animation;
-            return nullAnimation;
+            return NullAnimation.Instance;
         }
         public void Interrupt()
         {

@@ -4,7 +4,6 @@ namespace SkyStrike.Game
 {
     public class ShipBullet : PoolableObject<ShipBulletData>, IDamager
     {
-        [SerializeField] private SpriteAnimation anim;
         private IDamageable target;
         public EDamageType damageType => data.metaData.damageType;
 
@@ -18,11 +17,10 @@ namespace SkyStrike.Game
             if (data.metaData.type == EShipBulletType.MissileBullet)
                 FindTarget();
             else target = null;
-            //if (anim != null)
-                //anim.SetData(data.metaData.spriteList);
         }
         private void Update()
         {
+            if (!isActive) return;
             data.lifetime -= Time.deltaTime;
             if (target != null)
             {
@@ -44,6 +42,7 @@ namespace SkyStrike.Game
                 target = hit.collider.GetComponent<IDamageable>();
         }
         public int GetDamage() => data.metaData.dmg;
-        public void AfterHit() => Disappear();
+        public void AfterHit()
+            => Disappear();
     }
 }

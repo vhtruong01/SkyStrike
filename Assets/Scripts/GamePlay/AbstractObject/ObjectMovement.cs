@@ -22,6 +22,7 @@ namespace SkyStrike.Game
                     ? MoveStraight(point, nextPoint, entityMoveData.moveData.velocity)
                     : MoveCurve(point, nextPoint, entityMoveData.moveData.velocity));
             }
+            else Stop();
         }
         protected IEnumerator MoveStraight(Point startPoint, Point nextPoint, float velocity)
         {
@@ -41,7 +42,7 @@ namespace SkyStrike.Game
                 }
             }
         }
-        protected IEnumerator MoveCurve(Point startPoint, Point nextPoint, float velocity)
+        private IEnumerator MoveCurve(Point startPoint, Point nextPoint, float velocity)
         {
             Vector2 startPos = startPoint.midPos.ToVector2();
             Vector2 pos2 = startPoint.nextPos.ToVector2();
@@ -55,12 +56,12 @@ namespace SkyStrike.Game
                     / velocity / 2);
             if (time > 0)
             {
-                if (!entityMoveData.canMove) yield return null;
                 float elapsedTime = 0;
                 float deltaTime = Time.deltaTime;
+                float coefficient = 1;
                 while (elapsedTime < time)
                 {
-                    elapsedTime += deltaTime;
+                    elapsedTime += deltaTime * coefficient;
                     float t1 = elapsedTime / time;
                     float t2 = 1 - t1;
                     Vector3 newPos = (t2 * t2 * t2 * startPos
@@ -69,6 +70,10 @@ namespace SkyStrike.Game
                         + t1 * t1 * t1 * nextPos
                         ).SetZ(entity.position.z);
                     var dir = newPos - entity.position;
+                    float len = dir.magnitude;
+                    float time2 = len / velocity;
+                    coefficient = deltaTime / time2;
+                    dir *= coefficient;
                     Rotate(dir.normalized);
                     entity.position += dir;
                     deltaTime = Time.deltaTime;

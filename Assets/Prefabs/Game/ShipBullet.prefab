@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -7155573818991099188}
   - component: {fileID: 4910534486047539466}
   - component: {fileID: 9213180971206011336}
-  - component: {fileID: -592313612840842405}
   m_Layer: 7
   m_Name: ShipBullet
   m_TagString: ShipBullet
@@ -163,7 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24729857a2dcc304899d6e7efc4c6ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <metaData>k__BackingField: {fileID: 0}
 --- !u!114 &9213180971206011336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,25 +178,7 @@ MonoBehaviour:
   loopType: 2
   autoPlay: 1
   interval: 0.075
-  <delay>k__BackingField: 0
-  <pauseAnimationOnFinish>k__BackingField: 0
-  sprites: []
---- !u!114 &-592313612840842405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715472480678562029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdafbc756bfd73649ab151c8adb0404d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <type>k__BackingField: 0
-  loopType: 2
-  autoPlay: 1
-  interval: 0.2
+  spinSpeed: 0
   <delay>k__BackingField: 0
   <pauseAnimationOnFinish>k__BackingField: 0
   sprites: []

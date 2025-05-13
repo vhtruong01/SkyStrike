@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace SkyStrike.UI
 {
-    public class HpBar : MonoBehaviour
+    public class ShipHpBar : MonoBehaviour
     {
         [SerializeField] private float dimAlpha;
         [SerializeField] private List<Image> elements;
@@ -23,6 +23,13 @@ namespace SkyStrike.UI
                 elements[i].gameObject.SetActive(true);
                 elements[i].color = elements[i].color.ChangeAlpha(dimAlpha);
             }
+        }
+        public void UpdateMaxHp(int maxHp)
+        {
+            if (maxHp == elements.Count) return;
+            var lastElement = elements[^1];
+            for (int i = 0; i < maxHp - elements.Count; i++)
+                Instantiate(lastElement, lastElement.transform.parent.transform, false);
         }
     }
 }

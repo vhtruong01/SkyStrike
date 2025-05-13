@@ -105,26 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b848c7477e5cbc4438399403cab2aa54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <metaData>k__BackingField:
-    id: 0
-    name: 
-    size: 0
-    velocity: 0
-    timeCooldown: 0
-    spinSpeed: 0
-    lifetime: 0
-    unitAngle: 0
-    startAngle: 0
-    spacing:
-      x: 0
-      y: 0
-    position:
-      x: 0
-      y: 0
-    isCircle: 0
-    isStartAwake: 0
-    isLookingAtPlayer: 0
-    amount: 0
 --- !u!212 &-6168511356069131724
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -178,5 +158,5 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0

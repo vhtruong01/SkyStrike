@@ -31,7 +31,7 @@ namespace SkyStrike.Game
                     float angle = i * unitAngle + startAngle + Random.Range(0, unitAngle * 2);
                     Item item = InstantiateItem(eventData.position);
                     item.data.SetData(eventData);
-                    item.Appear(Random.Range(0.2f, 1f) * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
+                    item.Appear(Random.Range(0.4f, 0.75f) * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
                 }
         }
     }

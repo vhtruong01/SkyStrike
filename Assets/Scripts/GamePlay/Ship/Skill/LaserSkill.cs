@@ -21,7 +21,6 @@ namespace SkyStrike.Game
             => coroutine = StartCoroutine(Fire());
         private IEnumerator Fire()
         {
-            float deltaTime = Time.deltaTime;
             anim.Restart();
             previewLine.gameObject.SetActive(true);
             laserLine.gameObject.SetActive(false);
@@ -29,7 +28,7 @@ namespace SkyStrike.Game
             float time = 0.75f;
             while (elapsedTime < time)
             {
-                elapsedTime += deltaTime;
+                elapsedTime += Time.unscaledDeltaTime;
                 previewLine.startColor = previewLine.endColor = warningColor.ChangeAlpha((1 - elapsedTime / time) * warningColor.a);
                 yield return null;
             }
@@ -48,18 +47,19 @@ namespace SkyStrike.Game
             while (elapsedTime < time)
             {
                 PulseLaser();
-                elapsedTime += Mathf.Max(skillData.damageInterval, deltaTime);
+                elapsedTime += Mathf.Max(skillData.damageInterval, Time.deltaTime);
                 yield return new WaitForSeconds(skillData.damageInterval);
             }
             elapsedTime = 0;
             time = 0.5f;
             while (elapsedTime < time)
             {
-                elapsedTime += deltaTime;
+                elapsedTime += Time.unscaledDeltaTime;
                 laserLine.startWidth = laserLine.endWidth = skillData.size * (1 - Mathf.Pow(elapsedTime / time, 3));
                 yield return null;
             }
             laserLine.gameObject.SetActive(false);
+            coroutine = null;
         }
         private void PulseLaser()
         {
@@ -75,5 +75,6 @@ namespace SkyStrike.Game
         {
             previewLine.startWidth = previewLine.endWidth = skillData.size * 1.25f;
         }
+        public void AfterHit() { }
     }
 }

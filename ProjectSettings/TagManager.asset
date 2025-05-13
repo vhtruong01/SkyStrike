@@ -58,6 +58,9 @@ TagManager:
   - name: Enemy
     uniqueID: 1411502773
     locked: 0
+  - name: BulletEffect
+    uniqueID: 2676068697
+    locked: 0
   - name: Player
     uniqueID: 1399178649
     locked: 0

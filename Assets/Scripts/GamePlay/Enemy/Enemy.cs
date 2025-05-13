@@ -3,18 +3,22 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public class Enemy : ObjectEntity<EnemyMetaData>, IEnemyComponent, IEntity
+    public class Enemy : ObjectEntity<EnemyMetaData>, IEnemyComponent, IEntity, IDamager
     {
         private readonly BossEventData bossEventData = new();
-        [SerializeField] private MaterialAlphaAnimation damagedAnimation;
-        [SerializeField] private SpriteAnimation destructionAnimation;
+        private readonly EnemyDieEventData enemyDieEventData = new();
         private readonly ItemEventData itemEventData = new();
         private readonly DamageVisualizerEventData damageVisualizer = new();
+        [SerializeField] private MaterialAlphaAnimation damagedAnimation;
+        [SerializeField] private SpriteAnimation destructionAnimation;
         private Rigidbody2D rigi;
         private EnemyCommander commander;
         private IAnimator animator;
         public IObject entity { get; set; }
         public EnemyData enemyData { get; set; }
+        public EDamageType damageType => EDamageType.Slashing;
+        public int GetDamage() => 1;
+        public bool isDie => isActive;
 
         public void Init()
         {
@@ -33,7 +37,7 @@ namespace SkyStrike.Game
             if (enemyData.metaData.type == EnemyType.Boss)
             {
                 bossEventData.bossData = enemyData;
-                EventManager.Active(bossEventData);
+                EventManager.ActiveUIEvent(bossEventData);
             }
         }
         protected override IEnumerator Prepare(float delay)
@@ -63,11 +67,15 @@ namespace SkyStrike.Game
             damageVisualizer.damage = damage;
             damageVisualizer.damageType = damageType;
             damageVisualizer.position = transform.position + Random.insideUnitSphere * 0.5f;
-            EventManager.Active(damageVisualizer);
+            EventManager.ActiveUIEvent(damageVisualizer);
         }
         public void Die()
         {
             Enable(false);
+            enemyDieEventData.score = data.metaData.score;
+            enemyDieEventData.exp = data.metaData.exp;
+            enemyDieEventData.energy = data.metaData.energy;
+            EventManager.Active(enemyDieEventData);
             commander.InterruptAllComponents();
             animator.GetAnimation(EAnimationType.Destruction).Play();
         }
@@ -98,6 +106,11 @@ namespace SkyStrike.Game
                 bullet.OnHit(this);
                 return;
             }
+        }
+        public void AfterHit()
+        {
+            if (data.metaData.isWeakEnemy)
+                Die();
         }
     }
 }

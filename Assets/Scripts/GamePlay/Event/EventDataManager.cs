@@ -20,10 +20,15 @@ namespace SkyStrike.Game
             if (eventsData.TryGetValue(type, out Delegate func))
                 eventsData[type] = Delegate.Remove(func, action);
         }
+        public static void ActiveUIEvent(UIEventData data)
+        {
+            if (eventsData.TryGetValue(typeof(UIEventData), out Delegate func))
+                func?.DynamicInvoke(data);
+        }
         public static void Active(IEventData data)
         {
             if (eventsData.TryGetValue(data.GetType(), out Delegate func))
-                func.DynamicInvoke(data);
+                func?.DynamicInvoke(data);
         }
     }
 }

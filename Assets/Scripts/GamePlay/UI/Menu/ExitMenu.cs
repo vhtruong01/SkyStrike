@@ -11,7 +11,6 @@ namespace SkyStrike.UI
         public override void Awake()
         {
             base.Awake();
-            disappearTime = 0.5f;
             cancelBtn.onClick.AddListener(Collapse);
             exitBtn.onClick.AddListener(() => Application.Quit());
         }

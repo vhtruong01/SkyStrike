@@ -1,29 +1,31 @@
+using SkyStrike.Game;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace SkyStrike.UI
 {
-    public class DamageVisualizer : MonoBehaviour
+    public class DamageVisualizer : UIElement
     {
         private static readonly float displayTime = 0.2f;
         private static readonly float startSize = 1.5f;
         private TextMeshProUGUI text;
-        private WaitForSeconds waitForSeconds;
-        public UnityAction<DamageVisualizer> onDestroy { get; set; }
 
-        public void Awake()
+        private void Awake()
+            => text = GetComponent<TextMeshProUGUI>();
+        public override void Display(UIEventData eventData)
         {
-            text = GetComponent<TextMeshProUGUI>();
-            waitForSeconds = new WaitForSeconds(0.2f);
-        }
-        public void SetData(Vector2 pos, int damage, Color c)
-        {
-            transform.position = pos.SetZ(transform.position.z);
-            text.text = damage.ToString();
+            var data = eventData as DamageVisualizerEventData;
+            var c = data.damageType switch
+            {
+                EDamageType.Normal => Color.white,
+                EDamageType.Slashing => Color.cyan,
+                EDamageType.Piercing => Color.magenta,
+                _ => Color.red,
+            };
+            transform.position = data.position.SetZ(transform.position.z);
+            text.text = data.damage.ToString();
             text.color = c;
-            gameObject.SetActive(true);
             StartCoroutine(Display());
         }
         private IEnumerator Display()
@@ -35,8 +37,13 @@ namespace SkyStrike.UI
                 transform.localScale = Vector3.one * (totalTime / displayTime * startSize + 1f);
                 yield return null;
             }
-            yield return waitForSeconds;
-            gameObject.SetActive(false);
+            totalTime = displayTime;
+            while (totalTime > 0)
+            {
+                totalTime -= Time.unscaledDeltaTime;
+                text.color = text.color.ChangeAlpha(totalTime / displayTime);
+                yield return null;
+            }
             onDestroy.Invoke(this);
         }
     }

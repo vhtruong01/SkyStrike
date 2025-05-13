@@ -91,22 +91,25 @@ enemy damage visualizer -- done
 time scale -- done
 camera effect -- done
 missile -- done
-bullet effect
-score/time/distance
 environment (planet,asteroid,black hole) -- done
 boss hp bar -- done
-enemy skill 
+system notification -- done
+score/time/distance(text) -- done 
+level percent -- done
+---------
+start level/level complete/boss warning -- done
+energy point -- done
+ship skill: clear all bullet -- done //, lock enemy, magic bullet
+pause/die -- done
+black/white hole
+enemy skill - fix enemy bullet
 
-system skill
-system notification
-system effect
-ship skill: clear all bullet, lock enemy, magic bullet
-
-improve player skill
-player skill effect
 bullet effect
 card/star
+
+bg effect
+behaviour tree
 sound effect/bgm music
-level complete/next level
-end level
-level percent
+sfx:bullet, bg sfx, die, collect item,black hole, boss bgm, normal bgm, skill bgm, button bgm,
+
+save level

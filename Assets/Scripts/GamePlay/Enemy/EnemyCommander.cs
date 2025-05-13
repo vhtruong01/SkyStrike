@@ -47,7 +47,7 @@ namespace SkyStrike.Game
             if (!enemyData.isMaintain)
             {
                 InterruptAllComponents();
-                (entity as IEntity).Disappear();
+                (entity as IEntity)?.Disappear();
             }
         }
         public override void Interrupt() => StopAllCoroutines();

@@ -16,16 +16,24 @@ namespace SkyStrike.Game
             planet.gameObject.SetActive(true);
             Disable();
         }
-        public void DisplayIntro(float duration)
+        private void OnEnable()
         {
-            planet.transform.DOScale(0, duration).onKill = () => planet.gameObject.SetActive(false);
+            EventManager.Subscribe(EEventType.PrepareGame, DisplayIntro);
+            EventManager.Subscribe(EEventType.StartGame, Enable);
         }
-        public void Disable()
+        private void OnDisable()
+        {
+            EventManager.Unsubscribe(EEventType.PrepareGame, DisplayIntro);
+            EventManager.Unsubscribe(EEventType.StartGame, Enable);
+        }
+        private void DisplayIntro()
+            => planet.transform.DOScale(0, 1.5f).onKill = () => planet.gameObject.SetActive(false);
+        private void Disable()
         {
             foreach (ParticleSystem p in environments)
                 p.Stop();
         }
-        public void Enable()
+        private void Enable()
         {
             foreach (ParticleSystem p in environments)
                 p.Play();

@@ -42,9 +42,7 @@ namespace SkyStrike.Game
             }
         }
 
-        //
-        public void OnEnable() => Awake();
-        private void Awake()
+        private void OnEnable()
         {
             _soundVolume = PlayerPrefs.GetFloat("soundVolume", 0.75f);
             _sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.75f);

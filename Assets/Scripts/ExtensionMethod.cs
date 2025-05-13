@@ -21,6 +21,7 @@ namespace SkyStrike
             GUI.enabled = true;
         }
     }
+    // In/Out
     public static class IO
     {
         public static void WriteToBinaryFile<T>(string fileName, T objectToWrite)

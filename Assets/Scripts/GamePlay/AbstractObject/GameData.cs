@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
+    [DisallowMultipleComponent]
     public abstract class GameData<T, K> : MonoBehaviour where T : IMetaData where K : IEventData
     {
         public T metaData { get; protected set; }

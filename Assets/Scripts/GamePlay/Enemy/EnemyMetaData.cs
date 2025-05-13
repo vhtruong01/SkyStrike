@@ -29,9 +29,21 @@ namespace SkyStrike.Game
         [SerializeField] private EnemyRace race;
         [field: SerializeField] public EnemyType type { get; private set; }
         public override int id => (int)race * 10 + (int)type;
-        public int star
+        public bool isWeakEnemy { get; private set; }
+        public int star { get; private set; }
+        public int score { get; private set; }
+        public int maxHp { get; private set; }
+        public int energy { get; private set; }
+        public int exp { get; private set; }
+        [field: SerializeField] public List<Sprite> destructionSprites { get; private set; }
+        [field: SerializeField] public List<Sprite> engineSprites { get; private set; }
+        [field: SerializeField] public List<Sprite> shieldSprites { get; private set; }
+        [field: SerializeField] public List<Sprite> weaponSprites { get; private set; }
+        [field: SerializeField] public List<Sprite> bulletSprites { get; private set; }
+
+        public void OnEnable()
         {
-            get => type switch
+            star = type switch
             {
                 EnemyType.Bomber => 1,
                 EnemyType.Boss => 25,
@@ -43,15 +55,12 @@ namespace SkyStrike.Game
                 EnemyType.Torpedo => 9,
                 _ => 0,
             };
+            isWeakEnemy = star < 5;
+            maxHp = (int)(minHp * (1 + Mathf.Pow(hpCoefficient, star) * star));
+            score = (int)Mathf.Max(maxHp, Mathf.Round(maxHp / 1000) * 1000);
+            energy = Mathf.Max(1, maxHp / 1000);
+            exp = 100;
         }
-        public int score => (int)Mathf.Max(maxHp, Mathf.Round(maxHp / 1000) * 1000);
-        public int maxHp => (int)(minHp * (1 + Mathf.Pow(hpCoefficient, star) * star));
-        [field: SerializeField] public List<Sprite> destructionSprites { get; private set; }
-        [field: SerializeField] public List<Sprite> engineSprites { get; private set; }
-        [field: SerializeField] public List<Sprite> shieldSprites { get; private set; }
-        [field: SerializeField] public List<Sprite> weaponSprites { get; private set; }
-        [field: SerializeField] public List<Sprite> bulletSprites { get; private set; }
-
         public bool CanHighlight()
         {
             if (type == EnemyType.Boss || type == EnemyType.Subboss || type == EnemyType.Elite)

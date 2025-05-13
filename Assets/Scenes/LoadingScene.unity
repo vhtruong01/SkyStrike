@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 2021435747}
   - component: {fileID: 2021435746}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -615,10 +615,10 @@ MonoBehaviour:
   <type>k__BackingField: 0
   loopType: 0
   autoPlay: 1
-  interval: 0.05
+  interval: 0.035
   spinSpeed: 0
   <delay>k__BackingField: 0
-  <pauseAnimationOnFinish>k__BackingField: 1
+  <pauseAnimationOnFinish>k__BackingField: 0
   sprites:
   - {fileID: -6184050716912831369, guid: 32ceadd4a35fc054f9f67939e911adfc, type: 3}
   - {fileID: 4565449861219673537, guid: 32ceadd4a35fc054f9f67939e911adfc, type: 3}

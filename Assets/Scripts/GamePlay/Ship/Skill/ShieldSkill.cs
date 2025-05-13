@@ -39,9 +39,7 @@ namespace SkyStrike.Game
         public void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.CompareTag("EnemyBullet") && collision.TryGetComponent<IDestroyable>(out var obj))
-            {
                 obj.Disappear();
-            }
         }
     }
 }

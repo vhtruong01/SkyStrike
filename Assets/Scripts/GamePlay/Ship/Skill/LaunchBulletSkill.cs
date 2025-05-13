@@ -1,8 +1,12 @@
+using System.Collections;
+using UnityEngine;
+
 namespace SkyStrike.Game
 {
     public class LaunchBulletSkill : Skill<BulletData>
     {
         private readonly ShipBulletEventData bulletEventData = new();
+        private WaitForSeconds waitForSeconds;
 
         public override void Init()
         {
@@ -12,18 +16,25 @@ namespace SkyStrike.Game
         public override void AutoActive()
         {
             if (shipData.isSpawn)
-            {
                 Execute();
-                skillData.elapsedTime = 0;
-            }
         }
         public override void Execute()
         {
+            skillData.elapsedTime = 0;
+            coroutine = StartCoroutine(Fire());
+        }
+        private IEnumerator Fire()
+        {
+            anim.Restart();
+            yield return waitForSeconds;
             bulletEventData.position = transform.position;
             EventManager.Active(bulletEventData);
-            anim.Restart();
+            coroutine = null;
         }
         public override void Upgrade()
-            => anim.SetDuration(skillData.cooldown);
+        {
+            anim.SetDuration(skillData.cooldown);
+            waitForSeconds = new WaitForSeconds(skillData.cooldown);
+        }
     }
 }

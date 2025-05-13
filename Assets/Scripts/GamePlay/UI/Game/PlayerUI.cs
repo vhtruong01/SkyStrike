@@ -7,53 +7,61 @@ using UnityEngine.UI;
 
 namespace SkyStrike.UI
 {
-    public class GameUI : MonoBehaviour
+    public class PlayerUI : MonoBehaviour
     {
-        [SerializeField] private MovingBackground movingBg;
+        private readonly SystemMessengerEventData sysMessEventData = new();
         [SerializeField] private SkillButton skillButtonPrefab;
         [SerializeField] private Transform skillGroupContainer;
         [SerializeField] private GameObject uiContent;
         [SerializeField] private TextMeshProUGUI star;
-        [SerializeField] private TextMeshProUGUI score;
         [SerializeField] private TextMeshProUGUI time;
-        [SerializeField] private HpBar hpBar;
+        [SerializeField] private TextMeshProUGUI lv;
+        [SerializeField] private Slider precentExp;
+        [SerializeField] private ShipHpBar hpBar;
+        [SerializeField] private ScoreUI score;
+        [SerializeField] private EnergyBar energyBar;
         [SerializeField] private Button startButton;
-        [SerializeField] private Slider levelProcess;
         [SerializeField] private ShipData shipData;
         private Material startBtnMaterial;
         private List<SkillButton> skillButtons;
 
-
         public void Awake()
         {
-            levelProcess.value = 0;
-            uiContent.SetActive(false);
-            startBtnMaterial = startButton.GetComponent<Image>().material;
-            startButton.onClick.AddListener(() =>
-            {
-                startButton.gameObject.SetActive(false);
-                EventManager.Active(EEventSysType.PrepareGame);
-                StartCoroutine(CountTime());
-            });
             skillButtons = new();
+            startBtnMaterial = startButton.GetComponent<Image>().material;
+            startButton.onClick.AddListener(() => StartCoroutine(StartGame()));
+        }
+        private IEnumerator StartGame()
+        {
+            startButton.gameObject.SetActive(false);
+            EventManager.Active(EEventType.PrepareGame);
+            yield return new WaitForSecondsRealtime(1.5f);
+            EventManager.Active(EEventType.StartGame);
+            yield return new WaitForSecondsRealtime(1);
+            EventManager.Active(EEventType.PlayNextWave);
+            uiContent.SetActive(true);
+            StartCoroutine(CountTime());
         }
         public IEnumerator Start()
         {
+            uiContent.SetActive(false);
             shipData.onHealthChanged = hpBar.UpdateHealthDisplay;
+            shipData.onEnergyChanged += energyBar.UpdateEnergyDisplay;
+            shipData.onScoreChanged = score.UpdateScoreDisplay;
             shipData.onCollectStar = UpdateStarDisplay;
-            hpBar.UpdateHealthDisplay(shipData.health);
-            UpdateStarDisplay(shipData.totalStar);
+            shipData.onExpChanged = UpdateExpDisplay;
+            shipData.onLevelUp = LevelUp;
             foreach (var skill in shipData.skillDataList)
             {
                 if (skill.hide) continue;
                 var skillUI = Instantiate(skillButtonPrefab, skillGroupContainer, false);
+                skill.onCooldown = skillUI.UpdateTimeDisplay;
                 skillUI.name = skill.skillName;
                 skillUI.SetData(skill);
+                shipData.onEnergyChanged += skillUI.CheckEnergy;
                 skillButtons.Add(skillUI);
-                skill.onCooldown = skillUI.UpdateTimeDisplay;
-                skillUI.UpdateTimeDisplay(skill.elapsedTime, skill.cooldown);
             }
-            movingBg.enabled = false;
+            shipData.RefreshSubcribers();
             float elapsedTime = 0;
             float totalTime = 2f;
             while (elapsedTime < totalTime)
@@ -62,9 +70,8 @@ namespace SkyStrike.UI
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-            movingBg.enabled = true;
         }
-        public IEnumerator CountTime()
+        private IEnumerator CountTime()
         {
             float totalTime = 0;
             while (true)
@@ -76,6 +83,19 @@ namespace SkyStrike.UI
         }
         private void UpdateStarDisplay(int amount)
             => star.text = amount.ToString();
+        private void UpdateExpDisplay(float val)
+            => precentExp.value = val;
+        private void LevelUp()
+        {
+            lv.text = "Lv: " + shipData.lv;
+            hpBar.UpdateMaxHp(shipData.maxHp);
+            energyBar.UpdateMaxEnergy(shipData.energy, shipData.maxEnergy);
+            if (shipData.lv > 1)
+            {
+                sysMessEventData.text = "Level up";
+                EventManager.Active(sysMessEventData);
+            }
+        }
         public void OpenEditor() => SceneSwapper.OpenEditor();
     }
 }

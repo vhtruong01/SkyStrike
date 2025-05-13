@@ -20,7 +20,7 @@ MonoBehaviour:
   - 2
   <cooldown>k__BackingField: 2
   <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 2.0047057
+  <elapsedTime>k__BackingField: 2
   <dmg>k__BackingField: 100
   <speed>k__BackingField: 5
   <scale>k__BackingField: 1
@@ -34,14 +34,5 @@ MonoBehaviour:
   - 5
   <scaleList>k__BackingField:
   - 1
-  <spriteList>k__BackingField:
-  - {fileID: 3988828326770655150, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: -8024733606947100112, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: 3692025383023953489, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: 1137453674460749875, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: -3352014669084381124, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: -4653297501129094095, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: -2228092687517378546, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: -1542530954104006472, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: -444571773457118995, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
-  - {fileID: 2212986679589364865, guid: 99e5a3b68abdbbd47b650ab4464e4a6d, type: 3}
+  <spriteList>k__BackingField: []
+  <effectList>k__BackingField: []

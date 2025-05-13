@@ -12,7 +12,7 @@ namespace SkyStrike.Game
 
         public virtual void Init()
         {
-            anim = GetComponentInChildren<IAnimation>(true) ?? new NullAnimation();
+            anim = GetComponentInChildren<IAnimation>(true) ?? NullAnimation.Instance;
             skillData.onActive = Active;
             skillData.onUpgrade = Upgrade;
             Upgrade();
@@ -34,8 +34,11 @@ namespace SkyStrike.Game
             {
                 if (coroutine != null)
                     StopCoroutine(coroutine);
-                Execute();
-                skillData.elapsedTime = 0;
+                if (skillData.energyCost == 0 || shipData.UseEnergy(skillData.energyCost))
+                {
+                    Execute();
+                    skillData.elapsedTime = 0;
+                }
             }
         }
         public void Deactive()

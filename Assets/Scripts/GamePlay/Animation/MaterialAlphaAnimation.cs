@@ -12,9 +12,9 @@ namespace SkyStrike.Game
         [field: SerializeField] protected override float duration { get; set; } = 2.5f;
         protected override float delay { get; set; }
 
-        public override void Init()
+        public override void Awake()
         {
-            base.Init();
+            base.Awake();
             spriteRenderer = GetComponent<SpriteRenderer>();
             SetDefault();
         }

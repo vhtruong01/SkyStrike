@@ -30,42 +30,28 @@ namespace SkyStrike.Game
             }
         }
 
-        public void Awake()
+        public override void Awake()
         {
-            if (autoPlay) Init();
-        }
-        public void OnEnable()
-        {
-            if (autoPlay)
-                Restart();
-        }
-        public void OnDisable()
-        {
-            if (autoPlay)
-                Pause();
-        }
-        public override void Init()
-        {
-            base.Init();
+            base.Awake();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            if (sprites != null && sprites.Count > 0)
-            {
-                SetData(sprites);
-                if (autoPlay)
-                    Play();
-            }
-            else SetDefault();
+            SetDefault();
+            var temp = sprites;
+            sprites = null;
+            SetData(temp);
         }
         public void SetData(List<Sprite> sprites)
         {
             spriteIndex = -1;
             if (this.sprites != sprites && sprites != null)
+            {
                 isDirty = true;
+                startVal = -0.1f;
+                endVal = sprites.Count - (isYoyo ? 0.9f : 0.1f);
+                SetDuration(interval * (sprites.Count - 1), delay);
+            }
             this.sprites = sprites;
-            SetDefault();
-            startVal = -0.1f;
-            endVal = sprites.Count - (isYoyo ? 0.9f : 0.1f);
-            SetDuration(interval * (sprites.Count - 1), delay);
+            if (autoPlay)
+                Restart();
         }
         protected override void SetDefault()
         {

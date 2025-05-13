@@ -21,7 +21,7 @@ namespace SkyStrike.UI
 
         public override void Start()
         {
-            var scroll = GetComponent<ScrollRect>();
+            var scroll = GetComponentInChildren<ScrollRect>();
             int index = 0;
             for (int i = 0; i < gameManager.levelDataList.Length; i++)
             {
@@ -40,7 +40,7 @@ namespace SkyStrike.UI
             int padding = (int)((scrollW - iconW) / 2);
             layoutGroup.padding.left = layoutGroup.padding.right = padding;
             scroll.horizontalNormalizedPosition = prevLevelIcon.index / (index - 1);
-            originalLinePos=line.position;
+            originalLinePos = line.position;
         }
         public void Update()
         {

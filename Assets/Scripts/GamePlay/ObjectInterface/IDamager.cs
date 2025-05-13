@@ -16,6 +16,6 @@ namespace SkyStrike.Game
             if (isActive && obj.TakeDamage(this))
                 AfterHit();
         }
-        public void AfterHit() { }
+        public void AfterHit();
     }
 }

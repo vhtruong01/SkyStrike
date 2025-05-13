@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +12,9 @@ namespace SkyStrike.UI
         private float height;
         private Vector3 delta;
         private float maxDistance;
+        private bool isMove;
 
-        public void Awake()
+        private void Awake()
         {
             height = bg1.GetComponent<RectTransform>().sizeDelta.y;
             bg1.transform.localPosition = new();
@@ -20,9 +22,17 @@ namespace SkyStrike.UI
                 bg2 = Instantiate(bg1, transform, false);
             bg2.transform.localPosition = new(0, -height, 0);
             maxDistance = height / 2 - Screen.height;
+            isMove = false;
         }
-        public void Update()
+        private void Play()
+            => isMove = true;
+        private void OnEnable()
+            => EventManager.Subscribe(EEventType.StartGame, Play);
+        private void OnDisable()
+            => EventManager.Unsubscribe(EEventType.StartGame, Play);
+        private void Update()
         {
+            if (!isMove) return;
             delta = speed * Time.deltaTime * Vector3.down;
             bg1.transform.Translate(delta);
             bg2.transform.Translate(delta);

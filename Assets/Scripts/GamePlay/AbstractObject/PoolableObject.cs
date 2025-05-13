@@ -9,6 +9,7 @@ namespace SkyStrike.Game
     }
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(SpriteRenderer))]
+    [DisallowMultipleComponent]
     public abstract class PoolableObject<T> : MonoBehaviour, IPoolableObject, IRefreshable
     {
         protected BoxCollider2D col2D;
@@ -34,6 +35,7 @@ namespace SkyStrike.Game
             => onDestroy?.Invoke(this);
         public void Enable(bool isEnable)
         {
+            isActive = isEnable;
             col2D.enabled = isEnable;
             spriteRenderer.enabled = isEnable;
         }

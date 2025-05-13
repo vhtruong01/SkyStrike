@@ -13,6 +13,7 @@ namespace SkyStrike.Game
         [field: SerializeField] public List<float> cooldownList { get; protected set; }
         [field: SerializeField] public float cooldown { get; protected set; }
         [field: SerializeField, ReadOnly] public int lv { get; protected set; }
+        [field: SerializeField] public int energyCost { get; protected set; }
         [field: SerializeField, ReadOnly] public float elapsedTime { get; set; }
         public UnityAction<float, float> onCooldown { get; set; }
         public UnityAction onActive { get; set; }
@@ -21,6 +22,7 @@ namespace SkyStrike.Game
         public virtual void ResetData()
         {
             lv = -1;
+            energyCost = 0;
             cooldown = 1;
             onCooldown = null;
             onActive = null;

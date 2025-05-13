@@ -15,7 +15,6 @@ namespace SkyStrike.Game
     {
         public EAnimationType type { get; }
         public bool isNull { get; }
-        public void Init();
         public void Play();
         public void Pause();
         public void Stop();
@@ -27,7 +26,8 @@ namespace SkyStrike.Game
         public IAnimation SetStoppedAction(UnityAction stoppedAction);
         public IAnimation SetFinishedAction(UnityAction finishedAction);
     }
-    public abstract class SimpleAnimation : MonoBehaviour, IAnimation, IInitalizable
+    [DisallowMultipleComponent]
+    public abstract class SimpleAnimation : MonoBehaviour, IAnimation
     {
         [field: SerializeField] public EAnimationType type { get; private set; }
         [SerializeField] private ELoopType loopType;
@@ -44,13 +44,15 @@ namespace SkyStrike.Game
         protected abstract float endVal { get; set; }
         protected abstract float duration { get; set; }
 
-        public virtual void Init()
+        public virtual void Awake()
         {
             bool isLoop = loopType == ELoopType.YoyoLoop || loopType == ELoopType.RestartLoop;
             isYoyo = loopType == ELoopType.YoyoLoop || loopType == ELoopType.TwoDir;
             loops = isLoop ? -1 : (isYoyo ? 2 : 1);
             isDirty = true;
         }
+        public void OnDisable()
+            => Pause();
         private void CreateTweener()
         {
             if (tweener != null && tweener.IsActive())
@@ -69,9 +71,11 @@ namespace SkyStrike.Game
         }
         public virtual void Play()
         {
+            startedAction?.Invoke();
             if (tweener == null || !tweener.IsPlaying())
-                Restart();
-            else startedAction?.Invoke();
+                StartAnimation();
+            if (duration <= 0)
+                finishedAction?.Invoke();
         }
         public void Stop()
         {
@@ -83,6 +87,12 @@ namespace SkyStrike.Game
         public void Restart()
         {
             startedAction?.Invoke();
+            StartAnimation();
+            if (duration <= 0)
+                finishedAction?.Invoke();
+        }
+        private void StartAnimation()
+        {
             if (duration > 0 && startVal != endVal && isDirty)
                 CreateTweener();
             tweener?.Restart();

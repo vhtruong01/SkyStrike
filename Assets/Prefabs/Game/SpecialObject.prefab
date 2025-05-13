@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <type>k__BackingField: 0
   loopType: 2
-  autoPlay: 1
+  autoPlay: 0
   interval: 0.075
   spinSpeed: 0
   <delay>k__BackingField: 0

@@ -33,3 +33,13 @@ MonoBehaviour:
   - 5
   <scaleList>k__BackingField:
   - 1
+  <spriteList>k__BackingField: []
+  <effectList>k__BackingField:
+  - {fileID: 1358382156, guid: 63762aad955129943b2c37d91c09b990, type: 3}
+  - {fileID: -882193035, guid: 63762aad955129943b2c37d91c09b990, type: 3}
+  - {fileID: -676813594, guid: 63762aad955129943b2c37d91c09b990, type: 3}
+  - {fileID: -42714057, guid: 63762aad955129943b2c37d91c09b990, type: 3}
+  - {fileID: 1997176344, guid: 63762aad955129943b2c37d91c09b990, type: 3}
+  - {fileID: 155251853, guid: 63762aad955129943b2c37d91c09b990, type: 3}
+  - {fileID: -1431401873, guid: 63762aad955129943b2c37d91c09b990, type: 3}
+  - {fileID: -198690257, guid: 63762aad955129943b2c37d91c09b990, type: 3}

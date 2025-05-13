@@ -1,3 +1,4 @@
+using SkyStrike.UI;
 using UnityEngine;
 
 namespace SkyStrike.Game
@@ -47,12 +48,46 @@ namespace SkyStrike.Game
     }
     public class EnemyEventData : ObjectEventData<EnemyMetaData> { }
     public class SpecialObjectEventData : ObjectEventData<SpecialObjectMetaData> { }
-    public class BossEventData : IEventData
+    public class WaveEventData : IEventData
     {
+        public float percent { get; set; }
+        public bool isBossWave { get; set; }
+    }
+    public class EnemyDieEventData : IEventData
+    {
+        public int score { get; set; }
+        public int exp { get; set; }
+        public int energy { get; set; }
+    }
+    public class SystemMessengerEventData : IEventData
+    {
+        public string text { get; set; }
+    }
+    public class EndGameEventData : IEventData
+    {
+        public bool isWin { get; set; }
+        public int score { set; get; }
+        public int star { set; get; }
+    }
+    public abstract class UIEventData : IEventData
+    {
+        public abstract EUIType uiType { get; }
+    }
+    public class NotiEventData : UIEventData
+    {
+        public ENoti notiType { get; set; }
+        public Sprite sprite { get; set; }
+        public string message { get; set; }
+        public override EUIType uiType => EUIType.Notification;
+    }
+    public class BossEventData : UIEventData
+    {
+        public override EUIType uiType => EUIType.HpBar;
         public EnemyData bossData { get; set; }
     }
-    public class DamageVisualizerEventData : IEventData
+    public class DamageVisualizerEventData : UIEventData
     {
+        public override EUIType uiType => EUIType.DmgText;
         public int damage { get; set; }
         public EDamageType damageType { get; set; }
         public Vector3 position { get; set; }

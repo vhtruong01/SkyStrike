@@ -6,11 +6,12 @@ namespace SkyStrike.Game
 {
     public class LevelManager : MonoBehaviour
     {
+        private readonly SystemMessengerEventData sysMessEventData = new();
         private readonly EnemyEventData enemyEventData = new();
         private readonly SpecialObjectEventData specialObjectEventData = new();
         private Dictionary<int, EnemyBulletMetaData> bulletDataDict;
         private Dictionary<int, ObjectData> objectDataDict;
-        private Coroutine nextWaveCoroutine;
+        private Coroutine coroutine;
         private LevelData levelData;
         private int waveIndex;
         private IObjectEventData objectEventData;
@@ -24,22 +25,22 @@ namespace SkyStrike.Game
         {
             //
             levelData = IO.ReadFromBinaryFile<LevelData>("test.dat");
-        }
-        private void OnEnable()
-            => EventManager.Subscribe(EEventType.PlayNextWave, StartNextWave);
-        private void OnDisable()
-            => EventManager.Unsubscribe(EEventType.PlayNextWave, StartNextWave);
-        public void Restart()
-        {
             print("start game");
-            waveIndex = 0;
+            sysMessEventData.text = "Welcome!";
+            EventManager.Active(sysMessEventData);
+            sysMessEventData.text = levelData.name;
+            EventManager.Active(sysMessEventData);
+            waveIndex = -1;
             objectDataDict.Clear();
             bulletDataDict.Clear();
             if (levelData.bullets != null)
                 foreach (var bullet in levelData.bullets)
                     bulletDataDict.Add(bullet.id, bullet);
-            StartWave();
         }
+        private void OnEnable()
+            => EventManager.Subscribe(EEventType.PlayNextWave, StartNextWave);
+        private void OnDisable()
+            => EventManager.Unsubscribe(EEventType.PlayNextWave, StartNextWave);
         private void StartWave()
         {
             if (waveIndex >= levelData.waves.Length)
@@ -48,14 +49,15 @@ namespace SkyStrike.Game
                 return;
             }
             print("wave: " + (1 + waveIndex));
-            //if (waves[waveIndex].isBoss)
             WaveData waveData = levelData.waves[waveIndex];
+            if (waveData.isBoss)
+                EventManager.Active(EEventType.Warning);
             foreach (var objectData in waveData.objectDataArr)
                 objectDataDict.Add(objectData.id, objectData);
             foreach (var objectData in waveData.objectDataArr)
                 CreateObject(objectData, waveData.delay);
             float waveDuration = waveData.objectDataArr.Length != 0 ? waveData.duration : 1;
-            nextWaveCoroutine = StartCoroutine(WaitForNextWave(waveDuration));
+            coroutine = StartCoroutine(WaitForNextWave(waveDuration));
         }
         private void CreateObject(ObjectData objectData, float delay)
         {
@@ -87,13 +89,13 @@ namespace SkyStrike.Game
         {
             if (time <= 0) yield break;
             yield return new WaitForSeconds(time);
-            nextWaveCoroutine = null;
+            coroutine = null;
             StartNextWave();
         }
         private void StartNextWave()
         {
-            if (nextWaveCoroutine != null)
-                StopCoroutine(nextWaveCoroutine);
+            if (coroutine != null)
+                StopCoroutine(coroutine);
             waveIndex++;
             StartWave();
         }

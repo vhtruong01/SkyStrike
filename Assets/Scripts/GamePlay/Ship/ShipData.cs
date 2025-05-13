@@ -8,25 +8,74 @@ namespace SkyStrike.Game
     public class ShipData : ScriptableObject
     {
         [field: SerializeField] public List<SkillData> skillDataList { get; private set; }
-        [field: SerializeField] public int defaultHp { get; private set; }
-        [field: SerializeField] public int defaultMaxHp { get; private set; }
-        [field: SerializeField] public float defaultMaxSpeed { get; private set; }
-        [field: SerializeField] public float defaultMagnetRadius { get; private set; }
-        [field: SerializeField] public int lv { get; private set; }
-        [field: SerializeField] public int exp { get; private set; }
+        [SerializeField] private int defaultHp = 7;
+        [SerializeField] private int defaultExp;
+        [SerializeField] private int defaultEnergy;
+        [SerializeField] private int defaultRecoverSpeed;
+        [SerializeField] private float defaultSpeed = 5;
+        [SerializeField] private float defaultMagnetRadius = 1.25f;
+        [field: SerializeField] public int maxLv { get; private set; }
+        [field: SerializeField] public float speed { get; private set; }
+        //
         [field: SerializeField] public int skillPoint { get; private set; }
         [field: SerializeField] public float magnetRadius { get; private set; }
-        [field: SerializeField] public int maxHp { get; private set; }
-        [field: SerializeField] public float speed { get; private set; }
+        [field: SerializeField] public int recoverSpeed { get; private set; }
         [field: SerializeField] public bool invincibility { get; set; }
         [field: SerializeField] public bool shield { get; set; }
         [field: SerializeField] public bool isSpawn { get; set; }
         [field: SerializeField] public bool canMove { get; set; }
-        [SerializeField] private int _hp;
-        [SerializeField] private int _star;
+        [field: SerializeField, ReadOnly] public int lv { get; private set; }
+        [SerializeField, ReadOnly] private int _hp;
+        [SerializeField, ReadOnly] private int _energy;
+        [SerializeField, ReadOnly] private int _star;
+        [SerializeField, ReadOnly] private int _score;
+        [SerializeField, ReadOnly] private int _exp;
+        public int maxHp { get; private set; }
+        public int maxExp { get; private set; }
+        public int maxEnergy { get; private set; }
         public UnityAction<int> onCollectStar { get; set; }
         public UnityAction<int> onHealthChanged { get; set; }
-        public int health
+        public UnityAction<int> onScoreChanged { get; set; }
+        public UnityAction<int> onEnergyChanged { get; set; }
+        public UnityAction<float> onExpChanged { get; set; }
+        public UnityAction onLevelUp { get; set; }
+        public int score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+                onScoreChanged?.Invoke(score);
+            }
+        }
+        public int exp
+        {
+            get => _exp;
+            set
+            {
+                _exp = value;
+                if (_exp >= maxExp)
+                {
+                    _exp %= maxExp;
+                    LevelUp();
+                }
+                onExpChanged?.Invoke(1f * _exp / maxExp);
+            }
+        }
+        public int energy
+        {
+            get => _energy;
+            set
+            {
+                var newEnergy = Mathf.Min(value, maxEnergy);
+                if (newEnergy != _energy)
+                {
+                    onEnergyChanged?.Invoke(newEnergy);
+                    _energy = newEnergy;
+                }
+            }
+        }
+        public int hp
         {
             get => _hp;
             set
@@ -38,7 +87,7 @@ namespace SkyStrike.Game
                 }
             }
         }
-        public int totalStar
+        public int star
         {
             get => _star;
             set
@@ -47,19 +96,27 @@ namespace SkyStrike.Game
                 onCollectStar?.Invoke(_star);
             }
         }
-
         public void ResetData()
         {
             onCollectStar = null;
             onHealthChanged = null;
+            onEnergyChanged = null;
+            onScoreChanged = null;
+            onExpChanged = null;
+            onLevelUp = null;
             skillPoint = 0;
-            totalStar = 0;
-            health = defaultHp;
             lv = 1;
-            exp = 0;
-            speed = defaultMaxSpeed;
-            maxHp = defaultMaxHp;
+            _star = 0;
+            _exp = 0;
+            _score = 0;
+            //
+            _hp = maxHp = defaultHp;
+            _energy = 50;
+            maxEnergy = defaultEnergy;
+            speed = defaultSpeed;
+            maxExp = defaultExp;
             magnetRadius = defaultMagnetRadius;
+            recoverSpeed = defaultRecoverSpeed;
             invincibility = false;
             shield = false;
             canMove = false;
@@ -72,18 +129,46 @@ namespace SkyStrike.Game
             switch (type)
             {
                 case EItem.Star1:
-                    totalStar++;
+                    star++;
                     break;
                 case EItem.Star5:
-                    totalStar += 5;
+                    star += 5;
                     break;
                 case EItem.Health:
-                    health++;
+                    hp++;
                     break;
                 case EItem.SkillPoint:
                     skillPoint++;
+                    //
                     break;
             }
+        }
+        private void LevelUp()
+        {
+            if (lv >= maxLv) return;
+            lv = Mathf.Min(maxLv, lv + 1);
+            // max hp, max energy,...
+            maxHp++;
+            maxEnergy *= 2;
+
+            onLevelUp?.Invoke();
+        }
+        public bool UseEnergy(int amount)
+        {
+            if (amount > _energy) return false;
+            energy -= amount;
+            return true;
+        }
+        public void RefreshSubcribers()
+        {
+            onCollectStar.Invoke(_star);
+            onEnergyChanged.Invoke(_energy);
+            onHealthChanged.Invoke(_hp);
+            onScoreChanged.Invoke(_score);
+            onExpChanged.Invoke(1f * _exp / maxExp);
+            foreach (var skill in skillDataList)
+                skill.onCooldown?.Invoke(skill.elapsedTime, skill.cooldown);
+            onLevelUp.Invoke();
         }
     }
 }

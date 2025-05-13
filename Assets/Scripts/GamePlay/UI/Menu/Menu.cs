@@ -6,32 +6,26 @@ namespace SkyStrike.UI
 {
     public abstract class Menu : MonoBehaviour
     {
-        [SerializeField] private GameObject obj;
         [SerializeField] protected Button closeBtn;
-        protected float disappearTime = 0.75f;
         protected Animator animator;
 
         public virtual void Awake()
         {
             if (closeBtn != null)
                 closeBtn.onClick.AddListener(Collapse);
-            if (obj == null)
-                obj = gameObject;
         }
         public virtual void Start()
-        {
-            animator = GetComponent<Animator>();
-        }
+            => animator = GetComponentInChildren<Animator>();
         public virtual IEnumerator Close()
         {
             if (animator != null)
             {
                 animator.SetTrigger("Close");
-                yield return new WaitForSeconds(disappearTime);
+                yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
             }
-            obj.SetActive(false);
+            gameObject.SetActive(false);
         }
-        public void Collapse() => StartCoroutine(Close());
-        public void Expand() => obj.SetActive(true);
+        public virtual void Collapse() => StartCoroutine(Close());
+        public virtual void Expand() => gameObject.SetActive(true);
     }
 }
