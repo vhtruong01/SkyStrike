@@ -1,4 +1,5 @@
 using SkyStrike.UI;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike.Game
@@ -10,6 +11,7 @@ namespace SkyStrike.Game
         public float angle { get; set; }
         public Vector3 velocity { get; set; }
         public Vector3 position { get; set; }
+        public List<Sprite> sprites { get; set; }
         public EnemyBulletMetaData metaData { get; set; }
     }
     public class ItemEventData : IEventData
@@ -59,6 +61,12 @@ namespace SkyStrike.Game
         public int exp { get; set; }
         public int energy { get; set; }
     }
+    public class LevelProgressEventData : IEventData
+    {
+        public int score { get; set; }
+        public float percent {  get; set; }
+        public float percentRequired {  get; set; }
+    }
     public class SystemMessengerEventData : IEventData
     {
         public string text { get; set; }
@@ -77,7 +85,8 @@ namespace SkyStrike.Game
     {
         public ENoti notiType { get; set; }
         public Sprite sprite { get; set; }
-        public string message { get; set; }
+        public string title { get; set; }
+        public string message {  get; set; }
         public override EUIType uiType => EUIType.Notification;
     }
     public class BossEventData : UIEventData

@@ -1,7 +1,6 @@
 using SkyStrike.Game;
 using System.Collections.Generic;
 using UnityEngine;
-using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike.Editor
 {

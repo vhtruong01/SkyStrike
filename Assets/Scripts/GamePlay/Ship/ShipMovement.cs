@@ -12,6 +12,46 @@ namespace SkyStrike.Game
         public IObject entity { get; set; }
         public ShipData shipData { get; set; }
 
+        private void OnEnable()
+        {
+            EventManager.Subscribe(EEventType.WinGame, FlyAway);
+            EventManager.Subscribe(EEventType.LoseGame, Drop);
+        }
+        private void OnDisable()
+        {
+            EventManager.Unsubscribe(EEventType.WinGame, FlyAway);
+            EventManager.Unsubscribe(EEventType.LoseGame, Drop);
+        }
+        private void FlyAway()
+        {
+            input = null;
+            StartCoroutine(FlyAway_Enumerator());
+        }
+        private void Drop()
+        {
+            input = null;
+            StartCoroutine(Drop_Enumerator());
+        }
+        private IEnumerator FlyAway_Enumerator()
+        {
+            Vector3 pos = entity.position;
+            while (entity.position.y < 10f)
+            {
+                pos.y = entity.position.y + Time.unscaledDeltaTime * shipData.speed;
+                entity.position = pos;
+                yield return null;
+            }
+        }
+        private IEnumerator Drop_Enumerator()
+        {
+            Vector3 pos = entity.position;
+            while (entity.position.y > -10f)
+            {
+                pos.y = entity.position.y - Time.unscaledDeltaTime * shipData.speed / 2;
+                entity.position = pos;
+                yield return null;
+            }
+        }
         public void Init()
         {
             Camera cam = Camera.main;

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
   m_Name: NautolanSupport
   m_EditorClassIdentifier: 
-  race: 3
-  <type>k__BackingField: 6
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <sprite>k__BackingField: {fileID: 21300000, guid: 9609910d8f1561549a0ce7bb34ceeaba, type: 3}
+  race: 3
+  <type>k__BackingField: 6
   <destructionSprites>k__BackingField:
   - {fileID: -8969907158417123467, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
   - {fileID: -6380974797942779011, guid: 23fc648c6d2e36741b97b8286577ad6c, type: 3}
@@ -35,4 +35,4 @@ MonoBehaviour:
   - {fileID: 1005444353, guid: affde37f163ba3b4da6b5df508d5bb43, type: 3}
   <shieldSprites>k__BackingField: []
   <weaponSprites>k__BackingField: []
-  <bulletSprites>k__BackingField: []
+  <bulletSprites>k__BackingField: {fileID: 11400000, guid: f2c05ea2619957e478308cd909bfd620, type: 2}

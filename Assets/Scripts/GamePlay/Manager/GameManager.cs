@@ -1,71 +1,53 @@
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace SkyStrike.Game
 {
     [CreateAssetMenu(fileName = "GameData", menuName = "GameData")]
     public class GameManager : ScriptableObject
     {
-        [SerializeField, Range(0, 1)] private float _soundVolume;
-        [SerializeField, Range(0, 1)] private float _sfxVolume;
-        [SerializeField] private bool _isMute;
-        public int curLevelIndex { get; set; }
+        [Serializable]
+        public class AllLevelInfo
+        {
+            public int totalStar;
+            public List<int> levels;
+            public AllLevelInfo()
+            {
+                levels = new()
+                {
+                    0
+                };
+            }
+        }
+        [field: SerializeField, ReadOnly] public int curLevelIndex { get; set; }
         public LevelData curLevel => levelDataList[curLevelIndex];
-        public LevelData[] levelDataList { get; private set; }
-        public float soundVolume
-        {
-            get => _soundVolume;
-            set
-            {
-                _soundVolume = value;
-                PlayerPrefs.SetFloat("soundVolume", value);
-            }
-        }
-        public float sfxVolume
-        {
-            get => _sfxVolume;
-            set
-            {
-                _sfxVolume = value;
-                PlayerPrefs.SetFloat("sfxVolume", value);
-            }
-        }
-        public bool isMute
-        {
-            get => _isMute;
-            set
-            {
-                _isMute = value;
-                PlayerPrefs.SetFloat("isMute", isMute ? 0 : 1);
-            }
-        }
+        public List<LevelData> levelDataList { get; private set; }
+        private AllLevelInfo allLevelInfo;
 
         private void OnEnable()
         {
-            _soundVolume = PlayerPrefs.GetFloat("soundVolume", 0.75f);
-            _sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.75f);
-            _isMute = PlayerPrefs.GetInt("isMute", 1) == 0;
-            TextAsset[] textAssets = Resources.LoadAll<TextAsset>("Levels");
-            if (textAssets.Length <= 0) return;
-            levelDataList = new LevelData[textAssets.Length];
-            for (int i = 0; i < textAssets.Length; i++)
-                levelDataList[i] = ReadTextAssetFile(textAssets[i]);
-            curLevelIndex = Mathf.Min(levelDataList.Length - 1, PlayerPrefs.GetInt("curLevel", 0));
+            levelDataList = new(IO.LoadAllLevel<LevelData>().Values);
+            allLevelInfo = JsonUtility.FromJson<AllLevelInfo>(PlayerPrefs.GetString("levels", "")) ?? new();
+            curLevelIndex = Mathf.Clamp(Mathf.Max(0, allLevelInfo.levels.Count - 1), 0, levelDataList.Count - 1);
         }
-        private LevelData ReadTextAssetFile(TextAsset data)
+        public void SaveCurrentLevel(bool isComplete, int score, int star)
         {
-            try
+            allLevelInfo.totalStar += star;
+            allLevelInfo.levels[curLevelIndex] = Mathf.Max(score, allLevelInfo.levels[curLevelIndex]);
+            if (isComplete && allLevelInfo.levels.Count - 1 == curLevelIndex && levelDataList.Count - 1 > curLevelIndex)
             {
-                using MemoryStream stream = new(data.bytes);
-                return new BinaryFormatter().Deserialize(stream) as LevelData;
+                if (allLevelInfo.levels.Count <= curLevelIndex)
+                    allLevelInfo.levels.Add(0);
+                else allLevelInfo.levels[curLevelIndex] = 0;
+                curLevelIndex++;
             }
-            catch (Exception e)
-            {
-                Debug.Log(e.Message);
-                return null;
-            }
+            PlayerPrefs.SetString("levels", JsonUtility.ToJson(allLevelInfo));
+        }
+        public int GetScore(int index)
+        {
+            if (index >= allLevelInfo.levels.Count) return 0;
+            return allLevelInfo.levels[index];
         }
     }
 }

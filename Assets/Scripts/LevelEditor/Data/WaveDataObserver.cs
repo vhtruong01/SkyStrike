@@ -107,5 +107,14 @@ namespace SkyStrike.Editor
         }
         public void Set(int index, ObjectDataObserver data)
             => objectDataList[index] = data;
+        public bool IsEmpty() => objectDataList.Count == 0;
+        public int GetEnemyCount()
+        {
+            int rs = 0;
+            foreach (ObjectDataObserver data in objectDataList)
+                if (data.id.data > 0)
+                    rs += data.cloneCount.data + 1;
+            return rs;
+        }
     }
 }

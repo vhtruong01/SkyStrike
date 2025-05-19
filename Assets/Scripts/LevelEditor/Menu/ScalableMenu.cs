@@ -13,17 +13,6 @@ namespace SkyStrike.Editor
 
         public virtual void Start()
            => snapBtn.AddListener((b) => screen.isSnapping = b, () => screen.isSnapping);
-        protected override void Restore()
-        {
-            base.Restore();
-            string screenClassName = GetType().Name + "." + screen.GetType().Name;
-            screen.scale = PlayerPrefs.GetFloat(screenClassName + ".scale", 0.8f);
-            screen.isLocked = PlayerPrefs.GetInt(screenClassName + ".isLocked", 0) != 0;
-            screen.isSnapping = PlayerPrefs.GetInt(screenClassName + ".isSnapping", 0) != 0;
-            screen.transform.position = new(PlayerPrefs.GetFloat(screenClassName + ".position.x", 0),
-                                            PlayerPrefs.GetFloat(screenClassName + ".position.y", 0),
-                                            screen.transform.position.z);
-        }
         public void OnBeginDrag(PointerEventData eventData)
         {
             isDragging = true;
@@ -36,15 +25,5 @@ namespace SkyStrike.Editor
                 screen.SetPosition(curPos + (eventData.pointerCurrentRaycast.worldPosition - startPos));
         }
         public void OnEndDrag(PointerEventData eventData) => isDragging = false;
-        public override void SaveSetting()
-        {
-            base.SaveSetting();
-            string screenClassName = GetType().Name + "." + screen.GetType().Name;
-            PlayerPrefs.SetFloat(screenClassName + ".scale", screen.scale);
-            PlayerPrefs.SetInt(screenClassName + ".isLocked", screen.isLocked ? 1 : 0);
-            PlayerPrefs.SetInt(screenClassName + ".isSnapping", screen.isSnapping ? 1 : 0);
-            PlayerPrefs.SetFloat(screenClassName + ".position.x", screen.transform.position.x);
-            PlayerPrefs.SetFloat(screenClassName + ".position.y", screen.transform.position.y);
-        }
     }
 }

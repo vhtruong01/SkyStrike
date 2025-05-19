@@ -109,10 +109,10 @@ TextureImporter:
       name: Nairan - Torpedo_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 1
-        width: 9
-        height: 19
+        width: 7
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +131,10 @@ TextureImporter:
       name: Nairan - Torpedo_1
       rect:
         serializedVersion: 2
-        x: 9
-        y: 0
-        width: 9
-        height: 20
+        x: 10
+        y: 1
+        width: 7
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,9 +153,9 @@ TextureImporter:
       name: Nairan - Torpedo_2
       rect:
         serializedVersion: 2
-        x: 18
-        y: 2
-        width: 9
+        x: 19
+        y: 1
+        width: 7
         height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -175,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a0118e626acb6fb4b91e75efac784edd
     internalID: 0
     vertices: []
     indices: 

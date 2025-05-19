@@ -12,6 +12,7 @@ namespace SkyStrike.Game
         MainWeapon,
         Engine,
         Shield,
+        Invincibility,
     }
     public interface IAnimator
     {

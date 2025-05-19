@@ -118,10 +118,10 @@ TextureImporter:
       name: Nautolan - Rocket_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 0
-        width: 8
-        height: 24
+        x: 5
+        y: 1
+        width: 6
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,9 +141,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 21
-        y: 0
+        y: 1
         width: 6
-        height: 24
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,9 +163,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 37
-        y: 0
+        y: 1
         width: 6
-        height: 24
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: Nautolan - Rocket_3
       rect:
         serializedVersion: 2
-        x: 52
-        y: 0
-        width: 8
-        height: 24
+        x: 53
+        y: 1
+        width: 6
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,9 +207,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 69
-        y: 0
+        y: 1
         width: 6
-        height: 24
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,9 +229,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 85
-        y: 0
+        y: 1
         width: 6
-        height: 24
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4caab00c0c9ec4a49aedc4ab35f3804f
     internalID: 0
     vertices: []
     indices: 

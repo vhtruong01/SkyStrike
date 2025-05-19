@@ -24,10 +24,16 @@ namespace SkyStrike.Game
                 enemyData.isSpawn = true;
                 elaspedTime = metaData.isStartAwake ? metaData.timeCooldown : 0;
                 angle = metaData.isCircle ? 0 : metaData.startAngle;
+                bulletEventData.sprites = enemyData.metaData.bulletSprites.sprites;
+                anim.SetDuration(enemyData.bulletData.timeCooldown).Restart();
             }
             else Stop();
         }
-        public void Stop() => enemyData.isSpawn = false;
+        public void Stop()
+        {
+            enemyData.isSpawn = false;
+            anim.Stop();
+        }
         public void Interrupt() => Stop();
         private void Update()
         {
@@ -45,7 +51,6 @@ namespace SkyStrike.Game
                 elaspedTime = 0;
                 bulletEventData.position = entity.position;
                 bulletEventData.angle = Mathf.Deg2Rad * angle;
-                //animation
                 EventManager.Active(bulletEventData);
             }
         }

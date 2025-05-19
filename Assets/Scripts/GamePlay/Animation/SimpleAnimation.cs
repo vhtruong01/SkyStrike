@@ -16,6 +16,7 @@ namespace SkyStrike.Game
         public EAnimationType type { get; }
         public bool isNull { get; }
         public void Play();
+        public bool IsPlaying();
         public void Pause();
         public void Stop();
         public void Restart();
@@ -26,10 +27,10 @@ namespace SkyStrike.Game
         public IAnimation SetStoppedAction(UnityAction stoppedAction);
         public IAnimation SetFinishedAction(UnityAction finishedAction);
     }
-    [DisallowMultipleComponent]
     public abstract class SimpleAnimation : MonoBehaviour, IAnimation
     {
         [field: SerializeField] public EAnimationType type { get; private set; }
+        [SerializeField] protected bool autoPlay;
         [SerializeField] private ELoopType loopType;
         protected bool isDirty = false;
         protected bool isYoyo = false;
@@ -50,6 +51,13 @@ namespace SkyStrike.Game
             isYoyo = loopType == ELoopType.YoyoLoop || loopType == ELoopType.TwoDir;
             loops = isLoop ? -1 : (isYoyo ? 2 : 1);
             isDirty = true;
+        }
+        public void OnEnable()
+            => SetDefault();
+        public void Start()
+        {
+            if (autoPlay)
+                Restart();
         }
         public void OnDisable()
             => Pause();
@@ -83,6 +91,12 @@ namespace SkyStrike.Game
             tweener?.Pause();
             stoppedAction?.Invoke();
         }
+        public bool IsPlaying()
+        {
+            if (tweener == null)
+                return false;
+            return tweener.IsPlaying();
+        }
         public void Pause() => tweener?.Pause();
         public void Restart()
         {
@@ -104,7 +118,7 @@ namespace SkyStrike.Game
         }
         public IAnimation SetDuration(float duration, float delay = 0)
         {
-            if (duration > 0 && this.duration != duration)
+            if (duration >= 0 && this.duration != duration)
             {
                 this.duration = duration;
                 this.delay = Mathf.Max(delay, 0);

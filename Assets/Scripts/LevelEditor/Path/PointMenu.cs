@@ -17,6 +17,7 @@ namespace SkyStrike.Editor
         [SerializeField] private BoolProperty isLookingAtPlayer;
         [SerializeField] private BoolProperty isImmortal;
         [SerializeField] private BoolProperty isIgnoreVelocity;
+        [SerializeField] private BoolProperty isScaleImmediately;
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private BulletSelectionMenu bulletSelectionMenu;
         [SerializeField] private Button bulletSelectionMenuBtn;
@@ -45,6 +46,7 @@ namespace SkyStrike.Editor
             isStraightLine.Bind(data.isStraightLine);
             isIgnoreVelocity.Bind(data.isIgnoreVelocity);
             isLookingAtPlayer.Bind(data.isLookingAtPlayer);
+            isScaleImmediately.Bind(data.isScaleImmediately);
             position.Bind(data.midPos, data.ChangePosition);
         }
         public override void UnbindData()
@@ -57,6 +59,7 @@ namespace SkyStrike.Editor
             isStraightLine.Unbind();
             isLookingAtPlayer.Unbind();
             isIgnoreVelocity.Unbind();
+            isScaleImmediately.Unbind();
             isImmortal.Unbind();
             position.Unbind();
         }

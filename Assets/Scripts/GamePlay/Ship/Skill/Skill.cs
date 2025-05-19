@@ -1,9 +1,11 @@
+using SkyStrike.UI;
 using UnityEngine;
 
 namespace SkyStrike.Game
 {
     public abstract class Skill<T> : MonoBehaviour, IShipComponent, ISkill where T : SkillData
     {
+        private readonly static NotiEventData notiEventData = new();
         [SerializeField] protected T skillData;
         protected Coroutine coroutine;
         protected IAnimation anim;
@@ -48,7 +50,19 @@ namespace SkyStrike.Game
             anim.Stop();
         }
         public abstract void Execute();
-        public abstract void Upgrade();
-        public void Interrupt() => Deactive();
+        public void Upgrade()
+        {
+            if (skillData.lv > 0)
+            {
+                notiEventData.notiType = ENoti.Safe;
+                notiEventData.title = skillData.skillName;
+                notiEventData.message = "Level up";
+                notiEventData.sprite = skillData.icon;
+                EventManager.ActiveUIEvent(notiEventData);
+            }
+            UpgradeStat();
+        }
+        protected abstract void UpgradeStat();
+        public virtual void Interrupt() => Deactive();
     }
 }

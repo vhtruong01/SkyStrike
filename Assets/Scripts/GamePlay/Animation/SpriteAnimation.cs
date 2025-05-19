@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    [RequireComponent(typeof(SpriteRenderer))]
+    [DisallowMultipleComponent]
+    [RequireComponent(typeof(RendererComponent))]
     public sealed class SpriteAnimation : SimpleAnimation
     {
-        [SerializeField] private bool autoPlay;
         [SerializeField] private float interval = 0.075f;
         [SerializeField] private float spinSpeed = 0f;
         [field: SerializeField] protected override float delay { get; set; }
         [field: SerializeField] public bool pauseAnimationOnFinish { get; private set; }
         [SerializeField] private List<Sprite> sprites;
-        private SpriteRenderer spriteRenderer;
+        private RendererComponent rendererComponent;
         private int spriteIndex;
         protected override float startVal { get; set; }
         protected override float endVal { get; set; }
@@ -25,7 +25,7 @@ namespace SkyStrike.Game
                 if (spriteIndex != value)
                 {
                     spriteIndex = value;
-                    spriteRenderer.sprite = sprites[spriteIndex];
+                    rendererComponent.SetSprite(sprites[spriteIndex]);
                 }
             }
         }
@@ -33,8 +33,8 @@ namespace SkyStrike.Game
         public override void Awake()
         {
             base.Awake();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            SetDefault();
+            rendererComponent = GetComponent<RendererComponent>();
+            rendererComponent.Init();
             var temp = sprites;
             sprites = null;
             SetData(temp);
@@ -55,9 +55,10 @@ namespace SkyStrike.Game
         }
         protected override void SetDefault()
         {
+            if (rendererComponent == null) return;
             if (pauseAnimationOnFinish && sprites.Count > 0)
-                spriteRenderer.sprite = sprites[0];
-            else spriteRenderer.sprite = null;
+                rendererComponent.SetSprite(sprites[0]);
+            else rendererComponent.SetSprite(null);
             transform.localRotation = Quaternion.identity;
         }
         public IAnimation SetInterval(float interval)

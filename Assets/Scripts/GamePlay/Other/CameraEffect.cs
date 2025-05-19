@@ -10,24 +10,30 @@ namespace SkyStrike.Game
         private Camera cam;
         private Volume volume;
         private ColorAdjustments cA;
+        private Vignette vignette;
 
         public void Awake()
         {
             cam = GetComponent<Camera>();
             volume = GetComponent<Volume>();
             volume.profile.TryGet(out cA);
+            volume.profile.TryGet(out vignette);
+            cA.active = false;
+            vignette.active = false;
         }
         public void OnEnable()
         {
             EventManager.Subscribe(EEventType.SlowTime, SlowTime);
             EventManager.Subscribe(EEventType.ShakeScreen, Shake);
             EventManager.Subscribe(EEventType.StopTime, StopTime);
+            EventManager.Subscribe(EEventType.CloseScene, CloseScene);
         }
         public void OnDisable()
         {
             EventManager.Unsubscribe(EEventType.SlowTime, SlowTime);
             EventManager.Unsubscribe(EEventType.ShakeScreen, Shake);
             EventManager.Unsubscribe(EEventType.StopTime, StopTime);
+            EventManager.Unsubscribe(EEventType.CloseScene, CloseScene);
             StopAllCoroutines();
             Time.timeScale = 1.0f;
         }
@@ -37,6 +43,20 @@ namespace SkyStrike.Game
             => StartCoroutine(StopTime_Enumerator());
         private void SlowTime()
             => StartCoroutine(SlowTime_Enumerator());
+        private void CloseScene()
+            => StartCoroutine(CloseScene_Enumerator());
+        private IEnumerator CloseScene_Enumerator()
+        {
+            float duration = 0.5f;
+            float elapsedTime = 0;
+            vignette.active = true;
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                vignette.intensity.value = elapsedTime / duration;
+                yield return null;
+            }
+        }
         private IEnumerator Shake_Enumerator()
         {
             float duration = .75f;
@@ -44,7 +64,7 @@ namespace SkyStrike.Game
             while (duration > 0)
             {
                 duration -= Time.unscaledDeltaTime;
-                transform.position = (0.2f * Random.insideUnitCircle).SetZ(pos.z);
+                transform.position = (0.1f * Random.insideUnitCircle).SetZ(pos.z);
                 yield return null;
             }
             cam.transform.position = pos;

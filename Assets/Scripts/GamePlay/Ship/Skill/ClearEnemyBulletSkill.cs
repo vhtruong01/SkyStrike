@@ -30,7 +30,6 @@ namespace SkyStrike.Game
                 transform.localScale = Vector3.one * (maxSize * elapedTime / duration);
                 yield return null;
             }
-            rigi.simulated = false;
             elapedTime = 0f;
             duration = 0.5f;
             while (elapedTime < duration)
@@ -39,9 +38,10 @@ namespace SkyStrike.Game
                 transform.localScale = Vector3.one * (maxSize - maxSize * elapedTime / duration);
                 yield return null;
             }
+            rigi.simulated = false;
             transform.localScale = Vector3.zero;
         }
-        public override void Upgrade() { }
+        protected override void UpgradeStat() { }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("EnemyBullet") && collision.TryGetComponent(out IDestroyable bullet))

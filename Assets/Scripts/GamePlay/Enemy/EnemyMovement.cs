@@ -4,6 +4,11 @@ namespace SkyStrike.Game
     {
         private SpriteAnimation anim;
         public EnemyData enemyData { get; set; }
+        protected override float scale
+        {
+            get => enemyData.size;
+            set => enemyData.size = value;
+        }
 
         public void Init()
         {

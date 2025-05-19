@@ -12,25 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36986dba5959359438358f17466b3528, type: 3}
   m_Name: SingleBullet
   m_EditorClassIdentifier: 
+  <itemType>k__BackingField: 5
   <hide>k__BackingField: 1
   <maxLv>k__BackingField: 6
-  <skillName>k__BackingField: Single
+  <skillName>k__BackingField: Single Bullet
   <icon>k__BackingField: {fileID: 21300000, guid: 0f8947b4588bc514bb106121874e98aa, type: 3}
-  <cooldownList>k__BackingField: []
-  <cooldown>k__BackingField: 1
-  <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 1
-  <dmg>k__BackingField: 100
-  <speed>k__BackingField: 5
+  <cooldownList>k__BackingField:
+  - 0.25
+  <cooldown>k__BackingField: 0.25
+  <lv>k__BackingField: 1
+  <energyCost>k__BackingField: 0
+  <elapsedTime>k__BackingField: 0.25437322
+  <dmg>k__BackingField: 1000
+  <speed>k__BackingField: 6
   <scale>k__BackingField: 1
   <lifetime>k__BackingField: 2
   <sprite>k__BackingField: {fileID: 21300000, guid: 93ab20b7efc1e1743b26a9f4207da941, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: a9c88f0cc40449042a10b6f958d95c00, type: 2}
   <type>k__BackingField: 0
   <damageType>k__BackingField: 0
-  <dmgList>k__BackingField: 64000000
+  <dmgList>k__BackingField: e8030000
   <speedList>k__BackingField:
-  - 5
+  - 6
   <scaleList>k__BackingField:
   - 1
   <spriteList>k__BackingField: []

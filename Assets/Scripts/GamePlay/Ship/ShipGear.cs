@@ -27,6 +27,6 @@ namespace SkyStrike.Game
                     transform.position = Vector2.MoveTowards(transform.position, target, Time.unscaledDeltaTime * shipData.speed * velocityCoefficient).SetZ(transform.position.z);
             }
         }
-        public void Interrupt() => canMove = false;
+        public void Interrupt() { }
     }
 }

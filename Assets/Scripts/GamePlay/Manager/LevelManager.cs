@@ -9,12 +9,16 @@ namespace SkyStrike.Game
         private readonly SystemMessengerEventData sysMessEventData = new();
         private readonly EnemyEventData enemyEventData = new();
         private readonly SpecialObjectEventData specialObjectEventData = new();
+        private readonly LevelProgressEventData levelProgressEventData = new();
+        [SerializeField] private GameManager gameManager;
         private Dictionary<int, EnemyBulletMetaData> bulletDataDict;
         private Dictionary<int, ObjectData> objectDataDict;
         private Coroutine coroutine;
         private LevelData levelData;
         private int waveIndex;
         private IObjectEventData objectEventData;
+        private int enemyDieCount;
+        private bool isEndGame;
 
         public void Awake()
         {
@@ -23,12 +27,17 @@ namespace SkyStrike.Game
         }
         public void Start()
         {
-            //
-            levelData = IO.ReadFromBinaryFile<LevelData>("test.dat");
+#if UNITY_EDITOR
+            levelData = IO.LoadLevel<LevelData>(PlayerPrefs.GetString("testLevel", ""));
+            PlayerPrefs.DeleteKey("testLevel");
+#endif
+            levelData ??= gameManager.curLevel;
+            if (levelData == null) return;
             print("start game");
-            sysMessEventData.text = "Welcome!";
-            EventManager.Active(sysMessEventData);
+            isEndGame = false;
             sysMessEventData.text = levelData.name;
+            EventManager.Active(sysMessEventData);
+            sysMessEventData.text = $"Mission: Destroy {Mathf.RoundToInt(levelData.percentRequired * 100)}% of enemies";
             EventManager.Active(sysMessEventData);
             waveIndex = -1;
             objectDataDict.Clear();
@@ -36,16 +45,33 @@ namespace SkyStrike.Game
             if (levelData.bullets != null)
                 foreach (var bullet in levelData.bullets)
                     bulletDataDict.Add(bullet.id, bullet);
+            levelProgressEventData.percentRequired = levelData.percentRequired;
         }
         private void OnEnable()
-            => EventManager.Subscribe(EEventType.PlayNextWave, StartNextWave);
+        {
+            EventManager.Subscribe(EEventType.PlayNextWave, StartNextWave);
+            EventManager.Subscribe(EEventType.LoseGame, StopGame);
+            EventManager.Subscribe<EndGameEventData>(SaveLevel);
+            EventManager.Subscribe<EnemyDieEventData>(UpdateProgress);
+        }
         private void OnDisable()
-            => EventManager.Unsubscribe(EEventType.PlayNextWave, StartNextWave);
+        {
+            EventManager.Unsubscribe(EEventType.PlayNextWave, StartNextWave);
+            EventManager.Unsubscribe(EEventType.LoseGame, StopGame);
+            EventManager.Unsubscribe<EndGameEventData>(SaveLevel);
+            EventManager.Unsubscribe<EnemyDieEventData>(UpdateProgress);
+        }
+        private void SaveLevel(EndGameEventData eventData)
+            => gameManager.SaveCurrentLevel(eventData.isWin, eventData.score, eventData.star);
         private void StartWave()
         {
+            if (isEndGame) return;
             if (waveIndex >= levelData.waves.Length)
             {
                 print("end game");
+                if (levelData.percentRequired > 1f * enemyDieCount / levelData.enemyCount)
+                    EventManager.Active(EEventType.LoseGame);
+                else EventManager.Active(EEventType.WinGame);
                 return;
             }
             print("wave: " + (1 + waveIndex));
@@ -59,6 +85,7 @@ namespace SkyStrike.Game
             float waveDuration = waveData.objectDataArr.Length != 0 ? waveData.duration : 1;
             coroutine = StartCoroutine(WaitForNextWave(waveDuration));
         }
+        private void StopGame() => isEndGame = true;
         private void CreateObject(ObjectData objectData, float delay)
         {
             bool isEnemy = objectData.metaId > 0;
@@ -105,6 +132,13 @@ namespace SkyStrike.Game
             if (refObject.refId == -1)
                 return refObject.moveData.Clone();
             return CloneMoveData(refObject.refId);
+        }
+        private void UpdateProgress(EnemyDieEventData eventData)
+        {
+            enemyDieCount++;
+            levelProgressEventData.percent = 1f * enemyDieCount / levelData.enemyCount;
+            levelProgressEventData.score = eventData.score;
+            EventManager.Active(levelProgressEventData);
         }
     }
 }

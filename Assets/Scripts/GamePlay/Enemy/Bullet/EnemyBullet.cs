@@ -15,10 +15,10 @@ namespace SkyStrike.Game
         }
         public override void Refresh()
         {
-            // animation
-            transform.eulerAngles = transform.eulerAngles.SetZ(Vector2.SignedAngle(Vector2.up, data.velocity));
+            anim.SetData(data.sprites);
             transform.localScale = Vector3.one * data.metaData.size;
-            spriteRenderer.color = data.color;
+            SetVelocity(data.velocity);
+            //spriteRenderer.color = data.color;
         }
         private void Update()
         {
@@ -37,7 +37,7 @@ namespace SkyStrike.Game
                         float rad = Mathf.Deg2Rad * Mathf.Sign(angle) * Mathf.Min(Mathf.Abs(angle), EnemyBulletData.maxRotationAngle);
                         float sin = Mathf.Sin(rad);
                         float cos = Mathf.Cos(rad);
-                        data.velocity = new Vector3(cos * data.velocity.x - sin * data.velocity.y, sin * data.velocity.x + cos * data.velocity.y, 0);
+                        SetVelocity(new(cos * data.velocity.x - sin * data.velocity.y, sin * data.velocity.x + cos * data.velocity.y, 0));
                     }
                 }
             }
@@ -54,7 +54,12 @@ namespace SkyStrike.Game
             float cos = Mathf.Cos(Mathf.PI - angle);
             float x = data.velocity.x;
             float y = data.velocity.y;
-            data.velocity = new(x * cos - y * sin, x * sin + y * cos, data.velocity.z);
+            SetVelocity(new(x * cos - y * sin, x * sin + y * cos, data.velocity.z));
+        }
+        private void SetVelocity(Vector3 velocity)
+        {
+            data.velocity = velocity;
+            transform.eulerAngles = transform.eulerAngles.SetZ(Vector2.SignedAngle(Vector2.up, data.velocity));
         }
     }
 }

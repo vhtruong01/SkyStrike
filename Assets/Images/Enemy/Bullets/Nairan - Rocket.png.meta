@@ -109,10 +109,10 @@ TextureImporter:
       name: Nairan - Rocket_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 1
-        width: 9
-        height: 12
+        width: 7
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,9 +132,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 10
-        y: 0
-        width: 15
-        height: 13
+        y: 1
+        width: 7
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       name: Nairan - Rocket_2
       rect:
         serializedVersion: 2
-        x: 28
-        y: 2
+        x: 19
+        y: 1
         width: 7
         height: 11
       alignment: 0
@@ -171,11 +171,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Nairan - Rocket_3
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d54a054e9da9844a5535e8d2ba787c
+      internalID: 800420177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 46b4a5a4016aae74cb0194d2c241dc49
     internalID: 0
     vertices: []
     indices: 
@@ -188,6 +210,7 @@ TextureImporter:
       Nairan - Rocket_0: 8545083371659697457
       Nairan - Rocket_1: 5803324151410891692
       Nairan - Rocket_2: -3309293671934382998
+      Nairan - Rocket_3: 800420177
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

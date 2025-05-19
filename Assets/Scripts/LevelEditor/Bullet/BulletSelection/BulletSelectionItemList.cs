@@ -25,7 +25,7 @@ namespace SkyStrike.Editor
         public void UpdateBullet(BulletDataObserver bulletData)
         {
             if (pointData == null) return;
-            pointData.SetBulletId(bulletData.id);
+            pointData.SetBulletId(bulletData?.id);
         }
     }
 }

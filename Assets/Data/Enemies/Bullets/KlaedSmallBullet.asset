@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967f75a7071ecd4f825c60f70524a67, type: 3}
+  m_Name: KlaedSmallBullet
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 3087939538138180030, guid: fa236b97e96fdf6448bbab2b0a19950b, type: 3}
+  - {fileID: 454131638, guid: fa236b97e96fdf6448bbab2b0a19950b, type: 3}
+  - {fileID: -1993709864, guid: fa236b97e96fdf6448bbab2b0a19950b, type: 3}
+  - {fileID: -122537000, guid: fa236b97e96fdf6448bbab2b0a19950b, type: 3}

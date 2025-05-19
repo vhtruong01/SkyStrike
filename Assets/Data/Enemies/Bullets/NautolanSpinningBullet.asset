@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967f75a7071ecd4f825c60f70524a67, type: 3}
+  m_Name: NautolanSpinningBullet
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -6981184018074512748, guid: 1a2ed6e6c7e5a5d41a2fe569a96787a9, type: 3}
+  - {fileID: 2221531873267669835, guid: 1a2ed6e6c7e5a5d41a2fe569a96787a9, type: 3}
+  - {fileID: 419675544363572145, guid: 1a2ed6e6c7e5a5d41a2fe569a96787a9, type: 3}
+  - {fileID: -987982302007870004, guid: 1a2ed6e6c7e5a5d41a2fe569a96787a9, type: 3}
+  - {fileID: 7429568235866786039, guid: 1a2ed6e6c7e5a5d41a2fe569a96787a9, type: 3}
+  - {fileID: -457502451, guid: 1a2ed6e6c7e5a5d41a2fe569a96787a9, type: 3}
+  - {fileID: -512582476, guid: 1a2ed6e6c7e5a5d41a2fe569a96787a9, type: 3}
+  - {fileID: 1962190801, guid: 1a2ed6e6c7e5a5d41a2fe569a96787a9, type: 3}

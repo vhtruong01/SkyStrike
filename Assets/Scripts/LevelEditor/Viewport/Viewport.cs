@@ -24,11 +24,6 @@ namespace SkyStrike.Editor
             group = gameObject.GetComponent<ViewportItemList>();
             group.Init(EventManager.SelectObject);
         }
-        public override void Start()
-        {
-            base.Start();
-            Show();
-        }
         public void SelectReferenceObject(ObjectDataObserver refData)
             => (group.GetSelectedItem() as ViewportItemUI).SetRefObject(refData);
         protected override void CreateObject(ObjectDataObserver data) => group.CreateItem(data);

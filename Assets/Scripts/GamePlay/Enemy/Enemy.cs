@@ -9,7 +9,7 @@ namespace SkyStrike.Game
         private readonly EnemyDieEventData enemyDieEventData = new();
         private readonly ItemEventData itemEventData = new();
         private readonly DamageVisualizerEventData damageVisualizer = new();
-        [SerializeField] private MaterialAlphaAnimation damagedAnimation;
+        [SerializeField] private AlphaValueAnimation damagedAnimation;
         [SerializeField] private SpriteAnimation destructionAnimation;
         private Rigidbody2D rigi;
         private EnemyCommander commander;

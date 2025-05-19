@@ -23,7 +23,7 @@ namespace SkyStrike.Game
             if (collision.TryGetComponent<IMagnetic>(out var obj) && obj.isMagnetic)
             {
                 Vector2 s = entity.position - obj.position;
-                Vector2 dir = Mathf.Sqrt(1 - Mathf.Clamp(s.magnitude / shipData.magnetRadius, 0, 0.99f)) * 0.1f * s;
+                Vector2 dir = Mathf.Sqrt(1 - Mathf.Clamp(s.magnitude / shipData.magnetRadius, 0, 0.99f)) * 0.2f * s;
                 obj.HandleAffectedByGravity(dir);
             }
         }

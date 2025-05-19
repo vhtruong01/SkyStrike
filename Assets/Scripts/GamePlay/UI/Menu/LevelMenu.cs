@@ -23,13 +23,13 @@ namespace SkyStrike.UI
         {
             var scroll = GetComponentInChildren<ScrollRect>();
             int index = 0;
-            for (int i = 0; i < gameManager.levelDataList.Length; i++)
+            for (int i = 0; i < gameManager.levelDataList.Count; i++)
             {
                 var levelData = gameManager.levelDataList[i];
                 if (levelData == null) continue;
                 var icon = Instantiate(index % 2 == 0 ? levelIcon0Prefab : levelIcon1Prefab, scroll.content.transform, false);
                 icon.isLock = i > gameManager.curLevelIndex;
-                icon.Init(levelData, index, SelectLevel);
+                icon.Init(levelData, index, gameManager.GetScore(index), SelectLevel);
                 if (index == gameManager.curLevelIndex)
                     icon.Appear();
                 index++;
@@ -39,7 +39,7 @@ namespace SkyStrike.UI
             float iconW = levelIcon0Prefab.GetComponent<RectTransform>().rect.width;
             int padding = (int)((scrollW - iconW) / 2);
             layoutGroup.padding.left = layoutGroup.padding.right = padding;
-            scroll.horizontalNormalizedPosition = prevLevelIcon.index / (index - 1);
+            scroll.horizontalNormalizedPosition = 1f * prevLevelIcon.index / (index - 1);
             originalLinePos = line.position;
         }
         public void Update()

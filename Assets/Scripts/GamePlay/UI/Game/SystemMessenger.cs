@@ -28,6 +28,8 @@ namespace SkyStrike.UI
             => EventManager.Unsubscribe<SystemMessengerEventData>(Display);
         private void Display(SystemMessengerEventData eventData)
         {
+            if (string.IsNullOrEmpty(eventData.text))
+                return;
             textQueue.Enqueue(eventData.text);
             coroutine ??= StartCoroutine(Display());
         }

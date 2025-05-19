@@ -8,6 +8,7 @@ namespace SkyStrike.Game
         public static NullAnimation Instance => instance;
         public EAnimationType type => EAnimationType.None;
         public bool isNull => true;
+        public bool IsPlaying() => false;
         private NullAnimation() { }
         public void Play() { }
         public void Kill() { }

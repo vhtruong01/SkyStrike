@@ -16,16 +16,21 @@ namespace SkyStrike.UI
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private TextMeshProUGUI starText;
         [SerializeField] private GameObject content;
+        [SerializeField] private Button homeBtn;
         private Image bg;
-        private Button btn;
         private Animator animator;
 
         private void Awake()
         {
             animator = content.GetComponent<Animator>();
             bg = content.GetComponent<Image>();
-            btn = content.GetComponent<Button>();
-            btn.onClick.AddListener(() => SceneSwapper.OpenMainMenu());
+            homeBtn.onClick.AddListener(() => StartCoroutine(GoHome()));
+        }
+        private IEnumerator GoHome()
+        {
+            EventManager.Active(EEventType.CloseScene);
+            yield return new WaitForSeconds(0.5f);
+            SceneSwapper.OpenMainMenu();
         }
         private void Display(EndGameEventData eventData)
         {
@@ -34,6 +39,23 @@ namespace SkyStrike.UI
             title.text = eventData.isWin ? "Level complete!" : "Defeat";
             title.color = eventData.isWin ? winTitleColor : loseTitleColor;
             animator.SetTrigger(eventData.isWin ? "Win" : "Lose");
+            StartCoroutine(DisplayScoreAndStar(animator.GetCurrentAnimatorStateInfo(0).length, eventData.score, eventData.star));
+        }
+        private IEnumerator DisplayScoreAndStar(float delay, float score, float star)
+        {
+            yield return new WaitForSecondsRealtime(delay);
+            float duration = 1.5f;
+            float elapsedTime = 0;
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                yield return null;
+                scoreText.text = "Score: " + Mathf.CeilToInt(score * elapsedTime / duration);
+                starText.text = "Star: " + Mathf.CeilToInt(star * elapsedTime / duration);
+            }
+            scoreText.text = "Score: " + score;
+            starText.text = "Star: " + star;
+
         }
         private void OnEnable()
             => EventManager.Subscribe<EndGameEventData>(Display);

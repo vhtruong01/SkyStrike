@@ -71,7 +71,7 @@ namespace SkyStrike.Game
                     if (hit.collider.TryGetComponent<IDamageable>(out var obj))
                         obj.TakeDamage(this);
         }
-        public override void Upgrade()
+        protected override void UpgradeStat()
         {
             previewLine.startWidth = previewLine.endWidth = skillData.size * 1.25f;
         }

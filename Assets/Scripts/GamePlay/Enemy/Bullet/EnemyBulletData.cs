@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike.Game
@@ -14,11 +16,13 @@ namespace SkyStrike.Game
         public bool isLookingAtPlayer { get; private set; }
         public Vector3 velocity { get; set; }
         public Color color { get; private set; }
+        public List<Sprite> sprites { get; private set; }
 
         protected override void ChangeData(EnemyBulletEventData eventData)
         {
             metaData = eventData.metaData;
             velocity = eventData.velocity;
+            sprites = eventData.sprites;
             lifetime = metaData.lifetime;
             curViewTime = 0;
             color = metaData.color;

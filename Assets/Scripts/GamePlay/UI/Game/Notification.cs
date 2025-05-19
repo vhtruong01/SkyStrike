@@ -15,6 +15,7 @@ namespace SkyStrike.UI
     public class Notification : UIElement
     {
         [SerializeField] private Image icon;
+        [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private TextMeshProUGUI message;
         private Image bg;
         private CanvasGroup canvasGroup;
@@ -28,6 +29,7 @@ namespace SkyStrike.UI
         {
             var data = eventData as NotiEventData;
             icon.sprite = data.sprite;
+            title.text = data.title;
             message.text = data.message;
             Color c = data.notiType switch
             {
@@ -36,7 +38,7 @@ namespace SkyStrike.UI
                 ENoti.Danger => Color.red,
                 _ => Color.white
             };
-            bg.color = c.ChangeAlpha(0.075f);
+            bg.color = c.ChangeAlpha(0.03f);
             StartCoroutine(Display());
         }
         private IEnumerator Display()

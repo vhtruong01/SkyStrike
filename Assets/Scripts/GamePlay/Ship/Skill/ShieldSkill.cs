@@ -5,10 +5,13 @@ namespace SkyStrike.Game
 {
     public class ShieldSkill : Skill<ShieldData>, IShipComponent
     {
+        private AlphaValueAnimation alphaValueAnimation;
         private Rigidbody2D rigi;
 
-        public void Awake()
+        public override void Init()
         {
+            alphaValueAnimation = GetComponent<AlphaValueAnimation>();
+            base.Init();
             rigi = GetComponent<Rigidbody2D>();
             rigi.simulated = false;
         }
@@ -16,17 +19,24 @@ namespace SkyStrike.Game
         {
             shipData.shield = true;
             anim.Play();
+            alphaValueAnimation.Restart();
             rigi.simulated = true;
             yield return new WaitForSeconds(skillData.duration);
             shipData.shield = false;
             anim.Stop();
             rigi.simulated = false;
+            coroutine = null;
         }
         public override void Execute()
-            => coroutine = StartCoroutine(UseShield());
-        public override void Upgrade()
+        {
+            if (coroutine != null)
+                StopCoroutine(coroutine);
+            coroutine = StartCoroutine(UseShield());
+        }
+        protected override void UpgradeStat()
         {
             transform.localScale = Vector3.one * skillData.scale;
+            alphaValueAnimation.SetDuration(skillData.duration);
         }
         public void OnTriggerEnter2D(Collider2D collision)
         {

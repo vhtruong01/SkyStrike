@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967f75a7071ecd4f825c60f70524a67, type: 3}
+  m_Name: NairanBigBullet
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -6847961354968287674, guid: b2a14ca63f332e042b169499bb5e3bda, type: 3}
+  - {fileID: 4430387896857040721, guid: b2a14ca63f332e042b169499bb5e3bda, type: 3}
+  - {fileID: -7143590511609857905, guid: b2a14ca63f332e042b169499bb5e3bda, type: 3}
+  - {fileID: -1172809961, guid: b2a14ca63f332e042b169499bb5e3bda, type: 3}
+  - {fileID: 297804923, guid: b2a14ca63f332e042b169499bb5e3bda, type: 3}

@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,10 +9,15 @@ namespace SkyStrike.UI
     {
         [SerializeField] private float dimAlpha;
         [SerializeField] private List<Image> elements;
+        [SerializeField] private AlphaValueAnimation lowHpUI;
 
         public void UpdateHealthDisplay(int value)
         {
             if (value < 0) return;
+            if (value == 1)
+                lowHpUI.Restart();
+            else if (lowHpUI.IsPlaying())
+                lowHpUI.Stop();
             int n = Mathf.Min(value, elements.Count);
             for (int i = 0; i < n; i++)
             {
@@ -29,7 +35,11 @@ namespace SkyStrike.UI
             if (maxHp == elements.Count) return;
             var lastElement = elements[^1];
             for (int i = 0; i < maxHp - elements.Count; i++)
-                Instantiate(lastElement, lastElement.transform.parent.transform, false);
+            {
+                var newElement = Instantiate(lastElement, lastElement.transform.parent.transform, false);
+                newElement.color = newElement.color.ChangeAlpha(dimAlpha);
+                elements.Add(newElement);
+            }
         }
     }
 }

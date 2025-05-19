@@ -16,8 +16,6 @@ namespace SkyStrike.Game
         [SerializeField] private float defaultMagnetRadius = 1.25f;
         [field: SerializeField] public int maxLv { get; private set; }
         [field: SerializeField] public float speed { get; private set; }
-        //
-        [field: SerializeField] public int skillPoint { get; private set; }
         [field: SerializeField] public float magnetRadius { get; private set; }
         [field: SerializeField] public int recoverSpeed { get; private set; }
         [field: SerializeField] public bool invincibility { get; set; }
@@ -28,26 +26,17 @@ namespace SkyStrike.Game
         [SerializeField, ReadOnly] private int _hp;
         [SerializeField, ReadOnly] private int _energy;
         [SerializeField, ReadOnly] private int _star;
-        [SerializeField, ReadOnly] private int _score;
         [SerializeField, ReadOnly] private int _exp;
+        public int score { get; set; }
         public int maxHp { get; private set; }
         public int maxExp { get; private set; }
         public int maxEnergy { get; private set; }
+        public float invincibleTime { get; private set; } = 2.5f;
         public UnityAction<int> onCollectStar { get; set; }
         public UnityAction<int> onHealthChanged { get; set; }
-        public UnityAction<int> onScoreChanged { get; set; }
         public UnityAction<int> onEnergyChanged { get; set; }
         public UnityAction<float> onExpChanged { get; set; }
         public UnityAction onLevelUp { get; set; }
-        public int score
-        {
-            get => _score;
-            set
-            {
-                _score = value;
-                onScoreChanged?.Invoke(score);
-            }
-        }
         public int exp
         {
             get => _exp;
@@ -101,17 +90,15 @@ namespace SkyStrike.Game
             onCollectStar = null;
             onHealthChanged = null;
             onEnergyChanged = null;
-            onScoreChanged = null;
             onExpChanged = null;
             onLevelUp = null;
-            skillPoint = 0;
             lv = 1;
+            score = 0;
             _star = 0;
             _exp = 0;
-            _score = 0;
-            //
-            _hp = maxHp = defaultHp;
-            _energy = 50;
+            _hp = 1;
+            maxHp = defaultHp;
+            _energy = 0;
             maxEnergy = defaultEnergy;
             speed = defaultSpeed;
             maxExp = defaultExp;
@@ -128,6 +115,8 @@ namespace SkyStrike.Game
         {
             switch (type)
             {
+                case EItem.None:
+                    break;
                 case EItem.Star1:
                     star++;
                     break;
@@ -137,9 +126,16 @@ namespace SkyStrike.Game
                 case EItem.Health:
                     hp++;
                     break;
-                case EItem.SkillPoint:
-                    skillPoint++;
-                    //
+                case EItem.Energy:
+                    energy = maxEnergy;
+                    break;
+                default:
+                    foreach (var skill in skillDataList)
+                        if (skill.itemType == type)
+                        {
+                            skill.LvUp();
+                            break;
+                        }
                     break;
             }
         }
@@ -161,14 +157,13 @@ namespace SkyStrike.Game
         }
         public void RefreshSubcribers()
         {
+            onLevelUp.Invoke();
             onCollectStar.Invoke(_star);
             onEnergyChanged.Invoke(_energy);
             onHealthChanged.Invoke(_hp);
-            onScoreChanged.Invoke(_score);
             onExpChanged.Invoke(1f * _exp / maxExp);
             foreach (var skill in skillDataList)
                 skill.onCooldown?.Invoke(skill.elapsedTime, skill.cooldown);
-            onLevelUp.Invoke();
         }
     }
 }

@@ -14,7 +14,8 @@ namespace SkyStrike.Editor
         public static UnityEvent<LevelDataObserver> onSelectLevel { get; private set; }
         public static FuncEvent<int, ObjectMetaData> onGetMetaData { get; private set; }
 
-        static EventManager()
+        static EventManager() => Reset();
+        public static void Reset()
         {
             onSelectObject = new();
             onSetRefObject = new();
@@ -36,7 +37,11 @@ namespace SkyStrike.Editor
         public static void GetMetaData(int id, out ObjectMetaData metaData)
             => metaData = onGetMetaData.Invoke(id);
         public static void CreateObject(ObjectDataObserver data) => onCreateObject.Invoke(data);
-        public static void SelectWave(WaveDataObserver data) => onSelectWave.Invoke(data);
+        public static void SelectWave(WaveDataObserver data)
+        {
+            onSelectObject.Invoke(null);
+            onSelectWave.Invoke(data);
+        }
         public static void SelectLevel(LevelDataObserver data) => onSelectLevel.Invoke(data);
     }
 }

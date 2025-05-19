@@ -24,6 +24,7 @@ namespace SkyStrike
     // In/Out
     public static class IO
     {
+        private static readonly string path = "Assets/Resources/Levels";
         public static void WriteToBinaryFile<T>(string fileName, T objectToWrite)
         {
             string dataPath = Path.Combine(Application.persistentDataPath, fileName);
@@ -44,6 +45,83 @@ namespace SkyStrike
                 return default;
             }
         }
+        public static bool SaveLevel(object obj, string fileName)
+        {
+            try
+            {
+                MemoryStream stream = new();
+                new BinaryFormatter().Serialize(stream, obj);
+                var bytes = stream.ToArray();
+                string filePath = GetDataPath(fileName);
+                string directoryPath = Path.GetDirectoryName(filePath);
+                if (!Directory.Exists(directoryPath))
+                    Directory.CreateDirectory(directoryPath);
+                File.WriteAllBytes(filePath, bytes);
+                AssetDatabase.Refresh();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+                return false;
+            }
+        }
+        public static bool RenameLevel(string oldName, string newName)
+        {
+            string directoryPath = Path.GetDirectoryName(GetDataPath(oldName));
+            if (Directory.Exists(directoryPath))
+            {
+                string oldPath = GetDataPath(oldName);
+                File.Move(oldPath, GetDataPath(newName));
+                File.Delete(oldPath + ".meta");
+                AssetDatabase.Refresh();
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning("File not exist!");
+                return false;
+            }
+        }
+        public static T LoadLevel<T>(string fileName) where T : class
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(fileName))
+                    return null;
+                var bytes = Resources.Load<TextAsset>("Levels/" + fileName).bytes;
+                using MemoryStream stream = new(bytes);
+                return (T)new BinaryFormatter().Deserialize(stream);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning(e.Message);
+                return null;
+            }
+        }
+        public static Dictionary<string, T> LoadAllLevel<T>() where T : class
+        {
+            try
+            {
+                var list = Resources.LoadAll<TextAsset>("Levels");
+                Dictionary<string, T> result = new();
+                for (int i = 0; i < list.Length; i++)
+                {
+                    using MemoryStream stream = new(list[i].bytes);
+                    T temp = (T)new BinaryFormatter().Deserialize(stream);
+                    if (temp != null)
+                        result.Add(list[i].name, temp);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning(e.Message);
+                return null;
+            }
+        }
+        private static string GetDataPath(string fileName)
+            => $"{path}/{fileName}.txt";
     }
     public static class ExtensionMethod
     {

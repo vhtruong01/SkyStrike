@@ -8,7 +8,13 @@ namespace SkyStrike.Game
         Health,
         Star1,
         Star5,
-        SkillPoint,
+        Energy,
+        SingleBullet,
+        DoubleBullet,
+        TrippleBullet,
+        MissileBullet,
+        Laser
+
     }
     public enum EItemAnimationType
     {

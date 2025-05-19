@@ -7,6 +7,11 @@ namespace SkyStrike.Game
 
         public override void Execute()
             => shipData.isSpawn = !shipData.isSpawn;
-        public override void Upgrade() { }
+        protected override void UpgradeStat() { }
+        public override void Interrupt()
+        {
+            base.Interrupt();
+            Stop();
+        }
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3063146869349276910}
   - component: {fileID: 3896984344509779980}
   - component: {fileID: 9039881819589212598}
+  - component: {fileID: 976940039520538392}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Enemy
@@ -103,9 +104,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <type>k__BackingField: 0
-  loopType: 2
   autoPlay: 0
+  loopType: 2
   interval: 0.075
+  spinSpeed: 0
   <delay>k__BackingField: 0
   <pauseAnimationOnFinish>k__BackingField: 0
   sprites: []
@@ -134,12 +136,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <type>k__BackingField: 0
-  loopType: 2
   autoPlay: 0
+  loopType: 2
   interval: 0.075
+  spinSpeed: 0
   <delay>k__BackingField: 0
   <pauseAnimationOnFinish>k__BackingField: 0
   sprites: []
+--- !u!114 &976940039520538392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842196032168144053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52760f32d70c69847b83308feb0ce686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4314800306552034032
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +166,7 @@ GameObject:
   - component: {fileID: 4372885771002198058}
   - component: {fileID: 2171487843280534998}
   - component: {fileID: 1920546087058111870}
+  - component: {fileID: 3177559540271007340}
   m_Layer: 8
   m_Name: Damaged
   m_TagString: Enemy
@@ -218,7 +234,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8f62d3cecbf1f3c42b76a66a05c67aab, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -241,10 +257,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <type>k__BackingField: 1
+  autoPlay: 0
   loopType: 0
   <startVal>k__BackingField: 0
   <endVal>k__BackingField: 1
   <duration>k__BackingField: 0.1
+--- !u!114 &3177559540271007340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314800306552034032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52760f32d70c69847b83308feb0ce686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4790001652841245546
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0806de93acf734aa832f75ebc64837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <metaData>k__BackingField: {fileID: 0}
 --- !u!1 &5933940242543306529
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +541,7 @@ GameObject:
   - component: {fileID: 6898654960542916507}
   - component: {fileID: 2149663414501175718}
   - component: {fileID: 83344314359224764}
+  - component: {fileID: 1833098002759625868}
   m_Layer: 8
   m_Name: Shield
   m_TagString: Enemy
@@ -579,7 +608,7 @@ SpriteRenderer:
   m_SortingLayerID: 1411502773
   m_SortingLayer: 3
   m_SortingOrder: -2
-  m_Sprite: {fileID: 634288866122248187, guid: aa889e8b62cc541498b59e2eb9a38636, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -587,7 +616,7 @@ SpriteRenderer:
   m_Size: {x: 1.939394, y: 1.939394}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2149663414501175718
@@ -603,9 +632,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <type>k__BackingField: 0
-  loopType: 2
   autoPlay: 0
+  loopType: 2
   interval: 0.08
+  spinSpeed: 0
   <delay>k__BackingField: 0
   <pauseAnimationOnFinish>k__BackingField: 0
   sprites: []
@@ -621,6 +651,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaa87541317bed45a1670c4315b6fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1833098002759625868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933940242543306529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52760f32d70c69847b83308feb0ce686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5974511350364225487
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +674,7 @@ GameObject:
   - component: {fileID: 4283414282507993202}
   - component: {fileID: 8150553442731445511}
   - component: {fileID: 2118315444632039805}
+  - component: {fileID: 8613402611012756238}
   m_Layer: 8
   m_Name: Highlight
   m_TagString: Enemy
@@ -699,7 +742,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: 8107366635331182373, guid: 1151931b47cf4e14c9d8e9c447ae3d1b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -722,10 +765,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <type>k__BackingField: 2
+  autoPlay: 0
   loopType: 3
   <startVal>k__BackingField: 0.5
   <endVal>k__BackingField: 1
   <duration>k__BackingField: 2
+--- !u!114 &8613402611012756238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974511350364225487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52760f32d70c69847b83308feb0ce686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7553730925755456709
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +794,7 @@ GameObject:
   - component: {fileID: 4894446388246975170}
   - component: {fileID: 2040274611907098041}
   - component: {fileID: 6223871093275249391}
+  - component: {fileID: 2030473892671274477}
   m_Layer: 8
   m_Name: Engine
   m_TagString: Enemy
@@ -828,9 +885,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <type>k__BackingField: 0
-  loopType: 2
   autoPlay: 0
+  loopType: 2
   interval: 0.075
+  spinSpeed: 0
   <delay>k__BackingField: 0
   <pauseAnimationOnFinish>k__BackingField: 0
   sprites: []
@@ -846,6 +904,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2749d9a2eeedcb48ac03718ae833ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2030473892671274477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7553730925755456709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52760f32d70c69847b83308feb0ce686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7804673437961577868
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +927,7 @@ GameObject:
   - component: {fileID: 575657793122719163}
   - component: {fileID: 7905886158753222061}
   - component: {fileID: 3041767354389129736}
+  - component: {fileID: 6271159291570159245}
   m_Layer: 8
   m_Name: Destruction
   m_TagString: Enemy
@@ -947,9 +1018,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <type>k__BackingField: 3
-  loopType: 0
   autoPlay: 0
-  interval: 0.06
+  loopType: 0
+  interval: 0.075
+  spinSpeed: 0
   <delay>k__BackingField: 0
   <pauseAnimationOnFinish>k__BackingField: 0
   sprites: []
+--- !u!114 &6271159291570159245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7804673437961577868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52760f32d70c69847b83308feb0ce686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7174307350152327196}
   - component: {fileID: 1149385772865993667}
   - component: {fileID: -6168511356069131724}
+  - component: {fileID: 5925139092507977783}
+  - component: {fileID: 1071564940038954308}
   m_Layer: 8
   m_Name: EnemyBullet
   m_TagString: EnemyBullet
@@ -146,8 +148,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1969515735
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d0af98eef95aaa84792f61ff8612ebcf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -160,3 +162,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!114 &5925139092507977783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525251244644191230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdafbc756bfd73649ab151c8adb0404d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <type>k__BackingField: 0
+  autoPlay: 1
+  loopType: 2
+  interval: 0.1
+  spinSpeed: 0
+  <delay>k__BackingField: 0
+  <pauseAnimationOnFinish>k__BackingField: 0
+  sprites: []
+--- !u!114 &1071564940038954308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525251244644191230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52760f32d70c69847b83308feb0ce686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

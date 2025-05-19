@@ -5,16 +5,17 @@ namespace SkyStrike.Editor
 {
     public class EditorTool : MonoBehaviour
     {
-        [SerializeField] private Controller controller;
+        //
+        [SerializeField] private Button reviewWaveBtn;
         [Header("Level")]
         [SerializeField] private Button levelInfoBtn;
         [SerializeField] private Button playGameBtn;
-        [SerializeField] private Button reviewWaveBtn;
         [SerializeField] private Button saveLevelBtn;
         [SerializeField] private Button newLevelBtn;
         [SerializeField] private Button openLevelBtn;
         [SerializeField] private Button exitBtn;
         [SerializeField] private LevelMenu levelMenu;
+        [SerializeField] private LevelInfoMenu levelInfoMenu;
         [Header("Object")]
         [SerializeField] private Button copyBtn;
         [SerializeField] private Button pasteBtn;
@@ -34,11 +35,13 @@ namespace SkyStrike.Editor
             pasteBtn.onClick.AddListener(Paste);
             removeBtn.onClick.AddListener(Remove);
             cutBtn.onClick.AddListener(Cut);
-            playGameBtn.onClick.AddListener(TestGame);
-            levelInfoBtn.onClick.AddListener(levelMenu.Show);
             bulletEditorBtn.onClick.AddListener(bulletEditor.Show);
+            levelInfoBtn.onClick.AddListener(levelInfoMenu.Show);
             editMovementBtn.onClick.AddListener(pathMenu.Show);
-            saveLevelBtn.onClick.AddListener(SaveLevel);
+            playGameBtn.onClick.AddListener(TestGame);
+            openLevelBtn.onClick.AddListener(levelMenu.Show);
+            newLevelBtn.onClick.AddListener(levelMenu.CreateEmptyLevel);
+            saveLevelBtn.onClick.AddListener(levelMenu.SaveLevelData);
             exitBtn.onClick.AddListener(Application.Quit);
             EventManager.onSelectObject.AddListener(SelectObject);
         }
@@ -69,11 +72,9 @@ namespace SkyStrike.Editor
             Copy();
             Remove();
         }
-        private void SaveLevel()
-            => controller.SaveLevelData();
         private void TestGame()
         {
-            SaveLevel();
+            levelMenu.SaveLevelData();
             SceneSwapper.PlayGame();
         }
     }

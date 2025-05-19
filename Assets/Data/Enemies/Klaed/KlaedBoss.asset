@@ -112,4 +112,4 @@ MonoBehaviour:
   - {fileID: 3913557385556201039, guid: cd47f60b9c51faf4f8acfc4c2bd17964, type: 3}
   - {fileID: 7507818382613524205, guid: cd47f60b9c51faf4f8acfc4c2bd17964, type: 3}
   - {fileID: -3770799367850329398, guid: cd47f60b9c51faf4f8acfc4c2bd17964, type: 3}
-  <bulletSprites>k__BackingField: []
+  <bulletSprites>k__BackingField: {fileID: 11400000, guid: eab73d1030f8b5a499a5a72e72f95462, type: 2}

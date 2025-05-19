@@ -33,6 +33,7 @@ namespace SkyStrike.Game
                 enemyData.bulletData = point.bulletData;
                 spawner.Spawn();
                 enemyData.isImmortal = point.isImmortal;
+                //
                 bool shield = !point.isImmortal && point.shield;
                 if (enemyData.shield ^ shield)
                 {

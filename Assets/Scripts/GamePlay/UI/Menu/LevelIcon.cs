@@ -30,7 +30,7 @@ namespace SkyStrike.UI
             btn.onClick.AddListener(Appear);
             Disappear();
         }
-        public void Init(LevelData levelData, int index, UnityAction<LevelIcon> call)
+        public void Init(LevelData levelData, int index, int highscore, UnityAction<LevelIcon> call)
         {
             this.index = index;
             if (isLock)
@@ -44,7 +44,7 @@ namespace SkyStrike.UI
                 levelIndex.color = border.color = Color.cyan;
             }
             levelName.text = $"Stage {index + 1}: {levelData.name}";
-            score.text = "High score: 0";
+            score.text = $"High score: {highscore}";
             for (int i = Mathf.Max(1, levelData.starRating); i < stars.Count; i++)
                 stars[i].gameObject.SetActive(false);
             this.call = call;

@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using SkyStrike.Game;
 
 namespace SkyStrike.Editor
 {
     public class Controller : MonoBehaviour
     {
         private List<IMenu> menus;
-        private LevelDataObserver levelData;
+        private static LevelDataObserver levelData;
 
         public void Awake()
         {
@@ -18,19 +17,13 @@ namespace SkyStrike.Editor
                 if (obj is IMenu)
                     menus.Add(obj as IMenu);
             }
+            EventManager.onSelectLevel.AddListener(SelectLevel);
         }
         public void Start()
-        {
-            //PlayerPrefs.DeleteAll();
-            levelData = new(IO.ReadFromBinaryFile<LevelData>("test.dat"));
-            EventManager.SelectLevel(levelData);        
-        }
-        public void SaveLevelData()
-        {
-            IO.WriteToBinaryFile("test.dat", levelData.ExportData());
-            foreach (var menu in menus)
-                menu.SaveSetting();
-            print("saved");
-        }
+            => EventManager.SelectLevel(levelData ?? new());
+        private void SelectLevel(LevelDataObserver data)
+            => levelData = data;
+        public void OnDisable()
+            => EventManager.Reset();
     }
 }

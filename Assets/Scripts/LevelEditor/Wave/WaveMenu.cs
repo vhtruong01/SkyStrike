@@ -20,7 +20,7 @@ namespace SkyStrike.Editor
             EventManager.onSelectLevel.AddListener(SelectLevel);
             group = gameObject.GetComponent<WaveItemList>();
             group.Init(EventManager.SelectWave);
-            removeBtn.onClick.AddListener(() => group.RemoveSelectedItem());
+            removeBtn.onClick.AddListener(RemoveSelectedWave);
             addBtn.onClick.AddListener(group.CreateEmptyItem);
             duplicateBtn.onClick.AddListener(group.DuplicateSelectedItem);
             moveLeftBtn.onClick.AddListener(group.MoveLeftSelectedItem);
@@ -30,6 +30,8 @@ namespace SkyStrike.Editor
         protected override void CreateObject(ObjectDataObserver data) => waveData.Add(data);
         protected override void RemoveObject(ObjectDataObserver data) => waveData.Remove(data);
         protected override void SelectWave(WaveDataObserver data) => waveData = data;
+        private void RemoveSelectedWave()
+            => ModalMenu.Show("Delete current wave?", () => group.RemoveSelectedItem());
         protected void SelectLevel(LevelDataObserver data)
             => group.DisplayDataList(data);
     }

@@ -12,22 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36986dba5959359438358f17466b3528, type: 3}
   m_Name: DoubleBullet
   m_EditorClassIdentifier: 
+  <itemType>k__BackingField: 6
   <hide>k__BackingField: 1
   <maxLv>k__BackingField: 6
-  <skillName>k__BackingField: Double
+  <skillName>k__BackingField: Double Bullet
   <icon>k__BackingField: {fileID: 21300000, guid: dccd67524bd0f9d4b9e767a7a27a844d, type: 3}
   <cooldownList>k__BackingField:
-  - 3
+  - 0.1
   - 0.4
   - 0.4
   - 0.3
   - 0.3
   - 0.3
-  <cooldown>k__BackingField: 3
-  <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 3
-  <dmg>k__BackingField: 200
-  <speed>k__BackingField: 5
+  <cooldown>k__BackingField: 0.4
+  <lv>k__BackingField: 1
+  <energyCost>k__BackingField: 0
+  <elapsedTime>k__BackingField: 0.40501073
+  <dmg>k__BackingField: 250
+  <speed>k__BackingField: 6
   <scale>k__BackingField: 1
   <lifetime>k__BackingField: 2
   <sprite>k__BackingField: {fileID: 21300000, guid: 2debb193a53be7f4db320633371fc647, type: 3}
@@ -49,3 +51,5 @@ MonoBehaviour:
   - 1.15
   - 1.15
   - 1.25
+  <spriteList>k__BackingField: []
+  <effectList>k__BackingField: []

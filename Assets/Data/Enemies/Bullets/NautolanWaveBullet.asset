@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967f75a7071ecd4f825c60f70524a67, type: 3}
+  m_Name: NautolanWaveBullet
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 1121612691, guid: 149a43ecd1122174c97cae37509d3907, type: 3}
+  - {fileID: 163609275, guid: 149a43ecd1122174c97cae37509d3907, type: 3}
+  - {fileID: 170915462, guid: 149a43ecd1122174c97cae37509d3907, type: 3}
+  - {fileID: -1408713149, guid: 149a43ecd1122174c97cae37509d3907, type: 3}
+  - {fileID: -1390550130, guid: 149a43ecd1122174c97cae37509d3907, type: 3}
+  - {fileID: -1132603166, guid: 149a43ecd1122174c97cae37509d3907, type: 3}

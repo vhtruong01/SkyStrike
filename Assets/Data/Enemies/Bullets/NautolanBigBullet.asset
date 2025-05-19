@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967f75a7071ecd4f825c60f70524a67, type: 3}
+  m_Name: NautolanBigBullet
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -4250677989521320448, guid: d720dd8e8554c2d4eb218bac5d654dab, type: 3}
+  - {fileID: -2914033916221130338, guid: d720dd8e8554c2d4eb218bac5d654dab, type: 3}
+  - {fileID: 4402199979300805748, guid: d720dd8e8554c2d4eb218bac5d654dab, type: 3}
+  - {fileID: 2381577330684327159, guid: d720dd8e8554c2d4eb218bac5d654dab, type: 3}
+  - {fileID: -4296236053309933470, guid: d720dd8e8554c2d4eb218bac5d654dab, type: 3}
+  - {fileID: -2578529574087370251, guid: d720dd8e8554c2d4eb218bac5d654dab, type: 3}
+  - {fileID: 4629720170095800624, guid: d720dd8e8554c2d4eb218bac5d654dab, type: 3}
+  - {fileID: 388490337376888669, guid: d720dd8e8554c2d4eb218bac5d654dab, type: 3}

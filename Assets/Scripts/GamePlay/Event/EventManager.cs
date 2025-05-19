@@ -14,8 +14,10 @@ namespace SkyStrike.Game
         ShakeScreen,
         PrepareGame,
         StartGame,
-        EndGame,
-        Warning
+        WinGame,
+        LoseGame,
+        Warning,
+        CloseScene
     }
     public static partial class EventManager
     {

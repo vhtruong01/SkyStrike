@@ -16,6 +16,7 @@ namespace SkyStrike.Game
             public bool isImmortal;
             public bool isLookingAtPlayer;
             public bool isIgnoreVelocity;
+            public bool isScaleImmediately;
             public bool shield;
             public float rotation;
             public float scale;

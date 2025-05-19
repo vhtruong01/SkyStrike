@@ -39,4 +39,4 @@ MonoBehaviour:
   - {fileID: -1388552126, guid: c67f756e0affa2f4bbb2e89d6a951501, type: 3}
   <shieldSprites>k__BackingField: []
   <weaponSprites>k__BackingField: []
-  <bulletSprites>k__BackingField: []
+  <bulletSprites>k__BackingField: {fileID: 11400000, guid: f2c05ea2619957e478308cd909bfd620, type: 2}

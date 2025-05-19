@@ -4,6 +4,5 @@ namespace SkyStrike.Editor
     {
         public void Hide();
         public void Show();
-        public void SaveSetting();
     }
 }

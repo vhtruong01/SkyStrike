@@ -65,4 +65,4 @@ MonoBehaviour:
   - {fileID: 2047422255333849054, guid: dec779f2f02d27f439f6c38b1d2dd54a, type: 3}
   - {fileID: 8681867370041529682, guid: dec779f2f02d27f439f6c38b1d2dd54a, type: 3}
   - {fileID: 2376438654998718198, guid: dec779f2f02d27f439f6c38b1d2dd54a, type: 3}
-  <bulletSprites>k__BackingField: []
+  <bulletSprites>k__BackingField: {fileID: 11400000, guid: 20fd4a1a93c57134db2fc7cfe8f53755, type: 2}

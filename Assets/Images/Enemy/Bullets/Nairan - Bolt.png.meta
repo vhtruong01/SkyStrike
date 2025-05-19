@@ -111,7 +111,7 @@ TextureImporter:
         serializedVersion: 2
         x: 1
         y: 0
-        width: 15
+        width: 7
         height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -131,10 +131,10 @@ TextureImporter:
       name: Nairan - Bolt_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 1
-        width: 14
-        height: 8
+        x: 10
+        y: 0
+        width: 7
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,9 +153,9 @@ TextureImporter:
       name: Nairan - Bolt_2
       rect:
         serializedVersion: 2
-        x: 36
+        x: 19
         y: 0
-        width: 9
+        width: 7
         height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -171,11 +171,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Nairan - Bolt_3
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 0
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f3ece4611291ec49831deaa2461fba2
+      internalID: -1172809961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nairan - Bolt_4
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f7badf23fb74ac4db8331510827527e
+      internalID: 297804923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c7416b17f015f064a9edb3be0632cf0c
     internalID: 0
     vertices: []
     indices: 
@@ -188,6 +232,8 @@ TextureImporter:
       Nairan - Bolt_0: -6847961354968287674
       Nairan - Bolt_1: 4430387896857040721
       Nairan - Bolt_2: -7143590511609857905
+      Nairan - Bolt_3: -1172809961
+      Nairan - Bolt_4: 297804923
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

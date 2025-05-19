@@ -13,6 +13,8 @@ namespace SkyStrike.UI
         [SerializeField] private Image border;
         [SerializeField] private TextMeshProUGUI energyText;
         private SkillData skillData;
+        private readonly static Color activeBorderColor = new(0, 0.75f, 0.75f);
+        private readonly static Color deactiveBorderColor = new(0.5f, 0, 0);
         private bool isLow;
         private bool isHigh;
 
@@ -32,9 +34,9 @@ namespace SkyStrike.UI
             if (percent >= 1)
             {
                 if (isHigh)
-                    border.color = Color.cyan;
+                    border.color = activeBorderColor;
             }
-            else if (isHigh) border.color = Color.red;
+            else if (isHigh) border.color = deactiveBorderColor;
             icon.fillAmount = percent;
         }
         public void CheckEnergy(int curEnergy)

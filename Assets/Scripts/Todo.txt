@@ -96,20 +96,31 @@ boss hp bar -- done
 system notification -- done
 score/time/distance(text) -- done 
 level percent -- done
----------
 start level/level complete/boss warning -- done
 energy point -- done
-ship skill: clear all bullet -- done //, lock enemy, magic bullet
-pause/die -- done
-black/white hole
-enemy skill - fix enemy bullet
+ship skill: clear all bullet -- done 
+pause -- done
+fix enemy bullet -- done
+win/lose -- done
+save level -- done
+item -- done
+ship invincibility -- done
+count enemy/level percent -- done 
+low hp ui -- done
 
-bullet effect
-card/star
 
-bg effect
-behaviour tree
+
+enemy skill - 
+boss - behaviour tree
 sound effect/bgm music
 sfx:bullet, bg sfx, die, collect item,black hole, boss bgm, normal bgm, skill bgm, button bgm,
+---------------------
 
-save level
+black/white hole ?
+bullet effect ?
+buy skin/effect - star ??
+bg effect
+
+on validate
+
+end

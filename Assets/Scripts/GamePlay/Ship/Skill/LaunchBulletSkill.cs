@@ -31,7 +31,7 @@ namespace SkyStrike.Game
             EventManager.Active(bulletEventData);
             coroutine = null;
         }
-        public override void Upgrade()
+        protected override void UpgradeStat()
         {
             anim.SetDuration(skillData.cooldown);
             waitForSeconds = new WaitForSeconds(skillData.cooldown);

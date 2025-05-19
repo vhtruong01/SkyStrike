@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a384c188a4c9f4bacba31c1575a4f8, type: 3}
   m_Name: NairanBomber
   m_EditorClassIdentifier: 
-  race: 2
-  type: 0
   <color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <sprite>k__BackingField: {fileID: 21300000, guid: dbb88424f10c31b4b885d6119a006f12, type: 3}
+  race: 2
+  <type>k__BackingField: 0
   <destructionSprites>k__BackingField:
   - {fileID: -6354222397065923665, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
   - {fileID: -2438416726907542986, guid: 91ae2e53d81848e4a82a3ee712f32882, type: 3}
@@ -53,3 +53,4 @@ MonoBehaviour:
   - {fileID: -20698314528295450, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
   - {fileID: 5811436630411727436, guid: 30987e77bcc44fa4db35b042e8a37302, type: 3}
   <weaponSprites>k__BackingField: []
+  <bulletSprites>k__BackingField: {fileID: 11400000, guid: 51bd0f7dc305499498ab40335d621b2c, type: 2}

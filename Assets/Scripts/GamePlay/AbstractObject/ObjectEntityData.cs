@@ -9,7 +9,7 @@ namespace SkyStrike.Game
     }
     public abstract class ObjectEntityData<T> : GameData<T, ObjectEventData<T>>, IEntityMoveData where T : ObjectMetaData
     {
-        public float size { get; protected set; }
+        public float size { get;  set; }
         public int pointIndex { get; set; }
         public bool canMove { get; set; }
         public bool isMaintain { get; protected set; }

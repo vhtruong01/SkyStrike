@@ -8,7 +8,6 @@ namespace SkyStrike.UI
     public class LoadingScreen : MonoBehaviour
     {
         [SerializeField] private Slider progressBar;
-        [SerializeField] private Image icon;
 
         public void Start()
             => StartCoroutine(ShowLoadingProgess());

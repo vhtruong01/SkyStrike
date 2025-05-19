@@ -1,4 +1,3 @@
-using SkyStrike.Game;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +6,6 @@ namespace SkyStrike.UI
 {
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] private GameManager gameManager;
         [SerializeField] private Menu levelMenu;
         [SerializeField] private Menu homeMenu;
         [SerializeField] private Menu settingMenu;

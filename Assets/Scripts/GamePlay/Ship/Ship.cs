@@ -1,4 +1,3 @@
-using SkyStrike.UI;
 using System.Collections;
 using UnityEngine;
 
@@ -7,24 +6,34 @@ namespace SkyStrike.Game
     public sealed class Ship : Commander, IShipComponent, IEntity, ICollector
     {
         public static Vector3 pos { get; private set; }
-        private readonly NotiEventData notiEventData = new();
+        private readonly EndGameEventData endGameEventData = new();
         [field: SerializeField] public ShipData shipData { get; set; }
         private Rigidbody2D rigi;
+        private bool isEndGame;
 
         public void OnEnable()
         {
             EventManager.Subscribe(EEventType.StartGame, MoveAndFire);
+            EventManager.Subscribe(EEventType.WinGame, WinGame);
+            EventManager.Subscribe(EEventType.LoseGame, LoseGame);
             EventManager.Subscribe<EnemyDieEventData>(Upgrade);
         }
         public void OnDisable()
         {
             EventManager.Unsubscribe(EEventType.StartGame, MoveAndFire);
+            EventManager.Unsubscribe(EEventType.WinGame, WinGame);
+            EventManager.Unsubscribe(EEventType.LoseGame, LoseGame);
             EventManager.Unsubscribe<EnemyDieEventData>(Upgrade);
         }
         public override void Init()
             => rigi = GetComponent<Rigidbody2D>();
         public void Start()
-            => StartCoroutine(Recover());
+        {
+            animator.GetAnimation(EAnimationType.Invincibility)
+                .SetStartedAction(() => shipData.invincibility = true)
+                .SetFinishedAction(() => shipData.invincibility = false)
+                .SetDuration(shipData.invincibleTime);
+        }
         private IEnumerator Recover()
         {
             while (true)
@@ -43,6 +52,7 @@ namespace SkyStrike.Game
         }
         private void MoveAndFire()
         {
+            StartCoroutine(Recover());
             StartCoroutine(movement.Travel(1));
             spawner.Spawn();
         }
@@ -65,22 +75,17 @@ namespace SkyStrike.Game
         public override void Interrupt()
         {
             rigi.simulated = false;
+            shipData.invincibility = true;
             StopAllCoroutines();
         }
         public void Collect(EItem item)
         {
             if (item != EItem.Star1 && item != EItem.Star5)
-            {
                 animator.GetAnimation(EAnimationType.Highlight).Restart();
-                notiEventData.notiType = ENoti.Safe;
-                notiEventData.message = item.ToString();
-                EventManager.ActiveUIEvent(notiEventData);
-            }
             shipData.CollectItem(item);
         }
         public bool TakeDamage(IDamager damager)
         {
-            //
             if (shipData.invincibility) return false;
             if (!shipData.shield)
             {
@@ -91,20 +96,38 @@ namespace SkyStrike.Game
                 {
                     EventManager.Active(EEventType.ShakeScreen);
                     animator.GetAnimation(EAnimationType.Damaged).Play();
-                    //invisibility
+                    animator.GetAnimation(EAnimationType.Invincibility).Play();
                 }
             }
             return true;
         }
-        public void Disappear()
-        {
-            //win
-        }
+        public void Disappear() { }
         public void Die()
         {
-            //InterruptAllComponents();
-            animator.GetAnimation(EAnimationType.Destruction).Play();
-            //loss
+            InterruptAllComponents();
+            animator.GetAnimation(EAnimationType.Destruction)
+                    .SetFinishedAction(() => entityObject.SetActive(false))
+                    .Play();
+            EventManager.Active(EEventType.LoseGame);
+        }
+        private void WinGame()
+        {
+            Interrupt();
+            EndGame(true);
+        }
+        private void LoseGame()
+        {
+            Interrupt();
+            EndGame(false);
+        }
+        private void EndGame(bool state)
+        {
+            if (isEndGame) return;
+            isEndGame = true;
+            endGameEventData.isWin = state;
+            endGameEventData.score = shipData.score;
+            endGameEventData.star = shipData.star;
+            EventManager.Active(endGameEventData);
         }
     }
 }

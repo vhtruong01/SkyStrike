@@ -8,6 +8,7 @@ namespace SkyStrike.Editor
         private int curBulletId;
         private List<WaveDataObserver> waveList;
         private List<BulletDataObserver> bulletList;
+        public DataObserver<string> fileName { get; private set; }
         public DataObserver<int> starRating { get; private set; }
         public DataObserver<string> levelName { get; private set; }
         private readonly Dictionary<int, BulletDataObserver> bulletDict;
@@ -18,6 +19,7 @@ namespace SkyStrike.Editor
             starRating = new();
             bulletDict = new();
             levelName = new();
+            fileName = new();
             ImportData(levelData);
         }
         public void GetList(out List<WaveDataObserver> list) => list = waveList;
@@ -70,8 +72,12 @@ namespace SkyStrike.Editor
                 curBulletId = curBulletId,
                 bullets = new EnemyBulletMetaData[bulletList.Count]
             };
+            levelData.enemyCount = 0;
             for (int i = 0; i < waveList.Count; i++)
+            {
                 levelData.waves[i] = waveList[i].ExportData();
+                levelData.enemyCount += waveList[i].GetEnemyCount();
+            }
             for (int i = 0; i < bulletList.Count; i++)
                 levelData.bullets[i] = bulletList[i].ExportData();
             return levelData;
@@ -85,7 +91,7 @@ namespace SkyStrike.Editor
                 CreateEmpty(out WaveDataObserver _);
                 return;
             }
-            levelName.SetData(levelData.name);
+            fileName.SetData(levelData.fileName);
             starRating.SetData(levelData.starRating);
             curBulletId = levelData.curBulletId;
             if (levelData.waves != null)
@@ -96,5 +102,12 @@ namespace SkyStrike.Editor
                     Add(new BulletDataObserver(levelData.bullets[i]));
         }
         public LevelDataObserver Clone() => null;
+        public bool IsEmpty()
+        {
+            for (int i = 0; i < waveList.Count; i++)
+                if (!waveList[i].IsEmpty()) return false;
+            if (bulletList.Count > 0) return false;
+            return true;
+        }
     }
 }

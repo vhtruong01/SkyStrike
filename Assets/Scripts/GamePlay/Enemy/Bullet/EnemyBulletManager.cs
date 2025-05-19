@@ -13,6 +13,7 @@ namespace SkyStrike.Game
         private void SpawnBullet(EnemyBulletEventData eventData)
         {
             var metaData = bulletEventData.metaData = eventData.metaData;
+            bulletEventData.sprites = eventData.sprites;
             if (metaData == null || metaData.amount == 0) return;
             float unitAngle = metaData.isCircle
                               ? 2 * Mathf.PI / metaData.amount

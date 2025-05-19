@@ -11,18 +11,9 @@ namespace SkyStrike.Editor
         {
             if (collapseBtn != null)
                 collapseBtn.onClick.AddListener(Hide);
-            Restore();
             Preprocess();
         }
         protected abstract void Preprocess();
-        protected virtual void Restore()
-        {
-            if (PlayerPrefs.GetInt(GetType().Name, 0) == 0)
-                Hide();
-            else Show();
-        }
-        public virtual void SaveSetting()
-            => PlayerPrefs.SetInt(GetType().Name, gameObject.activeSelf ? 1 : 0);
         public virtual void Hide()
         {
             if (gameObject.activeSelf)

@@ -67,7 +67,7 @@ namespace SkyStrike.Editor
         public void ResetData()
         {
             moveData.delay.OnlySetData(0);
-            moveData.velocity.OnlySetData(1);
+            moveData.velocity.OnlySetData(4);
             cloneCount.OnlySetData(0);
             spawnInterval.OnlySetData(0.5f);
             size.OnlySetData(1);

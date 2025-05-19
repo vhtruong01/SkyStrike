@@ -1,5 +1,4 @@
 using UnityEngine;
-using static SkyStrike.Game.MoveData;
 
 namespace SkyStrike.Editor
 {
@@ -15,6 +14,7 @@ namespace SkyStrike.Editor
         public DataObserver<bool> shield { get; private set; }
         public DataObserver<bool> isStraightLine { get; private set; }
         public DataObserver<bool> isLookingAtPlayer { get; private set; }
+        public DataObserver<bool> isScaleImmediately { get; private set; }
         public DataObserver<bool> isImmortal { get; private set; }
         public DataObserver<bool> isIgnoreVelocity { get; private set; }
         public int bulletId { get; private set; }
@@ -33,6 +33,7 @@ namespace SkyStrike.Editor
             isLookingAtPlayer = new();
             isImmortal = new();
             isIgnoreVelocity = new();
+            isScaleImmediately = new();
             isStraightLine.SetData(true);
             scale.OnlySetData(1);
             prePos.OnlySetData(new(-1.5f, 0));
@@ -47,11 +48,11 @@ namespace SkyStrike.Editor
             nextPos.SetData(nextPos.data + dir);
         }
         public void ChangePosition(Vector2 pos) => Translate(pos - midPos.data);
-        public void SetBulletId(int id)
+        public void SetBulletId(int? id)
         {
-            if (bulletId == id)
+            if (id == null || bulletId == id)
                 bulletId = BulletDataObserver.UNDEFINED_ID;
-            else bulletId = id;
+            else bulletId = id.Value;
         }
         public void UnbindAll()
         {
@@ -67,6 +68,7 @@ namespace SkyStrike.Editor
             isStraightLine.UnbindAll();
             isLookingAtPlayer.UnbindAll();
             isIgnoreVelocity.UnbindAll();
+            isScaleImmediately.UnbindAll();
         }
         public PointDataObserver Clone()
         {
@@ -83,6 +85,7 @@ namespace SkyStrike.Editor
             newPoint.isLookingAtPlayer.OnlySetData(isLookingAtPlayer.data);
             newPoint.isStraightLine.OnlySetData(isStraightLine.data);
             newPoint.isIgnoreVelocity.OnlySetData(isIgnoreVelocity.data);
+            newPoint.isScaleImmediately.OnlySetData(isScaleImmediately.data);
             newPoint.bulletId = bulletId;
             return newPoint;
         }
@@ -97,6 +100,7 @@ namespace SkyStrike.Editor
                 isImmortal = isImmortal.data,
                 isLookingAtPlayer = isLookingAtPlayer.data,
                 isIgnoreVelocity = isIgnoreVelocity.data,
+                isScaleImmediately = isScaleImmediately.data,
                 shield = shield.data,
                 scale = scale.data,
                 rotation = rotation.data,
@@ -115,6 +119,7 @@ namespace SkyStrike.Editor
             isImmortal.OnlySetData(pointData.isImmortal);
             isLookingAtPlayer.OnlySetData(pointData.isLookingAtPlayer);
             isIgnoreVelocity.OnlySetData(pointData.isIgnoreVelocity);
+            isScaleImmediately.OnlySetData(pointData.isScaleImmediately);
             shield.OnlySetData(pointData.shield);
             scale.OnlySetData(pointData.scale);
             rotation.OnlySetData(pointData.rotation);

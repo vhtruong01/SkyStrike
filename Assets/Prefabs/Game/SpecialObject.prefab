@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4785496608352427461}
   - component: {fileID: 851011361421386686}
   - component: {fileID: -6086570243608572091}
+  - component: {fileID: 8429817781874954055}
   m_Layer: 0
   m_Name: SpecialObject
   m_TagString: Untagged
@@ -187,10 +188,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <type>k__BackingField: 0
-  loopType: 2
   autoPlay: 0
+  loopType: 2
   interval: 0.075
   spinSpeed: 0
   <delay>k__BackingField: 0
   <pauseAnimationOnFinish>k__BackingField: 0
   sprites: []
+--- !u!114 &8429817781874954055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002204484195581685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52760f32d70c69847b83308feb0ce686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

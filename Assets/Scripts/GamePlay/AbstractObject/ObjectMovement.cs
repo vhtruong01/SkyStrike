@@ -8,21 +8,28 @@ namespace SkyStrike.Game
     {
         public IObject entity { get; set; }
         protected IEntityMoveData entityMoveData;
+        protected abstract float scale { get; set; }
 
         public IEnumerator Travel(float delay)
         {
+            Point point = entityMoveData.moveData.points[entityMoveData.pointIndex];
+            Point nextPoint = null;
+            if (entityMoveData.pointIndex + 1 < entityMoveData.moveData.points.Length)
+                nextPoint = entityMoveData.moveData.points[entityMoveData.pointIndex + 1];
+            if (point.isScaleImmediately)
+                entity.transform.localScale = Vector3.one * point.scale;
             yield return new WaitForSeconds(delay);
-            if (entityMoveData.pointIndex < entityMoveData.moveData.points.Length - 1)
+            if (nextPoint != null)
             {
                 Move();
-                Point point = entityMoveData.moveData.points[entityMoveData.pointIndex];
-                Point nextPoint = entityMoveData.moveData.points[entityMoveData.pointIndex + 1];
                 yield return StartCoroutine(
                 point.isStraightLine
                     ? MoveStraight(point, nextPoint, entityMoveData.moveData.velocity)
                     : MoveCurve(point, nextPoint, entityMoveData.moveData.velocity));
             }
             else Stop();
+            entity.transform.localScale = Vector3.one * point.scale;
+            scale = point.scale;
         }
         protected IEnumerator MoveStraight(Point startPoint, Point nextPoint, float velocity)
         {
@@ -36,11 +43,15 @@ namespace SkyStrike.Game
                 Rotate(nextPos - startPos);
                 while (elapsedTime < time)
                 {
-                    entity.position = Vector2.Lerp(startPos, nextPos, elapsedTime / time).SetZ(entity.position.z);
+                    float delta = elapsedTime / time;
+                    if (!startPoint.isScaleImmediately)
+                        entity.transform.localScale = Vector3.one * Lerp(scale, startPoint.scale, delta);
+                    entity.position = Vector2.Lerp(startPos, nextPos, delta).SetZ(entity.position.z);
                     yield return null;
                     elapsedTime += Time.deltaTime;
                 }
             }
+
         }
         private IEnumerator MoveCurve(Point startPoint, Point nextPoint, float velocity)
         {
@@ -77,6 +88,8 @@ namespace SkyStrike.Game
                     Rotate(dir.normalized);
                     entity.position += dir;
                     deltaTime = Time.deltaTime;
+                    if (!startPoint.isScaleImmediately)
+                        entity.transform.localScale = Vector3.one * Lerp(scale, startPoint.scale, t1);
                     yield return null;
                 }
             }
@@ -88,5 +101,7 @@ namespace SkyStrike.Game
         }
         public abstract void Move();
         public abstract void Stop();
+        private float Lerp(float a, float b, float t)
+            => a + (b - a) * t;
     }
 }

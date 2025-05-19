@@ -43,7 +43,7 @@ namespace SkyStrike.Editor
             velocity.SetData(2.5f);
             timeCooldown.SetData(2);
             amount.SetData(1);
-            lifetime.SetData(15);
+            lifetime.SetData(7.5f);
 
         }
         public BulletDataObserver(EnemyBulletMetaData bulletData) : this() => ImportData(bulletData);

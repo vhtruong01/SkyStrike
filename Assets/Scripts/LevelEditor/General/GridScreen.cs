@@ -47,6 +47,7 @@ namespace SkyStrike.Editor
                 CreateLine(thickness, Screen.height / minSize, new(i, 0, 0));
             for (int i = -(int)(halfHeight / minSize); i <= halfHeight / minSize; i++)
                 CreateLine(Screen.width / minSize, thickness, new(0, i, 0));
+            scale = 0.75f;
         }
         private void CreateLine(float w, float h, Vector3 dir)
         {
