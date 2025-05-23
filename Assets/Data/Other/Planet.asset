@@ -15,7 +15,7 @@ MonoBehaviour:
   <color>k__BackingField: {r: 0.3509434, g: 0.3509434, b: 0.3509434, a: 1}
   <sprite>k__BackingField: {fileID: -42258509844881917, guid: 30ffac44612bd4745baf7711f328212b, type: 3}
   <bodyType>k__BackingField: 0
-  <objectName>k__BackingField: 
+  <objectName>k__BackingField: Planet
   <sprites>k__BackingField:
   - {fileID: -42258509844881917, guid: 30ffac44612bd4745baf7711f328212b, type: 3}
   - {fileID: -6583850806347936341, guid: 30ffac44612bd4745baf7711f328212b, type: 3}

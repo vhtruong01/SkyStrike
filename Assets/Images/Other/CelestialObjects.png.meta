@@ -126,6 +126,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -384,7 +397,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CelestialObjects_0: 4519518871663985449
+      CelestialObjects_1: 5994275585877690731
+      CelestialObjects_10: 1486043848406091610
+      CelestialObjects_2: 7276018992636381005
+      CelestialObjects_3: 4764904786231306360
+      CelestialObjects_4: 5145774931494969807
+      CelestialObjects_5: 2108950699465493383
+      CelestialObjects_6: -878775300250748510
+      CelestialObjects_7: 228813063816687610
+      CelestialObjects_8: 4081543301678191023
+      CelestialObjects_9: -8169790608347111050
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

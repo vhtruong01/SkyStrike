@@ -6,10 +6,16 @@ namespace SkyStrike.Game
     {
         private readonly ShipBulletEventData bulletEventData = new();
 
-        private void OnEnable()
-            => EventManager.Subscribe<ShipBulletEventData>(SpawnBullet);
-        private void OnDisable()
-            => EventManager.Unsubscribe<ShipBulletEventData>(SpawnBullet);
+        protected override void Subscribe()
+        {
+            base.Subscribe();
+            EventManager.Subscribe<ShipBulletEventData>(SpawnBullet);
+        }
+        protected override void Unsubscribe()
+        {
+            base.Unsubscribe();
+            EventManager.Unsubscribe<ShipBulletEventData>(SpawnBullet);
+        }
         private void SpawnBullet(ShipBulletEventData eventData)
         {
             Vector3 pos = eventData.position;
@@ -19,18 +25,25 @@ namespace SkyStrike.Game
             {
                 case EShipBulletType.SingleBullet:
                     SpawnBullet(pos, new(0, metaData.speed, 0));
+                    SoundManager.PlaySound(ESound.SingleBullet);
                     break;
                 case EShipBulletType.DoubleBullet:
-                    SpawnBullet(pos + new Vector3(-0.25f, 0, 0), new(0, metaData.speed, 0));
-                    SpawnBullet(pos + new Vector3(0.25f, 0, 0), new(0, metaData.speed, 0));
+                    SpawnBullet(pos + new Vector3(-0.33f, 0, 0), new(0, metaData.speed, 0));
+                    SpawnBullet(pos + new Vector3(0.33f, 0, 0), new(0, metaData.speed, 0));
+                    SoundManager.PlaySound(ESound.DoubleBullet);
                     break;
                 case EShipBulletType.TripleBullet:
-                    SpawnBullet(pos, new(-metaData.speed * Mathf.Sin(Mathf.PI / 12), metaData.speed, 0));
-                    SpawnBullet(pos, new(0, metaData.speed, 0));
-                    SpawnBullet(pos, new(metaData.speed * Mathf.Sin(Mathf.PI / 12), metaData.speed, 0));
+                    SpawnBullet(pos, new(-metaData.speed * Mathf.Sin(Mathf.PI / 24), metaData.speed, 0));
+                    SpawnBullet(pos, new(-metaData.speed * Mathf.Sin(Mathf.PI / 36), metaData.speed, 0));
+                    SpawnBullet(pos, new(-metaData.speed * Mathf.Sin(Mathf.PI / 72), metaData.speed, 0));
+                    SpawnBullet(pos, new(metaData.speed * Mathf.Sin(Mathf.PI / 72), metaData.speed, 0));
+                    SpawnBullet(pos, new(metaData.speed * Mathf.Sin(Mathf.PI / 36), metaData.speed, 0));
+                    SpawnBullet(pos, new(metaData.speed * Mathf.Sin(Mathf.PI / 24), metaData.speed, 0));
+                    SoundManager.PlaySound(ESound.TripleBullet);
                     break;
                 case EShipBulletType.MissileBullet:
                     SpawnBullet(pos, new(0, metaData.speed, 0));
+                    SoundManager.PlaySound(ESound.Missile);
                     break;
             }
         }

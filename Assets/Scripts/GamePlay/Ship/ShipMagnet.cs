@@ -17,6 +17,7 @@ namespace SkyStrike.Game
             circleCollider.radius = shipData.magnetRadius;
             rigi = GetComponent<Rigidbody2D>();
             rigi.simulated = true;
+            shipData.onLevelUp += Upgrade;
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
@@ -28,5 +29,7 @@ namespace SkyStrike.Game
             }
         }
         public void Interrupt() => rigi.simulated = false;
+        private void Upgrade()
+            => circleCollider.radius = shipData.magnetRadius;
     }
 }

@@ -45,7 +45,7 @@ namespace SkyStrike.UI
             }
             levelName.text = $"Stage {index + 1}: {levelData.name}";
             score.text = $"High score: {highscore}";
-            for (int i = Mathf.Max(1, levelData.starRating); i < stars.Count; i++)
+            for (int i = levelData.starRating; i < stars.Count; i++)
                 stars[i].gameObject.SetActive(false);
             this.call = call;
         }

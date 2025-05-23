@@ -24,6 +24,7 @@ namespace SkyStrike.UI
         }
         private IEnumerator Display()
         {
+            SoundManager.PlaySound(ESound.BossWarning);
             content.SetActive(true);
             yield return new WaitForSecondsRealtime(animator.GetCurrentAnimatorStateInfo(0).length);
             content.SetActive(false);

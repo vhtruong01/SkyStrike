@@ -1,3 +1,4 @@
+using SkyStrike.Game;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ namespace SkyStrike.UI
         [SerializeField] private Menu settingMenu;
         [SerializeField] private Menu helpMenu;
         [SerializeField] private Menu exitMenu;
-        [SerializeField] private Button levelButton;
+        [SerializeField] private Button startButton;
         [SerializeField] private Button helpBtn;
         [SerializeField] private Button settingBtn;
         [SerializeField] private Button exitBtn;
@@ -20,11 +21,13 @@ namespace SkyStrike.UI
 
         public void Awake()
         {
-            levelButton.onClick.AddListener(() => StartCoroutine(PlayGame()));
+            startButton.onClick.AddListener(() => StartCoroutine(PlayGame()));
             helpBtn.onClick.AddListener(helpMenu.Expand);
             settingBtn.onClick.AddListener(settingMenu.Expand);
-            exitBtn.onClick.AddListener(exitMenu.Expand);
+            exitBtn.onClick.AddListener(exitMenu.Expand);     
         }
+        public void Start()
+            =>SoundManager.PlaySound(ESound.MainMenu);
         public IEnumerator PlayGame()
         {
             homeMenu.Collapse();

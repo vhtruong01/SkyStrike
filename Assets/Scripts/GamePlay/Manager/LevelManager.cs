@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,8 @@ namespace SkyStrike.Game
         private Dictionary<int, ObjectData> objectDataDict;
         private Coroutine coroutine;
         private LevelData levelData;
-        private int waveIndex;
         private IObjectEventData objectEventData;
+        private int waveIndex;
         private int enemyDieCount;
         private bool isEndGame;
 
@@ -24,6 +25,7 @@ namespace SkyStrike.Game
         {
             bulletDataDict = new();
             objectDataDict = new();
+            DOTween.SetTweensCapacity(1000, 50);
         }
         public void Start()
         {
@@ -46,6 +48,9 @@ namespace SkyStrike.Game
                 foreach (var bullet in levelData.bullets)
                     bulletDataDict.Add(bullet.id, bullet);
             levelProgressEventData.percentRequired = levelData.percentRequired;
+            if (gameManager.curLevelIndex >= 4)
+                SoundManager.PlaySound(ESound.Stage4);
+            else SoundManager.PlaySound(ESound.Stage1 + gameManager.curLevelIndex);
         }
         private void OnEnable()
         {
@@ -71,19 +76,28 @@ namespace SkyStrike.Game
                 print("end game");
                 if (levelData.percentRequired > 1f * enemyDieCount / levelData.enemyCount)
                     EventManager.Active(EEventType.LoseGame);
-                else EventManager.Active(EEventType.WinGame);
+                else StartCoroutine(WinGame());
                 return;
             }
             print("wave: " + (1 + waveIndex));
             WaveData waveData = levelData.waves[waveIndex];
             if (waveData.isBoss)
+            {
                 EventManager.Active(EEventType.Warning);
+                SoundManager.PlaySound(ESound.Boss);
+            }
             foreach (var objectData in waveData.objectDataArr)
                 objectDataDict.Add(objectData.id, objectData);
             foreach (var objectData in waveData.objectDataArr)
                 CreateObject(objectData, waveData.delay);
             float waveDuration = waveData.objectDataArr.Length != 0 ? waveData.duration : 1;
             coroutine = StartCoroutine(WaitForNextWave(waveDuration));
+        }
+        private IEnumerator WinGame()
+        {
+            isEndGame = true;
+            yield return new WaitForSeconds(5f);
+            EventManager.Active(EEventType.WinGame);
         }
         private void StopGame() => isEndGame = true;
         private void CreateObject(ObjectData objectData, float delay)

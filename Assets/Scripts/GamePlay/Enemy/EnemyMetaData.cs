@@ -28,8 +28,9 @@ namespace SkyStrike.Game
         private static readonly int minHp = 500;
         [SerializeField] private EnemyRace race;
         [field: SerializeField] public EnemyType type { get; private set; }
+        [field: SerializeField] public bool isWeakEnemy { get; private set; }
+        [field: SerializeField] public ESound dieSoundType { get; private set; }
         public override int id => (int)race * 10 + (int)type;
-        public bool isWeakEnemy { get; private set; }
         public int star { get; private set; }
         public int score { get; private set; }
         public int maxHp { get; private set; }
@@ -39,7 +40,7 @@ namespace SkyStrike.Game
         [field: SerializeField] public List<Sprite> engineSprites { get; private set; }
         [field: SerializeField] public List<Sprite> shieldSprites { get; private set; }
         [field: SerializeField] public List<Sprite> weaponSprites { get; private set; }
-        [field: SerializeField] public BulletSpriteData bulletSprites { get; private set; }
+        [field: SerializeField] public BulletAssetData bulletSprites { get; private set; }
 
         public void OnEnable()
         {
@@ -55,11 +56,10 @@ namespace SkyStrike.Game
                 EnemyType.Torpedo => 9,
                 _ => 0,
             };
-            isWeakEnemy = star < 5;
             maxHp = (int)(minHp * (1 + Mathf.Pow(hpCoefficient, star) * star));
             score = (int)Mathf.Max(maxHp, Mathf.Round(maxHp / 1000) * 1000);
             energy = Mathf.Max(1, maxHp / 1000);
-            exp = 100;
+            exp = star * 5;
         }
         public bool CanHighlight()
         {

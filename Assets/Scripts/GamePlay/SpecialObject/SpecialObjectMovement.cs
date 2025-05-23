@@ -9,6 +9,7 @@ namespace SkyStrike.Game
         }
         private SpecialObjectData data;
 
+        //size
         public void Awake()
         {
             data = GetComponent<SpecialObjectData>();

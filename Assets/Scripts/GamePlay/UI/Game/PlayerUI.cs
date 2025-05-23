@@ -59,11 +59,11 @@ namespace SkyStrike.UI
         }
         public IEnumerator Start()
         {
-            shipData.onHealthChanged = hpBar.UpdateHealthDisplay;
+            shipData.onHealthChanged += hpBar.UpdateHealthDisplay;
             shipData.onEnergyChanged += energyBar.UpdateEnergyDisplay;
-            shipData.onCollectStar = UpdateStarDisplay;
-            shipData.onExpChanged = UpdateExpDisplay;
-            shipData.onLevelUp = LevelUp;
+            shipData.onCollectStar += UpdateStarDisplay;
+            shipData.onExpChanged += UpdateExpDisplay;
+            shipData.onLevelUp += LevelUp;
             foreach (var skill in shipData.skillDataList)
             {
                 if (skill.hide) continue;

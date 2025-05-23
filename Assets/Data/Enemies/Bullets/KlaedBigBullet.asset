@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c967f75a7071ecd4f825c60f70524a67, type: 3}
   m_Name: KlaedBigBullet
   m_EditorClassIdentifier: 
+  soundType: 0
   sprites:
   - {fileID: -6298256357770422490, guid: c490b56db3d259946aa9e83bc9d4b564, type: 3}
   - {fileID: 1800495791246360572, guid: c490b56db3d259946aa9e83bc9d4b564, type: 3}

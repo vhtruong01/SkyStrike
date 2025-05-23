@@ -58,7 +58,7 @@ namespace SkyStrike.Editor
             }
             else
             {
-                float startAngle = bulletData.isLookingAtPlayer.data ? 0 : bulletData.startAngle.data;
+                float startAngle = bulletData.startAngle.data;
                 float mid = 0.5f * (bulletData.amount.data - 1);
                 for (float i = -mid; i <= mid; i += 1f)
                 {

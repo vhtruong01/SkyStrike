@@ -47,7 +47,7 @@ namespace SkyStrike.Game
             => StartCoroutine(CloseScene_Enumerator());
         private IEnumerator CloseScene_Enumerator()
         {
-            float duration = 0.5f;
+            float duration = 1f;
             float elapsedTime = 0;
             vignette.active = true;
             while (elapsedTime < duration)

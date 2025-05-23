@@ -13,15 +13,14 @@ namespace SkyStrike.Game
         [SerializeField] private int defaultEnergy;
         [SerializeField] private int defaultRecoverSpeed;
         [SerializeField] private float defaultSpeed = 5;
-        [SerializeField] private float defaultMagnetRadius = 1.25f;
-        [field: SerializeField] public int maxLv { get; private set; }
+        [SerializeField] private float defaultMagnetRadius = 1f;
         [field: SerializeField] public float speed { get; private set; }
         [field: SerializeField] public float magnetRadius { get; private set; }
         [field: SerializeField] public int recoverSpeed { get; private set; }
-        [field: SerializeField] public bool invincibility { get; set; }
-        [field: SerializeField] public bool shield { get; set; }
-        [field: SerializeField] public bool isSpawn { get; set; }
-        [field: SerializeField] public bool canMove { get; set; }
+        [field: SerializeField, ReadOnly] public bool invincibility { get; set; }
+        [field: SerializeField, ReadOnly] public bool shield { get; set; }
+        [field: SerializeField, ReadOnly] public bool isSpawn { get; set; }
+        [field: SerializeField, ReadOnly] public bool canMove { get; set; }
         [field: SerializeField, ReadOnly] public int lv { get; private set; }
         [SerializeField, ReadOnly] private int _hp;
         [SerializeField, ReadOnly] private int _energy;
@@ -31,12 +30,13 @@ namespace SkyStrike.Game
         public int maxHp { get; private set; }
         public int maxExp { get; private set; }
         public int maxEnergy { get; private set; }
-        public float invincibleTime { get; private set; } = 2.5f;
+        public float invincibleTime { get; private set; } = 1f;
         public UnityAction<int> onCollectStar { get; set; }
         public UnityAction<int> onHealthChanged { get; set; }
         public UnityAction<int> onEnergyChanged { get; set; }
         public UnityAction<float> onExpChanged { get; set; }
         public UnityAction onLevelUp { get; set; }
+        public int maxLv => 11;
         public int exp
         {
             get => _exp;
@@ -69,11 +69,8 @@ namespace SkyStrike.Game
             get => _hp;
             set
             {
-                if (value < maxHp)
-                {
-                    _hp = value;
-                    onHealthChanged?.Invoke(_hp);
-                }
+                _hp = value;
+                onHealthChanged?.Invoke(_hp);
             }
         }
         public int star
@@ -96,9 +93,9 @@ namespace SkyStrike.Game
             score = 0;
             _star = 0;
             _exp = 0;
-            _hp = 1;
-            maxHp = defaultHp;
+            _hp = maxHp = defaultHp;
             _energy = 0;
+            _hp = 5;
             maxEnergy = defaultEnergy;
             speed = defaultSpeed;
             maxExp = defaultExp;
@@ -119,17 +116,25 @@ namespace SkyStrike.Game
                     break;
                 case EItem.Star1:
                     star++;
+                    SoundManager.PlaySound(ESound.Star1);
                     break;
                 case EItem.Star5:
                     star += 5;
+                    SoundManager.PlaySound(ESound.Star5);
                     break;
                 case EItem.Health:
-                    hp++;
+                    if (hp < maxHp)
+                    {
+                        hp++;
+                        SoundManager.PlaySound(ESound.Health);
+                    }
                     break;
                 case EItem.Energy:
-                    energy = maxEnergy;
+                    energy += maxEnergy / 3;
+                    SoundManager.PlaySound(ESound.Energy);
                     break;
                 default:
+                    SoundManager.PlaySound(ESound.CollectItem);
                     foreach (var skill in skillDataList)
                         if (skill.itemType == type)
                         {
@@ -141,12 +146,14 @@ namespace SkyStrike.Game
         }
         private void LevelUp()
         {
-            if (lv >= maxLv) return;
-            lv = Mathf.Min(maxLv, lv + 1);
-            // max hp, max energy,...
-            maxHp++;
-            maxEnergy *= 2;
-
+            lv++;
+            maxHp = defaultHp + lv / 5;
+            maxEnergy = defaultEnergy + lv * 100;
+            maxExp = lv >= maxLv ? int.MaxValue : (defaultExp + lv * (int)Mathf.Pow(1.25f, lv));
+            recoverSpeed = defaultRecoverSpeed + lv;
+            magnetRadius = defaultMagnetRadius + lv * 0.1f;
+            if (lv > 1)
+                SoundManager.PlaySound(ESound.LevelUp2 + (lv - 2));
             onLevelUp?.Invoke();
         }
         public bool UseEnergy(int amount)

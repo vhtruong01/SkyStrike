@@ -15,10 +15,16 @@ namespace SkyStrike.Game
             foreach (ItemMetaData item in items)
                 itemDict.Add(item.type, item);
         }
-        private void OnEnable()
-            => EventManager.Subscribe<ItemEventData>(DropItem);
-        private void OnDisable()
-            => EventManager.Unsubscribe<ItemEventData>(DropItem);
+        protected override void Subscribe()
+        {
+            base.Subscribe();
+            EventManager.Subscribe<ItemEventData>(DropItem);
+        }
+        protected override void Unsubscribe()
+        {
+            base.Unsubscribe();
+            EventManager.Unsubscribe<ItemEventData>(DropItem);
+        }
         private void DropItem(ItemEventData eventData)
         {
             if (eventData.itemType == EItem.None || eventData.amount == 0) return;
@@ -31,7 +37,7 @@ namespace SkyStrike.Game
                     float angle = i * unitAngle + startAngle + Random.Range(0, unitAngle * 2);
                     Item item = InstantiateItem(eventData.position);
                     item.data.SetData(eventData);
-                    item.Appear(Random.Range(0.4f, 0.75f) * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
+                    item.Appear(Random.Range(0.5f, 0.7f + eventData.amount * 0.05f) * new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)));
                 }
         }
     }

@@ -25,13 +25,14 @@ namespace SkyStrike.Game
             previewLine.gameObject.SetActive(true);
             laserLine.gameObject.SetActive(false);
             float elapsedTime = 0;
-            float time = 0.75f;
+            float time = 1f;
             while (elapsedTime < time)
             {
                 elapsedTime += Time.unscaledDeltaTime;
                 previewLine.startColor = previewLine.endColor = warningColor.ChangeAlpha((1 - elapsedTime / time) * warningColor.a);
                 yield return null;
             }
+            SoundManager.PlaySound(ESound.LaserStart);
             previewLine.gameObject.SetActive(false);
             laserLine.gameObject.SetActive(true);
             elapsedTime = 0;

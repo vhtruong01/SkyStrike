@@ -5,7 +5,7 @@ namespace SkyStrike.Game
 {
     public class ClearEnemyBulletSkill : Skill<ActivateSkillData>
     {
-        private static float maxSize = 20;
+        private static readonly float maxSize = 20;
         private Rigidbody2D rigi;
 
         public void Awake()
@@ -22,16 +22,18 @@ namespace SkyStrike.Game
         private IEnumerator ClearBullet()
         {
             rigi.simulated = true;
-            float duration = 1f;
             float elapedTime = 0;
+            float duration = 0.5f;
+            SoundManager.PlaySound(ESound.Clock);
             while (elapedTime < duration)
             {
                 elapedTime += Time.unscaledDeltaTime;
                 transform.localScale = Vector3.one * (maxSize * elapedTime / duration);
                 yield return null;
             }
+            SoundManager.PlaySound(ESound.Clock);
+            yield return new WaitForSecondsRealtime(0.5f);
             elapedTime = 0f;
-            duration = 0.5f;
             while (elapedTime < duration)
             {
                 elapedTime += Time.unscaledDeltaTime;
@@ -44,7 +46,7 @@ namespace SkyStrike.Game
         protected override void UpgradeStat() { }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("EnemyBullet") && collision.TryGetComponent(out IDestroyable bullet))
+            if (collision.CompareTag("EnemyBullet") && collision.TryGetComponent(out IDestroyable bullet) && bullet.isActive)
                 bullet.Disappear();
         }
     }

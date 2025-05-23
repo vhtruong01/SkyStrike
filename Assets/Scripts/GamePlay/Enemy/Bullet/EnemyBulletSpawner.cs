@@ -24,7 +24,7 @@ namespace SkyStrike.Game
                 enemyData.isSpawn = true;
                 elaspedTime = metaData.isStartAwake ? metaData.timeCooldown : 0;
                 angle = metaData.isCircle ? 0 : metaData.startAngle;
-                bulletEventData.sprites = enemyData.metaData.bulletSprites.sprites;
+                bulletEventData.asset = enemyData.metaData.bulletSprites;
                 anim.SetDuration(enemyData.bulletData.timeCooldown).Restart();
             }
             else Stop();

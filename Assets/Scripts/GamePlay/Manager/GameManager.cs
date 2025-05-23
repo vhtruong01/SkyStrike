@@ -22,25 +22,33 @@ namespace SkyStrike.Game
         }
         [field: SerializeField, ReadOnly] public int curLevelIndex { get; set; }
         public LevelData curLevel => levelDataList[curLevelIndex];
+        public int maxLevel { get; private set; }
         public List<LevelData> levelDataList { get; private set; }
         private AllLevelInfo allLevelInfo;
 
         private void OnEnable()
         {
+#if UNITY_EDITOR
+            Application.targetFrameRate = 1000;
+#elif UNITY_WEBGL            
+            Application.targetFrameRate = 30;
+#else
+            Application.targetFrameRate = 60;
+#endif
             levelDataList = new(IO.LoadAllLevel<LevelData>().Values);
             allLevelInfo = JsonUtility.FromJson<AllLevelInfo>(PlayerPrefs.GetString("levels", "")) ?? new();
-            curLevelIndex = Mathf.Clamp(Mathf.Max(0, allLevelInfo.levels.Count - 1), 0, levelDataList.Count - 1);
+            maxLevel = Mathf.Clamp(allLevelInfo.levels.Count - 1, 0, levelDataList.Count - 1);
+            curLevelIndex = maxLevel;
         }
         public void SaveCurrentLevel(bool isComplete, int score, int star)
         {
             allLevelInfo.totalStar += star;
             allLevelInfo.levels[curLevelIndex] = Mathf.Max(score, allLevelInfo.levels[curLevelIndex]);
-            if (isComplete && allLevelInfo.levels.Count - 1 == curLevelIndex && levelDataList.Count - 1 > curLevelIndex)
+            if (isComplete && levelDataList.Count - 1 > curLevelIndex)
             {
+                curLevelIndex++;
                 if (allLevelInfo.levels.Count <= curLevelIndex)
                     allLevelInfo.levels.Add(0);
-                else allLevelInfo.levels[curLevelIndex] = 0;
-                curLevelIndex++;
             }
             PlayerPrefs.SetString("levels", JsonUtility.ToJson(allLevelInfo));
         }

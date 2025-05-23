@@ -6,10 +6,20 @@ namespace SkyStrike.Game
     [Serializable]
     public class EnemyBulletMetaData : IMetaData, IGame
     {
+        [Serializable]
+        public class BulletStateData : IGame
+        {
+            public float scale;
+            public float coef;
+            public float duration;
+            public float rotation;
+            public bool isAuto;
+        }
+
         public int id;
         public string name;
         public float size;
-        public float velocity;//speed
+        public float speed;
         public float timeCooldown;
         public float spinSpeed;
         public float lifetime;
@@ -19,8 +29,9 @@ namespace SkyStrike.Game
         public Vec2 position;
         public bool isCircle;
         public bool isStartAwake;
-        public bool isLookingAtPlayer;
+        public bool isUseState;
         public int amount;
+        public BulletStateData[] states;
         [NonSerialized] public Color color;
     }
 }

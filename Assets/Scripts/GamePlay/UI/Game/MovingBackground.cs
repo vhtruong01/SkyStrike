@@ -1,4 +1,5 @@
 using SkyStrike.Game;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ namespace SkyStrike.UI
     {
         [SerializeField] private float speed;
         [SerializeField] private Image bg1;
+        [SerializeField] private List<Sprite> imgList;
         private Image bg2;
         private float height;
         private Vector3 delta;
@@ -17,6 +19,7 @@ namespace SkyStrike.UI
         private void Awake()
         {
             height = bg1.GetComponent<RectTransform>().sizeDelta.y;
+            bg1.sprite = imgList[Random.Range(0, imgList.Count)];
             bg1.transform.localPosition = new();
             if (bg2 == null)
                 bg2 = Instantiate(bg1, transform, false);

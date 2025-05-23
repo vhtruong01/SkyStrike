@@ -15,10 +15,6 @@ namespace SkyStrike.Game
             foreach (var metaData in metaDataList)
                 metaDataDict.Add(metaData.id, metaData);
         }
-        protected void OnEnable()
-            => Subcribe();
-        protected void OnDisable()
-            => Unsubcribe();
         protected void CreateObject(ObjectEventData<V> eventData)
         {
             if (metaDataDict.TryGetValue(eventData.metaId, out var metaData))
@@ -30,7 +26,5 @@ namespace SkyStrike.Game
             }
             else print("error obj");
         }
-        protected abstract void Subcribe();
-        protected abstract void Unsubcribe();
     }
 }

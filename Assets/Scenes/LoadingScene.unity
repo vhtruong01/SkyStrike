@@ -259,7 +259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 241464477}
-  icon: {fileID: 0}
 --- !u!1 &594758808
 GameObject:
   m_ObjectHideFlags: 0

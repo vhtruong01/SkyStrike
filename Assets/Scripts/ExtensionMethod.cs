@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
 using UnityEngine;
 
 namespace SkyStrike
 {
-    // Unity inspector
-    public class ReadOnlyAttribute : PropertyAttribute { }
+#if UNITY_EDITOR
+    using UnityEditor;
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {
@@ -21,6 +20,8 @@ namespace SkyStrike
             GUI.enabled = true;
         }
     }
+#endif
+    public class ReadOnlyAttribute : PropertyAttribute { }
     // In/Out
     public static class IO
     {
@@ -57,7 +58,7 @@ namespace SkyStrike
                 if (!Directory.Exists(directoryPath))
                     Directory.CreateDirectory(directoryPath);
                 File.WriteAllBytes(filePath, bytes);
-                AssetDatabase.Refresh();
+                Refresh();
                 return true;
             }
             catch (Exception e)
@@ -74,7 +75,7 @@ namespace SkyStrike
                 string oldPath = GetDataPath(oldName);
                 File.Move(oldPath, GetDataPath(newName));
                 File.Delete(oldPath + ".meta");
-                AssetDatabase.Refresh();
+                Refresh();
                 return true;
             }
             else
@@ -122,6 +123,12 @@ namespace SkyStrike
         }
         private static string GetDataPath(string fileName)
             => $"{path}/{fileName}.txt";
+        private static void Refresh()
+        {
+#if UNITY_EDITOR
+            AssetDatabase.Refresh();
+#endif
+        }
     }
     public static class ExtensionMethod
     {

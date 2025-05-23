@@ -13,6 +13,6 @@ namespace SkyStrike.Game
         public WaveData[] waves;
         public EnemyBulletMetaData[] bullets;
 
-        public float percentRequired => Math.Min(1, 0.01f * (70 + 5 * starRating));
+        public float percentRequired => Math.Min(0.95f, 0.01f * (60 + 5 * starRating));
     }
 }

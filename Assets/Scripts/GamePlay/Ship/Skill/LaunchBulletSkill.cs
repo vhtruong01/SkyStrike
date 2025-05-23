@@ -27,8 +27,11 @@ namespace SkyStrike.Game
         {
             anim.Restart();
             yield return waitForSeconds;
-            bulletEventData.position = transform.position;
-            EventManager.Active(bulletEventData);
+            if (shipData.isSpawn)
+            {
+                bulletEventData.position = transform.position;
+                EventManager.Active(bulletEventData);
+            }
             coroutine = null;
         }
         protected override void UpgradeStat()

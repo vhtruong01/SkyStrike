@@ -1,3 +1,6 @@
+
+using UnityEngine;
+
 namespace SkyStrike.Game
 {
     public class EnemyMovement : ObjectMovement, IEnemyComponent
@@ -16,7 +19,10 @@ namespace SkyStrike.Game
             entityMoveData = enemyData;
         }
         public void RefreshData()
-            => anim.SetData(enemyData.metaData.engineSprites);
+        {
+            anim.SetData(enemyData.metaData.engineSprites);
+            size = Vector3.one * scale;
+        }
         public override void Move()
         {
             anim.Play();

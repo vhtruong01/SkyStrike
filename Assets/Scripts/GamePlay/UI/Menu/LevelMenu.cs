@@ -13,6 +13,7 @@ namespace SkyStrike.UI
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private Transform line;
         [SerializeField] private float lineSpeed = 3f;
+        [SerializeField] private StartGameButton startBtn;
         private readonly float duration = 10;
         private float elapsedTime;
         private Vector3 originalLinePos;
@@ -28,7 +29,7 @@ namespace SkyStrike.UI
                 var levelData = gameManager.levelDataList[i];
                 if (levelData == null) continue;
                 var icon = Instantiate(index % 2 == 0 ? levelIcon0Prefab : levelIcon1Prefab, scroll.content.transform, false);
-                icon.isLock = i > gameManager.curLevelIndex;
+                icon.isLock = i > gameManager.maxLevel;
                 icon.Init(levelData, index, gameManager.GetScore(index), SelectLevel);
                 if (index == gameManager.curLevelIndex)
                     icon.Appear();
@@ -57,18 +58,22 @@ namespace SkyStrike.UI
             if (prevLevelIcon != null)
                 prevLevelIcon.Disappear();
             prevLevelIcon = icon;
+            startBtn.Enable(!icon.isLock);
             if (!icon.isLock)
             {
                 gameManager.curLevelIndex = icon.index;
                 title.text = "Selected stage: " + (icon.index + 1);
             }
-            Color c;
-            if (gameManager.curLevel.starRating >= 5)
-                c = Color.red;
-            else if (gameManager.curLevel.starRating >= 3)
-                c = Color.yellow;
-            else c = Color.cyan;
-            title.color = c;
+            title.color = gameManager.curLevel.starRating switch
+            {
+                0 => Color.grey,
+                1 => Color.green,
+                2 => Color.cyan,
+                3 => Color.yellow,
+                4 => new(1, 0.5f, 0),
+                5 => Color.magenta,
+                _ => Color.red,
+            };
         }
     }
 }

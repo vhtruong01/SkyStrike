@@ -324,6 +324,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2034,7 +2047,84 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Earth-Like planet - Without back glow_0: 3075849851990874635
+      Earth-Like planet - Without back glow_1: -230137573597715975
+      Earth-Like planet - Without back glow_10: -8336647204318130479
+      Earth-Like planet - Without back glow_11: -5272413638834121707
+      Earth-Like planet - Without back glow_12: 7889982387759645152
+      Earth-Like planet - Without back glow_13: -1754529506246578381
+      Earth-Like planet - Without back glow_14: -5066433144039229879
+      Earth-Like planet - Without back glow_15: 2559149863084201338
+      Earth-Like planet - Without back glow_16: -4217360312489921292
+      Earth-Like planet - Without back glow_17: 5652199809539502582
+      Earth-Like planet - Without back glow_18: -3100893411516201480
+      Earth-Like planet - Without back glow_19: 7347081772216691567
+      Earth-Like planet - Without back glow_2: 5045270391738464746
+      Earth-Like planet - Without back glow_20: 8968858114220284201
+      Earth-Like planet - Without back glow_21: 458321118270197195
+      Earth-Like planet - Without back glow_22: -1285209823873072988
+      Earth-Like planet - Without back glow_23: -5730335233586108000
+      Earth-Like planet - Without back glow_24: 8560140151156286490
+      Earth-Like planet - Without back glow_25: 809338221031041687
+      Earth-Like planet - Without back glow_26: -1271529986770694172
+      Earth-Like planet - Without back glow_27: 3886309199795613732
+      Earth-Like planet - Without back glow_28: 3201088417660688022
+      Earth-Like planet - Without back glow_29: 4667034565661996024
+      Earth-Like planet - Without back glow_3: -8926162965820407193
+      Earth-Like planet - Without back glow_30: 1221286262944386754
+      Earth-Like planet - Without back glow_31: -4411247961591933453
+      Earth-Like planet - Without back glow_32: -1343656148920067632
+      Earth-Like planet - Without back glow_33: 8835200623649010654
+      Earth-Like planet - Without back glow_34: -7535771502732961798
+      Earth-Like planet - Without back glow_35: 671838624164436821
+      Earth-Like planet - Without back glow_36: 5920305119401133694
+      Earth-Like planet - Without back glow_37: 1799296652817611651
+      Earth-Like planet - Without back glow_38: -8765291459536015764
+      Earth-Like planet - Without back glow_39: -9206705981395005615
+      Earth-Like planet - Without back glow_4: 3982760768525934552
+      Earth-Like planet - Without back glow_40: 756624775204104005
+      Earth-Like planet - Without back glow_41: 4317467966080805603
+      Earth-Like planet - Without back glow_42: 6386879998008490192
+      Earth-Like planet - Without back glow_43: -2698046185009681333
+      Earth-Like planet - Without back glow_44: -6106920446698028540
+      Earth-Like planet - Without back glow_45: -7418529011316782543
+      Earth-Like planet - Without back glow_46: 5917065949245089804
+      Earth-Like planet - Without back glow_47: -6569554718115856939
+      Earth-Like planet - Without back glow_48: 6001571781461992084
+      Earth-Like planet - Without back glow_49: 6693662904211552705
+      Earth-Like planet - Without back glow_5: 8712553285491874783
+      Earth-Like planet - Without back glow_50: 3353453692223786539
+      Earth-Like planet - Without back glow_51: -6664003916248814490
+      Earth-Like planet - Without back glow_52: 5038773506742585616
+      Earth-Like planet - Without back glow_53: 4512586120924798880
+      Earth-Like planet - Without back glow_54: 1624894452787626763
+      Earth-Like planet - Without back glow_55: -3279436450622443473
+      Earth-Like planet - Without back glow_56: 3591103294616418331
+      Earth-Like planet - Without back glow_57: -5946489072167108203
+      Earth-Like planet - Without back glow_58: 7758434526166151871
+      Earth-Like planet - Without back glow_59: 1706518927555248465
+      Earth-Like planet - Without back glow_6: -2993632340136320603
+      Earth-Like planet - Without back glow_60: 4939183343686617438
+      Earth-Like planet - Without back glow_61: -4204795572767124680
+      Earth-Like planet - Without back glow_62: 8121728848742273700
+      Earth-Like planet - Without back glow_63: -533814207732446213
+      Earth-Like planet - Without back glow_64: 6909732954334244313
+      Earth-Like planet - Without back glow_65: 7622154501796154401
+      Earth-Like planet - Without back glow_66: -7070142646863743515
+      Earth-Like planet - Without back glow_67: 6265695618072418079
+      Earth-Like planet - Without back glow_68: 4450335396841133497
+      Earth-Like planet - Without back glow_69: 246649065798665920
+      Earth-Like planet - Without back glow_7: -3471174703262641524
+      Earth-Like planet - Without back glow_70: -8897741103460313597
+      Earth-Like planet - Without back glow_71: -2295324745707604172
+      Earth-Like planet - Without back glow_72: 2287575790343227460
+      Earth-Like planet - Without back glow_73: -8781013348737330149
+      Earth-Like planet - Without back glow_74: -8126558401215291340
+      Earth-Like planet - Without back glow_75: 2107009531341703342
+      Earth-Like planet - Without back glow_76: -5604072975594028016
+      Earth-Like planet - Without back glow_8: -2307239174200459040
+      Earth-Like planet - Without back glow_9: -2216863987784538806
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

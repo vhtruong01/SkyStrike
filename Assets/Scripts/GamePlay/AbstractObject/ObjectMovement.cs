@@ -8,6 +8,7 @@ namespace SkyStrike.Game
     {
         public IObject entity { get; set; }
         protected IEntityMoveData entityMoveData;
+        protected Vector3 size = Vector3.one;
         protected abstract float scale { get; set; }
 
         public IEnumerator Travel(float delay)
@@ -17,7 +18,7 @@ namespace SkyStrike.Game
             if (entityMoveData.pointIndex + 1 < entityMoveData.moveData.points.Length)
                 nextPoint = entityMoveData.moveData.points[entityMoveData.pointIndex + 1];
             if (point.isScaleImmediately)
-                entity.transform.localScale = Vector3.one * point.scale;
+                entity.transform.localScale = size * point.scale;
             yield return new WaitForSeconds(delay);
             if (nextPoint != null)
             {
@@ -28,7 +29,7 @@ namespace SkyStrike.Game
                     : MoveCurve(point, nextPoint, entityMoveData.moveData.velocity));
             }
             else Stop();
-            entity.transform.localScale = Vector3.one * point.scale;
+            entity.transform.localScale = size * point.scale;
             scale = point.scale;
         }
         protected IEnumerator MoveStraight(Point startPoint, Point nextPoint, float velocity)
@@ -45,13 +46,12 @@ namespace SkyStrike.Game
                 {
                     float delta = elapsedTime / time;
                     if (!startPoint.isScaleImmediately)
-                        entity.transform.localScale = Vector3.one * Lerp(scale, startPoint.scale, delta);
+                        entity.transform.localScale = size * Lerp(scale, startPoint.scale, delta);
                     entity.position = Vector2.Lerp(startPos, nextPos, delta).SetZ(entity.position.z);
                     yield return null;
                     elapsedTime += Time.deltaTime;
                 }
             }
-
         }
         private IEnumerator MoveCurve(Point startPoint, Point nextPoint, float velocity)
         {
@@ -89,7 +89,7 @@ namespace SkyStrike.Game
                     entity.position += dir;
                     deltaTime = Time.deltaTime;
                     if (!startPoint.isScaleImmediately)
-                        entity.transform.localScale = Vector3.one * Lerp(scale, startPoint.scale, t1);
+                        entity.transform.localScale = size * Lerp(scale, startPoint.scale, t1);
                     yield return null;
                 }
             }

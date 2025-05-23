@@ -16,6 +16,8 @@ MonoBehaviour:
   <sprite>k__BackingField: {fileID: 21300000, guid: 4ec08a9248defd747a3553a8e0a5a83d, type: 3}
   race: 2
   <type>k__BackingField: 4
+  <isWeakEnemy>k__BackingField: 1
+  <dieSoundType>k__BackingField: 73
   <destructionSprites>k__BackingField:
   - {fileID: 2198100547460321762, guid: 45dfdf6aff4a98846bf7a8bbdaf9d50c, type: 3}
   - {fileID: 8413393433111112634, guid: 45dfdf6aff4a98846bf7a8bbdaf9d50c, type: 3}

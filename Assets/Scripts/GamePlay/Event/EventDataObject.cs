@@ -1,5 +1,4 @@
 using SkyStrike.UI;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SkyStrike.Game
@@ -11,7 +10,7 @@ namespace SkyStrike.Game
         public float angle { get; set; }
         public Vector3 velocity { get; set; }
         public Vector3 position { get; set; }
-        public List<Sprite> sprites { get; set; }
+        public BulletAssetData asset { get; set; }
         public EnemyBulletMetaData metaData { get; set; }
     }
     public class ItemEventData : IEventData

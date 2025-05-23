@@ -21,7 +21,10 @@ namespace SkyStrike.Game
             anim.Play();
             alphaValueAnimation.Restart();
             rigi.simulated = true;
-            yield return new WaitForSeconds(skillData.duration);
+            SoundManager.PlaySound(ESound.ShieldStart);
+            yield return new WaitForSeconds(skillData.duration-1.5f);
+            SoundManager.PlaySound(ESound.ShieldEnd);
+            yield return new WaitForSeconds(1.5f);
             shipData.shield = false;
             anim.Stop();
             rigi.simulated = false;

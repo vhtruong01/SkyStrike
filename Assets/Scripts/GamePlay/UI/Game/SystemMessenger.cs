@@ -10,8 +10,6 @@ namespace SkyStrike.UI
     {
         private TextMeshProUGUI text;
         private Coroutine coroutine;
-        private WaitForSecondsRealtime waitForSecondsRealtime;
-        private WaitForSecondsRealtime waitForSecondsRealtime2;
         private Queue<string> textQueue;
 
         private void Awake()
@@ -19,8 +17,6 @@ namespace SkyStrike.UI
             textQueue = new();
             text = GetComponent<TextMeshProUGUI>();
             text.text = "";
-            waitForSecondsRealtime = new(0.05f);
-            waitForSecondsRealtime2 = new(0.1f);
         }
         private void OnEnable()
             => EventManager.Subscribe<SystemMessengerEventData>(Display);
@@ -38,17 +34,32 @@ namespace SkyStrike.UI
             while (textQueue.Count > 0)
             {
                 string txt = textQueue.Dequeue();
+                SoundManager.PlaySound(ESound.Text);
+                var w = new WaitForSecondsRealtime(1f / txt.Length);
                 for (int i = 0; i < txt.Length; i++)
                 {
                     text.text += txt[i];
-                    yield return waitForSecondsRealtime;
+                    yield return w;
                 }
                 yield return new WaitForSecondsRealtime(1.5f);
-                while (txt.Length > 2)
+                SoundManager.PlaySound(ESound.Text);
+                if (txt.Length > 15)
                 {
-                    txt = txt[1..^1];
-                    text.text = txt;
-                    yield return waitForSecondsRealtime2;
+                    w = new WaitForSecondsRealtime(2f / txt.Length);
+                    for (int i = txt.Length / 2; i > 0; i--)
+                    {
+                        text.text = text.text[1..^1];
+                        yield return w;
+                    }
+                }
+                else
+                {
+                    w = new WaitForSecondsRealtime(1f / txt.Length);
+                    for (int i = 1; i < txt.Length; i++)
+                    {
+                        text.text = text.text[..^1];
+                        yield return w;
+                    }
                 }
                 text.text = "";
                 yield return new WaitForSecondsRealtime(0.5f);

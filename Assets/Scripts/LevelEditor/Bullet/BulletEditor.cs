@@ -10,7 +10,10 @@ namespace SkyStrike.Editor
         [SerializeField] private Button addBtn;
         [SerializeField] private Button removeBtn;
         [SerializeField] private Button duplicateBtn;
+        [SerializeField] private Button stateBtn;
         [SerializeField] private BulletInfoMenu bulletInfoMenu;
+        [SerializeField] private BulletStateMenu bulletStateMenu;
+        [SerializeField] private Slider slider;
         private BulletItemList group;
 
         public void OnEnable()
@@ -28,7 +31,17 @@ namespace SkyStrike.Editor
             removeBtn.onClick.AddListener(RemoveBullet);
             addBtn.onClick.AddListener(group.CreateEmptyItem);
             duplicateBtn.onClick.AddListener(group.DuplicateSelectedItem);
+            stateBtn.onClick.AddListener(DisplayStateMenu);
+            slider.onValueChanged.AddListener(val => reviewScreen.transform.localScale = val * Vector3.one);
         }
+        private void DisplayStateMenu()
+        {
+            if (bulletStateMenu.gameObject.activeSelf)
+                bulletStateMenu.Hide();
+            else bulletStateMenu.Show();
+        }
+        public void Start()
+            => SelectBullet(null);
         private void RemoveBullet()
         {
             group.RemoveSelectedItem();
@@ -38,7 +51,9 @@ namespace SkyStrike.Editor
         {
             bulletInfoMenu.Display(bulletData);
             bulletInfoMenu.Show();
+            bulletStateMenu.SelectBullet(bulletData);
             bulletSpawner.ChangeBulletSpawner(bulletData);
+            stateBtn.gameObject.SetActive(bulletData != null);
         }
         protected void SelectLevel(LevelDataObserver data)
             => group.DisplayDataList(data);

@@ -58,7 +58,11 @@ namespace SkyStrike.Game
                 DisplayDamage(damager.GetDamage(), damager.damageType);
                 if (enemyData.hp <= 0)
                     Die();
-                else animator.GetAnimation(EAnimationType.Damaged).Play();
+                else
+                {
+                    animator.GetAnimation(EAnimationType.Damaged).Play();
+                    SoundManager.PlaySound(ESound.EnemyHit);
+                }
             }
             return true;
         }
@@ -75,9 +79,10 @@ namespace SkyStrike.Game
             enemyDieEventData.score = data.metaData.score;
             enemyDieEventData.exp = data.metaData.exp;
             enemyDieEventData.energy = data.metaData.energy;
+            SoundManager.PlaySound(enemyData.metaData.dieSoundType);
             EventManager.Active(enemyDieEventData);
             commander.InterruptAllComponents();
-            animator.GetAnimation(EAnimationType.Destruction).Play();
+            destructionAnimation.Play();
         }
         public void DropItemAndDisapear()
         {

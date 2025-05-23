@@ -13,8 +13,8 @@ namespace SkyStrike.UI
         [SerializeField] private Image border;
         [SerializeField] private TextMeshProUGUI energyText;
         private SkillData skillData;
-        private readonly static Color activeBorderColor = new(0, 0.75f, 0.75f);
-        private readonly static Color deactiveBorderColor = new(0.5f, 0, 0);
+        private readonly static Color activeBorderColor = new(0.75f, 0.75f, 0.75f);
+        private readonly static Color deactiveBorderColor = new(0.3f, 0.3f, 0.3f);
         private bool isLow;
         private bool isHigh;
 
@@ -27,6 +27,7 @@ namespace SkyStrike.UI
             if (skillData.energyCost == 0)
                 energyText.gameObject.SetActive(false);
             else energyText.text = skillData.energyCost.ToString();
+
         }
         public void UpdateTimeDisplay(float elapsedTime, float cooldown)
         {
@@ -45,7 +46,7 @@ namespace SkyStrike.UI
             {
                 if (!isLow)
                 {
-                    border.color = energyText.color = Color.red;
+                    border.color = energyText.color = deactiveBorderColor;
                     isLow = true;
                     isHigh = false;
                 }
@@ -54,7 +55,7 @@ namespace SkyStrike.UI
             {
                 if (!isHigh && icon.fillAmount >= 1)
                 {
-                    border.color = energyText.color = Color.cyan;
+                    border.color = energyText.color = activeBorderColor;
                     isHigh = true;
                     isLow = false;
                 }

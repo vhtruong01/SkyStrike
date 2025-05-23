@@ -34,6 +34,7 @@ namespace SkyStrike.Game
             float curTime = 0;
             float delta;
             Vector2 prevDir = new();
+            isMagnetic = true;
             while (curTime < time)
             {
                 delta = curTime / time;
@@ -46,7 +47,6 @@ namespace SkyStrike.Game
             transform.localScale = data.metaData.size * Vector3.one;
             tweener = GetAnimation(data.metaData.animationType);
             tweener.Restart();
-            isMagnetic = true;
         }
         private Tweener GetAnimation(EItemAnimationType type)
         {
@@ -55,13 +55,13 @@ namespace SkyStrike.Game
                 switch (type)
                 {
                     case EItemAnimationType.Zoom:
-                        tweener = transform.DOScale(1.5f * data.metaData.size, 2.5f);
+                        tweener = transform.DOScale(1.25f * data.metaData.size, 2.5f);
                         break;
                     case EItemAnimationType.Fade:
-                        tweener = spriteRenderer.DOFade(0.5f, 1);
+                        tweener = spriteRenderer.DOFade(0.25f, 2);
                         break;
                     case EItemAnimationType.Rotate:
-                        tweener = transform.DORotate(new(0, 0, 360), 10, RotateMode.FastBeyond360).SetEase(Ease.InOutFlash);
+                        tweener = transform.DORotate(new(0, 0, 360), 5 * Random.Range(1, 5), RotateMode.FastBeyond360).SetEase(Ease.InOutFlash);
                         break;
                 }
                 animationDict[type] = tweener.SetLoops(-1, LoopType.Yoyo).Pause();
@@ -74,7 +74,7 @@ namespace SkyStrike.Game
             data.lifetime -= Time.deltaTime;
             transform.position += ItemData.dropVelocity * Time.deltaTime;
             if (data.lifetime <= 0)
-                Disappear();
+                Lost();
         }
         public void HandleAffectedByGravity(Vector2 dir)
             => transform.position += dir.SetZ(transform.position.z);
@@ -85,6 +85,12 @@ namespace SkyStrike.Game
                 collector.Collect(itemType);
                 Disappear();
             }
+        }
+        private void Lost()
+        {
+            if (data.metaData.type != EItem.Star1 && data.metaData.type != EItem.Star5)
+                SoundManager.PlaySound(ESound.LostItem);
+            Disappear();
         }
         public override void Disappear()
         {

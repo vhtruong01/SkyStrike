@@ -107,20 +107,20 @@ item -- done
 ship invincibility -- done
 count enemy/level percent -- done 
 low hp ui -- done
+sound effect/bgm music -- done
+sfx:bullet, die, collect item, boss bgm, normal bgm, skill bgm, button bgm,
 
 
 
-enemy skill - 
-boss - behaviour tree
-sound effect/bgm music
-sfx:bullet, bg sfx, die, collect item,black hole, boss bgm, normal bgm, skill bgm, button bgm,
+bullet state machine
 ---------------------
 
 black/white hole ?
 bullet effect ?
 buy skin/effect - star ??
-bg effect
+bg effect?
 
 on validate
+dash/mega bomb/boss/particle system/player bullet/enemy bullet
 
 end

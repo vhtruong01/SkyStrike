@@ -171,7 +171,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ce95678c12212e94db9a1c36dd63c89b, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: ce95678c12212e94db9a1c36dd63c89b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -309,3 +309,272 @@ MonoBehaviour:
   _isMute: 0
   bgmSound: {fileID: 5188975086316054909}
   sfxSound: {fileID: 8030582614662666494}
+  soundDataList:
+  - eSound: 100
+    audioClip: {fileID: 8300000, guid: 839225577b959d049af934b4c6238211, type: 3}
+    isBgm: 1
+    isLoop: 1
+  - eSound: 101
+    audioClip: {fileID: 8300000, guid: 9e75bbb36ec86ad49b428d764f577cd2, type: 3}
+    isBgm: 1
+    isLoop: 1
+  - eSound: 102
+    audioClip: {fileID: 8300000, guid: 7bdbb4e5de47b5e429da231e1e26da99, type: 3}
+    isBgm: 1
+    isLoop: 1
+  - eSound: 103
+    audioClip: {fileID: 8300000, guid: 0fa3f97728898444da9fe808e769477e, type: 3}
+    isBgm: 1
+    isLoop: 1
+  - eSound: 104
+    audioClip: {fileID: 8300000, guid: 9312fc3132c3e744cb7a0d0a6b1ea29d, type: 3}
+    isBgm: 1
+    isLoop: 1
+  - eSound: 105
+    audioClip: {fileID: 8300000, guid: 96cc0f20dff3bc24d925c26e9be544e0, type: 3}
+    isBgm: 1
+    isLoop: 1
+  - eSound: 0
+    audioClip: {fileID: 8300000, guid: a2d63b970dad8fd4e9d7c4223f19ab1e, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 1
+    audioClip: {fileID: 8300000, guid: 81cd529db9a768549a5d5c69937811c4, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 2
+    audioClip: {fileID: 8300000, guid: 3aa6fe6e413eaa242af248f838ca1ef0, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 3
+    audioClip: {fileID: 8300000, guid: 53b5cc78aa8bb754b93f44d07c4aabd6, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 4
+    audioClip: {fileID: 8300000, guid: c803c3c0fc3d7bb43b325ab5cee4e743, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 5
+    audioClip: {fileID: 8300000, guid: 3dd2f4bb9e4fd8a43b548f80782db58e, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 10
+    audioClip: {fileID: 8300000, guid: 1746493c7b145f341a4a15bb8ad7387d, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 11
+    audioClip: {fileID: 8300000, guid: 8220a78782c29714a9bec5e398399f0f, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 12
+    audioClip: {fileID: 8300000, guid: e44c9e7a123b10a4c895b638ebf14922, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 13
+    audioClip: {fileID: 8300000, guid: 7e08436a618c205469333a5517682905, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 30
+    audioClip: {fileID: 8300000, guid: e715c7001d01b8249bafaac9111f5109, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 31
+    audioClip: {fileID: 8300000, guid: c59c95b29b9dc7c4ea9e323d3e3864b2, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 32
+    audioClip: {fileID: 8300000, guid: a6d816494de4ad143a6dcd5734c61295, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 33
+    audioClip: {fileID: 8300000, guid: 56177ccd008bca54993691ded842b37b, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 50
+    audioClip: {fileID: 8300000, guid: 281623d5d1e2b434890ba93d69cb68f6, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 51
+    audioClip: {fileID: 8300000, guid: 437d302a40dd05a4382c7b895e7421a1, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 52
+    audioClip: {fileID: 8300000, guid: 7669e74b33c00c646b8faf89fa4f39be, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 58
+    audioClip: {fileID: 8300000, guid: 2d0c97a6314b2f84dbbdb7064f1a900d, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 53
+    audioClip: {fileID: 8300000, guid: 1baafddb715dbd04dbc6f7323e108901, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 54
+    audioClip: {fileID: 8300000, guid: c2523f1cea49369499f638aa0e932c08, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 55
+    audioClip: {fileID: 8300000, guid: e972d2ceb18310f4299331d4368d7947, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 56
+    audioClip: {fileID: 8300000, guid: 8d5872130e7f41949a3b11f08ec2e371, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 57
+    audioClip: {fileID: 8300000, guid: 221835ce02270de40b74e727405b050c, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 59
+    audioClip: {fileID: 8300000, guid: 1422f4bdfce36304198ddaa4e4b55684, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 60
+    audioClip: {fileID: 8300000, guid: d3d1678a48556bc4ebbdfac002e8732b, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 70
+    audioClip: {fileID: 8300000, guid: cbb15c5e4550a6e4d800ee3653ea91ed, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 71
+    audioClip: {fileID: 8300000, guid: bf514bb3df232b84885acc2149008a2f, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 72
+    audioClip: {fileID: 8300000, guid: 244a567c29802314299325db9e18d780, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 73
+    audioClip: {fileID: 8300000, guid: 4861ae56edbc7c54e8829ce9adf855d4, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 74
+    audioClip: {fileID: 8300000, guid: ec482a337d7366046a67f81829ddc542, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 75
+    audioClip: {fileID: 8300000, guid: 6ed2076e6eeb92b4c819a35521945da3, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 76
+    audioClip: {fileID: 8300000, guid: a7094842822223c4396a96e963785ba4, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 77
+    audioClip: {fileID: 8300000, guid: 1ceab2e59e99a424e87da830ef593a0f, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 78
+    audioClip: {fileID: 8300000, guid: a6d816494de4ad143a6dcd5734c61295, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 79
+    audioClip: {fileID: 8300000, guid: bf033c6a204117b4b83e192a606b9d6a, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 80
+    audioClip: {fileID: 8300000, guid: 3a3be3d4806a6584f8bb0784f38f7efe, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 200
+    audioClip: {fileID: 8300000, guid: dd13fc62dc25fea4c8f4781d1a3a58a2, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 201
+    audioClip: {fileID: 8300000, guid: ec5861c6e9f243b40a12c9f43e268093, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 202
+    audioClip: {fileID: 8300000, guid: 2b6f0fc9ae1c3404a8262f2199caaabf, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 203
+    audioClip: {fileID: 8300000, guid: 7a1b9401939a5484480df95e78746f53, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 204
+    audioClip: {fileID: 8300000, guid: abf8074106caeff429ef2ada5b462e84, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 205
+    audioClip: {fileID: 8300000, guid: ce7d1c04d7466d242a4031cc96d8b654, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 206
+    audioClip: {fileID: 8300000, guid: e183bc7a91279a44a9ee4850e730ebad, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 207
+    audioClip: {fileID: 8300000, guid: 2c53b70cc305ddf44af4da14a0dcc85b, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 208
+    audioClip: {fileID: 8300000, guid: 15555f53ed0785543a31f840440d8cf7, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 209
+    audioClip: {fileID: 8300000, guid: c99bcd2a262870542958ac2fc0bb4ca2, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 210
+    audioClip: {fileID: 8300000, guid: 90031678fd6e3e34780f5446702d901c, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 211
+    audioClip: {fileID: 8300000, guid: 4bbf3e01b812335449a965ce0a10f9a4, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 212
+    audioClip: {fileID: 8300000, guid: e69ba27bbf60d2c478c143290e1a5b67, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 213
+    audioClip: {fileID: 8300000, guid: 3a6b1228de95f98458d00b1f9539a1fa, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 214
+    audioClip: {fileID: 8300000, guid: ad632bd714b4fb64e8834788871c7ce8, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 215
+    audioClip: {fileID: 8300000, guid: d9cb3e3a8fcd216479c936a24fb8e022, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 216
+    audioClip: {fileID: 8300000, guid: 82959007399b20d428669bba66ad3b63, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 301
+    audioClip: {fileID: 8300000, guid: bb4935fc25a23924db5d9f4ed787452a, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 300
+    audioClip: {fileID: 8300000, guid: d3a82420e9f207b4e9d7fa0ce5a5bebd, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 302
+    audioClip: {fileID: 8300000, guid: 69e53d05fcf3efe4a9763462cb1c8e11, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 305
+    audioClip: {fileID: 8300000, guid: 68cae0c40b9fe3f48b5e45b0d4656fb9, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 303
+    audioClip: {fileID: 8300000, guid: 58663ccb7f71cc341b24e18ed19e299a, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 304
+    audioClip: {fileID: 8300000, guid: 88b95afd9a0a1fd46892e1ffbe67ae3a, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 306
+    audioClip: {fileID: 8300000, guid: 8b70fee8cc40a32449541b0f2ca84056, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 307
+    audioClip: {fileID: 8300000, guid: f6d53cc496c0a434192bbee43af77286, type: 3}
+    isBgm: 0
+    isLoop: 0

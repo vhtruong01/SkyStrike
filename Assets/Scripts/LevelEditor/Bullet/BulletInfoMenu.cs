@@ -6,7 +6,7 @@ namespace SkyStrike.Editor
     {
         [SerializeField] private StringProperty bulletName;
         [SerializeField] private FloatProperty size;
-        [SerializeField] private FloatProperty velocity;
+        [SerializeField] private FloatProperty speed;
         [SerializeField] private FloatProperty timeCooldown;
         [SerializeField] private FloatProperty spinSpeed;
         [SerializeField] private FloatProperty lifetime;
@@ -16,7 +16,7 @@ namespace SkyStrike.Editor
         [SerializeField] private Vector2Property position;
         [SerializeField] private BoolProperty isCircle;
         [SerializeField] private BoolProperty isStartAwake;
-        [SerializeField] private BoolProperty isLookingAtPlayer;
+        [SerializeField] private BoolProperty isUseState;
         [SerializeField] private IntProperty amount;
 
         protected override void Preprocess()
@@ -26,14 +26,14 @@ namespace SkyStrike.Editor
             isCircle.BindToOtherProperty(unitAngle, false);
             isCircle.BindToOtherProperty(spinSpeed, true);
             isCircle.BindToOtherProperty(startAngle, false);
-            isCircle.BindToOtherProperty(isLookingAtPlayer, false);
-            isLookingAtPlayer.BindToOtherProperty(startAngle, false);
+            isUseState.BindToOtherProperty(lifetime, false);
+            isUseState.BindToOtherProperty(size, false);
         }
         public override void BindData()
         {
             bulletName.Bind(data.name);
             size.Bind(data.size);
-            velocity.Bind(data.velocity);
+            speed.Bind(data.speed);
             timeCooldown.Bind(data.timeCooldown);
             spinSpeed.Bind(data.spinSpeed);
             lifetime.Bind(data.lifetime);
@@ -43,14 +43,14 @@ namespace SkyStrike.Editor
             position.Bind(data.position);
             isCircle.Bind(data.isCircle);
             isStartAwake.Bind(data.isStartAwake);
-            isLookingAtPlayer.Bind(data.isLookingAtPlayer);
+            isUseState.Bind(data.isUseState);
             amount.Bind(data.amount);
         }
         public override void UnbindData()
         {
             bulletName.Unbind();
             size.Unbind();
-            velocity.Unbind();
+            speed.Unbind();
             timeCooldown.Unbind();
             spinSpeed.Unbind();
             startAngle.Unbind();
@@ -60,7 +60,7 @@ namespace SkyStrike.Editor
             unitAngle.Unbind();
             isCircle.Unbind();
             isStartAwake.Unbind();
-            isLookingAtPlayer.Unbind();
+            isUseState.Unbind();
             amount.Unbind();
         }
     }

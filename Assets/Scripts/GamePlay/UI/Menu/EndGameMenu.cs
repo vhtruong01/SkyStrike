@@ -16,7 +16,7 @@ namespace SkyStrike.UI
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private TextMeshProUGUI starText;
         [SerializeField] private GameObject content;
-        [SerializeField] private Button homeBtn;
+        [SerializeField] private UISound homeBtn;
         private Image bg;
         private Animator animator;
 
@@ -24,38 +24,50 @@ namespace SkyStrike.UI
         {
             animator = content.GetComponent<Animator>();
             bg = content.GetComponent<Image>();
-            homeBtn.onClick.AddListener(() => StartCoroutine(GoHome()));
         }
         private IEnumerator GoHome()
         {
+            homeBtn.Enable(false);
             EventManager.Active(EEventType.CloseScene);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.66f);
             SceneSwapper.OpenMainMenu();
         }
         private void Display(EndGameEventData eventData)
         {
             animator.gameObject.SetActive(true);
             bg.color = eventData.isWin ? winColor : loseColor;
-            title.text = eventData.isWin ? "Level complete!" : "Defeat";
+            title.text = eventData.isWin ? "Stage complete" : "Game over";
             title.color = eventData.isWin ? winTitleColor : loseTitleColor;
             animator.SetTrigger(eventData.isWin ? "Win" : "Lose");
+            homeBtn.AddListener(() => StartCoroutine(GoHome()));
+            homeBtn.SetSoundType(eventData.isWin ? ESound.SpecialVoice1: ESound.SpecialVoice2);
             StartCoroutine(DisplayScoreAndStar(animator.GetCurrentAnimatorStateInfo(0).length, eventData.score, eventData.star));
         }
         private IEnumerator DisplayScoreAndStar(float delay, float score, float star)
         {
             yield return new WaitForSecondsRealtime(delay);
-            float duration = 1.5f;
+            float duration = 0.5f;
             float elapsedTime = 0;
+            SoundManager.PlaySound(ESound.SummaryMultiple);
             while (elapsedTime < duration)
             {
                 elapsedTime += Time.unscaledDeltaTime;
                 yield return null;
                 scoreText.text = "Score: " + Mathf.CeilToInt(score * elapsedTime / duration);
+            }            
+            scoreText.text = "Score: " + score;
+            SoundManager.PlaySound(ESound.SummaryStar);
+            yield return new WaitForSecondsRealtime(1f);
+            SoundManager.PlaySound(ESound.SummaryMultiple);
+            elapsedTime = 0;
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                yield return null;
                 starText.text = "Star: " + Mathf.CeilToInt(star * elapsedTime / duration);
             }
-            scoreText.text = "Score: " + score;
+            SoundManager.PlaySound(ESound.SummaryStar);
             starText.text = "Star: " + star;
-
         }
         private void OnEnable()
             => EventManager.Subscribe<EndGameEventData>(Display);

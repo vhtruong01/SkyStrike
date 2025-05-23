@@ -14,31 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <itemType>k__BackingField: 6
   <hide>k__BackingField: 1
-  <maxLv>k__BackingField: 6
   <skillName>k__BackingField: Double Bullet
+  <energyCost>k__BackingField: 0
+  <maxLv>k__BackingField: 6
   <icon>k__BackingField: {fileID: 21300000, guid: dccd67524bd0f9d4b9e767a7a27a844d, type: 3}
   <cooldownList>k__BackingField:
-  - 0.1
+  - 5
   - 0.4
   - 0.4
   - 0.3
   - 0.3
   - 0.3
-  <cooldown>k__BackingField: 0.4
-  <lv>k__BackingField: 1
-  <energyCost>k__BackingField: 0
-  <elapsedTime>k__BackingField: 0.40501073
-  <dmg>k__BackingField: 250
-  <speed>k__BackingField: 6
+  <cooldown>k__BackingField: 5
+  <lv>k__BackingField: 0
+  <elapsedTime>k__BackingField: 5.0031624
+  <dmg>k__BackingField: 200
+  <speed>k__BackingField: 7.5
   <scale>k__BackingField: 1
   <lifetime>k__BackingField: 2
   <sprite>k__BackingField: {fileID: 21300000, guid: 2debb193a53be7f4db320633371fc647, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: 427c51966de840241a3b94ebce92d0e2, type: 2}
   <type>k__BackingField: 1
-  <damageType>k__BackingField: 0
+  <damageType>k__BackingField: 1
   <dmgList>k__BackingField: c8000000fa0000002c0100005e01000090010000f4010000
   <speedList>k__BackingField:
-  - 5
+  - 7.5
   - 6
   - 7
   - 7.5

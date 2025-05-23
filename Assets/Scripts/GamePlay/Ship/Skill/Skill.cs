@@ -54,13 +54,18 @@ namespace SkyStrike.Game
         {
             if (skillData.lv > 0)
             {
-                notiEventData.notiType = ENoti.Safe;
-                notiEventData.title = skillData.skillName;
-                notiEventData.message = "Level up";
-                notiEventData.sprite = skillData.icon;
-                EventManager.ActiveUIEvent(notiEventData);
+                SoundManager.PlaySound(ESound.WeaponUpgrade);
+                ShowNoti();
             }
             UpgradeStat();
+        }
+        private void ShowNoti()
+        {
+            notiEventData.notiType = ENoti.Safe;
+            notiEventData.title = skillData.skillName;
+            notiEventData.message = "Level up";
+            notiEventData.sprite = skillData.icon;
+            EventManager.ActiveUIEvent(notiEventData);
         }
         protected abstract void UpgradeStat();
         public virtual void Interrupt() => Deactive();

@@ -25,6 +25,20 @@ namespace SkyStrike.Game
             material = prefab.GetComponent<SpriteRenderer>().sharedMaterial;
             //material.enableInstancing = true;
         }
+        protected void OnEnable()
+            => Subscribe();
+        protected void OnDisable()
+            => Unsubscribe();
+        protected virtual void Subscribe()
+        {
+            EventManager.Subscribe(EEventType.LoseGame, ClearScreen);
+            EventManager.Subscribe(EEventType.WinGame, ClearScreen);
+        }
+        protected virtual void Unsubscribe()
+        {
+            EventManager.Unsubscribe(EEventType.LoseGame, ClearScreen);
+            EventManager.Unsubscribe(EEventType.WinGame, ClearScreen);
+        }
         protected virtual void DestroyItem(T item) => pool.Release(item);
         private T Create()
         {
@@ -42,14 +56,11 @@ namespace SkyStrike.Game
             item.transform.position = position;
             return item;
         }
-        public void Clear()
+        private void ClearScreen()
         {
-            var allChildren = gameObject.GetComponentsInChildren<T>();
+            var allChildren =  container.GetComponentsInChildren<T>();
             foreach (var child in allChildren)
-            {
-                if (child.isActive)
-                    pool.Release(child);
-            }
+                    child.Active(false);
         }
     }
 }

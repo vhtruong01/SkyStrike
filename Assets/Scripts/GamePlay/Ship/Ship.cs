@@ -30,8 +30,8 @@ namespace SkyStrike.Game
         public void Start()
         {
             animator.GetAnimation(EAnimationType.Invincibility)
-                .SetStartedAction(() => shipData.invincibility = true)
-                .SetFinishedAction(() => shipData.invincibility = false)
+                .SetStartedAction(Disappear)
+                .SetFinishedAction(Appear)
                 .SetDuration(shipData.invincibleTime);
         }
         private IEnumerator Recover()
@@ -90,10 +90,13 @@ namespace SkyStrike.Game
             if (!shipData.shield)
             {
                 shipData.hp -= damager.GetDamage();
+                if (shipData.hp == 1)
+                    SoundManager.PlaySound(ESound.LowHp);
                 if (shipData.hp <= 0)
                     Die();
                 else
                 {
+                    SoundManager.PlaySound(ESound.HpWarning);
                     EventManager.Active(EEventType.ShakeScreen);
                     animator.GetAnimation(EAnimationType.Damaged).Play();
                     animator.GetAnimation(EAnimationType.Invincibility).Play();
@@ -101,23 +104,33 @@ namespace SkyStrike.Game
             }
             return true;
         }
-        public void Disappear() { }
-        public void Die()
+        public void Appear()
         {
-            InterruptAllComponents();
-            animator.GetAnimation(EAnimationType.Destruction)
-                    .SetFinishedAction(() => entityObject.SetActive(false))
-                    .Play();
-            EventManager.Active(EEventType.LoseGame);
+            shipData.invincibility = false;
+            spawner.Spawn();
         }
+        public void Disappear()
+        {
+            shipData.invincibility = true;
+            spawner.Stop();
+        }
+        public void Die()
+            => EventManager.Active(EEventType.LoseGame);
         private void WinGame()
         {
-            Interrupt();
+            SoundManager.PlaySound(ESound.StageComplete);
+            SoundManager.PlaySound(ESound.Win);
+            InterruptAllComponents();
             EndGame(true);
         }
         private void LoseGame()
         {
-            Interrupt();
+            SoundManager.PlaySound(ESound.GameOver);
+            SoundManager.PlaySound(ESound.Lose);
+            InterruptAllComponents();
+            animator.GetAnimation(EAnimationType.Destruction)
+                    .SetFinishedAction(() => entityObject.SetActive(false))
+                    .Play();
             EndGame(false);
         }
         private void EndGame(bool state)
@@ -128,6 +141,7 @@ namespace SkyStrike.Game
             endGameEventData.score = shipData.score;
             endGameEventData.star = shipData.star;
             EventManager.Active(endGameEventData);
+            SoundManager.StopBgm();
         }
     }
 }

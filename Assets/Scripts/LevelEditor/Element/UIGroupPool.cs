@@ -202,6 +202,7 @@ namespace SkyStrike.Editor
         {
             Clear();
             this.dataList = dataList;
+            if (dataList == null) return;
             dataList.GetList(out var lst);
             foreach (var data in lst)
                 CreateItem(data);
