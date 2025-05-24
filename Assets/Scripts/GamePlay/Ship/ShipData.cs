@@ -94,9 +94,9 @@ namespace SkyStrike.Game
             _star = 0;
             _exp = 0;
             _hp = maxHp = defaultHp;
-            _energy = 0;
             _hp = 5;
             maxEnergy = defaultEnergy;
+            _energy = maxEnergy * 3 / 4;
             speed = defaultSpeed;
             maxExp = defaultExp;
             magnetRadius = defaultMagnetRadius;
@@ -113,43 +113,41 @@ namespace SkyStrike.Game
             switch (type)
             {
                 case EItem.None:
-                    break;
+                    return;
                 case EItem.Star1:
                     star++;
                     SoundManager.PlaySound(ESound.Star1);
-                    break;
+                    return;
                 case EItem.Star5:
                     star += 5;
                     SoundManager.PlaySound(ESound.Star5);
-                    break;
+                    return;
                 case EItem.Health:
                     if (hp < maxHp)
                     {
                         hp++;
                         SoundManager.PlaySound(ESound.Health);
                     }
-                    break;
+                    return;
                 case EItem.Energy:
                     energy += maxEnergy / 3;
                     SoundManager.PlaySound(ESound.Energy);
-                    break;
-                default:
-                    SoundManager.PlaySound(ESound.CollectItem);
-                    foreach (var skill in skillDataList)
-                        if (skill.itemType == type)
-                        {
-                            skill.LvUp();
-                            break;
-                        }
-                    break;
+                    return;
             }
+            SoundManager.PlaySound(ESound.CollectItem);
+            foreach (var skill in skillDataList)
+                if (skill.itemType == type)
+                {
+                    skill.LvUp();
+                    break;
+                }
         }
         private void LevelUp()
         {
             lv++;
             maxHp = defaultHp + lv / 5;
             maxEnergy = defaultEnergy + lv * 100;
-            maxExp = lv >= maxLv ? int.MaxValue : (defaultExp + lv * (int)Mathf.Pow(1.25f, lv));
+            maxExp = lv >= maxLv ? int.MaxValue : (defaultExp + lv * (int)Mathf.Pow(1.05f, lv));
             recoverSpeed = defaultRecoverSpeed + lv;
             magnetRadius = defaultMagnetRadius + lv * 0.1f;
             if (lv > 1)

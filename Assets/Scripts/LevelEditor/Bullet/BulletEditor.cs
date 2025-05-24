@@ -17,7 +17,11 @@ namespace SkyStrike.Editor
         private BulletItemList group;
 
         public void OnEnable()
-            => reviewScreen.SetActive(true);
+        {
+            group.SelectNone();
+            SelectBullet(null);
+            reviewScreen.SetActive(true);
+        }
         public override void Hide()
         {
             base.Hide();
@@ -40,8 +44,6 @@ namespace SkyStrike.Editor
                 bulletStateMenu.Hide();
             else bulletStateMenu.Show();
         }
-        public void Start()
-            => SelectBullet(null);
         private void RemoveBullet()
         {
             group.RemoveSelectedItem();

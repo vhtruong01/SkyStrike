@@ -24,14 +24,17 @@ namespace SkyStrike.Game
             if (!isActive) return;
             float deltaTime = Time.deltaTime;
             data.elapsedTime += deltaTime;
-            if (data.elapsedTime < data.stateDuration)
+            float remainTime = data.stateDuration - data.elapsedTime;
+            if (remainTime > 0)
             {
-                transform.position += data.velocity * (data.speed * deltaTime);
+                if (remainTime > data.transitionDuration)
+                    transform.position += data.velocity * (data.defaultSpeed * data.startCoef * deltaTime);
+                else transform.position += data.velocity * (data.defaultSpeed * Lerp(data.endCoef, data.startCoef, remainTime / data.transitionDuration) * deltaTime);
                 if (data.endScale != data.startScale)
-                    transform.localScale = Vector3.one * (data.startScale + (data.endScale - data.startScale) * data.elapsedTime / data.stateDuration);
+                    transform.localScale = Vector3.one * Lerp(data.startScale, data.endScale, data.elapsedTime / data.stateDuration);
             }
             else if (!data.ChangeState())
-                    Disappear();
+                Disappear();
         }
         public void AfterHit() => Disappear();
         public int GetDamage() => data.damage;
@@ -44,5 +47,7 @@ namespace SkyStrike.Game
             float y = data.velocity.y;
             data.SetVelocityAndCancelState(new(x * cos - y * sin, x * sin + y * cos, data.velocity.z));
         }
+        private float Lerp(float a, float b, float t)
+            => a + (b - a) * t;
     }
 }

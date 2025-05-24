@@ -52,7 +52,7 @@ namespace SkyStrike.Game
         public bool TakeDamage(IDamager damager)
         {
             if (!isActive || enemyData.isImmortal) return false;
-            if (!enemyData.shield || damager.damageType == EDamageType.Slashing)
+            if (!enemyData.shield || damager.damageType != EDamageType.Normal)
             {
                 enemyData.hp -= damager.GetDamage();
                 DisplayDamage(damager.GetDamage(), damager.damageType);
@@ -106,7 +106,7 @@ namespace SkyStrike.Game
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("ShipBullet") && collision.TryGetComponent<IDamager>(out var bullet))
+            if (collision.TryGetComponent<IDamager>(out var bullet))
             {
                 bullet.OnHit(this);
                 return;

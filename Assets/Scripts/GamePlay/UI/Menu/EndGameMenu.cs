@@ -46,8 +46,9 @@ namespace SkyStrike.UI
         private IEnumerator DisplayScoreAndStar(float delay, float score, float star)
         {
             yield return new WaitForSecondsRealtime(delay);
-            float duration = 0.5f;
             float elapsedTime = 0;
+            float duration = 0.5f;
+            yield return new WaitForSecondsRealtime(0.5f);
             SoundManager.PlaySound(ESound.SummaryMultiple);
             while (elapsedTime < duration)
             {

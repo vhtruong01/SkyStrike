@@ -72,13 +72,13 @@ namespace SkyStrike.Editor
         }
         public void ChangeBulletSpawner(BulletDataObserver bulletData)
         {
+            for (int i = 0; i < transform.childCount; i++)
+                if (transform.GetChild(i).gameObject.activeSelf)
+                    objectPool.Release(transform.GetChild(i).GetComponent<BulletObject>());
             this.bulletData = bulletData;
             if (bulletData == null) return;
             elaspedTime = bulletData.timeCooldown.data;
             spawnerAngle = 0;
-            for (int i = 0; i < transform.childCount; i++)
-                if (transform.GetChild(i).gameObject.activeSelf)
-                    objectPool.Release(transform.GetChild(i).GetComponent<BulletObject>());
         }
     }
 }

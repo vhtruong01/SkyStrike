@@ -33,14 +33,14 @@ namespace SkyStrike.UI
             float totalTime = displayTime;
             while (totalTime > 0)
             {
-                totalTime -= Time.unscaledDeltaTime;
+                totalTime -= Time.deltaTime;
                 transform.localScale = Vector3.one * (totalTime / displayTime * startSize + 1f);
                 yield return null;
             }
             totalTime = displayTime;
             while (totalTime > 0)
             {
-                totalTime -= Time.unscaledDeltaTime;
+                totalTime -= Time.deltaTime;
                 text.color = text.color.ChangeAlpha(totalTime / displayTime);
                 yield return null;
             }

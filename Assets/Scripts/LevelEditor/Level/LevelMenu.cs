@@ -14,7 +14,7 @@ namespace SkyStrike.Editor
         [SerializeField] private TMP_InputField levelName;
         [SerializeField] private TextMeshProUGUI warning;
         private LevelItemList group;
-        private LevelDataObserver levelData;
+        private LevelDataObserver selectedLevelData;
         private LevelDataObserver curLevelData;
         private HashSet<string> levelSet;
         private Dictionary<string, LevelData> levels;
@@ -33,8 +33,6 @@ namespace SkyStrike.Editor
         }
         public void OnDisable()
         {
-            group.SelectNone();
-            levelName.text = "";
             DisplayWarning(false);
         }
         public void Start()
@@ -43,20 +41,28 @@ namespace SkyStrike.Editor
             {
                 var lv = levels[key];
                 lv.fileName = key;
-                group.CreateItem(new(lv));
+                if (lv.fileName == curLevelData.fileName.data)
+                    group.CreateItem(curLevelData);
+                else group.CreateItem(new(lv));
             }
+            foreach (var lvName in levelSet)
+                if (lvName == curLevelData.fileName.data)
+                {
+                    group.SelectAndInvokeItem(curLevelData);
+                    return;
+                }
         }
         private void SelectLevel(LevelDataObserver data)
         {
             if (data == null)
             {
-                levelData = null;
+                selectedLevelData = null;
                 levelName.text = "";
                 levelName.interactable = false;
             }
             else
             {
-                levelData = data;
+                selectedLevelData = data;
                 levelName.text = data.fileName.data;
                 levelName.interactable = true;
             }
@@ -64,7 +70,7 @@ namespace SkyStrike.Editor
         }
         private void OpenLevel()
         {
-            if (levelData != null)
+            if (selectedLevelData != null)
             {
                 if (curLevelData.IsEmpty())
                     OnlyOpenLevel();
@@ -78,20 +84,20 @@ namespace SkyStrike.Editor
         }
         private void OnlyOpenLevel()
         {
-            if (levelData != null)
+            if (selectedLevelData != null)
             {
                 Hide();
-                EventManager.SelectLevel(levelData);
+                EventManager.SelectLevel(selectedLevelData);
             }
         }
         private void ChangeLevelName()
         {
-            if (levelData == null) return;
+            if (selectedLevelData == null) return;
             bool isValidName = IsValidName(levelName.text);
             DisplayWarning(!isValidName);
-            if (isValidName && IO.RenameLevel(levelData.fileName.data, levelName.text))
+            if (isValidName && IO.RenameLevel(selectedLevelData.fileName.data, levelName.text))
             {
-                levelData.fileName.SetData(levelName.text);
+                selectedLevelData.fileName.SetData(levelName.text);
                 levelSet.Add(levelName.text);
             }
         }

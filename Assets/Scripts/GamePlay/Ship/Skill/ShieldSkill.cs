@@ -7,6 +7,7 @@ namespace SkyStrike.Game
     {
         private AlphaValueAnimation alphaValueAnimation;
         private Rigidbody2D rigi;
+        protected override ESound upgradeSound => ESound.Shield;
 
         public override void Init()
         {

@@ -19,10 +19,10 @@ MonoBehaviour:
   <maxLv>k__BackingField: 6
   <icon>k__BackingField: {fileID: 21300000, guid: 0f8947b4588bc514bb106121874e98aa, type: 3}
   <cooldownList>k__BackingField:
-  - 0.1
-  <cooldown>k__BackingField: 0.1
+  - 0.2
+  <cooldown>k__BackingField: 0.2
   <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 0.08928689
+  <elapsedTime>k__BackingField: 0
   <dmg>k__BackingField: 1000
   <speed>k__BackingField: 6
   <scale>k__BackingField: 1
@@ -31,11 +31,16 @@ MonoBehaviour:
   <material>k__BackingField: {fileID: 2100000, guid: a9c88f0cc40449042a10b6f958d95c00, type: 2}
   <type>k__BackingField: 0
   <damageType>k__BackingField: 0
-  <dmgList>k__BackingField: e8030000
+  <dmgList>k__BackingField: e8030000b0040000780500004006000008070000d0070000
   <speedList>k__BackingField:
   - 6
   <scaleList>k__BackingField:
   - 1
+  - 1.05
+  - 1.1
+  - 1.15
+  - 1.2
+  - 1.25
   <spriteList>k__BackingField: []
   <effectList>k__BackingField:
   - {fileID: 1358382156, guid: 63762aad955129943b2c37d91c09b990, type: 3}

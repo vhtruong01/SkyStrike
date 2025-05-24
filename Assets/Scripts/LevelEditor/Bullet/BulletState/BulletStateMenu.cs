@@ -17,10 +17,16 @@ namespace SkyStrike.Editor
             group = GetComponent<BulletStateItemList>();
             group.Init(SelectState);
             addBtn.onClick.AddListener(group.CreateEmptyItem);
-            removeBtn.onClick.AddListener(() => group.RemoveSelectedItem());
+            removeBtn.onClick.AddListener(RemoveState);
             moveUpBtn.onClick.AddListener(group.MoveLeftSelectedItem);
             moveDownBtn.onClick.AddListener(group.MoveRightSelectedItem);
+            infoMenu.Hide();
             Hide();
+        }
+        private void RemoveState()
+        {
+            if (group.RemoveSelectedItem())
+                SelectState(null);
         }
         private void SelectState(BulletStateDataObserver stateData)
         {
@@ -30,7 +36,7 @@ namespace SkyStrike.Editor
         public void SelectBullet(BulletDataObserver data)
         {
             group.DisplayDataList(data);
-            SelectState(null);
+            group.SelectAndInvokeItem(null);
         }
     }
 }

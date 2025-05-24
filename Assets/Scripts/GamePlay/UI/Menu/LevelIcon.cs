@@ -43,7 +43,7 @@ namespace SkyStrike.UI
                 levelIndex.text = (index + 1).ToString();
                 levelIndex.color = border.color = Color.cyan;
             }
-            levelName.text = $"Stage {index + 1}: {levelData.name}";
+            levelName.text = $"Stage {index + 1}";
             score.text = $"High score: {highscore}";
             for (int i = levelData.starRating; i < stars.Count; i++)
                 stars[i].gameObject.SetActive(false);

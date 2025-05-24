@@ -8,6 +8,7 @@ namespace SkyStrike.Editor
         [SerializeField] private FloatProperty scale;
         [SerializeField] private FloatProperty rotation;
         [SerializeField] private FloatProperty duration;
+        [SerializeField] private FloatProperty transtionDuration;
         [SerializeField] private BoolProperty isAuto;
 
         protected override void Preprocess()
@@ -22,6 +23,7 @@ namespace SkyStrike.Editor
             rotation.Bind(data.rotation);
             duration.Bind(data.duration);
             isAuto.Bind(data.isAuto);
+            transtionDuration.Bind(data.transitionDuration);
         }
         public override void UnbindData()
         {
@@ -30,6 +32,7 @@ namespace SkyStrike.Editor
             rotation.Unbind();
             duration.Unbind();
             isAuto.Unbind();
+            transtionDuration.Unbind();
         }
     }
 }

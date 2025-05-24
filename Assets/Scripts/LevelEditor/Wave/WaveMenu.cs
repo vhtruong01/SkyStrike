@@ -29,7 +29,11 @@ namespace SkyStrike.Editor
         protected override void SelectObject(ObjectDataObserver data) { }
         protected override void CreateObject(ObjectDataObserver data) => waveData.Add(data);
         protected override void RemoveObject(ObjectDataObserver data) => waveData.Remove(data);
-        protected override void SelectWave(WaveDataObserver data) => waveData = data;
+        protected override void SelectWave(WaveDataObserver data)
+        {
+            waveData = data;
+            PlayerPrefs.SetInt("testWaveIndex", group.GetItemIndex(data));
+        }
         private void RemoveSelectedWave()
             => ModalMenu.Show("Delete current wave?", () => group.RemoveSelectedItem());
         protected void SelectLevel(LevelDataObserver data)

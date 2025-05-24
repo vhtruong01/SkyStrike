@@ -12,19 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3626a8147e190498e72efbab42ca8e, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
+  <itemType>k__BackingField: 10
   <hide>k__BackingField: 0
-  <maxLv>k__BackingField: 1
   <skillName>k__BackingField: Shield
+  <energyCost>k__BackingField: 300
+  <maxLv>k__BackingField: 6
   <icon>k__BackingField: {fileID: 7028616704906629411, guid: 88569d2d81610e748b943dd834d307e8, type: 3}
   <cooldownList>k__BackingField:
-  - 5
-  <cooldown>k__BackingField: 5
-  <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 5
-  <duration>k__BackingField: 10
-  <scale>k__BackingField: 1.2
+  - 15
+  - 14.5
+  - 14
+  - 13.5
+  - 13
+  - 12.5
+  <cooldown>k__BackingField: 14.5
+  <lv>k__BackingField: 1
+  <elapsedTime>k__BackingField: 14.508797
+  <duration>k__BackingField: 6
+  <scale>k__BackingField: 1.1
   <durationList>k__BackingField:
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
   - 10
   <scaleList>k__BackingField:
+  - 1
+  - 1.1
   - 1.2
+  - 1.3
+  - 1.4
   - 1.5

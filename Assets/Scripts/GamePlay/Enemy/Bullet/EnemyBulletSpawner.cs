@@ -10,9 +10,13 @@ namespace SkyStrike.Game
         private SpriteAnimation anim;
         public IObject entity { get; set; }
         public EnemyData enemyData { get; set; }
+        private ObjectMovement movement;
 
         public void Init()
-            => anim = GetComponentInChildren<SpriteAnimation>(true);
+        {
+            anim = GetComponentInChildren<SpriteAnimation>(true);
+            movement = transform.parent.GetComponentInChildren<ObjectMovement>();
+        }
         public void RefreshData()
             => anim.SetData(enemyData.metaData.weaponSprites);
         public void Spawn()
@@ -51,6 +55,7 @@ namespace SkyStrike.Game
                 elaspedTime = 0;
                 bulletEventData.position = entity.position;
                 bulletEventData.angle = Mathf.Deg2Rad * angle;
+                bulletEventData.velocity = movement.dir;
                 EventManager.Active(bulletEventData);
             }
         }

@@ -40,7 +40,11 @@ namespace SkyStrike.Game
                 Upgrade();
                 onUpgrade?.Invoke();
             }
-            else lv = maxLv;
+            else
+            {
+                lv = maxLv;
+                elapsedTime = cooldown;
+            }
         }
         public void UpdateCooldownDisplay()
             => onCooldown?.Invoke(elapsedTime, cooldown);

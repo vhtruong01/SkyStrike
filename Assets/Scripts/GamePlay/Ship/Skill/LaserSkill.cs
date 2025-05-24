@@ -9,6 +9,7 @@ namespace SkyStrike.Game
         [SerializeField] private LineRenderer laserLine;
         private Color warningColor;
         public EDamageType damageType => skillData.damageType;
+        protected override ESound upgradeSound => ESound.Laser;
 
         public void Awake()
         {
@@ -16,7 +17,8 @@ namespace SkyStrike.Game
             laserLine.gameObject.SetActive(false);
             warningColor = previewLine.startColor;
         }
-        public int GetDamage() => skillData.damage;
+        public int GetDamage()
+            => skillData.damage + Random.Range(-skillData.damage, skillData.damage) / 100;
         public override void Execute()
             => coroutine = StartCoroutine(Fire());
         private IEnumerator Fire()

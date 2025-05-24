@@ -17,9 +17,9 @@ namespace SkyStrike.Game
         private Coroutine coroutine;
         private LevelData levelData;
         private IObjectEventData objectEventData;
-        private int waveIndex;
-        private int enemyDieCount;
         private bool isEndGame;
+        private int waveIndex = 0;
+        private int enemyDieCount = 0;
 
         public void Awake()
         {
@@ -31,7 +31,9 @@ namespace SkyStrike.Game
         {
 #if UNITY_EDITOR
             levelData = IO.LoadLevel<LevelData>(PlayerPrefs.GetString("testLevel", ""));
+            waveIndex = PlayerPrefs.GetInt("testWaveIndex", 0);
             PlayerPrefs.DeleteKey("testLevel");
+            PlayerPrefs.DeleteKey("testWaveIndex");
 #endif
             levelData ??= gameManager.curLevel;
             if (levelData == null) return;
@@ -41,7 +43,7 @@ namespace SkyStrike.Game
             EventManager.Active(sysMessEventData);
             sysMessEventData.text = $"Mission: Destroy {Mathf.RoundToInt(levelData.percentRequired * 100)}% of enemies";
             EventManager.Active(sysMessEventData);
-            waveIndex = -1;
+            waveIndex -= 1;
             objectDataDict.Clear();
             bulletDataDict.Clear();
             if (levelData.bullets != null)

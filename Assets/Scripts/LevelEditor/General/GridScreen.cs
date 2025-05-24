@@ -18,7 +18,7 @@ namespace SkyStrike.Editor
         private float halfHeight;
         public Camera cam { get; private set; }
         public bool isLocked { get; set; }
-        public bool isSnapping { get; set; }
+        public bool isSnapping { get; set; } = true;
         public float scale
         {
             get => scaleSlider.value;

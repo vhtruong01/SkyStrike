@@ -8,14 +8,16 @@ namespace SkyStrike.Game
         public static readonly float maxRotationAngle = 10;
         public static readonly float squaredMaxDistance = 4f;
         public static readonly float maxViewTime = 0.25f;
-        private float defaultSpeed;
         private int stateIndex;
         public int damage => 1;
+        public float defaultSpeed { get;private set; }
         public float elapsedTime { get; set; }
         public float stateDuration { get; set; }
+        public float transitionDuration { get; set; }
+        public float startCoef { get; private set; }
+        public float endCoef { get; private set; }
         public float startScale { get; private set; }
         public float endScale { get; private set; }
-        public float speed { get; set; }
         public Vector3 velocity { get; set; }
         public Color color { get; private set; }
         public EnemyBulletMetaData.BulletStateData[] states { get; private set; }
@@ -34,7 +36,8 @@ namespace SkyStrike.Game
             {
                 elapsedTime = 0;
                 stateDuration = metaData.lifetime;
-                speed = defaultSpeed;
+                startCoef = endCoef = 1;
+                transitionDuration = 0;
                 startScale = endScale = metaData.size;
                 transform.localScale = Vector3.one * startScale;
                 velocity *= defaultSpeed;
@@ -54,14 +57,22 @@ namespace SkyStrike.Game
                 velocity = new(velocity.x * cos - velocity.y * sin, velocity.x * sin + velocity.y * cos, velocity.z);
             }
             elapsedTime = 0;
-            stateDuration = stateData.duration;
-            speed = stateData.coef * defaultSpeed;
             startScale = stateData.scale;
+            startCoef = stateData.coef;
+            stateDuration = stateData.duration;
+            transitionDuration = Mathf.Min(stateData.transitionDuration, stateDuration);
             Rotate();
             stateIndex++;
             if (stateIndex >= states.Length)
+            {
                 endScale = startScale;
-            else endScale = states[stateIndex].scale;
+                endCoef = startCoef;
+            }
+            else
+            {
+                endCoef = states[stateIndex].coef;
+                endScale = states[stateIndex].scale;
+            }
             return true;
         }
         public void SetVelocityAndCancelState(Vector3 velo)

@@ -41,8 +41,15 @@ namespace SkyStrike.Game
             if (hit.collider != null)
                 target = hit.collider.GetComponent<IDamageable>();
         }
-        public int GetDamage() => data.metaData.dmg;
+        public int GetDamage()
+        {
+            var damage = data.metaData.dmg;
+            return damage + Random.Range(-damage, damage) / 20;
+        }
         public void AfterHit()
-            => Disappear();
+        {
+            if (damageType != EDamageType.Slashing)
+                Disappear();
+        }
     }
 }

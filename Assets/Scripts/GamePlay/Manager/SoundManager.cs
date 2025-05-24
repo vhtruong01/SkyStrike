@@ -6,6 +6,7 @@ namespace SkyStrike.Game
 {
     public enum ESound
     {
+        None = 0,
         Star1,
         Star5,
         Health,
@@ -50,7 +51,7 @@ namespace SkyStrike.Game
         MainMenu = 100,
         Boss,
         Stage1,
-        Stage2, 
+        Stage2,
         Stage3,
         Stage4,
 
@@ -80,7 +81,8 @@ namespace SkyStrike.Game
         StartGameButton,
         CollectButton,
         Text,
-        BossWarning
+        BossWarning,
+        Explosion,
     }
     public class SoundManager : MonoBehaviour
     {
@@ -96,8 +98,8 @@ namespace SkyStrike.Game
         public void Awake()
         {
             instance = this;
-            soundVolume = PlayerPrefs.GetFloat("soundVolume", 0.75f);
-            sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.75f);
+            soundVolume = PlayerPrefs.GetFloat("soundVolume", 0.33f);
+            sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
             isMute = PlayerPrefs.GetInt("isMute", 1) == 0;
             soundDict = new();
             foreach (var item in soundDataList)
@@ -113,7 +115,7 @@ namespace SkyStrike.Game
                 => sfxSound.PlayOneShot(audioClip);
         public static void PlaySound(ESound eSound)
         {
-            if (instance == null || !instance.soundDict.TryGetValue(eSound, out var s)) return;
+            if (instance == null || !instance.soundDict.TryGetValue(eSound, out var s) || eSound == ESound.None) return;
             if (s.isBgm)
                 instance.PlayBgm(s.audioClip);
             else instance.PlaySfx(s.audioClip);
@@ -143,9 +145,8 @@ namespace SkyStrike.Game
             get => instance._isMute;
             set
             {
-                instance._isMute = value;
-                instance.bgmSound.mute = instance.sfxSound.mute = isMute;
-                PlayerPrefs.SetFloat("isMute", isMute ? 0 : 1);
+                instance.bgmSound.mute = instance.sfxSound.mute = instance._isMute = value;
+                PlayerPrefs.SetInt("isMute", value ? 0 : 1);
             }
         }
         public static void Pause()

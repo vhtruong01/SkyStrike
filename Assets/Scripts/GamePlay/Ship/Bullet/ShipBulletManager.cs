@@ -27,6 +27,10 @@ namespace SkyStrike.Game
                     SpawnBullet(pos, new(0, metaData.speed, 0));
                     SoundManager.PlaySound(ESound.SingleBullet);
                     break;
+                case EShipBulletType.MiniBullet:
+                    SpawnBullet(pos + new Vector3(-0.1f, 0), new(-0.075f, metaData.speed, 0));
+                    SpawnBullet(pos + new Vector3(0.1f, 0), new(0.075f, metaData.speed, 0));
+                    break;
                 case EShipBulletType.DoubleBullet:
                     SpawnBullet(pos + new Vector3(-0.33f, 0, 0), new(0, metaData.speed, 0));
                     SpawnBullet(pos + new Vector3(0.33f, 0, 0), new(0, metaData.speed, 0));

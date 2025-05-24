@@ -9,6 +9,7 @@ namespace SkyStrike.Game
         public IObject entity { get; set; }
         protected IEntityMoveData entityMoveData;
         protected Vector3 size = Vector3.one;
+        public Vector3 dir { get; private set; }
         protected abstract float scale { get; set; }
 
         public IEnumerator Travel(float delay)
@@ -29,14 +30,15 @@ namespace SkyStrike.Game
                     : MoveCurve(point, nextPoint, entityMoveData.moveData.velocity));
             }
             else Stop();
+            dir = Vector3.zero;
             entity.transform.localScale = size * point.scale;
             scale = point.scale;
         }
-        protected IEnumerator MoveStraight(Point startPoint, Point nextPoint, float velocity)
+        protected IEnumerator MoveStraight(Point startPoint, Point nextPoint, float speed)
         {
             Vector2 startPos = startPoint.midPos.ToVector2();
             Vector2 nextPos = nextPoint.midPos.ToVector2();
-            float time = startPoint.isIgnoreVelocity ? startPoint.travelTime : (startPos - nextPos).magnitude / velocity;
+            float time = startPoint.isIgnoreVelocity ? startPoint.travelTime : (startPos - nextPos).magnitude / speed;
             if (time > 0)
             {
                 if (!entityMoveData.canMove) yield return null;
@@ -47,13 +49,14 @@ namespace SkyStrike.Game
                     float delta = elapsedTime / time;
                     if (!startPoint.isScaleImmediately)
                         entity.transform.localScale = size * Lerp(scale, startPoint.scale, delta);
-                    entity.position = Vector2.Lerp(startPos, nextPos, delta).SetZ(entity.position.z);
+                    dir = Vector2.Lerp(startPos, nextPos, delta).SetZ(entity.position.z) - entity.position;
+                    entity.position += dir;
                     yield return null;
                     elapsedTime += Time.deltaTime;
                 }
             }
         }
-        private IEnumerator MoveCurve(Point startPoint, Point nextPoint, float velocity)
+        private IEnumerator MoveCurve(Point startPoint, Point nextPoint, float speed)
         {
             Vector2 startPos = startPoint.midPos.ToVector2();
             Vector2 pos2 = startPoint.nextPos.ToVector2();
@@ -64,7 +67,7 @@ namespace SkyStrike.Game
                     + (pos2 - pos3).magnitude
                     + (nextPos - pos3).magnitude
                     + (startPos - nextPos).magnitude)
-                    / velocity / 2);
+                    / speed / 2);
             if (time > 0)
             {
                 float elapsedTime = 0;
@@ -80,9 +83,9 @@ namespace SkyStrike.Game
                         + 3 * t1 * t1 * t2 * pos3
                         + t1 * t1 * t1 * nextPos
                         ).SetZ(entity.position.z);
-                    var dir = newPos - entity.position;
+                    dir = newPos - entity.position;
                     float len = dir.magnitude;
-                    float time2 = len / velocity;
+                    float time2 = len / speed;
                     coefficient = deltaTime / time2;
                     dir *= coefficient;
                     Rotate(dir.normalized);

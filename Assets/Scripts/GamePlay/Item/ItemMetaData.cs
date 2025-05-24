@@ -13,8 +13,9 @@ namespace SkyStrike.Game
         DoubleBullet,
         TrippleBullet,
         MissileBullet,
-        Laser
-
+        Laser,
+        Shield,
+        MegaBomb,
     }
     public enum EItemAnimationType
     {

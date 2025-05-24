@@ -8,6 +8,7 @@ namespace SkyStrike.Editor
         public DataObserver<float> rotation { get; private set; }
         public DataObserver<float> coef { get; private set; }
         public DataObserver<float> duration { get; private set; }
+        public DataObserver<float> transitionDuration { get; private set; }
         public DataObserver<bool> isAuto { get; private set; }
 
         public BulletStateDataObserver()
@@ -17,6 +18,7 @@ namespace SkyStrike.Editor
             rotation = new();
             duration = new();
             isAuto = new();
+            transitionDuration = new();
             scale.SetData(1f);
             coef.SetData(1f);
             duration.SetData(1f);
@@ -30,6 +32,7 @@ namespace SkyStrike.Editor
             newData.rotation.SetData(rotation.data);
             newData.isAuto.SetData(isAuto.data);
             newData.duration.SetData(duration.data);
+            newData.transitionDuration.SetData(transitionDuration.data);
             return newData;
         }
         public BulletStateData ExportData()
@@ -41,6 +44,7 @@ namespace SkyStrike.Editor
                 rotation = rotation.data,
                 isAuto = isAuto.data,
                 duration = duration.data,
+                transitionDuration = transitionDuration.data,
             };
         }
         public void ImportData(BulletStateData data)
@@ -50,6 +54,7 @@ namespace SkyStrike.Editor
             rotation.SetData(data.rotation);
             isAuto.SetData(data.isAuto);
             duration.SetData(data.duration);
+            transitionDuration.SetData(data.transitionDuration);
         }
     }
 }

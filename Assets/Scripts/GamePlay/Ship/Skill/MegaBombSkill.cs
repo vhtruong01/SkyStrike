@@ -3,10 +3,12 @@ using UnityEngine;
 
 namespace SkyStrike.Game
 {
-    public class ClearEnemyBulletSkill : Skill<ActivateSkillData>
+    public class MegaBombSkill : Skill<MegaBombData>, IDamager
     {
         private static readonly float maxSize = 20;
         private Rigidbody2D rigi;
+        protected override ESound upgradeSound => ESound.MegaBomb;
+        public EDamageType damageType => skillData.damageType;
 
         public void Awake()
         {
@@ -21,7 +23,6 @@ namespace SkyStrike.Game
         }
         private IEnumerator ClearBullet()
         {
-            rigi.simulated = true;
             float elapedTime = 0;
             float duration = 0.5f;
             SoundManager.PlaySound(ESound.Clock);
@@ -33,6 +34,8 @@ namespace SkyStrike.Game
             }
             SoundManager.PlaySound(ESound.Clock);
             yield return new WaitForSecondsRealtime(0.5f);
+            rigi.simulated = true;
+            SoundManager.PlaySound(ESound.Explosion);
             elapedTime = 0f;
             while (elapedTime < duration)
             {
@@ -46,8 +49,15 @@ namespace SkyStrike.Game
         protected override void UpgradeStat() { }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("EnemyBullet") && collision.TryGetComponent(out IDestroyable bullet) && bullet.isActive)
-                bullet.Disappear();
+            if (collision.CompareTag("EnemyBullet"))
+            {
+                if (collision.TryGetComponent(out IDestroyable bullet) && bullet.isActive)
+                    bullet.Disappear();
+                return;
+            }
         }
+        public int GetDamage()
+            => skillData.damage + Random.Range(-skillData.damage, skillData.damage) / 10;
+        public void AfterHit() { }
     }
 }

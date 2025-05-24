@@ -24,8 +24,8 @@ namespace SkyStrike.Game
     [CreateAssetMenu(fileName = "Enemy", menuName = "Data/Enemy")]
     public class EnemyMetaData : ObjectMetaData, IMetaData, IGame
     {
-        private static readonly float hpCoefficient = 1.05f;
-        private static readonly int minHp = 500;
+        private static readonly float hpCoefficient = 1.1f;
+        private static readonly int minHp = 1000;
         [SerializeField] private EnemyRace race;
         [field: SerializeField] public EnemyType type { get; private set; }
         [field: SerializeField] public bool isWeakEnemy { get; private set; }
@@ -46,20 +46,21 @@ namespace SkyStrike.Game
         {
             star = type switch
             {
-                EnemyType.Bomber => 1,
-                EnemyType.Boss => 25,
-                EnemyType.Creep => 1,
-                EnemyType.Elite => 12,
-                EnemyType.Fighter => 5,
-                EnemyType.Subboss => 20,
+                EnemyType.Bomber => 4,
+                EnemyType.Boss => 30,
+                EnemyType.Creep => 4,
+                EnemyType.Elite => 17,
+                EnemyType.Fighter => 8,
+                EnemyType.Subboss => 25,
                 EnemyType.Support => 2,
-                EnemyType.Torpedo => 9,
+                EnemyType.Torpedo => 12,
                 _ => 0,
             };
             maxHp = (int)(minHp * (1 + Mathf.Pow(hpCoefficient, star) * star));
-            score = (int)Mathf.Max(maxHp, Mathf.Round(maxHp / 1000) * 1000);
-            energy = Mathf.Max(1, maxHp / 1000);
-            exp = star * 5;
+            score = maxHp / 1000 * 1000;
+            energy = star * 3;
+            exp = maxHp / 100;
+            Debug.Log($"Type: {race} {type}, star: {star}, hp: {maxHp}, score: {score}, energy: {energy}, exp {exp}");
         }
         public bool CanHighlight()
         {

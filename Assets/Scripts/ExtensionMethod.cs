@@ -59,6 +59,7 @@ namespace SkyStrike
                     Directory.CreateDirectory(directoryPath);
                 File.WriteAllBytes(filePath, bytes);
                 Refresh();
+                Debug.Log("saved");
                 return true;
             }
             catch (Exception e)

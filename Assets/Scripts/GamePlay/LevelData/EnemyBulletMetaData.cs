@@ -12,6 +12,7 @@ namespace SkyStrike.Game
             public float scale;
             public float coef;
             public float duration;
+            public float transitionDuration;
             public float rotation;
             public bool isAuto;
         }

@@ -9,6 +9,7 @@ namespace SkyStrike.Game
         [SerializeField] protected T skillData;
         protected Coroutine coroutine;
         protected IAnimation anim;
+        protected virtual ESound upgradeSound => ESound.WeaponUpgrade;
         public IObject entity { get; set; }
         public ShipData shipData { get; set; }
 
@@ -54,7 +55,7 @@ namespace SkyStrike.Game
         {
             if (skillData.lv > 0)
             {
-                SoundManager.PlaySound(ESound.WeaponUpgrade);
+                SoundManager.PlaySound(upgradeSound);
                 ShowNoti();
             }
             UpgradeStat();

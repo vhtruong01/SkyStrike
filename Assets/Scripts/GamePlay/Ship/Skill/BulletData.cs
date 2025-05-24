@@ -9,7 +9,7 @@ namespace SkyStrike.Game
         DoubleBullet,
         TripleBullet,
         MissileBullet,
-        MagicBullet,
+        MiniBullet
     }
     [CreateAssetMenu(fileName = "Bullet", menuName = "Data/Bullet")]
     public class BulletData : SkillData

@@ -31,7 +31,8 @@ namespace SkyStrike.Game
 #if UNITY_EDITOR
             Application.targetFrameRate = 1000;
 #elif UNITY_WEBGL            
-            Application.targetFrameRate = 30;
+            Application.targetFrameRate = -1;
+            QualitySettings.vSyncCount = 0;
 #else
             Application.targetFrameRate = 60;
 #endif
@@ -49,6 +50,7 @@ namespace SkyStrike.Game
                 curLevelIndex++;
                 if (allLevelInfo.levels.Count <= curLevelIndex)
                     allLevelInfo.levels.Add(0);
+                maxLevel = Mathf.Max(maxLevel,curLevelIndex);
             }
             PlayerPrefs.SetString("levels", JsonUtility.ToJson(allLevelInfo));
         }

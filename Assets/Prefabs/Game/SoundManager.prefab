@@ -334,27 +334,27 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 96cc0f20dff3bc24d925c26e9be544e0, type: 3}
     isBgm: 1
     isLoop: 1
-  - eSound: 0
+  - eSound: 1
     audioClip: {fileID: 8300000, guid: a2d63b970dad8fd4e9d7c4223f19ab1e, type: 3}
     isBgm: 0
     isLoop: 0
-  - eSound: 1
+  - eSound: 2
     audioClip: {fileID: 8300000, guid: 81cd529db9a768549a5d5c69937811c4, type: 3}
     isBgm: 0
     isLoop: 0
-  - eSound: 2
+  - eSound: 3
     audioClip: {fileID: 8300000, guid: 3aa6fe6e413eaa242af248f838ca1ef0, type: 3}
     isBgm: 0
     isLoop: 0
-  - eSound: 3
+  - eSound: 4
     audioClip: {fileID: 8300000, guid: 53b5cc78aa8bb754b93f44d07c4aabd6, type: 3}
     isBgm: 0
     isLoop: 0
-  - eSound: 4
+  - eSound: 5
     audioClip: {fileID: 8300000, guid: c803c3c0fc3d7bb43b325ab5cee4e743, type: 3}
     isBgm: 0
     isLoop: 0
-  - eSound: 5
+  - eSound: 6
     audioClip: {fileID: 8300000, guid: 3dd2f4bb9e4fd8a43b548f80782db58e, type: 3}
     isBgm: 0
     isLoop: 0
@@ -576,5 +576,9 @@ MonoBehaviour:
     isLoop: 0
   - eSound: 307
     audioClip: {fileID: 8300000, guid: f6d53cc496c0a434192bbee43af77286, type: 3}
+    isBgm: 0
+    isLoop: 0
+  - eSound: 308
+    audioClip: {fileID: 8300000, guid: bf514bb3df232b84885acc2149008a2f, type: 3}
     isBgm: 0
     isLoop: 0
