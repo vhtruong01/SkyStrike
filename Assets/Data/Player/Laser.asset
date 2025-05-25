@@ -24,20 +24,20 @@ MonoBehaviour:
   - 8
   - 8.5
   - 7
-  <cooldown>k__BackingField: 10
-  <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 10
+  <cooldown>k__BackingField: 8.5
+  <lv>k__BackingField: 3
+  <elapsedTime>k__BackingField: 8.504822
   <damageInterval>k__BackingField: 0.2
   <len>k__BackingField: 12
-  <duration>k__BackingField: 2
-  <size>k__BackingField: 0.3
-  <damage>k__BackingField: 2000
+  <duration>k__BackingField: 3
+  <size>k__BackingField: 0.525
+  <damage>k__BackingField: 9000
   <damageType>k__BackingField: 2
   <durationList>k__BackingField:
   - 2
   - 2.5
   - 3
-  <damageList>k__BackingField: d0070000d0070000d0070000a00f000070170000
+  <damageList>k__BackingField: 4c1d0000401f0000342100002823000010270000
   <sizeList>k__BackingField:
   - 0.3
   - 0.375

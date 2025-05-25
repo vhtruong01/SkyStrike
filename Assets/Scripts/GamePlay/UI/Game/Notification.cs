@@ -51,7 +51,7 @@ namespace SkyStrike.UI
                 canvasGroup.alpha = elapsedTime / time;
                 yield return null;
             }
-            yield return new WaitForSecondsRealtime(time);
+            yield return new WaitForSecondsRealtime(time * 2);
             elapsedTime = 0;
             while (elapsedTime < time)
             {

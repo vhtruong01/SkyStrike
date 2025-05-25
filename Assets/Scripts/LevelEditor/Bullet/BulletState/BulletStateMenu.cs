@@ -35,6 +35,8 @@ namespace SkyStrike.Editor
         }
         public void SelectBullet(BulletDataObserver data)
         {
+            infoMenu.Display(null);
+            infoMenu.Hide();
             group.DisplayDataList(data);
             group.SelectAndInvokeItem(null);
         }

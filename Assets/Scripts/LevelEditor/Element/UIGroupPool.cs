@@ -206,7 +206,7 @@ namespace SkyStrike.Editor
             dataList.GetList(out var lst);
             foreach (var data in lst)
                 CreateItem(data);
-            if (!canDeselect) SelectFirstItem();
+            //if (!canDeselect) SelectFirstItem();
         }
         public UIElement<T> CreateItemAndAddData(T data)
         {

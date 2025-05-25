@@ -33,6 +33,7 @@ namespace SkyStrike.Editor
         [SerializeField] private Button pathBtn;
         [SerializeField] private PathMenu pathMenu;
         private DropItemList group;
+        private Dictionary<EItem, ItemMetaData> itemDict;
 
         protected override void Preprocess()
         {
@@ -43,6 +44,11 @@ namespace SkyStrike.Editor
             selectDropItemBtn.onClick.AddListener(() => dropItemView.SetActive(!dropItemView.activeSelf));
             group = gameObject.GetComponent<DropItemList>();
             group.Init(SelectDropItem);
+            itemDict = new();
+            foreach (var item in dropItemDataList)
+                itemDict.Add(item.type, item);
+            itemDict.Add(EItem.None, null);
+            EventManager.onGetItemMetaData.AddListener(GetItem);
             EventManager.onSetRefObject.AddListener(DisplayReferenceObject);
         }
         public void Start()
@@ -54,16 +60,18 @@ namespace SkyStrike.Editor
         {
             if (itemData == null)
             {
-                data.dropItemType = EItem.None;
+                data.dropItemType.SetData(EItem.None);
                 dropItemIcon.gameObject.SetActive(false);
             }
             else
             {
-                data.dropItemType = itemData.type;
+                data.dropItemType.SetData(itemData.type);
                 dropItemIcon.sprite = itemData.sprite;
                 dropItemIcon.gameObject.SetActive(true);
             }
         }
+        private ItemMetaData GetItem(EItem type)
+            => itemDict.TryGetValue(type, out var item) ? item : null;
         private void DisplayReferenceObject(ObjectDataObserver refData)
         {
             if (refData == null)
@@ -101,16 +109,16 @@ namespace SkyStrike.Editor
             icon.sprite = data.metaData.data.sprite;
             icon.color = data.metaData.data.color;
             DisplayReferenceObject(data.refData);
-            if (data.dropItemType != EItem.None)
+            if (data.dropItemType.data != EItem.None)
             {
                 foreach (var dropItemData in dropItemDataList)
-                    if (dropItemData.type == data.dropItemType)
+                    if (dropItemData.type == data.dropItemType.data)
                     {
-                        group.SelectAndInvokeItem(dropItemData);
+                        group.SelectItem(dropItemData);
                         return;
                     }
             }
-            else group.SelectAndInvokeItem(null);
+            else group.SelectItem(null);
         }
         public override void UnbindData()
         {

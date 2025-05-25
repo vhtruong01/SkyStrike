@@ -8,6 +8,7 @@ namespace SkyStrike.UI
     public class LevelMenu : Menu
     {
         [SerializeField] private GameManager gameManager;
+        [SerializeField] private TextMeshProUGUI starTxt;
         [SerializeField] private LevelIcon levelIcon0Prefab;
         [SerializeField] private LevelIcon levelIcon1Prefab;
         [SerializeField] private TextMeshProUGUI title;
@@ -22,6 +23,7 @@ namespace SkyStrike.UI
 
         public override void Start()
         {
+            starTxt.text = gameManager.star.ToString();
             var scroll = GetComponentInChildren<ScrollRect>();
             int index = 0;
             for (int i = 0; i < gameManager.levelDataList.Count; i++)

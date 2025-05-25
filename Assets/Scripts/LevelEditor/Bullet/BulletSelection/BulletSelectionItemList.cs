@@ -10,6 +10,9 @@ namespace SkyStrike.Editor
         {
             pointData = point;
             if (point == null) return;
+            var selectedItem = GetSelectedItem() as BulletSelectionItemUI;
+            if (selectedItem != null && point.bulletId == selectedItem.data.id)
+                return;
             if (point.bulletId != BulletDataObserver.UNDEFINED_ID)
                 for (int i = 0; i < items.Count; i++)
                 {

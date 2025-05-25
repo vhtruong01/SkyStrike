@@ -58,6 +58,7 @@ namespace SkyStrike.Game
                 SoundManager.PlaySound(upgradeSound);
                 ShowNoti();
             }
+            skillData.UpdateCooldownDisplay();
             UpgradeStat();
         }
         private void ShowNoti()

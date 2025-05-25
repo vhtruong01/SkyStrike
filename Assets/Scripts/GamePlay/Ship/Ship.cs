@@ -86,10 +86,11 @@ namespace SkyStrike.Game
         }
         public bool TakeDamage(IDamager damager)
         {
-            if (shipData.invincibility) return false;
+            int dmg = damager.GetDamage();
+            if (shipData.invincibility || dmg == 0) return false;
             if (!shipData.shield)
             {
-                shipData.hp -= damager.GetDamage();
+                shipData.hp -= dmg;
                 if (shipData.hp == 1)
                     SoundManager.PlaySound(ESound.LowHp);
                 if (shipData.hp <= 0)

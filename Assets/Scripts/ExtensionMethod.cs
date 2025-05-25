@@ -50,14 +50,11 @@ namespace SkyStrike
         {
             try
             {
-                MemoryStream stream = new();
-                new BinaryFormatter().Serialize(stream, obj);
-                var bytes = stream.ToArray();
                 string filePath = GetDataPath(fileName);
                 string directoryPath = Path.GetDirectoryName(filePath);
                 if (!Directory.Exists(directoryPath))
                     Directory.CreateDirectory(directoryPath);
-                File.WriteAllBytes(filePath, bytes);
+                File.WriteAllText(filePath, JsonUtility.ToJson(obj, true));
                 Refresh();
                 Debug.Log("saved");
                 return true;
@@ -91,9 +88,7 @@ namespace SkyStrike
             {
                 if (string.IsNullOrEmpty(fileName))
                     return null;
-                var bytes = Resources.Load<TextAsset>("Levels/" + fileName).bytes;
-                using MemoryStream stream = new(bytes);
-                return (T)new BinaryFormatter().Deserialize(stream);
+                return JsonUtility.FromJson<T>(Resources.Load<TextAsset>("Levels/" + fileName).text);
             }
             catch (Exception e)
             {
@@ -105,12 +100,11 @@ namespace SkyStrike
         {
             try
             {
-                var list = Resources.LoadAll<TextAsset>("Levels");
                 Dictionary<string, T> result = new();
+                var list = Resources.LoadAll<TextAsset>("Levels");
                 for (int i = 0; i < list.Length; i++)
                 {
-                    using MemoryStream stream = new(list[i].bytes);
-                    T temp = (T)new BinaryFormatter().Deserialize(stream);
+                    var temp = JsonUtility.FromJson<T>(list[i].text);
                     if (temp != null)
                         result.Add(list[i].name, temp);
                 }

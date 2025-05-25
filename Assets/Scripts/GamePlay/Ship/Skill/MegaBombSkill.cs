@@ -57,7 +57,7 @@ namespace SkyStrike.Game
             }
         }
         public int GetDamage()
-            => skillData.damage + Random.Range(-skillData.damage, skillData.damage) / 10;
+            => skillData.damage + Random.Range(-skillData.damage, skillData.damage) / 100;
         public void AfterHit() { }
     }
 }

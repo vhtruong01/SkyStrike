@@ -37,7 +37,7 @@ namespace SkyStrike.Game
         }
         private void FindTarget()
         {
-            var hit = Physics2D.CircleCast(new(), 8f, Vector2.up, 0, LayerMask.GetMask("Enemy"));
+            var hit = Physics2D.CircleCast(new(), 20f, Vector2.up, 0, LayerMask.GetMask("Enemy"));
             if (hit.collider != null)
                 target = hit.collider.GetComponent<IDamageable>();
         }

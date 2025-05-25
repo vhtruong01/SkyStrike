@@ -163,7 +163,6 @@ namespace SkyStrike.Game
         {
             instance.bgmSound.Stop();
         }
-
         [Serializable]
         private class SoundData
         {

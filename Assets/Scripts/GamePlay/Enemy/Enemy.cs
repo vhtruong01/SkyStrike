@@ -17,8 +17,7 @@ namespace SkyStrike.Game
         public IObject entity { get; set; }
         public EnemyData enemyData { get; set; }
         public EDamageType damageType => EDamageType.Slashing;
-        public int GetDamage() => 1;
-        public bool isDie => isActive;
+        public int GetDamage() => enemyData.isImmortal ? 0 : 1;
 
         public void Init()
         {

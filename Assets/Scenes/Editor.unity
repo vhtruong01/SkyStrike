@@ -10085,7 +10085,7 @@ GameObject:
   - component: {fileID: 950993290}
   - component: {fileID: 950993289}
   m_Layer: 10
-  m_Name: Circle (1)
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10100,9 +10100,9 @@ Transform:
   m_GameObject: {fileID: 950993287}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.12, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1961397683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15586,7 +15586,6 @@ GameObject:
   - component: {fileID: 1457852071}
   - component: {fileID: 1457852073}
   - component: {fileID: 1457852072}
-  - component: {fileID: 1457852076}
   - component: {fileID: 1457852075}
   - component: {fileID: 1457852074}
   m_Layer: 5
@@ -15693,19 +15692,6 @@ MonoBehaviour:
   defaultName: 
   prefab: {fileID: 6582846341911962729, guid: e0ef284153898684b96ced9cca8ba620, type: 3}
   containerTransform: {fileID: 2084220050}
---- !u!114 &1457852076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457852070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 233826c9044e84549ab609abd895e20c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rectTransform: {fileID: 0}
 --- !u!224 &1462980554 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8863852959414431856, guid: 9a8444afd1c6f304797b8b2385d59e38, type: 3}
@@ -18616,7 +18602,7 @@ GameObject:
   - component: {fileID: 1797386076}
   - component: {fileID: 1797386077}
   m_Layer: 10
-  m_Name: Circle
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18631,8 +18617,8 @@ Transform:
   m_GameObject: {fileID: 1797386074}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.48, y: 0.48, z: 0.48}
+  m_LocalPosition: {x: 0, y: 12.5, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1961397683}
@@ -23808,10 +23794,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 3911698656554511988}
   m_HandleRect: {fileID: 5373980526758167732}
   m_Direction: 0
-  m_MinValue: 0.25
-  m_MaxValue: 2
+  m_MinValue: 0.1
+  m_MaxValue: 0.5
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

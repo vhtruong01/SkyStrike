@@ -22,8 +22,8 @@ MonoBehaviour:
   - 0.2
   <cooldown>k__BackingField: 0.2
   <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 0
-  <dmg>k__BackingField: 1000
+  <elapsedTime>k__BackingField: 0.20376776
+  <dmg>k__BackingField: 750
   <speed>k__BackingField: 6
   <scale>k__BackingField: 1
   <lifetime>k__BackingField: 2
@@ -31,7 +31,7 @@ MonoBehaviour:
   <material>k__BackingField: {fileID: 2100000, guid: a9c88f0cc40449042a10b6f958d95c00, type: 2}
   <type>k__BackingField: 0
   <damageType>k__BackingField: 0
-  <dmgList>k__BackingField: e8030000b0040000780500004006000008070000d0070000
+  <dmgList>k__BackingField: ee020000e8030000e2040000dc050000d6060000d0070000
   <speedList>k__BackingField:
   - 6
   <scaleList>k__BackingField:

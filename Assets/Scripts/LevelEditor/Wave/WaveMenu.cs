@@ -6,6 +6,7 @@ namespace SkyStrike.Editor
     [RequireComponent(typeof(WaveItemList))]
     public class WaveMenu : EventNotifyMenu
     {
+        private static int curIndex;
         [SerializeField] private Button addBtn;
         [SerializeField] private Button removeBtn;
         [SerializeField] private Button duplicateBtn;
@@ -32,11 +33,15 @@ namespace SkyStrike.Editor
         protected override void SelectWave(WaveDataObserver data)
         {
             waveData = data;
-            PlayerPrefs.SetInt("testWaveIndex", group.GetItemIndex(data));
+            curIndex = group.GetItemIndex(data);
+            PlayerPrefs.SetInt("testWaveIndex", curIndex);
         }
         private void RemoveSelectedWave()
             => ModalMenu.Show("Delete current wave?", () => group.RemoveSelectedItem());
         protected void SelectLevel(LevelDataObserver data)
-            => group.DisplayDataList(data);
+        {
+            group.DisplayDataList(data);
+            group.SelectAndInvokeItem(curIndex);
+        }
     }
 }

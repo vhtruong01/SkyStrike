@@ -67,8 +67,8 @@ namespace SkyStrike.Game
         private void Update()
         {
             if (!shipData.canMove || input == null) return;
-            Vector2 dir = input.Direction * Time.unscaledDeltaTime;
-            if (dir.x != 0 && dir.y != 0)
+            Vector2 dir = input.Direction * Time.deltaTime;
+            if (dir.x != 0 || dir.y != 0)
                 entity.position = new(Mathf.Clamp(dir.x * shipData.speed + entity.position.x, -boundX, boundX),
                                       Mathf.Clamp(dir.y * 0.75f * shipData.speed + entity.position.y, -boundY, boundY),
                                       entity.position.z);

@@ -7,11 +7,11 @@ namespace SkyStrike.Editor
     {
         public readonly static int NULL_OBJECT_ID = -1;
         public DataObserver<int> id { get; set; }
-        public EItem dropItemType { get; set; }
-        public int refId { get; private set; }
         //
         public ObjectDataObserver refData { get; private set; }
         //
+        public DataObserver<EItem> dropItemType { get; set; }
+        public int refId { get; private set; }
         public DataObserver<ObjectMetaData> metaData { get; private set; }
         public DataObserver<float> size { get; private set; }
         public DataObserver<int> cloneCount { get; private set; }
@@ -24,6 +24,7 @@ namespace SkyStrike.Editor
         public ObjectDataObserver()
         {
             id = new();
+            dropItemType = new();
             metaData = new();
             name = new();
             moveData = new();
@@ -33,6 +34,7 @@ namespace SkyStrike.Editor
             isMaintain = new();
             refId = NULL_OBJECT_ID;
             id.OnlySetData(NULL_OBJECT_ID);
+            dropItemType.SetData(EItem.None);
             ResetData();
         }
         public ObjectDataObserver(ObjectData objectData) : this() => ImportData(objectData);
@@ -67,11 +69,11 @@ namespace SkyStrike.Editor
         public void ResetData()
         {
             moveData.delay.OnlySetData(0);
-            moveData.velocity.OnlySetData(4);
+            moveData.velocity.OnlySetData(1);
             cloneCount.OnlySetData(0);
             spawnInterval.OnlySetData(0.5f);
             size.OnlySetData(1);
-            dropItemType = EItem.None;
+            dropItemType.SetData(EItem.None);
             isMaintain.OnlySetData(false);
             if (metaData.data != null)
                 name.OnlySetData(metaData.data.GetName());
@@ -98,7 +100,7 @@ namespace SkyStrike.Editor
                 size = size.data,
                 cloneCount = cloneCount.data,
                 spawnInterval = spawnInterval.data,
-                dropItemType = dropItemType,
+                dropItemType = dropItemType.data,
                 isMaintain = isMaintain.data,
                 moveData = moveData.ExportData()
             };
@@ -114,8 +116,8 @@ namespace SkyStrike.Editor
             size.OnlySetData(objectData.size);
             cloneCount.OnlySetData(objectData.cloneCount);
             isMaintain.OnlySetData(objectData.isMaintain);
-            spawnInterval.SetData(objectData.spawnInterval);
-            dropItemType = objectData.dropItemType;
+            spawnInterval.OnlySetData(objectData.spawnInterval);
+            dropItemType.OnlySetData(objectData.dropItemType);
             moveData = new(objectData.moveData);
         }
     }

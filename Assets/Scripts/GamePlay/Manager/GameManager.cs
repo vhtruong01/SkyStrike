@@ -23,6 +23,7 @@ namespace SkyStrike.Game
         [field: SerializeField, ReadOnly] public int curLevelIndex { get; set; }
         public LevelData curLevel => levelDataList[curLevelIndex];
         public int maxLevel { get; private set; }
+        public int star => allLevelInfo.totalStar;
         public List<LevelData> levelDataList { get; private set; }
         private AllLevelInfo allLevelInfo;
 

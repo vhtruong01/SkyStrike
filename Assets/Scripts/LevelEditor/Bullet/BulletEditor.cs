@@ -37,6 +37,7 @@ namespace SkyStrike.Editor
             duplicateBtn.onClick.AddListener(group.DuplicateSelectedItem);
             stateBtn.onClick.AddListener(DisplayStateMenu);
             slider.onValueChanged.AddListener(val => reviewScreen.transform.localScale = val * Vector3.one);
+            slider.value = slider.minValue;
         }
         private void DisplayStateMenu()
         {

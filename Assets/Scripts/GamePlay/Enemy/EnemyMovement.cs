@@ -33,6 +33,11 @@ namespace SkyStrike.Game
             anim.Stop();
             enemyData.canMove = false;
         }
+        public override void Stand()
+        {
+            base.Stand();
+            anim.Pause();
+        }
         public void Interrupt()
         {
             StopAllCoroutines();

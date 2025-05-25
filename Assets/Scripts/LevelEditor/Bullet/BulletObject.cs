@@ -16,10 +16,15 @@ namespace SkyStrike.Editor
         private float startScale;
         private float endScale;
         private Vector3 velocity;
+        private Vector3 scale;
         public List<BulletStateDataObserver> states;
         public UnityEvent<BulletObject> onDestroy { get; private set; }
 
-        public void Init() => onDestroy = new();
+        public void Init()
+        {
+            onDestroy = new();
+            scale = transform.localScale;
+        }
         public void FixedUpdate()
         {
             float deltaTime = Time.fixedDeltaTime;
@@ -31,7 +36,7 @@ namespace SkyStrike.Editor
                     transform.position += velocity * (defaultSpeed * startCoef * deltaTime);
                 else transform.position += velocity * (defaultSpeed * Lerp(endCoef, startCoef, remainTime / transitionDuration) * deltaTime);
                 if (endScale != startScale)
-                    transform.localScale = Vector3.one * Lerp(startScale, endScale, elapsedTime / duration);
+                    transform.localScale = scale * Lerp(startScale, endScale, elapsedTime / duration);
             }
             else ChangeState();
         }
@@ -75,7 +80,7 @@ namespace SkyStrike.Editor
             defaultSpeed = bulletData.speed.data;
             velocity = dir;
             transform.position = pos.SetZ(transform.position.z);
-            transform.localScale = Vector3.one;
+            transform.localScale = scale;
             if (bulletData.isUseState.data && states.Count > 0)
             {
                 index = 0;
@@ -87,7 +92,7 @@ namespace SkyStrike.Editor
                 duration = bulletData.lifetime.data;
                 startCoef = endCoef = 1;
                 startScale = endScale = bulletData.size.data;
-                transform.localScale = Vector3.one * startScale;
+                transform.localScale = scale * startScale;
                 velocity *= defaultSpeed;
                 transitionDuration = 0;
             }

@@ -5,7 +5,7 @@ namespace SkyStrike.Game
         Normal,
         Piercing,
         Slashing,
-
+        MegaDamage,
     }
     public interface IDamager : IObject
     {

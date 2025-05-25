@@ -46,20 +46,22 @@ namespace SkyStrike.Game
         {
             star = type switch
             {
-                EnemyType.Bomber => 4,
-                EnemyType.Boss => 30,
-                EnemyType.Creep => 4,
-                EnemyType.Elite => 17,
-                EnemyType.Fighter => 8,
-                EnemyType.Subboss => 25,
-                EnemyType.Support => 2,
+                EnemyType.Creep => 2,
+                EnemyType.Support => 3,
+                EnemyType.Bomber => 7,
+                EnemyType.Fighter => 9,
                 EnemyType.Torpedo => 12,
+                EnemyType.Elite => 15,
+                EnemyType.Subboss => 20,
+                EnemyType.Boss => 30,
                 _ => 0,
             };
-            maxHp = (int)(minHp * (1 + Mathf.Pow(hpCoefficient, star) * star));
-            score = maxHp / 1000 * 1000;
-            energy = star * 3;
-            exp = maxHp / 100;
+            if (star != 0)
+                maxHp = (int)(minHp * (1 + Mathf.Pow(hpCoefficient, star) * star));
+            else maxHp = minHp * 5;
+            score = maxHp / 10 * 10;
+            energy = (int)(star * 2f);
+            exp = maxHp / 150;
             Debug.Log($"Type: {race} {type}, star: {star}, hp: {maxHp}, score: {score}, energy: {energy}, exp {exp}");
         }
         public bool CanHighlight()

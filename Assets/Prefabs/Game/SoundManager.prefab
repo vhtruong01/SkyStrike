@@ -379,7 +379,7 @@ MonoBehaviour:
     isBgm: 0
     isLoop: 0
   - eSound: 31
-    audioClip: {fileID: 8300000, guid: c59c95b29b9dc7c4ea9e323d3e3864b2, type: 3}
+    audioClip: {fileID: 8300000, guid: 7669e74b33c00c646b8faf89fa4f39be, type: 3}
     isBgm: 0
     isLoop: 0
   - eSound: 32
@@ -579,6 +579,6 @@ MonoBehaviour:
     isBgm: 0
     isLoop: 0
   - eSound: 308
-    audioClip: {fileID: 8300000, guid: bf514bb3df232b84885acc2149008a2f, type: 3}
+    audioClip: {fileID: 8300000, guid: c59c95b29b9dc7c4ea9e323d3e3864b2, type: 3}
     isBgm: 0
     isLoop: 0
