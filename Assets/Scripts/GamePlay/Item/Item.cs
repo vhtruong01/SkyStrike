@@ -61,7 +61,7 @@ namespace SkyStrike.Game
                         tweener = spriteRenderer.DOFade(0.25f, 2);
                         break;
                     case EItemAnimationType.Rotate:
-                        tweener = transform.DORotate(new(0, 0, 360), 5 * Random.Range(1, 5), RotateMode.FastBeyond360).SetEase(Ease.InOutFlash);
+                        tweener = transform.DORotate(new(0, 0, (Random.Range(0, 2) * 2 - 1) * 360), 2.5f * Random.Range(2, 5), RotateMode.FastBeyond360).SetEase(Ease.InOutFlash);
                         break;
                 }
                 animationDict[type] = tweener.SetLoops(-1, LoopType.Yoyo).Pause();

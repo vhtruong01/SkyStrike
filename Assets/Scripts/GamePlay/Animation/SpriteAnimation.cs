@@ -25,6 +25,8 @@ namespace SkyStrike.Game
                 if (spriteIndex != value)
                 {
                     spriteIndex = value;
+                    if (sprites == null)
+                        Debug.Log(name + " " + transform.parent.name + " " + transform.parent.transform.parent.name);
                     rendererComponent.SetSprite(sprites[spriteIndex]);
                 }
             }
@@ -42,24 +44,29 @@ namespace SkyStrike.Game
         public void SetData(List<Sprite> sprites)
         {
             spriteIndex = -1;
-            if (this.sprites != sprites && sprites != null)
+            if (sprites == null || sprites.Count == 0)
             {
+                this.sprites = null;
+                isDirty = false;
+                SetDuration(0);
+            }
+            else if (this.sprites != sprites)
+            {
+                this.sprites = sprites;
                 isDirty = true;
                 startVal = -0.1f;
                 endVal = sprites.Count - (isYoyo ? 0.9f : 0.1f);
                 SetDuration(interval * (sprites.Count - 1), delay);
             }
-            this.sprites = sprites;
             if (autoPlay)
                 Restart();
         }
         protected override void SetDefault()
         {
-            if (rendererComponent == null) return;
-            if (pauseAnimationOnFinish && sprites.Count > 0)
-                rendererComponent.SetSprite(sprites[0]);
-            else rendererComponent.SetSprite(null);
             transform.localRotation = Quaternion.identity;
+            if (sprites == null || sprites.Count == 0 || !pauseAnimationOnFinish)
+                rendererComponent.SetSprite(null);
+            else rendererComponent.SetSprite(sprites[0]);
         }
         public IAnimation SetInterval(float interval)
         {
@@ -68,6 +75,8 @@ namespace SkyStrike.Game
                 SetDuration(interval * (sprites.Count - 1));
             return this;
         }
+        protected override bool CanAnimate()
+            => sprites != null && sprites.Count > 0;
         protected override void ChangeValue(float value)
         {
             index = index < value ? Mathf.FloorToInt(value) : Mathf.CeilToInt(value);

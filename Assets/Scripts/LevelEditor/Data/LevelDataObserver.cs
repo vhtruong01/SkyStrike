@@ -8,10 +8,11 @@ namespace SkyStrike.Editor
         private int curBulletId;
         private List<WaveDataObserver> waveList;
         private List<BulletDataObserver> bulletList;
+        private readonly Dictionary<int, BulletDataObserver> bulletDict;
         public DataObserver<string> fileName { get; private set; }
         public DataObserver<int> starRating { get; private set; }
         public DataObserver<string> levelName { get; private set; }
-        private readonly Dictionary<int, BulletDataObserver> bulletDict;
+        public DataObserver<bool> isUseNightBugTheme { get; private set; }
 
         public LevelDataObserver() : this(null) { }
         public LevelDataObserver(LevelData levelData)
@@ -20,6 +21,7 @@ namespace SkyStrike.Editor
             bulletDict = new();
             levelName = new();
             fileName = new();
+            isUseNightBugTheme = new();
             ImportData(levelData);
         }
         public void GetList(out List<WaveDataObserver> list) => list = waveList;
@@ -70,6 +72,7 @@ namespace SkyStrike.Editor
                 starRating = starRating.data,
                 waves = new WaveData[waveList.Count],
                 curBulletId = curBulletId,
+                isUseNightBugTheme = isUseNightBugTheme.data,
                 bullets = new EnemyBulletMetaData[bulletList.Count]
             };
             levelData.enemyCount = 0;
@@ -93,6 +96,8 @@ namespace SkyStrike.Editor
             }
             fileName.SetData(levelData.fileName);
             starRating.SetData(levelData.starRating);
+            levelName.SetData(levelData.name);
+            isUseNightBugTheme.SetData(levelData.isUseNightBugTheme);
             curBulletId = levelData.curBulletId;
             if (levelData.waves != null)
                 for (int i = 0; i < levelData.waves.Length; i++)

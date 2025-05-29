@@ -24,19 +24,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d118c412d8e84144a245e8d19ae8ec0, type: 2}
   defaultHp: 7
   defaultExp: 1000
-  defaultEnergy: 1500
-  defaultRecoverSpeed: 5
+  defaultEnergy: 1000
+  defaultRecoverSpeed: 2
   defaultSpeed: 7.5
   defaultMagnetRadius: 1.25
   <speed>k__BackingField: 7.5
   <magnetRadius>k__BackingField: 2.35
-  <recoverSpeed>k__BackingField: 16
-  <invincibility>k__BackingField: 0
+  <recoverSpeed>k__BackingField: 4
+  <invincibility>k__BackingField: 1
   <shield>k__BackingField: 0
-  <isSpawn>k__BackingField: 1
+  <isSpawn>k__BackingField: 0
   <canMove>k__BackingField: 1
   <lv>k__BackingField: 11
   _hp: 4
-  _energy: 414
-  _star: 250
-  _exp: 600
+  _energy: 1089
+  _star: 304
+  _exp: 9203

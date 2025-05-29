@@ -17,7 +17,8 @@ namespace SkyStrike.Game
         WinGame,
         LoseGame,
         Warning,
-        CloseScene
+        CloseScene,
+        ClearEnemyBullet
     }
     public static partial class EventManager
     {

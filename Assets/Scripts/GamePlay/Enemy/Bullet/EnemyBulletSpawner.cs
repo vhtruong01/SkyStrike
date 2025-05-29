@@ -5,33 +5,51 @@ namespace SkyStrike.Game
     public class EnemyBulletSpawner : MonoBehaviour, IEnemyComponent, ISpawnable
     {
         private readonly EnemyBulletEventData bulletEventData = new();
-        private float elaspedTime;
+        private float elapsedTime;
         private float angle;
+        private int stack;
+        private float delay;
         private SpriteAnimation anim;
         public IObject entity { get; set; }
         public EnemyData enemyData { get; set; }
-        private ObjectMovement movement;
+        private EnemyBulletMetaData metaData;
 
         public void Init()
         {
             anim = GetComponentInChildren<SpriteAnimation>(true);
-            movement = transform.parent.GetComponentInChildren<ObjectMovement>();
         }
         public void RefreshData()
             => anim.SetData(enemyData.metaData.weaponSprites);
         public void Spawn()
         {
-            if (bulletEventData.metaData == enemyData.bulletData) return;
             if (enemyData.bulletData != null)
             {
-                var metaData = bulletEventData.metaData = enemyData.bulletData;
                 enemyData.isSpawn = true;
-                elaspedTime = metaData.isStartAwake ? metaData.timeCooldown : 0;
-                angle = metaData.isCircle ? 0 : metaData.startAngle;
-                bulletEventData.asset = enemyData.metaData.bulletSprites;
-                anim.SetDuration(enemyData.bulletData.timeCooldown).Restart();
+                if (metaData != enemyData.bulletData)
+                {
+                    metaData = bulletEventData.metaData = enemyData.bulletData;
+                    angle = metaData.isCircle ? 0 : metaData.startAngle;
+                    bulletEventData.asset = enemyData.metaData.bulletSprites;
+                    anim.SetDuration(Mathf.Max(metaData.delay, metaData.timeCooldown)).Restart();
+                    if (metaData.isStartAwake)
+                    {
+                        stack = metaData.stack;
+                        delay = metaData.delay;
+                        elapsedTime = metaData.timeCooldown;
+                    }
+                    else
+                    {
+                        stack = 0;
+                        delay = 0;
+                        elapsedTime = 0;
+                    }
+                }
             }
-            else Stop();
+            else
+            {
+                Stop();
+                metaData = null;
+            }
         }
         public void Stop()
         {
@@ -41,23 +59,34 @@ namespace SkyStrike.Game
         public void Interrupt() => Stop();
         private void Update()
         {
-            if (!enemyData.isSpawn) return;
-            elaspedTime += Time.deltaTime;
-            if (elaspedTime >= bulletEventData.metaData.timeCooldown)
+            if (!enemyData.isSpawn || metaData.stack <= 0) return;
+            if (stack <= 0 && metaData.delay > 0)
             {
+                delay += Time.deltaTime;
+                if (delay < metaData.delay) return;
+                else
+                {
+                    stack = metaData.stack;
+                    delay = 0;
+                    elapsedTime = Mathf.Max(0, metaData.delay - metaData.timeCooldown);
+                }
+            }
+            if (elapsedTime >= metaData.timeCooldown)
+            {
+                stack--;
                 if (enemyData.isLookingAtPlayer)
                     angle = Vector2.SignedAngle(Vector2.down, Ship.pos - entity.position);
-                else if (bulletEventData.metaData.isCircle)
+                else if (metaData.isCircle)
                 {
-                    angle += bulletEventData.metaData.spinSpeed * elaspedTime;
+                    angle += metaData.spinSpeed * Mathf.Max(Time.deltaTime, metaData.timeCooldown);
                     angle %= 360;
                 }
-                elaspedTime = 0;
+                elapsedTime = 0;
                 bulletEventData.position = entity.position;
                 bulletEventData.angle = Mathf.Deg2Rad * angle;
-                bulletEventData.velocity = movement.dir;
                 EventManager.Active(bulletEventData);
             }
+            elapsedTime += Time.deltaTime;
         }
     }
 }

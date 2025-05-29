@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,16 +24,16 @@ namespace SkyStrike.Game
         {
             bulletDataDict = new();
             objectDataDict = new();
-            DOTween.SetTweensCapacity(1000, 50);
         }
         public void Start()
         {
-#if UNITY_EDITOR
-            levelData = IO.LoadLevel<LevelData>(PlayerPrefs.GetString("testLevel", ""));
-            waveIndex = PlayerPrefs.GetInt("testWaveIndex", 0);
-            PlayerPrefs.DeleteKey("testLevel");
-            PlayerPrefs.DeleteKey("testWaveIndex");
-#endif
+            if (PlayerPrefs.HasKey("testLevel"))
+            {
+                levelData = JsonUtility.FromJson<LevelData>(PlayerPrefs.GetString("testLevel"));
+                waveIndex = PlayerPrefs.GetInt("testWaveIndex", 0);
+                PlayerPrefs.DeleteKey("testLevel");
+                PlayerPrefs.DeleteKey("testWaveIndex");
+            }
             levelData ??= gameManager.curLevel;
             if (levelData == null) return;
             print("start game");
@@ -44,7 +43,6 @@ namespace SkyStrike.Game
             sysMessEventData.text = $"Mission: Destroy {Mathf.RoundToInt(levelData.percentRequired * 100)}% of enemies";
             EventManager.Active(sysMessEventData);
             waveIndex -= 1;
-            objectDataDict.Clear();
             bulletDataDict.Clear();
             if (levelData.bullets != null)
                 foreach (var bullet in levelData.bullets)
@@ -81,12 +79,19 @@ namespace SkyStrike.Game
                 else StartCoroutine(WinGame());
                 return;
             }
-            print("wave: " + (1 + waveIndex));
+            objectDataDict.Clear();
             WaveData waveData = levelData.waves[waveIndex];
+            print($"wave: {waveData.name}, index: {1 + waveIndex}");
             if (waveData.isBoss)
             {
                 EventManager.Active(EEventType.Warning);
-                SoundManager.PlaySound(ESound.Boss);
+                if (levelData.isUseNightBugTheme)
+                {
+                    SoundManager.PlaySound(ESound.NightBugTheme);
+                    sysMessEventData.text = "Song: Stirring an Autumn Moon ~ Mooned Insect";
+                    EventManager.Active(sysMessEventData);
+                }
+                else SoundManager.PlaySound(ESound.Boss);
             }
             foreach (var objectData in waveData.objectDataArr)
                 objectDataDict.Add(objectData.id, objectData);
@@ -101,7 +106,11 @@ namespace SkyStrike.Game
             yield return new WaitForSeconds(5f);
             EventManager.Active(EEventType.WinGame);
         }
-        private void StopGame() => isEndGame = true;
+        private void StopGame()
+        {
+            isEndGame = true;
+            StopAllCoroutines();
+        }
         private void CreateObject(ObjectData objectData, float delay)
         {
             bool isEnemy = objectData.metaId > 0;

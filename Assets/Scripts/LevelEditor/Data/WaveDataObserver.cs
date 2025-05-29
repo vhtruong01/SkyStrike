@@ -112,7 +112,7 @@ namespace SkyStrike.Editor
         {
             int rs = 0;
             foreach (ObjectDataObserver data in objectDataList)
-                if (data.id.data > 0)
+                if (data.metaData.data.isCount)
                     rs += data.cloneCount.data + 1;
             return rs;
         }

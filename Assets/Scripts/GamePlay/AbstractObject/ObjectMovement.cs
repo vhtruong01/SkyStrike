@@ -9,7 +9,6 @@ namespace SkyStrike.Game
         public IObject entity { get; set; }
         protected IEntityMoveData entityMoveData;
         protected Vector3 size = Vector3.one;
-        public Vector3 dir { get; private set; }
         protected abstract float scale { get; set; }
 
         public IEnumerator Travel(float delay)
@@ -35,7 +34,6 @@ namespace SkyStrike.Game
                     : MoveCurve(point, nextPoint, entityMoveData.moveData.velocity));
             }
             else Stop();
-            dir = Vector3.zero;
             if (nextPoint != null)
             {
                 entity.transform.localScale = nextPoint.scale * size;
@@ -49,21 +47,18 @@ namespace SkyStrike.Game
             float time = startPoint.isIgnoreVelocity ? startPoint.travelTime : (startPos - nextPos).magnitude / speed;
             if (time > 0)
             {
-                if (!entityMoveData.canMove) yield return null;
                 float elapsedTime = 0;
                 Rotate(nextPos - startPos);
                 while (elapsedTime < time)
                 {
+                    elapsedTime += Time.fixedDeltaTime;
                     float delta = elapsedTime / time;
                     if (!startPoint.isScaleImmediately)
                         entity.transform.localScale = size * Lerp(startPoint.scale, nextPoint.scale, delta);
-                    dir = Vector2.Lerp(startPos, nextPos, delta).SetZ(entity.position.z) - entity.position;
-                    entity.position += dir;
-                    yield return null;
-                    elapsedTime += Time.deltaTime;
+                    entity.position = Vector2.Lerp(startPos, nextPos, delta).SetZ(entity.position.z);
+                    yield return new WaitForFixedUpdate();
                 }
             }
-
         }
         private IEnumerator MoveCurve(Point startPoint, Point nextPoint, float speed)
         {
@@ -76,33 +71,38 @@ namespace SkyStrike.Game
                     + (pos2 - pos3).magnitude
                     + (nextPos - pos3).magnitude
                     + (startPos - nextPos).magnitude)
-                    / speed / 2);
+                    / 2 / speed);
             if (time > 0)
             {
                 float elapsedTime = 0;
-                float deltaTime = Time.deltaTime;
-                float coefficient = 1;
+                Vector3 lastPost = startPos;
                 while (elapsedTime < time)
                 {
-                    elapsedTime += deltaTime * coefficient;
-                    float t1 = elapsedTime / time;
-                    float t2 = 1 - t1;
-                    Vector3 newPos = (t2 * t2 * t2 * startPos
-                        + 3 * t2 * t2 * t1 * pos2
-                        + 3 * t1 * t1 * t2 * pos3
-                        + t1 * t1 * t1 * nextPos
-                        ).SetZ(entity.position.z);
-                    dir = newPos - entity.position;
-                    float len = dir.magnitude;
-                    float time2 = len / speed;
-                    coefficient = deltaTime / time2;
-                    dir *= coefficient;
+                    float deltaTime = Time.fixedDeltaTime;
+                    float sqrLen = Mathf.Pow(speed * deltaTime, 2);
+                    float tempTime = 0;
+                    Vector3 dir;
+                    do
+                    {
+                        tempTime += deltaTime;
+                        float t1 = (elapsedTime + tempTime) / time;
+                        float t2 = 1 - t1;
+                        Vector3 newPos = t2 * t2 * t2 * startPos
+                            + 3 * t2 * t2 * t1 * pos2
+                            + 3 * t1 * t1 * t2 * pos3
+                            + t1 * t1 * t1 * nextPos;
+                        dir = newPos - lastPost;
+                    } while (dir.sqrMagnitude < sqrLen);
+                    float coef = deltaTime * speed / dir.magnitude;
+                    dir *= coef;
+                    elapsedTime += tempTime * coef;
+                    Rotate(dir.normalized);
+                    lastPost += dir;
                     Rotate(dir.normalized);
                     entity.position += dir;
-                    deltaTime = Time.deltaTime;
                     if (!startPoint.isScaleImmediately)
-                        entity.transform.localScale = size * Lerp(startPoint.scale, nextPoint.scale, t1);
-                    yield return null;
+                        entity.transform.localScale = size * Lerp(startPoint.scale, nextPoint.scale, elapsedTime / time);
+                    yield return new WaitForFixedUpdate();
                 }
             }
         }

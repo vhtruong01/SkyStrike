@@ -16,6 +16,7 @@ namespace SkyStrike.Editor
             base.Preprocess();
             EventManager.onSelectMetaObject.AddListener(SelectMetaObject);
             subMenuList = new() { objectInfoMenu, waveInfoMenu };
+            SelectSubMenu(subMenuList.Count - 1);
         }
         public void Start()
             => switchSubMenuBtnGroup.AddListener(SelectSubMenu);

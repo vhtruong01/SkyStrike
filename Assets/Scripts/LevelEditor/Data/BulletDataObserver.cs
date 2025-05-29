@@ -16,12 +16,14 @@ namespace SkyStrike.Editor
         public DataObserver<float> lifetime { get; private set; }
         public DataObserver<float> unitAngle { get; private set; }
         public DataObserver<float> startAngle { get; private set; }
+        public DataObserver<float> delay { get; private set; }
         public DataObserver<Vector2> spacing { get; private set; }
         public DataObserver<Vector2> position { get; private set; }
         public DataObserver<bool> isCircle { get; private set; }
         public DataObserver<bool> isStartAwake { get; private set; }
         public DataObserver<bool> isUseState { get; private set; }
         public DataObserver<int> amount { get; private set; }
+        public DataObserver<int> stack { get; private set; }
         private List<BulletStateDataObserver> stateList;
 
         public BulletDataObserver()
@@ -38,15 +40,18 @@ namespace SkyStrike.Editor
             spacing = new();
             position = new();
             amount = new();
+            stack = new();
             isCircle = new();
             isStartAwake = new();
             isUseState = new();
             stateList = new();
+            delay = new();
             size.SetData(1);
             speed.SetData(2.5f);
             timeCooldown.SetData(2);
             amount.SetData(1);
-            lifetime.SetData(7.5f);
+            lifetime.SetData(5f);
+            stack.SetData(1);
         }
         public BulletDataObserver(EnemyBulletMetaData bulletData) : this() => ImportData(bulletData);
         public BulletDataObserver Clone()
@@ -60,9 +65,11 @@ namespace SkyStrike.Editor
             newData.lifetime.SetData(lifetime.data);
             newData.unitAngle.SetData(unitAngle.data);
             newData.startAngle.SetData(startAngle.data);
+            newData.delay.SetData(delay.data);
             newData.spacing.SetData(spacing.data);
             newData.position.SetData(position.data);
             newData.amount.SetData(amount.data);
+            newData.stack.SetData(stack.data);
             newData.isStartAwake.SetData(isStartAwake.data);
             newData.isCircle.SetData(isCircle.data);
             newData.isUseState.SetData(isUseState.data);
@@ -85,10 +92,12 @@ namespace SkyStrike.Editor
                 lifetime = lifetime.data,
                 unitAngle = unitAngle.data,
                 startAngle = startAngle.data,
+                delay = delay.data,
                 isCircle = isCircle.data,
                 isStartAwake = isStartAwake.data,
                 isUseState = isUseState.data,
                 amount = amount.data,
+                stack = stack.data,
                 states = new EnemyBulletMetaData.BulletStateData[stateList.Count],
             };
             for (int i = 0; i < stateList.Count; i++)
@@ -106,12 +115,14 @@ namespace SkyStrike.Editor
             position.SetData(data.position.ToVector2());
             spinSpeed.SetData(data.spinSpeed);
             lifetime.SetData(data.lifetime);
+            delay.SetData(data.delay);
             unitAngle.SetData(data.unitAngle);
             startAngle.SetData(data.startAngle);
             isCircle.SetData(data.isCircle);
             isStartAwake.SetData(data.isStartAwake);
             isUseState.SetData(data.isUseState);
             amount.SetData(data.amount);
+            stack.SetData(data.stack);
             if (data.states != null && data.states.Length > 0)
                 for (int i = 0; i < data.states.Length; i++)
                     stateList.Add(new(data.states[i]));

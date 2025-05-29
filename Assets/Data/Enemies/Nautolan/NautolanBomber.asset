@@ -49,4 +49,4 @@ MonoBehaviour:
   - {fileID: -105319739, guid: 683c1c61c20620e4bbb60588198681d9, type: 3}
   - {fileID: -1642822664, guid: 683c1c61c20620e4bbb60588198681d9, type: 3}
   <weaponSprites>k__BackingField: []
-  <bulletSprites>k__BackingField: {fileID: 11400000, guid: 51bd0f7dc305499498ab40335d621b2c, type: 2}
+  <bulletSprites>k__BackingField: {fileID: 11400000, guid: 345fcd093fa2a60499280dcf37d29ff7, type: 2}

@@ -93,4 +93,4 @@ MonoBehaviour:
   - {fileID: 5675953865497402895, guid: 826c6ad8cfdb1ff45a67570f8e80ac8f, type: 3}
   - {fileID: -546286365037970974, guid: 826c6ad8cfdb1ff45a67570f8e80ac8f, type: 3}
   - {fileID: -8502915425750156006, guid: 826c6ad8cfdb1ff45a67570f8e80ac8f, type: 3}
-  <bulletSprites>k__BackingField: {fileID: 11400000, guid: 345fcd093fa2a60499280dcf37d29ff7, type: 2}
+  <bulletSprites>k__BackingField: {fileID: 11400000, guid: 5deba01759692fc4ebb31606155ae319, type: 2}

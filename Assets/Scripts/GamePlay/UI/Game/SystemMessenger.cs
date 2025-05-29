@@ -41,7 +41,7 @@ namespace SkyStrike.UI
                     text.text += txt[i];
                     yield return w;
                 }
-                yield return new WaitForSecondsRealtime(1.5f);
+                yield return new WaitForSecondsRealtime(0.1f * txt.Length);
                 SoundManager.PlaySound(ESound.Text);
                 if (txt.Length > 15)
                 {

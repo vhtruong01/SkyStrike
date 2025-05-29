@@ -15,32 +15,18 @@ MonoBehaviour:
   <itemType>k__BackingField: 10
   <hide>k__BackingField: 0
   <skillName>k__BackingField: Shield
-  <energyCost>k__BackingField: 300
-  <maxLv>k__BackingField: 6
+  <energyCost>k__BackingField: 400
+  <maxLv>k__BackingField: 3
   <icon>k__BackingField: {fileID: 7028616704906629411, guid: 88569d2d81610e748b943dd834d307e8, type: 3}
   <cooldownList>k__BackingField:
+  - 20
+  - 17.5
   - 15
-  - 14.5
-  - 14
-  - 13.5
-  - 13
-  - 12.5
-  <cooldown>k__BackingField: 14.5
-  <lv>k__BackingField: 1
-  <elapsedTime>k__BackingField: 14.508797
-  <duration>k__BackingField: 6
-  <scale>k__BackingField: 1.1
+  <cooldown>k__BackingField: 15
+  <lv>k__BackingField: 3
+  <elapsedTime>k__BackingField: 15.000963
+  <duration>k__BackingField: 7.5
   <durationList>k__BackingField:
   - 5
   - 6
-  - 7
-  - 8
-  - 9
-  - 10
-  <scaleList>k__BackingField:
-  - 1
-  - 1.1
-  - 1.2
-  - 1.3
-  - 1.4
-  - 1.5
+  - 7.5

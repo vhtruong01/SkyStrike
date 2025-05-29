@@ -5,7 +5,7 @@ namespace SkyStrike.Game
 {
     public class MegaBombSkill : Skill<MegaBombData>, IDamager
     {
-        private static readonly float maxSize = 20;
+        private static readonly float maxSize = 25f;
         private Rigidbody2D rigi;
         protected override ESound upgradeSound => ESound.MegaBomb;
         public EDamageType damageType => skillData.damageType;
@@ -19,9 +19,9 @@ namespace SkyStrike.Game
         public override void Execute()
         {
             EventManager.Active(EEventType.StopTime);
-            StartCoroutine(ClearBullet());
+            StartCoroutine(ClearBulletAndDealDmg());
         }
-        private IEnumerator ClearBullet()
+        private IEnumerator ClearBulletAndDealDmg()
         {
             float elapedTime = 0;
             float duration = 0.5f;
@@ -34,6 +34,7 @@ namespace SkyStrike.Game
             }
             SoundManager.PlaySound(ESound.Clock);
             yield return new WaitForSecondsRealtime(0.5f);
+            EventManager.Active(EEventType.ClearEnemyBullet);
             rigi.simulated = true;
             SoundManager.PlaySound(ESound.Explosion);
             elapedTime = 0f;
@@ -47,15 +48,6 @@ namespace SkyStrike.Game
             transform.localScale = Vector3.zero;
         }
         protected override void UpgradeStat() { }
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("EnemyBullet"))
-            {
-                if (collision.TryGetComponent(out IDestroyable bullet) && bullet.isActive)
-                    bullet.Disappear();
-                return;
-            }
-        }
         public int GetDamage()
             => skillData.damage + Random.Range(-skillData.damage, skillData.damage) / 100;
         public void AfterHit() { }

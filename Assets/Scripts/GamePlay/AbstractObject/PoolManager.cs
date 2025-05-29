@@ -31,13 +31,13 @@ namespace SkyStrike.Game
             => Unsubscribe();
         protected virtual void Subscribe()
         {
-            EventManager.Subscribe(EEventType.LoseGame, ClearScreen);
-            EventManager.Subscribe(EEventType.WinGame, ClearScreen);
+            EventManager.Subscribe(EEventType.LoseGame, HideAll);
+            EventManager.Subscribe(EEventType.WinGame, HideAll);
         }
         protected virtual void Unsubscribe()
         {
-            EventManager.Unsubscribe(EEventType.LoseGame, ClearScreen);
-            EventManager.Unsubscribe(EEventType.WinGame, ClearScreen);
+            EventManager.Unsubscribe(EEventType.LoseGame, HideAll);
+            EventManager.Unsubscribe(EEventType.WinGame, HideAll);
         }
         protected virtual void DestroyItem(T item) => pool.Release(item);
         private T Create()
@@ -56,11 +56,18 @@ namespace SkyStrike.Game
             item.transform.position = position;
             return item;
         }
-        private void ClearScreen()
+        protected void HideAll()
         {
-            var allChildren =  container.GetComponentsInChildren<T>();
+            var allChildren = container.GetComponentsInChildren<T>();
             foreach (var child in allChildren)
-                    child.Active(false);
+                child.Active(false);
+        }
+        protected void DestroyAll()
+        {
+            var allChildren = container.GetComponentsInChildren<T>();
+            foreach (var child in allChildren)
+                if (child.isActive)
+                    child.Disappear();
         }
     }
 }

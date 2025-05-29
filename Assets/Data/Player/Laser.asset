@@ -15,29 +15,27 @@ MonoBehaviour:
   <itemType>k__BackingField: 9
   <hide>k__BackingField: 0
   <skillName>k__BackingField: Laser
-  <energyCost>k__BackingField: 200
-  <maxLv>k__BackingField: 5
+  <energyCost>k__BackingField: 450
+  <maxLv>k__BackingField: 3
   <icon>k__BackingField: {fileID: -6270953770400647376, guid: 9f931962657a00644968bb7ce859a616, type: 3}
   <cooldownList>k__BackingField:
+  - 12.5
   - 10
-  - 9.5
-  - 8
-  - 8.5
-  - 7
-  <cooldown>k__BackingField: 8.5
+  - 7.5
+  <cooldown>k__BackingField: 7.5
   <lv>k__BackingField: 3
-  <elapsedTime>k__BackingField: 8.504822
+  <elapsedTime>k__BackingField: 7.504689
   <damageInterval>k__BackingField: 0.2
   <len>k__BackingField: 12
-  <duration>k__BackingField: 3
-  <size>k__BackingField: 0.525
-  <damage>k__BackingField: 9000
+  <duration>k__BackingField: 4
+  <size>k__BackingField: 0.45
+  <damage>k__BackingField: 7500
   <damageType>k__BackingField: 2
   <durationList>k__BackingField:
   - 2
   - 2.5
   - 3
-  <damageList>k__BackingField: 4c1d0000401f0000342100002823000010270000
+  <damageList>k__BackingField: 881300004c1d000010270000
   <sizeList>k__BackingField:
   - 0.3
   - 0.375

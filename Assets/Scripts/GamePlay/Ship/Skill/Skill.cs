@@ -58,14 +58,14 @@ namespace SkyStrike.Game
                 SoundManager.PlaySound(upgradeSound);
                 ShowNoti();
             }
-            skillData.UpdateCooldownDisplay();
             UpgradeStat();
+            skillData.UpdateCooldownDisplay();
         }
         private void ShowNoti()
         {
             notiEventData.notiType = ENoti.Safe;
             notiEventData.title = skillData.skillName;
-            notiEventData.message = "Level up";
+            notiEventData.message = skillData.lv < skillData.maxLv - 1 ? "Level up" : "Level max";
             notiEventData.sprite = skillData.icon;
             EventManager.ActiveUIEvent(notiEventData);
         }

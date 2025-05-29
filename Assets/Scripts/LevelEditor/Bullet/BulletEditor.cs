@@ -18,7 +18,7 @@ namespace SkyStrike.Editor
 
         public void OnEnable()
         {
-            group.SelectNone();
+            group?.SelectNone();
             SelectBullet(null);
             reviewScreen.SetActive(true);
         }

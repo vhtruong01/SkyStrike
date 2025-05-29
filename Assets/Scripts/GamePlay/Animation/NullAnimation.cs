@@ -20,5 +20,6 @@ namespace SkyStrike.Game
         public IAnimation SetStartedAction(UnityAction startedAction) => this;
         public IAnimation SetStoppedAction(UnityAction stoppedAction) => this;
         public IAnimation SetFinishedAction(UnityAction finishedAction) => this;
+        public IAnimation SetLoopType(ELoopType loopType) => this;
     }
 }

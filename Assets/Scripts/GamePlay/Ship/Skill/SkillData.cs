@@ -44,6 +44,7 @@ namespace SkyStrike.Game
             {
                 lv = maxLv;
                 elapsedTime = cooldown;
+                UpdateCooldownDisplay();
             }
         }
         public void UpdateCooldownDisplay()

@@ -22,10 +22,10 @@ MonoBehaviour:
   - 0.4
   <cooldown>k__BackingField: 0.4
   <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 0.0472524
+  <elapsedTime>k__BackingField: 0.3671198
   <dmg>k__BackingField: 400
   <speed>k__BackingField: 7.5
-  <scale>k__BackingField: 0.25
+  <scale>k__BackingField: 0.33
   <lifetime>k__BackingField: 2
   <sprite>k__BackingField: {fileID: 21300000, guid: 93ab20b7efc1e1743b26a9f4207da941, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: a9c88f0cc40449042a10b6f958d95c00, type: 2}
@@ -35,6 +35,6 @@ MonoBehaviour:
   <speedList>k__BackingField:
   - 7.5
   <scaleList>k__BackingField:
-  - 0.25
+  - 0.33
   <spriteList>k__BackingField: []
   <effectList>k__BackingField: []

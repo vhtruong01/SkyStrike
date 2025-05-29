@@ -56,4 +56,4 @@ MonoBehaviour:
   - {fileID: -8246348173835562534, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}
   - {fileID: 5790805702800471361, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}
   - {fileID: 1645027728090911166, guid: 040aa5872116a4f4c95c295e01dad46b, type: 3}
-  <bulletSprites>k__BackingField: {fileID: 11400000, guid: 8ba8e226447bda44aa08c2b3a7f8eeb6, type: 2}
+  <bulletSprites>k__BackingField: {fileID: 11400000, guid: 51bd0f7dc305499498ab40335d621b2c, type: 2}

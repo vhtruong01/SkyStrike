@@ -16,30 +16,29 @@ MonoBehaviour:
   <hide>k__BackingField: 1
   <skillName>k__BackingField: Missile
   <energyCost>k__BackingField: 0
-  <maxLv>k__BackingField: 5
+  <maxLv>k__BackingField: 3
   <icon>k__BackingField: {fileID: 21300000, guid: 27f7d8053038d6749903b9edfc181218, type: 3}
   <cooldownList>k__BackingField:
   - 6
-  <cooldown>k__BackingField: 6
-  <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 5.932238
-  <dmg>k__BackingField: 4000
+  - 5
+  - 4
+  <cooldown>k__BackingField: 4
+  <lv>k__BackingField: 2
+  <elapsedTime>k__BackingField: 2.1600957
+  <dmg>k__BackingField: 5000
   <speed>k__BackingField: 4
-  <scale>k__BackingField: 1
+  <scale>k__BackingField: 1.5
   <lifetime>k__BackingField: 15
   <sprite>k__BackingField: {fileID: -6345550270201846964, guid: e166899afaf16fd45b054b81f6ee4a9f, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: a9c88f0cc40449042a10b6f958d95c00, type: 2}
   <type>k__BackingField: 3
   <damageType>k__BackingField: 1
-  <dmgList>k__BackingField: a00f00008813000070170000581b0000401f0000
+  <dmgList>k__BackingField: 88130000
   <speedList>k__BackingField:
   - 4
   <scaleList>k__BackingField:
   - 1
-  - 1.2
-  - 1.4
-  - 1.6
-  - 1.8
-  - 2
+  - 1.25
+  - 1.5
   <spriteList>k__BackingField: []
   <effectList>k__BackingField: []

@@ -10,7 +10,7 @@ namespace SkyStrike.Game
         public static readonly float maxViewTime = 0.25f;
         private int stateIndex;
         public int damage => 1;
-        public float defaultSpeed { get;private set; }
+        public float defaultSpeed { get; private set; }
         public float elapsedTime { get; set; }
         public float stateDuration { get; set; }
         public float transitionDuration { get; set; }
@@ -39,10 +39,10 @@ namespace SkyStrike.Game
                 startCoef = endCoef = 1;
                 transitionDuration = 0;
                 startScale = endScale = metaData.size;
-                transform.localScale = Vector3.one * startScale;
-                velocity *= defaultSpeed;
                 Rotate();
             }
+            transform.localScale = Vector3.one * startScale;
+
         }
         public bool ChangeState()
         {

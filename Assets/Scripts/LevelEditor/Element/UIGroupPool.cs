@@ -72,7 +72,7 @@ namespace SkyStrike.Editor
             item.index = items.Count;
             items.Add(item);
             if (!string.IsNullOrEmpty(defaultName))
-                item.SetName("New " + defaultName + " " + items.Count);
+                item.SetName(defaultName + " " + items.Count);
             Diminish(item);
             item.gameObject.SetActive(true);
             item.gameObject.transform.SetAsLastSibling();
@@ -206,7 +206,7 @@ namespace SkyStrike.Editor
             dataList.GetList(out var lst);
             foreach (var data in lst)
                 CreateItem(data);
-            //if (!canDeselect) SelectFirstItem();
+            if (!canDeselect) SelectFirstItem();
         }
         public UIElement<T> CreateItemAndAddData(T data)
         {

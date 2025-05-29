@@ -22,7 +22,10 @@ namespace SkyStrike.Editor
         private ObjectDataObserver objectData;
 
         public void OnEnable()
-            => bulletSelectionMenu.Refresh();
+        {
+            bulletSelectionMenu.Refresh();
+            group.SelectNone();
+        }
         protected override void Preprocess()
         {
             base.Preprocess();

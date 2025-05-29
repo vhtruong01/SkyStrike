@@ -21,6 +21,7 @@ namespace SkyStrike.UI
         [SerializeField] private EnergyBar energyBar;
         [SerializeField] private Button startButton;
         [SerializeField] private ShipData shipData;
+        [SerializeField] private Button cheatBtn;
         private List<SkillButton> skillButtons;
         private Coroutine clockCoroutine;
 
@@ -29,6 +30,8 @@ namespace SkyStrike.UI
             skillButtons = new();
             startButton.onClick.AddListener(() => StartCoroutine(StartGame()));
             uiContent.SetActive(false);
+            cheatBtn.gameObject.SetActive(Application.isEditor);
+            cheatBtn.onClick.AddListener(shipData.Cheat);
         }
         private void OnEnable()
         {

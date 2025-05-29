@@ -32,7 +32,7 @@ namespace SkyStrike.Editor
             float remainTime = duration - elapsedTime;
             if (remainTime > 0)
             {
-                if (remainTime > transitionDuration)
+                if (remainTime >= transitionDuration)
                     transform.position += velocity * (defaultSpeed * startCoef * deltaTime);
                 else transform.position += velocity * (defaultSpeed * Lerp(endCoef, startCoef, remainTime / transitionDuration) * deltaTime);
                 if (endScale != startScale)
@@ -80,7 +80,6 @@ namespace SkyStrike.Editor
             defaultSpeed = bulletData.speed.data;
             velocity = dir;
             transform.position = pos.SetZ(transform.position.z);
-            transform.localScale = scale;
             if (bulletData.isUseState.data && states.Count > 0)
             {
                 index = 0;
@@ -92,10 +91,9 @@ namespace SkyStrike.Editor
                 duration = bulletData.lifetime.data;
                 startCoef = endCoef = 1;
                 startScale = endScale = bulletData.size.data;
-                transform.localScale = scale * startScale;
-                velocity *= defaultSpeed;
                 transitionDuration = 0;
             }
+            transform.localScale = scale * startScale;
         }
     }
 }

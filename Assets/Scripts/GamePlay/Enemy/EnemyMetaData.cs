@@ -24,8 +24,8 @@ namespace SkyStrike.Game
     [CreateAssetMenu(fileName = "Enemy", menuName = "Data/Enemy")]
     public class EnemyMetaData : ObjectMetaData, IMetaData, IGame
     {
-        private static readonly float hpCoefficient = 1.1f;
-        private static readonly int minHp = 1000;
+        private static readonly float hpCoefficient = 1.15f;
+        private static readonly int minHp = 1250;
         [SerializeField] private EnemyRace race;
         [field: SerializeField] public EnemyType type { get; private set; }
         [field: SerializeField] public bool isWeakEnemy { get; private set; }
@@ -42,26 +42,27 @@ namespace SkyStrike.Game
         [field: SerializeField] public List<Sprite> weaponSprites { get; private set; }
         [field: SerializeField] public BulletAssetData bulletSprites { get; private set; }
 
+        public override bool isCount => type != EnemyType.Asteroid;
         public void OnEnable()
         {
             star = type switch
             {
-                EnemyType.Creep => 2,
-                EnemyType.Support => 3,
-                EnemyType.Bomber => 7,
-                EnemyType.Fighter => 9,
-                EnemyType.Torpedo => 12,
-                EnemyType.Elite => 15,
-                EnemyType.Subboss => 20,
-                EnemyType.Boss => 30,
+                EnemyType.Creep => 3,
+                EnemyType.Support => 4,
+                EnemyType.Bomber => 6,
+                EnemyType.Fighter => 8,
+                EnemyType.Torpedo => 10,
+                EnemyType.Elite => 13,
+                EnemyType.Subboss => 15,
+                EnemyType.Boss => 26,
                 _ => 0,
             };
             if (star != 0)
-                maxHp = (int)(minHp * (1 + Mathf.Pow(hpCoefficient, star) * star));
-            else maxHp = minHp * 5;
-            score = maxHp / 10 * 10;
-            energy = (int)(star * 2f);
-            exp = maxHp / 150;
+                maxHp = (int)(minHp * Mathf.Pow(hpCoefficient, star) * star);
+            else maxHp = minHp * 15;
+            score = maxHp / 100 * 10;
+            energy = star;
+            exp = maxHp / 200;
             Debug.Log($"Type: {race} {type}, star: {star}, hp: {maxHp}, score: {score}, energy: {energy}, exp {exp}");
         }
         public bool CanHighlight()

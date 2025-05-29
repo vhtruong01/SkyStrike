@@ -12,12 +12,14 @@ namespace SkyStrike.Editor
         [SerializeField] private FloatProperty lifetime;
         [SerializeField] private FloatProperty unitAngle;
         [SerializeField] private FloatProperty startAngle;
+        [SerializeField] private FloatProperty delay;
         [SerializeField] private Vector2Property spacing;
         [SerializeField] private Vector2Property position;
         [SerializeField] private BoolProperty isCircle;
         [SerializeField] private BoolProperty isStartAwake;
         [SerializeField] private BoolProperty isUseState;
         [SerializeField] private IntProperty amount;
+        [SerializeField] private IntProperty stack;
 
         protected override void Preprocess()
         {
@@ -39,12 +41,14 @@ namespace SkyStrike.Editor
             lifetime.Bind(data.lifetime);
             unitAngle.Bind(data.unitAngle);
             startAngle.Bind(data.startAngle);
+            delay.Bind(data.delay);
             spacing.Bind(data.spacing);
             position.Bind(data.position);
             isCircle.Bind(data.isCircle);
             isStartAwake.Bind(data.isStartAwake);
             isUseState.Bind(data.isUseState);
             amount.Bind(data.amount);
+            stack.Bind(data.stack);
         }
         public override void UnbindData()
         {
@@ -55,6 +59,7 @@ namespace SkyStrike.Editor
             spinSpeed.Unbind();
             startAngle.Unbind();
             lifetime.Unbind();
+            delay.Unbind();
             spacing.Unbind();
             position.Unbind();
             unitAngle.Unbind();
@@ -62,6 +67,7 @@ namespace SkyStrike.Editor
             isStartAwake.Unbind();
             isUseState.Unbind();
             amount.Unbind();
+            stack.Unbind();
         }
     }
 }

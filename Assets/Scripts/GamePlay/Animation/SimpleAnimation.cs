@@ -21,6 +21,7 @@ namespace SkyStrike.Game
         public void Stop();
         public void Restart();
         public void Kill();
+        public IAnimation SetLoopType(ELoopType loopType);
         public IAnimation SetDelay(float delay);
         public IAnimation SetDuration(float duration, float delay = 0);
         public IAnimation SetStartedAction(UnityAction startedAction);
@@ -46,11 +47,22 @@ namespace SkyStrike.Game
         protected abstract float duration { get; set; }
 
         public virtual void Awake()
+            => InitLoop();
+        private void InitLoop()
         {
             bool isLoop = loopType == ELoopType.YoyoLoop || loopType == ELoopType.RestartLoop;
             isYoyo = loopType == ELoopType.YoyoLoop || loopType == ELoopType.TwoDir;
             loops = isLoop ? -1 : (isYoyo ? 2 : 1);
             isDirty = true;
+        }
+        public IAnimation SetLoopType(ELoopType loopType)
+        {
+            if (this.loopType != loopType)
+            {
+                this.loopType = loopType;
+                InitLoop();
+            }
+            return this;
         }
         public void OnEnable()
             => SetDefault();
@@ -97,7 +109,11 @@ namespace SkyStrike.Game
                 return false;
             return tweener.IsPlaying();
         }
-        public void Pause() => tweener?.Pause();
+        public void Pause()
+        {
+            SetDefault();
+            tweener?.Pause();
+        }
         public void Restart()
         {
             startedAction?.Invoke();
@@ -107,22 +123,29 @@ namespace SkyStrike.Game
         }
         private void StartAnimation()
         {
-            if (duration > 0 && startVal != endVal && isDirty)
-                CreateTweener();
-            tweener?.Restart();
+            if (duration > 0)
+            {
+                if (startVal != endVal && isDirty)
+                    CreateTweener();
+                tweener?.Restart();
+            }
         }
         public void Kill()
         {
             isDirty = true;
             tweener?.Kill();
         }
-        public IAnimation SetDuration(float duration, float delay = 0)
+        public virtual IAnimation SetDuration(float duration, float delay = 0)
         {
             if (duration >= 0 && this.duration != duration)
             {
-                this.duration = duration;
-                this.delay = Mathf.Max(delay, 0);
-                isDirty = true;
+                if (CanAnimate())
+                {
+                    this.duration = duration;
+                    this.delay = Mathf.Max(delay, 0);
+                    isDirty = duration > 0;
+                }
+                else this.duration = 0;
             }
             return this;
         }
@@ -152,5 +175,8 @@ namespace SkyStrike.Game
         }
         protected abstract void ChangeValue(float value);
         protected abstract void SetDefault();
+        protected virtual bool CanAnimate() => true;
+        public void OnDestroy()
+            => tweener = null;
     }
 }

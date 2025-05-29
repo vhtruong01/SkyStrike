@@ -20,6 +20,8 @@ namespace SkyStrike.Game
         [field: SerializeField] public string objectName { get; private set; }
         [field: SerializeField] public List<Sprite> sprites { get; private set; }
 
+        public override bool isCount => false;
+
         public override string GetName() => objectName;
     }
 }

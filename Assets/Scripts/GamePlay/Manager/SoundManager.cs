@@ -83,6 +83,9 @@ namespace SkyStrike.Game
         Text,
         BossWarning,
         Explosion,
+
+        NightBugTheme = 8000,
+        NightBugThemeC80
     }
     public class SoundManager : MonoBehaviour
     {
@@ -98,7 +101,7 @@ namespace SkyStrike.Game
         public void Awake()
         {
             instance = this;
-            soundVolume = PlayerPrefs.GetFloat("soundVolume", 0.33f);
+            soundVolume = PlayerPrefs.GetFloat("soundVolume", 0.5f);
             sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
             isMute = PlayerPrefs.GetInt("isMute", 1) == 0;
             soundDict = new();
@@ -108,6 +111,7 @@ namespace SkyStrike.Game
         private void PlayBgm(AudioClip audioClip)
         {
 
+            if (bgmSound.clip == audioClip && bgmSound.isPlaying) return;
             bgmSound.clip = audioClip;
             bgmSound.Play();
         }
@@ -151,7 +155,7 @@ namespace SkyStrike.Game
         }
         public static void Pause()
         {
-            instance.bgmSound.Stop();
+            instance.bgmSound.Pause();
             instance.sfxSound.Stop();
         }
         public static void Resume()
@@ -169,7 +173,6 @@ namespace SkyStrike.Game
             public ESound eSound;
             public AudioClip audioClip;
             public bool isBgm;
-            public bool isLoop;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace SkyStrike.Game
             alphaValueAnimation.Restart();
             rigi.simulated = true;
             SoundManager.PlaySound(ESound.ShieldStart);
-            yield return new WaitForSeconds(skillData.duration-1.5f);
+            yield return new WaitForSeconds(skillData.duration - 1.5f);
             SoundManager.PlaySound(ESound.ShieldEnd);
             yield return new WaitForSeconds(1.5f);
             shipData.shield = false;
@@ -38,10 +38,7 @@ namespace SkyStrike.Game
             coroutine = StartCoroutine(UseShield());
         }
         protected override void UpgradeStat()
-        {
-            transform.localScale = Vector3.one * skillData.scale;
-            alphaValueAnimation.SetDuration(skillData.duration);
-        }
+            => alphaValueAnimation.SetDuration(skillData.duration);
         public void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("EnemyBullet") && collision.TryGetComponent<IReflectable>(out var obj))

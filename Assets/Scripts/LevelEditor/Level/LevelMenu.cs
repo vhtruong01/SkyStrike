@@ -123,7 +123,7 @@ namespace SkyStrike.Editor
             if (string.IsNullOrEmpty(fileName))
                 fileName = "NewLevel_" + Random.Range(100000, 999999);
             var data = curLevelData.ExportData();
-            PlayerPrefs.SetString("testLevel", fileName);
+            PlayerPrefs.SetString("testLevel", JsonUtility.ToJson(data));
             if (IO.SaveLevel(data, fileName) && !levelSet.Contains(fileName))
             {
                 levelSet.Add(fileName);

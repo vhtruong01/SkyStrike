@@ -45,5 +45,10 @@ namespace SkyStrike.Game
             if (gameObject.activeSelf != isActive)
                 gameObject.SetActive(isActive);
         }
+        public void EnableCollider(bool isEnable)
+        {
+            if (col2D.enabled != isEnable)
+                col2D.enabled = isEnable;
+        }
     }
 }

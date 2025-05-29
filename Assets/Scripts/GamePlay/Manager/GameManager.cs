@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace SkyStrike.Game
 {
@@ -29,18 +30,25 @@ namespace SkyStrike.Game
 
         private void OnEnable()
         {
+            levelDataList = new(IO.LoadAllLevel<LevelData>().Values);
+            allLevelInfo = JsonUtility.FromJson<AllLevelInfo>(PlayerPrefs.GetString("levels", "")) ?? new();
+            maxLevel = Mathf.Clamp(allLevelInfo.levels.Count - 1, 0, levelDataList.Count - 1);
+            curLevelIndex = maxLevel;
+        }
+        private void Awake()
+        {
+            DOTween.SetTweensCapacity(1000, 50);
 #if UNITY_EDITOR
             Application.targetFrameRate = 1000;
-#elif UNITY_WEBGL            
+            DOTween.SetTweensCapacity(10000, 50);
+#elif UNITY_WEBGL
             Application.targetFrameRate = -1;
             QualitySettings.vSyncCount = 0;
 #else
             Application.targetFrameRate = 60;
 #endif
-            levelDataList = new(IO.LoadAllLevel<LevelData>().Values);
-            allLevelInfo = JsonUtility.FromJson<AllLevelInfo>(PlayerPrefs.GetString("levels", "")) ?? new();
-            maxLevel = Mathf.Clamp(allLevelInfo.levels.Count - 1, 0, levelDataList.Count - 1);
-            curLevelIndex = maxLevel;
+
+
         }
         public void SaveCurrentLevel(bool isComplete, int score, int star)
         {
@@ -51,7 +59,7 @@ namespace SkyStrike.Game
                 curLevelIndex++;
                 if (allLevelInfo.levels.Count <= curLevelIndex)
                     allLevelInfo.levels.Add(0);
-                maxLevel = Mathf.Max(maxLevel,curLevelIndex);
+                maxLevel = Mathf.Max(maxLevel, curLevelIndex);
             }
             PlayerPrefs.SetString("levels", JsonUtility.ToJson(allLevelInfo));
         }

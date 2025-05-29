@@ -11,6 +11,7 @@ namespace SkyStrike.Game
         {
             base.Awake();
             anim = GetComponent<SpriteAnimation>();
+            EnableCollider(false);
         }
         protected override IEnumerator Prepare(float delay)
         {

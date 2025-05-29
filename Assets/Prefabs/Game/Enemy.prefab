@@ -260,7 +260,7 @@ MonoBehaviour:
   autoPlay: 0
   loopType: 0
   <startVal>k__BackingField: 0
-  <endVal>k__BackingField: 1
+  <endVal>k__BackingField: 0.15
   <duration>k__BackingField: 0.1
 --- !u!114 &3177559540271007340
 MonoBehaviour:

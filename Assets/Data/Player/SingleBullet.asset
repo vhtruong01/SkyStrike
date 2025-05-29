@@ -16,22 +16,24 @@ MonoBehaviour:
   <hide>k__BackingField: 1
   <skillName>k__BackingField: Single Bullet
   <energyCost>k__BackingField: 0
-  <maxLv>k__BackingField: 6
+  <maxLv>k__BackingField: 5
   <icon>k__BackingField: {fileID: 21300000, guid: 0f8947b4588bc514bb106121874e98aa, type: 3}
   <cooldownList>k__BackingField:
   - 0.2
-  <cooldown>k__BackingField: 0.2
-  <lv>k__BackingField: 0
-  <elapsedTime>k__BackingField: 0.20376776
-  <dmg>k__BackingField: 750
+  - 0.175
+  - 0.15
+  <cooldown>k__BackingField: 0.15
+  <lv>k__BackingField: 5
+  <elapsedTime>k__BackingField: 0.1524231
+  <dmg>k__BackingField: 2500
   <speed>k__BackingField: 6
-  <scale>k__BackingField: 1
+  <scale>k__BackingField: 1.25
   <lifetime>k__BackingField: 2
   <sprite>k__BackingField: {fileID: 21300000, guid: 93ab20b7efc1e1743b26a9f4207da941, type: 3}
   <material>k__BackingField: {fileID: 2100000, guid: a9c88f0cc40449042a10b6f958d95c00, type: 2}
   <type>k__BackingField: 0
   <damageType>k__BackingField: 0
-  <dmgList>k__BackingField: ee020000e8030000e2040000dc050000d6060000d0070000
+  <dmgList>k__BackingField: ee020000e8030000e2040000dc050000c4090000
   <speedList>k__BackingField:
   - 6
   <scaleList>k__BackingField:
@@ -39,7 +41,6 @@ MonoBehaviour:
   - 1.05
   - 1.1
   - 1.15
-  - 1.2
   - 1.25
   <spriteList>k__BackingField: []
   <effectList>k__BackingField:

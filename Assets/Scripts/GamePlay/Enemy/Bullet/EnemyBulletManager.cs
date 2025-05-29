@@ -10,11 +10,13 @@ namespace SkyStrike.Game
         {
             base.Subscribe();
             EventManager.Subscribe<EnemyBulletEventData>(SpawnBullet);
+            EventManager.Subscribe(EEventType.ClearEnemyBullet, DestroyAll );
         }
         protected override void Unsubscribe()
         {
             base.Unsubscribe();
             EventManager.Unsubscribe<EnemyBulletEventData>(SpawnBullet);
+            EventManager.Unsubscribe(EEventType.ClearEnemyBullet, DestroyAll);
         }
         private void SpawnBullet(EnemyBulletEventData eventData)
         {
@@ -32,7 +34,7 @@ namespace SkyStrike.Game
         {
             for (int i = 0; i < eventData.metaData.amount; i++)
             {
-                bulletEventData.velocity = eventData.velocity + new Vector3(Mathf.Sin(eventData.angle + unitAngle * i),
+                bulletEventData.velocity = new Vector3(Mathf.Sin(eventData.angle + unitAngle * i),
                                                -Mathf.Cos(eventData.angle + unitAngle * i));
                 bulletEventData.position = eventData.position + eventData.metaData.position.SetZ(0);
                 var bullet = InstantiateItem(bulletEventData.position);

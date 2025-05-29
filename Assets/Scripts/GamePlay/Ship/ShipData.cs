@@ -146,7 +146,7 @@ namespace SkyStrike.Game
         {
             lv++;
             maxHp = defaultHp + lv / 5;
-            maxEnergy = defaultEnergy + lv * 100;
+            maxEnergy = defaultEnergy + (lv - 1) * 50;
             maxExp = lv >= maxLv ? int.MaxValue : (defaultExp + lv * (int)Mathf.Pow(1.05f, lv));
             recoverSpeed = defaultRecoverSpeed + lv;
             magnetRadius = defaultMagnetRadius + lv * 0.1f;
@@ -169,6 +169,18 @@ namespace SkyStrike.Game
             onExpChanged.Invoke(1f * _exp / maxExp);
             foreach (var skill in skillDataList)
                 skill.onCooldown?.Invoke(skill.elapsedTime, skill.cooldown);
+        }
+        public void Cheat()
+        {
+            foreach (var skill in skillDataList)
+            {
+                for (int j = skill.lv; j < maxLv; j++)
+                    skill.LvUp();
+            }
+            for (int i = lv + 1; i <= maxLv; i++)
+                LevelUp();
+            energy = maxEnergy;
+            hp = maxHp;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace SkyStrike.Game
         public int enemyCount;
         public int curBulletId;
         public int starRating;
+        public bool isUseNightBugTheme;
         public string name;
         public WaveData[] waves;
         public EnemyBulletMetaData[] bullets;

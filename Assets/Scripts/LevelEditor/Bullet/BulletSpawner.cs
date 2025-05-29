@@ -8,9 +8,11 @@ namespace SkyStrike.Editor
         [SerializeField] private BulletObject prefab;
         private ObjectPool<BulletObject> objectPool;
         private BulletDataObserver bulletData;
-        private float elaspedTime;
+        private float elapsedTime;
         private float spawnerAngle;
         private Vector2 originalPos;
+        private int stack;
+        private float delay;
 
         public void Awake()
         {
@@ -29,22 +31,34 @@ namespace SkyStrike.Editor
         private void ReleaseBullet(BulletObject bullet) => bullet.gameObject.SetActive(false);
         public void FixedUpdate()
         {
-            if (bulletData == null) return;
-            elaspedTime += Time.fixedDeltaTime;
-            if (elaspedTime >= bulletData.timeCooldown.data)
+            if (bulletData == null || bulletData.stack.data <= 0) return;
+            if (stack <= 0 && bulletData.delay.data > 0)
             {
-                if (bulletData.amount.data > 0)
-                    Spawn();
-                if (bulletData.isCircle.data )
+                delay += Time.fixedDeltaTime;
+                if (delay < bulletData.delay.data) return;
+                else
                 {
-                    spawnerAngle += bulletData.spinSpeed.data * elaspedTime;
+                    stack = bulletData.stack.data;
+                    delay = 0;
+                    elapsedTime = Mathf.Max(0, bulletData.delay.data - bulletData.timeCooldown.data);
+                }
+            }
+            if (elapsedTime >= bulletData.timeCooldown.data)
+            {
+                stack--;
+                Spawn();
+                if (bulletData.isCircle.data)
+                {
+                    spawnerAngle += bulletData.spinSpeed.data * Mathf.Max(Time.fixedDeltaTime, bulletData.timeCooldown.data);
                     spawnerAngle %= 360;
                 }
-                elaspedTime = 0;
+                elapsedTime = 0;
             }
+            elapsedTime += Time.fixedDeltaTime;
         }
         private void Spawn()
         {
+            if (bulletData.amount.data <= 0) return;
             if (bulletData.isCircle.data)
             {
                 float unitAngle = 360 / bulletData.amount.data;
@@ -77,8 +91,10 @@ namespace SkyStrike.Editor
                     objectPool.Release(transform.GetChild(i).GetComponent<BulletObject>());
             this.bulletData = bulletData;
             if (bulletData == null) return;
-            elaspedTime = bulletData.timeCooldown.data;
             spawnerAngle = 0;
+            stack = 0;
+            elapsedTime = bulletData.timeCooldown.data;
+            delay = bulletData.delay.data;
         }
     }
 }

@@ -40,8 +40,9 @@ namespace SkyStrike.Editor
             => ModalMenu.Show("Delete current wave?", () => group.RemoveSelectedItem());
         protected void SelectLevel(LevelDataObserver data)
         {
+            int index = curIndex;
             group.DisplayDataList(data);
-            group.SelectAndInvokeItem(curIndex);
+            group.SelectAndInvokeItem(index);
         }
     }
 }

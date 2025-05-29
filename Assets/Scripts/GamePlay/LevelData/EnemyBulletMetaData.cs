@@ -26,12 +26,14 @@ namespace SkyStrike.Game
         public float lifetime;
         public float unitAngle;
         public float startAngle;
+        public float delay;
         public Vec2 spacing;
         public Vec2 position;
         public bool isCircle;
         public bool isStartAwake;
         public bool isUseState;
         public int amount;
+        public int stack;
         public BulletStateData[] states;
         [NonSerialized] public Color color;
     }
