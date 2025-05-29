@@ -25,8 +25,6 @@ namespace SkyStrike.Game
                 if (spriteIndex != value)
                 {
                     spriteIndex = value;
-                    if (sprites == null)
-                        Debug.Log(name + " " + transform.parent.name + " " + transform.parent.transform.parent.name);
                     rendererComponent.SetSprite(sprites[spriteIndex]);
                 }
             }

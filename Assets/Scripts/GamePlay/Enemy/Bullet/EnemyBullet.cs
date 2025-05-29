@@ -5,7 +5,7 @@ namespace SkyStrike.Game
     [RequireComponent(typeof(EnemyBulletData))]
     public class EnemyBullet : PoolableObject<EnemyBulletData>, IDamager, IReflectable, IDestroyable
     {
-        private static float sqrDistance = 1f;
+        private static readonly float sqrDistance = 1f;
         private SpriteAnimation anim;
         public EDamageType damageType => EDamageType.Normal;
 

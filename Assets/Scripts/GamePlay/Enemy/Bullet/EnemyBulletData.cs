@@ -4,10 +4,6 @@ namespace SkyStrike.Game
 {
     public class EnemyBulletData : GameData<EnemyBulletMetaData, EnemyBulletEventData>
     {
-        public static readonly float maxViewAngle = 90;
-        public static readonly float maxRotationAngle = 10;
-        public static readonly float squaredMaxDistance = 4f;
-        public static readonly float maxViewTime = 0.25f;
         private int stateIndex;
         public int damage => 1;
         public float defaultSpeed { get; private set; }
